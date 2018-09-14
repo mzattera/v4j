@@ -19,11 +19,11 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.v4j.document.alphabet.Alphabet;
 import org.v4j.manuscript.processing.DocumentSplitter;
 import org.v4j.manuscript.processing.PagePicker;
 import org.v4j.manuscript.processing.PageSplitter;
 import org.v4j.text.Text;
+import org.v4j.text.alphabet.Alphabet;
 
 /**
  * This class represents one document in IVTFF format (see

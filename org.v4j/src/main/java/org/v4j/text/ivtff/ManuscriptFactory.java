@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import org.v4j.document.alphabet.Alphabet;
+import org.v4j.text.alphabet.Alphabet;
 
 /**
  * Factory class to read and write different versions of the Voynich manuscript,

@@ -3,9 +3,9 @@ package org.v4j.text.ivtff;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.v4j.document.alphabet.Alphabet;
 import org.v4j.text.Text;
 import org.v4j.text.Token;
+import org.v4j.text.alphabet.Alphabet;
 
 /**
  * This class represents a line in a document, together with its ID. If the line

@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.v4j.document.alphabet.Alphabet;
+import org.v4j.text.alphabet.Alphabet;
 
 /**
  * A text, as a sequence of text elements of same type (e.g pages).

@@ -4,7 +4,7 @@
  * Created on 12 novembre 2005, 20.53
  */
 
-package org.v4j.document.alphabet;
+package org.v4j.text.alphabet;
 
 /**
  * 

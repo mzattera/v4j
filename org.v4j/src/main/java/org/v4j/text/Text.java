@@ -11,12 +11,23 @@ import java.util.Map;
 import org.v4j.text.alphabet.Alphabet;
 
 /**
- * A text, as a sequence of text elements of same type (e.g pages).
+ * A text, as a sequence of text elements of same type (e.g pages). It is
+ * assumed text is organized in lines.
  * 
  * @author mzatt
  *
  */
 public abstract class Text<T extends TextElement> implements TextElement {
+
+	private final String id;
+
+	/**
+	 * @return Unique ID for the Text; might be null.
+	 */
+	@Override	
+	public String getId() {
+		return id;
+	}
 
 	// Alphabet used by this text
 	private Alphabet alphabet;
@@ -29,11 +40,21 @@ public abstract class Text<T extends TextElement> implements TextElement {
 	protected Map<String, T> elementMap = new HashMap<>();
 
 	protected Text() {
-		this.alphabet = Alphabet.ASCII;
+		this(null, Alphabet.ASCII, new ArrayList<T>());
+	}
+	
+	protected Text(String id) {
+		this(id, Alphabet.ASCII, new ArrayList<T>());
 	}
 
-	protected Text(Alphabet a) {
+	protected Text(String id, Alphabet a) {
+		this(id, a, new ArrayList<T>());
+	}
+
+	protected Text(String id, Alphabet a, List<T> elements) {
+		this.id = id;
 		this.alphabet = a;
+		this.elements = elements;
 	}
 
 	/**
@@ -94,5 +115,43 @@ public abstract class Text<T extends TextElement> implements TextElement {
 		}
 
 		return result.toString();
+	}
+
+	/**
+	 * 
+	 * @param filter
+	 * @return the elements in this text for which filter.keep() returned true.
+	 */
+	public List<T> filterElements(ElementFilter<T> filter) {
+		List<T> toKeep = new ArrayList<>();
+		for (T element : elements)
+			if (filter.keep(element))
+				toKeep.add(element);
+
+		return toKeep;
+	}
+
+	/**
+	 * Splits elements in this Text accordingly to the categories introduced by given splitter.
+	 * 
+	 * @param filter
+	 * @return a map from each category into corresponding elments.
+	 */
+	public Map<String, List<T>> splitElements(ElementSplitter<T> splitter) {
+		Map<String, List<T>> result = new HashMap<>();
+	
+		for (T element : elements) {
+			String category = splitter.getCategory(element);
+			List<T> l = result.get(category);
+			
+			if (l == null) {
+				l = new ArrayList<T>();
+				result.put(category, l);
+			}
+
+			l.add(element);
+		}
+		
+		return result;
 	}
 }

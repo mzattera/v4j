@@ -187,6 +187,7 @@ public class PageHeader implements Identifiable {
 		return row.substring(pos + 3, pos + 4);
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) return false;
 		
@@ -197,6 +198,7 @@ public class PageHeader implements Identifiable {
 		return p.id.equals(this.id);
 	}
 
+	@Override
 	public int hashCode() {
 		return id.hashCode();
 	}

@@ -51,10 +51,11 @@ public class IvtffPage extends IvtffElement<PageHeader, IvtffLine> {
 	}
 
 	/**
-	 * Return lines. Notice that for performance reasons we do not clone the list,
-	 * so alterign the list will impact the docuemnt.
+	 * @return lines in page. Notice that for performance reasons we do not clone the list,
+	 * so altering the list will impact the document.
 	 */
 	public List<IvtffLine> getLines() {
-		return (List<IvtffLine>) elements;
+		// TODO return an unmodifiable list instead?
+		return (List<IvtffLine>) elements;		
 	}
 }

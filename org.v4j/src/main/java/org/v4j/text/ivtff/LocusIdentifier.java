@@ -18,8 +18,7 @@ public class LocusIdentifier implements Identifiable {
 	private String[] _part;
 
 	/**
-	 * Creates a new instance starting from a string in format <page
-	 * name>.<num>identifier
+	 * Creates a new instance starting from a string in format <page name>.<num>
 	 */
 	protected LocusIdentifier(String id) throws ParseException {
 		String[] parts = id.split("\\.");
@@ -53,6 +52,40 @@ public class LocusIdentifier implements Identifiable {
 				+ ">";
 	}
 
+	/**
+	 * @return page ID; same as getPageLocator() but without angle brackets.
+	 */
+	public String getPageId() {
+		return _part[0];
+	}
+
+	/**
+	 * @return line number.
+	 */
+	public String getNumber() {
+		return _part[1];
+	}
+
+	/**
+	 * @return locus for this line (locus code + descriptor).
+	 */
+	// TODO getters fro the code and the decriptor separately
+	public String getLocus() {
+		return _part[2];
+	}
+
+	/**
+	 * @return transcriber (i.e. the letter after ; in LL part of ID).
+	 */
+	public String getTranscriber() {
+		return _part[3];
+	}
+
+	@Override
+	public String getId() {
+		return getPageId() + "." + getNumber() + (getTranscriber().isEmpty() ? "" : ";" + getTranscriber());
+	}
+
 	@Override
 	public String toString() {
 		return asString;
@@ -73,45 +106,5 @@ public class LocusIdentifier implements Identifiable {
 	@Override
 	public int hashCode() {
 		return getId().hashCode();
-	}
-
-	/**
-	 * @return page header.
-	 */
-	public String getPageHeader() {
-		return "<" + _part[0] + ">";
-	}
-
-	/**
-	 * @return page ID; same as getPageLocator() but without angle brackets..
-	 */
-	public String getPageId() {
-		return _part[0];
-	}
-
-	/**
-	 * @return line number.
-	 */
-	public String getNumber() {
-		return _part[1];
-	}
-
-	/**
-	 * @return locus for this line (locus code + descriptor).
-	 */
-	public String getLocus() {
-		return _part[2];
-	}
-
-	/**
-	 * @return transcriber (i.e. the letter after ; in LL part of ID).
-	 */
-	public String getTranscriber() {
-		return _part[3];
-	}
-
-	@Override
-	public String getId() {
-		return getPageId() + "." + getNumber() + (getTranscriber().isEmpty() ? "" : ";"+getTranscriber());
 	}
 }

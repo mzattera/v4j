@@ -16,12 +16,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.v4j.manuscript.processing.DocumentSplitter;
-import org.v4j.manuscript.processing.PagePicker;
-import org.v4j.manuscript.processing.PageSplitter;
+import org.v4j.text.ElementFilter;
+import org.v4j.text.ElementSplitter;
 import org.v4j.text.Text;
 import org.v4j.text.alphabet.Alphabet;
 
@@ -32,7 +32,7 @@ import org.v4j.text.alphabet.Alphabet;
  * @author maxi
  */
 // TODO Rename to IVTFFDocument
-public class IvtffText extends Text<IvtffPage>{
+public class IvtffText extends Text<IvtffPage> {
 
 	@Override
 	public String getId() {
@@ -99,31 +99,37 @@ public class IvtffText extends Text<IvtffPage>{
 	 * Build a document by parsing content of given string.
 	 */
 	public IvtffText(String content) throws IOException, ParseException {
-		
+
 		this(new BufferedReader(new StringReader(content)));
 	}
 
 	/**
-	 * Creates a new instance of a document from a list of lines. Notice that lines are
-	 * copied into the new document; they are not shared.
+	 * Copy constructor (kinda). Creates a new instance of a document from a list of
+	 * lines contained in given document. Notice that lines are copied into the new
+	 * document; they are not shared.
 	 *
+	 * @param doc
+	 *            document where the lines come from.
 	 * @param lines
-	 *            list of lines that must go into the document.
+	 *            list of lines that must go into the new document, they must belong
+	 *            to doc.
 	 */
-	protected IvtffText(List<IvtffLine> lines) {
-		// TODo support version
-		setAlphabet(lines.size() > 0 ? lines.get(0).getAlphabet()
-				: Alphabet.EVA);
+	public IvtffText(IvtffText doc, List<IvtffLine> lines) {
+
+		super(doc.getId(), doc.getAlphabet());
+		this.version = doc.version;
+		this.majorVersion = doc.majorVersion;
+		this.setParent(null);
 
 		for (IvtffLine line : lines) {
-			IvtffPage oldPage = line.getPage();
-			IvtffPage newp = getElement(oldPage.getId());
-			if (newp == null) {
-				newp = new IvtffPage(oldPage.getDescriptor());
-				addElement(newp);
+			IvtffPage docPage = line.getPage();
+			IvtffPage myPage = getElement(docPage.getId());
+			if (myPage == null) {
+				myPage = new IvtffPage(docPage.getDescriptor());
+				addElement(myPage);
 			}
 
-			newp.addLine(new IvtffLine(line));
+			myPage.addLine(new IvtffLine(line));
 		}
 	}
 
@@ -217,10 +223,10 @@ public class IvtffText extends Text<IvtffPage>{
 					IvtffPage page = new IvtffPage(pageDescriptor);
 					addElement(page);
 					currentPage = page;
-					
-				} else { 
+
+				} else {
 					// regular row
-					
+
 					if (currentPage == null)
 						throw new ParseException("Data block starting without page header", row, rowNum);
 
@@ -251,7 +257,27 @@ public class IvtffText extends Text<IvtffPage>{
 	}
 
 	/**
-	 * Return lines.
+	 * 
+	 * @return true if this is intelinear text. An interlinear text is composed from
+	 *         different transcriptions and each line may appear multiple times, one
+	 *         for each transcription.
+	 */
+	public boolean isInterlinear() {
+		List<IvtffLine> lines = getLines();
+		if (lines.size() == 0)
+			return false;
+
+		String firstAuthor = lines.get(0).getDescriptor().getTranscriber();
+		for (IvtffLine line : lines)
+			if (!line.getDescriptor().getTranscriber().equals(firstAuthor))
+				return true;
+
+		return false;
+	}
+
+	/**
+	 * @return lines in this document. Notice that for performance reasons we do not
+	 *         clone the list, so altering the list will impact the document.
 	 */
 	public List<IvtffLine> getLines() {
 		List<IvtffLine> ll = new ArrayList<>();
@@ -262,7 +288,6 @@ public class IvtffText extends Text<IvtffPage>{
 
 		return ll;
 	}
-
 
 	/**
 	 * Write this Document as a specific HTML version of the Voynich.
@@ -378,88 +403,87 @@ public class IvtffText extends Text<IvtffPage>{
 	// }
 
 	/**
-	 * Split one document. The lines of the document will be split based on the
-	 * given DocumentSplitter.
+	 * 
+	 * @param filter
+	 * @return a text with all and only lines for which filter.keep() returned true.
 	 */
-	public IvtffText[] splitLines(DocumentSplitter s) {
+	public IvtffText filterPages(ElementFilter<IvtffPage> filter) {
 
-		// do the actual splitting of line
-		Map<String, List<IvtffLine>> result = new HashMap<>();
+		List<IvtffLine> toKeep = new ArrayList<>();
+		for (IvtffPage page : elements)
+			if (filter.keep(page))
+				toKeep.addAll(page.getLines());
 
-		for (IvtffLine line : getLines()) {
-			String key = s.getKey(line);
-			List<IvtffLine> l = result.get(key);
-			if (l == null) {
-				l = new ArrayList<IvtffLine>();
-				result.put(key, l);
-			}
-			l.add(line);
-		}
-
-		// from each subset build a document
-		IvtffText[] tmp = new IvtffText[result.size()];
-		int i = 0;
-		for (List<IvtffLine> lines : result.values()) {
-			tmp[i++] = new IvtffText(lines);
-		}
-
-		return tmp;
+		return new IvtffText(this, toKeep);
 	}
 
 	/**
-	 * @return one separate document for each page in this document.
+	 * 
+	 * @param filter
+	 * @return a text with all and only lines for which filter.keep() returned true.
 	 */
-	public IvtffText[] splitPages() {
-		PageSplitter s = new PageSplitter() {
-			public String getKey(PageHeader pd) {
-				return pd.getId();
-			}
-		};
-		return splitPages(s);
+	public IvtffText filterLines(ElementFilter<IvtffLine> filter) {
+
+		List<IvtffLine> toKeep = new ArrayList<>();
+		for (IvtffPage page : elements)
+			toKeep.addAll(page.filterElements(filter));
+
+		return new IvtffText(this, toKeep);
 	}
 
 	/**
-	 * Split one document. The pages of the document will be split based on the
-	 * given PageSplitter.
+	 * 
+	 * @param splitter
+	 * @return a map that maps each category (as defined by splitter) into a text
+	 *         with pages in that category.
 	 */
-	public IvtffText[] splitPages(PageSplitter s) {
+	public Map<String, IvtffText> splitPages(ElementSplitter<IvtffPage> splitter) {
 
-		// do the actual splitting of pages
-		Map<String, List<IvtffLine>> result = new HashMap<>();
-		for (IvtffPage page : elements) {
-			String key = s.getKey(page.getDescriptor());
-			List<IvtffLine> l = result.get(key);
-			if (l == null) {
-				l = new ArrayList<IvtffLine>();
-				result.put(key, l);
-			}
-
-			l.addAll(page.getLines());
-		}
-
-		// from each subset build a document
-		IvtffText[] tmp = new IvtffText[result.size()];
-		int i = 0;
-		for (List<IvtffLine> lines : result.values()) {
-			tmp[i++] = new IvtffText(lines);
-		}
-
-		return tmp;
-	}
-
-	/**
-	 * Pick from this document the pages for which PagePicker returns true and
-	 * create a new document from it.
-	 */
-	public IvtffText pickPages(PagePicker p) {
-
-		// Picks up the pages for the new document
+		Map<String, IvtffText> result = new HashMap<>();
+		Map<String, List<IvtffPage>> pages = splitElements(splitter);
 		List<IvtffLine> lines = new ArrayList<>();
-		for (IvtffPage page : elements) {
-			if (p.pickPage(page.getDescriptor()))
+
+		for (String category : pages.keySet()) {
+			lines.clear();
+
+			for (IvtffPage page : pages.get(category))
 				lines.addAll(page.getLines());
+
+			result.put(category, new IvtffText(this, lines));
 		}
 
-		return new IvtffText(lines);
+		return result;
+	}
+
+	/**
+	 * 
+	 * @param splitter
+	 * @return a map that maps each category (as defined by splitter) into a text
+	 *         with lines in that category.
+	 */
+	public Map<String, IvtffText> splitLines(ElementSplitter<IvtffLine> splitter) {
+
+		Map<String, IvtffText> result = new HashMap<>();
+		Map<String, List<IvtffLine>> lines = new HashMap<>();
+
+		for (IvtffPage page : elements) {
+			Map<String, List<IvtffLine>> splitted = page.splitElements(splitter);
+			for (String category : splitted.keySet()) {
+				List<IvtffLine> l = splitted.get(category);
+
+				if (l == null) {
+					l = new ArrayList<>();
+					lines.put(category, l);
+				}
+
+				l.addAll(splitted.get(category));
+			}
+		}
+
+		for (Entry<String, List<IvtffLine>> entry : lines.entrySet()) {
+			result.put(entry.getKey(), new IvtffText(this, entry.getValue()));
+		}
+
+		return result;
 	}
 }

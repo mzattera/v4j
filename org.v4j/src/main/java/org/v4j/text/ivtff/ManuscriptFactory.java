@@ -115,7 +115,7 @@ public class ManuscriptFactory {
 
 		if (tt == Transcription.LSI) {
 			fName.append("LSI_ivtff_0d");
-			if (a != Alphabet.EVA)
+			if ((a != null) && (a != Alphabet.EVA))
 				fName.append(a.getCodeString());
 		} else
 			throw new IllegalArgumentException("Unsupported transcription: " + tt); // TODO add support for all other

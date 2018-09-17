@@ -45,9 +45,9 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Token> {
 	public Text<?> getParent() {
 		return page;
 	}
-	
+
 	public IvtffPage getPage() {
-		return (IvtffPage)getParent();
+		return (IvtffPage) getParent();
 	}
 
 	/**
@@ -105,7 +105,10 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Token> {
 	 * @throws ParseException
 	 */
 	private String normalizeText(String text, Alphabet a) throws ParseException {
-		String txt = removeComments(text);
+		// TODO is this is the case? or should it be simply removed?
+		String txt = text.replaceAll("<\\->", a.getSpace() + ""); // plant intrusion is replaced by a space
+		
+		txt = removeComments(txt);
 		txt = removeHighAscii(txt);
 		txt = removeLigatures(txt);
 		txt = removeAlternativeReadings(txt);
@@ -114,6 +117,8 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Token> {
 		txt = txt.trim();
 		if (!a.isPlain(txt))
 			throw new ParseException("Line contains invalid characters", text);
+
+		// TODO normalize text...uniform spaces and removal of contol chars
 
 		return txt;
 	}

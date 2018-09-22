@@ -6,7 +6,7 @@ package org.v4j;
 /**
  * A class which instances have unique IDs.
  * 
- * @author mzatt
+ * @author Massimiliano "Maxi" Zattera
  *
  */
 public interface Identifiable {

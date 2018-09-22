@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Defines an alphabet of symbols used in a text.
  * 
- * @author maxi
+ * @author Massimiliano "Maxi" Zattera
  */
 public abstract class Alphabet {
 	

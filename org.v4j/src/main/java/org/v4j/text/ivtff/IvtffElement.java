@@ -10,7 +10,7 @@ import org.v4j.text.TextElement;
 /**
  * This represent a text element that has a descriptor (e.g. a page with its header or a line with its locus identifier).
  * 
- * @author mzatt
+ * @author Massimiliano "Maxi" Zattera
  *
  */
 public abstract class IvtffElement<D extends Identifiable, T extends TextElement> extends Text<T> implements Identifiable {

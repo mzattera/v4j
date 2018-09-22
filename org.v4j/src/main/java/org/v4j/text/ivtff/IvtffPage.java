@@ -10,7 +10,7 @@ import org.v4j.text.Text;
 /**
  * A page in the Voynich manuscript.
  * 
- * @author mzatt
+ * @author Massimiliano "Maxi" Zattera
  *
  */
 public class IvtffPage extends IvtffElement<PageHeader, IvtffLine> {

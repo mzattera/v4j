@@ -9,7 +9,7 @@ import org.v4j.Identifiable;
  * This describes data about one page, it does not contain the page lines, which
  * are part of a document.
  * 
- * @author maxi
+ * @author Massimiliano "Maxi" Zattera
  */
 public class PageHeader implements Identifiable {
 	

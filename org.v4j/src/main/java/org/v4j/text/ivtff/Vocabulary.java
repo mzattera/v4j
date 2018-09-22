@@ -18,7 +18,7 @@ import java.util.Map;
  * This class is a dcitionary that contains words and their occurrences. TODO:
  * better sorting method.
  * 
- * @author maxi
+ * @author Massimiliano "Maxi" Zattera
  */
 public class Vocabulary {
 

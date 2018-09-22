@@ -4,7 +4,7 @@
 package org.v4j;
 
 /**
- * @author maxi
+ * @author Massimiliano "Maxi" Zattera
  *
  */
 public interface RegressionTest {

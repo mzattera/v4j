@@ -11,7 +11,7 @@ import org.v4j.text.alphabet.Alphabet;
  * This class represents a line in a document, together with its ID. If the line
  * does not come from Voynich, then its ID might be meaningless.
  * 
- * @author maxi
+ * @author Massimiliano "Maxi" Zattera
  */
 public class IvtffLine extends IvtffElement<LocusIdentifier, Token> {
 

@@ -3,7 +3,7 @@ package org.v4j.text.ivtff;
 /**
  * Thrown when an error occurs parsing a file.
  *
- * @author maxi
+ * @author Massimiliano "Maxi" Zattera
  */
 public class ParseException extends java.lang.Exception {
 

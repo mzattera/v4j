@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Various file utilities.
  * 
- * @author massimiliano_zattera
+ * @author Massimiliano "Maxi" Zattera
  *
  */
 public class FileUtil {

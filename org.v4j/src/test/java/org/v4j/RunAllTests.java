@@ -4,7 +4,7 @@
 package org.v4j;
 
 /**
- * @author maxi
+ * @author Massimiliano "Maxi" Zattera
  * 
  */
 public final class RunAllTests {
@@ -21,7 +21,7 @@ public final class RunAllTests {
 			// Checks that assertions are enabled
 			try {
 				assert false : "Assertion test.";
-				throw new IllegalStateException ("Assertions are not enabled");
+				throw new IllegalStateException ("Assertions are not enabled. Please run this class by using -ea option for JVM.");
 			} catch(AssertionError a) {			
 			}
 

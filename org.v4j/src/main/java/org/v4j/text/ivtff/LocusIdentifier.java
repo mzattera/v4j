@@ -6,7 +6,7 @@ import org.v4j.Identifiable;
  * This describes a locus identifier in IVTFF format.
  *
  * 
- * @author maxi
+ * @author Massimiliano "Maxi" Zattera
  */
 // TODO rename
 public class LocusIdentifier implements Identifiable {

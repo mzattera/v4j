@@ -19,7 +19,7 @@ import org.v4j.text.ivtff.ManuscriptFactory.TranscriptionType;
  * 
  * STATUS: Working & with test harness.
  * 
- * @author maxi
+ * @author Massimiliano "Maxi" Zattera
  */
 public class BuildDocumentVersion {
 

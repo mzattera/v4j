@@ -9,7 +9,7 @@ import org.v4j.text.alphabet.Alphabet;
 /**
  * An element of text, either composite (e.g. a paragraph) or a single token.
  * 
- * @author mzatt
+ * @author Massimiliano "Maxi" Zattera
  *
  */
 public interface TextElement extends Identifiable {

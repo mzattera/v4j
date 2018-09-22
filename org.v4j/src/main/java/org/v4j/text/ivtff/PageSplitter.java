@@ -8,7 +8,7 @@ import org.v4j.text.ElementSplitter;
 /**
  * Splits page based on any combination of parameters in the page descriptor.
  * 
- * @author Massimiliano_Zattera
+ * @author Massimiliano "Maxi" Zattera
  *
  */
 public class PageSplitter implements ElementSplitter<IvtffPage> {

@@ -7,7 +7,7 @@ package org.v4j.text;
  * An ElementFilter is used to filter elements in a text.
  * The method Text<>.filter() will build a new document containing all and only element el for which ElementFilter<>(el) returned true.
  *
- * @author maxi
+ * @author Massimiliano "Maxi" Zattera
  */
 public interface ElementFilter<T extends TextElement> {
 

@@ -14,7 +14,7 @@ import org.v4j.text.alphabet.Alphabet;
  * Factory class to read and write different versions of the Voynich manuscript,
  * or part of it. The documents are read from IVTFF files in resource folder.
  * 
- * @author mzatt
+ * @author Massimiliano "Maxi" Zattera
  *
  */
 public class ManuscriptFactory {
@@ -22,7 +22,7 @@ public class ManuscriptFactory {
 	/**
 	 * The different transcriptions we have available.
 	 * 
-	 * @author maxi
+	 * @author Massimiliano "Maxi" Zattera
 	 * 
 	 */
 	public enum Transcription {
@@ -40,7 +40,7 @@ public class ManuscriptFactory {
 	/**
 	 * Different versions of transcriptions.
 	 * 
-	 * @author maxi
+	 * @author Massimiliano "Maxi" Zattera
 	 * 
 	 */
 	// TODO probably this can be a line in the interlinear and removed
@@ -55,7 +55,7 @@ public class ManuscriptFactory {
 	/**
 	 * Different type of contents.
 	 * 
-	 * @author maxi
+	 * @author Massimiliano "Maxi" Zattera
 	 * 
 	 */
 	// TODO ...needed?

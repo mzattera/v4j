@@ -8,7 +8,7 @@ import org.v4j.text.ElementFilter;
 /**
  * Filters lines based on any combination of parameters in the locus identifier.
  * 
- * @author Massimiliano_Zattera
+ * @author Massimiliano "Maxi" Zattera
  *
  */
 public class LineFilter implements ElementFilter<IvtffLine> {

@@ -10,7 +10,7 @@ package org.v4j.text.alphabet;
  * 
  * The ASCII alphabet. TODO: double check and refine.
  * 
- * @author maxi
+ * @author Massimiliano "Maxi" Zattera
  */
 public final class Ascii extends Alphabet {
 

@@ -29,7 +29,7 @@ import org.v4j.text.alphabet.Alphabet;
  * This class represents one document in IVTFF format (see
  * http://www.voynich.nu/transcr.html).
  * 
- * @author maxi
+ * @author Massimiliano "Maxi" Zattera
  */
 // TODO Rename to IVTFFDocument
 public class IvtffText extends Text<IvtffPage> {

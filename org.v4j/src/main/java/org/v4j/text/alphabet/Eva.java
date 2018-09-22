@@ -9,7 +9,7 @@ package org.v4j.text.alphabet;
 /**
  * The EVA script alphabet.
  * 
- * @author maxi
+ * @author Massimiliano "Maxi" Zattera
  */
 // TODO rename to EVA or EVA extended based on what we really support
 public final class Eva extends Alphabet {

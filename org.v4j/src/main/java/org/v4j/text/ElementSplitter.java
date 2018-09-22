@@ -9,7 +9,7 @@ package org.v4j.text;
  * For each element, the spliter returns a "category" for the element, representes as a string value.
  * Elements are split accordingly to their category.
  * 
- * @author Massimiliano_Zattera
+ * @author Massimiliano "Maxi" Zattera
  *
  */
 public interface ElementSplitter<T> {

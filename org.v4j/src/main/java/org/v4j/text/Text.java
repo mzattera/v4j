@@ -14,7 +14,7 @@ import org.v4j.text.alphabet.Alphabet;
  * A text, as a sequence of text elements of same type (e.g pages). It is
  * assumed text is organized in lines.
  * 
- * @author mzatt
+ * @author Massimiliano "Maxi" Zattera
  *
  */
 public abstract class Text<T extends TextElement> implements TextElement {

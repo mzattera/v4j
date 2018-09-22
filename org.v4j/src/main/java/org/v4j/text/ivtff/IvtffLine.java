@@ -51,6 +51,18 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Token> {
 	}
 
 	/**
+	 * Copy constructor.
+	 * 
+	 * @param other
+	 */
+	public IvtffLine(IvtffLine other) {
+		this.descriptor = other.descriptor;
+		this.text = other.text;
+		this.plainText = other.plainText;
+		this.page = other.page;
+	}
+
+	/**
 	 * Locus identifiers have the following format:
 	 * 
 	 * < page . num , code >
@@ -124,18 +136,6 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Token> {
 	}
 
 	/**
-	 * Copy constructor.
-	 * 
-	 * @param other
-	 */
-	public IvtffLine(IvtffLine other) {
-		this.descriptor = other.descriptor;
-		this.text = other.text;
-		this.plainText = other.plainText;
-		this.page = other.page;
-	}
-
-	/**
 	 * 
 	 * @param txt
 	 * @return txt after stripping all comments off.
@@ -143,6 +143,7 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Token> {
 	 *             if there are unmatched angle brackets in text.
 	 */
 	private static String removeComments(String txt) throws ParseException {
+		// TODO decide if <-> should be replaced by a space or not (words continue across drawings?)
 		String result = txt.replaceAll("<![^>]*>|<[^>]{1,2}>", "");
 		if ((result.indexOf('<') != -1) || (result.indexOf('>') != -1))
 			throw new ParseException("Text contains unmatched comment brackets: " + txt);

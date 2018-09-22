@@ -85,8 +85,8 @@ public class BuildDocumentVersion {
 		int l = -1;
 		for (IvtffLine line : group) {
 			// String txt = line.getText().replaceAll("<!@.>", "?");
-//			String txt = line.getText();
-			 String txt = line.getText().replaceAll("<[^>]*>", "!").replaceAll("!+", "!");
+			String txt = line.getText();
+//			 String txt = line.getText().replaceAll("<[^>]*>", "!").replaceAll("!+", "!");
 
 			if (l == -1)
 				l = txt.length();

@@ -17,7 +17,7 @@ import org.v4j.text.alphabet.Alphabet;
  * @author Massimiliano "Maxi" Zattera
  *
  */
-public class ManuscriptFactory {
+public class VoynichFactory {
 
 	/**
 	 * The different transcriptions we have available.
@@ -111,22 +111,22 @@ public class ManuscriptFactory {
 	private static String getDocumentFileName(Transcription tt, TranscriptionType v, ContentType c, Alphabet a,
 			String ext) {
 
-		StringBuffer fName = new StringBuffer("MS/");
+		StringBuffer fName = new StringBuffer("Transcriptions/");
 
 		if (tt == Transcription.LSI) {
-			fName.append("LSI_ivtff_0d");
+			fName.append("LSI_ivtff_0d_fix");
 			if ((a != null) && (a != Alphabet.EVA))
-				fName.append(a.getCodeString());
+				fName.append('_').append(a.getCodeString());
 		} else
 			throw new IllegalArgumentException("Unsupported transcription: " + tt); // TODO add support for all other
 																					// transcriptions
 
 		if (v != TranscriptionType.DEFAULT) {
-			fName.append(".").append(v.toString());
+			fName.append('_').append(v.toString());
 		}
 
 		if (c != ContentType.COMPLETE) {
-			fName.append(".").append(c.toString());
+			fName.append('_').append(c.toString());
 		}
 
 		fName.append(ext);

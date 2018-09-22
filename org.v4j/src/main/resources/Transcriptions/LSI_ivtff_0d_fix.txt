@@ -1,7 +1,8 @@
-#=IVTFF Eva- 1.5.1
-#  
-# Massimiliano Zattera - ensuring all line are same lenght, to allow tools to work properly.
-
+#=IVTFF Eva- 1.5.2018092200
+# 
+# Minor changes made by Maxi to align trascription of a few lines, so they can be merged.
+# Last edited on 2018-09-22 17:13 by Maxi
+# 
 # # <f0.A> {}
 # Last edited on 1998-12-05 11:22:03 by stolfi
 #  
@@ -1990,9 +1991,9 @@
 <f1r.3,+P0;U>      syaiir.shcky.or.ykaiin.shod.cthoary.cthes.daraiin.sy 
 #  
 <f1r.4,+P0;H>      o<!@o'>oiin.oteey.oteos.roloty.cth?ar.daiin.otaiin.or.okan 
-<f1r.4,+P0;C>      o!!!!dsoiin.oteey.oteor.soloty.cth?ar.daiin.okaiin.ol.okan 
-<f1r.4,+P0;D>      ?!!!!!!oiin.oteey.oteor.soloty.cth?ar.daiin.okaiin.ol.okan 
-<f1r.4,+P0;F>      ?!!!!!!oiin.oteey.otear.roloty.cthaar.daiin.okaiin.or.okan 
+<f1r.4,+P0;C>      o!!!dsoiin.oteey.oteor.soloty.cth?ar.daiin.okaiin.ol.okan 
+<f1r.4,+P0;D>      ?!!!!!oiin.oteey.oteor.soloty.cth?ar.daiin.okaiin.ol.okan 
+<f1r.4,+P0;F>      ?!!!!!oiin.oteey.otear.roloty.cthaar.daiin.okaiin.or.okan 
 <f1r.4,+P0;N>      o<!@o'>oiin.oteey.oteos,roloty.cth?ar,daiin.otaiin.or.okan 
 <f1r.4,+P0;U>      o<!@o'>oiin.oteey.otear.roloty.cthaar.daiin.okaiin.or.okan 
 #  
@@ -2011,12 +2012,12 @@
 # "N" transcription by G. Landini (EVA alphabet page), uncapitalized.
 # "U" transcription by J. Stolfi from scanned image.
 #  
-<f1r.6,=Pt;H>      ydar!aish!!!!!!y<$>
-<f1r.6,=Pt;C>      ydar!aish!!!!!!o<$>
-<f1r.6,=Pt;F>      ydar!aish!!!!!!y<$>
-<f1r.6,=Pt;N>      ydar!aish!!!!!!y<$>
+<f1r.6,=Pt;H>      ydar!aish!!!y<$>
+<f1r.6,=Pt;C>      ydar!aish!!!o<$>
+<f1r.6,=Pt;F>      ydar!aish!!!y<$>
+<f1r.6,=Pt;N>      ydar!aish!!!y<$>
 <f1r.6,=Pt;X>      ydar.aish<!???>y<$>
-<f1r.6,=Pt;U>      ydar!aish!!!!!!y<$>
+<f1r.6,=Pt;U>      ydar!aish!!!y<$>
 #  
 # # <f1r.P2> {}
 # text - parag 2
@@ -2034,9 +2035,9 @@
 #  
 #  @c' = EVA "c" with a plume, like a "sh" without the final "e".
 #  
-<f1r.7,*P0;H>      ?<!@252>.odar.o.!!!!!y.shol.cphoy.oydar.sh!.s.cfhoaiin.shodary 
-<f1r.7,*P0;C>      ?!!!!!!!.odar.?!!!!!!y.shol.cphoy.oydar.sh?.s.cfhoaiin.shodasy 
-<f1r.7,*P0;F>      !!!!!!!!!odar.s!!!!!hy.shol.cphoy.oydar.sh!.s.cfhoaiin.shodary 
+<f1r.7,*P0;H>      ?<!@252>.odar.o.!!!!y.shol.cphoy.oydar.sh!.s.cfhoaiin.shodary 
+<f1r.7,*P0;C>      ?!!!!!!.odar.?!!!!!y.shol.cphoy.oydar.sh?.s.cfhoaiin.shodasy 
+<f1r.7,*P0;F>      !!!!!!!!odar.s!!!!hy.shol.cphoy.oydar.sh!.s.cfhoaiin.shodary 
 <f1r.7,*P0;N>      ?<!@252>.odar.s<!@c'>y.shol.cphoy.oydar.sh!.s.cfhoaiin.shodary 
 <f1r.7,*P0;U>      ?<!@252>.odar.s<!@c'>y.shol.cphoy.oydar.sh!.s.cfhoaiin.shodary 
 #  
@@ -2081,8 +2082,8 @@
 #   Thick, red (?), with flaring strokes, swallowtail serifs.
 #  
 <f1r.11,*P0;H>     ?<!@253>.ydain.cphesaiin.ol.s.cphey.ytain.shoshy.cphodal!es 
-<f1r.11,*P0;C>     ?!!!!!!!.ydain.cphesaiin.ol.s.cphey.ytain.shoshy.cphodal.es 
-<f1r.11,*P0;F>     !!!!!!!!!ydain.cphesaiin.ol!s.cphey.ytain.shoshy.cphodal!es 
+<f1r.11,*P0;C>     ?!!!!!!.ydain.cphesaiin.ol.s.cphey.ytain.shoshy.cphodal.es 
+<f1r.11,*P0;F>     !!!!!!!!ydain.cphesaiin.ol!s.cphey.ytain.shoshy.cphodal!es 
 <f1r.11,*P0;N>     ?<!@253>.ydain.cphesaiin.ol,s.cphey.ytain.shoshy.cphodal,es 
 <f1r.11,*P0;U>     ?<!@253>.ydain.cphesaiin.ol!s.cphey.ytain.shoshy.cphodal!es 
 #  
@@ -2105,10 +2106,10 @@
 <f1r.14,+P0;U>     dain.oiin.chol.odaiin.chodain.chdy.okain.d?n.cthy.kod? 
 #  
 <f1r.15,+P0;H>     daiin.shckhey.ck<!@K>eor.chor.shey.kol.chol.chol.kor.chal 
-<f1r.15,+P0;C>     daiin.shckhey.ck!!!!!hor.chor.shey.kol.chol.chol.kor.chol 
-<f1r.15,+P0;F>     daiin.shckhey.ck!!!!!hor.chor.shey.kol.chol.chol.kor.chol 
-<f1r.15,+P0;N>     daiin.shckhey.ck!!!!!eor.chor.shey.kol.chol.chol.kor.chal 
-<f1r.15,+P0;U>     daiin.shckhey.ck!!!!!hor.chor.shey.kol.chol.chol.kor.chol 
+<f1r.15,+P0;C>     daiin.shckhey.ck!!!!hor.chor.shey.kol.chol.chol.kor.chol 
+<f1r.15,+P0;F>     daiin.shckhey.ck!!!!hor.chor.shey.kol.chol.chol.kor.chol 
+<f1r.15,+P0;N>     daiin.shckhey.ck!!!!eor.chor.shey.kol.chol.chol.kor.chal 
+<f1r.15,+P0;U>     daiin.shckhey.ck!!!!hor.chor.shey.kol.chol.chol.kor.chol 
 #  
 <f1r.16,+P0;H>     sho.chol.sh!odan.kshy.kchy.dor.chodaiin.sho.kchom 
 <f1r.16,+P0;C>     sho.chol.sh.odan.kshy.kchy.dor.chodaiin.sho.keeam 
@@ -2129,10 +2130,10 @@
 <f1r.18,+P0;U>     yto.shol.shy.kodshey.cphealy.dar!ain.dain.ckhyd? 
 #  
 <f1r.19,+P0;H>     dchar.shcthaiin.okaiir.chey.rchy.!potol.cthols.dloct<!@T>a 
-<f1r.19,+P0;C>     dchar.shcthaiin.okaiir.chey.?chy.!potol.cthols.dadet!!!!!o 
-<f1r.19,+P0;F>     dchar.shcthaiin.okaiir.chey.schy.cphtol.cthols.daoet!!!!!a 
-<f1r.19,+P0;N>     dchar.shcthaiin.okaiir.chey.?chy,!!!tol.cthols.dloct!!!!!a 
-<f1r.19,+P0;U>     dchar.shcthaiin.okaiir.chey.?chy.?p?tol.cthols.d?oct!!!!!? 
+<f1r.19,+P0;C>     dchar.shcthaiin.okaiir.chey.?chy.!potol.cthols.dadet!!!!o 
+<f1r.19,+P0;F>     dchar.shcthaiin.okaiir.chey.schy.cphtol.cthols.daoet!!!!a 
+<f1r.19,+P0;N>     dchar.shcthaiin.okaiir.chey.?chy,!!!tol.cthols.dloct!!!!a 
+<f1r.19,+P0;U>     dchar.shcthaiin.okaiir.chey.?chy.?p?tol.cthols.d?oct!!!!? 
 #  
 <f1r.20,+P0;H>     shok.chor.chey.dain.ckhey
 <f1r.20,+P0;C>     shok.chor.chey.dain.ckhoy
@@ -3093,9 +3094,9 @@
 <f4v.4,+P0;U>      qokchy.qocthy.choteol.daiin.cthey<-><!plant>choaiin 
 #  
 <f4v.5,+P0;H>      shor.sheey.ct<!@T>o.otoiin.shey.qotchoiin<-><!plant>chodain 
-<f4v.5,+P0;C>      shor.sheey.??!!!!!!.otoiin.shey.qotchoiin<-><!plant>chodain 
-<f4v.5,+P0;F>      shor.sheey.cth!!!!?.otoiin.shey.qotchoiin<-><!plant>chodain 
-<f4v.5,+P0;U>      shor.sheey.ct!!!!!o.otaiin.chey.qotchoiin<-><!plant>chodain 
+<f4v.5,+P0;C>      shor.sheey.??!!!!!.otoiin.shey.qotchoiin<-><!plant>chodain 
+<f4v.5,+P0;F>      shor.sheey.cth!!!?.otoiin.shey.qotchoiin<-><!plant>chodain 
+<f4v.5,+P0;U>      shor.sheey.ct!!!!o.otaiin.chey.qotchoiin<-><!plant>chodain 
 #  
 <f4v.6,+P0;H>      ytchoy.shokchy.cph!ody<$><!plant>
 <f4v.6,+P0;C>      ytchoy.shokchy.cph!ody<$><!plant>
@@ -3284,8 +3285,8 @@
 <f5v.1,@P0;U>      k!o!cheor.char.ytchey.pshod.chols.chodaiin.ytoiiin.daiin 
 #  
 <f5v.2,+P0;H>      dchol.s<!@S>y.chol.otaiin.dain.cthor.chots.ychopor!dg 
-<f5v.2,+P0;C>      dchol.?!!!!!?.chol.otaiin.dain.cthor.chot?.ychopor!dg 
-<f5v.2,+P0;F>      dchol.sh!!!!y.chol.otaiin.dain.cthor.chots.ychopor!dm 
+<f5v.2,+P0;C>      dchol.?!!!!?.chol.otaiin.dain.cthor.chot?.ychopor!dg 
+<f5v.2,+P0;F>      dchol.sh!!!y.chol.otaiin.dain.cthor.chots.ychopor!dm 
 <f5v.2,+P0;U>      dchol.s<!@S>y.chol.otaiin.dain.cthor.chot?.ychopor.dm 
 #  
 <f5v.3,+P0;H>      qotcho.ytor.daiin.daiin.otchor.daiir.qo!.darchor.do 
@@ -3465,9 +3466,9 @@
 <f6v.4,+P0;F>      y!chckhy.ytchoy.s!os.y.dady.dchy.dey.okody<-><!plant>ytody 
 <f6v.4,+P0;U>      y!shckhy.ytchoy.s!os.y.dady.dchy.dey.okody<-><!plant>ytody 
 #  
-<f6v.5,+P0;H>      dair.cshe.chodam.dam.okor.oty.!!dol!dom<$>
-<f6v.5,+P0;C>      dain.??!!.chodam.dam.okor.oty.!!dol!dom<$>
-<f6v.5,+P0;F>      dain.sh??.chodam.dam.okor.oty.!!dol.dom<$>
+<f6v.5,+P0;H>      dair.cshe.chodam.dam.okor.oty.dol!dom<$>
+<f6v.5,+P0;C>      dain.??!!.chodam.dam.okor.oty.dol!dom<$>
+<f6v.5,+P0;F>      dain.sh??.chodam.dam.okor.oty.dol.dom<$>
 <f6v.5,+P0;U>      dair.!sha.chodam.dam.okor.oty<->dol.dom<$>
 #  
 <f6v.6,+P0;H>      tchody.shocthol.chocthey.s<-><!plant>
@@ -3990,9 +3991,9 @@
 <f8v.11,+P0;F>     sorain<$><!plant>
 <f8v.11,+P0;U>     sorain<$><!plant>
 #  
-<f8v.12,+P0;H>     pchar.cho.rol.dal<-><!plant>shear.!!cheeotaiin.chal.daiin 
-<f8v.12,+P0;C>     pchar.cho.rol.dal<-><!plant>shear.!!chchotaiin.chal.daiin 
-<f8v.12,+P0;F>     pchar.cho.rol.dal<-><!plant>shear.!!cheeotaiin.chal.daiin 
+<f8v.12,+P0;H>     pchar.cho.rol.dal<-><!plant>shear.cheeotaiin.chal.daiin 
+<f8v.12,+P0;C>     pchar.cho.rol.dal<-><!plant>shear.chchotaiin.chal.daiin 
+<f8v.12,+P0;F>     pchar.cho.rol.dal<-><!plant>shear.cheeotaiin.chal.daiin 
 <f8v.12,+P0;U>     pchar.cho.rol.dal<-><!plant>shear<->chchotaiin.chal.daiin 
 #  
 <f8v.13,+P0;H>     kchor.otchar.oky<-><!plant>chokain.keoky.otorchy.satar 
@@ -4096,8 +4097,8 @@
 <f9r.8,+P0;F>      qotcho.qokchy.cthey.koraiin.okain!d.dal<-><!plant>s<-><!plant>olsho.cthy 
 #  
 <f9r.9,+P0;H>      ocho.cthy.choct<!@T>oy.chodykchy.saiin.dchy<-><!plant>daiin<$>
-<f9r.9,+P0;C>      ocho!cthy.cho?!!!!!!!y.chodykchy.saiin.dchy<-><!plant>daiin<$>
-<f9r.9,+P0;F>      ocho.cthy.chocth!!!!oy.chodykchy.saiin.dchy<-><!plant>daiin<$>
+<f9r.9,+P0;C>      ocho!cthy.cho?!!!!!!y.chodykchy.saiin.dchy<-><!plant>daiin<$>
+<f9r.9,+P0;F>      ocho.cthy.chocth!!!oy.chodykchy.saiin.dchy<-><!plant>daiin<$>
 #  
 # # <f9r.T> {}
 # title
@@ -4234,7 +4235,7 @@
 <f9v.5,+P0;F>      pchor.ypcheey.qotor.ypchy.olcfholy.to<-><!plant>ar<-><!plant>chty.daiiin<-><!plant>
 <f9v.5,+P0;U>      pchor.ypchchy.qotor.ypchy.olcfholy.te<-><!plant>ar<-><!plant>chty.daiiin<-><!plant>
 #  
-<f9v.6,+P0;H>      odol.choy.ksheody.chody<-><!plant>dai!n<-><!plant>otchy<-><!plant>cthod.!!yky<-><!plant>
+<f9v.6,+P0;H>      odol.choy.ksheody.chody<-><!plant>dai!n<-><!plant>otchy<-><!plant>cthod.yky<-><!plant>
 <f9v.6,+P0;C>      odol.choy.ksheody.chody<-><!plant>dai!n<-><!plant>otchy<-><!plant>cthod<->yko<-><!plant>
 <f9v.6,+P0;F>      odol.choy.ksheody.chody<-><!plant>daiin<-><!plant>otchy<-><!plant>cthod<->yko<-><!plant>
 <f9v.6,+P0;U>      odol.choy.ksheody.chody<-><!plant>dai!n<-><!plant>otchy<-><!plant>cthod<->yko<-><!plant>
@@ -4546,9 +4547,9 @@
 <f11v.2,+P0;U>     shol.dy.chckhy.shcthy.daiin.dam<-><!plant>ykchy.dain.dchy 
 #  
 <f11v.3,+P0;H>     otchor.dy.kchy.tchy.?<!@152>ar.qokchd<-><!plant>oky.chol.dy.dy 
-<f11v.3,+P0;C>     otchor.dy.kchy.tchy.d!!!!!!!ar.qokchd<-><!plant>oky.chol.dy.dy 
-<f11v.3,+P0;F>     otchor.dy.kchy.tchy.d!!!!!!!ar.qokchd<-><!plant>oky.chol.dy.dy 
-<f11v.3,+P0;U>     otchor.dy.kchy.tchy.d!!!!!!!ar.qokchd<-><!plant>oky.chol.dy.dy 
+<f11v.3,+P0;C>     otchor.dy.kchy.tchy.d!!!!!!ar.qokchd<-><!plant>oky.chol.dy.dy 
+<f11v.3,+P0;F>     otchor.dy.kchy.tchy.d!!!!!!ar.qokchd<-><!plant>oky.chol.dy.dy 
+<f11v.3,+P0;U>     otchor.dy.kchy.tchy.d!!!!!!ar.qokchd<-><!plant>oky.chol.dy.dy 
 #  
 <f11v.4,+P0;H>     qokchor.chololer.chyky.dchy.qoky<-><!plant>ctho.tchey.tan 
 <f11v.4,+P0;C>     qokchor.chololar.chyky.dchy.qoky<-><!plant>ctho.tchey.tu! 
@@ -4628,8 +4629,8 @@
 <f13r.7,+P0;F>     dchy.qoky.chol.dy.qokey.d!oldy<-><!plant>okchor.doaiin 
 #  
 <f13r.8,+P0;H>     shochy.qokchy.torchy.kcck<!@K>!y<-><!plant>s.okchey.daiin 
-<f13r.8,+P0;C>     shochy.qokchy.torchy.k?!!!!!!!!?<-><!plant>s.okchey.daiin 
-<f13r.8,+P0;F>     shochy.qokchy.torchy.keckh!!!!!y<-><!plant>s.okchey.daiin 
+<f13r.8,+P0;C>     shochy.qokchy.torchy.k?!!!!!!!?<-><!plant>s.okchey.daiin 
+<f13r.8,+P0;F>     shochy.qokchy.torchy.keckh!!!!y<-><!plant>s.okchey.daiin 
 #  
 <f13r.9,+P0;H>     oldy.shey.chol.doiin.ykoly<-><!plant>okchal.daldy 
 <f13r.9,+P0;C>     oldy.shey.chol.doiin.ykoly<-><!plant>okchal.daldy 
@@ -4956,7 +4957,7 @@
 <f15r.10,+P0;U>    ychain.chckhey.okshy<-><!plant>saiiin.dol.chds<-><!plant>
 #  
 <f15r.11,+P0;H>    okaiin.otaiin.chl.s!y<-><!plant>chor.choross<-><!plant>
-<f15r.11,+P0;C>    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%<-><!plant>
+<f15r.11,+P0;C>    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%<-><!plant>
 <f15r.11,+P0;F>    okaiin.otaiin.chl.s!y<-><!plant>chor.choross<-><!plant>
 <f15r.11,+P0;U>    okaiin.otaiin.chl.s,y<-><!plant>chor.choross<-><!plant>
 #  
@@ -5019,9 +5020,9 @@
 <f15v.1,@P0;F>     poror.orshy.choiin.dtchan.opchor!dy<-><!plant>
 <f15v.1,@P0;U>     poror.orshy.choiin.dtchan.opchor!dy<-><!plant>
 #  
-<f15v.2,+P0;H>     ?<!@138>chor.or.oro.r.aiin.cthy.k!!!!!!!ain.dar<-><!plant>
-<f15v.2,+P0;C>     ?!!!!!!!chor.or.oro.r.aiin.cthy.?!!!!!!!ain.dar<-><!plant>
-<f15v.2,+P0;F>     ?!!!!!!!chor.or.oro.r!aiin.cthy.?!!!!!!!ain.dar<-><!plant>
+<f15v.2,+P0;H>     ?<!@138>chor.or.oro.r.aiin.cthy.k!!!!!!ain.dar<-><!plant>
+<f15v.2,+P0;C>     ?!!!!!!chor.or.oro.r.aiin.cthy.?!!!!!!ain.dar<-><!plant>
+<f15v.2,+P0;F>     ?!!!!!!chor.or.oro.r!aiin.cthy.?!!!!!!ain.dar<-><!plant>
 <f15v.2,+P0;U>     ?<!@138>chor.or.oro.r!aiin.cthy.?<!@178>ain.dar<-><!plant>
 #  
 <f15v.3,+P0;H>     cthor.daiin.qokor.okeor.okaiin<-><!plant>
@@ -5160,8 +5161,8 @@
 <f16r.9,+P0;F>     saiin.ytaiin<$>
 #  
 <f16r.10,+P0;H>    toror.daly!dal.opchy.fchol.ypchocf<!@F>y.okal<-><!plant>
-<f16r.10,+P0;C>    toror.daly.dal.opchy.fchol.ypcho?!!!!!!!.okal<-><!plant>
-<f16r.10,+P0;F>    toror.daly!dal.opchy.fchol.ypchocfh!!!!y.okal<-><!plant>
+<f16r.10,+P0;C>    toror.daly.dal.opchy.fchol.ypcho?!!!!!!.okal<-><!plant>
+<f16r.10,+P0;F>    toror.daly!dal.opchy.fchol.ypchocfh!!!y.okal<-><!plant>
 #  
 <f16r.11,+P0;H>    sokchy.qokol.choty!okchy.cthy.chy.kchy<-><!plant>
 <f16r.11,+P0;C>    sokchy.qokol.choty.okchy.cthy.chy.kchy<-><!plant>
@@ -5374,9 +5375,9 @@
 <f17r.6,+P0;U>     tsho.qof,cho.qokcheor.chetom<$>
 #  
 <f17r.7,+P0;H>     ksheo.qokchy.choldshy.!zepchy<-><!plant>ds<!@S>!a<-><!plant>opchordy<-><!plant>
-<f17r.7,+P0;C>     ksheo.qokchy.choldshy.!!mpchy<-><!plant>d?!!!!!!!<-><!plant>opchordy<-><!plant>
-<f17r.7,+P0;F>     ksheo.qokchy.choldshy.??!pchy<-><!plant>dsh!!!!!y<-><!plant>opchordy<-><!plant>
-<f17r.7,+P0;U>     ksheo.qokchy.choldshy.??epchy<-><!plant>dsh!!!!!y<-><!plant>opchordy<-><!plant>
+<f17r.7,+P0;C>     ksheo.qokchy.choldshy.!!mpchy<-><!plant>d?!!!!!!<-><!plant>opchordy<-><!plant>
+<f17r.7,+P0;F>     ksheo.qokchy.choldshy.??!pchy<-><!plant>dsh!!!!y<-><!plant>opchordy<-><!plant>
+<f17r.7,+P0;U>     ksheo.qokchy.choldshy.??epchy<-><!plant>dsh!!!!y<-><!plant>opchordy<-><!plant>
 #  
 <f17r.8,+P0;H>     dchchy.dychear.schar.ykchy<-><!plant>
 <f17r.8,+P0;C>     dchchy.dychear.schar.ykchy<-><!plant>
@@ -6045,9 +6046,9 @@
 <f20v.8,+P0;F>     shain.choraly.sho.ar.chy.daiin.d!s<-><!plant>
 <f20v.8,+P0;U>     shain.choraly.sho.ar.chy.daiin.d!s<-><!plant>
 #  
-<f20v.9,+P0;H>     ykchy.keody.cho.cthy.chol.shd.qoty.d.s!!!!!!!<-><!plant>
-<f20v.9,+P0;C>     ykchy.keody.cho.cthy.chol.shd!?oty.d!?!!!!!!!<-><!plant>
-<f20v.9,+P0;F>     ykchy.keody.cho.cthy.chol.shd.qoty.d!?!!!!!!!<-><!plant>
+<f20v.9,+P0;H>     ykchy.keody.cho.cthy.chol.shd.qoty.d.s!!!!!!<-><!plant>
+<f20v.9,+P0;C>     ykchy.keody.cho.cthy.chol.shd!?oty.d!?!!!!!!<-><!plant>
+<f20v.9,+P0;F>     ykchy.keody.cho.cthy.chol.shd.qoty.d!?!!!!!!<-><!plant>
 <f20v.9,+P0;U>     ytchy.teody.cho.cthy.chol!shd.qoty.g.?<!@144><-><!plant>
 #  
 <f20v.10,+P0;H>    shokaiin.chocthy.chol.daiin.chy.chor.ety<-><!plant>
@@ -6185,7 +6186,7 @@
 <f21v.3,+P0;F>     qotof.keeees.chotchy.tcho.choty.chor.qotol.daiin.dal 
 <f21v.3,+P0;U>     qotol.keeees.chotchy.tcho.choty.chor.qotol.daiin.dal 
 #  
-<f21v.4,+P0;H>     sho.chodaiin.choty.chol.daiin.daiin.chty.!!chtol 
+<f21v.4,+P0;H>     sho.chodaiin.choty.chol.daiin.daiin.chty.chtol 
 <f21v.4,+P0;C>     sho.chodaiin.choty.chol.daiin.daiin.chty<->chtol 
 <f21v.4,+P0;F>     sho.chodaiin.choty.chol.daiin.daiin.chty<->chtol 
 <f21v.4,+P0;U>     sho.chodaiin.choty.chol.daiin.daiin.chty<->chtol 
@@ -6263,8 +6264,8 @@
 <f22r.6,+P0;F>     y!chokshchy.ctheen<$>
 #  
 <f22r.7,+P0;H>     kchol.shol.dsheor.s<!@S>!ka.chdoly.ytaiin.ol<-><!plant>otchy.cphal 
-<f22r.7,+P0;C>     kchol.shol.dsheor.?!!!!!!!!.chdoly.ytaiin.ol<-><!plant>otchy.cphal 
-<f22r.7,+P0;F>     kchol.shol.dsheor.sh!!!!!ka.chdoly.ytaiin.ol<-><!plant>otchy.cphal 
+<f22r.7,+P0;C>     kchol.shol.dsheor.?!!!!!!!.chdoly.ytaiin.ol<-><!plant>otchy.cphal 
+<f22r.7,+P0;F>     kchol.shol.dsheor.sh!!!!ka.chdoly.ytaiin.ol<-><!plant>otchy.cphal 
 #  
 <f22r.8,+P0;H>     dchor.oty.daiin.ctholy.qoky.chotaiin.chocthy<-><!plant>doiiin.dchor 
 <f22r.8,+P0;C>     dchor.oty.daiin.ctholy.qoky.chotaiin.chocthy<-><!plant>do?iin.dchor 
@@ -6326,9 +6327,9 @@
 #  
 #  @o' = <o> with plume
 #  
-<f22v.1,@P0;H>     pysaiinor.ofchar.oky.tchy.otdy<-><!plant>sor.shy.qo!!!!!!d 
-<f22v.1,@P0;C>     posaiinor.ofchar.oky.tchy.otdy<-><!plant>sor.shy.q?!!!!!!d 
-<f22v.1,@P0;F>     pysaiinor.ofchar.oky.tchy.otdy<-><!plant>sor.shy.qo!!!!!!d 
+<f22v.1,@P0;H>     pysaiinor.ofchar.oky.tchy.otdy<-><!plant>sor.shy.qo!!!!!d 
+<f22v.1,@P0;C>     posaiinor.ofchar.oky.tchy.otdy<-><!plant>sor.shy.q?!!!!!d 
+<f22v.1,@P0;F>     pysaiinor.ofchar.oky.tchy.otdy<-><!plant>sor.shy.qo!!!!!d 
 <f22v.1,@P0;U>     pysaiinor.ofchar.oky.tchy.otdy<-><!plant>sor.sho.qo<!@o'>d 
 #  
 <f22v.2,+P0;H>     daiin.ykaiin.qotchy.kchy.ytchyd<-><!plant>dshor.ychy 
@@ -8829,7 +8830,7 @@
 #  
 <f37r.4,+P0;H>     pchotchy.daiin.cfhol.dar.chol.daiin<-><!plant>yd 
 <f37r.4,+P0;C>     pchotchy.daiin.cfhal!dar.chol.daiin<-><!plant>yd 
-<f37r.4,+P0;F>     pchotchy.daiin.cfhol.dar.chol.daiin<-><!plant>!!!
+<f37r.4,+P0;F>     pchotchy.daiin.cfhol.dar.chol.daiin<-><!plant>!!
 <f37r.4,+P0;U>     pchotchy.daiin.cfhol,dar.chol.daiin<-><!plant>yd 
 #  
 <f37r.5,+P0;H>     y!ky.qokchy.qotchor.chkol.otoly<-><!plant>
@@ -8858,7 +8859,7 @@
 <f37r.9,+P0;U>     yk!!chody.qotchy.ykaiin.chy.qotor,dy<-><!plant>otchol,ol,daiin 
 #  
 <f37r.10,+P0;H>    qoto.okchochor.dchor.chy!!!!.daiin<-><!plant>ychey.kol.daiir 
-<f37r.10,+P0;C>    qoto.okchochor.dchor.chy.shy.daiin%%%%%%%%%%%%%%%%%%%%%%%<-><!plant>
+<f37r.10,+P0;C>    qoto.okchochor.dchor.chy.shy.daiin<-><!plant>%%%%%%%%%%%%%%%
 <f37r.10,+P0;F>    qoto.okchochor.dchor.chy!!!!!daiin<-><!plant>ychey.kol.daiir 
 <f37r.10,+P0;U>    qoto.okchochor.dchor.chy.shy.daiin<-><!plant>ychey.kol.daiir 
 #  
@@ -11525,10 +11526,10 @@
 <f49v.40,=P0;U>    <!label e->oaiin.chy.daiin.chol.chaiin.kshar.dy<-><!plant>chokchy 
 #  
 <f49v.42,=P0;H>    <!label @?????????->qokeaiin.cheo.chor.choteey.kcheol.dain<-><!plant>cho.dairin 
-<f49v.42,=P0;C>    !!!!!!!!!!!!!!okeaiin.cheo.chor.choteey.kcheol.dain<-><!plant>cho.dairin 
-<f49v.42,=P0;F>    <!label ?->!!!qokeaiin.cheo.chor.choteey.kcheol.dain<-><!plant>cho.dairin 
-<f49v.42,=P0;G>    <!label ?->!!!qokeaiin.cheo.chor.choteey.kcheol.dain<-><!plant>cho.daisin 
-<f49v.42,=P0;U>    <!label @140->qokeaiin.cheo,chor.choteey.kcheol.dain<-><!plant>cho.daisin 
+<f49v.42,=P0;C>    !!!!!!!!!!!!!!!!!!!!!okeaiin.cheo.chor.choteey.kcheol.dain<-><!plant>cho.dairin 
+<f49v.42,=P0;F>    <!label ?->!!!!!!!!!qokeaiin.cheo.chor.choteey.kcheol.dain<-><!plant>cho.dairin 
+<f49v.42,=P0;G>    <!label ?->!!!!!!!!!qokeaiin.cheo.chor.choteey.kcheol.dain<-><!plant>cho.daisin 
+<f49v.42,=P0;U>    <!label @140->!!!!!!qokeaiin.cheo,chor.choteey.kcheol.dain<-><!plant>cho.daisin 
 #  
 <f49v.44,=P0;H>    <!label d->chokaiin.cho.dls.chariin.daiin.chain.dy<-><!plant>chetcho.dy 
 <f49v.44,=P0;C>    !!!!!!!!!!chnkaiin.cho.dls.chariin.daiin.chain.dy<-><!plant>chetcho.dy 
@@ -13859,9 +13860,9 @@
 <f66r.41,+L0;F>    o 
 <f66r.41,+L0;U>    o 
 #  
-<f66r.42,+L0;H>    ?<!@195> 
-<f66r.42,+L0;C>    ?!!!!!! 
-<f66r.42,+L0;F>    r!!!!!! 
+<f66r.42,+L0;H>    ?<!@195>!!!!!!!!!!! 
+<f66r.42,+L0;C>    ?!!!!!!!!!!!!!!!!!! 
+<f66r.42,+L0;F>    r!!!!!!!!!!!!!!!!!! 
 <f66r.42,+L0;U>    ?<!@195> <!or @172>
 #  
 <f66r.43,+L0;H>    l 
@@ -15002,12 +15003,12 @@
 # East
 #  
 <f67v2.5,@Pb;H>    okeey.keoy.osalal 
-<f67v2.5,@Pb;C>    ???<!Illegible>!!! 
+<f67v2.5,@Pb;C>    ???<!Illegible>!!
 <f67v2.5,@Pb;V>    okeey.kedy.!!alal 
 <f67v2.5,@Pb;U>    okeey.keey.!ralal 
 #  
 <f67v2.6,+Pb;H>    ykyral.am.oralady.odam<$>
-<f67v2.6,+Pb;C>    ???<!Illegible>!!!!!!!!<$>
+<f67v2.6,+Pb;C>    ???<!Illegible>!!!!!!!<$>
 <f67v2.6,+Pb;V>    okaral!am.olalad!.odam<$>
 <f67v2.6,+Pb;U>    okaral!am.olalady.odam<$>
 #  
@@ -15026,11 +15027,11 @@
 # West
 #  
 <f67v2.9,@Pb;H>    okeol.chol.ar.okol.dam 
-<f67v2.9,@Pb;C>    ???<!Illegible>!!!!!!!! 
+<f67v2.9,@Pb;C>    ???<!Illegible>!!!!!!!
 <f67v2.9,@Pb;V>    okeol.chol.ar.okal!dam 
 #  
 <f67v2.10,+Pb;H>   koaiin.ofyl.ol.ofalaiin.oar<$>
-<f67v2.10,+Pb;C>   ???<!Illegible>!!!!!!!!!!!!!<$>
+<f67v2.10,+Pb;C>   ???<!Illegible>!!!!!!!!!!!!<$>
 <f67v2.10,+Pb;V>   koaiin.ofal.ol.opalaiin!oar<$>
 #  
 # # <f67v2.R>  {}
@@ -17315,8 +17316,8 @@
 #  
 # Outermost ring is incomplete. Transcription clockwise starting from West.
 <f70r1.1,@Cc;H>    ?<!@.>?<!@.>?<!@.>?<!@.>?<!@.>?<!@.>?<!@.>?<!@.>?<!@.>?<!@.>?<!@.>?<!@.>oooooooool!ar?<!@.>?<!@.>?<!@.>?<!@.>?<!@.>!s?<!@.>?<!@.>r?<!@.>?<!@.>!!!!!! 
-<f70r1.1,@Cc;V>    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%oooooooool.ar.?!!!?!!!!?!!!!?!!!!!!!!!!s?!!!!?!!!!r?!!!!?!!!!!?%%%% <!Grove's Z>
-<f70r1.1,@Cc;U>    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%oooooooool,ar.?<!@.>?<!@.>s!!!?<!@.>?<!@.>.s?<!@.>?<!@.>s?<!@.>?<!@.>.?<!@.> 
+<f70r1.1,@Cc;V>    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%oooooooool.ar.?!!!?!!!!?!!!!?!!!!!!!!!!s?!!!!?!!!!r?!!!!?!!!!!?%%%% <!Grove's Z>
+<f70r1.1,@Cc;U>    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%oooooooool,ar.?<!@.>?<!@.>s!!!?<!@.>?<!@.>.s?<!@.>?<!@.>s?<!@.>?<!@.>.?<!@.> 
 #  
 #  
 # Second ring, transcribed clockwise from aligned gaps at 01:30
@@ -20663,8 +20664,8 @@
 <f73v.8,&Lz;U>     odees 
 #  
 #  
-<f73v.9,&Lz;H>     ecsy 
-<f73v.9,&Lz;V>     airy <!Grove's #2>
+<f73v.9,&Lz;H>     ecsy!!!!!!!!!!!!!!!!!!!!!! 
+<f73v.9,&Lz;V>     airy <!Grove's #2>!!!!!!!!
 <f73v.9,&Lz;U>     a!ry <!'ai' overlapped???>
 #  
 <f73v.10,&Lz;H>    ykeor 

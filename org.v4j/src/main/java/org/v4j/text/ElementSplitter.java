@@ -12,7 +12,7 @@ package org.v4j.text;
  * @author Massimiliano "Maxi" Zattera
  *
  */
-public interface ElementSplitter<T> {
+public interface ElementSplitter<T extends TextElement> {
 
 	public String getCategory (T element);
 }

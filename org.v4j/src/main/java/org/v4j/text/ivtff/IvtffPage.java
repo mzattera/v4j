@@ -6,6 +6,7 @@ package org.v4j.text.ivtff;
 import java.util.List;
 
 import org.v4j.text.Text;
+import org.v4j.text.alphabet.Alphabet;
 
 /**
  * A page in the Voynich manuscript.
@@ -28,13 +29,12 @@ public class IvtffPage extends IvtffElement<PageHeader, IvtffLine> {
 		this.document = document;
 	}
 
-	public IvtffText getDocument()
-	{
-		return (IvtffText)getParent();
+	public IvtffText getDocument() {
+		return (IvtffText) getParent();
 	}
 
-	protected IvtffPage(PageHeader descriptor) {
-		super(descriptor);
+	protected IvtffPage(PageHeader descriptor, Alphabet a) {
+		super(descriptor, a);
 	}
 
 	/**
@@ -51,11 +51,11 @@ public class IvtffPage extends IvtffElement<PageHeader, IvtffLine> {
 	}
 
 	/**
-	 * @return lines in page. Notice that for performance reasons we do not clone the list,
-	 * so altering the list will impact the document.
+	 * @return lines in page. Notice that for performance reasons we do not clone
+	 *         the list, so altering the list will impact the document.
 	 */
 	public List<IvtffLine> getLines() {
 		// TODO return an unmodifiable list instead?
-		return (List<IvtffLine>) elements;		
+		return (List<IvtffLine>) elements;
 	}
 }

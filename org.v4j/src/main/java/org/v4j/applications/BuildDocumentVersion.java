@@ -2,12 +2,16 @@ package org.v4j.applications;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.v4j.text.ivtff.IvtffLine;
 import org.v4j.text.ivtff.IvtffText;
-import org.v4j.text.ivtff.ManuscriptFactory;
-import org.v4j.text.ivtff.ManuscriptFactory.Transcription;
-import org.v4j.text.ivtff.ManuscriptFactory.TranscriptionType;
+import org.v4j.text.ivtff.ParseException;
+import org.v4j.text.ivtff.VoynichFactory;
+import org.v4j.text.ivtff.VoynichFactory.Transcription;
+import org.v4j.text.ivtff.VoynichFactory.TranscriptionType;
+import org.v4j.util.StringUtil;
 
 /**
  * Processes interlinear version to obtain different versions with different
@@ -29,11 +33,11 @@ public class BuildDocumentVersion {
 	 */
 	public static void main(String[] args) {
 		try {
-			doWork(ManuscriptFactory.getDocument(Transcription.LSI), TranscriptionType.CONCORDANCE);
+			doWork(VoynichFactory.getDocument(Transcription.LSI), TranscriptionType.CONCORDANCE);
 
-//			URL url = ClassLoader.getSystemResource("MS/LSI_ivtff_0d2 - fixed.txt");
-//			File inFile = new File(url.toURI());
-//			doWork(new IvtffText(inFile), TranscriptionType.CONCORDANCE);
+			// URL url = ClassLoader.getSystemResource("MS/LSI_ivtff_0d2 - fixed.txt");
+			// File inFile = new File(url.toURI());
+			// doWork(new IvtffText(inFile), TranscriptionType.CONCORDANCE);
 
 			// TODO write result & do all other transcription types
 
@@ -44,7 +48,7 @@ public class BuildDocumentVersion {
 	}
 
 	// TODO Comments
-	private static IvtffText doWork(IvtffText document, TranscriptionType type) {
+	private static IvtffText doWork(IvtffText document, TranscriptionType type) throws ParseException {
 		if (!document.isInterlinear())
 			throw new IllegalArgumentException("Transcription must ber interlinear.");
 
@@ -76,25 +80,116 @@ public class BuildDocumentVersion {
 		return null;
 	}
 
-	private static IvtffLine process(List<IvtffLine> group, TranscriptionType type) {
-		// System.out.println(getGroupId(group.get(0)));
-		// for (IvtffLine line : group) {
-		// System.out.println("\t" + line);
-		// }
+	private static IvtffLine process(List<IvtffLine> group, TranscriptionType type) throws ParseException {
 
-		int l = -1;
-		for (IvtffLine line : group) {
-			// String txt = line.getText().replaceAll("<!@.>", "?");
-			String txt = line.getText();
-//			 String txt = line.getText().replaceAll("<[^>]*>", "!").replaceAll("!+", "!");
+		if (group.size() == 0)
+			throw new IllegalArgumentException("Cannot process an empty group of lines.");
 
-			if (l == -1)
-				l = txt.length();
-			else if (txt.length() != l)
+		List<IvtffLine> backup = new ArrayList<>();
+		for (IvtffLine l : group)
+			backup.add(new IvtffLine(l));
+
+		if (!alignText(group)) {
+			for (IvtffLine line : backup)
 				System.out.println(line);
+			System.out.println();
+		} else {
+			// System.out.println(group.get(0).getDescriptor().toString());
 		}
 
 		return null;
+	}
+
+	private static final String GROVE_PATTERN_STRING = "(\\s*(<!(Grove|was|illegible|gallow|merged|higher|missing|swapped|label|star|from|From|gap|first|second|anomalous|on |para )[^>]*>|<\\->))+\\z";
+	private static final Pattern GROVE_PATTERN = Pattern.compile(GROVE_PATTERN_STRING);
+
+	/**
+	 * Changes text of given lines such that thez are aligned and readz to be
+	 * merged.
+	 * 
+	 * @return true if the lines could be aligned.
+	 */
+	// TODO make PRIVATE; fro test onlz
+	public static boolean alignText(List<IvtffLine> group) throws ParseException {
+
+		// Check if lines are already aligned
+		String longest = group.get(0).getText();
+		int maxLen = longest.length(); // target length of text for lines in this group
+		boolean aligned = true; // true if text is aligned for all lines
+		boolean allEndWithComment = true; // do all line end with comments?
+		for (IvtffLine line : group) {
+			String txt = line.getText();
+
+			if (txt.length() != maxLen) {
+				aligned = false;
+				if (txt.length() > maxLen) {
+					longest = txt;
+					maxLen = longest.length();
+				}
+			}
+
+			Matcher m = GROVE_PATTERN.matcher(txt);
+			if (!m.find())
+				allEndWithComment = false;
+		}
+
+		if (aligned)
+			return true;
+
+		// Not aligned.
+		// Check if they could be aligned by removing inline comments or extra '!' at
+		// the end
+		// of lines:
+		//
+		// <f72r3.28,&Lz;H> yfary
+		// <f72r3.28,&Lz;V> ypary <!Grove's #3>
+		// <f72r3.28,&Lz;U> ypary
+		//
+		// <f69r.6,&L0;H> ar.odain.chtaly
+		// <f69r.6,&L0;U> ar.odair.chtaly
+		// <f69r.6,&L0;V> ar.odair.chtaly<->
+		if (!allEndWithComment) {
+
+			longest = null;
+			maxLen = -1; // target length of text for lines in this group
+			aligned = true;
+			for (IvtffLine line : group) {
+
+				// remove inline comments at end of the line...
+				String txt = line.getText().replaceAll(GROVE_PATTERN_STRING, "");
+				line.setText(txt);
+
+				if (longest == null) {
+					longest = txt;
+					maxLen = txt.length();
+				} else if (txt.length() != maxLen) {
+					aligned = false;
+					if (txt.length() > maxLen) {
+						longest = txt;
+						maxLen = longest.length();
+					}
+				}
+			}
+		}
+
+		if (aligned)
+			return true;
+
+		// not aligned, let's do the alignment
+		aligned = true;
+		for (IvtffLine line : group) {
+
+			if (line.getText().length() == maxLen)
+				continue;
+
+			String txt = StringUtil.align(line.getText(), longest);
+			line.setText(txt);
+
+			if (txt.length() != maxLen)
+				aligned = false;
+		}
+
+		return aligned;
 	}
 
 	/**

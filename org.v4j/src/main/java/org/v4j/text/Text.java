@@ -19,43 +19,33 @@ import org.v4j.text.alphabet.Alphabet;
  */
 public abstract class Text<T extends TextElement> implements TextElement {
 
-	private final String id;
-
-	/**
-	 * @return Unique ID for the Text; might be null.
-	 */
-	@Override	
-	public String getId() {
-		return id;
-	}
-
 	// Alphabet used by this text
 	private Alphabet alphabet;
 
+	@Override
+	public Alphabet getAlphabet() {
+		return alphabet;
+	}
+
+	protected void setAlphabet(Alphabet a) {
+		this.alphabet = a;
+	}
+	
 	// elements in this text; notice each one can itself contain other
 	// elements.
 	protected List<T> elements = new ArrayList<>();
 
+	public void addElement(T el) {
+		if (elementMap.containsKey(el.getId()))
+			throw new IllegalArgumentException("Duplicated ID when inserting element: " + el.getId());
+	
+		elements.add(el);
+		elementMap.put(el.getId(), el);
+		el.setParent(this);
+	}
+
 	// maps from element id into corresponding element.
 	protected Map<String, T> elementMap = new HashMap<>();
-
-	protected Text() {
-		this(null, Alphabet.ASCII, new ArrayList<T>());
-	}
-	
-	protected Text(String id) {
-		this(id, Alphabet.ASCII, new ArrayList<T>());
-	}
-
-	protected Text(String id, Alphabet a) {
-		this(id, a, new ArrayList<T>());
-	}
-
-	protected Text(String id, Alphabet a, List<T> elements) {
-		this.id = id;
-		this.alphabet = a;
-		this.elements = elements;
-	}
 
 	/**
 	 * 
@@ -67,22 +57,21 @@ public abstract class Text<T extends TextElement> implements TextElement {
 		return elementMap.get(id);
 	}
 
-	public void addElement(T el) {
-		if (elementMap.containsKey(el.getId()))
-			throw new IllegalArgumentException("Duplicated ID when inserting element: " + el.getId());
-
-		elements.add(el);
-		elementMap.put(el.getId(), el);
-		el.setParent(this);
+	protected Text() {
+		this(Alphabet.ASCII, new ArrayList<T>());
 	}
 
-	@Override
-	public Alphabet getAlphabet() {
-		return alphabet;
+	protected Text(Alphabet a) {
+		this(a, new ArrayList<T>());
 	}
 
-	protected void setAlphabet(Alphabet a) {
+	protected Text(List<T> elements) {
+		this(Alphabet.ASCII, elements);
+	}
+
+	protected Text(Alphabet a, List<T> elements) {
 		this.alphabet = a;
+		this.elements = elements;
 	}
 
 	@Override

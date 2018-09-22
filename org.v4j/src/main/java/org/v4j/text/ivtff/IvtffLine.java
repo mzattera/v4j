@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.v4j.text.Text;
-import org.v4j.text.Token;
+import org.v4j.text.TextElement;
 import org.v4j.text.alphabet.Alphabet;
 
 /**
@@ -13,19 +13,25 @@ import org.v4j.text.alphabet.Alphabet;
  * 
  * @author Massimiliano "Maxi" Zattera
  */
-public class IvtffLine extends IvtffElement<LocusIdentifier, Token> {
+public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 
 	/** Line text */
-	private final String text;
+	private String text;
 
 	@Override
 	public String getText() {
 		return text;
 	}
 
-	// Normalized text
-	private final String plainText;
+	public void setText(String txt) throws ParseException {
+		text = txt.trim();
+		plainText = normalizeText(text);
+	}
 
+	// Normalized text
+	private String plainText;
+
+	// TODO rename and see how it fits with getPlainText()
 	public String getNormalizedText() throws ParseException {
 		return plainText;
 	}
@@ -50,13 +56,19 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Token> {
 		return (IvtffPage) getParent();
 	}
 
+	// TODO: for test only REMOVE!!!!
+	public IvtffLine (String txt) throws ParseException {
+		super(Alphabet.EVA);
+		setText(txt);
+	}
+	
 	/**
 	 * Copy constructor.
 	 * 
 	 * @param other
 	 */
 	public IvtffLine(IvtffLine other) {
-		this.descriptor = other.descriptor;
+		super(other.descriptor, other.getAlphabet());
 		this.text = other.text;
 		this.plainText = other.plainText;
 		this.page = other.page;
@@ -95,6 +107,8 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Token> {
 	 *            row number inside the file.
 	 */
 	protected IvtffLine(String row, int rowNum, Alphabet a) throws ParseException {
+		super(a);
+
 		if (!row.startsWith("<"))
 			throw new ParseException("Missing locus indentifier", row, rowNum);
 
@@ -107,8 +121,7 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Token> {
 		}
 
 		descriptor = new LocusIdentifier(m.group(1), m.group(2), m.group(3), m.group(4).substring(1));
-		text = row.substring(m.end()).trim();
-		plainText = normalizeText(text, a);
+		setText(row.substring(m.end()).trim());
 	}
 
 	/**
@@ -116,18 +129,18 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Token> {
 	 * 
 	 * @throws ParseException
 	 */
-	private String normalizeText(String text, Alphabet a) throws ParseException {
+	private String normalizeText(String text) throws ParseException {
 		// TODO is this is the case? or should it be simply removed?
-		String txt = text.replaceAll("<\\->", a.getSpace() + ""); // plant intrusion is replaced by a space
-		
+		String txt = text.replaceAll("<\\->", getAlphabet().getSpace() + ""); // plant intrusion is replaced by a space
+
 		txt = removeComments(txt);
 		txt = removeHighAscii(txt);
 		txt = removeLigatures(txt);
 		txt = removeAlternativeReadings(txt);
 		txt = txt.replaceAll("!", ""); // "null" char in interlinear
-		txt = txt.replaceAll("%", a.getUnreadable() + ""); // big unreadable part char in interlinear
+		txt = txt.replaceAll("%", getAlphabet().getUnreadable() + ""); // big unreadable part char in interlinear
 		txt = txt.trim();
-		if (!a.isPlain(txt))
+		if (!getAlphabet().isPlain(txt))
 			throw new ParseException("Line contains invalid characters", text);
 
 		// TODO normalize text...uniform spaces and removal of contol chars
@@ -143,7 +156,8 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Token> {
 	 *             if there are unmatched angle brackets in text.
 	 */
 	private static String removeComments(String txt) throws ParseException {
-		// TODO decide if <-> should be replaced by a space or not (words continue across drawings?)
+		// TODO decide if <-> should be replaced by a space or not (words continue
+		// across drawings?)
 		String result = txt.replaceAll("<![^>]*>|<[^>]{1,2}>", "");
 		if ((result.indexOf('<') != -1) || (result.indexOf('>') != -1))
 			throw new ParseException("Text contains unmatched comment brackets: " + txt);

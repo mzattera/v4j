@@ -34,10 +34,12 @@ import org.v4j.text.alphabet.Alphabet;
 // TODO Rename to IVTFFDocument
 public class IvtffText extends Text<IvtffPage> {
 
+	// unique ID
+	private String id;
+
 	@Override
 	public String getId() {
-		// TODO implement
-		throw new UnsupportedOperationException();
+		return id;
 	}
 
 	// Transcript version: A.B.x
@@ -93,6 +95,7 @@ public class IvtffText extends Text<IvtffPage> {
 	public IvtffText(File in, String encoding) throws IOException, ParseException {
 
 		this(new BufferedReader(new InputStreamReader(new FileInputStream(in), encoding)));
+		this.id = in.getName();
 	}
 
 	/**
@@ -101,6 +104,7 @@ public class IvtffText extends Text<IvtffPage> {
 	public IvtffText(String content) throws IOException, ParseException {
 
 		this(new BufferedReader(new StringReader(content)));
+		this.id = "FROM_STRING";
 	}
 
 	/**
@@ -116,7 +120,8 @@ public class IvtffText extends Text<IvtffPage> {
 	 */
 	public IvtffText(IvtffText doc, List<IvtffLine> lines) {
 
-		super(doc.getId(), doc.getAlphabet());
+		super(doc.getAlphabet());
+		this.id = doc.getId();
 		this.version = doc.version;
 		this.majorVersion = doc.majorVersion;
 		this.setParent(null);
@@ -125,7 +130,7 @@ public class IvtffText extends Text<IvtffPage> {
 			IvtffPage docPage = line.getPage();
 			IvtffPage myPage = getElement(docPage.getId());
 			if (myPage == null) {
-				myPage = new IvtffPage(docPage.getDescriptor());
+				myPage = new IvtffPage(docPage.getDescriptor(), getAlphabet());
 				addElement(myPage);
 			}
 
@@ -220,7 +225,7 @@ public class IvtffText extends Text<IvtffPage> {
 				if (m.find() && (m.start() == 0)) {
 					// page header found
 					PageHeader pageDescriptor = new PageHeader(row, rowNum);
-					IvtffPage page = new IvtffPage(pageDescriptor);
+					IvtffPage page = new IvtffPage(pageDescriptor, getAlphabet());
 					addElement(page);
 					currentPage = page;
 

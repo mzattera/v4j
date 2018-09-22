@@ -4,7 +4,7 @@
 package org.v4j;
 
 /**
- * A class which instances have unique IDs.
+ * A class which instances have unique string IDs.
  * 
  * @author Massimiliano "Maxi" Zattera
  *

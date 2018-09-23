@@ -8830,7 +8830,7 @@
 #  
 <f37r.4,+P0;H>     pchotchy.daiin.cfhol.dar.chol.daiin<-><!plant>yd 
 <f37r.4,+P0;C>     pchotchy.daiin.cfhal!dar.chol.daiin<-><!plant>yd 
-<f37r.4,+P0;F>     pchotchy.daiin.cfhol.dar.chol.daiin<-><!plant>!!
+<f37r.4,+P0;F>     pchotchy.daiin.cfhol.dar.chol.daiin<-><!plant>!!!
 <f37r.4,+P0;U>     pchotchy.daiin.cfhol,dar.chol.daiin<-><!plant>yd 
 #  
 <f37r.5,+P0;H>     y!ky.qokchy.qotchor.chkol.otoly<-><!plant>
@@ -11526,10 +11526,10 @@
 <f49v.40,=P0;U>    <!label e->oaiin.chy.daiin.chol.chaiin.kshar.dy<-><!plant>chokchy 
 #  
 <f49v.42,=P0;H>    <!label @?????????->qokeaiin.cheo.chor.choteey.kcheol.dain<-><!plant>cho.dairin 
-<f49v.42,=P0;C>    !!!!!!!!!!!!!!!!!!!!!okeaiin.cheo.chor.choteey.kcheol.dain<-><!plant>cho.dairin 
-<f49v.42,=P0;F>    <!label ?->!!!!!!!!!qokeaiin.cheo.chor.choteey.kcheol.dain<-><!plant>cho.dairin 
-<f49v.42,=P0;G>    <!label ?->!!!!!!!!!qokeaiin.cheo.chor.choteey.kcheol.dain<-><!plant>cho.daisin 
-<f49v.42,=P0;U>    <!label @140->!!!!!!qokeaiin.cheo,chor.choteey.kcheol.dain<-><!plant>cho.daisin 
+<f49v.42,=P0;C>    !!!!!!!!!!!!!!okeaiin.cheo.chor.choteey.kcheol.dain<-><!plant>cho.dairin 
+<f49v.42,=P0;F>    <!label ?->!!!qokeaiin.cheo.chor.choteey.kcheol.dain<-><!plant>cho.dairin 
+<f49v.42,=P0;G>    <!label ?->!!!qokeaiin.cheo.chor.choteey.kcheol.dain<-><!plant>cho.daisin 
+<f49v.42,=P0;U>    <!label @140->qokeaiin.cheo,chor.choteey.kcheol.dain<-><!plant>cho.daisin 
 #  
 <f49v.44,=P0;H>    <!label d->chokaiin.cho.dls.chariin.daiin.chain.dy<-><!plant>chetcho.dy 
 <f49v.44,=P0;C>    !!!!!!!!!!chnkaiin.cho.dls.chariin.daiin.chain.dy<-><!plant>chetcho.dy 
@@ -13860,9 +13860,9 @@
 <f66r.41,+L0;F>    o 
 <f66r.41,+L0;U>    o 
 #  
-<f66r.42,+L0;H>    ?<!@195>!!!!!!!!!!! 
-<f66r.42,+L0;C>    ?!!!!!!!!!!!!!!!!!! 
-<f66r.42,+L0;F>    r!!!!!!!!!!!!!!!!!! 
+<f66r.42,+L0;H>    ?<!@195> 
+<f66r.42,+L0;C>    ?!!!!!! 
+<f66r.42,+L0;F>    r!!!!!! 
 <f66r.42,+L0;U>    ?<!@195> <!or @172>
 #  
 <f66r.43,+L0;H>    l 
@@ -15003,7 +15003,7 @@
 # East
 #  
 <f67v2.5,@Pb;H>    okeey.keoy.osalal 
-<f67v2.5,@Pb;C>    ???<!Illegible>!!
+<f67v2.5,@Pb;C>    ???<!Illegible>!!! 
 <f67v2.5,@Pb;V>    okeey.kedy.!!alal 
 <f67v2.5,@Pb;U>    okeey.keey.!ralal 
 #  
@@ -15027,7 +15027,7 @@
 # West
 #  
 <f67v2.9,@Pb;H>    okeol.chol.ar.okol.dam 
-<f67v2.9,@Pb;C>    ???<!Illegible>!!!!!!!
+<f67v2.9,@Pb;C>    ???<!Illegible>!!!!!!!! 
 <f67v2.9,@Pb;V>    okeol.chol.ar.okal!dam 
 #  
 <f67v2.10,+Pb;H>   koaiin.ofyl.ol.ofalaiin.oar<$>
@@ -17315,9 +17315,9 @@
 # "U" transcription by J. Stolfi from scanned image.
 #  
 # Outermost ring is incomplete. Transcription clockwise starting from West.
-<f70r1.1,@Cc;H>    ?<!@.>?<!@.>?<!@.>?<!@.>?<!@.>?<!@.>?<!@.>?<!@.>?<!@.>?<!@.>?<!@.>?<!@.>oooooooool!ar?<!@.>?<!@.>?<!@.>?<!@.>?<!@.>!s?<!@.>?<!@.>r?<!@.>?<!@.>!!!!!! 
-<f70r1.1,@Cc;V>    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%oooooooool.ar.?!!!?!!!!?!!!!?!!!!!!!!!!s?!!!!?!!!!r?!!!!?!!!!!?%%%% <!Grove's Z>
-<f70r1.1,@Cc;U>    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%oooooooool,ar.?<!@.>?<!@.>s!!!?<!@.>?<!@.>.s?<!@.>?<!@.>s?<!@.>?<!@.>.?<!@.> 
+<f70r1.1,@Cc;H>    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%oooooooool!ar?%%%% 
+<f70r1.1,@Cc;V>    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%oooooooool.ar.%%%% <!Grove's Z>
+<f70r1.1,@Cc;U>    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%oooooooool,ar.%%%% 
 #  
 #  
 # Second ring, transcribed clockwise from aligned gaps at 01:30
@@ -20664,8 +20664,8 @@
 <f73v.8,&Lz;U>     odees 
 #  
 #  
-<f73v.9,&Lz;H>     ecsy!!!!!!!!!!!!!!!!!!!!!! 
-<f73v.9,&Lz;V>     airy <!Grove's #2>!!!!!!!!
+<f73v.9,&Lz;H>     ecsy 
+<f73v.9,&Lz;V>     airy <!Grove's #2>
 <f73v.9,&Lz;U>     a!ry <!'ai' overlapped???>
 #  
 <f73v.10,&Lz;H>    ykeor 

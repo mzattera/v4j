@@ -45,10 +45,10 @@ public class VoynichFactory {
 	 */
 	// TODO probably this can be a line in the interlinear and removed
 	public enum TranscriptionType {
-		DEFAULT, // Indicates the default type fro the transcription (the original version
+		DEFAULT, // Indicates the default type for the transcription (the original version
 					// without any of the below transformations)
 		MAJORITY, // from interlinear, take the letters that appear with highest frequency
-		PROOFREAD, // Same as majority, but at least 2 version of the text must be available
+		// PROOFREAD, // Same as majority, but at least 2 version of the text must be available
 		CONCORDANCE // only return characters that match in each transcription
 	}
 
@@ -114,6 +114,9 @@ public class VoynichFactory {
 		StringBuffer fName = new StringBuffer("Transcriptions/");
 
 		if (tt == Transcription.LSI) {
+//			fName.append("LSI_ivtff_0d");
+			
+			// TODO spiegare perche' usiamo queta versione e documentare le linee che sono state cambiate			
 			fName.append("LSI_ivtff_0d_fix");
 			if ((a != null) && (a != Alphabet.EVA))
 				fName.append('_').append(a.getCodeString());

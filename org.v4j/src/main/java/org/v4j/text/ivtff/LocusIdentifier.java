@@ -38,7 +38,7 @@ public class LocusIdentifier implements Identifiable {
 	/**
 	 * Creates a new instance.
 	 */
-	protected LocusIdentifier(String page, String number, String locus, String transcriber) {
+	public LocusIdentifier(String page, String number, String locus, String transcriber) {
 		init(page, number, locus, transcriber);
 	}
 

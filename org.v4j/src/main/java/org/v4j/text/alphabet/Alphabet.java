@@ -26,14 +26,14 @@ public abstract class Alphabet {
 	public abstract String getCodeString();
 
 	/**
-	 * Returns all valid chars in the alphabet (that is, all chars that can appear
+	 * @return all valid chars in the alphabet (that is, all chars that can appear
 	 * in texts using this alphabet).
 	 * This include regular and special characters.
 	 */
 	public abstract char[] getAllChars();
 
 	/**
-	 * Returns true if c is not a "valid" char, that is a character not in the
+	 * @return true if c is not a "valid" char, that is a character not in the
 	 * alphabet.
 	 */
 	public boolean isInvalid(char c) {
@@ -46,7 +46,7 @@ public abstract class Alphabet {
 	}
 
 	/**
-	 * Returns true if the string contains an invalid char.
+	 * @return true if the string contains an invalid char.
 	 */
 	public boolean hasInvalid(String s) {
 		for (int i = 0; i < s.length(); ++i)
@@ -57,13 +57,13 @@ public abstract class Alphabet {
 	}
 
 	/**
-	 * Returns all regular chars in the alphabet.
+	 * @return all regular chars in the alphabet.
 	 * Regular chars are those forming words in text written with this alphabet.
 	 */
 	public abstract char[] getRegularChars();
 
 	/**
-	 * Returns true if c is a "regular" char.
+	 * @return true if c is a "regular" char.
 	 */
 	public boolean isRegular(char c) {
 		char[] chars = getRegularChars();
@@ -75,7 +75,7 @@ public abstract class Alphabet {
 	}
 
 	/**
-	 * Returns true if the string contains only regular chars.
+	 * @return true if the string contains only regular chars.
 	 */
 	public boolean hasOnlyRegular(String s) {
 		for (int i = 0; i < s.length(); ++i)
@@ -86,7 +86,7 @@ public abstract class Alphabet {
 	}
 
 	/**
-	 * Returns all special chars in the alphabet.
+	 * @return all special chars in the alphabet.
 	 * Special chars are valid characters
 	 * which are not regular characters. These are typically
 	 * used to indicate comments, spaces, etc.
@@ -109,7 +109,7 @@ public abstract class Alphabet {
 	}
 
 	/**
-	 * Returns true if c is a special char.
+	 * @return true if c is a special char.
 	 */
 	// TODO rename
 	public boolean isDiacritic(char c) {
@@ -122,7 +122,7 @@ public abstract class Alphabet {
 	}
 
 	/**
-	 * Returns true if the string contains a special char.
+	 * @return true if the string contains a special char.
 	 */
 	// TODO rename
 	public boolean hasDiacritic(String s) {
@@ -134,21 +134,21 @@ public abstract class Alphabet {
 	}
 
 	/**
-	 * Returns all word separators chars in the alphabet. By default, the first one
+	 * @return all word separators chars in the alphabet. By default, the first one
 	 * is the one returned by getSpace().
 	 * Word separators are special characters used to separate words in the text.
 	 */
 	public abstract char[] getWordSeparatorChars();
 
 	/**
-	 * Returns a character that can be used as space.
+	 * @return a character that can be used as space.
 	 */
 	public char getSpace() {
 		return getWordSeparatorChars()[0];
 	}
 
 	/**
-	 * Returns true if c is a word separator char.
+	 * @return true if c is a word separator char.
 	 */
 	public boolean isWordSeparator(char c) {
 		char[] chars = getWordSeparatorChars();
@@ -160,7 +160,7 @@ public abstract class Alphabet {
 	}
 
 	/**
-	 * Returns true if the string contains a word separator char.
+	 * @return true if the string contains a word separator char.
 	 */
 	public boolean hasWordSeparator(String s) {
 		for (int i = 0; i < s.length(); ++i)
@@ -170,8 +170,18 @@ public abstract class Alphabet {
 		return false;
 	}
 
+
 	/**
-	 * Returns true if the string contains only 1) regular chars 2) word separators 3) unreadable chars.
+	 * 
+	 * @eturn true if the char is regular or word separator.
+	 */
+	public boolean isregularOrSeparator(char c) {
+		return isRegular(c) || isWordSeparator(c);
+	}
+
+	/**
+	 * 
+	 * @return true if the string contains only 1) regular chars 2) word separators 3) unreadable chars.
 	 */
 	public boolean isPlain(String s) {
 		for (int i = 0; i < s.length(); ++i)
@@ -182,21 +192,22 @@ public abstract class Alphabet {
 	}
 
 	/**
-	 * Returns a list of special characters that can be used to mark one unreadable
+	 * 
+	 * @return a list of special characters that can be used to mark one unreadable
 	 * character in the text. By default, the first character is the one returned by
 	 * getUnreadableChar().
 	 */
 	public abstract char[] getUnreadableChars();
 
 	/**
-	 * Returns a character that can be used to mark one unreadable character.
+	 * @return a character that can be used to mark one unreadable character.
 	 */
 	public char getUnreadable() {
 		return getUnreadableChars()[0];
 	}
 
 	/**
-	 * Returns true if c is a used to indicate a "unreadable" char.
+	 * @return true if c is a used to indicate a "unreadable" char.
 	 */
 	public boolean isUreadableChar(char c) {
 		char[] chars = getUnreadableChars();
@@ -208,7 +219,7 @@ public abstract class Alphabet {
 	}
 
 	/**
-	 * Returns true if the string contains one or more unreadable char.
+	 * @return true if the string contains one or more unreadable char.
 	 */
 	public boolean isUreadable(String s) {
 		for (int i = 0; i < s.length(); ++i)

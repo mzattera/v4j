@@ -29,7 +29,11 @@ public final class RunAllTests {
 			System.out.println("*** " + test.getClass().getName());
 			test.doTest();
 
-			test = new StringUtilTest();
+			test = new LineAlignment();
+			System.out.println("*** " + test.getClass().getName());
+			test.doTest();
+
+			test = new TextNormalization();
 			System.out.println("*** " + test.getClass().getName());
 			test.doTest();
 

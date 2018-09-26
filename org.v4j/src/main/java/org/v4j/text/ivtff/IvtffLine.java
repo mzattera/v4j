@@ -147,7 +147,7 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 
 		String txt = text.replaceAll("<\\->", getAlphabet().getSpace() + ""); // plant intrusion is replaced by a space
 																				// TODO verify
-		txt = removeAllComments(txt);
+		txt = removeComments(txt);
 		txt = replaceHighAscii(txt, "?");
 		txt = removeLigatures(txt);
 		txt = removeAlternativeReadings(txt);
@@ -157,9 +157,7 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 		if (!getAlphabet().isPlain(txt))
 			throw new ParseException("Line contains invalid characters", text);
 
-		// TODO normalize text...uniform spaces and removal of contol chars
-
-		return txt;
+		return getAlphabet().toPlainText(txt);
 	}
 
 	/**
@@ -168,8 +166,8 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 	 * @throws ParseException
 	 *             if there are unmatched angle brackets in text.
 	 */
-	private static String removeAllComments(String txt) throws ParseException {
-		String result = replaceAllComments(txt, "");
+	private static String removeComments(String txt) throws ParseException {
+		String result = replaceComments(txt, "");
 		return result;
 	}
 
@@ -179,8 +177,8 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 	 * @throws ParseException
 	 *             if there are unmatched angle brackets in text.
 	 */
-	private static String replaceAllComments(String txt, String replace) throws ParseException {
-		String result = replaceAllInlineComments(txt, replace);
+	private static String replaceComments(String txt, String replace) throws ParseException {
+		String result = replaceInlineComments(txt, replace);
 		result = result.replaceAll("<[^>]{1,2}>", replace);
 		if ((result.indexOf('<') != -1) || (result.indexOf('>') != -1))
 			throw new ParseException("Text contains unmatched comment brackets: " + txt);
@@ -194,7 +192,7 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 	 * @throws ParseException
 	 *             if there are unmatched angle brackets in text.
 	 */
-	private static String replaceAllInlineComments(String txt, String replace) throws ParseException {
+	private static String replaceInlineComments(String txt, String replace) throws ParseException {
 		return txt.replaceAll("<![^>]*>", replace);
 	}
 
@@ -293,13 +291,13 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 
 			String txt = line.getText().replaceAll("<\\->", a.getSpace() + ""); // plant intrusion is replaced by a
 																				// space TODO verify
-			txt = replaceAllInlineComments(txt, "!");
+			txt = replaceInlineComments(txt, "!");
 			txt = txt.replaceAll("\\s+!", "!"); // gotta catch this, because sometimes last comment in a line is
 												// preceeded by a space
 			txt = replaceHighAscii(txt, "?!");
 			txt = txt.replaceAll("\\{|\\}", "!"); // remove ligatures
 			txt = txt.replaceAll("\\[([^\\]:]*)(:[^\\]:]*)+\\]", "!$1!"); // remove alternative readings
-			txt = txt.replaceAll("%", "!"); // big unreadable part char in interlinear
+			txt = txt.replaceAll("%", "?"); // big unreadable part char in interlinear
 			txt = txt.trim();
 			if (Pattern.matches("!+", txt)) {
 				txt = "!"; // Guard: some lines are made only of %%%%%%% we then make them a single comment
@@ -459,7 +457,7 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 	 * 
 	 * @param lines
 	 *            a group of lines, they are assumes to refer to the same text, but
-	 *            fro different transcribers.
+	 *            for different transcribers.
 	 * @param type
 	 *            the type of transcription we need to return with the merge.
 	 * @return merged text as new line.
@@ -472,26 +470,21 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 			throw new IllegalArgumentException("Cannot process an empty group of lines.");
 
 		// System.out.println(group.get(0).getDescriptor().toString());
-		Alphabet a = lines.get(0).getAlphabet();
 
-		// Keep the original version
-		List<IvtffLine> backup = new ArrayList<>();
+		List<IvtffLine> copy = new ArrayList<>();
 		for (IvtffLine l : lines)
-			backup.add(new IvtffLine(l));
+			copy.add(new IvtffLine(l));
 
-		if (!align(lines)) {
-			// for (IvtffLine l : group)
-			// System.out.println(">>> " + l);
+		if (!align(copy)) 
 			throw new ParseException("Cannot align the transcriptions.");
-		}
 
 		IvtffLine merged = null;
 		switch (type) {
 		case MAJORITY:
-			merged = getMajorityVersion(lines, a);
+			merged = getMajorityVersion(copy);
 			break;
 		case CONCORDANCE:
-			// return buildConcordance(group, a);
+			merged = getConcordanceVersion(copy);
 			break;
 		default:
 			throw new IllegalArgumentException("Unsupported transcription type: " + type);
@@ -500,10 +493,10 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 		// Find a line of typical length in the original text (notice the original lines
 		// might not be aligned, we use the most frequent length here
 		Counter<Integer> counter = new Counter<>();
-		for (IvtffLine line : backup)
+		for (IvtffLine line : lines)
 			counter.count(line.getText().length());
 		IvtffLine example = null;
-		for (IvtffLine line : backup) {
+		for (IvtffLine line : lines) {
 			if (line.getText().length() == counter.getHighestCounted()) {
 				example = line;
 				break;
@@ -518,42 +511,41 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 			align(tmp);
 		}
 
-		// show
-		 backup.add(merged);
-		 for (IvtffLine line : backup)
-		 System.out.println(line);
-		 System.out.println("#");
+		// show TODO REMOVE
+		if (lines.size() > 2) {
+			lines.add(merged);
+			for (IvtffLine line : lines)
+				System.out.println(line);
+			System.out.println("#");
+		}
 
 		return merged;
 	}
 
 	/**
-	 * Given a set of lines, returns the majority version of their texts.
+	 * Given a set of lines, returns the majority version of their text.
 	 * 
-	 * @param group
-	 * @param a
-	 * @return the majority version for given lines texts. Majority version returns
-	 *         the most frequent characters over the available lines/transcriptions.
+	 * @param lines
+	 * @return Majority version returns the most frequent characters over the
+	 *         available lines/transcriptions.
 	 * @throws ParseException
+	 *             if an error happens while merging lines.
 	 */
-	private static IvtffLine getMajorityVersion(List<IvtffLine> group, Alphabet a) throws ParseException {
+	private static IvtffLine getMajorityVersion(List<IvtffLine> lines) throws ParseException {
+
+		Alphabet a = lines.get(0).getAlphabet();
 
 		// TODO add test case for merging line, take it from older library
 
 		StringBuilder result = new StringBuilder();
 
-		for (int c = 0; c < group.get(0).getText().length(); ++c) {
+		for (int c = 0; c < lines.get(0).getText().length(); ++c) {
 
 			// Count characters in a given position
 			Counter<Character> counter = new Counter<>();
-			for (int l = 0; l < group.size(); ++l) {
-				try {
-					counter.count(group.get(l).getText().charAt(c));
-				} catch (Exception e) {
-					// TODO remove
-					System.out.println("Hello");
-				}
-			} // for each char
+			for (int l = 0; l < lines.size(); ++l) {
+				counter.count(a.normalize(lines.get(l).getText().charAt(c)));
+			}
 
 			// TODO print all combo found in actual text and write a test case
 
@@ -568,24 +560,67 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 					continue;
 				}
 
-				if (a.isWordSeparator(ch) && a.isWordSeparator(c1)) {
-					ch = a.getSpace(); // all spaces are the same for us
-					continue;
-				}
+				// if we are here, then there is a tie
 
 				if (a.isregularOrSeparator(c1) || a.isUreadableChar(c1)) {
 					ch = a.getUnreadable(); // conflicting "printable" chars, we return unreadable
 					break;
 				}
-				
+
 				// in all other cases returns the first most occurring char
-			} // for each char
+			}
 
 			result.append(ch);
-		} // for each line
+		} // for each char
 
-		LocusIdentifier id = new LocusIdentifier(group.get(0).getDescriptor().getPageId(),
-				group.get(0).getDescriptor().getNumber(), group.get(0).getDescriptor().getLocus(), "m");
+		LocusIdentifier id = new LocusIdentifier(lines.get(0).getDescriptor().getPageId(),
+				lines.get(0).getDescriptor().getNumber(), lines.get(0).getDescriptor().getLocus(), "m");
+		return new IvtffLine(id, result.toString(), a);
+	}
+
+	/**
+	 * Given a set of lines, returns the concordance version of their text.
+	 * 
+	 * @param lines
+	 * @return Concordance version returns only the characters that matches in all
+	 *         lines/transcriptions.
+	 * @throws ParseException
+	 *             if an error happens while merging lines.
+	 */
+	private static IvtffLine getConcordanceVersion(List<IvtffLine> lines) throws ParseException {
+
+		Alphabet a = lines.get(0).getAlphabet();
+
+		// TODO add test case for merging line, take it from older library
+
+		StringBuilder result = new StringBuilder();
+
+		for (int c = 0; c < lines.get(0).getText().length(); ++c) {
+
+			char ch = a.normalize(lines.get(0).getText().charAt(c));
+			boolean conflict = false;
+			boolean printableCharConflict = false;
+			for (int l = 1; l < lines.size(); ++l) {
+				char c1 = a.normalize(lines.get(l).getText().charAt(c));
+				if (c1 != ch) {
+					conflict = true;
+					if (a.isregularOrSeparator(c1) || a.isUreadableChar(c1) || a.isregularOrSeparator(ch)
+							|| a.isUreadableChar(ch)) {
+						printableCharConflict = true;
+					}
+				}
+			} // for each line
+
+			if (printableCharConflict)
+				result.append(a.getUnreadable());
+			else if (conflict)
+				result.append('!');
+			else
+				result.append(ch);
+		} // for each char
+
+		LocusIdentifier id = new LocusIdentifier(lines.get(0).getDescriptor().getPageId(),
+				lines.get(0).getDescriptor().getNumber(), lines.get(0).getDescriptor().getLocus(), "m");
 		return new IvtffLine(id, result.toString(), a);
 	}
 

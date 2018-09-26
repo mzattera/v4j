@@ -31,6 +31,7 @@ public class BuildDocumentVersion {
 	public static void main(String[] args) {
 		try {
 			doWork(VoynichFactory.getDocument(Transcription.LSI), TranscriptionType.MAJORITY);
+			doWork(VoynichFactory.getDocument(Transcription.LSI), TranscriptionType.CONCORDANCE);
 
 			// URL url = ClassLoader.getSystemResource("MS/LSI_ivtff_0d2 - fixed.txt");
 			// File inFile = new File(url.toURI());

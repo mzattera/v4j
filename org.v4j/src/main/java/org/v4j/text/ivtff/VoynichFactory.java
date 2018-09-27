@@ -17,7 +17,27 @@ import org.v4j.text.alphabet.Alphabet;
  * @author Massimiliano "Maxi" Zattera
  *
  */
+// TODO lots to finalize
 public class VoynichFactory {
+
+	/**
+	 * Name of folder with transcriptions (inside resource folder)
+	 */
+	public static final String TRANSCRIPTION_FOLDER = "Transcriptions";
+
+	/**
+	 * Name of the original interlinear file (+ corrections) inside
+	 * resource folder.
+	 */
+	public static final String ORIGINAL_TRANSCRIPTION_FILE = "LSI_ivtff_0d_fix.txt";
+
+	private static final String TRANSCRIPTION_FILE_NAME = "Interlinear_ivtff_1.5";
+
+	/**
+	 * Name of the interlinear file including majority & concordance
+	 * versions inside resource folder.
+	 */
+	public static final String TRANSCRIPTION_FILE = TRANSCRIPTION_FILE_NAME + ".txt";
 
 	/**
 	 * The different transcriptions we have available.
@@ -47,9 +67,12 @@ public class VoynichFactory {
 	public enum TranscriptionType {
 		DEFAULT, // Indicates the default type for the transcription (the original version
 					// without any of the below transformations)
-		MAJORITY, // from interlinear, take the letters that appear with highest frequency
-		// PROOFREAD, // Same as majority, but at least 2 version of the text must be available
-		CONCORDANCE // only return characters that match in each transcription
+		// TODO? rename?
+		MAJORITY, // from interlinear, take the letters that appear in most of the transcriptions
+		// PROOFREAD, // Same as majority, but at least 2 version of the text must be
+		// available
+		// TODO verify if this is the right term
+		CONCORDANCE // only return characters that exactly match in each transcription
 	}
 
 	/**
@@ -95,10 +118,17 @@ public class VoynichFactory {
 	 */
 	public static IvtffText getDocument(Transcription tt, TranscriptionType v, ContentType c, Alphabet a)
 			throws IOException, ParseException, URISyntaxException {
-		URL url = ClassLoader.getSystemResource(getDocumentFileName(tt, v, c, a, ".txt"));
-		File inFile = new File(url.toURI());
+		return new IvtffText(getFile(tt, v, c, a), "ASCII");
+	}
 
-		return new IvtffText(inFile, "ASCII");
+	/**
+	 * Returns an handler to the file with given transcription.
+	 */
+	public static File getFile(Transcription tt, TranscriptionType v, ContentType c, Alphabet a)
+			throws IOException, ParseException, URISyntaxException {
+
+		URL url = ClassLoader.getSystemResource(getDocumentFileName(tt, v, c, a, ".txt"));
+		return new File(url.toURI());
 	}
 
 	/**
@@ -111,13 +141,12 @@ public class VoynichFactory {
 	private static String getDocumentFileName(Transcription tt, TranscriptionType v, ContentType c, Alphabet a,
 			String ext) {
 
-		StringBuffer fName = new StringBuffer("Transcriptions/");
+		StringBuffer fName = new StringBuffer(TRANSCRIPTION_FOLDER).append("/");
 
 		if (tt == Transcription.LSI) {
-//			fName.append("LSI_ivtff_0d");
-			
-			// TODO spiegare perche' usiamo queta versione e documentare le linee che sono state cambiate			
-			fName.append("LSI_ivtff_0d_fix");
+			// TODO spiegare perche' usiamo queta versione e documentare le linee che sono
+			// state cambiate
+			fName.append(TRANSCRIPTION_FILE_NAME);
 			if ((a != null) && (a != Alphabet.EVA))
 				fName.append('_').append(a.getCodeString());
 		} else
@@ -135,17 +164,4 @@ public class VoynichFactory {
 		fName.append(ext);
 		return fName.toString();
 	}
-
-	/**
-	 * Write this Document as a specific version of the Voynich.
-	 * 
-	 * @throws Exception
-	 */
-	public void write(IvtffText doc, Transcription tt, TranscriptionType v, ContentType c) throws Exception {
-		URL url = ClassLoader.getSystemResource(getDocumentFileName(tt, v, c, doc.getAlphabet(), ".txt"));
-		File outFile = new File(url.toURI());
-
-		doc.write(outFile, "ASCII");
-	}
-
 }

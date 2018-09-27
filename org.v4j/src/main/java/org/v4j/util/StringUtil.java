@@ -3,6 +3,10 @@
  */
 package org.v4j.util;
 
+import java.util.regex.Pattern;
+
+import org.v4j.text.alphabet.Alphabet;
+
 /**
  * Set of string processing Util
  * 
@@ -34,5 +38,16 @@ public final class StringUtil {
 			if (s1.charAt(i) == s2.charAt(i))
 				++t;
 		return t;
+	}
+
+	/**
+	 * Split a string by using default space char for the given alphabet.
+	 * 
+	 * @param txt
+	 * @param a
+	 * @return result of splitting txt around a.getSpace().
+	 */
+	public static String[] splitWords(String txt, Alphabet a) {
+		return txt.split(Pattern.quote(a.getSpace()+""));
 	}
 }

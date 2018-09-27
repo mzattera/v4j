@@ -177,5 +177,12 @@ public class LineAlignment implements RegressionTest {
 		assert group.get(3).getText().equals("okain!!!");
 		for (IvtffLine l : group)
 			System.out.println(l.getText());
+		
+		group = new ArrayList<>();
+		group.add(new IvtffLine("qoky.shkeeo.s!chod!ar.shkol<-><!plant>chotchy.ctho!dol"));
+		group.add(new IvtffLine("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"));
+		group.add(new IvtffLine("qoky.shkeeo.r!chod.ar.shkof<-><!plant>chotchy.ctho.dol"));
+		group.add(new IvtffLine("qoky.shkeeo,s.chod!ar.shkol<-><!plant>choteey.ctho!dol"));
+		assert IvtffLine.align(group);
 	}
 }

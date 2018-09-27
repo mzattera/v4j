@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.v4j.support.BuildDocumentVersion;
 import org.v4j.text.Text;
 import org.v4j.text.TextElement;
 import org.v4j.text.alphabet.Alphabet;
@@ -114,7 +115,7 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 	 * @param rowNum
 	 *            row number inside the file.
 	 */
-	protected IvtffLine(String row, int rowNum, Alphabet a) throws ParseException {
+	public IvtffLine(String row, int rowNum, Alphabet a) throws ParseException {
 		super(a);
 
 		if (!row.startsWith("<"))
@@ -475,8 +476,16 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 		for (IvtffLine l : lines)
 			copy.add(new IvtffLine(l));
 
-		if (!align(copy)) 
+		// TODO it looks original lines text is altered somehow.
+		// TODO test with line group f27v.5,+P0
+		
+		if (!align(copy)) {
+			// show TODO REMOVE
+			for (IvtffLine line : copy)
+				System.out.println("  >>>   " + BuildDocumentVersion.getGroupId(line) + " : " +line);
+
 			throw new ParseException("Cannot align the transcriptions.");
+		}
 
 		IvtffLine merged = null;
 		switch (type) {
@@ -506,18 +515,18 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 		// align the result with what we have
 		if (merged.getText().length() < example.getText().length()) {
 			List<IvtffLine> tmp = new ArrayList<>();
-			tmp.add(example);
+			tmp.add(new IvtffLine(example));
 			tmp.add(merged);
 			align(tmp);
 		}
 
 		// show TODO REMOVE
-		if (lines.size() > 2) {
-			lines.add(merged);
-			for (IvtffLine line : lines)
-				System.out.println(line);
-			System.out.println("#");
-		}
+//		if (lines.size() > 2) {
+//			lines.add(merged);
+//			for (IvtffLine line : lines)
+//				System.out.println(line);
+//			System.out.println("#");
+//		}
 
 		return merged;
 	}
@@ -620,7 +629,7 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 		} // for each char
 
 		LocusIdentifier id = new LocusIdentifier(lines.get(0).getDescriptor().getPageId(),
-				lines.get(0).getDescriptor().getNumber(), lines.get(0).getDescriptor().getLocus(), "m");
+				lines.get(0).getDescriptor().getNumber(), lines.get(0).getDescriptor().getLocus(), "c");
 		return new IvtffLine(id, result.toString(), a);
 	}
 

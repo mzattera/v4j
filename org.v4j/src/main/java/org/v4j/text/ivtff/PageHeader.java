@@ -161,22 +161,6 @@ public class PageHeader implements Identifiable {
 	}
 
 	/**
-	 * Creates a page descriptor only from the page id.
-	 * 
-	 * @param id
-	 */
-	protected PageHeader(String id) {
-		this.id = id;
-		quire = "?";
-		pageInQuire = "?";
-		illustrationType = "?";
-		hasKey = false;
-		language = "?";
-		hand = "?";
-		extraneousWriting = "?";
-	}
-
-	/**
 	 * Extracts one parameter from a page descriptor: <f7v>
 	 */
 	private String extractParameter(String p, String row) {

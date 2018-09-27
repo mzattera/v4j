@@ -15,4 +15,20 @@
 		</repository>
 	</repositories>
 
+	<dependencies>
+
+		<!-- Apache Commons 
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-csv</artifactId>
+			<version>1.5</version>
+		</dependency> -->
+
+		<!-- WEKA 
+		<dependency>
+			<groupId>nz.ac.waikato.cms.weka</groupId>
+			<artifactId>weka-stable</artifactId>
+			<version>3.8.0</version>
+		</dependency> -->
+	</dependencies> 
 </project>

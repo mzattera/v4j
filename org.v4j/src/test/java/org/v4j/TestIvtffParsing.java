@@ -146,7 +146,7 @@ public class TestIvtffParsing implements RegressionTest {
 				"<f1r.18,@Ro;H> yteody.chetey";
 		doc = new IvtffText(in);
 		p = doc.getElement("f1r");
-		IvtffLine l = p.getElement("f1r.18,@Ro;H");
+		IvtffLine l = p.getElement("f1r.18;H");
 		assert l.getDescriptor().getPageId().equals("f1r");
 		assert l.getDescriptor().getNumber().equals("18");
 		assert l.getDescriptor().getLocus().equals("@Ro");
@@ -161,7 +161,7 @@ public class TestIvtffParsing implements RegressionTest {
 				"/.yteody.chetey";
 		doc = new IvtffText(in);
 		p = doc.getElement("f1r");
-		l = p.getElement("f1r.18,@Ro;H");
+		l = p.getElement("f1r.18;H");
 		assert l.getText().equals("yteody.chetey.yteody.chetey");
 
 		try {
@@ -191,7 +191,7 @@ public class TestIvtffParsing implements RegressionTest {
 				"<f1r.18,@Ro;H> yteody<! comment>.chetey";
 		doc = new IvtffText(in);
 		p = doc.getElement("f1r");
-		l = p.getElement("f1r.18,@Ro;H");
+		l = p.getElement("f1r.18;H");
 		assert l.getNormalizedText().equals("yteody.chetey");
 
 		try {
@@ -211,7 +211,7 @@ public class TestIvtffParsing implements RegressionTest {
 				"<f1r.18,@Ro;H> yteody<12>.chetey";
 		doc = new IvtffText(in);
 		p = doc.getElement("f1r");
-		l = p.getElement("f1r.18,@Ro;H");
+		l = p.getElement("f1r.18;H");
 		assert l.getNormalizedText().equals("yteody.chetey");
 
 		try {
@@ -230,7 +230,7 @@ public class TestIvtffParsing implements RegressionTest {
 				"<f1r.18,@Ro;H> yteod[y:in:iin].chete[y:o]";
 		doc = new IvtffText(in);
 		p = doc.getElement("f1r");
-		l = p.getElement("f1r.18,@Ro;H");
+		l = p.getElement("f1r.18;H");
 		assert l.getNormalizedText().equals("yteody.chetey");
 
 		try {
@@ -267,7 +267,7 @@ public class TestIvtffParsing implements RegressionTest {
 				"<f1r.18,@Ro;H> y{te}ody.chetey";
 		doc = new IvtffText(in);
 		p = doc.getElement("f1r");
-		l = p.getElement("f1r.18,@Ro;H");
+		l = p.getElement("f1r.18;H");
 		assert l.getNormalizedText().equals("yteody.chetey");
 
 		try {

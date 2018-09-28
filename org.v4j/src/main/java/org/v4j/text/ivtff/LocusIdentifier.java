@@ -84,7 +84,7 @@ public class LocusIdentifier implements Identifiable {
 	@Override
 	// TODO use StringBuffer
 	public String getId() {
-		return getPageId() + "." + getNumber() + "," + getLocus() + (getTranscriber().isEmpty() ? "" : ";" + getTranscriber());
+		return getPageId() + "." + getNumber() + (getTranscriber().isEmpty() ? "" : ";" + getTranscriber());
 	}
 
 	@Override

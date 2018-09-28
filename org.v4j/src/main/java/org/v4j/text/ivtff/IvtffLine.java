@@ -467,6 +467,36 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 	 */
 	public static IvtffLine merge(List<IvtffLine> lines, TranscriptionType type) throws ParseException {
 
+		/*
+		NOT WORKING
+		
+		<f67r2.7,&L0;H>	!!!!!!!!!!rfchykchey.ykchys
+		<f67r2.7,&L0;U>	!!!!!!!!!!ykchykchey.ykchys
+		<f67r2.7,&L0;V>	<!page curled>???chey.ykchds<-><!Grove's CL.8>
+		<f67r2.7,&L0;m>	!!!!!!!!!!??chykchey.ykchys
+		<f67r2.7,&L0;c>	!!!!!!!!!!?????????y???????
+				
+				DOVREBBE ALLINEARSI COME
+				
+				<f67r2.7,&L0;H>	!!!!!!!!!!rfchykchey.ykchys!
+				<f67r2.7,&L0;U>	!!!!!!!!!!ykchykchey.ykchys!
+				<f67r2.7,&L0;V>	!!!!!!!!!!!!!???chey.ykchds.! forse in questi casi rimuovi ! alla fine anziche aggiungerlo agli altri
+				<f67r2.7,&L0;m>	!!!!!!!!!!??chykchey.ykchys
+				<f67r2.7,&L0;c>	!!!!!!!!!!?????????y???????
+
+						
+						
+		#  
+		# 05:30
+		#  
+		<f67r2.8,&L0;H>	chkch!!!dar
+		<f67r2.8,&L0;U>	chkch<!???>dar
+		<f67r2.8,&L0;V>	chkch!!!dar<-><!Grove's CL.9>  .! in fine di parola forse andrebbe sostituito con !
+		<f67r2.8,&L0;m>	chkch!!!dar!!
+		<f67r2.8,&L0;c>	chkch!!!dar?!
+				
+				*/
+				
 		if (lines.size() == 0)
 			throw new IllegalArgumentException("Cannot process an empty group of lines.");
 

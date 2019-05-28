@@ -18,7 +18,7 @@ public class LineFilter implements ElementFilter<IvtffLine> {
 	private final String locus;
 	private final String transcriber;
 
-	public class Builder {
+	public static class Builder {
 
 		private String page = null;
 		private String number = null;

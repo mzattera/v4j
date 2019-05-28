@@ -8,88 +8,71 @@ import org.v4j.Identifiable;
  * 
  * @author Massimiliano "Maxi" Zattera
  */
-// TODO rename
 public class LocusIdentifier implements Identifiable {
 
-	// string version of this
-	private String asString;
-
-	/** The four main ID components */
-	private String[] _part;
+	private final String pageId;
 
 	/**
-	 * Creates a new instance starting from a string in format <page name>.<num>
-	 */
-	protected LocusIdentifier(String id) throws ParseException {
-		String[] parts = id.split("\\.");
-		if (parts.length != 2)
-			throw new ParseException("Wrong page identifier: " + id);
-
-		init(parts[0], parts[1], "", "");
-	}
-
-	/**
-	 * Creates a new instance.
-	 */
-	protected LocusIdentifier(String page, String number) {
-		init(page, number, "", "");
-	}
-
-	/**
-	 * Creates a new instance.
-	 */
-	public LocusIdentifier(String page, String number, String locus, String transcriber) {
-		init(page, number, locus, transcriber);
-	}
-
-	private void init(String page, String number, String locus, String transcriber) {
-		_part = new String[4];
-		_part[0] = page;
-		_part[1] = number;
-		_part[2] = locus;
-		_part[3] = transcriber;
-		asString = "<" + _part[0] + "." + _part[1] + "," + _part[2] + (transcriber.isEmpty() ? "" : ";" + _part[3])
-				+ ">";
-	}
-
-	/**
-	 * @return page ID; same as getPageLocator() but without angle brackets.
+	 * @return page ID.
 	 */
 	public String getPageId() {
-		return _part[0];
+		return pageId;
 	}
+
+	private final String number;
 
 	/**
 	 * @return line number.
 	 */
 	public String getNumber() {
-		return _part[1];
+		return number;
 	}
+
+	private final String locus;
 
 	/**
 	 * @return locus for this line (locus code + descriptor).
 	 */
 	// TODO getters fro the code and the decriptor separately
 	public String getLocus() {
-		return _part[2];
+		return locus;
 	}
+
+	private final String transcriber;
 
 	/**
 	 * @return transcriber (i.e. the letter after ; in LL part of ID).
 	 */
 	public String getTranscriber() {
-		return _part[3];
+		return transcriber;
 	}
 
 	@Override
-	// TODO use StringBuffer
 	public String getId() {
-		return getPageId() + "." + getNumber() + (getTranscriber().isEmpty() ? "" : ";" + getTranscriber());
+		StringBuilder builder = new StringBuilder();
+		builder.append(pageId).append('.').append(number);
+		if (!transcriber.isEmpty())
+			builder.append(';').append(transcriber);
+		return builder.toString();
+	}
+
+	/**
+	 * Creates a new instance.
+	 */
+	public LocusIdentifier(String page, String number, String locus, String transcriber) {
+		this.pageId = page;
+		this.number = number;
+		this.locus = locus;
+		this.transcriber = transcriber;
 	}
 
 	@Override
 	public String toString() {
-		return asString;
+		StringBuilder builder = new StringBuilder();
+		builder.append('<').append(pageId).append('.').append(number).append(',').append(locus);
+		if (!transcriber.isEmpty())
+			builder.append(';').append(transcriber);
+		return builder.append('>').toString();
 	}
 
 	@Override

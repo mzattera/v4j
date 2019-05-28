@@ -5,6 +5,7 @@ package org.v4j.text;
 
 import org.v4j.Identifiable;
 import org.v4j.text.alphabet.Alphabet;
+import org.v4j.util.Counter;
 
 /**
  * An element of text, either composite (e.g. a paragraph) or a single token.
@@ -34,6 +35,13 @@ public interface TextElement extends Identifiable {
 	 */
 	public String getPlainText();
 
+	/**
+	 * @return all the words in this element, with their count.
+	 * 
+	 * @param regularOnly counts only the words that contain only regular chars.
+	 */
+	public Counter<String> getWords(boolean regularOnly);
+	
 	/**
 	 * 
 	 * @param parent

@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import org.v4j.text.alphabet.Alphabet;
+import org.v4j.util.Counter;
 
 /**
  * A text, as a sequence of text elements of same type (e.g pages). It is
@@ -35,6 +37,9 @@ public abstract class Text<T extends TextElement> implements TextElement {
 	// elements.
 	protected List<T> elements = new ArrayList<>();
 
+	// maps from element id into corresponding element.
+	protected Map<String, T> elementMap = new HashMap<>();
+
 	public void addElement(T el) {
 		if (elementMap.containsKey(el.getId()))
 			throw new IllegalArgumentException("Duplicated ID when inserting element: " + el.getId());
@@ -43,9 +48,6 @@ public abstract class Text<T extends TextElement> implements TextElement {
 		elementMap.put(el.getId(), el);
 		el.setParent(this);
 	}
-
-	// maps from element id into corresponding element.
-	protected Map<String, T> elementMap = new HashMap<>();
 
 	/**
 	 * 
@@ -143,4 +145,21 @@ public abstract class Text<T extends TextElement> implements TextElement {
 		
 		return result;
 	}
+	
+	/**
+	 * @param regularOnly if true, returns only words made entirely of regular chars.
+	 */
+	public Counter<String> getWords (boolean regularOnly) {
+		Counter<String> result = new Counter<>();
+		
+		for (String line : getPlainText().split("\\n"))  {
+			for (String w : line.split(Pattern.quote(alphabet.getSpace()+""))) {
+				if (!regularOnly || alphabet.hasOnlyRegular(w))
+					result.count(w);
+			}
+		}
+		
+		return result;
+	}
+	
 }

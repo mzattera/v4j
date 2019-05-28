@@ -28189,9 +28189,9 @@
 <f86v5.18,+P0;H>   poldaiin.sheo.tesaiin.otcho.lkaiin.os.al.ody.qotar.ytedy.daiin 
 <f86v5.18,+P0;F>   poldaiin.shea.tesaiin.otcha.lkaiin.os.al.ody.qotar.ytedy.daiin 
 #  
-<f86v5.19,+P0;H>   ycheeytydaiin.ykeeo.chey.shckhy.shoky.oty.oty.otain.olkchdy 
-<f86v5.19,+P0;F>   ycheey.tydaiin.ykeeo.chey.shckhy%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-<f86v5.19,+P0;U>   ycheey,tydaiin.ykeeo,chey.shckhy.shoky.oty.oty.otain.olkady 
+<f86v5.19,+P0;H>	ycheey!tydaiin.ykeeo.chey.shckhy.shoky.oty.oty.otain.olkchdy
+<f86v5.19,+P0;F>	ycheey.tydaiin.ykeeo.chey.shckhy%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+<f86v5.19,+P0;U>	ycheey,tydaiin.ykeeo,chey.shckhy.shoky.oty.oty.otain.olk!ady
 #  
 <f86v5.20,+P0;H>   ychor.ar.aiin.ytaly.otaiin.ykaiin.otar.ytar.aiin.ytaii!m 
 <f86v5.20,+P0;F>   !sh!r.!!!aiin.ytaly.otaiin.ykaiin.otal.ytar.aiin.ytaiinm 
@@ -29966,10 +29966,10 @@
 <f89v2.9,+P0;U>    ychey.okeey.qoeol.daiin<-><!crease>chor.ch<!fold>!r.cheos.qol,cheey.dal.chody.cheor.chey.qoaiin.chody<-><!plant>
 #  
 #  
-<f89v2.10,+P0;H>   dair.or.cheol.chom<-><!crease>qol.cheo.lch<!fold>eo.lor.cheo.daiin.chkam<$>
-<f89v2.10,+P0;F>   dair.or.cheol.chom.qol<-><!crease>cheo!l!!<!fold>!.l!or.cheo.daiin.chkam<$>
-<f89v2.10,+P0;L>   chor.ol.ch!oy.!!!!!qol<-><!crease>cheo!l!!<!fold>!.l!or.cheo.daiin!chkal<$>
-<f89v2.10,+P0;U>   dair.or.cheol.chom.qol<-><!crease>cheo,l,?<!fold>?.l,or,cheo,daiin.chkam<$>
+<f89v2.10,+P0;H>   dair.or.cheol.chom!qol<-><!crease>cheo.lch<!fold>eo.l!or.cheo.daiin.chkam<$>
+<f89v2.10,+P0;F>   dair.or.cheol.chom.qol<-><!crease>cheo!l!!<!fold>!!.l!or.cheo.daiin.chkam<$>
+<f89v2.10,+P0;L>   chor.ol.ch!oy.!!!!!qol<-><!crease>cheo!l!!<!fold>!!.l!or.cheo.daiin!chkal<$>
+<f89v2.10,+P0;U>   dair.or.cheol.chom.qol<-><!crease>cheo,l,?<!fold>?!.l,or,cheo,daiin.chkam<$>
 #  
 #  
 # # <f89v2.L2> {}

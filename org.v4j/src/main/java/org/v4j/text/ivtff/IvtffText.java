@@ -31,7 +31,6 @@ import org.v4j.text.alphabet.Alphabet;
  * 
  * @author Massimiliano "Maxi" Zattera
  */
-// TODO Rename to IVTFFDocument
 public class IvtffText extends Text<IvtffPage> {
 
 	// unique ID
@@ -124,7 +123,6 @@ public class IvtffText extends Text<IvtffPage> {
 		this.id = doc.getId();
 		this.version = doc.version;
 		this.majorVersion = doc.majorVersion;
-		this.setParent(null);
 
 		for (IvtffLine line : lines) {
 			IvtffPage docPage = line.getPage();
@@ -281,8 +279,20 @@ public class IvtffText extends Text<IvtffPage> {
 	}
 
 	/**
+	 * @return pages in this document. Notice that for performance reasons we do not
+	 *         clone the pages, so altering the returned pages will make document status invalid.
+	 *         // TODO
+	 */
+	public List<IvtffPage> getPages() {
+		List<IvtffPage> ll = new ArrayList<>();
+		ll.addAll(elements);
+		return ll;
+	}
+
+	/**
 	 * @return lines in this document. Notice that for performance reasons we do not
-	 *         clone the list, so altering the list will impact the document.
+	 *         clone the lines, so altering the returned lines will make document status invalid.
+	 *         // TODO
 	 */
 	public List<IvtffLine> getLines() {
 		List<IvtffLine> ll = new ArrayList<>();
@@ -410,7 +420,7 @@ public class IvtffText extends Text<IvtffPage> {
 	/**
 	 * 
 	 * @param filter
-	 * @return a text with all and only lines for which filter.keep() returned true.
+	 * @return a text with all and only pages for which filter.keep() returned true.
 	 */
 	public IvtffText filterPages(ElementFilter<IvtffPage> filter) {
 

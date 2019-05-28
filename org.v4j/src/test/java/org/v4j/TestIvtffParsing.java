@@ -123,7 +123,7 @@ public class TestIvtffParsing implements RegressionTest {
 		assert (p != null);
 		assert (p.getDescriptor().getQuire().equals("B"));
 		assert (p.getDescriptor().getPageInQuire().equals("L"));
-		assert (p.getDescriptor().getType().equals("H"));
+		assert (p.getDescriptor().getIllustrationType().equals("H"));
 		assert (p.getDescriptor().hasSequenceLikeKey());
 		assert (p.getDescriptor().getLanguage().equals("A"));
 		assert (p.getDescriptor().getHand().equals("1"));
@@ -192,7 +192,7 @@ public class TestIvtffParsing implements RegressionTest {
 		doc = new IvtffText(in);
 		p = doc.getElement("f1r");
 		l = p.getElement("f1r.18;H");
-		assert l.getNormalizedText().equals("yteody.chetey");
+		assert l.getPlainText().equals("yteody.chetey");
 
 		try {
 			in = "#=IVTFF Eva- 1.5" + "\n" + //
@@ -212,7 +212,7 @@ public class TestIvtffParsing implements RegressionTest {
 		doc = new IvtffText(in);
 		p = doc.getElement("f1r");
 		l = p.getElement("f1r.18;H");
-		assert l.getNormalizedText().equals("yteody.chetey");
+		assert l.getPlainText().equals("yteody.chetey");
 
 		try {
 			in = "#=IVTFF Eva- 1.5" + "\n" + //
@@ -231,7 +231,7 @@ public class TestIvtffParsing implements RegressionTest {
 		doc = new IvtffText(in);
 		p = doc.getElement("f1r");
 		l = p.getElement("f1r.18;H");
-		assert l.getNormalizedText().equals("yteody.chetey");
+		assert l.getPlainText().equals("yteody.chetey");
 
 		try {
 			in = "#=IVTFF Eva- 1.5" + "\n" + //
@@ -268,7 +268,7 @@ public class TestIvtffParsing implements RegressionTest {
 		doc = new IvtffText(in);
 		p = doc.getElement("f1r");
 		l = p.getElement("f1r.18;H");
-		assert l.getNormalizedText().equals("yteody.chetey");
+		assert l.getPlainText().equals("yteody.chetey");
 
 		try {
 			in = "#=IVTFF Eva- 1.5" + "\n" + //

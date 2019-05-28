@@ -55,6 +55,6 @@ public class ParseException extends java.lang.Exception {
 	 *            Row number in the input file.
 	 */
 	public ParseException(String msg, String row, int rowNum) {
-		super("Line " + rowNum + ": " + msg + ": " + row);
+		super(((rowNum > 0) ? "Line " + rowNum : "") + ": " + msg + ": " + row);
 	}
 }

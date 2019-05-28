@@ -5,19 +5,19 @@ package org.v4j.text.ivtff;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
 import org.v4j.text.alphabet.Alphabet;
 
 /**
- * Factory class to read and write different versions of the Voynich manuscript,
- * or part of it. The documents are read from IVTFF files in resource folder.
+ * Factory class to read different versions of the Voynich manuscript. The
+ * documents are read from IVTFF files in resource folder.
  * 
  * @author Massimiliano "Maxi" Zattera
  *
  */
-// TODO lots to finalize
 public class VoynichFactory {
 
 	/**
@@ -26,18 +26,29 @@ public class VoynichFactory {
 	public static final String TRANSCRIPTION_FOLDER = "Transcriptions";
 
 	/**
-	 * Name of the original interlinear file (+ corrections) inside
-	 * resource folder.
+	 * Name of the original interlinear file (+ corrections) inside resource folder.
 	 */
-	public static final String ORIGINAL_TRANSCRIPTION_FILE = "LSI_ivtff_0d_fix.txt";
+	public static final String LSI_TRANSCRIPTION_FILE_NAME = "LSI_ivtff_0d_fix.txt";
 
-	private static final String TRANSCRIPTION_FILE_NAME = "Interlinear_ivtff_1.5";
+	public static final String MZ_TRANSCRIPTION_FILE_NAME = "Interlinear_ivtff_1.5.txt";
 
 	/**
-	 * Name of the interlinear file including majority & concordance
-	 * versions inside resource folder.
+	 * Name of the interlinear file including majority & concordance versions inside
+	 * resource folder.
 	 */
-	public static final String TRANSCRIPTION_FILE = TRANSCRIPTION_FILE_NAME + ".txt";
+	public static final String TRANSCRIPTION_FILE = MZ_TRANSCRIPTION_FILE_NAME + ".txt";
+
+	/**
+	 * Letter used as transcriber in interlinear files for lines that contain the
+	 * majority version.
+	 */
+	public static final String MAJORITY_TRANSCRIBER = "m";
+
+	/**
+	 * Letter used as transcriber in interlinear files for lines that contain the
+	 * concordance version.
+	 */
+	public static final String CONCORDANCE_TRANSCRIBER = "c";
 
 	/**
 	 * The different transcriptions we have available.
@@ -45,6 +56,7 @@ public class VoynichFactory {
 	 * @author Massimiliano "Maxi" Zattera
 	 * 
 	 */
+	// TODO check if any of these can be merged with LSI
 	public enum Transcription {
 		FSG, // A copy of the FSG transcription, created by Friedman's First Study Group, in
 				// the format prepared by Jim Reeds and Jacques Guy. FSG alphabet.
@@ -54,7 +66,8 @@ public class VoynichFactory {
 		TT, // The original transcription by Takeshi Takahashi. Eva Alphabeth
 		LSI, // The Landini-Stolfi Interlinear file. Eva alphabeth
 		GC, // The v101 transcription file. v101 alphabeth.
-		ZL // The "Zandbergen" part of the LZ transcription effort. Eva alphabeth.
+		ZL, // The "Zandbergen" part of the LZ transcription effort. Eva alphabeth.
+		MZ, // LSI interlinear file augmented with majority and concordance versions.
 	}
 
 	/**
@@ -63,105 +76,90 @@ public class VoynichFactory {
 	 * @author Massimiliano "Maxi" Zattera
 	 * 
 	 */
-	// TODO probably this can be a line in the interlinear and removed
 	public enum TranscriptionType {
-		DEFAULT, // Indicates the default type for the transcription (the original version
-					// without any of the below transformations)
 		// TODO? rename?
-		MAJORITY, // from interlinear, take the letters that appear in most of the transcriptions
-		// PROOFREAD, // Same as majority, but at least 2 version of the text must be
-		// available
-		// TODO verify if this is the right term
-		CONCORDANCE // only return characters that exactly match in each transcription
+		DEFAULT, // the original document, as it is
+		MAJORITY, // return only the majority lines form an interlinear version; that is the letters that appear in most of the transcriptions
+		CONCORDANCE // return only the concordance lines form an interlinear version; that is characters that exactly match in each transcription
 	}
 
 	/**
-	 * Different type of contents.
 	 * 
-	 * @author Massimiliano "Maxi" Zattera
-	 * 
+	 * @return given transcription type for the MZ transcription
 	 */
-	// TODO ...needed?
-	public enum ContentType {
-		COMPLETE // Complete text
-	}
-
-	/**
-	 * Returns given transcription.
-	 * 
-	 * @throws URISyntaxException
-	 * @throws ParseException
-	 * @throws IOException
-	 */
-	public static IvtffText getDocument(Transcription tt) throws IOException, ParseException, URISyntaxException {
-		return getDocument(tt, TranscriptionType.DEFAULT, ContentType.COMPLETE, null);
-	}
-
-	/**
-	 * Returns given transcription.
-	 * 
-	 * @throws ParseException
-	 * @throws IOException
-	 * @throws URISyntaxException
-	 */
-	public static IvtffText getDocument(Transcription tt, TranscriptionType v)
+	public static IvtffText getDocument(TranscriptionType type)
 			throws IOException, ParseException, URISyntaxException {
-		return getDocument(tt, v, ContentType.COMPLETE, null);
+		return getDocument(Transcription.MZ, type, null);
 	}
 
 	/**
-	 * Returns given transcription.
 	 * 
-	 * @throws ParseException
-	 * @throws IOException
-	 * @throws URISyntaxException
+	 * @return given transcription.
 	 */
-	public static IvtffText getDocument(Transcription tt, TranscriptionType v, ContentType c, Alphabet a)
+	public static IvtffText getDocument(Transcription t, TranscriptionType type)
 			throws IOException, ParseException, URISyntaxException {
-		return new IvtffText(getFile(tt, v, c, a), "ASCII");
+		return getDocument(t, type, null);
 	}
 
 	/**
-	 * Returns an handler to the file with given transcription.
+	 * 
+	 * @return given transcription.
 	 */
-	public static File getFile(Transcription tt, TranscriptionType v, ContentType c, Alphabet a)
+	public static IvtffText getDocument(Transcription t, TranscriptionType type, Alphabet a)
 			throws IOException, ParseException, URISyntaxException {
 
-		URL url = ClassLoader.getSystemResource(getDocumentFileName(tt, v, c, a, ".txt"));
+		IvtffText result = new IvtffText(getFile(t, a), "ASCII");
+		switch (type) {
+		case MAJORITY:
+			return result.filterLines(new LineFilter.Builder().transcriber(MAJORITY_TRANSCRIBER).build());
+		case CONCORDANCE:
+			return result.filterLines(new LineFilter.Builder().transcriber(CONCORDANCE_TRANSCRIBER).build());
+		case DEFAULT:
+			return result;
+		default:
+			throw new IllegalArgumentException();
+		}
+	}
+
+	/**
+	 * 
+	 * @return an handler to the file with given transcription.
+	 */
+	public static File getFile(Transcription t, Alphabet a) throws IOException, ParseException, URISyntaxException {
+
+		URL url = ClassLoader.getSystemResource(getDocumentFileName(t, a));
+		URI uri = url.toURI();
 		return new File(url.toURI());
 	}
 
 	/**
-	 * Returns file name for given transcription of the Voynich text.
 	 * 
 	 * @param a
 	 *            Alphabet used in the document, use null for default alphabet for
 	 *            given transcription.
+	 * 
+	 * @return file name for given transcription of the Voynich text.
 	 */
-	private static String getDocumentFileName(Transcription tt, TranscriptionType v, ContentType c, Alphabet a,
-			String ext) {
+	private static String getDocumentFileName(Transcription t, Alphabet a) {
 
 		StringBuffer fName = new StringBuffer(TRANSCRIPTION_FOLDER).append("/");
 
-		if (tt == Transcription.LSI) {
-			// TODO spiegare perche' usiamo queta versione e documentare le linee che sono
+		if (t == Transcription.LSI) {
+			// TODO spiegare perche' usiamo queta versione (fix) e documentare le linee che
+			// sono
 			// state cambiate
-			fName.append(TRANSCRIPTION_FILE_NAME);
+			fName.append(LSI_TRANSCRIPTION_FILE_NAME);
 			if ((a != null) && (a != Alphabet.EVA))
-				fName.append('_').append(a.getCodeString());
+				throw new IllegalArgumentException("Unsupported alphabet " + a + " for transcription " + t);
 		} else
-			throw new IllegalArgumentException("Unsupported transcription: " + tt); // TODO add support for all other
+			if (t == Transcription.MZ) {
+				fName.append(MZ_TRANSCRIPTION_FILE_NAME);
+				if ((a != null) && (a != Alphabet.EVA))
+					throw new IllegalArgumentException("Unsupported alphabet " + a + " for transcription " + t);
+			} else
+			throw new IllegalArgumentException("Unsupported transcription: " + t); // TODO add support for all other
 																					// transcriptions
 
-		if (v != TranscriptionType.DEFAULT) {
-			fName.append('_').append(v.toString());
-		}
-
-		if (c != ContentType.COMPLETE) {
-			fName.append('_').append(c.toString());
-		}
-
-		fName.append(ext);
 		return fName.toString();
 	}
 }

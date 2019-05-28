@@ -5,6 +5,7 @@ package org.v4j.util;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 /**
@@ -84,12 +85,20 @@ public class Counter<T> {
 
 		return max;
 	}
-	
+
 	/**
 	 * 
 	 * @return all items that have been counted.
 	 */
 	public Set<T> itemSet() {
 		return counts.keySet();
+	}
+
+	/**
+	 * 
+	 * @return a set of items / count pairs.
+	 */
+	public Set<Entry<T, Integer>> entrySet() {
+		return counts.entrySet();
 	}
 }

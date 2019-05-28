@@ -13,7 +13,7 @@ import org.v4j.Identifiable;
  */
 public class PageHeader implements Identifiable {
 	
-	// TODO transformed these fields in page (text element) properties
+	// TODO transform page header fields in page (text element) properties ? so text elements can be tagged with properties
 
 	public static final String TYPE_MISSING = "M";
 	public static final String TYPE_TEXT = "T";
@@ -38,8 +38,7 @@ public class PageHeader implements Identifiable {
 	 * Illustration type (T,H,A,Z,B,C,P,S). Text, Herbal, Astronomical, Zodiac,
 	 * Biological, Cosmological, Pharmaceutical or Stars.
 	 */
-	// TODO rename
-	public String getType() {
+	public String getIllustrationType() {
 		return illustrationType;
 	}
 

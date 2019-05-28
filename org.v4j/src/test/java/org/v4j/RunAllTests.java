@@ -40,7 +40,6 @@ public final class RunAllTests {
 			System.out.println("*** Test completed successfully");
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("*** Test FAILED");
 		}

@@ -8,7 +8,6 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.v4j.support.BuildDocumentVersion;
 import org.v4j.text.Text;
 import org.v4j.text.TextElement;
 import org.v4j.text.alphabet.Alphabet;
@@ -37,11 +36,11 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 		plainText = normalizeText(text);
 	}
 
-	// Normalized text
+	// Plain text
 	private String plainText;
 
-	// TODO rename and see how it fits with getPlainText()
-	public String getNormalizedText() throws ParseException {
+	@Override
+	public String getPlainText() {
 		return plainText;
 	}
 
@@ -63,12 +62,6 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 
 	public IvtffPage getPage() {
 		return (IvtffPage) getParent();
-	}
-
-	// TODO: for test only REMOVE!!!!
-	public IvtffLine(String txt) throws ParseException {
-		super(Alphabet.EVA);
-		setText(txt);
 	}
 
 	/**
@@ -106,6 +99,14 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 	 */
 	private final static Pattern locusIdentifier = Pattern
 			.compile("<(f[0-9]{1,3}[rv][0-9]?|fRos)\\.([0-9]{1,3}[a-z]?),([\\+\\*\\-=&~@/][PLCR].)(;.)?>");
+
+	/**
+	 * Creates a new instance parsing given input string. It assumes the text is in
+	 * EVA alphabet.
+	 */
+	public IvtffLine(String txt) throws ParseException {
+		this(txt, -1, Alphabet.EVA);
+	}
 
 	/**
 	 * Creates a new instance parsing input file.
@@ -293,12 +294,18 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 			String txt = line.getText().replaceAll("<\\->", a.getSpace() + ""); // plant intrusion is replaced by a
 																				// space TODO verify
 			txt = replaceInlineComments(txt, "!");
-			txt = txt.replaceAll("\\s+!", "!"); // gotta catch this, because sometimes last comment in a line is
-												// preceeded by a space
+
+			// handling of <-><!...> or "ain <!Grove's...>" at end of line
+			StringBuilder spaces = new StringBuilder("(\\s");
+			for (char s : a.getWordSeparatorChars())
+				spaces.append('|').append(Pattern.quote(s + "")); // todo use /q /E instead
+			spaces.append(")*!+\\z");
+			txt = txt.replaceAll(spaces.toString(), "!");
+
 			txt = replaceHighAscii(txt, "?!");
 			txt = txt.replaceAll("\\{|\\}", "!"); // remove ligatures
 			txt = txt.replaceAll("\\[([^\\]:]*)(:[^\\]:]*)+\\]", "!$1!"); // remove alternative readings
-			txt = txt.replaceAll("%", "?"); // big unreadable part char in interlinear
+			txt = txt.replaceAll("%+", "!"); // big unreadable part char in interlinear
 			txt = txt.trim();
 			if (Pattern.matches("!+", txt)) {
 				txt = "!"; // Guard: some lines are made only of %%%%%%% we then make them a single comment
@@ -325,18 +332,25 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 		if (aligned)
 			return true;
 
-		// Not aligned; align
+		// Not aligned, make sure that if any has a ! at the end, then all have
+		for (IvtffLine line : group) {
+
+			String txt = line.getText();
+			if (expandAtEnd && !txt.endsWith("!")) {
+				txt += "!";
+				line.setText(txt);
+				if (txt.length() > maxLen) {
+					longest = txt;
+					maxLen = longest.length();
+				}
+			}
+		}
+
+		// Now do the alignment
 		aligned = true;
 		for (IvtffLine line : group) {
 
 			String txt = line.getText();
-
-			// if at least one line ends with a '!' but it is not this one, this one must be
-			// able to pad at the end too
-			if ((txt.length() < maxLen) && expandAtEnd && !txt.endsWith("!")) {
-				txt += "!";
-				line.setText(txt);
-			}
 
 			if (txt.length() < maxLen) {
 				txt = IvtffLine.align(txt, longest);
@@ -348,7 +362,6 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 		}
 
 		return aligned;
-
 	}
 
 	/**
@@ -467,36 +480,6 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 	 */
 	public static IvtffLine merge(List<IvtffLine> lines, TranscriptionType type) throws ParseException {
 
-		/*
-		NOT WORKING
-		
-		<f67r2.7,&L0;H>	!!!!!!!!!!rfchykchey.ykchys
-		<f67r2.7,&L0;U>	!!!!!!!!!!ykchykchey.ykchys
-		<f67r2.7,&L0;V>	<!page curled>???chey.ykchds<-><!Grove's CL.8>
-		<f67r2.7,&L0;m>	!!!!!!!!!!??chykchey.ykchys
-		<f67r2.7,&L0;c>	!!!!!!!!!!?????????y???????
-				
-				DOVREBBE ALLINEARSI COME
-				
-				<f67r2.7,&L0;H>	!!!!!!!!!!rfchykchey.ykchys!
-				<f67r2.7,&L0;U>	!!!!!!!!!!ykchykchey.ykchys!
-				<f67r2.7,&L0;V>	!!!!!!!!!!!!!???chey.ykchds.! forse in questi casi rimuovi ! alla fine anziche aggiungerlo agli altri
-				<f67r2.7,&L0;m>	!!!!!!!!!!??chykchey.ykchys
-				<f67r2.7,&L0;c>	!!!!!!!!!!?????????y???????
-
-						
-						
-		#  
-		# 05:30
-		#  
-		<f67r2.8,&L0;H>	chkch!!!dar
-		<f67r2.8,&L0;U>	chkch<!???>dar
-		<f67r2.8,&L0;V>	chkch!!!dar<-><!Grove's CL.9>  .! in fine di parola forse andrebbe sostituito con !
-		<f67r2.8,&L0;m>	chkch!!!dar!!
-		<f67r2.8,&L0;c>	chkch!!!dar?!
-				
-				*/
-				
 		if (lines.size() == 0)
 			throw new IllegalArgumentException("Cannot process an empty group of lines.");
 
@@ -506,16 +489,8 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 		for (IvtffLine l : lines)
 			copy.add(new IvtffLine(l));
 
-		// TODO it looks original lines text is altered somehow.
-		// TODO test with line group f27v.5,+P0
-		
-		if (!align(copy)) {
-			// show TODO REMOVE
-			for (IvtffLine line : copy)
-				System.out.println("  >>>   " + BuildDocumentVersion.getGroupId(line) + " : " +line);
-
+		if (!align(copy))
 			throw new ParseException("Cannot align the transcriptions.");
-		}
 
 		IvtffLine merged = null;
 		switch (type) {
@@ -549,14 +524,6 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 			tmp.add(merged);
 			align(tmp);
 		}
-
-		// show TODO REMOVE
-//		if (lines.size() > 2) {
-//			lines.add(merged);
-//			for (IvtffLine line : lines)
-//				System.out.println(line);
-//			System.out.println("#");
-//		}
 
 		return merged;
 	}
@@ -613,7 +580,7 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 		} // for each char
 
 		LocusIdentifier id = new LocusIdentifier(lines.get(0).getDescriptor().getPageId(),
-				lines.get(0).getDescriptor().getNumber(), lines.get(0).getDescriptor().getLocus(), "m");
+				lines.get(0).getDescriptor().getNumber(), lines.get(0).getDescriptor().getLocus(), VoynichFactory.MAJORITY_TRANSCRIBER);
 		return new IvtffLine(id, result.toString(), a);
 	}
 
@@ -659,7 +626,7 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 		} // for each char
 
 		LocusIdentifier id = new LocusIdentifier(lines.get(0).getDescriptor().getPageId(),
-				lines.get(0).getDescriptor().getNumber(), lines.get(0).getDescriptor().getLocus(), "c");
+				lines.get(0).getDescriptor().getNumber(), lines.get(0).getDescriptor().getLocus(), VoynichFactory.CONCORDANCE_TRANSCRIBER);
 		return new IvtffLine(id, result.toString(), a);
 	}
 

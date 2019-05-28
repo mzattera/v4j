@@ -16,12 +16,32 @@
 	</repositories>
 
 	<dependencies>
-
-		<!-- Apache Commons 
+		
+		<!-- Apache Commons -->
+		<!-- CSV files handling -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-csv</artifactId>
-			<version>1.5</version>
+			<version>1.6</version>
+		</dependency>
+		<!-- clustering algorithms -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-math3</artifactId>
+			<version>3.2</version> 
+		</dependency> 
+		<!-- hac agglomerative clustering simple library -->
+		<dependency>
+			<groupId>org.opencompare</groupId>
+			<artifactId>hac</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		
+		<!-- Watchmaker Framework - Genetic Algorithms 
+		<dependency>
+			<groupId>org.uncommons.watchmaker</groupId>
+			<artifactId>watchmaker-framework</artifactId>
+			<version>0.7.1</version>
 		</dependency> -->
 
 		<!-- WEKA 
@@ -30,5 +50,12 @@
 			<artifactId>weka-stable</artifactId>
 			<version>3.8.0</version>
 		</dependency> -->
-	</dependencies> 
+
+		<!-- ELKI 
+		<dependency>
+			<groupId>de.lmu.ifi.dbs.elki</groupId>
+			<artifactId>elki</artifactId>
+			<version>0.7.1</version>
+		</dependency> -->
+	</dependencies>
 </project>

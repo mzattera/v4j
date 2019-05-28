@@ -21,7 +21,7 @@ public class PageFilter implements ElementFilter<IvtffPage> {
 	private final Boolean hasKey;
 	private final String extraneousWriting;
 
-	public class Builder {
+	public static class Builder {
 		private String illustrationType = null;
 		private String quire = null;
 		private String pageInQuire = null;
@@ -88,7 +88,7 @@ public class PageFilter implements ElementFilter<IvtffPage> {
 	public boolean keep(IvtffPage element) {
 		PageHeader h = element.getDescriptor();
 
-		return (illustrationType == null || illustrationType.equals(h.getType()))
+		return (illustrationType == null || illustrationType.equals(h.getIllustrationType()))
 				&& (quire == null || quire.equals(h.getQuire()))
 				&& (pageInQuire == null || pageInQuire.equals(h.getPageInQuire()))
 				&& (language == null || language.equals(h.getLanguage())) && (hand == null || hand.equals(h.getHand()))

@@ -8,7 +8,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +15,9 @@ import org.v4j.text.alphabet.Alphabet;
 import org.v4j.text.ivtff.IvtffLine;
 import org.v4j.text.ivtff.ParseException;
 import org.v4j.text.ivtff.VoynichFactory;
+import org.v4j.text.ivtff.VoynichFactory.Transcription;
 import org.v4j.text.ivtff.VoynichFactory.TranscriptionType;
+import org.v4j.util.StringUtil;
 
 /**
  * Processes interlinear version to obtain different versions with different
@@ -32,15 +33,17 @@ import org.v4j.text.ivtff.VoynichFactory.TranscriptionType;
  */
 public class BuildDocumentVersion {
 
+	/// MAKE SURE THIS IS CORRECT BUTDO NOT USE RESOURCES; AS THEY ARE WRITE ONLY
+	private final static String OUTPUT_FOLDER = "D:\\Voynich Mobile\\Git - v4j\\org.v4j\\src\\main\\resources\\Transcriptions\\";
+
 	/**
 	 * @param args
 	 *            the command line arguments
 	 */
 	public static void main(String[] args) {
 		try {
-			URL url = ClassLoader.getSystemResource(VoynichFactory.TRANSCRIPTION_FOLDER);
-			File fIn = new File(new File(url.toURI()), VoynichFactory.ORIGINAL_TRANSCRIPTION_FILE);
-			File fOut = new File(new File("I:\\Voynich Mobile\\Git - v4j\\org.v4j\\src\\main\\resources\\Transcriptions"), VoynichFactory.TRANSCRIPTION_FILE);
+			File fIn = VoynichFactory.getFile(Transcription.LSI, Alphabet.EVA);
+			File fOut = new File(OUTPUT_FOLDER + VoynichFactory.MZ_TRANSCRIPTION_FILE_NAME);
 
 			doWork(fIn, fOut, "ASCII", Alphabet.EVA);
 		} catch (Exception e) {
@@ -82,7 +85,14 @@ public class BuildDocumentVersion {
 					try {
 						line = new IvtffLine(fLine, lnum, a);
 					} catch (ParseException e) {
-						// this is not a line; write e continue
+						// this is not a line
+
+						// process current group and write it, as the non-line will start another group
+						// anyway
+						processGroup(group, out);
+						group.clear();
+
+						// Write current text
 						out.write(fLine);
 						out.newLine();
 						continue;
@@ -101,7 +111,7 @@ public class BuildDocumentVersion {
 
 				// don't forget last group
 				processGroup(group, out);
-				
+
 				out.flush();
 			}
 		}
@@ -114,7 +124,8 @@ public class BuildDocumentVersion {
 	 *         different transcribers.
 	 */
 	public static String getGroupId(IvtffLine line) {
-		return line.getDescriptor().getPageId() + "." + line.getDescriptor().getNumber() + "," + line.getDescriptor().getLocus();
+		return line.getDescriptor().getPageId() + "." + line.getDescriptor().getNumber() + ","
+				+ line.getDescriptor().getLocus();
 	}
 
 	/**
@@ -132,9 +143,28 @@ public class BuildDocumentVersion {
 		}
 
 		// merges and writes out result
+		IvtffLine ml = IvtffLine.merge(group, TranscriptionType.MAJORITY);
+		String m = ml.getPlainText();
 		out.write(IvtffLine.merge(group, TranscriptionType.MAJORITY).toString());
 		out.newLine();
+		IvtffLine cl = IvtffLine.merge(group, TranscriptionType.CONCORDANCE);
 		out.write(IvtffLine.merge(group, TranscriptionType.CONCORDANCE).toString());
 		out.newLine();
+
+		// TODO REMOVE, test only
+		String l = null;
+		for (IvtffLine line : group) {
+			if (line.getPlainText().length() == m.length()) {
+				l = line.getPlainText();
+				break;
+			}
+		}
+		if ((l == null) || (StringUtil.countMatchingChars(m, l) < l.length() * 0.5)) {
+			for (IvtffLine line : group) {
+				System.out.println(line.toString());
+			}
+			System.out.println(ml.toString());
+			System.out.println(cl.toString());
+		}
 	}
 }

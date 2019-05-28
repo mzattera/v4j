@@ -21,7 +21,7 @@ public final class Eva extends Alphabet {
 
 	private static final char[] regularChars;
 	static {
-		// TODO use EVA
+		// TODO verify these are all and only EVA chars
 		regularChars = new char['z' - 'a'];
 		int i = 0;
 		for (char c = 'a'; c <= 'z'; ++c)
@@ -34,7 +34,6 @@ public final class Eva extends Alphabet {
 		return regularChars;
 	}
 
-	// TODO use onl EVA plus special
 	private static final char[] allChars;
 	static {
 		allChars = new char[regularChars.length + 14];

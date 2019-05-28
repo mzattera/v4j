@@ -91,7 +91,7 @@ public class PageSplitter implements ElementSplitter<IvtffPage> {
 		StringBuilder result = new StringBuilder();
 
 		if (byIllustrationType)
-			result.append(" $I=").append(h.getType());
+			result.append(" $I=").append(h.getIllustrationType());
 		if (byQuire)
 			result.append(" $Q=").append(h.getQuire());
 		if (byPageInQuire)

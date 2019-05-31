@@ -8,8 +8,8 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.v4j.text.CompositeText;
 import org.v4j.text.Text;
-import org.v4j.text.TextElement;
 import org.v4j.text.alphabet.Alphabet;
 import org.v4j.text.ivtff.VoynichFactory.TranscriptionType;
 import org.v4j.util.Counter;
@@ -21,7 +21,7 @@ import org.v4j.util.StringUtil;
  * 
  * @author Massimiliano "Maxi" Zattera
  */
-public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
+public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 
 	/** Line text */
 	private String text;
@@ -44,24 +44,16 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 		return plainText;
 	}
 
-	// Page containing this line
-	private Text<?> page = null;
+	public IvtffPage getPage() {
+		return (IvtffPage)getParent();
+	}
 
 	@Override
-	public void setParent(Text<?> page) {
+	public void setParent(CompositeText<?> page) {
 		if (!this.descriptor.getPageId().equals(page.getId()))
 			throw new IllegalArgumentException("Line " + this.getId() + " cannot be added to page " + page.getId());
 
-		this.page = page;
-	}
-
-	@Override
-	public Text<?> getParent() {
-		return page;
-	}
-
-	public IvtffPage getPage() {
-		return (IvtffPage) getParent();
+		super.setParent(page);
 	}
 
 	/**
@@ -73,7 +65,7 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, TextElement> {
 		super(other.descriptor, other.getAlphabet());
 		this.text = other.text;
 		this.plainText = other.plainText;
-		this.page = other.page;
+		setParent(other.getParent());
 	}
 
 	/**

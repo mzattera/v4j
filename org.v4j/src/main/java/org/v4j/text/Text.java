@@ -3,163 +3,126 @@
  */
 package org.v4j.text;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.regex.Pattern;
 
+import org.v4j.Identifiable;
 import org.v4j.text.alphabet.Alphabet;
 import org.v4j.util.Counter;
 
 /**
- * A text, as a sequence of text elements of same type (e.g pages). It is
- * assumed text is organized in lines.
+ * An element of text, either composite (e.g. a paragraph) or a single token.
  * 
  * @author Massimiliano "Maxi" Zattera
  *
  */
-public abstract class Text<T extends TextElement> implements TextElement {
+public abstract class Text implements Identifiable {
 
-	// Alphabet used by this text
-	private Alphabet alphabet;
+	protected Alphabet alphabet;
 
-	@Override
+	/**
+	 * @return the alphabet for this text element.
+	 */
 	public Alphabet getAlphabet() {
 		return alphabet;
 	}
 
-	protected void setAlphabet(Alphabet a) {
+	public void setAlphabet(Alphabet a) {
 		this.alphabet = a;
 	}
-	
-	// elements in this text; notice each one can itself contain other
-	// elements.
-	protected List<T> elements = new ArrayList<>();
 
-	// maps from element id into corresponding element.
-	protected Map<String, T> elementMap = new HashMap<>();
+	private CompositeText<?> parent = null;
 
-	public void addElement(T el) {
-		if (elementMap.containsKey(el.getId()))
-			throw new IllegalArgumentException("Duplicated ID when inserting element: " + el.getId());
-	
-		elements.add(el);
-		elementMap.put(el.getId(), el);
-		el.setParent(this);
+	/**
+	 * @return if this text is part of a ComposedText, returns the containing text.
+	 */
+	public CompositeText<?> getParent() {
+		return parent;
+	}
+
+	/**
+	 * Set the text containing this element, if any. If parent is not null, it means
+	 * this text is part of the ComposedText passed as parameter.
+	 * 
+	 * @param parent
+	 */
+	public void setParent(CompositeText<?> parent) {
+		this.parent = parent;
 	}
 
 	/**
 	 * 
-	 * @param id
-	 * @return element with given ID; notice this looks only to the elements
-	 *         contained directly in this instance and does not recourse into them.
+	 * @return text contained in this element. This includes special chracters as
+	 *         <!..> comments for IVTFF files, or HTML tags for HTML files.
 	 */
-	public T getElement(String id) {
-		return elementMap.get(id);
-	}
-
-	protected Text() {
-		this(Alphabet.ASCII, new ArrayList<T>());
-	}
-
-	protected Text(Alphabet a) {
-		this(a, new ArrayList<T>());
-	}
-
-	protected Text(List<T> elements) {
-		this(Alphabet.ASCII, elements);
-	}
-
-	protected Text(Alphabet a, List<T> elements) {
-		this.alphabet = a;
-		this.elements = elements;
-	}
-
-	@Override
-	public String getText() {
-		StringBuilder result = new StringBuilder();
-		boolean first = false;
-		for (TextElement el : elements) {
-			if (first)
-				first = false;
-			else
-				result.append("\n");
-
-			result.append(el.getText());
-		}
-
-		return result.toString();
-	}
-
-	@Override
-	public String getPlainText() {
-		StringBuilder result = new StringBuilder();
-		boolean first = false;
-		for (TextElement el : elements) {
-			if (first)
-				first = false;
-			else
-				result.append("\n");
-
-			result.append(el.getPlainText());
-		}
-
-		return result.toString();
-	}
+	public abstract String getText();
 
 	/**
 	 * 
-	 * @param filter
-	 * @return the elements in this text for which filter.keep() returned true.
+	 * @return pain text contained in this element; that is the text stripped off
+	 *         all special chracters. For example <!..> comments in IVTFF files, or
+	 *         HTML tags will be absent in the returned text.
 	 */
-	public List<T> filterElements(ElementFilter<T> filter) {
-		List<T> toKeep = new ArrayList<>();
-		for (T element : elements)
-			if (filter.keep(element))
-				toKeep.add(element);
-
-		return toKeep;
-	}
+	public abstract String getPlainText();
 
 	/**
-	 * Splits elements in this Text accordingly to the categories introduced by given splitter.
+	 * Counts regular characters contained in the plain text.
 	 * 
-	 * @param filter
-	 * @return a map from each category into corresponding elments.
+	 * @return all the character in this text, with their count.
 	 */
-	public Map<String, List<T>> splitElements(ElementSplitter<T> splitter) {
-		Map<String, List<T>> result = new HashMap<>();
-	
-		for (T element : elements) {
-			String category = splitter.getCategory(element);
-			List<T> l = result.get(category);
-			
-			if (l == null) {
-				l = new ArrayList<T>();
-				result.put(category, l);
-			}
+	// TODO make sure it is tested
+	public Counter<Character> getChars() {
+		Counter<Character> result = new Counter<>();
 
-			l.add(element);
+		for (char c : getPlainText().toCharArray()) {
+			if (alphabet.isRegular(c))
+				result.count(c);
 		}
-		
+
 		return result;
 	}
-	
+
 	/**
-	 * @param regularOnly if true, returns only words made entirely of regular chars.
+	 * The plain text is split in words using the default space char.
+	 * 
+	 * @return all the words in this text, with their count.
+	 * 
+	 * @param regularOnly
+	 *            counts only the words that contain only regular chars (e.g. avoid
+	 *            words with unreadable chars).
 	 */
-	public Counter<String> getWords (boolean regularOnly) {
+	// TODO make sure it is tested
+	public Counter<String> getWords(boolean regularOnly) {
 		Counter<String> result = new Counter<>();
-		
-		for (String line : getPlainText().split("\\n"))  {
-			for (String w : line.split(Pattern.quote(alphabet.getSpace()+""))) {
+
+		for (String line : getPlainText().split("\\n")) {
+			for (String w : line.split(Pattern.quote(alphabet.getSpace() + ""))) {
 				if (!regularOnly || alphabet.hasOnlyRegular(w))
 					result.count(w);
 			}
 		}
-		
+
 		return result;
 	}
-	
+
+	@Override
+	public String getId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof Text)) return false;
+		return ((Text)o).getId().equals(this.getId());
+	}
+
+	@Override
+	public int hashCode() {
+		return getId().hashCode();
+	}
+
+	@Override
+	public String toString() {
+		return getText();
+	}
 }

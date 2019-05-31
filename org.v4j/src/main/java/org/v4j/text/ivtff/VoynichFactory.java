@@ -5,7 +5,6 @@ package org.v4j.text.ivtff;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
@@ -30,13 +29,11 @@ public class VoynichFactory {
 	 */
 	public static final String LSI_TRANSCRIPTION_FILE_NAME = "LSI_ivtff_0d_fix.txt";
 
-	public static final String MZ_TRANSCRIPTION_FILE_NAME = "Interlinear_ivtff_1.5.txt";
-
 	/**
 	 * Name of the interlinear file including majority & concordance versions inside
 	 * resource folder.
 	 */
-	public static final String TRANSCRIPTION_FILE = MZ_TRANSCRIPTION_FILE_NAME + ".txt";
+	public static final String MZ_TRANSCRIPTION_FILE_NAME = "Interlinear_ivtff_1.5.txt";
 
 	/**
 	 * Letter used as transcriber in interlinear files for lines that contain the
@@ -79,16 +76,17 @@ public class VoynichFactory {
 	public enum TranscriptionType {
 		// TODO? rename?
 		DEFAULT, // the original document, as it is
-		MAJORITY, // return only the majority lines form an interlinear version; that is the letters that appear in most of the transcriptions
-		CONCORDANCE // return only the concordance lines form an interlinear version; that is characters that exactly match in each transcription
+		MAJORITY, // return only the majority lines form an interlinear version; that is the
+					// letters that appear in most of the transcriptions
+		CONCORDANCE // return only the concordance lines form an interlinear version; that is
+					// characters that exactly match in each transcription
 	}
 
 	/**
 	 * 
 	 * @return given transcription type for the MZ transcription
 	 */
-	public static IvtffText getDocument(TranscriptionType type)
-			throws IOException, ParseException, URISyntaxException {
+	public static IvtffText getDocument(TranscriptionType type) throws IOException, ParseException, URISyntaxException {
 		return getDocument(Transcription.MZ, type, null);
 	}
 
@@ -128,7 +126,6 @@ public class VoynichFactory {
 	public static File getFile(Transcription t, Alphabet a) throws IOException, ParseException, URISyntaxException {
 
 		URL url = ClassLoader.getSystemResource(getDocumentFileName(t, a));
-		URI uri = url.toURI();
 		return new File(url.toURI());
 	}
 
@@ -151,12 +148,11 @@ public class VoynichFactory {
 			fName.append(LSI_TRANSCRIPTION_FILE_NAME);
 			if ((a != null) && (a != Alphabet.EVA))
 				throw new IllegalArgumentException("Unsupported alphabet " + a + " for transcription " + t);
+		} else if (t == Transcription.MZ) {
+			fName.append(MZ_TRANSCRIPTION_FILE_NAME);
+			if ((a != null) && (a != Alphabet.EVA))
+				throw new IllegalArgumentException("Unsupported alphabet " + a + " for transcription " + t);
 		} else
-			if (t == Transcription.MZ) {
-				fName.append(MZ_TRANSCRIPTION_FILE_NAME);
-				if ((a != null) && (a != Alphabet.EVA))
-					throw new IllegalArgumentException("Unsupported alphabet " + a + " for transcription " + t);
-			} else
 			throw new IllegalArgumentException("Unsupported transcription: " + t); // TODO add support for all other
 																					// transcriptions
 

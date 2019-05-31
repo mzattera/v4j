@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 
 import org.v4j.text.ElementFilter;
 import org.v4j.text.ElementSplitter;
-import org.v4j.text.Text;
+import org.v4j.text.CompositeText;
 import org.v4j.text.alphabet.Alphabet;
 
 /**
@@ -31,7 +31,7 @@ import org.v4j.text.alphabet.Alphabet;
  * 
  * @author Massimiliano "Maxi" Zattera
  */
-public class IvtffText extends Text<IvtffPage> {
+public class IvtffText extends CompositeText<IvtffPage> {
 
 	// unique ID
 	private String id;
@@ -64,12 +64,7 @@ public class IvtffText extends Text<IvtffPage> {
 	}
 
 	@Override
-	public Text<?> getParent() {
-		return null;
-	}
-
-	@Override
-	public void setParent(Text<?> parent) {
+	public void setParent(CompositeText<?> parent) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -132,7 +127,7 @@ public class IvtffText extends Text<IvtffPage> {
 				addElement(myPage);
 			}
 
-			myPage.addLine(new IvtffLine(line));
+			myPage.addElement(new IvtffLine(line));
 		}
 	}
 
@@ -247,7 +242,7 @@ public class IvtffText extends Text<IvtffPage> {
 					}
 
 					IvtffLine line = new IvtffLine(row, rowNum, getAlphabet());
-					currentPage.addLine(line);
+					currentPage.addElement(line);
 				}
 			}
 		} finally {
@@ -281,12 +276,10 @@ public class IvtffText extends Text<IvtffPage> {
 	/**
 	 * @return pages in this document. Notice that for performance reasons we do not
 	 *         clone the pages, so altering the returned pages will make document status invalid.
-	 *         // TODO
 	 */
+	// TODO add getElements() to superclass asn remove this
 	public List<IvtffPage> getPages() {
-		List<IvtffPage> ll = new ArrayList<>();
-		ll.addAll(elements);
-		return ll;
+		return elements;
 	}
 
 	/**

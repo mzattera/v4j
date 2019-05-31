@@ -9,7 +9,7 @@ package org.v4j.text;
  *
  * @author Massimiliano "Maxi" Zattera
  */
-public interface ElementFilter<T extends TextElement> {
+public interface ElementFilter<T extends Text> {
 
 	/**
 	 * 

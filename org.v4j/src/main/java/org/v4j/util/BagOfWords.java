@@ -3,42 +3,58 @@
  */
 package org.v4j.util;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.commons.math3.ml.clustering.Clusterable;
-import org.v4j.text.TextElement;
-
+import org.v4j.text.Text;
 
 /**
- * This is a bag of words for words in a given TextElement.
+ * This is a bag of words for words in a given Text.
  * 
  * @author Massimiliano_Zattera
  */
-public class BagOfWords<T extends TextElement> implements Clusterable {
+public class BagOfWords implements Clusterable {
 
 	public enum BagOfWordsMode {
 		COUNT, // each dimension counts the occurrences for corresponding word.
 		RELATIVE_FREQUENCY, // each dimension is the relative frequency of corresponding word in the text.
 		ONE_HOT // each dimension is 1 or 0, depending whether corresponding word is in the text
 				// or not.
+		// TF_IDF // each dimention is the tf-idf frequenccy fro corresponding work
 	}
 
-	private T element;
+	private Text element;
 
 	/**
 	 * 
 	 * @return element used to build this bag of words.
 	 */
-	public T getElement() {
+	public Text getElement() {
 		return element;
 	}
 
-	double[] x;
+	/**
+	 * Maps each word that can appear in the BoW into corresponding dimension index.
+	 */
+	private Map<String, Integer> dimensions;
+	
+	/**
+	 * @return a map that maps each word that can appear in the BoW into corresponding dimension index.
+	 */
+	public Map<String, Integer> getDimensions(){
+		return dimensions;
+	}
+
+	private double[] x;
 
 	/**
+	 * Returns a vector representing this Clusterable object. Notice that for
+	 * performance reasons the internal representation is returned and not cloned,
+	 * hence changing the returned vector will change this BoW.
 	 * 
-	 * @return vector representation of this DataObject.
+	 * @return vector representation of this object.
 	 * @see org.v4j.util.clustering.Clusterable#asVector()
 	 */
 	@Override
@@ -48,17 +64,18 @@ public class BagOfWords<T extends TextElement> implements Clusterable {
 
 	/**
 	 * 
-	 * @param el
+	 * @param element
 	 *            the TextElement used to extract bag of words.
 	 * @param dimensions
 	 *            lists the words to use in the BoW; maps each word into
 	 *            corresponding dimension index.
 	 * 
 	 */
-	public BagOfWords(T el, Map<String, Integer> dimensions, BagOfWordsMode mode) {
-		element = el;
+	public BagOfWords(Text element, Map<String, Integer> dimensions, BagOfWordsMode mode) {
+		this.element = element;
+		this.dimensions = new HashMap<>(dimensions);
 		x = new double[dimensions.size()];
-		Counter<String> words = el.getWords(false);
+		Counter<String> words = element.getWords(false);
 		for (Entry<String, Integer> e : words.entrySet()) {
 			Integer i = dimensions.get(e.getKey());
 			if (i != null)
@@ -82,10 +99,5 @@ public class BagOfWords<T extends TextElement> implements Clusterable {
 		default:
 			throw new IllegalArgumentException();
 		}
-		
-		int t = 0;
-		for (int i = 0; i < x.length; ++i)
-			if (x[i] > 0)
-				++t;
 	}
 }

@@ -84,6 +84,7 @@ public class HierarchicalClusterByWords {
 		Dendrogram dendrogram = dendrogramBuilder.getDendrogram();
 
 		// Form the dendrogram create clusters
+		// TODO make this the return type and move the printing in main() (see KMeansCLuster).
 		Map<Integer, Set<ObservationNode>> clusters = HacUtil.split(dendrogram, 5);
 		for (Entry<Integer, Set<ObservationNode>> cluster : clusters.entrySet()) {
 			for (ObservationNode node : cluster.getValue()) {

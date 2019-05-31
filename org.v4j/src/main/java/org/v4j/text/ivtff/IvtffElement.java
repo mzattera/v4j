@@ -4,8 +4,8 @@
 package org.v4j.text.ivtff;
 
 import org.v4j.Identifiable;
+import org.v4j.text.CompositeText;
 import org.v4j.text.Text;
-import org.v4j.text.TextElement;
 import org.v4j.text.alphabet.Alphabet;
 
 /**
@@ -15,7 +15,7 @@ import org.v4j.text.alphabet.Alphabet;
  * @author Massimiliano "Maxi" Zattera
  *
  */
-public abstract class IvtffElement<D extends Identifiable, T extends TextElement> extends Text<T>
+public abstract class IvtffElement<D extends Identifiable, T extends Text> extends CompositeText<T>
 		implements Identifiable {
 
 	protected D descriptor;

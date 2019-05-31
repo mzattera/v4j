@@ -31,13 +31,13 @@ import org.v4j.util.BagOfWords.BagOfWordsMode;
  *
  */
 // TODO probably can be generalized much more.
-public class WordsInPageExperiment implements ClusterableSet<BagOfWords<IvtffPage>>, Experiment {
+public class WordsInPageExperiment implements ClusterableSet<BagOfWords>, Experiment {
 
 	// Maps each word into corresponding dimension index.
 	private Map<String, Integer> dimensions;
 
 	// All the observations (pages) for this experiment.
-	private List<BagOfWords<IvtffPage>> observations;
+	private List<BagOfWords> observations;
 
 	/**
 	 * Cretes an experiment based on the page in given document.
@@ -74,9 +74,9 @@ public class WordsInPageExperiment implements ClusterableSet<BagOfWords<IvtffPag
 
 		// Observations to cluster.
 		// TODO: Consider only pages with at least one word in the dimension?
-		observations = new ArrayList<BagOfWords<IvtffPage>>(pages.length);
+		observations = new ArrayList<BagOfWords>(pages.length);
 		for (IvtffPage p : pages)
-			observations.add(new BagOfWords<IvtffPage>(p, dimensions, mode));
+			observations.add(new BagOfWords(p, dimensions, mode));
 	}
 
 	@Override
@@ -85,12 +85,12 @@ public class WordsInPageExperiment implements ClusterableSet<BagOfWords<IvtffPag
 	}
 
 	@Override
-	public Collection<BagOfWords<IvtffPage>> getItems() {
+	public Collection<BagOfWords> getItems() {
 		return observations;
 	}
 
 	@Override
-	public BagOfWords<IvtffPage> getItem(int i) {
+	public BagOfWords getItem(int i) {
 		return observations.get(i);
 	}
 

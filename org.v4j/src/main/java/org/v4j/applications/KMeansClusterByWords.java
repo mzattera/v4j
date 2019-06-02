@@ -7,9 +7,9 @@ import java.util.List;
 
 import org.apache.commons.math3.ml.clustering.Cluster;
 import org.apache.commons.math3.ml.clustering.Clusterer;
-import org.apache.commons.math3.ml.clustering.KMeansPlusPlusClusterer;
-import org.apache.commons.math3.ml.clustering.MultiKMeansPlusPlusClusterer;
+import org.apache.commons.math3.ml.clustering.evaluation.ClusterEvaluator;
 import org.apache.commons.math3.ml.distance.DistanceMeasure;
+import org.v4j.text.CompositeText;
 import org.v4j.text.ElementFilter;
 import org.v4j.text.ivtff.IvtffPage;
 import org.v4j.text.ivtff.IvtffText;
@@ -17,8 +17,10 @@ import org.v4j.text.ivtff.VoynichFactory;
 import org.v4j.text.ivtff.VoynichFactory.TranscriptionType;
 import org.v4j.util.BagOfWords;
 import org.v4j.util.BagOfWords.BagOfWordsMode;
-import org.v4j.util.clustering.ClusterEvaluator;
+import org.v4j.util.clustering.MultiSizeClusterer;
 import org.v4j.util.clustering.PositiveAngularDistance;
+import org.v4j.util.clustering.SilhouetteComputation;
+import org.v4j.util.clustering.SilhouetteEvaluator;
 import org.v4j.util.clustering.WordsInPageExperiment;
 
 /**
@@ -54,14 +56,17 @@ public class KMeansClusterByWords {
 			});
 
 			DistanceMeasure dist = new PositiveAngularDistance();
-			List<? extends Cluster<BagOfWords>> clusters = doWork(doc, dist);
-			ClusterEvaluator eval = new ClusterEvaluator(clusters, dist);
+			ClusterEvaluator<BagOfWords> eval = new SilhouetteEvaluator<>(dist);
+			List<? extends Cluster<BagOfWords>> clusters = doWork(doc, dist, eval, BagOfWordsMode.TF_IDF);
+			SilhouetteComputation cmp = new SilhouetteComputation(clusters, dist);
 
-			System.out.println("Number of clusters: " + clusters.size());
+			System.out.println("Number of clusters: " + clusters.size() + ": s = " + cmp.getSilhouette());
+			for (int i = 0; i < clusters.size(); ++i)
+				System.out.println("Cluster " + i + " [" + clusters.get(i).getPoints().size() + " items] : s = " + cmp.getSilhouette(clusters.get(i)));
+
 			for (int i = 0; i < clusters.size(); ++i) {
-				System.out.println("Cluster: " + i + ". s=" + eval.getSilhouette(clusters.get(i)));
-//				for (BagOfWords bow : clusters.get(i).getPoints())
-//					System.out.println(bow.getElement().getId() + ";" + i);
+				for (BagOfWords bow : clusters.get(i).getPoints())
+					System.out.println(bow.getText().getId() + ";" + i);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -70,15 +75,13 @@ public class KMeansClusterByWords {
 		}
 	}
 
-	private static List<? extends Cluster<BagOfWords>> doWork(IvtffText doc, DistanceMeasure dist) {
+	private static List<? extends Cluster<BagOfWords>> doWork(CompositeText<?> doc, DistanceMeasure dist,
+			ClusterEvaluator<BagOfWords> eval, BagOfWordsMode mode) {
 
-		// Create data point and clustering parameters
-		WordsInPageExperiment experiment = new WordsInPageExperiment(doc, BagOfWordsMode.RELATIVE_FREQUENCY);
-		KMeansPlusPlusClusterer<BagOfWords> simpleClusterer = new KMeansPlusPlusClusterer<BagOfWords>(10, -1, dist);
-		Clusterer<BagOfWords> clusterer = new MultiKMeansPlusPlusClusterer<BagOfWords>(simpleClusterer, 30);
-		// Clusterer<BagOfWords> clusterer = new
-		// DBSCANClusterer<BagOfWords>(0.5, 5, dist);
+		// Each element in the document becomes a BoW we can cluster.
+		WordsInPageExperiment<?> experiment = new WordsInPageExperiment<>(doc, mode);
 
+		Clusterer<BagOfWords> clusterer = new MultiSizeClusterer<>(2, 20, 100, dist, eval);
 		return clusterer.cluster(experiment.getItems());
 	}
 }

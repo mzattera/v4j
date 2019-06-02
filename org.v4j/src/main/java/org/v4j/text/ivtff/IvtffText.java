@@ -274,15 +274,6 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	}
 
 	/**
-	 * @return pages in this document. Notice that for performance reasons we do not
-	 *         clone the pages, so altering the returned pages will make document status invalid.
-	 */
-	// TODO add getElements() to superclass asn remove this
-	public List<IvtffPage> getPages() {
-		return elements;
-	}
-
-	/**
 	 * @return lines in this document. Notice that for performance reasons we do not
 	 *         clone the lines, so altering the returned lines will make document status invalid.
 	 *         // TODO
@@ -291,7 +282,7 @@ public class IvtffText extends CompositeText<IvtffPage> {
 		List<IvtffLine> ll = new ArrayList<>();
 
 		for (IvtffPage page : elements) {
-			ll.addAll(page.getLines());
+			ll.addAll(page.getElements());
 		}
 
 		return ll;
@@ -344,7 +335,7 @@ public class IvtffText extends CompositeText<IvtffPage> {
 				out.write(page.getDescriptor().toString());
 				out.newLine();
 
-				for (IvtffLine line : page.getLines()) {
+				for (IvtffLine line : page.getElements()) {
 					out.write(line.getDescriptor().toString());
 					out.write("\t");
 					out.write(line.getText());
@@ -420,7 +411,7 @@ public class IvtffText extends CompositeText<IvtffPage> {
 		List<IvtffLine> toKeep = new ArrayList<>();
 		for (IvtffPage page : elements)
 			if (filter.keep(page))
-				toKeep.addAll(page.getLines());
+				toKeep.addAll(page.getElements());
 
 		return new IvtffText(this, toKeep);
 	}
@@ -455,7 +446,7 @@ public class IvtffText extends CompositeText<IvtffPage> {
 			lines.clear();
 
 			for (IvtffPage page : pages.get(category))
-				lines.addAll(page.getLines());
+				lines.addAll(page.getElements());
 
 			result.put(category, new IvtffText(this, lines));
 		}

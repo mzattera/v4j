@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.v4j.util.clustering;
+package org.v4j.util.clustering.hac;
 
 import org.apache.commons.math3.ml.clustering.Clusterable;
 import org.apache.commons.math3.ml.distance.DistanceMeasure;
@@ -36,12 +36,16 @@ public class HacDissimilarityMeasure implements DissimilarityMeasure {
 	 * org.opencompare.hac.experiment.DissimilarityMeasure#computeDissimilarity(org.
 	 * opencompare.hac.experiment.Experiment, int, int)
 	 */
-	@SuppressWarnings("rawtypes")
-	@Override
-	public double computeDissimilarity(Experiment exp, int i, int j) {
-		Clusterable c1 = ((ClusterableSet)exp).getItem(i);
-		Clusterable c2 = ((ClusterableSet)exp).getItem(j);
+	public double computeDissimilarity(ClusterableSet<? extends Clusterable> experiment, int i, int j) {
+		Clusterable c1 = experiment.getItem(i);
+		Clusterable c2 = experiment.getItem(j);
 		
 		return m.compute(c1.getPoint(), c2.getPoint());
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public double computeDissimilarity(Experiment experiment, int i, int j) {
+		return computeDissimilarity((ClusterableSet<? extends Clusterable>)experiment, i, j);
 	}
 }

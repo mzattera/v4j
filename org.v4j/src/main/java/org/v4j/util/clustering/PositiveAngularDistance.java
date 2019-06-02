@@ -39,7 +39,7 @@ public class PositiveAngularDistance implements DistanceMeasure {
 		if (Double.isNaN(similarity)) {
 			return 0.0;
 		} else {
-			return 2 * Math.acos(similarity) / Math.PI;
+			return 2 * Math.acos(Math.min(similarity, 1.0)) / Math.PI; // this because similarity can be > 1.0 (for rounding probably)
 		}
 	}
 }

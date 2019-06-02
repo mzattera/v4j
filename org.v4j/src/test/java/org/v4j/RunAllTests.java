@@ -37,6 +37,10 @@ public final class RunAllTests {
 			System.out.println("*** " + test.getClass().getName());
 			test.doTest();
 
+			test = new KMeansClusteringTest();
+			System.out.println("*** " + test.getClass().getName());
+			test.doTest();
+
 			System.out.println("*** Test completed successfully");
 
 		} catch (Exception e) {

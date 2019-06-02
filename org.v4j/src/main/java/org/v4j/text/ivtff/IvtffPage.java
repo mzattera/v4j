@@ -3,8 +3,6 @@
  */
 package org.v4j.text.ivtff;
 
-import java.util.List;
-
 import org.v4j.text.alphabet.Alphabet;
 
 /**
@@ -35,15 +33,5 @@ public class IvtffPage extends IvtffElement<PageHeader, IvtffLine> {
 					"Line " + line.getDescriptor().toString() + " cannot be added to page " + this.getId());
 
 		super.addElement(line);
-	}
-
-	/**
-	 * @return lines in page. Notice that for performance reasons we do not clone
-	 *         the list, so altering the list will impact the document.
-	 */
-	// TODO add getElements() to superclass asn remove this
-	public List<IvtffLine> getLines() {
-		// TODO return an unmodifiable list instead?
-		return elements;
 	}
 }

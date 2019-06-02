@@ -49,7 +49,7 @@ public class PrintDocumentStatistics {
 				CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader("ID", "IllustrationType",
 						"Language", "Hand", "Quire", "PageInQuire", "Words", "Tokens", "ClearWords", "ClearTokens"));) {
 
-			for (IvtffPage p : doc.getPages()) {
+			for (IvtffPage p : doc.getElements()) {
 				PageHeader ph = p.getDescriptor();
 				Counter<String> allWords = p.getWords(false);
 				Counter<String> clrWords = p.getWords(true);

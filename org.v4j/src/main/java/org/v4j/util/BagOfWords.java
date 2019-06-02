@@ -3,7 +3,10 @@
  */
 package org.v4j.util;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -20,33 +23,35 @@ public class BagOfWords implements Clusterable {
 	public enum BagOfWordsMode {
 		COUNT, // each dimension counts the occurrences for corresponding word.
 		RELATIVE_FREQUENCY, // each dimension is the relative frequency of corresponding word in the text.
-		ONE_HOT // each dimension is 1 or 0, depending whether corresponding word is in the text
-				// or not.
-		// TF_IDF // each dimention is the tf-idf frequenccy fro corresponding work
+		ONE_HOT, // each dimension is 1 or 0, depending whether corresponding word is in the text
+					// or not.
+		TF_IDF // each dimension is the tf-idf frequency for corresponding word
 	}
 
-	private Text element;
+	private Text text;
 
 	/**
 	 * 
-	 * @return element used to build this bag of words.
+	 * @return text used to build this bag of words.
 	 */
-	public Text getElement() {
-		return element;
+	public Text getText() {
+		return text;
 	}
 
 	/**
 	 * Maps each word that can appear in the BoW into corresponding dimension index.
 	 */
 	private Map<String, Integer> dimensions;
-	
+
 	/**
-	 * @return a map that maps each word that can appear in the BoW into corresponding dimension index.
+	 * @return a map that maps each word that can appear in the BoW into
+	 *         corresponding dimension index.
 	 */
-	public Map<String, Integer> getDimensions(){
+	public Map<String, Integer> getDimensions() {
 		return dimensions;
 	}
 
+	// vector representation of this BoW
 	private double[] x;
 
 	/**
@@ -62,25 +67,41 @@ public class BagOfWords implements Clusterable {
 		return x;
 	}
 
+	// total number of words (non null dimensions) in this BoW
+	private int tot = 0;
+
 	/**
 	 * 
-	 * @param element
+	 * @return number of different words in this BoW (that is number of non-zero
+	 *         dimensions).
+	 */
+	public int getDifferentWordCount() {
+		return tot;
+	}
+
+	/**
+	 * 
+	 * @param text
 	 *            the TextElement used to extract bag of words.
 	 * @param dimensions
 	 *            lists the words to use in the BoW; maps each word into
 	 *            corresponding dimension index.
 	 * 
 	 */
-	public BagOfWords(Text element, Map<String, Integer> dimensions, BagOfWordsMode mode) {
-		this.element = element;
+	public BagOfWords(Text text, Map<String, Integer> dimensions, BagOfWordsMode mode) {
+		this.text = text;
 		this.dimensions = new HashMap<>(dimensions);
 		x = new double[dimensions.size()];
-		Counter<String> words = element.getWords(false);
+		Counter<String> words = text.getWords(false);
 		for (Entry<String, Integer> e : words.entrySet()) {
 			Integer i = dimensions.get(e.getKey());
 			if (i != null)
 				x[i] += e.getValue();
 		}
+		tot = 0;
+		for (int i = 0; i < x.length; ++i)
+			if (x[i] > 0)
+				++tot;
 
 		// adjust values based on mode
 		switch (mode) {
@@ -96,8 +117,52 @@ public class BagOfWords implements Clusterable {
 				if (x[i] > 1.0)
 					x[i] = 1.0;
 			break;
+		case TF_IDF:
+			throw new IllegalArgumentException("TF_IDF is nto available for a signe text; use toBoW()");
 		default:
 			throw new IllegalArgumentException();
 		}
+	}
+
+	/**
+	 * 
+	 * @param docs for each of this documents, a BagOfWords will be returned. Notice that documents with no words in dimensions are ignored.
+	 * @param dimensions words to use as dimensions for the bag of words.
+	 * @param mode Mode to use to build the bag of words.
+	 * @return a list of bag of words from the give documents. 
+	 */
+	public static List<BagOfWords> toBoW(Collection<? extends Text> docs, Map<String, Integer> dimensions,
+			BagOfWordsMode mode) {
+		List<BagOfWords> result = new ArrayList<>(docs.size());
+		if (mode == BagOfWordsMode.TF_IDF) {
+			for (Text t : docs) {
+				BagOfWords bow = new BagOfWords(t, dimensions, BagOfWordsMode.COUNT);
+				if (bow.getDifferentWordCount() > 0)
+					result.add(bow);
+			}
+
+			// number of documents in which each word in dictionary appears
+			int[] df = new int[dimensions.size()];
+			for (int i = 0; i < df.length; ++i) {
+				for (BagOfWords bow : result)
+					if (bow.x[i] > 0)
+						++df[i];
+			}
+
+			// Adjust weights
+			for (BagOfWords bow : result)
+				for (int i = 0; i < df.length; ++i)
+					if (df[i] > 0)
+						bow.x[i] *= Math.log(result.size() / df[i]);
+
+		} else {
+			for (Text t : docs) {
+				BagOfWords bow = new BagOfWords(t, dimensions, mode);
+				if (bow.getDifferentWordCount() > 0)
+					result.add(bow);
+			}
+		}
+
+		return result;
 	}
 }

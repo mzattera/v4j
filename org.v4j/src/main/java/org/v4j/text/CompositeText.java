@@ -22,6 +22,15 @@ public abstract class CompositeText<T extends Text> extends Text {
 	// elements.
 	protected List<T> elements = new ArrayList<>();
 
+	/**
+	 * 
+	 * @return the elements composing this next, notice that the returned list is the internal representation and should not be 
+	 * altered directly.
+	 */
+	public List<T> getElements() {
+		return elements;
+	}
+
 	// maps from element id into corresponding element.
 	protected Map<String, T> elementMap = new HashMap<>();
 

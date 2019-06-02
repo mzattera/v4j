@@ -3,27 +3,31 @@
  */
 package org.v4j.applications;
 
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
+import java.util.List;
 
+import org.apache.commons.math3.ml.clustering.Cluster;
+import org.apache.commons.math3.ml.clustering.Clusterable;
+import org.apache.commons.math3.ml.distance.DistanceMeasure;
 import org.opencompare.hac.HierarchicalAgglomerativeClusterer;
 import org.opencompare.hac.agglomeration.AgglomerationMethod;
 import org.opencompare.hac.agglomeration.AverageLinkage;
 import org.opencompare.hac.dendrogram.Dendrogram;
 import org.opencompare.hac.dendrogram.DendrogramBuilder;
-import org.opencompare.hac.dendrogram.ObservationNode;
 import org.opencompare.hac.experiment.DissimilarityMeasure;
-import org.v4j.text.ElementFilter;
+import org.v4j.text.CompositeText;
 import org.v4j.text.ivtff.IvtffPage;
 import org.v4j.text.ivtff.IvtffText;
+import org.v4j.text.ivtff.PageFilter;
 import org.v4j.text.ivtff.VoynichFactory;
 import org.v4j.text.ivtff.VoynichFactory.TranscriptionType;
 import org.v4j.util.BagOfWords.BagOfWordsMode;
-import org.v4j.util.clustering.HacDissimilarityMeasure;
-import org.v4j.util.clustering.HacUtil;
 import org.v4j.util.clustering.PositiveAngularDistance;
+import org.v4j.util.clustering.SilhouetteComputation;
 import org.v4j.util.clustering.WordsInPageExperiment;
+import org.v4j.util.clustering.hac.ClusterableSet;
+import org.v4j.util.clustering.hac.HacDissimilarityMeasure;
+import org.v4j.util.clustering.hac.HacUtil;
+import org.v4j.util.clustering.hac.Observation;
 
 /**
  * Uses hac (hierarchical clustering) library to cluster pages in Voynich by the
@@ -40,9 +44,10 @@ public class HierarchicalClusterByWords {
 	public static void main(String[] args) {
 		try {
 			IvtffText doc = VoynichFactory.getDocument(TranscriptionType.MAJORITY);
+			doc = doc.filterPages(new PageFilter.Builder().language("B").build());
 
 			// removes outliers
-			doc = doc.filterPages(new ElementFilter<IvtffPage>() {
+/*		doc = doc.filterPages(new ElementFilter<IvtffPage>() {
 				@Override
 				public boolean keep(IvtffPage element) {
 					// these are identified by looking at hierarchical clusters of 1 single page.
@@ -58,9 +63,29 @@ public class HierarchicalClusterByWords {
 							&& !element.getDescriptor().getIllustrationType().equals("C")
 							&& !element.getDescriptor().getIllustrationType().equals("Z");
 				}
-			});
-			
-			doWork(doc, "D:\\Voynich Mobile\\Git - v4j\\org.v4j\\src\\main\\resources\\Output\\Cluster.csv");
+			});*/
+
+			WordsInPageExperiment<IvtffPage> experiment = new WordsInPageExperiment<>(doc, BagOfWordsMode.TF_IDF);
+			DistanceMeasure distance = new PositiveAngularDistance();
+			AgglomerationMethod mode = new AverageLinkage();
+			List<Cluster<Observation<?>>> clusters = doWork(experiment, 2, 10, distance, mode);
+			SilhouetteComputation cmp = new SilhouetteComputation(clusters, distance);
+
+			// Print cluster stats
+			System.out.println("Number of clusters: " + clusters.size() + " (s= " + cmp.getSilhouette() + ")");
+			for (int i = 0; i < clusters.size(); ++i) {
+				System.out.println("Cluster " + i + ": size " + clusters.get(i).getPoints().size() + " ("
+						+ cmp.getSilhouette(clusters.get(i)) + ")");
+			}
+
+			// Print cluster items
+			for (int i = 0; i < clusters.size(); ++i) {
+				for (Observation<?> o : clusters.get(i).getPoints()) {
+					System.out.println(
+							experiment.getItem(o.getObservation()).getText().getId() + ";" + i + ";" + cmp.getSilhouette(o));
+				}
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -68,15 +93,17 @@ public class HierarchicalClusterByWords {
 		}
 	}
 
-	private static void doWork(IvtffText doc, String string) {
+	public static List<Cluster<Observation<?>>> doWork(CompositeText<?> doc, int numClusters, int minSize,
+			DistanceMeasure measure, AgglomerationMethod agglomerationMethod) {
+		WordsInPageExperiment<?> experiment = new WordsInPageExperiment<>(doc, BagOfWordsMode.TF_IDF);
+		return doWork(experiment, numClusters, minSize, measure, agglomerationMethod);
+	}
 
-		// Create dendrogram. The Experiment is the set of pages, each treated as a BoW.
-		// Here also define the distance measure and the agglomeration method.
-		WordsInPageExperiment experiment = new WordsInPageExperiment(doc, BagOfWordsMode.RELATIVE_FREQUENCY);
-		DissimilarityMeasure dissimilarityMeasure = new HacDissimilarityMeasure(new PositiveAngularDistance());
-		AgglomerationMethod agglomerationMethod = new AverageLinkage();
+	public static List<Cluster<Observation<?>>> doWork(ClusterableSet<? extends Clusterable> experiment,
+			int numClusters, int minSize, DistanceMeasure measure, AgglomerationMethod agglomerationMethod) {
 
 		// Create dendrogram.
+		DissimilarityMeasure dissimilarityMeasure = new HacDissimilarityMeasure(measure);
 		DendrogramBuilder dendrogramBuilder = new DendrogramBuilder(experiment.getNumberOfObservations());
 		HierarchicalAgglomerativeClusterer clusterer = new HierarchicalAgglomerativeClusterer(experiment,
 				dissimilarityMeasure, agglomerationMethod);
@@ -84,21 +111,6 @@ public class HierarchicalClusterByWords {
 		Dendrogram dendrogram = dendrogramBuilder.getDendrogram();
 
 		// Form the dendrogram create clusters
-		// TODO make this the return type and move the printing in main() (see KMeansCLuster).
-		Map<Integer, Set<ObservationNode>> clusters = HacUtil.split(dendrogram, 5);
-		for (Entry<Integer, Set<ObservationNode>> cluster : clusters.entrySet()) {
-			for (ObservationNode node : cluster.getValue()) {
-				System.out.println(
-						experiment.getItem(node.getObservation()).getElement().getId() + ";" + cluster.getKey());
-			}
-		}
-
-		// Print left-first visit of the dendrogram
-		// for (ObservationNode node : HacUtil.leftVisit(dendrogram)) {
-		// PageHeader ph =
-		// experiment.getClusterableObject(node.getObservation()).getElement().getDescriptor();
-		// System.out.println(ph.getId() + " - " + ph.getIllustrationType() +
-		// ph.getLanguage());
-		// }
+		return HacUtil.split(dendrogram, numClusters, minSize, experiment);
 	}
 }

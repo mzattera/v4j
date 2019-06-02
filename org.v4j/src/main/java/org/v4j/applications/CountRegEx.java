@@ -29,7 +29,7 @@ public class CountRegEx {
 			IvtffText doc = VoynichFactory.getDocument(TranscriptionType.CONCORDANCE);
 			doc.filterPages(new PageFilter.Builder().illustrationType("B").build());
 
-			Counter<String> c = doWork("."+doc.getPlainText()+".", "(..h)|(c..)");
+			Counter<String> c = doWork("."+doc.getPlainText().replaceAll("\n", ".")+".", "e+");
 			for (Entry<String, Integer> e : c.entrySet()) {
 				System.out.println(e.getKey() + ";" + e.getValue());
 			}
@@ -45,7 +45,7 @@ public class CountRegEx {
 		Counter<String> result = new Counter<>();
 		Pattern p = Pattern.compile(regex);
 		Matcher m = p.matcher(s);
-		while (m.matches()) {
+		while (m.find()) {
 			result.count(m.group());
 		}
 		

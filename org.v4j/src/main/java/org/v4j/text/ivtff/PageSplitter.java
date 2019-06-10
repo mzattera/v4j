@@ -16,6 +16,7 @@ public class PageSplitter implements ElementSplitter<IvtffPage> {
 	private final boolean byIllustrationType;
 	private final boolean byQuire;
 	private final boolean byPageInQuire;
+	private final boolean byParchment;
 	private final boolean byLanguage;
 	private final boolean byHand;
 	private final boolean byKey;
@@ -25,6 +26,7 @@ public class PageSplitter implements ElementSplitter<IvtffPage> {
 		private boolean byIllustrationType = false;
 		private boolean byQuire = false;
 		private boolean byPageInQuire = false;
+		private boolean byParchment = false;
 		private boolean byLanguage = false;
 		private boolean byHand = false;
 		private boolean byKey = false;
@@ -45,6 +47,11 @@ public class PageSplitter implements ElementSplitter<IvtffPage> {
 
 		public Builder byPageInQuire() {
 			this.byPageInQuire = true;
+			return this;
+		}
+
+		public Builder byParchment() {
+			this.byParchment = true;
 			return this;
 		}
 
@@ -69,16 +76,17 @@ public class PageSplitter implements ElementSplitter<IvtffPage> {
 		}
 
 		public PageSplitter build() {
-			return new PageSplitter(byIllustrationType, byQuire, byPageInQuire, byLanguage, byHand, byKey,
+			return new PageSplitter(byIllustrationType, byQuire, byPageInQuire, byParchment, byLanguage, byHand, byKey,
 					byExtraneousWriting);
 		}
 	}
 
-	public PageSplitter(boolean byIllustrationType, boolean byQuire, boolean byPageInQuire, boolean byLanguage,
+	public PageSplitter(boolean byIllustrationType, boolean byQuire, boolean byPageInQuire, boolean byParchment, boolean byLanguage,
 			boolean byHand, boolean byKey, boolean byExtraneousWriting) {
 		this.byIllustrationType = byIllustrationType;
 		this.byQuire = byQuire;
 		this.byPageInQuire = byPageInQuire;
+		this.byParchment = byParchment;
 		this.byLanguage = byLanguage;
 		this.byHand = byHand;
 		this.byKey = byKey;
@@ -96,6 +104,8 @@ public class PageSplitter implements ElementSplitter<IvtffPage> {
 			result.append(" $Q=").append(h.getQuire());
 		if (byPageInQuire)
 			result.append(" $P=").append(h.getPageInQuire());
+		if (byParchment)
+			result.append(" Parchment=").append(h.getParchment());
 		if (byHand)
 			result.append(" $H=").append(h.getLanguage());
 		if (byLanguage)

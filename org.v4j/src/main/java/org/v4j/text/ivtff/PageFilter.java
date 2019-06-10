@@ -16,6 +16,7 @@ public class PageFilter implements ElementFilter<IvtffPage> {
 	private final String illustrationType;
 	private final String quire;
 	private final String pageInQuire;
+	private final int parchment;
 	private final String language;
 	private final String hand;
 	private final Boolean hasKey;
@@ -25,6 +26,7 @@ public class PageFilter implements ElementFilter<IvtffPage> {
 		private String illustrationType = null;
 		private String quire = null;
 		private String pageInQuire = null;
+		private int parchment = -1;
 		private String language = null;
 		private String hand = null;
 		private Boolean hasKey = null;
@@ -45,6 +47,11 @@ public class PageFilter implements ElementFilter<IvtffPage> {
 
 		public Builder pageInQuire(String pageInQuire) {
 			this.pageInQuire = pageInQuire;
+			return this;
+		}
+
+		public Builder parchment(int parchment) {
+			this.parchment = parchment;
 			return this;
 		}
 
@@ -69,15 +76,17 @@ public class PageFilter implements ElementFilter<IvtffPage> {
 		}
 
 		public PageFilter build() {
-			return new PageFilter(illustrationType, quire, pageInQuire, language, hand, hasKey, extraneousWriting);
+			return new PageFilter(illustrationType, quire, pageInQuire, parchment, language, hand, hasKey,
+					extraneousWriting);
 		}
 	}
 
-	public PageFilter(String illustrationType, String quire, String pageInQuire, String language, String hand,
-			Boolean hasKey, String extraneousWriting) {
+	public PageFilter(String illustrationType, String quire, String pageInQuire, int parchment, String language,
+			String hand, Boolean hasKey, String extraneousWriting) {
 		this.illustrationType = illustrationType;
 		this.quire = quire;
 		this.pageInQuire = pageInQuire;
+		this.parchment = parchment;
 		this.language = language;
 		this.hand = hand;
 		this.hasKey = hasKey;
@@ -91,6 +100,7 @@ public class PageFilter implements ElementFilter<IvtffPage> {
 		return (illustrationType == null || illustrationType.equals(h.getIllustrationType()))
 				&& (quire == null || quire.equals(h.getQuire()))
 				&& (pageInQuire == null || pageInQuire.equals(h.getPageInQuire()))
+				&& (parchment == -1 || parchment == h.getParchment())
 				&& (language == null || language.equals(h.getLanguage())) && (hand == null || hand.equals(h.getHand()))
 				&& (hasKey == null || hasKey == h.hasSequenceLikeKey())
 				&& (extraneousWriting == null || extraneousWriting.equals(h.getExtraneousWriting()));

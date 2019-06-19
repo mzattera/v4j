@@ -16,6 +16,8 @@ import org.v4j.Identifiable;
 public class PageHeader implements Identifiable {
 
 	// Maps each folio in its corresponding parchment (or "bifolio").
+	// TODO: an alternative approach would be to add a new header field and store
+	// this information in the transscription file.
 	private static final Map<String, Integer> bifolio = new HashMap<>();
 	static {
 		bifolio.put("f1r", 1);
@@ -247,7 +249,8 @@ public class PageHeader implements Identifiable {
 		bifolio.put("f116v", 47);
 	}
 
-	// TODO transform page header fields in page (text element) properties ? so text elements can be tagged with properties
+	// TODO transform page header fields in page (text element) properties ? so text
+	// elements can be tagged with properties
 
 	public static final String TYPE_MISSING = "M";
 	public static final String TYPE_TEXT = "T";
@@ -350,6 +353,40 @@ public class PageHeader implements Identifiable {
 	}
 
 	/**
+	 * Based on some clustering analysis, the Voynich can be split in some
+	 * "sections" which are different from the Illustration Type. This returns the
+	 * following:
+	 * 
+	 * HA1 - Huge group of Herbal A at beginning of text.
+	 * 
+	 * PHA - Pharma + Herbal A in same quires.
+	 * 
+	 * SB1 - Half of stars pages.
+	 * 
+	 * SB2 - Other half of stars pages.
+	 * 
+	 * HB - Herbal B.
+	 * 
+	 * Same as getIllustrationType() for other pages.
+	 * 
+	 * @param section
+	 */
+	public String getCluster() {
+		if (getLanguage().equals("A") && getParchment() >= 1 && getParchment() <= 25)
+			return "HA1";
+		if (getLanguage().equals("A") && getParchment() >= 27 && getParchment() != 30)
+			return "PHA";
+		if (getParchment() == 47 || getParchment() == 51 || getParchment() == 52)
+			return "SB1";
+		if (getParchment() >= 48 && getParchment() <= 50)
+			return "SB2";
+		if (getIllustrationType().equals("H") && getLanguage().equals("B"))
+			return "HB";
+
+		return getIllustrationType();
+	}
+
+	/**
 	 * The notation used to identify a page in the Voynich MS is the character f
 	 * (for folio) followed by the folio number, followed by r (for recto - the
 	 * front) or v (for verso - the reverse).
@@ -364,8 +401,7 @@ public class PageHeader implements Identifiable {
 	/**
 	 * Parses a file row to get a PageDescriptor
 	 * 
-	 * @param rowNum
-	 *            line number in the inpur file.
+	 * @param rowNum line number in the inpur file.
 	 */
 	protected PageHeader(String row, int rowNum) throws ParseException {
 		if (!row.startsWith("<"))
@@ -413,11 +449,12 @@ public class PageHeader implements Identifiable {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) return false;
-		
+		if (obj == null)
+			return false;
+
 		if (!(obj instanceof PageHeader))
 			return false;
-		
+
 		PageHeader p = (PageHeader) obj;
 		return p.id.equals(this.id);
 	}

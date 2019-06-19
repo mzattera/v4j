@@ -21,6 +21,7 @@ public class PageFilter implements ElementFilter<IvtffPage> {
 	private final String hand;
 	private final Boolean hasKey;
 	private final String extraneousWriting;
+	private final String cluster;
 
 	public static class Builder {
 		private String illustrationType = null;
@@ -31,6 +32,7 @@ public class PageFilter implements ElementFilter<IvtffPage> {
 		private String hand = null;
 		private Boolean hasKey = null;
 		private String extraneousWriting = null;
+		private String cluster = null;
 
 		public Builder() {
 		}
@@ -75,14 +77,19 @@ public class PageFilter implements ElementFilter<IvtffPage> {
 			return this;
 		}
 
+		public Builder cluster(String cluster) {
+			this.cluster = cluster;
+			return this;
+		}
+
 		public PageFilter build() {
 			return new PageFilter(illustrationType, quire, pageInQuire, parchment, language, hand, hasKey,
-					extraneousWriting);
+					extraneousWriting, cluster);
 		}
 	}
 
 	public PageFilter(String illustrationType, String quire, String pageInQuire, int parchment, String language,
-			String hand, Boolean hasKey, String extraneousWriting) {
+			String hand, Boolean hasKey, String extraneousWriting, String cluster) {
 		this.illustrationType = illustrationType;
 		this.quire = quire;
 		this.pageInQuire = pageInQuire;
@@ -91,6 +98,7 @@ public class PageFilter implements ElementFilter<IvtffPage> {
 		this.hand = hand;
 		this.hasKey = hasKey;
 		this.extraneousWriting = extraneousWriting;
+		this.cluster = cluster;
 	}
 
 	@Override
@@ -103,6 +111,7 @@ public class PageFilter implements ElementFilter<IvtffPage> {
 				&& (parchment == -1 || parchment == h.getParchment())
 				&& (language == null || language.equals(h.getLanguage())) && (hand == null || hand.equals(h.getHand()))
 				&& (hasKey == null || hasKey == h.hasSequenceLikeKey())
-				&& (extraneousWriting == null || extraneousWriting.equals(h.getExtraneousWriting()));
+				&& (extraneousWriting == null || extraneousWriting.equals(h.getExtraneousWriting()))
+				&& (cluster == null || cluster.equals(h.getCluster()));
 	}
 }

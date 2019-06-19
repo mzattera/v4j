@@ -48,8 +48,9 @@ public class HierarchicalClusterByWords {
 			doc = doc.filterPages(new ElementFilter<IvtffPage>() {
 			@Override
 			public boolean keep(IvtffPage element) {
-				return element.getDescriptor().getIllustrationType().equals("H") &&
-						element.getDescriptor().getLanguage().equals("B");
+				return element.getDescriptor().getIllustrationType().equals("A")
+						|| element.getDescriptor().getIllustrationType().equals("C")
+						|| element.getDescriptor().getIllustrationType().equals("Z");
 			}
 		});
 
@@ -72,18 +73,20 @@ public class HierarchicalClusterByWords {
 				}
 			});*/
 
-			int numberOfClusters = 3;
-			int minClusterSize = 5;
-			WordsInPageExperiment<IvtffPage> experiment = new WordsInPageExperiment<>(doc, BagOfWordsMode.TF_IDF);
+			int numberOfClusters = 2;
+			int minClusterSize = 3;
+			BagOfWordsMode bowMode = BagOfWordsMode.TF_IDF;
 			DistanceMeasure distance = new PositiveAngularDistance();
 			AgglomerationMethod mode = new AverageLinkage();
+			WordsInPageExperiment<IvtffPage> experiment = new WordsInPageExperiment<>(doc, bowMode);
 			List<Cluster<Observation<?>>> clusters = doWork(experiment, numberOfClusters, minClusterSize, distance, mode);
 			SilhouetteComputation cmp = new SilhouetteComputation(clusters, distance);
 
 			// Print cluster stats
 			System.out.println("Hierarchical Clusterng.");
 			System.out.println("Distance: " + distance.getClass().getName());
-			System.out.println("Mode: " + mode.getClass().getName());
+			System.out.println("BoW Mode: " + bowMode.getClass().getName());
+			System.out.println("Agglomeration Mode: " + mode.getClass().getName());
 			
 			System.out.println("Number of clusters: " + clusters.size() + " (s= " + cmp.getSilhouette() + ")");
 			for (int i = 0; i < clusters.size(); ++i) {

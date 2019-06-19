@@ -23,11 +23,11 @@ import org.v4j.text.ivtff.VoynichFactory.TranscriptionType;
 import org.v4j.util.BagOfWords.BagOfWordsMode;
 import org.v4j.util.clustering.PositiveAngularDistance;
 import org.v4j.util.clustering.SilhouetteComputation;
-import org.v4j.util.clustering.WordsInPageExperiment;
 import org.v4j.util.clustering.hac.ClusterableSet;
 import org.v4j.util.clustering.hac.HacDissimilarityMeasure;
 import org.v4j.util.clustering.hac.HacUtil;
 import org.v4j.util.clustering.hac.Observation;
+import org.v4j.util.clustering.hac.WordsInPageExperiment;
 
 /**
  * Uses hac (hierarchical clustering) library to cluster pages in Voynich by the

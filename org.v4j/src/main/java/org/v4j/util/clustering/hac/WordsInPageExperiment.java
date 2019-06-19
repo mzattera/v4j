@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.v4j.util.clustering;
+package org.v4j.util.clustering.hac;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -13,7 +13,6 @@ import org.v4j.text.Text;
 import org.v4j.util.BagOfWords;
 import org.v4j.util.BagOfWords.BagOfWordsMode;
 import org.v4j.util.Counter;
-import org.v4j.util.clustering.hac.ClusterableSet;
 
 /**
  * This class allows to apply page clustering both with hac and apache

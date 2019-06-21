@@ -14,6 +14,11 @@ import org.v4j.Identifiable;
  * @author Massimiliano "Maxi" Zattera
  */
 public class PageHeader implements Identifiable {
+	
+	/**
+	 * List of clusters I defined, based on cluster analysis.
+	 */
+	public static String[] clusters = {"HA1", "PHA", "HB", "B", "SB1", "SB2"};
 
 	// Maps each folio in its corresponding parchment (or "bifolio").
 	// TODO: an alternative approach would be to add a new header field and store

@@ -39,7 +39,7 @@ public class CountCharacters {
 
 	}
 
-	private static Counter<Character> doWork(Text doc) {
+	public static Counter<Character> doWork(Text doc) {
 		return doc.getChars();
 	}
 }

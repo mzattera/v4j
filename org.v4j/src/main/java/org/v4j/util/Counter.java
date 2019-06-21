@@ -101,4 +101,12 @@ public class Counter<T> {
 	public Set<Entry<T, Integer>> entrySet() {
 		return counts.entrySet();
 	}
+
+	/**
+	 * 
+	 * @return size of item set (how many distinct objects have bee counted).
+	 */
+	public int size() {
+		return counts.size();
+	}
 }

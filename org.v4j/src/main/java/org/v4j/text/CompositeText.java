@@ -71,17 +71,17 @@ public abstract class CompositeText<T extends Text> extends Text {
 	}
 
 	/**
-	 * @return the text as a string; by default concatenates the text of each element, using newlines as separator.
+	 * @return the text as a string; by default concatenates the text of each element, using Alphabet.getSpace() as separator.
 	 */
 	@Override
 	public String getText() {
 		StringBuilder result = new StringBuilder();
-		boolean first = false;
+		boolean first = true;
 		for (Text el : elements) {
 			if (first)
 				first = false;
 			else
-				result.append("\n");
+				result.append(alphabet.getSpace());
 
 			result.append(el.getText());
 		}
@@ -90,17 +90,17 @@ public abstract class CompositeText<T extends Text> extends Text {
 	}
 
 	/**
-	 * @return the plain text as a string; by default concatenates the plain text of each element, using newlines as separator.
+	 * @return the plain text as a string; by default concatenates the plain text of each element, using Alphabet.getSpace() as separator.
 	 */
 	@Override
 	public String getPlainText() {
 		StringBuilder result = new StringBuilder();
-		boolean first = false;
+		boolean first = true;
 		for (Text el : elements) {
 			if (first)
 				first = false;
 			else
-				result.append("\n");
+				result.append(alphabet.getSpace());
 
 			result.append(el.getPlainText());
 		}

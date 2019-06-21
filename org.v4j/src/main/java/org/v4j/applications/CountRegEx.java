@@ -29,7 +29,7 @@ public class CountRegEx {
 			IvtffText doc = VoynichFactory.getDocument(TranscriptionType.CONCORDANCE);
 			doc.filterPages(new PageFilter.Builder().illustrationType("B").build());
 
-			Counter<String> c = doWork("."+doc.getPlainText().replaceAll("\n", ".")+".", "oa[^\\.]*\\.");
+			Counter<String> c = doWork("."+doc.getPlainText()+".", "oa[^\\.]*\\.");
 			for (Entry<String, Integer> e : c.entrySet()) {
 				System.out.println(e.getKey() + ";" + e.getValue());
 			}

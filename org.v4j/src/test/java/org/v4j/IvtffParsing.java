@@ -47,7 +47,7 @@ import org.v4j.text.ivtff.ParseException;
  * @author Massimiliano "Maxi" Zattera
  *
  */
-public class TestIvtffParsing implements RegressionTest {
+public class IvtffParsing implements RegressionTest {
 
 	@Override
 	public void doTest() throws Exception {

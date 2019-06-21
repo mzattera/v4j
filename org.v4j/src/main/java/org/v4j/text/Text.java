@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import org.v4j.Identifiable;
 import org.v4j.text.alphabet.Alphabet;
+import org.v4j.text.ivtff.ParseException;
 import org.v4j.util.Counter;
 
 /**
@@ -57,12 +58,17 @@ public abstract class Text implements Identifiable {
 	public abstract String getText();
 
 	/**
+	 * The default implementation of this method simply calls Alphabeth.toPlainText().
 	 * 
-	 * @return pain text contained in this element; that is the text stripped off
-	 *         all special chracters. For example <!..> comments in IVTFF files, or
+	 * @return plain text contained in this element; that is the text stripped off
+	 *         all special characters. For example <!..> comments in IVTFF files, or
 	 *         HTML tags will be absent in the returned text.
+	 *         In addition, sequence of word separator chars will be replaced by a single instance of Alphabet.getSpace().
+	 *         
 	 */
-	public abstract String getPlainText();
+	public String getPlainText() {
+		return getAlphabet().toPlainText(getText());
+	}
 
 	/**
 	 * Counts regular characters contained in the plain text.
@@ -94,11 +100,9 @@ public abstract class Text implements Identifiable {
 	public Counter<String> getWords(boolean regularOnly) {
 		Counter<String> result = new Counter<>();
 
-		for (String line : getPlainText().split("\\n")) {
-			for (String w : line.split(Pattern.quote(alphabet.getSpace() + ""))) {
-				if (!regularOnly || alphabet.hasOnlyRegular(w))
-					result.count(w);
-			}
+		for (String w : getPlainText().split(Pattern.quote(alphabet.getSpace() + ""))) {
+			if (!regularOnly || alphabet.hasOnlyRegular(w))
+				result.count(w);
 		}
 
 		return result;

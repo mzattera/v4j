@@ -25,7 +25,7 @@ public final class RunAllTests {
 			} catch(AssertionError a) {			
 			}
 
-			test = new TestIvtffParsing();
+			test = new IvtffParsing();
 			System.out.println("*** " + test.getClass().getName());
 			test.doTest();
 
@@ -34,6 +34,10 @@ public final class RunAllTests {
 			test.doTest();
 
 			test = new TextNormalization();
+			System.out.println("*** " + test.getClass().getName());
+			test.doTest();
+
+			test = new WordCount();
 			System.out.println("*** " + test.getClass().getName());
 			test.doTest();
 

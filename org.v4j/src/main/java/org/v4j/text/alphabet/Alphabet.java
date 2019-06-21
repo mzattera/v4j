@@ -173,7 +173,7 @@ public abstract class Alphabet {
 	 * 
 	 * @eturn true if the char is regular or word separator.
 	 */
-	public boolean isregularOrSeparator(char c) {
+	public boolean isRegularOrSeparator(char c) {
 		return isRegular(c) || isWordSeparator(c);
 	}
 
@@ -192,15 +192,15 @@ public abstract class Alphabet {
 
 	/**
 	 * 
-	 * @return the input string after removing all control chars and replacing a
-	 *         sequence of one or more word separators with a single a.getSpace()
-	 *         char.
-	 *         Notice that the algorithm works at single character level.
+	 * @return the input string after removing all chars that are not regular
+	 *         characters or word separators and replacing any sequence of one or
+	 *         more word separators with a single Alphabeth.getSpace() char. Notice
+	 *         that the algorithm works at single character level.
 	 */
 	public String toPlainText(String txt) {
-		if (txt.length() == 0)
-			return "";
-	
+		if ((txt == null) || (txt.length() == 0))
+			return txt;
+
 		StringBuilder result = new StringBuilder();
 		boolean spaced = true;
 		for (int i = 0; i < txt.length(); ++i) {
@@ -213,12 +213,12 @@ public abstract class Alphabet {
 				spaced = false;
 			}
 		}
-	
-		if (isWordSeparator(result.charAt(result.length()-1))) {
+
+		if (isWordSeparator(result.charAt(result.length() - 1))) {
 			// trim
 			return result.toString().substring(0, result.length() - 1);
 		}
-	
+
 		return result.toString();
 	}
 

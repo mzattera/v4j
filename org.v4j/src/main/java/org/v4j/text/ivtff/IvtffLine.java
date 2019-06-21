@@ -148,6 +148,7 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 		txt = txt.replaceAll("!", ""); // "null" char in interlinear
 		txt = txt.replaceAll("%", getAlphabet().getUnreadable() + ""); // big unreadable part char in interlinear
 		txt = txt.trim();
+		
 		if (!getAlphabet().isPlain(txt))
 			throw new ParseException("Line contains invalid characters", text);
 
@@ -560,7 +561,7 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 
 				// if we are here, then there is a tie
 
-				if (a.isregularOrSeparator(c1) || a.isUreadableChar(c1)) {
+				if (a.isRegularOrSeparator(c1) || a.isUreadableChar(c1)) {
 					ch = a.getUnreadable(); // conflicting "printable" chars, we return unreadable
 					break;
 				}
@@ -602,7 +603,7 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 				char c1 = a.normalize(lines.get(l).getText().charAt(c));
 				if (c1 != ch) {
 					conflict = true;
-					if (a.isregularOrSeparator(c1) || a.isUreadableChar(c1) || a.isregularOrSeparator(ch)
+					if (a.isRegularOrSeparator(c1) || a.isUreadableChar(c1) || a.isRegularOrSeparator(ch)
 							|| a.isUreadableChar(ch)) {
 						printableCharConflict = true;
 					}

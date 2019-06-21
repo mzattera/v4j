@@ -3,12 +3,10 @@
  */
 package org.v4j.text;
 
-import java.util.regex.Pattern;
-
 import org.v4j.Identifiable;
 import org.v4j.text.alphabet.Alphabet;
-import org.v4j.text.ivtff.ParseException;
 import org.v4j.util.Counter;
+import org.v4j.util.StringUtil;
 
 /**
  * An element of text, either composite (e.g. a paragraph) or a single token.
@@ -88,6 +86,14 @@ public abstract class Text implements Identifiable {
 	}
 
 	/**
+	 * 
+	 * @return the plain text split by words at word separators.
+	 */
+	public String[] splitWords() {
+		return StringUtil.splitWords(getPlainText(), alphabet);
+	}
+
+	/**
 	 * The plain text is split in words using the default space char.
 	 * 
 	 * @return all the words in this text, with their count.
@@ -100,7 +106,7 @@ public abstract class Text implements Identifiable {
 	public Counter<String> getWords(boolean regularOnly) {
 		Counter<String> result = new Counter<>();
 
-		for (String w : getPlainText().split(Pattern.quote(alphabet.getSpace() + ""))) {
+		for (String w : splitWords()) {
 			if (!regularOnly || alphabet.hasOnlyRegular(w))
 				result.count(w);
 		}

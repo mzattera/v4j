@@ -36,8 +36,10 @@ import org.v4j.util.clustering.hac.WordsInPageExperiment;
  * @author Massimiliano_Zattera
  *
  */
-public class HierarchicalClusterByWords {
+public final class HierarchicalClusterByWords {
 
+	private HierarchicalClusterByWords() {}
+	
 	/**
 	 * @param args
 	 */
@@ -79,7 +81,7 @@ public class HierarchicalClusterByWords {
 			DistanceMeasure distance = new PositiveAngularDistance();
 			AgglomerationMethod mode = new AverageLinkage();
 			WordsInPageExperiment<IvtffPage> experiment = new WordsInPageExperiment<>(doc, bowMode);
-			List<Cluster<Observation<?>>> clusters = doWork(experiment, numberOfClusters, minClusterSize, distance, mode);
+			List<Cluster<Observation<?>>> clusters = process(experiment, numberOfClusters, minClusterSize, distance, mode);
 			SilhouetteComputation cmp = new SilhouetteComputation(clusters, distance);
 
 			// Print cluster stats
@@ -109,13 +111,13 @@ public class HierarchicalClusterByWords {
 		}
 	}
 
-	public static List<Cluster<Observation<?>>> doWork(CompositeText<?> doc, int numClusters, int minSize,
+	public static List<Cluster<Observation<?>>> process(CompositeText<?> doc, int numClusters, int minSize,
 			DistanceMeasure measure, AgglomerationMethod agglomerationMethod) {
 		WordsInPageExperiment<?> experiment = new WordsInPageExperiment<>(doc, BagOfWordsMode.TF_IDF);
-		return doWork(experiment, numClusters, minSize, measure, agglomerationMethod);
+		return process(experiment, numClusters, minSize, measure, agglomerationMethod);
 	}
 
-	public static List<Cluster<Observation<?>>> doWork(ClusterableSet<? extends Clusterable> experiment,
+	public static List<Cluster<Observation<?>>> process(ClusterableSet<? extends Clusterable> experiment,
 			int numClusters, int minSize, DistanceMeasure measure, AgglomerationMethod agglomerationMethod) {
 
 		// Create dendrogram.

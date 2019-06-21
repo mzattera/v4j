@@ -23,7 +23,10 @@ import org.v4j.util.Counter;
  * @author Massimiliano "Maxi" Zattera
  *
  */
-public class PrintDocumentStatistics {
+public final class PrintDocumentStatistics {
+
+	private PrintDocumentStatistics() {
+	}
 
 	/**
 	 * @param args
@@ -31,11 +34,9 @@ public class PrintDocumentStatistics {
 	public static void main(String[] args) {
 		try {
 			IvtffText doc = VoynichFactory.getDocument(TranscriptionType.MAJORITY);
-			doWork(doc,
-					"D:\\VoynichStatsMajority.csv");
+			process(doc, "D:\\VoynichStatsMajority.csv");
 			doc = VoynichFactory.getDocument(TranscriptionType.CONCORDANCE);
-			doWork(doc,
-					"D:\\VoynichStatsConcordance.csv");
+			process(doc, "D:\\VoynichStatsConcordance.csv");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -44,7 +45,7 @@ public class PrintDocumentStatistics {
 
 	}
 
-	public static void doWork(IvtffText doc, String fileName) throws IOException {
+	public static void process(IvtffText doc, String fileName) throws IOException {
 		try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(fileName));
 				CSVPrinter csvPrinter = new CSVPrinter(writer,
 						CSVFormat.DEFAULT.withHeader("ID", "IllustrationType", "Language", "Cluster", "Hand", "Quire",
@@ -54,8 +55,8 @@ public class PrintDocumentStatistics {
 				PageHeader ph = p.getDescriptor();
 				Counter<String> allWords = p.getWords(false);
 				Counter<String> clrWords = p.getWords(true);
-				csvPrinter.printRecord(p.getId(), ph.getIllustrationType(), ph.getLanguage(), ph.getCluster(), ph.getHand(),
-						ph.getQuire(), ph.getPageInQuire(), ph.getParchment(), allWords.getTotalCounted(),
+				csvPrinter.printRecord(p.getId(), ph.getIllustrationType(), ph.getLanguage(), ph.getCluster(),
+						ph.getHand(), ph.getQuire(), ph.getPageInQuire(), ph.getParchment(), allWords.getTotalCounted(),
 						allWords.itemSet().size(), clrWords.getTotalCounted(), clrWords.itemSet().size());
 			}
 

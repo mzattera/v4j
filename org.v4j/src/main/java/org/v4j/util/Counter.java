@@ -16,10 +16,18 @@ import java.util.Set;
  */
 public class Counter<T> {
 
-	Map<T, Integer> counts = new HashMap<T, Integer>();
+	private final Map<T, Integer> counts;
 
 	int tot = 0;
 
+	public Counter() {
+		counts = new HashMap<T, Integer>();
+	}
+
+	public Counter(int initialCapacity) {
+		counts = new HashMap<T, Integer>(initialCapacity);
+	}
+	
 	public int getTotalCounted() {
 		return tot;
 	}

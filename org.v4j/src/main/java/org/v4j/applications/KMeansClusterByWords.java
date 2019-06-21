@@ -27,8 +27,10 @@ import org.v4j.util.clustering.hac.WordsInPageExperiment;
  * @author Massimiliano_Zattera
  *
  */
-public class KMeansClusterByWords {
+public final class KMeansClusterByWords {
 
+	private KMeansClusterByWords() {}
+	
 	/**
 	 * @param args
 	 */
@@ -62,7 +64,7 @@ public class KMeansClusterByWords {
 			DistanceMeasure distance = new PositiveAngularDistance();
 			ClusterEvaluator<BagOfWords> eval = new SilhouetteEvaluator<>(distance);
 
-			List<? extends Cluster<BagOfWords>> clusters = doWork(doc, distance, eval, bowMode, minSize, maxSize,
+			List<? extends Cluster<BagOfWords>> clusters = process(doc, distance, eval, bowMode, minSize, maxSize,
 					randomAttempts);
 			SilhouetteComputation cmp = new SilhouetteComputation(clusters, distance);
 
@@ -90,7 +92,7 @@ public class KMeansClusterByWords {
 		}
 	}
 
-	private static List<? extends Cluster<BagOfWords>> doWork(CompositeText<?> doc, DistanceMeasure dist,
+	public static List<? extends Cluster<BagOfWords>> process(CompositeText<?> doc, DistanceMeasure dist,
 			ClusterEvaluator<BagOfWords> eval, BagOfWordsMode mode, int minSize, int maxSize, int randomAttempts) {
 
 		// Each element in the document becomes a BoW we can cluster.

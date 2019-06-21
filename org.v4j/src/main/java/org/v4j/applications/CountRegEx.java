@@ -19,7 +19,10 @@ import org.v4j.util.Counter;
  * @author Massimiliano "Maxi" Zattera
  *
  */
-public class CountRegEx {
+public final class CountRegEx {
+
+	private CountRegEx() {
+	}
 
 	/**
 	 * @param args
@@ -29,7 +32,7 @@ public class CountRegEx {
 			IvtffText doc = VoynichFactory.getDocument(TranscriptionType.CONCORDANCE);
 			doc.filterPages(new PageFilter.Builder().illustrationType("B").build());
 
-			Counter<String> c = doWork("."+doc.getPlainText()+".", "oa[^\\.]*\\.");
+			Counter<String> c = process("." + doc.getPlainText() + ".", "oa[^\\.]*\\.");
 			for (Entry<String, Integer> e : c.entrySet()) {
 				System.out.println(e.getKey() + ";" + e.getValue());
 			}
@@ -41,14 +44,14 @@ public class CountRegEx {
 
 	}
 
-	private static Counter<String> doWork(String s, String regex) {
+	public static Counter<String> process(String s, String regex) {
 		Counter<String> result = new Counter<>();
 		Pattern p = Pattern.compile(regex);
 		Matcher m = p.matcher(s);
 		while (m.find()) {
 			result.count(m.group());
 		}
-		
+
 		return result;
 	}
 }

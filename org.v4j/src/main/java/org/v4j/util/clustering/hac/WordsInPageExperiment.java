@@ -39,32 +39,12 @@ public class WordsInPageExperiment<T extends Text> implements ClusterableSet<Bag
 	private List<BagOfWords> observations;
 
 	/**
-	 * Cretes an experiment based on the page in given document.
+	 * Creates an experiment based on the elements in given document.
 	 * 
 	 * @param doc
 	 */
 	public WordsInPageExperiment(CompositeText<T> doc, BagOfWordsMode mode) {
-
-		/*
-		 * IvtffPage[] pages = doc.getPages().toArray(new IvtffPage[0]); String[] words
-		 * = doc.getWords(true).itemSet().toArray(new String[0]);
-		 * 
-		 * // number of pages in which corresponding word appears. int[] numPages = new
-		 * int[words.length];
-		 * 
-		 * for (IvtffPage page : pages) { Set<String> myWords =
-		 * page.getWords(true).itemSet(); for (int i = 0; i < words.length; ++i) { if
-		 * (myWords.contains(words[i])) numPages[i]++; } }
-		 * 
-		 * // our dimensions for the clustering will be the words appearing in at least
-		 * 2 // distinct pages List<String> d = new ArrayList<String>(words.length); for
-		 * (int i = 0; i < words.length; ++i) { if (numPages[i] > 1) d.add(words[i]); }
-		 * dimensions = new HashMap<String, Integer>(); for (int i = 0; i < d.size();
-		 * ++i) { dimensions.put(d.get(i), i); }
-		 */
-
-		// our dimensions for the clustering will be the words appearing in at least 2
-		// distinct pages
+		// our dimensions for the clustering will be the words in the text
 		Counter<String> words = doc.getWords(true);
 		dimensions = new HashMap<String, Integer>();
 		int i = 0;

@@ -19,15 +19,18 @@ import org.v4j.util.Counter;
  */
 public class CountCharacters {
 
+	private CountCharacters() {
+	}
+
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		try {
 			IvtffText doc = VoynichFactory.getDocument(TranscriptionType.CONCORDANCE);
-			//doc.filterPages(new PageFilter.Builder().illustrationType("B").build());
+			// doc.filterPages(new PageFilter.Builder().illustrationType("B").build());
 
-			Counter<Character> c = doWork(doc);
+			Counter<Character> c = process(doc);
 			for (Entry<Character, Integer> e : c.entrySet()) {
 				System.out.println(e.getKey() + ";" + e.getValue());
 			}
@@ -39,7 +42,7 @@ public class CountCharacters {
 
 	}
 
-	public static Counter<Character> doWork(Text doc) {
+	public static Counter<Character> process(Text doc) {
 		return doc.getChars();
 	}
 }

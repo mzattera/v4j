@@ -139,14 +139,14 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 	 */
 	private String normalizeText(String text) throws ParseException {
 
-		String txt = text.replaceAll("<\\->", getAlphabet().getSpace() + ""); // plant intrusion is replaced by a space
+		String txt = text.replaceAll("<\\->", getAlphabet().getSpaceAsString()); // plant intrusion is replaced by a space
 																				// TODO verify
 		txt = removeComments(txt);
 		txt = replaceHighAscii(txt, "?");
 		txt = removeLigatures(txt);
 		txt = removeAlternativeReadings(txt);
 		txt = txt.replaceAll("!", ""); // "null" char in interlinear
-		txt = txt.replaceAll("%", getAlphabet().getUnreadable() + ""); // big unreadable part char in interlinear
+		txt = txt.replaceAll("%", getAlphabet().getUnreadableAsString()); // big unreadable part char in interlinear
 		txt = txt.trim();
 		
 		if (!getAlphabet().isPlain(txt))
@@ -284,7 +284,7 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 		boolean expandAtEnd = false; // true if at least one line ends with '!'
 		for (IvtffLine line : group) {
 
-			String txt = line.getText().replaceAll("<\\->", a.getSpace() + ""); // plant intrusion is replaced by a
+			String txt = line.getText().replaceAll("<\\->", a.getSpaceAsString()); // plant intrusion is replaced by a
 																				// space TODO verify
 			txt = replaceInlineComments(txt, "!");
 

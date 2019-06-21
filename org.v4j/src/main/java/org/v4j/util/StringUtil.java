@@ -48,6 +48,6 @@ public final class StringUtil {
 	 * @return result of splitting txt around a.getSpace().
 	 */
 	public static String[] splitWords(String txt, Alphabet a) {
-		return txt.split(Pattern.quote(a.getSpace()+""));
+		return txt.split(Pattern.quote(a.getSpaceAsString()));
 	}
 }

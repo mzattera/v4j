@@ -140,12 +140,20 @@ public abstract class Alphabet {
 	public abstract char[] getWordSeparatorChars();
 
 	/**
-	 * @return a character that can be used as space.
+	 * @return "default" character to be used as space.
 	 */
 	public char getSpace() {
 		return getWordSeparatorChars()[0];
 	}
 
+	/**
+	 * 
+	 * @return space character as a string of lenght 1. This is because in some methods a string parameter is required.
+	 */
+	public String getSpaceAsString() {
+		return Character.toString(getSpace());
+	}
+	
 	/**
 	 * @return true if c is a word separator char.
 	 */
@@ -231,10 +239,17 @@ public abstract class Alphabet {
 	public abstract char[] getUnreadableChars();
 
 	/**
-	 * @return a character that can be used to mark one unreadable character.
+	 * @return a "default" character to be used to mark one unreadable character.
 	 */
 	public char getUnreadable() {
 		return getUnreadableChars()[0];
+	}
+
+	/**
+	 * @return unreadable character as a string, this because some methods need string parameters.
+	 */
+	public String getUnreadableAsString() {
+		return Character.toString(getUnreadable());
 	}
 
 	/**

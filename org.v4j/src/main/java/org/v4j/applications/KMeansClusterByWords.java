@@ -21,7 +21,7 @@ import org.v4j.util.clustering.MultiSizeClusterer;
 import org.v4j.util.clustering.PositiveAngularDistance;
 import org.v4j.util.clustering.SilhouetteComputation;
 import org.v4j.util.clustering.SilhouetteEvaluator;
-import org.v4j.util.clustering.WordsInPageExperiment;
+import org.v4j.util.clustering.hac.WordsInPageExperiment;
 
 /**
  * @author Massimiliano_Zattera
@@ -36,10 +36,10 @@ public class KMeansClusterByWords {
 		try {
 			IvtffText doc = VoynichFactory.getDocument(TranscriptionType.MAJORITY);
 
-			// removes outliers
 			doc = doc.filterPages(new ElementFilter<IvtffPage>() {
 				@Override
 				public boolean keep(IvtffPage element) {
+					// Remove outliers
 					// these are identified by looking at hierarchical clusters of 1 single page.
 					// Notice they correspond to pages in ? language
 					return !element.getId().equals("f116v") && !element.getId().equals("f53r")
@@ -49,20 +49,35 @@ public class KMeansClusterByWords {
 							&& !element.getId().equals("f48r") && !element.getId().equals("f50r")
 							&& !element.getId().equals("f57r") && !element.getId().equals("f65v")
 					//
-							&& !element.getDescriptor().getIllustrationType().equals("A")
-							&& !element.getDescriptor().getIllustrationType().equals("C")
-							&& !element.getDescriptor().getIllustrationType().equals("Z");
+							&& !(element.getDescriptor().getIllustrationType().equals("A")
+									|| element.getDescriptor().getIllustrationType().equals("C")
+									|| element.getDescriptor().getIllustrationType().equals("Z"));
 				}
 			});
 
-			DistanceMeasure dist = new PositiveAngularDistance();
-			ClusterEvaluator<BagOfWords> eval = new SilhouetteEvaluator<>(dist);
-			List<? extends Cluster<BagOfWords>> clusters = doWork(doc, dist, eval, BagOfWordsMode.TF_IDF);
-			SilhouetteComputation cmp = new SilhouetteComputation(clusters, dist);
+			int minSize = 7;
+			int maxSize = 7;
+			int randomAttempts = 100;
+			BagOfWordsMode bowMode = BagOfWordsMode.TF_IDF;
+			DistanceMeasure distance = new PositiveAngularDistance();
+			ClusterEvaluator<BagOfWords> eval = new SilhouetteEvaluator<>(distance);
 
-			System.out.println("Number of clusters: " + clusters.size() + ": s = " + cmp.getSilhouette());
+			List<? extends Cluster<BagOfWords>> clusters = doWork(doc, distance, eval, bowMode, minSize, maxSize,
+					randomAttempts);
+			SilhouetteComputation cmp = new SilhouetteComputation(clusters, distance);
+
+			// Print cluster stats
+			System.out.println("K-Means Clusterng (best clusters over possible sizes and initial random setup");
+			System.out.println("Distance: " + distance.getClass().getName());
+			System.out.println("Evaluator: " + eval.getClass().getName());
+			System.out.println("Min. # of clusters: " + minSize);
+			System.out.println("Max. # of clusters: " + maxSize);
+			System.out.println("# random initializations per cluster size: " + randomAttempts);
+
+			System.out.println("Number of clusters: " + clusters.size() + " (s= " + cmp.getSilhouette() + ")");
 			for (int i = 0; i < clusters.size(); ++i)
-				System.out.println("Cluster " + i + " [" + clusters.get(i).getPoints().size() + " items] : s = " + cmp.getSilhouette(clusters.get(i)));
+				System.out.println("Cluster " + i + " [" + clusters.get(i).getPoints().size() + " items] : s = "
+						+ cmp.getSilhouette(clusters.get(i)));
 
 			for (int i = 0; i < clusters.size(); ++i) {
 				for (BagOfWords bow : clusters.get(i).getPoints())
@@ -76,12 +91,12 @@ public class KMeansClusterByWords {
 	}
 
 	private static List<? extends Cluster<BagOfWords>> doWork(CompositeText<?> doc, DistanceMeasure dist,
-			ClusterEvaluator<BagOfWords> eval, BagOfWordsMode mode) {
+			ClusterEvaluator<BagOfWords> eval, BagOfWordsMode mode, int minSize, int maxSize, int randomAttempts) {
 
 		// Each element in the document becomes a BoW we can cluster.
 		WordsInPageExperiment<?> experiment = new WordsInPageExperiment<>(doc, mode);
 
-		Clusterer<BagOfWords> clusterer = new MultiSizeClusterer<>(2, 20, 100, dist, eval);
+		Clusterer<BagOfWords> clusterer = new MultiSizeClusterer<>(minSize, maxSize, randomAttempts, dist, eval);
 		return clusterer.cluster(experiment.getItems());
 	}
 }

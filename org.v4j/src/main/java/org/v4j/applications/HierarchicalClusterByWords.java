@@ -15,19 +15,19 @@ import org.opencompare.hac.dendrogram.Dendrogram;
 import org.opencompare.hac.dendrogram.DendrogramBuilder;
 import org.opencompare.hac.experiment.DissimilarityMeasure;
 import org.v4j.text.CompositeText;
+import org.v4j.text.ElementFilter;
 import org.v4j.text.ivtff.IvtffPage;
 import org.v4j.text.ivtff.IvtffText;
-import org.v4j.text.ivtff.PageFilter;
 import org.v4j.text.ivtff.VoynichFactory;
 import org.v4j.text.ivtff.VoynichFactory.TranscriptionType;
 import org.v4j.util.BagOfWords.BagOfWordsMode;
 import org.v4j.util.clustering.PositiveAngularDistance;
 import org.v4j.util.clustering.SilhouetteComputation;
-import org.v4j.util.clustering.WordsInPageExperiment;
 import org.v4j.util.clustering.hac.ClusterableSet;
 import org.v4j.util.clustering.hac.HacDissimilarityMeasure;
 import org.v4j.util.clustering.hac.HacUtil;
 import org.v4j.util.clustering.hac.Observation;
+import org.v4j.util.clustering.hac.WordsInPageExperiment;
 
 /**
  * Uses hac (hierarchical clustering) library to cluster pages in Voynich by the
@@ -44,7 +44,15 @@ public class HierarchicalClusterByWords {
 	public static void main(String[] args) {
 		try {
 			IvtffText doc = VoynichFactory.getDocument(TranscriptionType.MAJORITY);
-			doc = doc.filterPages(new PageFilter.Builder().language("B").build());
+//			doc = doc.filterPages(new PageFilter.Builder().illustrationType("S").build());
+			doc = doc.filterPages(new ElementFilter<IvtffPage>() {
+			@Override
+			public boolean keep(IvtffPage element) {
+				return element.getDescriptor().getIllustrationType().equals("A")
+						|| element.getDescriptor().getIllustrationType().equals("C")
+						|| element.getDescriptor().getIllustrationType().equals("Z");
+			}
+		});
 
 			// removes outliers
 /*		doc = doc.filterPages(new ElementFilter<IvtffPage>() {
@@ -65,13 +73,21 @@ public class HierarchicalClusterByWords {
 				}
 			});*/
 
-			WordsInPageExperiment<IvtffPage> experiment = new WordsInPageExperiment<>(doc, BagOfWordsMode.TF_IDF);
+			int numberOfClusters = 2;
+			int minClusterSize = 3;
+			BagOfWordsMode bowMode = BagOfWordsMode.TF_IDF;
 			DistanceMeasure distance = new PositiveAngularDistance();
 			AgglomerationMethod mode = new AverageLinkage();
-			List<Cluster<Observation<?>>> clusters = doWork(experiment, 2, 10, distance, mode);
+			WordsInPageExperiment<IvtffPage> experiment = new WordsInPageExperiment<>(doc, bowMode);
+			List<Cluster<Observation<?>>> clusters = doWork(experiment, numberOfClusters, minClusterSize, distance, mode);
 			SilhouetteComputation cmp = new SilhouetteComputation(clusters, distance);
 
 			// Print cluster stats
+			System.out.println("Hierarchical Clusterng.");
+			System.out.println("Distance: " + distance.getClass().getName());
+			System.out.println("BoW Mode: " + bowMode.getClass().getName());
+			System.out.println("Agglomeration Mode: " + mode.getClass().getName());
+			
 			System.out.println("Number of clusters: " + clusters.size() + " (s= " + cmp.getSilhouette() + ")");
 			for (int i = 0; i < clusters.size(); ++i) {
 				System.out.println("Cluster " + i + ": size " + clusters.get(i).getPoints().size() + " ("

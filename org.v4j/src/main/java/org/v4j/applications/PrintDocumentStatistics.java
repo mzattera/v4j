@@ -32,10 +32,10 @@ public class PrintDocumentStatistics {
 		try {
 			IvtffText doc = VoynichFactory.getDocument(TranscriptionType.MAJORITY);
 			doWork(doc,
-					"D:\\Voynich Mobile\\Git - v4j\\org.v4j\\src\\main\\resources\\Output\\VoynichStatsMajority.csv");
+					"D:\\VoynichStatsMajority.csv");
 			doc = VoynichFactory.getDocument(TranscriptionType.CONCORDANCE);
 			doWork(doc,
-					"D:\\Voynich Mobile\\Git - v4j\\org.v4j\\src\\main\\resources\\Output\\VoynichStatsConcordance.csv");
+					"D:\\VoynichStatsConcordance.csv");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -46,16 +46,17 @@ public class PrintDocumentStatistics {
 
 	public static void doWork(IvtffText doc, String fileName) throws IOException {
 		try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(fileName));
-				CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader("ID", "IllustrationType",
-						"Language", "Hand", "Quire", "PageInQuire", "Words", "Tokens", "ClearWords", "ClearTokens"));) {
+				CSVPrinter csvPrinter = new CSVPrinter(writer,
+						CSVFormat.DEFAULT.withHeader("ID", "IllustrationType", "Language", "Cluster", "Hand", "Quire",
+								"PageInQuire", "Parchment", "Words", "Tokens", "ClearWords", "ClearTokens"));) {
 
 			for (IvtffPage p : doc.getElements()) {
 				PageHeader ph = p.getDescriptor();
 				Counter<String> allWords = p.getWords(false);
 				Counter<String> clrWords = p.getWords(true);
-				csvPrinter.printRecord(p.getId(), ph.getIllustrationType(), ph.getLanguage(), ph.getHand(),
-						ph.getQuire(), ph.getPageInQuire(), allWords.getTotalCounted(), allWords.itemSet().size(),
-						clrWords.getTotalCounted(), clrWords.itemSet().size());
+				csvPrinter.printRecord(p.getId(), ph.getIllustrationType(), ph.getLanguage(), ph.getCluster(), ph.getHand(),
+						ph.getQuire(), ph.getPageInQuire(), ph.getParchment(), allWords.getTotalCounted(),
+						allWords.itemSet().size(), clrWords.getTotalCounted(), clrWords.itemSet().size());
 			}
 
 			csvPrinter.flush();

@@ -78,7 +78,7 @@ public final class CountNWords {
 		String[] words = StringUtil.splitWords(txt, a);
 		Counter<String> result = new Counter<>(words.length);
 
-		for (int i = 0; i < words.length - n; ++i) {
+		for (int i = 0; i <= words.length - n; ++i) {
 			StringBuffer nw = new StringBuffer();
 			for (int j = 0; j < n; ++j) {
 				if (j > 0)

@@ -17,9 +17,9 @@ import org.v4j.util.MathUtil;
  * @author Massimiliano_Zattera
  *
  */
-public final class NWordEntropy {
+public final class BlockWordEntropy {
 
-	private NWordEntropy() {
+	private BlockWordEntropy() {
 	}
 
 	/**

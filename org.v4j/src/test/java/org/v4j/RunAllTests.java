@@ -41,6 +41,14 @@ public final class RunAllTests {
 			System.out.println("*** " + test.getClass().getName());
 			test.doTest();
 
+			test = new CountNWords();
+			System.out.println("*** " + test.getClass().getName());
+			test.doTest();
+
+			test = new BlockWordEntropy();
+			System.out.println("*** " + test.getClass().getName());
+			test.doTest();
+			
 			test = new KMeansClusteringTest();
 			System.out.println("*** " + test.getClass().getName());
 			test.doTest();

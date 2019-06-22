@@ -146,12 +146,13 @@ public abstract class Alphabet {
 
 	/**
 	 * 
-	 * @return space character as a string of lenght 1. This is because in some methods a string parameter is required.
+	 * @return space character as a string of lenght 1. This is because in some
+	 *         methods a string parameter is required.
 	 */
 	public String getSpaceAsString() {
 		return Character.toString(getSpace());
 	}
-	
+
 	/**
 	 * @return true if c is a word separator char.
 	 */
@@ -231,7 +232,8 @@ public abstract class Alphabet {
 	}
 
 	/**
-	 * @return unreadable character as a string, this because some methods need string parameters.
+	 * @return unreadable character as a string, this because some methods need
+	 *         string parameters.
 	 */
 	public String getUnreadableAsString() {
 		return Character.toString(getUnreadable());
@@ -268,5 +270,21 @@ public abstract class Alphabet {
 	 */
 	public char asPlain(char c) {
 		return (isWordSeparator(c) ? getSpace() : (isUreadableChar(c) ? getUnreadable() : c));
+	}
+
+	/**
+	 * @return upper case version of given text. Text is assumed to be using this
+	 *         Alphabet. Notice that not all alphabets support this method.
+	 */
+	public String toUpperCase(String txt) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * @return lower case version of given text. Text is assumed to be using this
+	 *         Alphabet. Notice that not all alphabets support this method.
+	 */
+	public String toLowerCase(String txt) {
+		throw new UnsupportedOperationException();
 	}
 }

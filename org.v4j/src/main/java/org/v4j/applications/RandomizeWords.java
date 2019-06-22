@@ -8,10 +8,12 @@ import java.util.Collections;
 import java.util.List;
 
 import org.v4j.text.Text;
+import org.v4j.text.alphabet.Alphabet;
 import org.v4j.text.ivtff.IvtffText;
 import org.v4j.text.ivtff.PageFilter;
 import org.v4j.text.ivtff.VoynichFactory;
 import org.v4j.text.ivtff.VoynichFactory.TranscriptionType;
+import org.v4j.util.StringUtil;
 
 /**
  * This class taxes a Text and mixes up all of its words. Typically used to have
@@ -41,14 +43,20 @@ public final class RandomizeWords {
 	}
 
 	/**
-	 * 
-	 * @param txt
 	 * @return The plain text for given Text, with word randomly shuffled. Word
 	 *         count is preserved.
 	 */
 	public static String process(Text txt) {
-		List<String> words = Arrays.asList(txt.splitWords());
+		return process (txt.getPlainText(), txt.getAlphabet());
+	}
+
+	/**
+	 * @param txt A plain text using the given alphabet.
+	 * @return The text with words randomly shuffled.
+	 */
+	public static String process(String txt, Alphabet a) {
+		List<String> words = Arrays.asList(StringUtil.splitWords(txt, a));
 		Collections.shuffle(words);
-		return String.join(txt.getAlphabet().getSpaceAsString(), words);
+		return String.join(a.getSpaceAsString(), words);
 	}
 }

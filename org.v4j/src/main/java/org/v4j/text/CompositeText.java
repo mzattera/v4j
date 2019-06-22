@@ -18,6 +18,15 @@ import org.v4j.text.alphabet.Alphabet;
  */
 public abstract class CompositeText<T extends Text> extends Text {
 
+	protected Alphabet alphabet;
+
+	/**
+	 * @return the alphabet for this text element.
+	 */
+	public Alphabet getAlphabet() {
+		return alphabet;
+	}
+
 	// elements in this text; notice each one can itself contain other
 	// elements.
 	protected List<T> elements = new ArrayList<>();

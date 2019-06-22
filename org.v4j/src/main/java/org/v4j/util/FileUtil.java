@@ -124,10 +124,7 @@ public class FileUtil {
 			in = new BufferedReader(new InputStreamReader(new FileInputStream(fileName), encoding));
 			String row;
 			while ((row = in.readLine()) != null) {
-
-				row = row.trim();
-				if (row.length() != 0)
-					rows.add(row);
+				rows.add(row);
 			}
 
 			return rows;

@@ -197,7 +197,7 @@ public class IvtffText extends CompositeText<IvtffPage> {
 			if (!m.matches())
 				throw new ParseException("Invalid file header: ", row);
 			if (m.group(1).equals("Eva-")) {
-				setAlphabet(Alphabet.EVA);
+				this.alphabet = Alphabet.EVA;
 			} else {
 				throw new ParseException("Unsupported alphabeth: " + m.group(1));
 			}

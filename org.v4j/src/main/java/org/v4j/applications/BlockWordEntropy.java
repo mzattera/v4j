@@ -11,6 +11,8 @@ import org.v4j.text.ivtff.PageFilter;
 import org.v4j.text.ivtff.PageHeader;
 import org.v4j.text.ivtff.VoynichFactory;
 import org.v4j.text.ivtff.VoynichFactory.TranscriptionType;
+import org.v4j.text.txtfile.BibleFactory;
+import org.v4j.text.txtfile.TextFile;
 import org.v4j.util.Counter;
 import org.v4j.util.MathUtil;
 
@@ -29,30 +31,49 @@ public final class BlockWordEntropy {
 	public static void main(String[] args) {
 		try {
 			final int N = 10;
-			IvtffText doc = VoynichFactory.getDocument(TranscriptionType.MAJORITY);
+			IvtffText voy = VoynichFactory.getDocument(TranscriptionType.MAJORITY);
 
-			System.out.print("Cluster");
-			for (int i = 1; i <= N; ++i) {
-				System.out.print(";" + i);
-			}
-			System.out.println();
-
+			// Entropy for Voynich sections
 			for (String cluster : PageHeader.clusters) {
 
 				// Get the paragraph text for pages in the current cluster
-				IvtffText c = doc.filterPages(new PageFilter.Builder().cluster(cluster).build());
-				c = c.filterLines(new LineFilter.Builder().genericLocusType("P").build());
+				IvtffText doc = voy.filterPages(new PageFilter.Builder().cluster(cluster).build());
+				doc = doc.filterLines(new LineFilter.Builder().genericLocusType("P").build());
 
 				System.out.print(cluster);
 				for (int i = 1; i <= N; ++i) {
-					System.out.print(";" + process(c, i, true));
+					System.out.print(";" + process(doc, i, true));
 				}
 				System.out.println();
 
-				String txt = RandomizeWords.process(c);
+				String rnd = RandomizeWords.process(doc);
 				System.out.print(cluster + "_RND");
 				for (int i = 1; i <= N; ++i) {
-					System.out.print(";" + process(txt, c.getAlphabet(), i, true));
+					System.out.print(";" + process(rnd, doc.getAlphabet(), i, true));
+				}
+				System.out.println();
+			}
+
+			// Entropy for bible in different languages
+			for (String lang : BibleFactory.LANGUAGES) {
+				// Take only first 5000 words in every language, to match the Voynich sections more closely
+				TextFile doc = BibleFactory.getDocument(lang);
+				String[] w = doc.splitWords();
+				StringBuffer txt = new StringBuffer();
+				for (int i=0; i<5000; ++i) {
+					txt.append(w[i]).append(doc.getAlphabet().getSpace());
+				}
+								
+				System.out.print(lang);
+				for (int i = 1; i <= N; ++i) {
+					System.out.print(";" + process(txt.toString(), doc.getAlphabet(), i, true));
+				}
+				System.out.println();
+
+				String rnd = RandomizeWords.process(txt.toString(), doc.getAlphabet());
+				System.out.print(lang+"_RND");
+				for (int i = 1; i <= N; ++i) {
+					System.out.print(";" + process(rnd, doc.getAlphabet(), i, true));
 				}
 				System.out.println();
 			}

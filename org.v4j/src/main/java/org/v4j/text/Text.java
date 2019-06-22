@@ -16,19 +16,11 @@ import org.v4j.util.StringUtil;
  */
 public abstract class Text implements Identifiable {
 
-	protected Alphabet alphabet;
-
 	/**
 	 * @return the alphabet for this text element.
 	 */
-	public Alphabet getAlphabet() {
-		return alphabet;
-	}
-
-	public void setAlphabet(Alphabet a) {
-		this.alphabet = a;
-	}
-
+	public abstract Alphabet getAlphabet();
+	
 	private CompositeText<?> parent = null;
 
 	/**
@@ -78,7 +70,7 @@ public abstract class Text implements Identifiable {
 		Counter<Character> result = new Counter<>();
 
 		for (char c : getPlainText().toCharArray()) {
-			if (alphabet.isRegular(c))
+			if (getAlphabet().isRegular(c))
 				result.count(c);
 		}
 
@@ -90,7 +82,7 @@ public abstract class Text implements Identifiable {
 	 * @return the plain text split by words at word separators.
 	 */
 	public String[] splitWords() {
-		return StringUtil.splitWords(getPlainText(), alphabet);
+		return StringUtil.splitWords(getPlainText(), getAlphabet());
 	}
 
 	/**
@@ -107,28 +99,11 @@ public abstract class Text implements Identifiable {
 		Counter<String> result = new Counter<>();
 
 		for (String w : splitWords()) {
-			if (!regularOnly || alphabet.hasOnlyRegular(w))
+			if (!regularOnly || getAlphabet().hasOnlyRegular(w))
 				result.count(w);
 		}
 
 		return result;
-	}
-
-	@Override
-	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (!(o instanceof Text)) return false;
-		return ((Text)o).getId().equals(this.getId());
-	}
-
-	@Override
-	public int hashCode() {
-		return getId().hashCode();
 	}
 
 	@Override

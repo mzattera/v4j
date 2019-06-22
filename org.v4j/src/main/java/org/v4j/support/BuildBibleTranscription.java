@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.v4j.text.alphabet.Alphabet;
 import org.v4j.util.FileUtil;
 
 /**
@@ -27,7 +26,8 @@ public class BuildBibleTranscription {
 	private static final File FOLDER = new File(
 			"D:\\Users\\mzatt\\Projects\\Git - v4j\\v4j\\org.v4j\\src\\main\\resources\\Transcriptions\\Bible");
 
-	private final static Pattern VERSE_PATTERN = Pattern.compile("<seg id=[\"'][^'\"]*[\"'] type=[\"']verse[\"']>([^<]+)</seg>");
+	private final static Pattern VERSE_PATTERN = Pattern
+			.compile("<seg id=[\"'][^'\"]*[\"'] type=[\"']verse[\"']>([^<]+)</seg>");
 
 	/**
 	 * @param args
@@ -50,15 +50,14 @@ public class BuildBibleTranscription {
 				// find verses in the XML
 				Matcher m = VERSE_PATTERN.matcher(xml);
 				List<String> txt = new ArrayList<>();
-				List<String> plain = new ArrayList<>();
 				while (m.find()) {
-					txt.add(m.group(1).trim());
-					//plain.add(Alphabet.UTF_16.toPlainText(m.group(1).trim()));
+					String s = m.group(1).trim();
+					if (s.length() > 0)
+						txt.add(s);
 				}
 
 				// write the result as a simple file
 				FileUtil.write(txt, f.getCanonicalPath().replaceAll(".xml", ".txt"), "UTF-8");
-				//FileUtil.write(plain, f.getCanonicalPath()+".plain.txt", "UTF-8");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

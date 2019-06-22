@@ -5,7 +5,6 @@ package org.v4j.text.alphabet;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 /**
  * This represents the Java char set (all unicode Basic Multilingual Plane (BMP)
@@ -81,8 +80,6 @@ public class JavaCharset extends Alphabet {
 
 	private char[] wordSeparatorChars = null;
 
-	private final static Pattern punctuation = Pattern.compile("[\\p{Punct}\\p{IsPunctuation}]");
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -131,5 +128,15 @@ public class JavaCharset extends Alphabet {
 	@Override
 	public char[] getUnreadableChars() {
 		return unreadableChars;
+	}
+
+	@Override
+	public String toUpperCase(String txt) {
+		return txt.toUpperCase();
+	}
+
+	@Override
+	public String toLowerCase(String txt) {
+		return txt.toLowerCase();
 	}
 }

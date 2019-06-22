@@ -6,6 +6,7 @@ package org.v4j.applications;
 import org.v4j.text.Text;
 import org.v4j.text.alphabet.Alphabet;
 import org.v4j.text.ivtff.IvtffText;
+import org.v4j.text.ivtff.LineFilter;
 import org.v4j.text.ivtff.PageFilter;
 import org.v4j.text.ivtff.PageHeader;
 import org.v4j.text.ivtff.VoynichFactory;
@@ -30,12 +31,17 @@ public final class BlockWordEntropy {
 			final int N = 10;
 			IvtffText doc = VoynichFactory.getDocument(TranscriptionType.MAJORITY);
 
-			/*
-			 * System.out.print("Cluster"); for (int i = 1; i <= N; ++i) {
-			 * System.out.print(";" + i); } System.out.println();
-			 */
+			System.out.print("Cluster");
+			for (int i = 1; i <= N; ++i) {
+				System.out.print(";" + i);
+			}
+			System.out.println();
+
 			for (String cluster : PageHeader.clusters) {
+
+				// Get the paragraph text for pages in the current cluster
 				IvtffText c = doc.filterPages(new PageFilter.Builder().cluster(cluster).build());
+				c = c.filterLines(new LineFilter.Builder().genericLocusType("P").build());
 
 				System.out.print(cluster);
 				for (int i = 1; i <= N; ++i) {

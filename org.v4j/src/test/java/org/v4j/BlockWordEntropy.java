@@ -3,7 +3,6 @@
  */
 package org.v4j;
 
-import org.v4j.text.ivtff.IvtffText;
 import org.v4j.util.Counter;
 import org.v4j.util.MathUtil;
 
@@ -26,6 +25,6 @@ public class BlockWordEntropy implements RegressionTest {
 		for (String s:w)
 			c.count(s);
 		
-		System.out.println("Entropy: " + MathUtil.entropy(c));
+		assert (MathUtil.entropy(c) == 3.219528282299548);
 	}
 }

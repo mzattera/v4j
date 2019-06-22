@@ -31,11 +31,59 @@ public class LocusIdentifier implements Identifiable {
 	private final String locus;
 
 	/**
-	 * @return locus for this line (locus code + descriptor).
+	 * @return locus for this line (locator + locus type).
 	 */
-	// TODO getters fro the code and the decriptor separately
 	public String getLocus() {
 		return locus;
+	}
+
+	/**
+	 * Locator is first character of locus:
+	 * 
+	 * @ The position of this locus is unrelated to the previous item, or not easily
+	 * described by one of the following. This locator is always used for the first
+	 * item on each page.
+	 *
+	 * + This locus is generally below the previous item. This is the most common
+	 * case.
+	 * 
+	 * * The locus is at the start of the line below the previous item, but at the
+	 * left margin, while the previous item was not.
+	 * 
+	 * - The locus is on the same line as the previous item, but across a drawing
+	 * element (future extension, not yet used)
+	 * 
+	 * = The locus is on the same line as the previous item, but separated by some
+	 * white space.
+	 * 
+	 * & Similar to = but along a circular line
+	 * 
+	 * ~ The same as - or =, but indicating that the vertical alignment is not good.
+	 *
+	 * @return locator for this line.
+	 */
+	public String getLocator() {
+		return Character.toString(locus.charAt(0));
+	}
+
+	/**
+	 * The locus type (complete type) consists of a generic type (capital letter)
+	 * followed by a subtype. The valid subtypes depend on the generic type.
+	 *
+	 * @return locus type for this line (e.g. "P0", "La", etc.).
+	 */
+	public String getLocusType() {
+		return locus.substring(1);
+	}
+
+	/**
+	 * The generic locus type.
+	 *
+	 * @return generic locus type for this line (e.g. "P", "L", etc.).
+	 */
+	// TODO getters fro the code and the decriptor separately
+	public String getGenericLocusType() {
+		return Character.toString(getLocusType().charAt(0));
 	}
 
 	private final String transcriber;

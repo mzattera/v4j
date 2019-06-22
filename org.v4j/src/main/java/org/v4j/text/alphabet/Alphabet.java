@@ -18,7 +18,7 @@ public abstract class Alphabet {
 
 	public final static Alphabet EVA = new Eva();
 
-	public final static Alphabet ASCII = new Ascii();
+	public final static Alphabet UTF_16 = new JavaCharset();
 
 	/**
 	 * @return a string code for this alphabet, same as that used in the IVTFF file.
@@ -110,8 +110,7 @@ public abstract class Alphabet {
 	/**
 	 * @return true if c is a special char.
 	 */
-	// TODO rename
-	public boolean isDiacritic(char c) {
+	public boolean isSpecialChar(char c) {
 		char[] chars = getSpecialChars();
 		for (int i = 0; i < chars.length; i++)
 			if (chars[i] == c)
@@ -123,10 +122,9 @@ public abstract class Alphabet {
 	/**
 	 * @return true if the string contains a special char.
 	 */
-	// TODO rename
-	public boolean hasDiacritic(String s) {
+	public boolean hasSpecialChars(String s) {
 		for (int i = 0; i < s.length(); ++i)
-			if (isDiacritic(s.charAt(i)))
+			if (isSpecialChar(s.charAt(i)))
 				return true;
 
 		return false;
@@ -183,19 +181,6 @@ public abstract class Alphabet {
 	 */
 	public boolean isRegularOrSeparator(char c) {
 		return isRegular(c) || isWordSeparator(c);
-	}
-
-	/**
-	 * 
-	 * @return true if the string contains only 1) regular chars 2) word separators
-	 *         3) unreadable chars.
-	 */
-	public boolean isPlain(String s) {
-		for (int i = 0; i < s.length(); ++i)
-			if (!isRegular(s.charAt(i)) && !isWordSeparator(s.charAt(i)) && !isUreadableChar(s.charAt(i)))
-				return false;
-
-		return true;
 	}
 
 	/**
@@ -281,7 +266,7 @@ public abstract class Alphabet {
 	 * @return a "normalized" version of c, where all word separators are replaced
 	 *         by getSpace() and all unreadable chars by getUnreadable().
 	 */
-	public char normalize(char c) {
+	public char asPlain(char c) {
 		return (isWordSeparator(c) ? getSpace() : (isUreadableChar(c) ? getUnreadable() : c));
 	}
 }

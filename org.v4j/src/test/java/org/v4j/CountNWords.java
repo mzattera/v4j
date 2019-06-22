@@ -3,8 +3,6 @@
  */
 package org.v4j;
 
-import java.util.Map.Entry;
-
 import org.v4j.text.ivtff.IvtffText;
 import org.v4j.util.Counter;
 

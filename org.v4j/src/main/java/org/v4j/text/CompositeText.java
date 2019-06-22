@@ -54,7 +54,7 @@ public abstract class CompositeText<T extends Text> extends Text {
 	}
 
 	protected CompositeText() {
-		this(Alphabet.ASCII, new ArrayList<T>());
+		this(Alphabet.UTF_16, new ArrayList<T>());
 	}
 
 	protected CompositeText(Alphabet a) {
@@ -62,7 +62,7 @@ public abstract class CompositeText<T extends Text> extends Text {
 	}
 
 	protected CompositeText(List<T> elements) {
-		this(Alphabet.ASCII, elements);
+		this(Alphabet.UTF_16, elements);
 	}
 
 	protected CompositeText(Alphabet a, List<T> elements) {

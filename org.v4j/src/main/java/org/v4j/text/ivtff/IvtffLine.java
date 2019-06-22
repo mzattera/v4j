@@ -148,9 +148,11 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 		txt = txt.replaceAll("!", ""); // "null" char in interlinear
 		txt = txt.replaceAll("%", getAlphabet().getUnreadableAsString()); // big unreadable part char in interlinear
 		txt = txt.trim();
-		
-		if (!getAlphabet().isPlain(txt))
-			throw new ParseException("Line contains invalid characters", text);
+
+		// Checks that the above has processed and remove all control sequences
+		for (int i = 0; i < txt.length(); ++i)
+			if (!alphabet.isRegular(txt.charAt(i)) && !alphabet.isWordSeparator(txt.charAt(i)) && !alphabet.isUreadableChar(txt.charAt(i)))
+				throw new ParseException("Line contains invalid characters", text);
 
 		return getAlphabet().toPlainText(txt);
 	}
@@ -543,7 +545,7 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 			// Count characters in a given position
 			Counter<Character> counter = new Counter<>();
 			for (int l = 0; l < lines.size(); ++l) {
-				counter.count(a.normalize(lines.get(l).getText().charAt(c)));
+				counter.count(a.asPlain(lines.get(l).getText().charAt(c)));
 			}
 
 			// TODO print all combo found in actual text and write a test case
@@ -596,11 +598,11 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 
 		for (int c = 0; c < lines.get(0).getText().length(); ++c) {
 
-			char ch = a.normalize(lines.get(0).getText().charAt(c));
+			char ch = a.asPlain(lines.get(0).getText().charAt(c));
 			boolean conflict = false;
 			boolean printableCharConflict = false;
 			for (int l = 1; l < lines.size(); ++l) {
-				char c1 = a.normalize(lines.get(l).getText().charAt(c));
+				char c1 = a.asPlain(lines.get(l).getText().charAt(c));
 				if (c1 != ch) {
 					conflict = true;
 					if (a.isRegularOrSeparator(c1) || a.isUreadableChar(c1) || a.isRegularOrSeparator(ch)

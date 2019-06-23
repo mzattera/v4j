@@ -3,7 +3,10 @@
  */
 package org.v4j.util;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -101,13 +104,29 @@ public class Counter<T> {
 	public Set<T> itemSet() {
 		return counts.keySet();
 	}
-
+	
 	/**
 	 * 
 	 * @return a set of items / count pairs.
 	 */
 	public Set<Entry<T, Integer>> entrySet() {
 		return counts.entrySet();
+	}
+
+	/**
+	 * 
+	 * @return items / count pairs sorted by ascending values of count.
+	 */
+	public List<Entry<T, Integer>> sorted() {
+		List<Entry<T, Integer>> result = new ArrayList<>(counts.entrySet());
+		result.sort(new Comparator<Entry<T, Integer>>(){
+
+			@Override
+			public int compare(Entry<T, Integer> arg0, Entry<T, Integer> arg1) {
+				return Integer.compare(arg0.getValue(), arg1.getValue());
+			}});
+		
+		return result;
 	}
 
 	/**

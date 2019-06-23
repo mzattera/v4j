@@ -34,7 +34,7 @@ public final class BlockWordEntropy {
 			IvtffText voy = VoynichFactory.getDocument(TranscriptionType.MAJORITY);
 
 			// Entropy for Voynich sections
-			for (String cluster : PageHeader.clusters) {
+			for (String cluster : PageHeader.CLUSTERS) {
 
 				// Get the paragraph text for pages in the current cluster
 				IvtffText doc = voy.filterPages(new PageFilter.Builder().cluster(cluster).build());
@@ -59,18 +59,19 @@ public final class BlockWordEntropy {
 				// Take only first 5000 words in every language, to match the Voynich sections more closely
 				TextFile doc = BibleFactory.getDocument(lang);
 				String[] w = doc.splitWords();
-				StringBuffer txt = new StringBuffer();
+				StringBuffer sb = new StringBuffer();
 				for (int i=0; i<5000; ++i) {
-					txt.append(w[i]).append(doc.getAlphabet().getSpace());
+					sb.append(w[i]).append(doc.getAlphabet().getSpace());
 				}
+				String txt = doc.getAlphabet().toLowerCase(sb.toString());
 								
 				System.out.print(lang);
 				for (int i = 1; i <= N; ++i) {
-					System.out.print(";" + process(txt.toString(), doc.getAlphabet(), i, true));
+					System.out.print(";" + process(txt, doc.getAlphabet(), i, true));
 				}
 				System.out.println();
 
-				String rnd = RandomizeWords.process(txt.toString(), doc.getAlphabet());
+				String rnd = RandomizeWords.process(txt, doc.getAlphabet());
 				System.out.print(lang+"_RND");
 				for (int i = 1; i <= N; ++i) {
 					System.out.print(";" + process(rnd, doc.getAlphabet(), i, true));

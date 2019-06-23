@@ -18,7 +18,7 @@ public class PageHeader implements Identifiable {
 	/**
 	 * List of clusters I defined, based on cluster analysis.
 	 */
-	public static String[] clusters = {"HA1", "PHA", "HB", "B", "SB1", "SB2"};
+	public static String[] CLUSTERS = {"HA1", "PHA", "HB", "BB1", "SB1", "SB2"};
 
 	// Maps each folio in its corresponding parchment (or "bifolio").
 	// TODO: an alternative approach would be to add a new header field and store
@@ -359,7 +359,7 @@ public class PageHeader implements Identifiable {
 
 	/**
 	 * Based on some clustering analysis, the Voynich can be split in some
-	 * "sections" which are different from the Illustration Type. This returns the
+	 * clusters which are different from the Illustration Type. This returns the
 	 * following:
 	 * 
 	 * HA1 - Huge group of Herbal A at beginning of text.
@@ -370,7 +370,9 @@ public class PageHeader implements Identifiable {
 	 * 
 	 * SB2 - Other half of stars pages.
 	 * 
-	 * HB - Herbal B.
+	 * HB - Herbal B pages.
+	 * 
+	 * BB1 - Biological pages.
 	 * 
 	 * Same as getIllustrationType() for other pages.
 	 * 
@@ -387,6 +389,8 @@ public class PageHeader implements Identifiable {
 			return "SB2";
 		if (getIllustrationType().equals("H") && getLanguage().equals("B"))
 			return "HB";
+		if (getIllustrationType().equals("B"))
+			return "BB1";
 
 		return getIllustrationType();
 	}

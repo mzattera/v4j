@@ -82,7 +82,7 @@ public class BagOfWords implements Clusterable {
 	/**
 	 * 
 	 * @param text
-	 *            the TextElement used to extract bag of words.
+	 *            the Text used to extract bag of words.
 	 * @param dimensions
 	 *            lists the words to use in the BoW; maps each word into
 	 *            corresponding dimension index.
@@ -118,7 +118,7 @@ public class BagOfWords implements Clusterable {
 					x[i] = 1.0;
 			break;
 		case TF_IDF:
-			throw new IllegalArgumentException("TF_IDF is nto available for a signe text; use toBoW()");
+			throw new IllegalArgumentException("TF_IDF is not available for a single Text instance; use toBoW()");
 		default:
 			throw new IllegalArgumentException();
 		}

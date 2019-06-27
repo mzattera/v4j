@@ -114,7 +114,7 @@ public class BagOfWords implements Clusterable {
 			break;
 		case ONE_HOT:
 			for (int i = 0; i < x.length; ++i)
-				if (x[i] > 1.0)
+				if (x[i] > 0.0)
 					x[i] = 1.0;
 			break;
 		case TF_IDF:

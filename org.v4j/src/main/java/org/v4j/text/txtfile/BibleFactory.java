@@ -20,7 +20,7 @@ import org.v4j.text.alphabet.Alphabet;
 public class BibleFactory {
 
 	/**
-	 * Languages in which the ible is available.
+	 * Languages in which the bible is available.
 	 */
 	public static final String[] LANGUAGES = {"Italian", "Latin", "German", "French"};
 	

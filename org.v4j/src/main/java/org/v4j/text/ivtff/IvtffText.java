@@ -289,39 +289,13 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	}
 
 	/**
-	 * Write this Document as a specific HTML version of the Voynich.
-	 * 
-	 * @throws Exception
-	 */
-	// public void writeHtml(TranscriptionType v, ContentType c) throws Exception {
-	// writeHtml(getDocumentFileName(v, c, getAlphabet(),
-	// Configuration.HTML_ROOT_FOLDER, ".html"));
-	// }
-
-	/**
 	 * Write this Document into one file.
 	 */
 	public void write(File fOut) throws IOException {
-		write(fOut, "ASCII");
-	}
-
-	/**
-	 * Write this Document as HTML into given file. //
-	 */
-	// public void writeHtml(String fileName) throws IOException {
-	//
-	// HtmlConverter cvt = new HtmlConverter();
-	// FileUtil.write(cvt.toHtml(this), fileName);
-	// }
-
-	/**
-	 * Write Document into one output stream.
-	 */
-	public void write(File fOut, String encoding) throws IOException {
 
 		BufferedWriter out = null;
 		try {
-			out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fOut), encoding));
+			out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fOut), "ASCII"));
 
 			DateFormat f = new SimpleDateFormat("yyyyMMdd.HHmm");
 			out.write("#=IVTFF " + getAlphabet().getCodeString() + " " + getVersion());

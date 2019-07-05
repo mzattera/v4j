@@ -3,6 +3,10 @@
  */
 package org.v4j.util;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 import java.util.regex.Pattern;
 
 import org.v4j.text.alphabet.Alphabet;
@@ -43,11 +47,32 @@ public final class StringUtil {
 	/**
 	 * Split a string by using default space char for the given alphabet.
 	 * 
-	 * @param txt
-	 * @param a
+	 * @param txt a plain text in the given alphabet.
 	 * @return result of splitting txt around a.getSpace().
 	 */
 	public static String[] splitWords(String txt, Alphabet a) {
 		return txt.split(Pattern.quote(a.getSpaceAsString()));
+	}
+
+	/**
+	 * Shuffle words in given plain text.
+	 * 
+	 * @param txt A plain text in the given alphabet.
+	 * @return The text with words randomly shuffled.
+	 */
+	public static String shuffleWords(String txt, Alphabet a) {
+		return shuffleWords(txt, a, new Random(System.currentTimeMillis()));
+	}
+
+	/**
+	 * Shuffle words in given plain text.
+	 * 
+	 * @param txt A plain text in the given alphabet.
+	 * @return The text with words randomly shuffled.
+	 */
+	public static String shuffleWords(String txt, Alphabet a, Random rnd) {
+		List<String> words = Arrays.asList(StringUtil.splitWords(txt, a));
+		Collections.shuffle(words, rnd);
+		return String.join(a.getSpaceAsString(), words);
 	}
 }

@@ -23,7 +23,7 @@ public class PageSplitter implements ElementSplitter<IvtffPage> {
 	private final boolean byExtraneousWriting;
 	private final boolean byCluster;
 
-	public class Builder {
+	public static class Builder {
 		private boolean byIllustrationType = false;
 		private boolean byQuire = false;
 		private boolean byPageInQuire = false;

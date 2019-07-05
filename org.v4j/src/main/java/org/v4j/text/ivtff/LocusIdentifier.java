@@ -81,7 +81,6 @@ public class LocusIdentifier implements Identifiable {
 	 *
 	 * @return generic locus type for this line (e.g. "P", "L", etc.).
 	 */
-	// TODO getters fro the code and the decriptor separately
 	public String getGenericLocusType() {
 		return Character.toString(getLocusType().charAt(0));
 	}

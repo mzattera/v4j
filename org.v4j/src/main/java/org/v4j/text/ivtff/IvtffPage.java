@@ -17,7 +17,7 @@ public class IvtffPage extends IvtffElement<PageHeader, IvtffLine> {
 		return (IvtffText) getParent();
 	}
 
-	protected IvtffPage(PageHeader descriptor, Alphabet a) {
+	public IvtffPage(PageHeader descriptor, Alphabet a) {
 		super(descriptor, a);
 	}
 

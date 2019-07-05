@@ -14,15 +14,17 @@ import org.v4j.Identifiable;
  * @author Massimiliano "Maxi" Zattera
  */
 public class PageHeader implements Identifiable {
-	
+
 	/**
 	 * List of clusters I defined, based on cluster analysis.
 	 */
-	public static String[] CLUSTERS = {"HA1", "PHA", "HB", "BB1", "SB1", "SB2"};
+	// TODO as for parchment, this should be moved into an optional page header
+	// field
+	public static String[] CLUSTERS = { "HA1", "PHA", "HB1", "BB1", "SB1", "SB2" };
 
 	// Maps each folio in its corresponding parchment (or "bifolio").
 	// TODO: an alternative approach would be to add a new header field and store
-	// this information in the transscription file.
+	// this information in the transcription file.
 	private static final Map<String, Integer> bifolio = new HashMap<>();
 	static {
 		bifolio.put("f1r", 1);
@@ -358,9 +360,8 @@ public class PageHeader implements Identifiable {
 	}
 
 	/**
-	 * Based on some clustering analysis, the Voynich can be split in some
-	 * clusters which are different from the Illustration Type. This returns the
-	 * following:
+	 * Based on some clustering analysis, the Voynich can be split in some clusters
+	 * which are different from the Illustration Type. This returns the following:
 	 * 
 	 * HA1 - Huge group of Herbal A at beginning of text.
 	 * 
@@ -370,15 +371,20 @@ public class PageHeader implements Identifiable {
 	 * 
 	 * SB2 - Other half of stars pages.
 	 * 
-	 * HB - Herbal B pages.
+	 * HB1 - Herbal B pages.
 	 * 
 	 * BB1 - Biological pages.
 	 * 
-	 * Same as getIllustrationType() for other pages.
+	 * ? - for other pages.
 	 * 
 	 * @param section
 	 */
 	public String getCluster() {
+		// Based on average distance between pages in a cluster, we define some outliers
+		// that are not part of any cluster.
+		// See org.v4j.applications.AnomalyDetection
+		if (getId().equals("f89r2") || getId().equals("f116v"))
+			return ("?");
 		if (getLanguage().equals("A") && getParchment() >= 1 && getParchment() <= 25)
 			return "HA1";
 		if (getLanguage().equals("A") && getParchment() >= 27 && getParchment() != 30)
@@ -388,11 +394,11 @@ public class PageHeader implements Identifiable {
 		if (getParchment() >= 48 && getParchment() <= 50)
 			return "SB2";
 		if (getIllustrationType().equals("H") && getLanguage().equals("B"))
-			return "HB";
+			return "HB1";
 		if (getIllustrationType().equals("B"))
 			return "BB1";
 
-		return getIllustrationType();
+		return "?";
 	}
 
 	/**
@@ -410,7 +416,7 @@ public class PageHeader implements Identifiable {
 	/**
 	 * Parses a file row to get a PageDescriptor
 	 * 
-	 * @param rowNum line number in the inpur file.
+	 * @param rowNum line number in the input file.
 	 */
 	protected PageHeader(String row, int rowNum) throws ParseException {
 		if (!row.startsWith("<"))

@@ -49,6 +49,14 @@ public final class RunAllTests {
 			System.out.println("*** " + test.getClass().getName());
 			test.doTest();
 			
+			test = new Shrink();
+			System.out.println("*** " + test.getClass().getName());
+			test.doTest();
+			
+			test = new WordsInPageRandomizerTest();
+			System.out.println("*** " + test.getClass().getName());
+			test.doTest();
+			
 			test = new KMeansClusteringTest();
 			System.out.println("*** " + test.getClass().getName());
 			test.doTest();

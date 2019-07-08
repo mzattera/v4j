@@ -8,13 +8,13 @@ import org.v4j.experiment.StatisticalTest;
 import org.v4j.util.MathUtil;
 
 /**
- * Performs a Chi-squared good of fitness test comparing the observed frequency
- * counts to the expected frequencies.
+ * Performs a Chi-squared test comparing two observed frequency
+ * to see if they belong to same population.
  * 
  * @author Massimiliano_Zattera
  *
  */
-public class Chi2GoodnessOfFitTest extends StatisticalTest<long[][]> {
+public class Chi2GoodnessOfFitTest2 extends StatisticalTest<long[][]> {
 
 	/*
 	 * For testing
@@ -38,7 +38,7 @@ public class Chi2GoodnessOfFitTest extends StatisticalTest<long[][]> {
 	public double pValue(long[][] observed, long[][] expected) {
 
 		// re-shape measures into linear arrays
-		long[] E = MathUtil.rectify(expected);
+		long[] O2 = MathUtil.rectify(expected);
 		long[] O = MathUtil.rectify(observed);
 
 		// tests that observed and expected match criteria for chi-squared test
@@ -51,6 +51,6 @@ public class Chi2GoodnessOfFitTest extends StatisticalTest<long[][]> {
 		if (tot < 200)
 			throw new IllegalArgumentException("For this test to work, At least 200 observations are needed.");
 
-		return test.chiSquareTest(MathUtil.normalize(E), O);
+		return test.chiSquareTestDataSetsComparison(O2, O);
 	}
 }

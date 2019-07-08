@@ -57,12 +57,12 @@ public class RandomizedTextExperiment<T extends Text, V> extends StatisticalHypo
 				"This experiment creats its own reference population by randomizing its population.");
 	}
 
-	protected RandomizedTextExperiment(Measurement<T, V> measurement, StatisticalTest<V> test,
+	public RandomizedTextExperiment(Measurement<T, V> measurement, StatisticalTest<V> test,
 			TextRandomizationProcess<T> randomizer, int refPopSize) {
 		this(null, measurement, test, randomizer, refPopSize);
 	}
 
-	protected RandomizedTextExperiment(Collection<T> population, Measurement<T, V> measurement, StatisticalTest<V> test,
+	public RandomizedTextExperiment(Collection<T> population, Measurement<T, V> measurement, StatisticalTest<V> test,
 			TextRandomizationProcess<T> randomizer, int refPopSize) {
 		super(population, measurement, test);
 		this.randomizer = randomizer;

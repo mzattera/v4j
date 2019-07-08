@@ -47,14 +47,14 @@ public final class MathUtil {
 	/**
 	 * Reshapes one matrix into a linear array.
 	 */
-	public static long[] rectify(long[][] expected) {
-		return reshape(expected, 1, expected.length * expected[0].length)[0];
+	public static long[] rectify(long[][] A) {
+		return reshape(A, 1, A.length * A[0].length)[0];
 	}
 
 	/**
 	 * Reshapes one array.
 	 * 
-	 * @return a double[m][n] array with elements from A.
+	 * @return a long[m][n] array with elements from A.
 	 */
 	public static long[][] reshape(long[][] A, int m, int n) {
 		int origM = A.length;
@@ -107,5 +107,40 @@ public final class MathUtil {
 		}
 
 		return result;
+	}
+
+	/**
+	 * 
+	 * @return a copy of the input array, as a double[].
+	 */
+	public static double[] toDouble(long[] A) {
+		double[] E = new double[A.length];
+		for (int i = 0; i < A.length; E[i] = A[i++])
+			;
+		return E;
+	}
+
+	/**
+	 * Normalizes A such that the sum of all of its elements will be 1.0;
+	 * 
+	 * @return a new double[] with A values, after normalization. Notice values i A
+	 *         are NOT changed.
+	 */
+	public static double[] normalize(long[] A) {
+		return normalize(toDouble(A));
+	}
+
+	/**
+	 * Normalizes A such that the sum of all of its elements will be 1.0;
+	 * 
+	 * @return A itself, after normalization. Notice values i A are changed.
+	 */
+	public static double[] normalize(double[] A) {
+		double tot = 0.0;
+		for (int i = 0; i < A.length; tot += A[i++])
+			;
+		for (int i = 0; i < A.length; A[i++] /= tot)
+			;
+		return A;
 	}
 }

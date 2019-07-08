@@ -5,6 +5,7 @@ package org.v4j.experiment;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -62,6 +63,7 @@ public abstract class TextRandomizationProcess<T extends Text> {
 			result.add(randomize(t));
 		}
 
+		Collections.shuffle(result, rnd);
 		return result;
 	}
 }

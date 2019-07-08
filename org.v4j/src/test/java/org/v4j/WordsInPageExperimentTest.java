@@ -3,16 +3,25 @@
  */
 package org.v4j;
 
+import java.util.Collection;
 import java.util.Random;
 
 import org.v4j.experiment.Measurement;
+import org.v4j.experiment.RandomizedTextExperiment;
+import org.v4j.experiment.StatisticalHypothesisTestExperiment;
 import org.v4j.experiment.StatisticalTest;
 import org.v4j.experiment.TextRandomizationProcess;
 import org.v4j.experiment.instance.Chi2GoodnessOfFitTest;
+import org.v4j.experiment.instance.Chi2GoodnessOfFitTest2;
 import org.v4j.experiment.instance.MeasureUniqueWordPosition;
 import org.v4j.experiment.instance.WordsInPageRandomizer;
 import org.v4j.text.ivtff.IvtffPage;
 import org.v4j.text.ivtff.IvtffText;
+import org.v4j.text.ivtff.LineFilter;
+import org.v4j.text.ivtff.PageFilter;
+import org.v4j.text.ivtff.VoynichFactory;
+import org.v4j.text.ivtff.VoynichFactory.TranscriptionType;
+import org.v4j.util.MathUtil;
 
 /**
  * @author Massimiliano_Zattera
@@ -20,53 +29,70 @@ import org.v4j.text.ivtff.IvtffText;
  */
 public class WordsInPageExperimentTest implements RegressionTest {
 
-	private static final String txt = "#=IVTFF Eva- 1.5.2018092200\n" + "#\n" + "<f3v> <! $I=H $Q=A $P=F $L=A $H=1>\n"
-			+ "<f3v.4,+P0;m>	qodar.??s.eey.kcheol!okal.do.r.chear.een<-><!plant>\n"
-			+ "<f3v.5,+P0;m>	.ychear.otchal.char..char.ckhy!<-><!plant>\n"
-			+ "<f3v.6,+P0;m>	!or.chear.kor.chodaly.chom<$><!plant>\n";
-
-	private static final long[][] REF_MEAS = {
-			{ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0,
-					0, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
-					0, 0, 0, 0 },
-			{ 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-					0, 0, 0, 0 } };
+	private static final int REF_POP_SIZE = 100;
 
 	@Override
 	public void doTest() throws Exception {
 
 		Random rnd = new Random(666);
-		Measurement<IvtffPage, long[][]> measurement = new MeasureUniqueWordPosition();
+		Measurement<IvtffPage, long[][]> measurement = new MeasureUniqueWordPosition(2, 2);
 		StatisticalTest<long[][]> test = new Chi2GoodnessOfFitTest();
+		StatisticalTest<long[][]> test2 = new Chi2GoodnessOfFitTest2();
 		TextRandomizationProcess<IvtffPage> randomizer = new WordsInPageRandomizer(rnd);
+		StatisticalHypothesisTestExperiment<IvtffPage, long[][]> exp = new RandomizedTextExperiment(measurement, test,
+				randomizer, REF_POP_SIZE);
 
-		IvtffText doc = new IvtffText(txt);
+		// Keep only BB1 paragraphs
+		IvtffText voy = VoynichFactory.getDocument(TranscriptionType.MAJORITY);
+		voy = voy.filterPages(new PageFilter.Builder().cluster("BB1").build());
+		voy = voy.filterLines(new LineFilter.Builder().genericLocusType("P").build());
 
-		assert (doc.getPlainText().equals(
-				"qodar.??s.eey.kcheolokal.do.r.chear.een.ychear.otchal.char.char.ckhy.or.chear.kor.chodaly.chom"));
+		Collection<IvtffPage> p1 = voy.getElements();
+		Collection<IvtffPage> p0 = randomizer.randomize(p1, p1.size() * REF_POP_SIZE);
+		Collection<IvtffPage> pr = randomizer.randomize(p1, p1.size());
 
-		IvtffPage page = doc.getElements().get(0);
-		IvtffPage shuf = randomizer.randomize(doc.getElements().get(0));
-		assert (shuf.getElements().get(0).getPlainText().equals("char.char.ckhy.ychear.otchal"));
-		assert (shuf.getElements().get(1).getPlainText().equals("chear.kor.or.chom.chodaly"));
-		assert (shuf.getElements().get(2).getPlainText().equals("eey.chear.??s.do.een.kcheolokal.qodar.r"));
+		long[][] m1 = measurement.measure(p1);
+		long[][] m0 = measurement.measure(p0);
+		long[][] mr = measurement.measure(pr);
 
-		long[][] m1 = measurement.measure(page);
-		compare(m1, REF_MEAS);
+		printMeasure(m1, 1, 1);
+		printMeasure(m0, 1, 1);
+		printMeasure(mr, 1, 1);
+
+		printMeasure(MathUtil.normalize(MathUtil.rectify(m0)));
+
+		System.out.println(test.pValue(m0, m0));
+		System.out.println(test.pValue(mr, m0));
+		System.out.println(test.pValue(m1, m0));
+
+		System.out.println(test2.pValue(m0, m0));
+		System.out.println(test2.pValue(mr, m0));
+		System.out.println(test2.pValue(m1, m0));
 	}
 
-//	private static void printMeasure(long[][] ls) {
-//		System.out.println("{");
-//		for (int i = 0; i < ls.length; ++i) {
-//			System.out.print("{");
-//			for (int j = 0; j < ls[0].length; ++j) {
-//				System.out.print(ls[i][j] + ", ");
-//			}
-//			System.out.println("},");
-//		}
-//		System.out.println("}");
-//	}
+	private static void printMeasure(long[][] ls, int m, int n) {
+		printMeasure(MathUtil.shrink(ls, m, n));
+	}
+
+	private static void printMeasure(double[] ls) {
+		System.out.println("{");
+		for (int i = 0; i < ls.length; ++i) {
+			System.out.print(ls[i] + ", ");
+		}
+		System.out.println("}");
+	}
+
+	private static void printMeasure(long[][] ls) {
+		System.out.println("{");
+		for (int i = 0; i < ls.length; ++i) {
+			System.out.print("{");
+			for (int j = 0; j < ls[0].length; ++j) {
+				System.out.print(ls[i][j] + ", ");
+			}
+			System.out.println("},");
+		}
+		System.out.println("}");
+	}
 
 	private static void compare(long[][] A, long[][] B) {
 		assert (A.length == B.length);

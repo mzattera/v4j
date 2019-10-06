@@ -9,6 +9,8 @@ import org.v4j.text.Text;
 import org.v4j.text.ivtff.IvtffText;
 import org.v4j.text.ivtff.VoynichFactory;
 import org.v4j.text.ivtff.VoynichFactory.TranscriptionType;
+import org.v4j.text.txtfile.BibleFactory;
+import org.v4j.text.txtfile.TextFile;
 import org.v4j.util.Counter;
 
 /**
@@ -27,10 +29,11 @@ public class CountCharacters {
 	 */
 	public static void main(String[] args) {
 		try {
-			IvtffText doc = VoynichFactory.getDocument(TranscriptionType.CONCORDANCE);
+			// IvtffText doc = VoynichFactory.getDocument(TranscriptionType.CONCORDANCE);
 			// doc.filterPages(new PageFilter.Builder().illustrationType("B").build());
-
-			Counter<Character> c = process(doc);
+			TextFile doc = BibleFactory.getDocument("Italian");
+			
+			Counter<Character> c = doc.getChars();
 			for (Entry<Character, Integer> e : c.entrySet()) {
 				System.out.println(e.getKey() + ";" + e.getValue());
 			}
@@ -40,9 +43,5 @@ public class CountCharacters {
 			System.out.println("\nCompleted.");
 		}
 
-	}
-
-	public static Counter<Character> process(Text doc) {
-		return doc.getChars();
 	}
 }

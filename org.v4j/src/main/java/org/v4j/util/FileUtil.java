@@ -39,7 +39,7 @@ public class FileUtil {
 
 		BufferedWriter out = null;
 		try {
-			out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), "ASCII"));
+			out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), encoding));
 			out.write(txt);
 			out.flush();
 		} finally {

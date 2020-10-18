@@ -30,7 +30,7 @@ public class BibleFactory {
 	public static final String TRANSCRIPTION_FOLDER = "Transcriptions\\Bible";
 
 	/**
-	 * Returns a version fo the Bible in given language.
+	 * Returns a version of the Bible in given language.
 	 * 
 	 * @return given transcription type for the MZ transcription
 	 * @throws IOException 

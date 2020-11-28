@@ -2,12 +2,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.v4j</groupId>
+	<groupId>io.github.mzattera</groupId>
 	<artifactId>org.v4j</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Voynich for Java</name>
-	<description>Voynich for Java library</description>
-
+	<name>v4j</name>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 	<repositories>
 		<repository>
 			<id>jitpack.io</id>
@@ -16,7 +17,7 @@
 	</repositories>
 
 	<dependencies>
-		
+
 		<!-- Apache Commons -->
 		<!-- CSV files handling -->
 		<dependency>
@@ -28,34 +29,23 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-math3</artifactId>
-			<version>3.6.1</version> 
-		</dependency> 
+			<version>3.6.1</version>
+		</dependency>
 		<!-- hac agglomerative clustering simple library -->
 		<dependency>
 			<groupId>org.opencompare</groupId>
 			<artifactId>hac</artifactId>
 			<version>1.0.0</version>
 		</dependency>
-		
-		<!-- Watchmaker Framework - Genetic Algorithms 
-		<dependency>
-			<groupId>org.uncommons.watchmaker</groupId>
-			<artifactId>watchmaker-framework</artifactId>
-			<version>0.7.1</version>
-		</dependency> -->
 
-		<!-- WEKA 
-		<dependency>
-			<groupId>nz.ac.waikato.cms.weka</groupId>
-			<artifactId>weka-stable</artifactId>
-			<version>3.8.0</version>
-		</dependency> -->
+		<!-- Watchmaker Framework - Genetic Algorithms <dependency> <groupId>org.uncommons.watchmaker</groupId> 
+			<artifactId>watchmaker-framework</artifactId> <version>0.7.1</version> </dependency> -->
 
-		<!-- ELKI 
-		<dependency>
-			<groupId>de.lmu.ifi.dbs.elki</groupId>
-			<artifactId>elki</artifactId>
-			<version>0.7.1</version>
-		</dependency> -->
+		<!-- WEKA <dependency> <groupId>nz.ac.waikato.cms.weka</groupId> <artifactId>weka-stable</artifactId> 
+			<version>3.8.0</version> </dependency> -->
+
+		<!-- ELKI <dependency> <groupId>de.lmu.ifi.dbs.elki</groupId> <artifactId>elki</artifactId> 
+			<version>0.7.1</version> </dependency> -->
 	</dependencies>
+	<description>Voynich for Java (v4j) library.</description>
 </project>

@@ -149,7 +149,7 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	 * 
 	 * Curr C The alphabet used by Prescott Currier
 	 * 
-	 * FGuy G The ‘frogguy’ alphabet by Jacques Guy
+	 * FGuy G The frogguy alphabet by Jacques Guy
 	 * 
 	 * Eva- E Eva (either basic or extended Eva)
 	 * 

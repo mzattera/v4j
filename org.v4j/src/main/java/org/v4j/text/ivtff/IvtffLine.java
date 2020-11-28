@@ -83,7 +83,7 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 	 * num A sequence number, incrementing from 1 for each page. The highest number
 	 * that presently occurs is 160.
 	 * 
-	 * code A 3-character code, which is a 1-character ‘locator’ followed by a
+	 * code A 3-character code, which is a 1-character locator followed by a
 	 * 2-character locus type
 	 * 
 	 * T An optional single-character transcriber ID. Only used in interlinear files

@@ -4,10 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.mzattera</groupId>
 	<artifactId>org.v4j</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.0</version>
 	<name>v4j</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 	<repositories>
 		<repository>

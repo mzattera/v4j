@@ -1,2 +1,2 @@
 # v4j
-Voynich for Java (v4j) library
+This is a Java library to manipulate and process the [Voynich manuscript](https://en.wikipedia.org/wiki/Voynich_manuscript).

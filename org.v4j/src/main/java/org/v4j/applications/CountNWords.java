@@ -15,8 +15,7 @@ import org.v4j.util.Counter;
 import org.v4j.util.StringUtil;
 
 /**
- * This class taxes a Text and mixes up all of its words. Typically used to have
- * a bottom line reference case in statistical studies.
+ * Takes given text and counts the occurrences of all sequences of n words.
  * 
  * @author Massimiliano "Maxi" Zattera
  *
@@ -51,8 +50,8 @@ public final class CountNWords {
 	 * Take the plain text for the given Text and counts the occurrences of all
 	 * sequences of n words.
 	 * 
-	 * @param regularOnly
-	 *            if true, consider only sequences of words that are all readable.
+	 * @param regularOnly if true, consider only sequences of words that are all
+	 *                    readable.
 	 * 
 	 * @return The count for all sequences of N words in the text.
 	 */
@@ -65,11 +64,10 @@ public final class CountNWords {
 	 * Notice txt is supposed to be a plain (normalized) text that uses given
 	 * Alphabet.
 	 * 
-	 * @param txt a plain (normalized) text that uses given
-	 * Alphabet.
-	 * @param a Alphabet ued in txt.
-	 * @param regularOnly
-	 *            if true, consider only sequences of words that are all readable.
+	 * @param txt         a plain (normalized) text that uses given Alphabet.
+	 * @param a           Alphabet ued in txt.
+	 * @param regularOnly if true, consider only sequences of words that are all
+	 *                    readable.
 	 * 
 	 * @return The count for all sequences of N words in the text.
 	 */

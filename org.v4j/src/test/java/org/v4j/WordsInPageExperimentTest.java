@@ -7,8 +7,6 @@ import java.util.Collection;
 import java.util.Random;
 
 import org.v4j.experiment.Measurement;
-import org.v4j.experiment.RandomizedTextExperiment;
-import org.v4j.experiment.StatisticalHypothesisTestExperiment;
 import org.v4j.experiment.StatisticalTest;
 import org.v4j.experiment.TextRandomizationProcess;
 import org.v4j.experiment.instance.Chi2GoodnessOfFitTest;
@@ -39,8 +37,8 @@ public class WordsInPageExperimentTest implements RegressionTest {
 		StatisticalTest<long[][]> test = new Chi2GoodnessOfFitTest();
 		StatisticalTest<long[][]> test2 = new Chi2GoodnessOfFitTest2();
 		TextRandomizationProcess<IvtffPage> randomizer = new WordsInPageRandomizer(rnd);
-		StatisticalHypothesisTestExperiment<IvtffPage, long[][]> exp = new RandomizedTextExperiment(measurement, test,
-				randomizer, REF_POP_SIZE);
+//		StatisticalHypothesisTestExperiment<IvtffPage, long[][]> exp = new RandomizedTextExperiment<IvtffPage, long[][]>(
+//				measurement, test, randomizer, REF_POP_SIZE);
 
 		// Keep only BB1 paragraphs
 		IvtffText voy = VoynichFactory.getDocument(TranscriptionType.MAJORITY);
@@ -93,7 +91,7 @@ public class WordsInPageExperimentTest implements RegressionTest {
 		}
 		System.out.println("}");
 	}
-
+/*
 	private static void compare(long[][] A, long[][] B) {
 		assert (A.length == B.length);
 		assert (A[0].length == B[0].length);
@@ -103,4 +101,5 @@ public class WordsInPageExperimentTest implements RegressionTest {
 			}
 		}
 	}
+	*/
 }

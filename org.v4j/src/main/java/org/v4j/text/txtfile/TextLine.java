@@ -27,7 +27,7 @@ public class TextLine extends Text {
 	
 	/**
 	 * 
-	 * @return row number for this line of text. Notice this is assigned at cretion and never changes.
+	 * @return row number for this line of text. Notice this is assigned at creation and never changes.
 	 */
 	public int getRowNumber() {
 		return rowNumber;

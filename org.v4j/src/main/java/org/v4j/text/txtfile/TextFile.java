@@ -12,7 +12,7 @@ import org.v4j.text.alphabet.Alphabet;
 import org.v4j.util.FileUtil;
 
 /**
- * This represents a text file. It is composed by line of text.
+ * This represents a text file. It is composed by lines of text.
  * 
  * @author Massimiliano "Maxi" Zattera
  *

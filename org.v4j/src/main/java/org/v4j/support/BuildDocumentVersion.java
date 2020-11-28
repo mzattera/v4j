@@ -25,8 +25,6 @@ import org.v4j.util.StringUtil;
  * 
  * It also creates some text based on Notes004.
  * 
- * It saves the results both as text & HTML.
- * 
  * STATUS: Working & with test harness.
  * 
  * @author Massimiliano "Maxi" Zattera

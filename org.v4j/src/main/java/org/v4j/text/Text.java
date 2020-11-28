@@ -42,7 +42,7 @@ public abstract class Text implements Identifiable {
 
 	/**
 	 * 
-	 * @return text contained in this element. This includes special chracters as
+	 * @return text contained in this element. This includes special characters as
 	 *         <!..> comments for IVTFF files, or HTML tags for HTML files.
 	 */
 	public abstract String getText();
@@ -54,7 +54,6 @@ public abstract class Text implements Identifiable {
 	 *         all special characters. For example <!..> comments in IVTFF files, or
 	 *         HTML tags will be absent in the returned text.
 	 *         In addition, sequence of word separator chars will be replaced by a single instance of Alphabet.getSpace().
-	 *         
 	 */
 	public String getPlainText() {
 		return getAlphabet().toPlainText(getText());

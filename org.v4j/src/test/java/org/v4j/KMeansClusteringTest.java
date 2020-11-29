@@ -11,8 +11,9 @@ import org.apache.commons.math3.ml.clustering.CentroidCluster;
 import org.apache.commons.math3.ml.clustering.Clusterable;
 import org.apache.commons.math3.ml.clustering.KMeansPlusPlusClusterer;
 import org.apache.commons.math3.ml.distance.DistanceMeasure;
-import org.v4j.util.clustering.PositiveAngularDistance;
-import org.v4j.util.clustering.SilhouetteComputation;
+
+import io.github.mattera.v4j.util.clustering.PositiveAngularDistance;
+import io.github.mattera.v4j.util.clustering.SilhouetteComputation;
 
 /**
  * Tests clustering and Silhouette.
@@ -91,7 +92,7 @@ public class KMeansClusteringTest implements RegressionTest {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.v4j.RegressionTest#doTest()
+	 * @see io.github.mattera.v4j.RegressionTest#doTest()
 	 */
 	@Override
 	public void doTest() throws Exception {

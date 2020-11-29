@@ -3,7 +3,7 @@
  */
 package org.v4j;
 
-import org.v4j.text.alphabet.Alphabet;
+import io.github.mattera.v4j.text.alphabet.Alphabet;
 
 /**
  * 

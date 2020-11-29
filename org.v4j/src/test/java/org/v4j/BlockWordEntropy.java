@@ -3,8 +3,8 @@
  */
 package org.v4j;
 
-import org.v4j.util.Counter;
-import org.v4j.util.MathUtil;
+import io.github.mattera.v4j.util.Counter;
+import io.github.mattera.v4j.util.MathUtil;
 
 /**
  * Tests MathUtil.entropy()

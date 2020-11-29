@@ -5,12 +5,12 @@ package org.v4j;
 
 import java.util.Random;
 
-import org.v4j.experiment.Measurement;
-import org.v4j.experiment.TextRandomizationProcess;
-import org.v4j.experiment.instance.MeasureUniqueWordPosition;
-import org.v4j.experiment.instance.WordsInPageRandomizer;
-import org.v4j.text.ivtff.IvtffPage;
-import org.v4j.text.ivtff.IvtffText;
+import io.github.mattera.v4j.experiment.Measurement;
+import io.github.mattera.v4j.experiment.TextRandomizationProcess;
+import io.github.mattera.v4j.experiment.instance.MeasureUniqueWordPosition;
+import io.github.mattera.v4j.experiment.instance.WordsInPageRandomizer;
+import io.github.mattera.v4j.text.ivtff.IvtffPage;
+import io.github.mattera.v4j.text.ivtff.IvtffText;
 
 /**
  * @author Massimiliano_Zattera

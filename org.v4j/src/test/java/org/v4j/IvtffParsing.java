@@ -3,10 +3,10 @@
  */
 package org.v4j;
 
-import org.v4j.text.ivtff.IvtffText;
-import org.v4j.text.ivtff.IvtffLine;
-import org.v4j.text.ivtff.IvtffPage;
-import org.v4j.text.ivtff.ParseException;
+import io.github.mattera.v4j.text.ivtff.IvtffLine;
+import io.github.mattera.v4j.text.ivtff.IvtffPage;
+import io.github.mattera.v4j.text.ivtff.IvtffText;
+import io.github.mattera.v4j.text.ivtff.ParseException;
 
 /**
  * Performs minimum compliace test for our IVTFF document parser.

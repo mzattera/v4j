@@ -3,11 +3,11 @@
  */
 package org.v4j;
 
-import org.v4j.text.ivtff.IvtffText;
-import org.v4j.util.Counter;
+import io.github.mattera.v4j.text.ivtff.IvtffText;
+import io.github.mattera.v4j.util.Counter;
 
 /**
- * Tests org.v4j.applications.CountNWords.process()
+ * Tests io.github.mattera.v4j.applications.CountNWords.process()
  * 
  * @author Massimiliano "Maxi" Zattera
  *
@@ -29,7 +29,7 @@ public class CountNWords implements RegressionTest {
 		assert (doc.getPlainText().equals(
 				"qodar.??s.eey.kcheolokal.do.r.chear.een.ychear.otchal.char.char.ckhy.or.chear.kor.chodaly.chom"));
 
-		Counter<String> c = org.v4j.applications.CountNWords.process(doc, 3, false);
+		Counter<String> c = io.github.mattera.v4j.applications.CountNWords.process(doc, 3, false);
 		assert (c.size() == 16);
 		assert (c.getCount("qodar.??s.eey") == 1);
 		assert (c.getCount("??s.eey.kcheolokal") == 1);
@@ -48,7 +48,7 @@ public class CountNWords implements RegressionTest {
 		assert (c.getCount("chear.kor.chodaly") == 1);
 		assert (c.getCount("kor.chodaly.chom") == 1);
 
-		c = org.v4j.applications.CountNWords.process(doc, 3, true);
+		c = io.github.mattera.v4j.applications.CountNWords.process(doc, 3, true);
 		assert (c.size() == 14);
 		assert (c.getCount("eey.kcheolokal.do") == 1);
 		assert (c.getCount("kcheolokal.do.r") == 1);

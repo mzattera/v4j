@@ -3,8 +3,8 @@
  */
 package org.v4j;
 
-import org.v4j.text.ivtff.IvtffText;
-import org.v4j.util.Counter;
+import io.github.mattera.v4j.text.ivtff.IvtffText;
+import io.github.mattera.v4j.util.Counter;
 
 /**
  * Tests Text.getWords()

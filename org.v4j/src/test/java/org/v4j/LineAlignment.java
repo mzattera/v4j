@@ -6,7 +6,7 @@ package org.v4j;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.v4j.text.ivtff.IvtffLine;
+import io.github.mattera.v4j.text.ivtff.IvtffLine;
 
 /**
  * 

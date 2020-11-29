@@ -6,20 +6,20 @@ package org.v4j;
 import java.util.Collection;
 import java.util.Random;
 
-import org.v4j.experiment.Measurement;
-import org.v4j.experiment.StatisticalTest;
-import org.v4j.experiment.TextRandomizationProcess;
-import org.v4j.experiment.instance.Chi2GoodnessOfFitTest;
-import org.v4j.experiment.instance.Chi2GoodnessOfFitTest2;
-import org.v4j.experiment.instance.MeasureUniqueWordPosition;
-import org.v4j.experiment.instance.WordsInPageRandomizer;
-import org.v4j.text.ivtff.IvtffPage;
-import org.v4j.text.ivtff.IvtffText;
-import org.v4j.text.ivtff.LineFilter;
-import org.v4j.text.ivtff.PageFilter;
-import org.v4j.text.ivtff.VoynichFactory;
-import org.v4j.text.ivtff.VoynichFactory.TranscriptionType;
-import org.v4j.util.MathUtil;
+import io.github.mattera.v4j.experiment.Measurement;
+import io.github.mattera.v4j.experiment.StatisticalTest;
+import io.github.mattera.v4j.experiment.TextRandomizationProcess;
+import io.github.mattera.v4j.experiment.instance.Chi2GoodnessOfFitTest;
+import io.github.mattera.v4j.experiment.instance.Chi2GoodnessOfFitTest2;
+import io.github.mattera.v4j.experiment.instance.MeasureUniqueWordPosition;
+import io.github.mattera.v4j.experiment.instance.WordsInPageRandomizer;
+import io.github.mattera.v4j.text.ivtff.IvtffPage;
+import io.github.mattera.v4j.text.ivtff.IvtffText;
+import io.github.mattera.v4j.text.ivtff.LineFilter;
+import io.github.mattera.v4j.text.ivtff.PageFilter;
+import io.github.mattera.v4j.text.ivtff.VoynichFactory;
+import io.github.mattera.v4j.text.ivtff.VoynichFactory.TranscriptionType;
+import io.github.mattera.v4j.util.MathUtil;
 
 /**
  * @author Massimiliano_Zattera

@@ -4,6 +4,7 @@
 package io.github.mattera.v4j.util;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +31,7 @@ public class Counter<T> {
 	public Counter(int initialCapacity) {
 		counts = new HashMap<T, Integer>(initialCapacity);
 	}
-	
+
 	public int getTotalCounted() {
 		return tot;
 	}
@@ -104,7 +105,7 @@ public class Counter<T> {
 	public Set<T> itemSet() {
 		return counts.keySet();
 	}
-	
+
 	/**
 	 * 
 	 * @return a set of items / count pairs.
@@ -119,13 +120,24 @@ public class Counter<T> {
 	 */
 	public List<Entry<T, Integer>> sorted() {
 		List<Entry<T, Integer>> result = new ArrayList<>(counts.entrySet());
-		result.sort(new Comparator<Entry<T, Integer>>(){
+		result.sort(new Comparator<Entry<T, Integer>>() {
 
 			@Override
 			public int compare(Entry<T, Integer> arg0, Entry<T, Integer> arg1) {
 				return Integer.compare(arg0.getValue(), arg1.getValue());
-			}});
-		
+			}
+		});
+
+		return result;
+	}
+
+	/**
+	 * 
+	 * @return items / count pairs sorted by descending values of count.
+	 */
+	public List<Entry<T, Integer>> reversed() {
+		List<Entry<T, Integer>> result = sorted();
+		Collections.reverse(result);
 		return result;
 	}
 

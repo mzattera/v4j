@@ -1,4 +1,5 @@
 package io.github.mattera.v4j.applications;
+
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,7 +21,7 @@ import io.github.mattera.v4j.util.Counter;
 public final class CountRegEx {
 
 	// The RegEx to look for.
-	private final static String REGEX = "c[^kftp]?h";
+	private final static String REGEX = ".i+.";
 
 	private CountRegEx() {
 	}
@@ -30,9 +31,12 @@ public final class CountRegEx {
 	 */
 	public static void main(String[] args) {
 		try {
+			System.out.println(REGEX);
+			System.out.println();
+
 			// Get the text to process
 			IvtffText doc = VoynichFactory.getDocument(TranscriptionType.CONCORDANCE);
-			doc.filterPages(new ElementFilter<IvtffPage>() {
+			doc = doc.filterPages(new ElementFilter<IvtffPage>() {
 
 				@Override
 				public boolean keep(IvtffPage element) {
@@ -43,7 +47,7 @@ public final class CountRegEx {
 
 			Counter<String> c = process("." + doc.getPlainText() + ".", REGEX);
 
-			for (Entry<String, Integer> e : c.entrySet()) {
+			for (Entry<String, Integer> e : c.reversed()) {
 				System.out.println(e.getKey() + ";" + e.getValue());
 			}
 		} catch (Exception e) {

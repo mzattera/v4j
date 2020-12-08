@@ -20,6 +20,8 @@ public abstract class Alphabet {
 
 	public final static Alphabet UTF_16 = new JavaCharset();
 
+	public final static Alphabet SLOT = new Slot();
+
 	/**
 	 * @return a string code for this alphabet, same as that used in the IVTFF file.
 	 */
@@ -208,7 +210,7 @@ public abstract class Alphabet {
 			}
 		}
 
-		if (isWordSeparator(result.charAt(result.length() - 1))) {
+		if ((result.length() > 0) && isWordSeparator(result.charAt(result.length() - 1))) {
 			// trim
 			return result.toString().substring(0, result.length() - 1);
 		}

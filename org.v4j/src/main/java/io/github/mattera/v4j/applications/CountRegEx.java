@@ -4,8 +4,6 @@ import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import io.github.mattera.v4j.text.ElementFilter;
-import io.github.mattera.v4j.text.ivtff.IvtffPage;
 import io.github.mattera.v4j.text.ivtff.IvtffText;
 import io.github.mattera.v4j.text.ivtff.VoynichFactory;
 import io.github.mattera.v4j.text.ivtff.VoynichFactory.TranscriptionType;
@@ -21,7 +19,10 @@ import io.github.mattera.v4j.util.Counter;
 public final class CountRegEx {
 
 	// The RegEx to look for.
-	private final static String REGEX = ".i+.";
+	private final static String REGEX = "c([^tpfk]h|[tpfk][^h]|[^tpfkh])";
+//	private final static String REGEX = "c([^tpfk]h|[^tpfkh]|[tpfk][^h])";
+//	private final static String REGEX = "[^tpfkcs\\?]h|.\\?h";
+//	private final static String REGEX = ".c.";
 
 	private CountRegEx() {
 	}
@@ -35,15 +36,16 @@ public final class CountRegEx {
 			System.out.println();
 
 			// Get the text to process
-			IvtffText doc = VoynichFactory.getDocument(TranscriptionType.CONCORDANCE);
-			doc = doc.filterPages(new ElementFilter<IvtffPage>() {
+			IvtffText doc = VoynichFactory.getDocument(TranscriptionType.MAJORITY);
+//			doc = doc.filterPages(new ElementFilter<IvtffPage>() {
+//
+//				@Override
+//				public boolean keep(IvtffPage element) {
+//					// This filter returns all pages which belong to the "main" clusters.
+//					return (element.getDescriptor().getCluster().length() == 3);
+//				}
+//			});
 
-				@Override
-				public boolean keep(IvtffPage element) {
-					// This filter returns all pages which belong to the "main" clusters.
-					return (element.getDescriptor().getCluster().length() == 3);
-				}
-			});
 
 			Counter<String> c = process("." + doc.getPlainText() + ".", REGEX);
 

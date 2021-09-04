@@ -16,10 +16,14 @@ import io.github.mattera.v4j.util.StringUtil;
  */
 public abstract class Text implements Identifiable {
 
+	protected Alphabet alphabet;
+
 	/**
 	 * @return the alphabet for this text element.
 	 */
-	public abstract Alphabet getAlphabet();
+	public Alphabet getAlphabet() {
+		return alphabet;
+	}
 	
 	private CompositeText<?> parent = null;
 

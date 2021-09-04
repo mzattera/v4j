@@ -18,15 +18,6 @@ import io.github.mattera.v4j.text.alphabet.Alphabet;
  */
 public abstract class CompositeText<T extends Text> extends Text {
 
-	protected Alphabet alphabet;
-
-	/**
-	 * @return the alphabet for this text element.
-	 */
-	public Alphabet getAlphabet() {
-		return alphabet;
-	}
-
 	// elements in this text; notice each one can itself contain other
 	// elements.
 	protected List<T> elements = new ArrayList<>();
@@ -134,8 +125,8 @@ public abstract class CompositeText<T extends Text> extends Text {
 	/**
 	 * Splits elements in this Text accordingly to the categories introduced by given splitter.
 	 * 
-	 * @param filter
-	 * @return a map from each category into corresponding elments.
+	 * @param splitter
+	 * @return a map from each category into corresponding elements.
 	 */
 	public Map<String, List<T>> splitElements(ElementSplitter<T> splitter) {
 		Map<String, List<T>> result = new HashMap<>();

@@ -2,12 +2,20 @@
 
 This is a Java library i created to experiment with the [Voynich manuscript](https://en.wikipedia.org/wiki/Voynich_manuscript).
 
+The folder ```eclipse``` contains an eclipse workspace. The (Maven) project ```lib``` holds the actual code for the Java library.
+The library content is described below.
+
 ## Packages and Library Overview
 
-The idea of the library is to provide a "document" object; this is a structured or unstructured
-text writing one specific "alphabet".
+The idea of the library is to provide a "document" object; this is a (possibly) structured text written in one specific "alphabet".
 
-The folder ```eclipse``` contains an eclipse workspace. The (Maven) project ```lib``` holds the actual code for the Java library.
+### ```io.github.mattera.v4j.text.alphabet```
+
+Each text processed by the library is written using a specific alphabet, that is a set of characters used to write the text.
+These characters are divided into several categories, that are relevant when processing a text. The Alphabet
+
+	* 
+
 
 ### ```io.github.mattera.v4j.text```
 

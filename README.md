@@ -19,8 +19,7 @@ These characters are divided into several categories, that are relevant when pro
 
 ### ```io.github.mattera.v4j.text```
 
-The [```Text```](https://github.com/mzattera/v4j/blob/b18dbf03ee65fdd3635bdc35ed04430a60276df1/eclipse/lib/src/main/java/io/github/mattera/v4j/text/Text.java) class represents the 
-simplest possible text.
+The `Text` class represents the simplest possible text.
 
 Please note that texts can have a set of markups (e.g. HTML tags), which is the case for the EVA transcription of the Voynich used in this library.
 For this reason, it makes sense to distinguish between the actual text, including markups, that you can retrieve with ```getText()``` as opposed 

@@ -1,0 +1,2 @@
+* Make TT, LZ, GC transcriptions available from VoynichFactory (FSG, CD, IT are already included in the LSI version).
+

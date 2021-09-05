@@ -19,16 +19,16 @@ Each text processed by the library is written using a specific alphabet, that is
 These characters are divided into several categories, that are relevant when processing a text. The `Alphabet` class provides
 methods to inspect character types.
 
-	* A character is "invalid" if it does not belong to the alphabet; that is, the character should not appear in any
-	text written using this alphabet.
-	
-	* Valid characters are divided into "regular" characters, that form words in the text and "special" characters that are used, for example,
-	as word separators, markup, etc.
-	
-	* Special characters include "word separators", which separate words in the text. As there might be more than one word separator (e.g. 
-	punctuation) one of them is chosen as the default "space" character (returned by `getSpace()` and `getSpaceAsString()`.
-	Special characters also include "unreadable" characters that are used (e.g. in the EVA alphabet) to mark unreadable characters in the
-	original text.
+- A character is "invalid" if it does not belong to the alphabet; that is, the character should not appear in any
+text written using this alphabet.
+
+- Valid characters are divided into "regular" characters, that form words in the text and "special" characters that are used, for example,
+as word separators, markup, etc.
+
+- Special characters include "word separators", which separate words in the text. As there might be more than one word separator (e.g. 
+punctuation) one of them is chosen as the default "space" character (returned by `getSpace()` and `getSpaceAsString()`.
+Special characters also include "unreadable" characters that are used (e.g. in the EVA alphabet) to mark unreadable characters in the
+original text.
 		
 The `Alphabet` class is abstract; to provide an actual implementation simply extend this class and provide methods that 
 list characters accordingly to their category.

@@ -35,17 +35,17 @@ list characters accordingly to their category.
 
 The `Alphabet` class provides some static fields to access already defined alphabets:
 
-	* `EVA` is the EVA alphabet used to transcribe the Voynich.
+- `Alphabet.EVA` is the EVA alphabet.
 
-	* `UTF_16` is the UTF-16 char-set used in Java. This is the alphabet to be used to process "normal" (as non-Voynich) text files and strings.
+- `Alphabet.UTF_16` is the UTF-16 char-set used in Java. This is the alphabet to be used to process "normal" (as non-Voynich) text files and strings.
 	
 
 ### `io.github.mattera.v4j.text`
 
 The `Text` class represents the simplest possible text.
 
-Please note that texts can have a set of markups (e.g. HTML tags), which is the case for the EVA transcription of the Voynich used in this library.
-For this reason, it makes sense to distinguish between the actual text, including markups, that you can retrieve with ```getText()``` as opposed 
+Please note that texts can have a set of markups and/or metadata (e.g. HTML tags); this is the case for the EVA transcriptions of the Voynich used in this library.
+For this reason, it makes sense to distinguish between the actual text, including metadata, that you can retrieve with ```getText()``` as opposed 
 to the "normalized" text, where all markup is stripped away and  the spaces are made consistent (e.g. no double spaces); this is the version
 of the text you will probably want in most cases for processing; it can be obtained with ```getPlainText()```.
 
@@ -58,16 +58,27 @@ or cut the text into parts, based on rules.
 ### Getting the Voynich Text - `io.github.mattera.v4j.text.ivtff`
 
 The main class in this package is `IvtffText` that represents a text in IVTFF (Intermediate Voynich Transliteration File Format) format,
-as described on [René Zandbergen's website](http://www.voynich.nu). This website provides extensive information about the IVTFF format,
+as described on [René Zandbergen's website](http://www.voynich.nu/transcr.html). This website provides extensive information about the IVTFF format,
 please make sure you understand how the format works as its structure is reflected in the Java classes in this package.
 
 `VoynichFactory` class provides methods to get a copy of the Voynich text.
-As described on the [René Zandbergen's website](http://www.voynich.nu/transcr.html), there are different versions of the Voynich,
-transcribed by different authors using different alphabets. This library at the moment can provide two transcriptions (as defined by `Transcription`):
+As described on the René Zandbergen's website, there are different transcriptions of the Voynich,
+created by different authors (or "transcribers") using different alphabets. This library at the moment can provide two transcriptions (as defined by `IvtffText.Transcription`):
 
-	* The Landini-Stolfi Interlinear file, a file that uses EVA alphabet and merges transcriptions from several authors in an
-	"interlinear" format where multiple versions of each line is provided, one per author (or transcriber).
+- **`LSI`**: The Landini-Stolfi Interlinear file, a file that uses EVA alphabet and merges transcriptions from several authors in an "interlinear" format,
+where multiple versions of each line in the manuscript are provided, one per author (or transcriber).
 
+- **`MZ`**: This is an augmented version of the LSI transcription where two "artificial" authors were created, each corresponding to one of two `IvtffText.TranscriptionType`.
+
+  - **`CONCORDANCE`**: each line of this transcription is created by merging readings from all available transcribers. Only characters that appears to be read 
+  in the same way by all authors are considered; other characters (read differently by one ore more transcribers) are marked as unreadable.
+
+  - **`MAJORITY`**: Each character in each line is chosen with a "majority" vote, based on available transcriptions from different authors.
+  For example, if two authors read one character as "a" and a third author reads the character as "o", the majority version will show the character as "a"
+  (whilst the concordance version will show a "?" instead).
+
+There are several `VoynichFactory.getDocument()` methods to return available transcriptions. Please notice that not all combination of 
+transcription, transcription type and alphabet are available.
 
 
 

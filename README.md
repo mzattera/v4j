@@ -26,9 +26,9 @@ text written using this alphabet.
 as word separators, markup, etc.
 
 - Special characters include "word separators", which separate words in the text. As there might be more than one word separator (e.g. 
-punctuation) one of them is chosen as the default "space" character (returned by `getSpace()` and `getSpaceAsString()`.
-Special characters also include "unreadable" characters that are used (e.g. in the EVA alphabet) to mark unreadable characters in the
-original text.
+punctuation) one of them is chosen as the default "space" character (returned by `getSpace()` and `getSpaceAsString()`).
+
+  Special characters also include "unreadable" characters that are used (e.g. in the EVA alphabet) to mark illegible characters in the original text.
 		
 The `Alphabet` class is abstract; to provide an actual implementation simply extend this class and provide methods that 
 list characters accordingly to their category.

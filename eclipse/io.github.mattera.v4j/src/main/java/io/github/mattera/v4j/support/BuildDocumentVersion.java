@@ -31,7 +31,7 @@ import io.github.mattera.v4j.util.StringUtil;
  */
 public class BuildDocumentVersion {
 
-	/// MAKE SURE THIS IS CORRECT BUTDO NOT USE RESOURCES; AS THEY ARE WRITE ONLY
+	/// MAKE SURE THIS IS CORRECT BUT DO NOT USE RESOURCES; AS THEY ARE READ ONLY
 	private final static String OUTPUT_FOLDER = "D:\\Voynich Mobile\\Git - v4j\\io.github.mattera.v4j\\src\\main\\resources\\Transcriptions\\";
 
 	/**
@@ -142,7 +142,7 @@ public class BuildDocumentVersion {
 
 		// merges and writes out result
 		IvtffLine ml = IvtffLine.merge(group, TranscriptionType.MAJORITY);
-		String m = ml.getPlainText();
+		// String m = ml.getPlainText();
 		out.write(IvtffLine.merge(group, TranscriptionType.MAJORITY).toString());
 		out.newLine();
 		IvtffLine cl = IvtffLine.merge(group, TranscriptionType.CONCORDANCE);

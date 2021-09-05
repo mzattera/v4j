@@ -52,7 +52,7 @@ of the text you will probably want in most cases for processing; it can be obtai
 This class also provides means to get the text alphabet, split text in words, count character occurrences, etc.
 
 `CompositeText` adds support for structured texts, where a text is composed of units which, in turn, can be structured as well
-(think of a book made of chapters made or paragraphs). ```filterElements()``` and ```splitElements()``` can be used to select parts of text,
+(think of a book made of chapters made or paragraphs). `filterElements()` and `splitElements()` can be used to select parts of text,
 or cut the text into parts, based on rules.
 
 ### Getting the Voynich Text - `io.github.mattera.v4j.text.ivtff`
@@ -61,7 +61,7 @@ The main class in this package is `IvtffText` that represents a text in IVTFF (I
 as described on [René Zandbergen's website](http://www.voynich.nu/transcr.html). This website provides extensive information about the IVTFF format,
 please make sure you understand how the format works as its structure is reflected in the Java classes in this package.
 
-`VoynichFactory` class provides methods to get a copy of the Voynich text.
+`VoynichFactory` class provides methods to get a copy of the Voynich text as `IvtffText`.
 As described on the René Zandbergen's website, there are different transcriptions of the Voynich,
 created by different authors (or "transcribers") using different alphabets. This library at the moment can provide two transcriptions (as defined by `IvtffText.Transcription`):
 
@@ -81,6 +81,18 @@ where multiple versions of each line in the manuscript are provided, one per aut
 
 There are several `VoynichFactory.getDocument(...)` methods to return available transcriptions. Please notice that not all combination of 
 transcription, transcription type and alphabet are available.
+
+`IvtffText` is composed of `IvtffPage`s, each having a descriptor, a `PageHeader` instance that can be obtained by using `getDescriptor()`,
+which contains IVTFF metadata for the page, such as "language" (A or B), illustration type, position of page in the text (quire, bifolio), etc.
+
+In turn an `IvtffPage`is composed of `IvtffLine`s, each having a descriptor, a `LocusIdentifier` instance that can be obtained by using `getDescriptor()`,
+which contains IVTFF metadata for the line, namely the locus identifier and the transcriber. Please notice that for interlinear texts several 
+copies of the same line exists with different transcribers.
+
+In addition to inherited methods `filterElements()` and `splitElements()`, the methods `filterPages()`, `filterLines()`, `splitPages()`, and `splitLines()`
+can be used to create IVTFF documents by filtering and/or splitting content of an existing document. Again, please refer to JavaDoc fro more details.
+
+
 
 ```Java
 /* Code examples to be added.... */

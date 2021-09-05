@@ -71,8 +71,7 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	/**
 	 * Creates a new instance of a document.
 	 * 
-	 * @param in
-	 *            The file from which the document has to be read.
+	 * @param in The file from which the document has to be read.
 	 */
 	public IvtffText(File in) throws IOException, ParseException {
 		this(in, "ASCII");
@@ -81,10 +80,8 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	/**
 	 * Creates a new instance of a document.
 	 * 
-	 * @param in
-	 *            The file from which the document has to be read.
-	 * @param encoding
-	 *            File encoding.
+	 * @param in       The file from which the document has to be read.
+	 * @param encoding File encoding.
 	 */
 	public IvtffText(File in, String encoding) throws IOException, ParseException {
 
@@ -106,11 +103,9 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	 * lines contained in given document. Notice that lines are copied into the new
 	 * document; they are not shared.
 	 *
-	 * @param doc
-	 *            document where the lines come from.
-	 * @param lines
-	 *            list of lines that must go into the new document, they must belong
-	 *            to doc.
+	 * @param doc   document where the lines come from.
+	 * @param lines list of lines that must go into the new document, they must
+	 *              belong to doc.
 	 */
 	public IvtffText(IvtffText doc, List<IvtffLine> lines) {
 
@@ -176,12 +171,9 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	/**
 	 * Creates a new instance of Document.
 	 * 
-	 * @param in
-	 *            A reader from which the file is read.
-	 * @param voynich
-	 *            If true, then the file must have line locators.
-	 * @param alphabet
-	 *            The alphabet for the document
+	 * @param in       A reader from which the file is read.
+	 * @param voynich  If true, then the file must have line locators.
+	 * @param alphabet The alphabet for the document
 	 */
 	private IvtffText(BufferedReader in) throws IOException, ParseException {
 
@@ -257,8 +249,8 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	/**
 	 * 
 	 * @return true if this is intelinear text. An interlinear text is composed from
-	 *         different transcriptions and each line may appear multiple times, one
-	 *         for each transcription.
+	 *         different transcriptions, from several authors, and each line may
+	 *         appear multiple times, one for each transcription.
 	 */
 	public boolean isInterlinear() {
 		List<IvtffLine> lines = getLines();
@@ -275,8 +267,8 @@ public class IvtffText extends CompositeText<IvtffPage> {
 
 	/**
 	 * @return lines in this document. Notice that for performance reasons we do not
-	 *         clone the lines, so altering the returned lines will make document status invalid.
-	 *         // TODO
+	 *         clone the lines, so altering the returned lines will make document
+	 *         status invalid. // TODO
 	 */
 	public List<IvtffLine> getLines() {
 		List<IvtffLine> ll = new ArrayList<>();
@@ -330,8 +322,7 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	/**
 	 * Converts this document in another alphabet and returns result.
 	 * 
-	 * @throws Exception
-	 *             if conversion cannot be performed.
+	 * @throws Exception if conversion cannot be performed.
 	 */
 	// public Document convert(Alphabet a) throws Exception {
 	// if (a.getCode() == this.getAlphabet().getCode()) {

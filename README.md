@@ -2,12 +2,12 @@
 
 This is a Java library i created to experiment with the [Voynich manuscript](https://en.wikipedia.org/wiki/Voynich_manuscript).
 
-The folder ```eclipse``` contains an eclipse workspace. The (Maven) project ```lib``` holds the actual code for the Java library.
+The folder `eclipse` contains an eclipse workspace. The (Maven) project `io.github.mattera.v4j` holds the actual code for the Java library.
 The library content is described below.
 
 **_Note:_** _In this document we use the terms "transcription" and "transliteration" interchangeably, though the latter is more correct._
 
-## Packages and Library Overview
+## Packages and Library Overview - Project `io.github.mattera.v4j`
 
 The idea of the library is to provide a "document" object; this is a (possibly) structured text written in one specific "alphabet".
 I tried to document the classes using JavaDoc; please refer to the Java source for more details: the below is just a quick intro.
@@ -92,10 +92,11 @@ copies of the same line exists with different transcribers.
 In addition to inherited methods `filterElements()` and `splitElements()`, the methods `filterPages()`, `filterLines()`, `splitPages()`, and `splitLines()`
 can be used to create IVTFF documents by filtering and/or splitting content of an existing document. Again, please refer to JavaDoc fro more details.
 
-
-
 ```Java
-/* Code examples to be added.... */
+/* Get all biological pages (MAJORITY transcription) */
+
+IvtffText doc = VoynichFactory.getDocument(TranscriptionType.MAJORITY);
+doc = doc.filterPages(new PageFilter.Builder().illustrationType("B").build());
 ```
 
 

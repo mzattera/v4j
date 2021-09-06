@@ -41,7 +41,7 @@ public class BuildDocumentVersion {
 	public static void main(String[] args) {
 		try {
 			File fIn = VoynichFactory.getFile(Transcription.LSI, Alphabet.EVA);
-			File fOut = new File(OUTPUT_FOLDER + VoynichFactory.MZ_TRANSCRIPTION_FILE_NAME);
+			File fOut = new File(OUTPUT_FOLDER, VoynichFactory.MZ_TRANSCRIPTION_FILE_NAME);
 
 			doWork(fIn, fOut, "ASCII", Alphabet.EVA);
 		} catch (Exception e) {

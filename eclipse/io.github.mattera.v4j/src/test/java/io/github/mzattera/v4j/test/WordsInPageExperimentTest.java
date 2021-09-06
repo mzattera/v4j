@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.v4j;
+package io.github.mzattera.v4j.test;
 
 import java.util.Collection;
 import java.util.Random;

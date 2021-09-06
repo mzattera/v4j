@@ -1,7 +1,17 @@
 /**
  * 
  */
-package org.v4j;
+package io.github.mzattera.v4j.test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.io.IOException;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import io.github.mattera.v4j.text.ivtff.IvtffLine;
 import io.github.mattera.v4j.text.ivtff.IvtffPage;
@@ -9,7 +19,7 @@ import io.github.mattera.v4j.text.ivtff.IvtffText;
 import io.github.mattera.v4j.text.ivtff.ParseException;
 
 /**
- * Performs minimum compliace test for our IVTFF document parser.
+ * Performs minimum compliance test for our IVTFF document parser.
  * 
  * 
  * Tools reading an IVTFF file shall be able to rely on a minimum conformance to
@@ -47,62 +57,49 @@ import io.github.mattera.v4j.text.ivtff.ParseException;
  * @author Massimiliano "Maxi" Zattera
  *
  */
-public class IvtffParsing implements RegressionTest {
+public final class IvtffParsingTest {
 
-	@Override
-	public void doTest() throws Exception {
+	@Test
+	@DisplayName("IVTFF parser is compliant")
+	public void doTest() throws IOException, ParseException {
 
 		// * The first line matches the file header definition of Section 6.1, though
 		// * without restriction on the 4-character transcription alphabet code
 
 		String in = "#=IVTFF Eva- 1.5" + "\n" + //
 				"# Empty file.";
-		IvtffText doc = new IvtffText(in);
-
+		IvtffText doc;
 		try {
-			in = "# Empty file.";
 			doc = new IvtffText(in);
-			throw new Exception("This is unacceptable");
-		} catch (ParseException e) {
+		} catch (IOException | ParseException e1) {
+			fail("Cannot create IVTFF document.");
+			return;
 		}
 
-		try {
-			in = "#=IVTFF xxxxY 1.5.2.4" + "\n" + //
-					"# Empty file.";
-			doc = new IvtffText(in);
-			throw new Exception("This is unacceptable");
-		} catch (ParseException e) {
-		}
+		in = "# Empty file.";
+		createIvtffThrowsException(in);
+
+		in = "#=IVTFF xxxxY 1.5.2.4" + "\n" + //
+				"# Empty file.";
+		createIvtffThrowsException(in);
 
 		// Extension: check is made on the alphabet code and only listed ones are
 		// accepted
-		try {
-			in = "#=IVTFF xxxx 1.5" + "\n" + //
-					"# Empty file.";
-			doc = new IvtffText(in);
-			throw new Exception("This is unacceptable");
-		} catch (ParseException e) {
-		}
+		in = "#=IVTFF xxxx 1.5" + "\n" + //
+				"# Empty file.";
+		createIvtffThrowsException(in);
 
-		try {
-			in = "#=IVTFF xxxxY 1.5" + "\n" + //
-					"# Empty file.";
-			doc = new IvtffText(in);
-			throw new Exception("This is unacceptable");
-		} catch (ParseException e) {
-		}
+		in = "#=IVTFF xxxxY 1.5" + "\n" + //
+				"# Empty file.";
+		createIvtffThrowsException(in);
 
 		// * The first character of each line can only be one of three characters: #, <
 		// or
 		// * /
 
 		// implicit in next step and other below
-		try {
-			in = "Empty file.";
-			doc = new IvtffText(in);
-			throw new Exception("This is unacceptable");
-		} catch (ParseException e) {
-		}
+		in = "Empty file.";
+		createIvtffThrowsException(in);
 
 		// * If the first character of a line is < , the line is a page header or the
 		// * start of a new locus
@@ -111,7 +108,7 @@ public class IvtffParsing implements RegressionTest {
 				"# Empty file." + "\n" + //
 				"<f1v>";
 		doc = new IvtffText(in);
-		assert (doc.getElement("f1v") != null);
+		assertTrue(doc.getElement("f1v") != null);
 
 		// Extension: support of page properties
 		in = "#=IVTFF Eva- 1.5" + "\n" + //
@@ -120,14 +117,14 @@ public class IvtffParsing implements RegressionTest {
 				"<f1r>  <! $I=H $Q=B $P=L $L=A $H=1 $K=Y $X=M>";
 		doc = new IvtffText(in);
 		IvtffPage p = doc.getElement("f1r");
-		assert (p != null);
-		assert (p.getDescriptor().getQuire().equals("B"));
-		assert (p.getDescriptor().getPageInQuire().equals("L"));
-		assert (p.getDescriptor().getIllustrationType().equals("H"));
-		assert (p.getDescriptor().hasSequenceLikeKey());
-		assert (p.getDescriptor().getLanguage().equals("A"));
-		assert (p.getDescriptor().getHand().equals("1"));
-		assert (p.getDescriptor().getExtraneousWriting().equals("M"));
+		assertTrue(p != null);
+		assertEquals(p.getDescriptor().getQuire(), "B");
+		assertEquals(p.getDescriptor().getPageInQuire(), "L");
+		assertEquals(p.getDescriptor().getIllustrationType(), "H");
+		assertTrue(p.getDescriptor().hasSequenceLikeKey());
+		assertEquals(p.getDescriptor().getLanguage(), "A");
+		assertEquals(p.getDescriptor().getHand(), "1");
+		assertEquals(p.getDescriptor().getExtraneousWriting(), "M");
 
 		// * Page headers must have a valid page name between < and > (see Annex 1) and
 		// * no whitespace
@@ -147,11 +144,11 @@ public class IvtffParsing implements RegressionTest {
 		doc = new IvtffText(in);
 		p = doc.getElement("f1r");
 		IvtffLine l = p.getElement("f1r.18;H");
-		assert l.getDescriptor().getPageId().equals("f1r");
-		assert l.getDescriptor().getNumber().equals("18");
-		assert l.getDescriptor().getLocus().equals("@Ro");
-		assert l.getDescriptor().getTranscriber().equals("H");
-		assert l.getDescriptor().toString().equals("<f1r.18,@Ro;H>");
+		assertEquals(l.getDescriptor().getPageId(), "f1r");
+		assertEquals(l.getDescriptor().getNumber(), "18");
+		assertEquals(l.getDescriptor().getLocus(), "@Ro");
+		assertEquals(l.getDescriptor().getTranscriber(), "H");
+		assertEquals(l.getDescriptor().toString(), "<f1r.18,@Ro;H>");
 
 		// * If the first character is / then the previous line must have ended with a /
 
@@ -162,27 +159,19 @@ public class IvtffParsing implements RegressionTest {
 		doc = new IvtffText(in);
 		p = doc.getElement("f1r");
 		l = p.getElement("f1r.18;H");
-		assert l.getText().equals("yteody.chetey.yteody.chetey");
+		assertEquals(l.getText(), "yteody.chetey.yteody.chetey");
 
-		try {
-			in = "#=IVTFF Eva- 1.5" + "\n" + //
-					"<f1r>  <! $I=H $Q=B $P=L $L=A $H=1 $K=Y $X=M>" + "\n" + //
-					"<f1r.18,@Ro;H> yteody.chetey/ " + "\n" + // un allowed space
-					"/.yteody.chetey";
-			doc = new IvtffText(in);
-			throw new Exception("This is unacceptable");
-		} catch (ParseException e) {
-		}
+		in = "#=IVTFF Eva- 1.5" + "\n" + //
+				"<f1r>  <! $I=H $Q=B $P=L $L=A $H=1 $K=Y $X=M>" + "\n" + //
+				"<f1r.18,@Ro;H> yteody.chetey/ " + "\n" + // un allowed space
+				"/.yteody.chetey";
+		createIvtffThrowsException(in);
 
-		try {
-			in = "#=IVTFF Eva- 1.5" + "\n" + //
-					"<f1r>  <! $I=H $Q=B $P=L $L=A $H=1 $K=Y $X=M>" + "\n" + //
-					"<f1r.18,@Ro;H> yteody.chetey/" + "\n" + //
-					" /.yteody.chetey"; // un allowed space
-			doc = new IvtffText(in);
-			throw new Exception("This is unacceptable");
-		} catch (ParseException e) {
-		}
+		in = "#=IVTFF Eva- 1.5" + "\n" + //
+				"<f1r>  <! $I=H $Q=B $P=L $L=A $H=1 $K=Y $X=M>" + "\n" + //
+				"<f1r.18,@Ro;H> yteody.chetey/" + "\n" + //
+				" /.yteody.chetey"; // un allowed space
+		createIvtffThrowsException(in);
 
 		// * All in-line free comments <! are closed by a > on the same line in the file
 
@@ -192,16 +181,12 @@ public class IvtffParsing implements RegressionTest {
 		doc = new IvtffText(in);
 		p = doc.getElement("f1r");
 		l = p.getElement("f1r.18;H");
-		assert l.getPlainText().equals("yteody.chetey");
+		assertEquals(l.getPlainText(), "yteody.chetey");
 
-		try {
-			in = "#=IVTFF Eva- 1.5" + "\n" + //
-					"<f1r>  <! $I=H $Q=B $P=L $L=A $H=1 $K=Y $X=M>" + "\n" + //
-					"<f1r.18,@Ro;H> yteody<! comment>.<chetey";
-			doc = new IvtffText(in);
-			throw new Exception("This is unacceptable");
-		} catch (ParseException e) {
-		}
+		in = "#=IVTFF Eva- 1.5" + "\n" + //
+				"<f1r>  <! $I=H $Q=B $P=L $L=A $H=1 $K=Y $X=M>" + "\n" + //
+				"<f1r.18,@Ro;H> yteody<! comment>.<chetey";
+		createIvtffThrowsException(in);
 
 		// * All other in-line comments consist of 3 or 4 characters, of which the first
 		// * is < and the last is >
@@ -212,16 +197,12 @@ public class IvtffParsing implements RegressionTest {
 		doc = new IvtffText(in);
 		p = doc.getElement("f1r");
 		l = p.getElement("f1r.18;H");
-		assert l.getPlainText().equals("yteody.chetey");
+		assertEquals(l.getPlainText(), "yteody.chetey");
 
-		try {
-			in = "#=IVTFF Eva- 1.5" + "\n" + //
-					"<f1r>  <! $I=H $Q=B $P=L $L=A $H=1 $K=Y $X=M>" + "\n" + //
-					"<f1r.18,@Ro;H> yteody<123>.<chetey";
-			doc = new IvtffText(in);
-			throw new Exception("This is unacceptable");
-		} catch (ParseException e) {
-		}
+		in = "#=IVTFF Eva- 1.5" + "\n" + //
+				"<f1r>  <! $I=H $Q=B $P=L $L=A $H=1 $K=Y $X=M>" + "\n" + //
+				"<f1r.18,@Ro;H> yteody<123>.<chetey";
+		createIvtffThrowsException(in);
 
 		// * All alternative readings [ are closed by a ] on the same line in the file
 
@@ -231,34 +212,22 @@ public class IvtffParsing implements RegressionTest {
 		doc = new IvtffText(in);
 		p = doc.getElement("f1r");
 		l = p.getElement("f1r.18;H");
-		assert l.getPlainText().equals("yteody.chetey");
+		assertEquals(l.getPlainText(), "yteody.chetey");
 
-		try {
-			in = "#=IVTFF Eva- 1.5" + "\n" + //
-					"<f1r>  <! $I=H $Q=B $P=L $L=A $H=1 $K=Y $X=M>" + "\n" + //
-					"<f1r.18,@Ro;H> yteody[].chetey";
-			doc = new IvtffText(in);
-			throw new Exception("This is unacceptable");
-		} catch (ParseException e) {
-		}
+		in = "#=IVTFF Eva- 1.5" + "\n" + //
+				"<f1r>  <! $I=H $Q=B $P=L $L=A $H=1 $K=Y $X=M>" + "\n" + //
+				"<f1r.18,@Ro;H> yteody[].chetey";
+		createIvtffThrowsException(in);
 
-		try {
-			in = "#=IVTFF Eva- 1.5" + "\n" + //
-					"<f1r>  <! $I=H $Q=B $P=L $L=A $H=1 $K=Y $X=M>" + "\n" + //
-					"<f1r.18,@Ro;H> yteody[y].chetey";
-			doc = new IvtffText(in);
-			throw new Exception("This is unacceptable");
-		} catch (ParseException e) {
-		}
+		in = "#=IVTFF Eva- 1.5" + "\n" + //
+				"<f1r>  <! $I=H $Q=B $P=L $L=A $H=1 $K=Y $X=M>" + "\n" + //
+				"<f1r.18,@Ro;H> yteody[y].chetey";
+		createIvtffThrowsException(in);
 
-		try {
-			in = "#=IVTFF Eva- 1.5" + "\n" + //
-					"<f1r>  <! $I=H $Q=B $P=L $L=A $H=1 $K=Y $X=M>" + "\n" + //
-					"<f1r.18,@Ro;H> yteod[y:in:iin].chetey]";
-			doc = new IvtffText(in);
-			throw new Exception("This is unacceptable");
-		} catch (ParseException e) {
-		}
+		in = "#=IVTFF Eva- 1.5" + "\n" + //
+				"<f1r>  <! $I=H $Q=B $P=L $L=A $H=1 $K=Y $X=M>" + "\n" + //
+				"<f1r.18,@Ro;H> yteod[y:in:iin].chetey]";
+		createIvtffThrowsException(in);
 
 		// * All ligature indications { are close by a } on the same line in the file
 
@@ -268,15 +237,15 @@ public class IvtffParsing implements RegressionTest {
 		doc = new IvtffText(in);
 		p = doc.getElement("f1r");
 		l = p.getElement("f1r.18;H");
-		assert l.getPlainText().equals("yteody.chetey");
+		assertEquals(l.getPlainText(), "yteody.chetey");
 
-		try {
-			in = "#=IVTFF Eva- 1.5" + "\n" + //
-					"<f1r>  <! $I=H $Q=B $P=L $L=A $H=1 $K=Y $X=M>" + "\n" + //
-					"<f1r.18,@Ro;H> y{teody.chetey";
-			doc = new IvtffText(in);
-			throw new Exception("This is unacceptable");
-		} catch (ParseException e) {
-		}
+		in = "#=IVTFF Eva- 1.5" + "\n" + //
+				"<f1r>  <! $I=H $Q=B $P=L $L=A $H=1 $K=Y $X=M>" + "\n" + //
+				"<f1r.18,@Ro;H> y{teody.chetey";
+		createIvtffThrowsException(in);
+	}
+
+	private static void createIvtffThrowsException(final String text) {
+		assertThrows(ParseException.class, () -> new IvtffText(text));
 	}
 }

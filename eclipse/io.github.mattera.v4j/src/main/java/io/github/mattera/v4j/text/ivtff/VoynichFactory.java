@@ -7,11 +7,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.Map.Entry;
 
 import io.github.mattera.v4j.text.alphabet.Alphabet;
-import io.github.mattera.v4j.text.ivtff.VoynichFactory.TranscriptionType;
-import io.github.mattera.v4j.util.Counter;
 
 /**
  * Factory class to read different versions of the Voynich manuscript. The

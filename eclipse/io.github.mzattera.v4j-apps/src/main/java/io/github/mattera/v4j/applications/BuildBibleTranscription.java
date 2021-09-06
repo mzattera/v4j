@@ -36,7 +36,11 @@ public final class BuildBibleTranscription {
 	 */
 	public static void main(String[] args) {
 		try {
+			convert(FileUtil.getResourceFile("Transcriptions/Bible/English.xml"));
 			convert(FileUtil.getResourceFile("Transcriptions/Bible/French.xml"));
+			convert(FileUtil.getResourceFile("Transcriptions/Bible/German.xml"));
+			convert(FileUtil.getResourceFile("Transcriptions/Bible/Italian.xml"));
+			convert(FileUtil.getResourceFile("Transcriptions/Bible/Latin.xml"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

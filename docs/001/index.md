@@ -2,7 +2,10 @@
 
 _Last updated Sep. 6th, 2021._
 
-_This note refers to release XXXX of v4j. Some of the content might not apply to more recent versions of the library._
+_This note refers to [release XXXX]() of v4j. Some of the content might not apply to more recent versions of the library._
+
+_Working notes are not providign detailed description of algorithms and classes sued, for this, please refer to the 
+library code and JavaDoc._
 
 ### The Voynich Text
 

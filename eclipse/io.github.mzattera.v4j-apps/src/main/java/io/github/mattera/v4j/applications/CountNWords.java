@@ -15,7 +15,7 @@ import io.github.mattera.v4j.util.Counter;
 import io.github.mattera.v4j.util.StringUtil;
 
 /**
- * Takes given text and counts the occurrences of all sequences of n words.
+ * Takes given text and counts the occurrences of all sequences of N words.
  * 
  * @author Massimiliano "Maxi" Zattera
  *
@@ -32,12 +32,14 @@ public final class CountNWords {
 		try {
 			IvtffText doc = VoynichFactory.getDocument(TranscriptionType.MAJORITY);
 			doc.filterPages(new PageFilter.Builder().cluster("B").build());
+			
 			Counter<String> c = process(doc, 3, true);
-			for (Entry<String, Integer> e : c.entrySet()) {
-				System.out.println(e.getKey() + ": " + e.getValue());
-			}
 
 			System.out.println("Most repeated: " + c.getHighestCounted() + " = " + c.getHighestCount());
+			
+			for (Entry<String, Integer> e : c.reversed()) {
+				System.out.println(e.getKey() + ": " + e.getValue());
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();

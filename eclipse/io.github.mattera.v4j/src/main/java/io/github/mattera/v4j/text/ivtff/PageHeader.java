@@ -279,8 +279,8 @@ public class PageHeader implements Identifiable {
 	private final String illustrationType;
 
 	/**
-	 * Illustration type (T,H,A,Z,B,C,P,S). Text, Herbal, Astronomical, Zodiac,
-	 * Biological, Cosmological, Pharmaceutical or Stars.
+	 * Illustration type (T,H,A,Z,B,C,P,S) for Text, Herbal, Astronomical, Zodiac,
+	 * Biological, Cosmological, Pharmaceutical or Stars respectively.
 	 */
 	public String getIllustrationType() {
 		return illustrationType;
@@ -289,7 +289,7 @@ public class PageHeader implements Identifiable {
 	private final String quire;
 
 	/**
-	 * Quire (A-T).
+	 * Quire where the page resides (A-T).
 	 */
 	public String getQuire() {
 		return quire;
@@ -298,7 +298,7 @@ public class PageHeader implements Identifiable {
 	private final String pageInQuire;
 
 	/**
-	 * Page in quire (A-X).
+	 * Positoion of page in quire (A-X).
 	 */
 	public String getPageInQuire() {
 		return pageInQuire;

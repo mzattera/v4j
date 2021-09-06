@@ -58,7 +58,8 @@ This class also provides means to get the text alphabet, split text in words, co
 (think of a book made of chapters made or paragraphs). `filterElements()` and `splitElements()` can be used to select parts of text,
 or cut the text into parts, based on rules.
 
-<a id="ivtff" />
+<a id="ivtff"></a>
+
 ### Getting the Voynich Text - `io.github.mattera.v4j.text.ivtff`
 
 The main class in this package is `IvtffText` that represents a text in IVTFF (Intermediate Voynich Transliteration File Format) format,

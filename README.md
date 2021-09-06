@@ -2,6 +2,8 @@
 
 This is a Java library i created to experiment with the [Voynich manuscript](https://en.wikipedia.org/wiki/Voynich_manuscript).
 
+The outcomes of my experiments are tracked on the [project pages](https://mzattera.github.io/v4j/).
+
 The folder `eclipse` contains an eclipse workspace. The (Maven) project `io.github.mattera.v4j` holds the actual code for the Java library.
 The library content is described below. The (Maven) project `io.github.mattera.v4j-apps` contains classes I created to experiment with the 
 Voynich manuscript; here you cna find examples about how to use the library.
@@ -56,6 +58,7 @@ This class also provides means to get the text alphabet, split text in words, co
 (think of a book made of chapters made or paragraphs). `filterElements()` and `splitElements()` can be used to select parts of text,
 or cut the text into parts, based on rules.
 
+<a id="ivtff">
 ### Getting the Voynich Text - `io.github.mattera.v4j.text.ivtff`
 
 The main class in this package is `IvtffText` that represents a text in IVTFF (Intermediate Voynich Transliteration File Format) format,
@@ -99,6 +102,15 @@ can be used to create IVTFF documents by filtering and/or splitting content of a
 IvtffText doc = VoynichFactory.getDocument(TranscriptionType.MAJORITY);
 doc = doc.filterPages(new PageFilter.Builder().illustrationType("B").build());
 ```
+### Other (Regular) Texts - `io.github.mattera.v4j.text.txt`
+
+`TextString` represent a Java string as a `Text` document, whilst `TextFile` represents a text files 
+composed by numbered `TextLine`s. These classes allow processing regular (e.g. contemporary plain English)
+texts within the vj4 library.
+
+Sometimes it is useful to compare Voynich statistics with those from a known text. For this reason
+`BibleFactory` provide methods to return the text of the Bible in different languages as `TextFile`
+instances.
 
 ### Testing (under src/test/java) - `io.github.mattera.v4j.test
 

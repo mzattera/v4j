@@ -19,15 +19,16 @@ import io.github.mattera.v4j.text.ivtff.VoynichFactory.TranscriptionType;
 import io.github.mattera.v4j.util.FileUtil;
 
 /**
- * Processes an interlinear transcription to create concordance and majority versions of it (added as new "artificial" transcribers).
+ * Processes an interlinear transcription to create concordance and majority
+ * versions of it (added as new "artificial" transcribers).
  * 
  * STATUS: Working & with (some) test harness.
  * 
  * @author Massimiliano "Maxi" Zattera
  */
-public class BuildConcordanceVersion {
+public final class BuildConcordanceVersion {
 
-	/// MAKE SURE THIS IS CORRECT BUT DO NOT USE RESOURCE FILES; AS THEY ARE READ
+	/// MAKE SURE THIS IS CORRECT BUT DO NOT USE RESOURCE FOLDER AS IT IS READ
 	/// ONLY
 	private final static String OUTPUT_FOLDER = "D:\\";
 

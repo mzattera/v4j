@@ -3,7 +3,8 @@
 This is a Java library i created to experiment with the [Voynich manuscript](https://en.wikipedia.org/wiki/Voynich_manuscript).
 
 The folder `eclipse` contains an eclipse workspace. The (Maven) project `io.github.mattera.v4j` holds the actual code for the Java library.
-The library content is described below.
+The library content is described below. The (Maven) project `io.github.mattera.v4j-apps` contains classes I created to experiment with the 
+Voynich manuscript; here you cna find examples about how to use the library.
 
 **_Note:_** _In this document we use the terms "transcription" and "transliteration" interchangeably, though the latter is more correct._
 

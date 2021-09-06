@@ -19,16 +19,13 @@ import io.github.mattera.v4j.text.ivtff.VoynichFactory.TranscriptionType;
 import io.github.mattera.v4j.util.FileUtil;
 
 /**
- * Processes interlinear version to obtain different versions with different
- * degree of concordance between transcribers.
+ * Processes an interlinear transcription to create concordance and majority versions of it (added as new "artificial" transcribers).
  * 
- * It also creates some text based on Notes004.
- * 
- * STATUS: Working & with test harness.
+ * STATUS: Working & with (some) test harness.
  * 
  * @author Massimiliano "Maxi" Zattera
  */
-public class BuildDocumentVersion {
+public class BuildConcordanceVersion {
 
 	/// MAKE SURE THIS IS CORRECT BUT DO NOT USE RESOURCE FILES; AS THEY ARE READ
 	/// ONLY
@@ -40,7 +37,7 @@ public class BuildDocumentVersion {
 	public static void main(String[] args) {
 		try {
 			File fIn = FileUtil.getResourceFile("Transcriptions/LSI_ivtff_0d_fixed.txt");
-//			URL url = ClassLoaderUtil.getResource("/tmp.txt", BuildDocumentVersion.class);
+//			URL url = ClassLoaderUtil.getResource("/tmp.txt", BuildConcordanceVersion.class);
 //			File fIn = new File(url.toURI());
 			File fOut = new File(OUTPUT_FOLDER, VoynichFactory.MZ_TRANSCRIPTION_FILE_NAME);
 

@@ -1,2 +1,4 @@
 * Make TT, LZ, GC transcriptions available from VoynichFactory (FSG, CD, IT are already included in the LSI version).
 
+* Write tests for io.github.mattera.v4j.applications.BuildConcordanceVersion
+

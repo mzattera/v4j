@@ -1,4 +1,4 @@
-package io.github.mattera.v4j.support;
+package io.github.mattera.v4j.applications;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,16 +8,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.opensymphony.xwork2.util.ClassLoaderUtil;
 
 import io.github.mattera.v4j.text.alphabet.Alphabet;
 import io.github.mattera.v4j.text.ivtff.IvtffLine;
 import io.github.mattera.v4j.text.ivtff.ParseException;
 import io.github.mattera.v4j.text.ivtff.VoynichFactory;
-import io.github.mattera.v4j.text.ivtff.VoynichFactory.Transcription;
 import io.github.mattera.v4j.text.ivtff.VoynichFactory.TranscriptionType;
-import io.github.mattera.v4j.util.StringUtil;
+import io.github.mattera.v4j.util.FileUtil;
 
 /**
  * Processes interlinear version to obtain different versions with different
@@ -31,16 +33,18 @@ import io.github.mattera.v4j.util.StringUtil;
  */
 public class BuildDocumentVersion {
 
-	/// MAKE SURE THIS IS CORRECT BUT DO NOT USE RESOURCES; AS THEY ARE READ ONLY
-	private final static String OUTPUT_FOLDER = "D:\\Voynich Mobile\\Git - v4j\\io.github.mattera.v4j\\src\\main\\resources\\Transcriptions\\";
+	/// MAKE SURE THIS IS CORRECT BUT DO NOT USE RESOURCE FILES; AS THEY ARE READ
+	/// ONLY
+	private final static String OUTPUT_FOLDER = "D:\\";
 
 	/**
-	 * @param args
-	 *            the command line arguments
+	 * @param args the command line arguments
 	 */
 	public static void main(String[] args) {
 		try {
-			File fIn = VoynichFactory.getFile(Transcription.LSI, Alphabet.EVA);
+			File fIn = FileUtil.getResourceFile("Transcriptions/LSI_ivtff_0d_fixed.txt");
+//			URL url = ClassLoaderUtil.getResource("/tmp.txt", BuildDocumentVersion.class);
+//			File fIn = new File(url.toURI());
 			File fOut = new File(OUTPUT_FOLDER, VoynichFactory.MZ_TRANSCRIPTION_FILE_NAME);
 
 			doWork(fIn, fOut, "ASCII", Alphabet.EVA);
@@ -55,14 +59,10 @@ public class BuildDocumentVersion {
 	/**
 	 * Processes an interlinear file and adds a majority and a concordance version.
 	 * 
-	 * @param fIn
-	 *            Input file with interlinear transcription.
-	 * @param fOut
-	 *            Output file.
-	 * @param encoding
-	 *            Encoding used in files.
-	 * @param a
-	 *            Alphabet for the transcription.
+	 * @param fIn      Input file with interlinear transcription.
+	 * @param fOut     Output file.
+	 * @param encoding Encoding used in files.
+	 * @param a        Alphabet for the transcription.
 	 */
 	private static void doWork(File fIn, File fOut, String encoding, Alphabet a) throws IOException, ParseException {
 
@@ -150,19 +150,12 @@ public class BuildDocumentVersion {
 		out.newLine();
 
 		// TODO REMOVE, test only
-		String l = null;
-		for (IvtffLine line : group) {
-			if (line.getPlainText().length() == m.length()) {
-				l = line.getPlainText();
-				break;
-			}
-		}
-		if ((l == null) || (StringUtil.countMatchingChars(m, l) < l.length() * 0.5)) {
-			for (IvtffLine line : group) {
-				System.out.println(line.toString());
-			}
-			System.out.println(ml.toString());
-			System.out.println(cl.toString());
-		}
-	}
+		/*
+		 * String l = null; for (IvtffLine line : group) { if
+		 * (line.getPlainText().length() == m.length()) { l = line.getPlainText();
+		 * break; } } if ((l == null) || (StringUtil.countMatchingChars(m, l) <
+		 * l.length() * 0.5)) { for (IvtffLine line : group) {
+		 * System.out.println(line.toString()); } System.out.println(ml.toString());
+		 * System.out.println(cl.toString()); }
+		 */ }
 }

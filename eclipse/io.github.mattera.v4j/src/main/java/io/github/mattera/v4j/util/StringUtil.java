@@ -18,6 +18,9 @@ import io.github.mattera.v4j.text.alphabet.Alphabet;
  *
  */
 public final class StringUtil {
+	
+	private StringUtil() {		
+	}
 
 	/**
 	 * Return true if s is null or has only spaces.
@@ -25,7 +28,7 @@ public final class StringUtil {
 	 * @param s
 	 * @return
 	 */
-	public final static boolean isEmpty(String s) {
+	public static boolean isEmpty(String s) {
 		if (s == null)
 			return true;
 		else

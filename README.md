@@ -77,7 +77,7 @@ where multiple versions of each line in the manuscript are provided, one per aut
   For example, if two authors read one character as "a" and a third author reads the character as "o", the majority version will show the character as "a"
   (whilst the concordance version will show a "?" instead).
 
-  - **`COMPLETE`**: If this type is used, the full (interlinear) transcription is returned.
+  - **`INTERLINEAR`**: If this type is used, the full (interlinear) transcription is returned.
 
 There are several `VoynichFactory.getDocument(...)` methods to return available transcriptions. Please notice that not all combination of 
 transcription, transcription type and alphabet are available.
@@ -98,6 +98,10 @@ can be used to create IVTFF documents by filtering and/or splitting content of a
 IvtffText doc = VoynichFactory.getDocument(TranscriptionType.MAJORITY);
 doc = doc.filterPages(new PageFilter.Builder().illustrationType("B").build());
 ```
+
+### Testing (under src/test/java) - `io.github.mattera.v4j.test
+
+Here you can find regression tests implemented with JUnit.
 
 
 

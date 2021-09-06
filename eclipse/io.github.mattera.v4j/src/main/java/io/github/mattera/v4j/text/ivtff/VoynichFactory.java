@@ -3,12 +3,11 @@
  */
 package io.github.mattera.v4j.text.ivtff;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URL;
 
 import io.github.mattera.v4j.text.alphabet.Alphabet;
+import io.github.mattera.v4j.util.FileUtil;
 
 /**
  * Factory class to read different versions of the Voynich manuscript. The
@@ -17,21 +16,22 @@ import io.github.mattera.v4j.text.alphabet.Alphabet;
  * @author Massimiliano "Maxi" Zattera
  *
  */
-public class VoynichFactory {
+public final class VoynichFactory {
 
 	/**
-	 * Name of folder with transcriptions (inside resource folder)
+	 * Name of folder with transcriptions (inside resource folder), including
+	 * trailing separator.
 	 */
-	public static final String TRANSCRIPTION_FOLDER = "Transcriptions";
+	public static final String TRANSCRIPTION_FOLDER = "Transcriptions/";
 
 	/**
-	 * Name of the original interlinear file (+ corrections) inside resource folder.
+	 * Name of the original interlinear file inside TRANSCRIPTION_FOLDER.
 	 */
 	public static final String LSI_TRANSCRIPTION_FILE_NAME = "LSI_ivtff_0d.txt";
 
 	/**
 	 * Name of the interlinear file including majority & concordance versions inside
-	 * resource folder.
+	 * TRANSCRIPTION_FOLDER.
 	 */
 	public static final String MZ_TRANSCRIPTION_FILE_NAME = "Interlinear_ivtff_1.5.txt";
 
@@ -75,17 +75,19 @@ public class VoynichFactory {
 	}
 
 	/**
-	 * Different versions of transcriptions.
+	 * Different versions of transcriptions, this applies to interlinear documents.
 	 * 
 	 * @author Massimiliano "Maxi" Zattera
 	 * 
 	 */
 	public enum TranscriptionType {
-		COMPLETE, // the original document, as it is
+		INTERLINEAR, // the full interlinear document, as it is, with all transcribers
 		MAJORITY, // return only the majority lines form an interlinear version; that is the
 					// letters that appear in most of the available transcriptions.
+					// This is equivalent to filtering lines by MAJORITY_TRANSCRIBER.
 		CONCORDANCE // return only the concordance lines form an interlinear version; that is
 					// characters that exactly match in each of the available transcriptions.
+					// This is equivalent to filtering lines by CONCORDANCE_TRANSCRIBER.
 	}
 
 	/**
@@ -93,12 +95,13 @@ public class VoynichFactory {
 	 * @return given transcription of the Voynich.
 	 */
 	public static IvtffText getDocument(Transcription t) throws IOException, ParseException, URISyntaxException {
-		return getDocument(t, TranscriptionType.COMPLETE, null);
+		return getDocument(t, TranscriptionType.INTERLINEAR, null);
 	}
 
 	/**
 	 * 
-	 * @return given transcription type for the Transcription.MZ transcription of the Voynich.
+	 * @return given transcription type for the Transcription.MZ transcription of
+	 *         the Voynich.
 	 */
 	public static IvtffText getDocument(TranscriptionType type) throws IOException, ParseException, URISyntaxException {
 		return getDocument(Transcription.MZ, type, null);
@@ -115,36 +118,35 @@ public class VoynichFactory {
 
 	/**
 	 * 
-	 * @return given transcription and type of the Voynich, using the given alp0habet.
+	 * @return given transcription and type of the Voynich, using the given
+	 *         alp0habet.
 	 */
 	public static IvtffText getDocument(Transcription t, TranscriptionType type, Alphabet a)
 			throws IOException, ParseException, URISyntaxException {
 
-		StringBuffer fName = new StringBuffer(TRANSCRIPTION_FOLDER).append(File.separator);
-
 		switch (t) {
 		case LSI:
-			if (type != TranscriptionType.COMPLETE)
+			if (type != TranscriptionType.INTERLINEAR)
 				throw new IllegalArgumentException(
 						"Unsupported transcription type " + type + " for transcription " + t);
 			if ((a != null) && (a != Alphabet.EVA))
 				throw new IllegalArgumentException("Unsupported alphabet " + a + " for transcription " + t);
-			fName.append(LSI_TRANSCRIPTION_FILE_NAME);
 
-			return new IvtffText(getFile(fName), "ASCII");
+			return new IvtffText(FileUtil.getResourceFile(TRANSCRIPTION_FOLDER + LSI_TRANSCRIPTION_FILE_NAME));
+
 		case MZ:
 			if ((a != null) && (a != Alphabet.EVA))
 				throw new IllegalArgumentException("Unsupported alphabet " + a + " for transcription " + t);
-			
-			fName.append(MZ_TRANSCRIPTION_FILE_NAME);
-			IvtffText result = new IvtffText(getFile(fName), "ASCII");
-			
+
+			IvtffText result = new IvtffText(
+					FileUtil.getResourceFile(TRANSCRIPTION_FOLDER + MZ_TRANSCRIPTION_FILE_NAME));
+
 			switch (type) {
 			case MAJORITY:
 				return result.filterLines(new LineFilter.Builder().transcriber(MAJORITY_TRANSCRIBER).build());
 			case CONCORDANCE:
 				return result.filterLines(new LineFilter.Builder().transcriber(CONCORDANCE_TRANSCRIBER).build());
-			case COMPLETE:
+			case INTERLINEAR:
 				return result;
 			default:
 				throw new IllegalArgumentException(
@@ -153,16 +155,5 @@ public class VoynichFactory {
 		default:
 			throw new IllegalArgumentException("Unsupported transcription " + t);
 		}
-	}
-
-	/**
-	 * 
-	 * @return an handler to the file with given name in the resource folder.
-	 */
-	private static File getFile(StringBuffer fileName) throws IOException, ParseException, URISyntaxException {
-
-		// TODO move into FileUtil and use improved code
-		URL url = ClassLoader.getSystemResource(fileName.toString());
-		return new File(url.toURI());
 	}
 }

@@ -50,7 +50,8 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 
 	@Override
 	public void setParent(CompositeText<?> page) {
-		if (!this.descriptor.getPageId().equals(page.getId()))
+		// Page should never be null, but it might happen in some cases when we do partial processing (e.g. when building concordance version).
+		if ((page != null) && !this.descriptor.getPageId().equals(page.getId()))
 			throw new IllegalArgumentException("Line " + this.getId() + " cannot be added to page " + page.getId());
 
 		super.setParent(page);

@@ -11,8 +11,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.opensymphony.xwork2.util.ClassLoaderUtil;
 
 /**
  * Various file utilities.
@@ -20,9 +24,35 @@ import java.util.List;
  * @author Massimiliano "Maxi" Zattera
  *
  */
-public class FileUtil {
+public final class FileUtil {
 
 	private FileUtil() {
+	}
+
+	/**
+	 * Gets the URL for a file in the resource folder.
+	 * 
+	 * @param resourceName Name for the resource, including path.
+	 * @return the URL for a file in the resource folder.
+	 */
+	public static URL getResourceURL(String resourceName) {
+		return ClassLoaderUtil.getResource(resourceName, FileUtil.class);
+	}
+
+	/**
+	 * Gets the URL for a File in the resource folder.
+	 * 
+	 * @param resourceName Name for the resource, including path.
+	 * @return the URL for a File in the resource folder.
+	 * @throws URISyntaxException
+	 */
+	public static File getResourceFile(String resourceName) {
+		URL url = ClassLoaderUtil.getResource(resourceName, FileUtil.class);
+		try {
+			return (url == null) ? null : new File(url.toURI());
+		} catch (URISyntaxException e) {
+			return null;
+		}
 	}
 
 	/**
@@ -52,8 +82,7 @@ public class FileUtil {
 	}
 
 	/**
-	 * Write a list of strings into a file.
-	 * Uses UTF-8 encoding.
+	 * Write a list of strings into a file. Uses UTF-8 encoding.
 	 */
 	public static void write(List<String> txt, String fileName) throws IOException {
 		write(txt, fileName, "UTF-8");

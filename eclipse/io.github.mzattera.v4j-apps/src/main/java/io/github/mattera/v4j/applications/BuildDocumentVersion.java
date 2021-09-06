@@ -8,11 +8,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.opensymphony.xwork2.util.ClassLoaderUtil;
 
 import io.github.mattera.v4j.text.alphabet.Alphabet;
 import io.github.mattera.v4j.text.ivtff.IvtffLine;
@@ -141,11 +138,11 @@ public class BuildDocumentVersion {
 		}
 
 		// merges and writes out result
-		IvtffLine ml = IvtffLine.merge(group, TranscriptionType.MAJORITY);
+//		IvtffLine ml = IvtffLine.merge(group, TranscriptionType.MAJORITY);
 		// String m = ml.getPlainText();
 		out.write(IvtffLine.merge(group, TranscriptionType.MAJORITY).toString());
 		out.newLine();
-		IvtffLine cl = IvtffLine.merge(group, TranscriptionType.CONCORDANCE);
+//		IvtffLine cl = IvtffLine.merge(group, TranscriptionType.CONCORDANCE);
 		out.write(IvtffLine.merge(group, TranscriptionType.CONCORDANCE).toString());
 		out.newLine();
 

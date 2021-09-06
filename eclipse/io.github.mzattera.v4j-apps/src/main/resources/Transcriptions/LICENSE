@@ -1,0 +1,17 @@
+The Landini-Stolfi Interlinear Voynich transcription (LSI_ivtff_0d.txt) has been downloaded from: http://www.voynich.nu/transcr.html
+
+The page links to Stolfi's site (http://www.ic.unicamp.br/~stolfi/voynich/98-12-28-interln16e6/).
+
+In addition, it provides an IVTFF version of the same (http://www.voynich.nu/data/beta/LSI_ivtff_0d.txt)
+which is what is used by this library.
+
+============================================
+
+XML transcriptions of the bible in different languages have been downloaded from:
+
+http://christos-c.com/bible/
+
+============================================
+
+It is assumed above texts can be distributed freely;
+if you have a different information, please contact the owner of this Git repository.

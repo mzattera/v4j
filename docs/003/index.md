@@ -83,7 +83,7 @@ The herbal pages written with Courier's language B tend to cluster together, wel
 
 #### Pharmaceutical Pages
 
-Those pages tend to cluster together with Herbal A; to be noticed that all Pharmaceutical pages are written
+Those pages tend to cluster together, net to but separated from Herbal A; to be noticed that all Pharmaceutical pages are written
 using Courier's language A and many Herbal A pages appears bounded with Pharmaceutical pages in the same parchment.
  
 ![T-SNE visualization of Voynich Pharmaceutical pages](images/SNE - Pages - PA.PNG)
@@ -100,9 +100,24 @@ The zodiac pages tend to cluster together, next to Herbal B pages.
  
 ![T-SNE visualization of Voynich Zodiac pages](images/SNE - Pages - Z-.PNG)
 
+#### Astronomical Pages
+
+These pages are grouped in two big parchments; f67 and f68.
+
+- f67r1, f67r2, and f68v2 are in the Zodiac cluster.
+- f67v1 & f67v2 (technically a Cosmological page), f68v1, and f68r3 are in the Herbal A cluster.
+- f68v3 (technically a Cosmological page) is in the Pharmaceutical cluster. 
+- f68r1 and f68r2 are outliers.
+ 
+![T-SNE visualization of Voynich Astronomical pages](images/SNE - Pages - A-.PNG)
+
 #### Cosmological Pages
 
-These pages tends to disperse in the dimension space.
+These pages tend to disperse in the dimension space.
+
+- f69r, f69v , f70r1 and f70r2 (the verso of f70 being classified as Zodiac) are next to the Zodiac cluster.
+- f85r2 is in the Language B cluster, together with f85r1 (which contains only Text) and f86v3-6; these are part of the fRos ("Big Rosetta") parchment, which clusters nearby.
+- f57v is an outlier.
  
 ![T-SNE visualization of Voynich Cosmological pages](images/SNE - Pages - C-.PNG)
 

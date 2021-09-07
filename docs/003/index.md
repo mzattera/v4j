@@ -57,7 +57,7 @@ The below images have been obtained using the projector with following parameter
 Pages tend to form three distinct clusters, which are highly correlated with Courier's languages (A or B).
 
 - A cluster of pages using A language (in blue on top-left of the image).
-- A cluster of pages using B language (in purple on right of the image).
+- A cluster of pages using B language (in purple on right of the image), composed mostly by Biological and Stars pages.
 - A cluster with a mix of "unclassified" pages (in red on the bottom-left), for which the language is not provided,
   and pages using B language (in purple on the bottom-left).
  
@@ -70,11 +70,11 @@ These pages cluster closely together.
  
 ![T-SNE visualization of Voynich Biological pages](images/SNE - Pages - BB.PNG)
 
-#### Cosmological Pages
+#### Stars Pages
 
-These pages tends to disperse in the dimension space.
+The stars pages tend to cluster together, nest to the Biological pages (they are all written in Courier's B language).
  
-![T-SNE visualization of Voynich Cosmological pages](images/SNE - Pages - C-.PNG)
+![T-SNE visualization of Voynich Stars pages](images/SNE - Pages - S-.PNG)
 
 #### Herbal A Pages
 
@@ -95,17 +95,17 @@ The herbal pages written with Courier's language B tend to cluster together, wel
  
 ![T-SNE visualization of Voynich Herbal B pages](images/SNE - Pages - HB.PNG)
 
-#### Stars Pages
-
-The stars pages tend to cluster together.
- 
-![T-SNE visualization of Voynich Stars pages](images/SNE - Pages - S-.PNG)
-
 #### Zodiac Pages
 
 The zodiac pages tend to cluster together.
  
 ![T-SNE visualization of Voynich Zodiac pages](images/SNE - Pages - Z-.PNG)
+
+#### Cosmological Pages
+
+These pages tends to disperse in the dimension space.
+ 
+![T-SNE visualization of Voynich Cosmological pages](images/SNE - Pages - C-.PNG)
 
 # Conclusions 
 

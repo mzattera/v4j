@@ -40,13 +40,12 @@ For single pages, we defined (quite arbitrarily :)) the following outliers, whic
 ## Preliminary Exploration
 
 The [TensorBoard Embedding Projector](https://projector.tensorflow.org/) has been used to do a preliminary, quick and visual investigation
-about clustering Voynich pages. The class [`BuildBoW`]() can be used to generate data suitable for visualization; its output for single pages can be found
-in [this folder](). There is also a
-[pre-populated version of the projector](), that you can use for your own exploration.
+about clustering Voynich pages. The class [`BuildBoW`]() can be used to generate data suitable for visualization that can be uploaded to the projector;
+its output for single pages can be found in [this folder]().
+There is also a [pre-populated version of the projector](https://projector.tensorflow.org/?config=https://mzattera.github.io/v4j/003/data/projector_config.json),
+that you can use for your own exploration.
 
-
-
-
+![SNE visualisation of Voynich pages](images/SNE - Pages - ALL.PNG)
 
 
  

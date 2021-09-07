@@ -56,13 +56,12 @@ The below images have been obtained using the projector with following parameter
 
 Pages tend to form three distinct clusters, which are highly correlated with Courier's languages (A or B).
 
-- A cluster of pages using A language (in blue on top-left of the image).
+- A cluster of pages using A language (in blue on top-left of the image), composed mostly by Pharmaceutical and Herbal A pages.
 - A cluster of pages using B language (in purple on right of the image), composed mostly by Biological and Stars pages.
-- A cluster with a mix of "unclassified" pages (in red on the bottom-left), for which the language is not provided,
-  and pages using B language (in purple on the bottom-left).
+- A cluster with Zodiac pages (in red on the bottom-left), for which the language is not provided,
+  together with Herbal pages using B language (in purple on the bottom-left).
  
 ![T-SNE visualization of Voynich Biological pages](images/SNE - Pages - BY_LANGUAGE.PNG)
-
 
 #### Biological Pages
 
@@ -97,7 +96,7 @@ The herbal pages written with Courier's language B tend to cluster together, wel
 
 #### Zodiac Pages
 
-The zodiac pages tend to cluster together.
+The zodiac pages tend to cluster together, next to Herbal B pages.
  
 ![T-SNE visualization of Voynich Zodiac pages](images/SNE - Pages - Z-.PNG)
 

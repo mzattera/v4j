@@ -8,7 +8,7 @@ Some of the content might not apply to more recent versions of the library._
 _Working notes are not providing detailed description of algorithms and classes sued, for this, please refer to the 
 library code and JavaDoc._
 
-[**<< Back**](..)
+[**<< Home**](/)
 
 ---
 
@@ -130,10 +130,8 @@ These pages tend to disperse in the dimension space.
 
 ---
 
-[**<< Back**](..)
+[**<< Home**](/)
 
 Copyright Massimiliano Zattera.
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
-
-

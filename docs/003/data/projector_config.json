@@ -6,8 +6,8 @@
         1000,
         50
       ],
-      "tensorPath": "https://raw.githubusercontent.com/.../tensors.tsv",
-      "metadataPath": "https://raw.githubusercontent.com/.../optional.metadata.tsv"
+      "tensorPath": "https://mzattera.github.io/v4j/003/data/vectors.tsv",
+      "metadataPath": "https://mzattera.github.io/v4j/003/data/metadata.tsv"
     }
   ]
 }

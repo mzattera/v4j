@@ -36,6 +36,11 @@ The corresponding IVTFF files (which are read by the factory) can be found in th
 [resource folder](https://github.com/mzattera/v4j/tree/v.1.0.0/eclipse/io.github.mattera.v4j/src/main/resources/Transcriptions)
 of the library.
 
+---
+
+Copyright Massimiliano Zattera.
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
 
 
 

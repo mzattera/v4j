@@ -8,6 +8,10 @@ Some of the content might not apply to more recent versions of the library._
 _Working notes are not providing detailed description of algorithms and classes sued, for this, please refer to the 
 library code and JavaDoc._
 
+[**<< Back**](..)
+
+---
+
 # Abstract
 
 # Previous Works
@@ -83,7 +87,7 @@ The herbal pages written with Courier's language B tend to cluster together, wel
 
 #### Pharmaceutical Pages
 
-Those pages tend to cluster together, net to but separated from Herbal A; to be noticed that all Pharmaceutical pages are written
+Those pages tend to cluster together, next to but separated from Herbal A; to be noticed that all Pharmaceutical pages are written
 using Courier's language A and many Herbal A pages appears bounded with Pharmaceutical pages in the same parchment.
  
 ![T-SNE visualization of Voynich Pharmaceutical pages](images/SNE - Pages - PA.PNG)
@@ -122,4 +126,14 @@ These pages tend to disperse in the dimension space.
 ![T-SNE visualization of Voynich Cosmological pages](images/SNE - Pages - C-.PNG)
 
 # Conclusions 
+
+
+---
+
+[**<< Back**](..)
+
+Copyright Massimiliano Zattera.
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+
 

@@ -106,4 +106,11 @@ public class LineSplitter implements ElementSplitter<IvtffLine> {
 
 		return result.toString();
 	}
+
+	@Override
+	public String toString() {
+		return "LineSplitter [byPage=" + byPage + ", byNumber=" + byNumber + ", byLocus=" + byLocus + ", byLocator="
+				+ byLocator + ", byLocusType=" + byLocusType + ", byGenericLocusType=" + byGenericLocusType
+				+ ", byTranscriber=" + byTranscriber + "]";
+	}	
 }

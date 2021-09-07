@@ -12,9 +12,9 @@ import org.opencompare.hac.experiment.Experiment;
  * A set of objects that can be clustered.
  * 
  * This is an abstraction class for interoperability between Apache clustering
- * API with hac API (Experiment / DissimilarityMeasure).
+ * API, which requires Clusterable items, and hac API, which needs an Experiment as an input.
  * 
- * @author Massimiliano_Zattera
+ * @author Massimiliano "Maxi" Zattera
  *
  */
 public interface ClusterableSet<T extends Clusterable> extends Experiment {

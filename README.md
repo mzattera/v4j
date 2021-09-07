@@ -103,6 +103,7 @@ can be used to create IVTFF documents by filtering and/or splitting content of a
 IvtffText doc = VoynichFactory.getDocument(TranscriptionType.MAJORITY);
 doc = doc.filterPages(new PageFilter.Builder().illustrationType("B").build());
 ```
+
 ### Other (Regular) Texts - `io.github.mattera.v4j.text.txt`
 
 `TextString` represent a Java string as a `Text` document, whilst `TextFile` represents a text files 
@@ -112,6 +113,29 @@ texts within the vj4 library.
 Sometimes it is useful to compare Voynich statistics with those from a known text. For this reason
 `BibleFactory` provide methods to return the text of the Bible in different languages as `TextFile`
 instances.
+
+### Clustering
+
+v4j provides tools for k-means and hierarchical agglomerative clustering using Apache commons-math3 and `org.opencompare.hac`
+libraries respectively.
+
+The class `io.github.mattera.v4j.util.BagOfWords` can be used to build a Bag of Words out of some text(s).
+The class can build a BoW where dimensions can be (see `BagOfWordsMode`):
+
+- The count of occurrences for corresponding word.
+- The relative frequency of corresponding word in the text.
+- 1 or 0, depending whether corresponding word is in the text or not (one-hot encoding).
+- TF-IDF frequency for corresponding word; this is supported only when BoW are built from a set of documents.
+
+Notice this class is `Clusterable`, thus can be used with the Apache clustering API.
+
+
+### Useful Stuff - `io.github.mattera.v4j.util`
+
+This package contains some "utility" classes to deal with files, math, etc.
+
+Please take a look what is in here before implementing anythign from scratch.
+
 
 ### Testing (under src/test/java) - `io.github.mattera.v4j.test
 

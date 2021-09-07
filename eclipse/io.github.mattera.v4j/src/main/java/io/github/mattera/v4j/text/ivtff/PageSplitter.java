@@ -127,4 +127,12 @@ public class PageSplitter implements ElementSplitter<IvtffPage> {
 
 		return result.toString().trim();
 	}
+
+	@Override
+	public String toString() {
+		return "PageSplitter [byIllustrationType=" + byIllustrationType + ", byQuire=" + byQuire + ", byPageInQuire="
+				+ byPageInQuire + ", byParchment=" + byParchment + ", byLanguage=" + byLanguage + ", byHand=" + byHand
+				+ ", byKey=" + byKey + ", byExtraneousWriting=" + byExtraneousWriting + ", byCluster=" + byCluster
+				+ "]";
+	}	
 }

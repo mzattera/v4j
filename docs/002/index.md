@@ -12,4 +12,5 @@ The class
 ['io.github.mattera.v4j.applications.PrintDocumentStatistics'](https://github.com/mzattera/v4j/blob/v.2.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mattera/v4j/applications/PrintDocumentStatistics.java)
 prints out some statistics for the Voynich pages, such as the illustration type, the Voynich "language", etc. in .CSV format.
 
-An Excel file ([]()) with a collection of these statistics can be found under the [analysis folder](https://github.com/mzattera/v4j/tree/v.2.0.0/resources/analysis).
+An Excel file ("`PageStatistics.xlsx`") with a collection of these statistics can be found under the
+[analysis folder](https://github.com/mzattera/v4j/tree/v.2.0.0/resources/analysis).

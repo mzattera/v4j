@@ -68,7 +68,7 @@ public class BagOfWords implements Clusterable {
 		return x;
 	}
 
-	// total number of words (non null dimensions) in this BoW
+	// total number of unique words (non null dimensions) in this BoW
 	private int tot = 0;
 
 	/**
@@ -82,22 +82,31 @@ public class BagOfWords implements Clusterable {
 
 	/**
 	 * 
-	 * @param text
-	 *            the Text used to extract bag of words.
-	 * @param dimensions
-	 *            lists the words to use in the BoW; maps each word into
-	 *            corresponding dimension index.
+	 * @param text the Text used to create the Bag of Words. all words with no
+	 *             unreadable characters will be used as dimensions in the BoW.
+	 * @param mode how to build the BoW.
+	 */
+	public BagOfWords(Text text, BagOfWordsMode mode) {
+		this(text, buildDimensions(text.getWords(true).itemSet()), mode);
+	}
+
+	/**
+	 * 
+	 * @param text       the Text used to create the Bag of Words.
+	 * @param dimensions lists the words to use in the BoW; maps each word into
+	 *                   corresponding dimension index.
+	 * @param mode       how to build the BoW.
 	 * 
 	 */
 	public BagOfWords(Text text, Map<String, Integer> dimensions, BagOfWordsMode mode) {
 		this.text = text;
 		this.dimensions = new HashMap<>(dimensions);
 		x = new double[dimensions.size()];
-		Counter<String> words = text.getWords(false);
+		Counter<String> words = text.getWords(false); // get all words, we will consider only the dimensions anyway
 		for (Entry<String, Integer> e : words.entrySet()) {
 			Integer i = dimensions.get(e.getKey());
 			if (i != null)
-				x[i] += e.getValue();
+				x[i] = e.getValue();
 		}
 		tot = 0;
 		for (int i = 0; i < x.length; ++i)
@@ -109,9 +118,9 @@ public class BagOfWords implements Clusterable {
 		case COUNT:
 			break;
 		case RELATIVE_FREQUENCY:
-			int tot = words.getTotalCounted();
+			int counted = words.getTotalCounted();
 			for (int i = 0; i < x.length; ++i)
-				x[i] /= tot;
+				x[i] /= counted;
 			break;
 		case ONE_HOT:
 			for (int i = 0; i < x.length; ++i)
@@ -127,10 +136,12 @@ public class BagOfWords implements Clusterable {
 
 	/**
 	 * 
-	 * @param docs for each of this documents, a BagOfWords will be returned. Notice that documents with no words in dimensions are ignored.
+	 * @param docs       for each of this documents, a BagOfWords will be returned.
+	 *                   Notice that documents with no words in dimensions are
+	 *                   ignored.
 	 * @param dimensions words to use as dimensions for the bag of words.
-	 * @param mode Mode to use to build the bag of words.
-	 * @return a list of bag of words from the give documents. 
+	 * @param mode       Mode to use to build the bag of words.
+	 * @return a list of bag of words from the give documents.
 	 */
 	public static List<BagOfWords> toBoW(Collection<? extends Text> docs, Map<String, Integer> dimensions,
 			BagOfWordsMode mode) {
@@ -165,5 +176,34 @@ public class BagOfWords implements Clusterable {
 		}
 
 		return result;
+	}
+
+	/**
+	 * Since to build BoW we need "dimensions" (e.g. the words to use in the BoW) we
+	 * provide here a utility method to get dimensions out of a list of words.
+	 * 
+	 * @param words list of words that will be used as dimensions in the BoW.
+	 * @return a Map representing the BoW dimensions.
+	 */
+	public static Map<String, Integer> buildDimensions(Collection<String> words) {
+		Map<String, Integer> dimensions = new HashMap<>();
+
+		int n = 0;
+		for (String w : words)
+			dimensions.put(w, n++);
+
+		return dimensions;
+	}
+
+	/**
+	 * Since to build BoW we need "dimensions" (e.g. the words to use in the BoW) we
+	 * provide here a utility method to get dimensions out of a Text.
+	 * 
+	 * @param doc all "readable" words in the document will be used as dimensions in
+	 *            the BoW.
+	 * @return a Map representing the BoW dimensions.
+	 */
+	public static Map<String, Integer> buildDimensions(Text doc) {
+		return buildDimensions(doc.getWords(true).itemSet());
 	}
 }

@@ -7,7 +7,7 @@ as resulting from my work with the [v4j library](https://github.com/mzattera/v4j
 
 - [Note 001 - The Text](./001)
 
-  A short description of how the texts used in the library are obtained; it shows of concordance and mjority
+  A short description about how the texts used in the library are obtained; it shows of concordance and majority
   versions of the Voynich transcription are obtained.
   
 - [Note 002 - Some Basic Statistics](./002)

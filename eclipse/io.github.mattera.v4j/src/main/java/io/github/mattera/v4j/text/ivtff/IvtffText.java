@@ -12,6 +12,7 @@ import java.io.StringReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -100,14 +101,14 @@ public class IvtffText extends CompositeText<IvtffPage> {
 
 	/**
 	 * Copy constructor (kinda). Creates a new instance of a document from a list of
-	 * lines contained in given document. Notice that lines are copied into the new
-	 * document; they are not shared.
+	 * lines contained in another document. Notice that lines are copied into the
+	 * new document; they are not shared.
 	 *
-	 * @param doc   document where the lines come from.
+	 * @param doc   original document where the lines come from.
 	 * @param lines list of lines that must go into the new document, they must
 	 *              belong to doc.
 	 */
-	public IvtffText(IvtffText doc, List<IvtffLine> lines) {
+	public IvtffText(IvtffText doc, Collection<IvtffLine> lines) {
 
 		super(doc.getAlphabet());
 		this.id = doc.getId();
@@ -124,6 +125,25 @@ public class IvtffText extends CompositeText<IvtffPage> {
 
 			myPage.addElement(new IvtffLine(line));
 		}
+	}
+
+	/**
+	 * Copy constructor (kinda). Creates a new instance of a document from a list of
+	 * pages contained in another document. Notice that lines in pages are copied
+	 * into the new document; they are not shared.
+	 * 
+	 * Must be provided as factory method because of signature overlap.
+	 *
+	 * @param doc   original document where the pages come from.
+	 * @param pages list of lines that must go into the new document, they must
+	 *              belong to doc.
+	 */
+	public static IvtffText fromPages(IvtffText doc, Collection<IvtffPage> pages) {
+		List<IvtffLine> lines = new ArrayList<>();
+		for (IvtffPage p : pages)
+			lines.addAll(p.getElements());
+
+		return new IvtffText(doc, lines);
 	}
 
 	/**
@@ -405,16 +425,9 @@ public class IvtffText extends CompositeText<IvtffPage> {
 
 		Map<String, IvtffText> result = new HashMap<>();
 		Map<String, List<IvtffPage>> pages = splitElements(splitter);
-		List<IvtffLine> lines = new ArrayList<>();
 
-		for (String category : pages.keySet()) {
-			lines.clear();
-
-			for (IvtffPage page : pages.get(category))
-				lines.addAll(page.getElements());
-
-			result.put(category, new IvtffText(this, lines));
-		}
+		for (String category : pages.keySet())
+			result.put(category, fromPages(this, pages.get(category)));
 
 		return result;
 	}

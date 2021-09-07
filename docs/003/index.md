@@ -5,10 +5,10 @@ _Last updated Sep. 7th, 2021._
 _This note refers to [release v.3.0.0](https://github.com/mzattera/v4j/tree/v.3.0.0) of v4j.
 Some of the content might not apply to more recent versions of the library._
 
-_Working notes are not providing detailed description of algorithms and classes sued, for this, please refer to the 
+_Working notes are not providing detailed description of algorithms and classes used, for this, please refer to the 
 library code and JavaDoc._
 
-[**<< Home**](/)
+[**<< Home**](..)
 
 ---
 
@@ -130,7 +130,7 @@ These pages tend to disperse in the dimension space.
 
 ---
 
-[**<< Home**](/)
+[**<< Home**](..)
 
 Copyright Massimiliano Zattera.
 

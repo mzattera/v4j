@@ -32,7 +32,7 @@ between two vectors assumed to have only positive components.
 ## Outliers
 
 The class [`OutlierDetection`]() is used to look for "outliers", that is textual units which appear very dissimilar to other textual units
-the output of the class can be seen [here]().
+the output of the class (`PageEmbeddingDistance.xlsx`) can be seen in the [analysis folder]().
 For single pages, we defined (quite arbitrarily :)) the following outliers, which are removed from the text before further analysis.
 
 - **f65r**:
@@ -125,9 +125,37 @@ These pages tend to disperse in the dimension space.
  
 ![T-SNE visualization of Voynich Cosmological pages](images/SNE - Pages - C-.PNG)
 
+## K-Means Clustering
+
+We can use K-Mean clustering to cluster the pages in the Voynich. Class `package io.github.mzattera.v4j.applications.clustering.KMeansClusterByWords`
+does the clustering and prints out a report that can be easily converted in an Excel file; a copy of such file (`K-Means Clustering - Pages.xlsx`),
+with some additional data, can be found in the [analysis folder](). The class can be parameterized to run different types of experiments;
+keep in mind K-Means algorithm include some randomness, therefore slightly different clustering might result at each experiment.
+
+The below table summarizes the result of clustering the manuscript pages:
+
+![K-Means clustering of Voynich pages](images/K-Means - Pages.PNG)
+
+We can see that:
+
+- Biological pages are clearly clustered in their own cluster (3).
+
+- Other pages using language B (Cosmological, Stars and Herbal B) are grouped in the same cluster (0).
+
+- Remaining pages (Herbal A and Pharmaceutical) are in the remaining clusters,
+  Herbal A split in a bigger group (2) and a smaller one (1) and Pharmaceutical pages grouped together
+  with remaining pages (6).
+  
+In order to remove some noise, and noticing that in the vast majority of cases, pages
+in a parchment share illustration type and language, we performed the clustering again, this time
+splitting the manuscript by parchment. Notice that parchments 29, 31, 32, 40 have been excluded
+as they either contain Cosmological or Astronomical pages, which we know already do not cluster well, or contains heterogeneous illustration types.
+
+
+
 # Conclusions 
 
-
+TODO
 ---
 
 [**<< Home**](..)

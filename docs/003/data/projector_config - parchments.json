@@ -1,0 +1,13 @@
+{
+  "embeddings": [
+    {
+      "tensorName": "Voynich Parchments (bifolios)",
+      "tensorShape": [
+        1000,
+        50
+      ],
+      "tensorPath": "https://mzattera.github.io/v4j/003/data/vectors_parchments.tsv",
+      "metadataPath": "https://mzattera.github.io/v4j/003/data/metadata_parchments.tsv"
+    }
+  ]
+}

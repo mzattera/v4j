@@ -14,6 +14,8 @@ import org.opencompare.hac.experiment.Experiment;
  * This is an abstraction class for interoperability between Apache clustering
  * API, which requires Clusterable items, and hac API, which needs an Experiment as an input.
  * 
+ * This class represents a collection of Clusterable items as an Experiment.
+ *  
  * @author Massimiliano "Maxi" Zattera
  *
  */

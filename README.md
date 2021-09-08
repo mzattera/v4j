@@ -88,7 +88,9 @@ There are several `VoynichFactory.getDocument(...)` methods to return available 
 transcription, transcription type and alphabet are available.
 
 `IvtffText` is composed of `IvtffPage`s, each having a descriptor, a `PageHeader` instance that can be obtained by using `getDescriptor()`,
-which contains IVTFF metadata for the page, such as "language" (A or B), illustration type, position of page in the text (quire, bifolio), etc.
+which contains IVTFF metadata for the page, such as "language" (A or B), illustration type (Biological, Herbal, etc.), position of page in the text (quire, bifolio), etc.
+Please notice `PageHeader` also provides the parchment (or bifolio) for each of the Voynich pages, even if this information is not provided 
+in IVTFF files.
 
 In turn an `IvtffPage`is composed of `IvtffLine`s, each having a descriptor, a `LocusIdentifier` instance that can be obtained by using `getDescriptor()`,
 which contains IVTFF metadata for the line, namely the locus identifier and the transcriber. Please notice that for interlinear texts several 
@@ -127,7 +129,58 @@ The class can build a BoW where dimensions can be (see `BagOfWordsMode`):
 - 1 or 0, depending whether corresponding word is in the text or not (one-hot encoding).
 - TF-IDF frequency for corresponding word; this is supported only when BoW are built from a set of documents.
 
-Notice this class is `Clusterable`, thus can be used with the Apache clustering API.
+Notice this class is `Clusterable`, thus can be used with the Apache clustering API where subclasses of `Clusterer<T extends Clusterable>`
+are used to cluster set of `Clusterable` instances.
+
+#### K-Means Clustering
+
+Below an example of how BoW insances can be clustered:
+
+```Java
+// Distance measure for clustering
+DistanceMeasure distance = new PositiveAngularDistance();
+
+// Minimum number of clusters to create
+int minSize = 4;
+
+// Maximum number of clusters to create
+int maxSize = 8;
+
+// For each possible cluster size, perform this number of trials and return the
+// best solution.
+int numTrials = 50;
+
+// This is the "evaluator" we use to determine the best trial (how good
+// the clustering is)
+ClusterEvaluator<BagOfWords> eval = new SilhouetteEvaluator<>(distance);
+
+// Create an Experiment out of BoW for the elements in the document, split
+// accordingly to
+// DOCUMENT_SPLITTER.
+// Our embedding dimensions for the BoW will be the words in the text.
+BagOfWordsExperiment experiment = new BagOfWordsExperiment(
+		BagOfWords.toBoW(doc.splitPages(ClusteringConfiguration.DOCUMENT_SPLITTER).values(),
+				BagOfWords.buildDimensions(doc), ClusteringConfiguration.BOW_MODE));
+
+// Creates a Clusterer and perform the clustering
+// Notice that any clusterer in the Apache API could be used instead
+Clusterer<BagOfWords> clusterer = new MultiSizeClusterer<>(minSize, maxSize, numTrials, distance, eval);
+List<? extends Cluster<BagOfWords>> clusters = clusterer.cluster(experiment.getItems());
+
+...
+
+// Access each cluster like this
+clusters.get(i);
+
+// The BoW in the cluster will be these
+clusters.get(i).getPoints();
+
+...
+```
+
+#### K-Means Clustering
+
+TODO
 
 
 ### Useful Stuff - `io.github.mattera.v4j.util`

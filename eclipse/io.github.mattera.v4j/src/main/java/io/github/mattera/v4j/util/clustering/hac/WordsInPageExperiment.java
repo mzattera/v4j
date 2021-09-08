@@ -15,7 +15,7 @@ import io.github.mattera.v4j.util.Counter;
 import io.github.mattera.v4j.util.BagOfWords.BagOfWordsMode;
 
 /**
- * This class allows to apply page clustering both with hac and apache
+ * This class allows to apply page clustering both with hac and Apache
  * libraries.
  * 
  * An Experiment provides the observations, that is, the items that need to be

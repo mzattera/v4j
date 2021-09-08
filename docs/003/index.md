@@ -138,18 +138,18 @@ The below table summarizes the result of clustering the manuscript pages:
 
 We can see that:
 
-- Biological pages are clearly clustered in their own cluster (3).
+- Biological pages are clearly clustered in their own cluster (#3).
 
-- Other pages using language B (Cosmological, Stars and Herbal B) are grouped in the same cluster (0).
+- Other pages using language B (Cosmological, Stars and Herbal B) are grouped in the same cluster (#0).
 
-- Remaining pages (Herbal A and Pharmaceutical) are in the remaining clusters,
-  Herbal A split in a bigger group (2) and a smaller one (1) and Pharmaceutical pages grouped together
-  with remaining pages (6).
+- Herbal A and Pharmaceutical pages are in the remaining clusters;
+  Herbal A is split in a bigger (#2) and a smaller (#1) group, while Pharmaceutical pages are grouped together
+  with remaining Herbal A pages (#6).
   
-In order to remove some noise, and noticing that in the vast majority of cases, pages
+In order to remove some noise, and noticing that in the vast majority of cases pages
 in a parchment share illustration type and language, we performed the clustering again, this time
 splitting the manuscript by parchment. Notice that parchments 29, 31, 32, 40 have been excluded
-as they either contain Cosmological or Astronomical pages, which we know already do not cluster well, or contains heterogeneous illustration types.
+as they contain Cosmological or Astronomical pages, which we know already do not cluster well.
 
 The results are shown below (they are also available in [the TensorFlow projector](https://projector.tensorflow.org/?config=https://mzattera.github.io/v4j/003/data/projector_config_parchments.json)).
  
@@ -163,13 +163,10 @@ We can see that there a strong tendency for parchments to cluster based on their
   two herbal pages; f65r which contains an illustration and a single label with two words, and f65v.
 
 
-
-
-
-
 # Conclusions 
 
 TODO
+
 ---
 
 [**<< Home**](..)

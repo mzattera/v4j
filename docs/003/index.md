@@ -48,7 +48,7 @@ For single pages, we defined (quite arbitrarily :)) the following outliers, whic
 
 The [TensorBoard Embedding Projector](https://projector.tensorflow.org/) has been used to do a preliminary, quick and visual investigation
 about clustering Voynich pages. The class [`BuildBoW`]() can be used to generate data suitable for visualization that can be uploaded to the projector;
-its output for single pages can be found in [this folder]().
+its output can be found in [this folder]().
 There is also a [pre-populated version of the projector](https://projector.tensorflow.org/?config=https://mzattera.github.io/v4j/003/data/projector_config.json),
 that you can use for your own exploration.
 
@@ -150,6 +150,20 @@ In order to remove some noise, and noticing that in the vast majority of cases, 
 in a parchment share illustration type and language, we performed the clustering again, this time
 splitting the manuscript by parchment. Notice that parchments 29, 31, 32, 40 have been excluded
 as they either contain Cosmological or Astronomical pages, which we know already do not cluster well, or contains heterogeneous illustration types.
+
+The results are shown below (they are also available in [the TensorFlow projector](https://projector.tensorflow.org/?config=https://mzattera.github.io/v4j/003/data/projector_config_parchments.json)).
+ 
+![T-SNE visualization of Voynich Cosmological pages](images/SNE - Parchments - ALL.PNG)
+
+We can see that there a strong tendency for parchments to cluster based on their illustration type and language, with two notable exceptions:
+
+- Zodiac pages (parchments 33 and 34) which tend to remain separate.
+
+- Parchment 33 which indeed is a strange bifolio combining two text pages, which also show stars (f58v and f58r), and
+  two herbal pages; f65r which contains an illustration and a single label with two words, and f65v.
+
+
+
 
 
 

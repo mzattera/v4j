@@ -76,7 +76,7 @@ The image below shows how pages tend to form three distinct clusters, which are 
 - A cluster with Zodiac pages (in red on the bottom-left), for which the language is not provided,
   together with Herbal pages using B language (in purple on the bottom-left).
  
-![T-SNE visualization of Voynich Biological pages](images/SNE - Pages - BY_LANGUAGE.PNG)
+![T-SNE visualization of Voynich pages by language](images/SNE - Pages - BY_LANGUAGE.PNG)
 
 #### Biological Pages
 
@@ -183,7 +183,7 @@ We had a further deeper look into language A and B separately.
 The below image shows the results of clustering Pharmaceutical and Herbal A parchments
 (table shows page count for each cluster, some of the smallest clusters omitted for clarity):
 
-![K-Means clustering of Voynich parchments](images/K-Means - Parchments Language A.PNG)
+![K-Means clustering of Voynich parchments in language A](images/K-Means - Parchments Language A.PNG)
 
 - Pharmaceutical pages stick together.
 
@@ -193,7 +193,7 @@ in smaller clusters, but it might be an artifact of K-Means.
 The below image shows the results of clustering Biological, Stars, and Herbal B parchments
 (table shows page count for each cluster, some of the smallest clusters omitted for clarity):
 
-![K-Means clustering of Voynich parchments](images/K-Means - Parchments Language B.PNG)
+![K-Means clustering of Voynich parchments in language B](images/K-Means - Parchments Language B.PNG)
 
 - Herbal B pages cluster together, separated from Biological and Stars.
 

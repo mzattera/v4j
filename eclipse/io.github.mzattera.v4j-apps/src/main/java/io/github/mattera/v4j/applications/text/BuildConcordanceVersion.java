@@ -1,4 +1,4 @@
-package io.github.mattera.v4j.applications;
+package io.github.mattera.v4j.applications.text;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

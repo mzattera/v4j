@@ -1,7 +1,7 @@
 /**
  * 
  */
-package io.github.mattera.v4j.applications;
+package io.github.mattera.v4j.applications.text;
 
 import java.io.File;
 import java.io.IOException;

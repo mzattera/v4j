@@ -1,8 +1,8 @@
-## Note 002 - Some Basic Data
+## Note 004 - On Terms
 
-_Last updated Sep. 6th, 2021._
+_Last updated Sep. 9th, 2021._
 
-_This note refers to [release v.2.0.0](https://github.com/mzattera/v4j/tree/v.2.0.0) of v4j;
+_This note refers to [release v.4.0.0](https://github.com/mzattera/v4j/tree/v.4.0.0) of v4j;
 **links to classes and files refer to this release** and files might have been deleted or removed in the current master branch.
 In addition, some of this note content might have become obsolete in more recent versions of the library._
 
@@ -14,11 +14,20 @@ library code and JavaDoc._
 ---
 
 The class
-['io.github.mattera.v4j.applications.PrintDocumentStatistics'](https://github.com/mzattera/v4j/blob/v.2.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mattera/v4j/applications/PrintDocumentStatistics.java)
-prints out some statistics for the Voynich pages, such as the illustration type, the Voynich "language", etc. in .CSV format.
+['MostUsedTerms']()
+finds top 20 most used terms for each cluster defined in [Note 003](../003) and prints out the result in .CSV format.
 
-An Excel file ("`PageStatistics.xlsx`") with a collection of these statistics can be found under the
+An Excel file ("`MostUsedTerms.xlsx`") containing this data can be found under the
 [analysis folder](https://github.com/mzattera/v4j/tree/master/resources/analysis).
+
+The below table summarizes the results.
+
+![Most used terms](images/Terms.PNG)
+
+As expected from cluster analysis, beside terms that appear frequently in all clusters (such as **daiin**, **dar**, **dy**, **ol**, **or**),
+there are terms characteristic of a single cluster; the table below shows them.
+
+![Most used terms](images/Unique.PNG)
 
 ---
 

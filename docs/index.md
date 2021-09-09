@@ -40,6 +40,9 @@ In both cases, we refer either to the process of capturing a text (typically the
   
   This should be considered when applying statistical analysis methods to the manuscript.
 
+- [Note 004 - On Terms](./004)
+
+  List of most common Voynichese terms and how they are split across different clusters.
 
 ---
 

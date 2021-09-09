@@ -14,7 +14,7 @@ library code and JavaDoc._
 ---
 
 The class
-['MostUsedTerms']()
+['MostUsedTerms'](https://github.com/mzattera/v4j/blob/v.4.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mattera/v4j/applications/MostUsedTerms.java)
 finds top 20 most used terms for each cluster defined in [Note 003](../003) and prints out the result in .CSV format.
 
 An Excel file ("`MostUsedTerms.xlsx`") containing this data can be found under the

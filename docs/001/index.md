@@ -3,10 +3,10 @@
 _Last updated Sep. 6th, 2021._
 
 _This note refers to [release v.1.0.0](https://github.com/mzattera/v4j/tree/v.1.0.0) of v4j;
-**links to classes and files refer to this release** and files might have been deleted or removed in the current master branch.
+**links to classes and files refer to this release** and files might have been changed, deleted or moved in the current master branch.
 In addition, some of this note content might have become obsolete in more recent versions of the library._
 
-_Working notes are not providing detailed description of algorithms and classes used, for this, please refer to the 
+_Working notes are not providing detailed description of algorithms and classes used; for this, please refer to the 
 library code and JavaDoc._
 
 [**<< Home**](..)

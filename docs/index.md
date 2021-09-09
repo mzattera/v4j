@@ -19,6 +19,8 @@ In other terms, a token is an instance of a term. For example the below line in 
   
   When the distinction is not relevant, I might loosely use "word" (often in quotes) to refer to either tokens or terms. 
 
+- Terms "transcription" and "transliteration" are used more or less interchangeably, though the latter is more correct.
+In both case we refer either to the process of capturing a text (typically the Voynich) in a file or to the outcome of such process.
 
 ### Working Notes
 

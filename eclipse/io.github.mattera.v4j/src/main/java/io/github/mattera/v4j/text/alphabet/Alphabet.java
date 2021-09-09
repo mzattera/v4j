@@ -16,11 +16,9 @@ import java.util.List;
  */
 public abstract class Alphabet {
 
-	public final static Alphabet EVA = new Eva();
+	public final static Alphabet EVA = new EvaAlphabet();
 
 	public final static Alphabet UTF_16 = new JavaCharset();
-
-	public final static Alphabet SLOT = new Slot();
 
 	/**
 	 * @return a string code for this alphabet, same as that used in the IVTFF file.

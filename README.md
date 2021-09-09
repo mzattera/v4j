@@ -34,7 +34,7 @@ punctuation) one of them is chosen as the default "space" character (returned by
 
   Special characters also include "unreadable" characters that are used (e.g. in the EVA alphabet) to mark illegible characters in the original text.
 		
-The `Alphabet` class is abstract; to provide an actual implementation simply extend this class and provide methods that 
+The `Alphabet` class is abstract; to provide an actual implementation, simply extend this class and provide methods that 
 list characters accordingly to their category.
 
 The `Alphabet` class provides some static fields to access already defined alphabets:
@@ -98,13 +98,25 @@ which contains IVTFF metadata for the line, namely the locus identifier and the 
 copies of the same line exists with different transcribers.
 
 In addition to inherited methods `filterElements()` and `splitElements()`, the methods `filterPages()`, `filterLines()`, `splitPages()`, and `splitLines()`
-can be used to create IVTFF documents by filtering and/or splitting content of an existing document. Again, please refer to JavaDoc fro more details.
+can be used to create IVTFF documents by filtering and/or splitting content of an existing document. Again, please refer to JavaDoc for more details.
+Also notice that, based on [working note 003](https://mzattera.github.io/v4j/003/), `PageHeader` exposes a cluster for each page in the manuscript;
+this information can be used to filter or split the manuscripts into clusters.
 
 ```Java
-/* Get all biological pages (MAJORITY transcription) */
+/* Get a document containing all and only biological pages (MAJORITY transcription) */
 
 IvtffText doc = VoynichFactory.getDocument(TranscriptionType.MAJORITY);
 doc = doc.filterPages(new PageFilter.Builder().illustrationType("B").build());
+
+/*
+Split the manuscript into clusters (see https://mzattera.github.io/v4j/003/)
+
+clusterMap will match any cluster name (see PageHeader.CLUSTERS) with a IvfttText 
+with pages in that cluster.
+*/
+
+IvtffText = VoynichFactory.getDocument(TranscriptionType.CONCORDANCE);
+Map<String, IvtffText> clusterMap = doc.splitPages(new PageSplitter.Builder().byCluster().build());
 ```
 
 ### Other (Regular) Texts - `io.github.mattera.v4j.text.txt`

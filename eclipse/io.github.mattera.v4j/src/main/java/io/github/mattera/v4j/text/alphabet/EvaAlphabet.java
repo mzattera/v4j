@@ -12,7 +12,7 @@ package io.github.mattera.v4j.text.alphabet;
  * @author Massimiliano "Maxi" Zattera
  */
 // TODO rename to EVA or EVA extended based on what we really support
-public final class Eva extends Alphabet {
+public final class EvaAlphabet extends Alphabet {
 
 	@Override
 	public String getCodeString() {
@@ -82,6 +82,6 @@ public final class Eva extends Alphabet {
 		return unreadableChars;
 	}
 
-	protected Eva() {
+	protected EvaAlphabet() {
 	}
 }

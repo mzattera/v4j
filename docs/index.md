@@ -30,7 +30,13 @@ In other terms, a token is an instance of a term. For example the below line in 
 - [Note 002 - Some Basic Statistics](./002)
 
   An Excel file with basic page statistics, useful to build pivots.
+  
+- [Note 003 - Clustering](./003)
 
+  Application of t-SNE visualization and K-Means clustering to the Voynich, showing how page with same illustration type and
+  Courier's language also share similar words.
+  
+  This should be considered when applying statistical analysis methods to the manuscript.
 
 
 ---

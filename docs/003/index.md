@@ -48,7 +48,7 @@ Based on this analysis [{2}](#Note2)), we defined the following outliers, which 
 
 - **f27v**, **f53r**: Herbal A pages, that do not look different from others to the naked eye.
 - **f57v**: 8 circles with words; part of a strange parchments including 2 Herbal B pages and f66r, a text-only page with text
-arranged in 3 columns, one with labels, the second with single "letters" and the last one with longer paragraphs.
+arranged in 3 columns.
 - **f65r**: Big plant illustration; only text is a 3-words label.
 - **f68r2**, **f68r1**: Astrological pages, with stars and labels associated to them.
 - **f72v1**: the "libra" Zodiac page.
@@ -57,23 +57,19 @@ arranged in 3 columns, one with labels, the second with single "letters" and the
 ## Preliminary Exploration
 
 The [TensorBoard Embedding Projector](https://projector.tensorflow.org/) has been used to do a preliminary, quick and visual investigation
-about clustering Voynich pages. The class [`BuildBoW`]() can be used to generate data suitable for visualization that can be uploaded to the projector;
-its output, in the form of a "vector" and "metadata" .TSV files, can be found in [this folder]().
-There is also a [pre-populated version of the projector](https://projector.tensorflow.org/?config=https://mzattera.github.io/v4j/003/data/projector_config.json),
-that you can use for your own exploration.
+about clustering Voynich pages [{3}](#Note3).
 
-It must be noticed that the projector uses t-SNE, a visualization technique that could arrange data i clusters even though clusters are not 
-present in the actual data set (see [this article](https://distill.pub/2016/misread-tsne/)),
-for this reason we will also try to validate findings further by applying k-means clustering.
-
-The below images have been obtained using the projector with following parameters:
+The below images have been obtained using the projector with following parameters;
+; a
+[pre-populated version](https://projector.tensorflow.org/?config=https://mzattera.github.io/v4j/003/data/projector_config.json),
+is available for your own exploration.
 ```T-SNE 2D projection, Label By=ID, Color By=Illustration + LanguagePerplexity, Learning rate=0.01, Supervise=0, Iteration=10'000```.
  
 ![T-SNE visualization of Voynich pages](images/SNE - Pages - ALL.PNG)
 
 #### Courier's Language
 
-Pages tend to form three distinct clusters, which are highly correlated with Courier's languages (A or B).
+The image below shows how pages tend to form three distinct clusters, which are highly correlated with Courier's languages (A or B).
 
 - A cluster of pages using A language (in blue on top-left of the image), composed mostly by Pharmaceutical and Herbal A pages.
 - A cluster of pages using B language (in purple on right of the image), composed mostly by Biological and Stars pages.
@@ -142,12 +138,7 @@ These pages tend to disperse in the dimension space.
 
 ## K-Means Clustering
 
-We can use K-Mean clustering to cluster the pages in the Voynich. Class `package io.github.mzattera.v4j.applications.clustering.KMeansClusterByWords`
-does the clustering and prints out a report that can be easily converted in an Excel file; a copy of such file (`K-Means Clustering - Pages.xlsx`),
-with some additional data, can be found in the [analysis folder](). The class can be parameterized to run different types of experiments;
-keep in mind K-Means algorithm include some randomness, therefore slightly different clustering might result at each experiment.
-
-The below table summarizes the result of clustering the manuscript pages:
+The below table summarizes the result of clustering the manuscript pages using K-Means clustering [{4}](#Note4):
 
 ![K-Means clustering of Voynich pages](images/K-Means - Pages.PNG)
 
@@ -202,6 +193,16 @@ Astrological, Cosmological and Zodiac pages and it stronger when considering ent
 
 <a id="Note2">**{2}**</a> The class [`OutlierDetection`]() is used to calculate average distance of each page from other
 pages in the text. The output of the class (`PageEmbeddingDistance.xlsx`) can be found in the [analysis folder]().
+
+<a id="Note3">**{3}**</a> The class [`BuildBoW`]() can be used to generate data suitable for visualization that can
+be uploaded to the TensorFlow projector. The output of this class, in the form of a "vector" and "metadata" .TSV files,
+can be found in [this folder]() both for single pages or entire parchments.
+
+<a id="Note4">**{4}**</a> Class `package io.github.mzattera.v4j.applications.clustering.KMeansClusterByWords`
+does the clustering and prints out a report that can be easily converted in an Excel file.
+The class can be parameterized to run different types of experiments; its outputs, with some additional data,
+can be found as Excel files in the [analysis folder]().
+Keep in mind K-Means algorithm include some randomness, therefore slightly different clustering might result at each experiment.
  
 ---
 

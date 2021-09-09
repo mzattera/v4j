@@ -15,6 +15,7 @@ Voynich manuscript; here you cna find examples about how to use the library.
 The idea of the library is to provide a "document" object; this is a (possibly) structured text written in one specific "alphabet".
 I tried to document the classes using JavaDoc; please refer to the Java source for more details: the below is just a quick intro.
 
+<a id="alphabet"></a>
 
 ### `io.github.mattera.v4j.text.alphabet`
 

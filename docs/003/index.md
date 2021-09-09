@@ -1,6 +1,6 @@
 ## Note 003 - Clustering
 
-_Last updated Sep. 7th, 2021._
+_Last updated Sep. 8th, 2021._
 
 _This note refers to [release v.3.0.0](https://github.com/mzattera/v4j/tree/v.3.0.0) of v4j.
 Some of the content might not apply to more recent versions of the library._
@@ -14,45 +14,60 @@ library code and JavaDoc._
 
 # Abstract
 
+This note discuss the application of k-means clustering algorithms to Voynich pages, showing how the words in the page 
+strongly correlate with the page illustration type (Herbal, Biological, Pharmaceutical, etc.) and Courier's language (A or B).
+
 # Previous Works
+
+We are not the first one to apply this approach to the Voynich, just [Google Voynich clustering](https://www.google.com/search?q=Voynich+clustering)
+and you will find many articles and blog posts o the topic.
+
+I reserve the option to go over these publications in the future and compare them with the contents of this note.
 
 # Methodology
 
-Our starting point is the Voynich majority transcription of the text (see [v4j README](https://github.com/mzattera/v4j#ivtff)).
+Our starting point is the Voynich majority transcription of the text (see [v4j README](https://github.com/mzattera/v4j#ivtff));
+We use the EVA alphabet, but it is not relevant for this discussion, as we look at whole "words" in the Voynich.
 
 ## Embedding and Distance Measure
 
 The text is split into units for analysis, that could be single pages or bigger portions of text (e.g. parchments / bi-folios).
-Each unit is embedded as a bag of word where the dimensions are the "readable" words in the Voynich (that is, words with no
-"unreadable" characters) and the value for the dimension is the number of times corresponding word appears in the text unit.
+Each unit is embedded as a bag of words where the dimensions are the "readable" words in the Voynich (that is, words with no
+"unreadable" characters[[1]]) 
+and the value for the dimension is the number of times corresponding word appears in the text unit.
 
-Similarity of textual unit is computed as positive angular distance of corresponding embedding; this returns angular distance
+Similarity between textual units is computed as positive angular distance of corresponding embedding; this returns angular distance
 between two vectors assumed to have only positive components.
 
 ## Outliers
 
-The class [`OutlierDetection`]() is used to look for "outliers", that is textual units which appear very dissimilar to other textual units
-the output of the class (`PageEmbeddingDistance.xlsx`) can be seen in the [analysis folder]().
-For single pages, we defined (quite arbitrarily :)) the following outliers, which are removed from the text before further analysis.
+The class [`OutlierDetection`]() is used to look for "outliers", textual units which appear very dissimilar to other textual units.
+The output of the class (`PageEmbeddingDistance.xlsx`) can be seen in the [analysis folder]().
 
-- **f65r**:
-- **f116v**:
-- **f53r**:
-- **f27v**:
-- **f68r2**:
-- **f68r1**:
-- **f57v**:
-- **f72v1**:
+Based on this analysis, we defined the following outliers, which are removed from the text before clustering.
+
+- **f27v**, **f53r**: Herbal A pages, that do not look different from others to the naked eye.
+- **f57v**: 8 circles with words; part of a strange parchments including 2 Herbal B pages and f66r, a text-only page with text
+arranged in 3 columns, one with labels, the second with single "letters" and the last one with longer paragraphs.
+- **f65r**: Big plant illustration; only text is a 3-words label.
+- **f68r2**, **f68r1**: Astrological pages, with stars and labels associated to them.
+- **f72v1**: the "libra" Zodiac page.
+- **f116v**: Short text  written in "Michitonese" that seems a mix between Latin alphabet and the VMs script.
 
 ## Preliminary Exploration
 
 The [TensorBoard Embedding Projector](https://projector.tensorflow.org/) has been used to do a preliminary, quick and visual investigation
 about clustering Voynich pages. The class [`BuildBoW`]() can be used to generate data suitable for visualization that can be uploaded to the projector;
-its output can be found in [this folder]().
+its output, in the form of a "vector" and "metadata" .TSV files, can be found in [this folder]().
 There is also a [pre-populated version of the projector](https://projector.tensorflow.org/?config=https://mzattera.github.io/v4j/003/data/projector_config.json),
 that you can use for your own exploration.
 
-The below images have been obtained using the projector with following parameters: T-SNE 2D projection, Perplexity=5, Learning rate=0.01, Supervise=0, Iteration=10'000.
+It must be noticed that the projector uses t-SNE, a visualization technique that could arrange data i clusters even though clusters are not 
+present in the actual data set (see [this article](https://distill.pub/2016/misread-tsne/)),
+for this reason we will also try to validate findings further by applying k-means clustering.
+
+The below images have been obtained using the projector with following parameters:
+```T-SNE 2D projection, Perplexity=5, Learning rate=0.01, Supervise=0, Iteration=10'000```.
  
 ![T-SNE visualization of Voynich pages](images/SNE - Pages - ALL.PNG)
 
@@ -75,22 +90,9 @@ These pages cluster closely together.
 
 #### Stars Pages
 
-The stars pages tend to cluster together, nest to the Biological pages (they are all written in Courier's B language).
+The stars pages tend to cluster together, next to the Biological pages (they are all written in Courier's B language).
  
 ![T-SNE visualization of Voynich Stars pages](images/SNE - Pages - S-.PNG)
-
-#### Herbal A Pages
-
-The herbal pages written with Courier's language B tend to cluster together, well separated from Herbal B pages.
- 
-![T-SNE visualization of Voynich Herbal A pages](images/SNE - Pages - HA.PNG)
-
-#### Pharmaceutical Pages
-
-Those pages tend to cluster together, next to but separated from Herbal A; to be noticed that all Pharmaceutical pages are written
-using Courier's language A and many Herbal A pages appears bounded with Pharmaceutical pages in the same parchment.
- 
-![T-SNE visualization of Voynich Pharmaceutical pages](images/SNE - Pages - PA.PNG)
 
 #### Herbal B Pages
 
@@ -103,6 +105,19 @@ The herbal pages written with Courier's language B tend to cluster together, wel
 The zodiac pages tend to cluster together, next to Herbal B pages.
  
 ![T-SNE visualization of Voynich Zodiac pages](images/SNE - Pages - Z-.PNG)
+
+#### Herbal A Pages
+
+The herbal pages written with Courier's language A tend to cluster together, well separated from Herbal B pages.
+ 
+![T-SNE visualization of Voynich Herbal A pages](images/SNE - Pages - HA.PNG)
+
+#### Pharmaceutical Pages
+
+Those pages tend to cluster together, next to but separated from Herbal A; to be noticed that all Pharmaceutical pages are written
+using Courier's language A.
+ 
+![T-SNE visualization of Voynich Pharmaceutical pages](images/SNE - Pages - PA.PNG)
 
 #### Astronomical Pages
 
@@ -151,22 +166,38 @@ in a parchment share illustration type and language, we performed the clustering
 splitting the manuscript by parchment. Notice that parchments 29, 31, 32, 40 have been excluded
 as they contain Cosmological or Astronomical pages, which we know already do not cluster well.
 
-The results are shown below (they are also available in [the TensorFlow projector](https://projector.tensorflow.org/?config=https://mzattera.github.io/v4j/003/data/projector_config_parchments.json)).
- 
+The results are shown below (they are also available in\
+[the TensorFlow projector](https://projector.tensorflow.org/?config=https://mzattera.github.io/v4j/003/data/projector_config_parchments.json)).
+
+
+The below images have been obtained using the projector with following parameters:
+```T-SNE 2D projection, Perplexity=5, Learning rate=1, Supervise=0, Iteration=1'000```. 
 ![T-SNE visualization of Voynich Cosmological pages](images/SNE - Parchments - ALL.PNG)
 
 We can see that there a strong tendency for parchments to cluster based on their illustration type and language, with two notable exceptions:
 
 - Zodiac pages (parchments 33 and 34) which tend to remain separate.
 
-- Parchment 33 which indeed is a strange bifolio combining two text pages, which also show stars (f58v and f58r), and
-  two herbal pages; f65r which contains an illustration and a single label with two words, and f65v.
+- Parchment 33 which indeed is a strange bi-folio combining two text pages, which also show stars (f58v and f58r), and
+  two herbal pages; f65r which is an outlier containing a single label with three words, and f65v.
 
 
 # Conclusions 
 
-TODO
+Looking at Voynich pages as bag of words we can see that:
 
+- If we look only at Courier's languages, we can see page clusters accordingly.
+
+- Pages tends to group based on their illustration type and Courier's language. This tendency is less obvious for
+Astrological, Cosmological and Zodiac pages and it stronger when considering entire parchments instead of single pages.
+
+
+---
+
+** Notes**
+
+<a href="n1"></a> 1. see [v4j README](https://github.com/mzattera/v4j#alphabet).
+ 
 ---
 
 [**<< Home**](..)

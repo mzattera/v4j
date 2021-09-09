@@ -34,7 +34,7 @@ We use the EVA alphabet, but it is not relevant for this discussion, as we look 
 
 The text is split into units for analysis, that could be single pages or bigger portions of text (e.g. parchments / bi-folios).
 Each unit is embedded as a bag of words where the dimensions are the "readable" words in the Voynich (that is, words with no
-"unreadable" characters {[1](./#Note1)})
+"unreadable" characters [{1}](Note1))
 and the value for the dimension is the number of times corresponding word appears in the text unit.
 
 Similarity between textual units is computed as positive angular distance of corresponding embedding; this returns angular distance
@@ -44,7 +44,7 @@ between two vectors assumed to have only positive components.
 
 Before clustering, we look for "outliers"; that is, textual units which appear very dissimilar from other textual units.
 
-Based on this analysis {[2](./#Note2)}), we defined the following outliers, which are removed from the text before clustering.
+Based on this analysis [{2}](Note2)), we defined the following outliers, which are removed from the text before clustering.
 
 - **f27v**, **f53r**: Herbal A pages, that do not look different from others to the naked eye.
 - **f57v**: 8 circles with words; part of a strange parchments including 2 Herbal B pages and f66r, a text-only page with text
@@ -67,7 +67,7 @@ present in the actual data set (see [this article](https://distill.pub/2016/misr
 for this reason we will also try to validate findings further by applying k-means clustering.
 
 The below images have been obtained using the projector with following parameters:
-```T-SNE 2D projection, Label By=ID, Color By=Illustration + LanguagePerplexity=5, Learning rate=0.01, Supervise=0, Iteration=10'000```.
+```T-SNE 2D projection, Label By=ID, Color By=Illustration + LanguagePerplexity, Learning rate=0.01, Supervise=0, Iteration=10'000```.
  
 ![T-SNE visualization of Voynich pages](images/SNE - Pages - ALL.PNG)
 
@@ -171,7 +171,7 @@ The results are shown below (they are also available in
 
 
 The below images have been obtained using the projector with following parameters:
-```T-SNE 2D projection, Perplexity=5, Learning rate=1, Supervise=0, Iteration=1'000```. 
+```T-SNE 2D projection, Label By=ID, Color By=Illustration + LanguagePerplexity, Perplexity=5, Learning rate=1, Supervise=0, Iteration=1'000```. 
 ![T-SNE visualization of Voynich Cosmological pages](images/SNE - Parchments - ALL.PNG)
 
 We can see that there a strong tendency for parchments to cluster based on their illustration type and language, with two notable exceptions:
@@ -198,9 +198,9 @@ Astrological, Cosmological and Zodiac pages and it stronger when considering ent
 
 ** Notes**
 
-<a href="Note1">{1}</a> see [v4j README](https://github.com/mzattera/v4j#alphabet).
+<a href="Note1">**{1}**</a> See [v4j README](https://github.com/mzattera/v4j#alphabet).
 
-<a href="Note2">{2}</a> The class [`OutlierDetection`]() is used to calculate average distance of each page from other
+<a href="Note2">**{2}**</a> The class [`OutlierDetection`]() is used to calculate average distance of each page from other
 pages in the text. The output of the class (`PageEmbeddingDistance.xlsx`) can be found in the [analysis folder]().
  
 ---

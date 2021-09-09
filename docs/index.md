@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Welcome
 
 Hi, in these pages I store thoughts, working notes, rants and frustrations about the [Voynich manuscript](https://en.wikipedia.org/wiki/Voynich_manuscript)
 as resulting from my work with the [v4j library](https://github.com/mzattera/v4j).
@@ -7,7 +7,7 @@ as resulting from my work with the [v4j library](https://github.com/mzattera/v4j
 
 In the below notes, we will try to be consistent with following terminology.
 
-- A **token** in the Voynich is a single sequence of characters, separated by spaces. A **term** represent the set of identical tokens.
+- A **token** in a text is a single sequence of characters, separated by spaces. A **term** represents a set of identical tokens.
 In other terms, a token is an instance of a term. For example the below line in the Voynich text:
 
   ```
@@ -15,12 +15,12 @@ In other terms, a token is an instance of a term. For example the below line in 
   ```
   
   Contains 10 tokens ("daiin", "shckhey", "ckhor", "chor", "shey", "kol", "chol", "chol", "kor", "chol") which are instances of 
-  8 terms ("daiin", "shckhey", "ckhor", "chor", "shey", "kol", "chol" "kor").
+  8 terms ("daiin", "shckhey", "ckhor", "chor", "shey", "kol", "chol", "kor").
   
   When the distinction is not relevant, I might loosely use "word" (often in quotes) to refer to either tokens or terms. 
 
-- Terms "transcription" and "transliteration" are used more or less interchangeably, though the latter is more correct.
-In both case we refer either to the process of capturing a text (typically the Voynich) in a file or to the outcome of such process.
+- The terms "**transcription**" and "**transliteration**" are used more or less interchangeably, though the latter is more correct.
+In both cases, we refer either to the process of capturing a text (typically the Voynich) in a file or to the outcome of such process.
 
 ### Working Notes
 

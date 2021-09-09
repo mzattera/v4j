@@ -232,7 +232,7 @@ Courier's languages reflect language differences in the underlying "clear" text.
 these differences should be kept in mind when performing statistical analysis of the text or when trying it decipherment.
 
   For this reason v4j library provides means to classify pages accordingly to above considerations, the resulting clusters are shown below
-  (also refer to[`PageHeader`]() class.
+  (also refer to[`PageHeader`](https://github.com/mzattera/v4j/blob/v.3.0.0/eclipse/io.github.mattera.v4j/src/main/java/io/github/mattera/v4j/text/ivtff/PageHeader.java) class.
  
   ![Cluster size in words](images/Clusters.PNG)
 
@@ -243,17 +243,19 @@ these differences should be kept in mind when performing statistical analysis of
 
 <a id="Note1">**{1}**</a> See [v4j README](https://github.com/mzattera/v4j#alphabet).
 
-<a id="Note2">**{2}**</a> The class [`OutlierDetection`]() is used to calculate average distance of each page from other
-pages in the text. The output of the class (`PageEmbeddingDistance.xlsx`) can be found in the [analysis folder]().
+<a id="Note2">**{2}**</a> The class
+[`OutlierDetection`](https://github.com/mzattera/v4j/blob/v.3.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/clustering/OutlierDetection.java)
+is used to calculate average distance of each page from other pages in the text. The output of the class (`PageEmbeddingDistance.xlsx`) can be found in the
+[analysis folder](https://github.com/mzattera/v4j/tree/master/resources/analysis).
 
 <a id="Note3">**{3}**</a> The class [`BuildBoW`]() can be used to generate data suitable for visualization that can
 be uploaded to the TensorFlow projector. The output of this class, in the form of a "vector" and "metadata" .TSV files,
-can be found in [this folder]() both for single pages or entire parchments.
+can be found in [this folder](https://github.com/mzattera/v4j/tree/master/docs/003/data) both for single pages or entire parchments.
 
 <a id="Note4">**{4}**</a> Class `KMeansClusterByWords`
 does the K-Means clustering and prints out a report that can be easily converted in an Excel file.
 The class can be parameterized to run different types of experiments; its outputs, with some additional data,
-can be found as Excel files in the [analysis folder]().
+can be found as Excel files in the [analysis folder](https://github.com/mzattera/v4j/tree/master/resources/analysis).
 Keep in mind K-Means algorithm include some randomness, therefore slightly different clustering might result at each experiment.
  
 ---

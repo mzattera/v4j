@@ -145,9 +145,9 @@ The class can build a BoW where dimensions can be (see `BagOfWordsMode`):
 Notice this class is `Clusterable`, thus can be used with the Apache clustering API where subclasses of `Clusterer<T extends Clusterable>`
 are used to cluster set of `Clusterable` instances.
 
-#### K-Means Clustering
+#### K-Means Clustering - `io.github.mattera.v4j.util.clustering`
 
-Below an example of how BoW insances can be clustered:
+Below an example of how BoW instances can be clustered:
 
 ```Java
 // Distance measure for clustering
@@ -190,10 +190,6 @@ clusters.get(i).getPoints();
 
 ...
 ```
-
-#### K-Means Clustering
-
-TODO
 
 
 ### Useful Stuff - `io.github.mattera.v4j.util`

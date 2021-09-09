@@ -215,10 +215,10 @@ This is more evident when clustering whole parchments instead of single pages.
   
   - **Herbal B** pages form their own group.
   
-  - **Biological** and **Stars** pages form two close, albeit mostly separate, groups.
+  - **Biological** and **Stars** pages form two close, albeit separate, groups.
   
   - The grouping behavior of remaining pages (**Astronomical**, **Text**, **Zodiac** and **Cosmological**)
-  is more difficult to assess. However, **Zodiac** pages seem to show some similarity with **Herbal B**.
+  is more difficult to assess. However, **Zodiac** pages seem to show some internal consistency and a similarity with **Herbal B**.
 
 - It has been already proposed (_citation needed_) that these similarities are either a proof that the Voynich is not an hoax
 as the vocabulary used in its page correlates with the page "topics" that can be inferred by the illustration type
@@ -234,7 +234,7 @@ these differences should be kept in mind when performing statistical analysis of
   For this reason v4j library provides means to classify pages accordingly to above considerations, the resulting clusters are shown below
   (also refer to[`PageHeader`]() class.
  
-![Cluster size in words](images/Clusters.PNG)
+  ![Cluster size in words](images/Clusters.PNG)
 
 	
 ---

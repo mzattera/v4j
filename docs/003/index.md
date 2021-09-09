@@ -248,12 +248,15 @@ these differences should be kept in mind when performing statistical analysis of
 is used to calculate average distance of each page from other pages in the text. The output of the class (`PageEmbeddingDistance.xlsx`) can be found in the
 [analysis folder](https://github.com/mzattera/v4j/tree/master/resources/analysis).
 
-<a id="Note3">**{3}**</a> The class [`BuildBoW`]() can be used to generate data suitable for visualization that can
-be uploaded to the TensorFlow projector. The output of this class, in the form of a "vector" and "metadata" .TSV files,
-can be found in [this folder](https://github.com/mzattera/v4j/tree/master/docs/003/data) both for single pages or entire parchments.
+<a id="Note3">**{3}**</a> The class
+[`BuildBoW`](https://github.com/mzattera/v4j/blob/v.3.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/clustering/BuildBoW.java)
+can be used to generate data that can be uploaded to TensorFlow projector for visualization.
+The output of this class, in the form of "vector" and "metadata" .TSV files, can be found in
+[this folder](https://github.com/mzattera/v4j/tree/master/docs/003/data) both for single pages or entire parchments.
 
-<a id="Note4">**{4}**</a> Class `KMeansClusterByWords`
-does the K-Means clustering and prints out a report that can be easily converted in an Excel file.
+<a id="Note4">**{4}**</a> Class
+[`KMeansClusterByWords`](https://github.com/mzattera/v4j/blob/v.3.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/clustering/KMeansClusterByWords.java)
+performs K-Means clustering and prints out a report that can be easily converted in an Excel file.
 The class can be parameterized to run different types of experiments; its outputs, with some additional data,
 can be found as Excel files in the [analysis folder](https://github.com/mzattera/v4j/tree/master/resources/analysis).
 Keep in mind K-Means algorithm include some randomness, therefore slightly different clustering might result at each experiment.

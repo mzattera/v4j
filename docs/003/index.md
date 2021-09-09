@@ -34,7 +34,7 @@ We use the EVA alphabet, but it is not relevant for this discussion, as we look 
 
 The text is split into units for analysis, that could be single pages or bigger portions of text (e.g. parchments / bi-folios).
 Each unit is embedded as a bag of words where the dimensions are the "readable" words in the Voynich (that is, words with no
-"unreadable" characters [1](#Note1) )
+"unreadable" characters {[1](./#Note1)})
 and the value for the dimension is the number of times corresponding word appears in the text unit.
 
 Similarity between textual units is computed as positive angular distance of corresponding embedding; this returns angular distance
@@ -42,10 +42,9 @@ between two vectors assumed to have only positive components.
 
 ## Outliers
 
-The class [`OutlierDetection`]() is used to look for "outliers", textual units which appear very dissimilar to other textual units.
-The output of the class (`PageEmbeddingDistance.xlsx`) can be seen in the [analysis folder]().
+Before clustering, we look for "outliers"; that is, textual units which appear very dissimilar from other textual units.
 
-Based on this analysis, we defined the following outliers, which are removed from the text before clustering.
+Based on this analysis {[2](./#Note2)}), we defined the following outliers, which are removed from the text before clustering.
 
 - **f27v**, **f53r**: Herbal A pages, that do not look different from others to the naked eye.
 - **f57v**: 8 circles with words; part of a strange parchments including 2 Herbal B pages and f66r, a text-only page with text
@@ -181,6 +180,8 @@ We can see that there a strong tendency for parchments to cluster based on their
 
 - Parchment 33 which indeed is a strange bi-folio combining two text pages, which also show stars (f58v and f58r), and
   two herbal pages; f65r which is an outlier containing a single label with three words, and f65v.
+  
+  This parchment will be excluded from further processing.
 
 
 # Conclusions 
@@ -197,7 +198,10 @@ Astrological, Cosmological and Zodiac pages and it stronger when considering ent
 
 ** Notes**
 
-<a href="Note1">1.</a> see [v4j README](https://github.com/mzattera/v4j#alphabet).
+<a href="Note1">{1}</a> see [v4j README](https://github.com/mzattera/v4j#alphabet).
+
+<a href="Note2">{2}</a> The class [`OutlierDetection`]() is used to calculate average distance of each page from other
+pages in the text. The output of the class (`PageEmbeddingDistance.xlsx`) can be found in the [analysis folder]().
  
 ---
 

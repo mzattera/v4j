@@ -202,7 +202,7 @@ The below image shows the results of clustering Biological, Stars, and Herbal B 
 
 # Conclusions 
 
-Based on clustering the pages based on the "words" they contain:
+Based on the above clustering analysis we can conclude that:
 
 - Pages written using Courier's language A look quite different from pages using language B.
 

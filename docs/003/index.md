@@ -19,7 +19,8 @@ strongly correlate with the page illustration type (Herbal, Biological, Pharmace
 
 # Previous Works
 
-We are not the first one to apply this approach to the Voynich, just [Google Voynich clustering](https://www.google.com/search?q=Voynich+clustering)
+We are not the first one to apply this approach to the Voynich, just
+[google "Voynich clustering"](https://www.google.com/search?q=Voynich+clustering)
 and you will find many articles and blog posts o the topic.
 
 I reserve the option to go over these publications in the future and compare them with the contents of this note.
@@ -33,7 +34,7 @@ We use the EVA alphabet, but it is not relevant for this discussion, as we look 
 
 The text is split into units for analysis, that could be single pages or bigger portions of text (e.g. parchments / bi-folios).
 Each unit is embedded as a bag of words where the dimensions are the "readable" words in the Voynich (that is, words with no
-"unreadable" characters [1] ) 
+"unreadable" characters [1](#Note1) )
 and the value for the dimension is the number of times corresponding word appears in the text unit.
 
 Similarity between textual units is computed as positive angular distance of corresponding embedding; this returns angular distance
@@ -67,7 +68,7 @@ present in the actual data set (see [this article](https://distill.pub/2016/misr
 for this reason we will also try to validate findings further by applying k-means clustering.
 
 The below images have been obtained using the projector with following parameters:
-```T-SNE 2D projection, Perplexity=5, Learning rate=0.01, Supervise=0, Iteration=10'000```.
+```T-SNE 2D projection, Label By=ID, Color By=Illustration + LanguagePerplexity=5, Learning rate=0.01, Supervise=0, Iteration=10'000```.
  
 ![T-SNE visualization of Voynich pages](images/SNE - Pages - ALL.PNG)
 
@@ -166,7 +167,7 @@ in a parchment share illustration type and language, we performed the clustering
 splitting the manuscript by parchment. Notice that parchments 29, 31, 32, 40 have been excluded
 as they contain Cosmological or Astronomical pages, which we know already do not cluster well.
 
-The results are shown below (they are also available in\
+The results are shown below (they are also available in
 [the TensorFlow projector](https://projector.tensorflow.org/?config=https://mzattera.github.io/v4j/003/data/projector_config_parchments.json)).
 
 
@@ -196,7 +197,7 @@ Astrological, Cosmological and Zodiac pages and it stronger when considering ent
 
 ** Notes**
 
-<a href="n1"></a> 1. see [v4j README](https://github.com/mzattera/v4j#alphabet).
+<a href="Note1">1.</a> see [v4j README](https://github.com/mzattera/v4j#alphabet).
  
 ---
 

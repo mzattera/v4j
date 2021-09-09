@@ -1,7 +1,7 @@
 /**
  * 
  */
-package io.github.mattera.v4j.util;
+package io.github.mattera.v4j.util.clustering;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,6 +13,7 @@ import java.util.Map.Entry;
 import org.apache.commons.math3.ml.clustering.Clusterable;
 
 import io.github.mattera.v4j.text.Text;
+import io.github.mattera.v4j.util.Counter;
 
 /**
  * This is a bag of words for words in a given Text.

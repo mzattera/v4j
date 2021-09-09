@@ -10,9 +10,9 @@ import java.util.Map;
 
 import io.github.mattera.v4j.text.CompositeText;
 import io.github.mattera.v4j.text.Text;
-import io.github.mattera.v4j.util.BagOfWords;
 import io.github.mattera.v4j.util.Counter;
-import io.github.mattera.v4j.util.BagOfWords.BagOfWordsMode;
+import io.github.mattera.v4j.util.clustering.BagOfWords;
+import io.github.mattera.v4j.util.clustering.BagOfWords.BagOfWordsMode;
 
 /**
  * This class allows to apply page clustering both with hac and Apache

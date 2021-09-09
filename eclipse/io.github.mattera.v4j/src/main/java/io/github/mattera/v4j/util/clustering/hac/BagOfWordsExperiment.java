@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import io.github.mattera.v4j.util.BagOfWords;
+import io.github.mattera.v4j.util.clustering.BagOfWords;
 
 /**
  * This class allows to apply clustering of Bag of Words both with hac and

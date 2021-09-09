@@ -50,7 +50,7 @@ Based on this analysis [{2}](#Note2)), we defined the following outliers, which 
 - **f57v**: 8 circles with words; part of a strange parchments including 2 Herbal B pages and f66r, a text-only page with text
 arranged in 3 columns.
 - **f65r**: Big plant illustration; only text is a 3-words label.
-- **f68r2**, **f68r1**: Astrological pages, with stars and labels associated to them.
+- **f68r2**, **f68r1**: Astronomical pages, with stars and labels associated to them.
 - **f72v1**: the "libra" Zodiac page.
 - **f116v**: Short text  written in "Michitonese" that seems a mix between Latin alphabet and the VMs script.
 
@@ -158,12 +158,11 @@ splitting the manuscript by parchment. Notice that parchments 29, 31, 32, 40 hav
 as they contain Cosmological or Astronomical pages, which we know already do not cluster well.
 
 The results are shown below (they are also available in
-[the TensorFlow projector](https://projector.tensorflow.org/?config=https://mzattera.github.io/v4j/003/data/projector_config_parchments.json)).
-
-
-The below images have been obtained using the projector with following parameters:
+[the TensorFlow projector](https://projector.tensorflow.org/?config=https://mzattera.github.io/v4j/003/data/projector_config_parchments.json));
+following parameters have been used:
 ```T-SNE 2D projection, Label By=ID, Color By=Illustration + LanguagePerplexity, Perplexity=5, Learning rate=1, Supervise=0, Iteration=1'000```. 
-![T-SNE visualization of Voynich Cosmological pages](images/SNE - Parchments - ALL.PNG)
+
+![T-SNE visualization of Voynich parchments](images/SNE - Parchments - ALL.PNG)
 
 We can see that there a strong tendency for parchments to cluster based on their illustration type and language, with two notable exceptions:
 
@@ -174,17 +173,64 @@ We can see that there a strong tendency for parchments to cluster based on their
   
   This parchment will be excluded from further processing.
 
+K-Means clustering of the parchments, confirms what we already found while clustering single pages
+(table shows page count for each cluster, some of the smallest clusters omitted for clarity):
+
+![K-Means clustering of Voynich parchments](images/K-Means - Parchments.PNG)
+
+We had a further deeper look into language A and B separately.
+
+The below image shows the results of clustering Pharmaceutical and Herbal A parchments
+(table shows page count for each cluster, some of the smallest clusters omitted for clarity):
+
+![K-Means clustering of Voynich parchments](images/K-Means - Parchments Language A.PNG)
+
+- Pharmaceutical pages stick together.
+
+- There might be an indication that the big cluster of Herbal A pages can be further broken down
+in smaller clusters, but it might be an artifact of K-Means.
+
+The below image shows the results of clustering Biological, Stars, and Herbal B parchments
+(table shows page count for each cluster, some of the smallest clusters omitted for clarity):
+
+![K-Means clustering of Voynich parchments](images/K-Means - Parchments Language B.PNG)
+
+- Herbal B pages cluster together, separated from Biological and Stars.
+
+- Biological and Stars form two distinct clusters, even if with some small overlapping.
+
 
 # Conclusions 
 
-Looking at Voynich pages as bag of words we can see that:
+Based on clustering the pages based on the "words" they contain:
 
-- If we look only at Courier's languages, we can see page clusters accordingly.
+- Pages written using Courier's language A look quite different from pages using language B.
 
-- Pages tends to group based on their illustration type and Courier's language. This tendency is less obvious for
-Astrological, Cosmological and Zodiac pages and it stronger when considering entire parchments instead of single pages.
+- Pages tend to cluster in groups that are strongly correlated with illustration type and language.
+This is more evident when clustering whole parchments instead of single pages.
 
+  - **Herbal A** pages form a big cluster, there _might_ be an indication of sub-clusters inside this group, but it can well be an artifact.
 
+  - **Pharmaceutical** pages form a tight group, next to Herbal A.
+  
+  - **Herbal B** pages form their own group.
+  
+  - **Biological** and **Stars** pages form two close, albeit mostly separate, groups.
+  
+  - The grouping behavior of remaining pages (**Astronomical**, **Text**, **Zodiac** and **Cosmological**)
+  is more difficult to assess. However, **Zodiac** pages seem to show some similarity with **Herbal B**.
+
+- It has been already proposed (_citation needed_) that these similarities are either a proof that the Voynich is not an hoax
+as the vocabulary used in its page correlates with the page "topics" that can be inferred by the illustration type
+(this will not explain the differences between Herbal A and Herbal B pages though). Similarly, it can be argued that 
+Courier's languages reflect language differences in the underlying "clear" text.
+
+  However, it can be that these similarities reflect a different technique (or variations of the same technique) used to create
+  the parchments. This technique could be either a proper cypher or a way to produce "random" text.  
+
+- As the above grouping reflects a similar distribution of "words" in the text, no matter what was the cause,
+these differences should be kept in mind when performing statistical analysis of the text or when trying it decipherment.
+	
 ---
 
 **Notes**
@@ -198,8 +244,8 @@ pages in the text. The output of the class (`PageEmbeddingDistance.xlsx`) can be
 be uploaded to the TensorFlow projector. The output of this class, in the form of a "vector" and "metadata" .TSV files,
 can be found in [this folder]() both for single pages or entire parchments.
 
-<a id="Note4">**{4}**</a> Class `package io.github.mzattera.v4j.applications.clustering.KMeansClusterByWords`
-does the clustering and prints out a report that can be easily converted in an Excel file.
+<a id="Note4">**{4}**</a> Class `KMeansClusterByWords`
+does the K-Means clustering and prints out a report that can be easily converted in an Excel file.
 The class can be parameterized to run different types of experiments; its outputs, with some additional data,
 can be found as Excel files in the [analysis folder]().
 Keep in mind K-Means algorithm include some randomness, therefore slightly different clustering might result at each experiment.

@@ -31,7 +31,7 @@ there are terms characteristic of a single cluster; the table below shows them.
 
 It might be interesting to note that:
 
-- Most common terms in Herbal A pages (HA cluster) starts with ch- or sh-; the latter prefix appearing only here,
+- Most common terms in Herbal A pages (HA cluster) start with ch- or sh-; the latter prefix appearing only here,
 
 - Pharmaceutical (PA cluster) common terms end in -ol, which is rare for other clusters. Also they seem to prefer the ok- or qok- prefix.
 

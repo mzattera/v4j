@@ -196,7 +196,7 @@ Astrological, Cosmological and Zodiac pages and it stronger when considering ent
 
 ---
 
-** Notes**
+**Notes**
 
 <a id="Note1">**{1}**</a> See [v4j README](https://github.com/mzattera/v4j#alphabet).
 

@@ -198,9 +198,9 @@ Astrological, Cosmological and Zodiac pages and it stronger when considering ent
 
 ** Notes**
 
-<a href="Note1">**{1}**</a> See [v4j README](https://github.com/mzattera/v4j#alphabet).
+<a id="Note1">**{1}**</a> See [v4j README](https://github.com/mzattera/v4j#alphabet).
 
-<a href="Note2">**{2}**</a> The class [`OutlierDetection`]() is used to calculate average distance of each page from other
+<a id="Note2">**{2}**</a> The class [`OutlierDetection`]() is used to calculate average distance of each page from other
 pages in the text. The output of the class (`PageEmbeddingDistance.xlsx`) can be found in the [analysis folder]().
  
 ---

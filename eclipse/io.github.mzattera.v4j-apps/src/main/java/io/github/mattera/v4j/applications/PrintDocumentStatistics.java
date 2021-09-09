@@ -52,7 +52,7 @@ public final class PrintDocumentStatistics {
 		try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(fileName));
 				CSVPrinter csvPrinter = new CSVPrinter(writer,
 						CSVFormat.DEFAULT.withHeader("ID", "IllustrationType", "Language", "Cluster", "Hand", "Quire",
-								"PageInQuire", "Parchment", "Words", "Tokens", "ClearWords", "ClearTokens"));) {
+								"PageInQuire", "Parchment", "Tokens", "Words", "ClearTokens", "ClearWords"));) {
 
 			for (IvtffPage p : doc.getElements()) {
 				PageHeader ph = p.getDescriptor();

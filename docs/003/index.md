@@ -1,6 +1,6 @@
 ## Note 003 - Clustering
 
-_Last updated Sep. 8th, 2021._
+_Last updated Sep. 9th, 2021._
 
 _This note refers to [release v.3.0.0](https://github.com/mzattera/v4j/tree/v.3.0.0) of v4j.
 Some of the content might not apply to more recent versions of the library._
@@ -14,7 +14,7 @@ library code and JavaDoc._
 
 # Abstract
 
-This note discuss the application of k-means clustering algorithms to Voynich pages, showing how the words in the page 
+This note discuss the application of k-means clustering algorithms to Voynich pages, showing how the terms in the page 
 strongly correlate with the page illustration type (Herbal, Biological, Pharmaceutical, etc.) and Courier's language (A or B).
 
 # Previous Works
@@ -28,14 +28,14 @@ I reserve the option to go over these publications in the future and compare the
 # Methodology
 
 Our starting point is the Voynich majority transcription of the text (see [v4j README](https://github.com/mzattera/v4j#ivtff));
-We use the EVA alphabet, but it is not relevant for this discussion, as we look at whole "words" in the Voynich.
+We use the EVA alphabet, but it is not relevant for this discussion, as we look at whole words in the Voynich, not to their inner components.
 
 ## Embedding and Distance Measure
 
 The text is split into units for analysis, that could be single pages or bigger portions of text (e.g. parchments / bi-folios).
-Each unit is embedded as a bag of words where the dimensions are the "readable" words in the Voynich (that is, words with no
+Each unit is embedded as a bag of words where the dimensions are the "readable" terms in the Voynich (that is, Voynich "words" with no
 "unreadable" characters [{1}](#Note1))
-and the value for the dimension is the number of times corresponding word appears in the text unit.
+and the value for the dimension is the number of times corresponding term appears in the text unit.
 
 Similarity between textual units is computed as positive angular distance of corresponding embedding; this returns angular distance
 between two vectors assumed to have only positive components.
@@ -228,8 +228,14 @@ Courier's languages reflect language differences in the underlying "clear" text.
   However, it can be that these similarities reflect a different technique (or variations of the same technique) used to create
   the parchments. This technique could be either a proper cypher or a way to produce "random" text.  
 
-- As the above grouping reflects a similar distribution of "words" in the text, no matter what was the cause,
+- As the above grouping reflects a similar distribution of terms in the text, no matter what was the cause,
 these differences should be kept in mind when performing statistical analysis of the text or when trying it decipherment.
+
+  For this reason v4j library provides means to classify pages accordingly to above considerations, the resulting clusters are shown below
+  (also refer to[`PageHeader`]() class.
+ 
+![Cluster size in words](images/Clusters.PNG)
+
 	
 ---
 

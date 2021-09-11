@@ -34,36 +34,6 @@ public final class EvaAlphabet extends Alphabet {
 		return regularChars;
 	}
 
-	private static final char[] allChars;
-	static {
-		allChars = new char[regularChars.length + 14];
-
-		int i = 0;
-		for (; i < regularChars.length; ++i)
-			allChars[i] = regularChars[i];
-
-		allChars[i++] = '.';
-		allChars[i++] = ',';
-		allChars[i++] = '<';
-		allChars[i++] = '>';
-		allChars[i++] = '@';
-		allChars[i++] = ';';
-		allChars[i++] = '{';
-		allChars[i++] = '}';
-		allChars[i++] = '[';
-		allChars[i++] = ':';
-		allChars[i++] = ']';
-		allChars[i++] = '?';
-		// TODO add  /
-		
-		// These are UNDOCUMENTED in IVTFF format (only mentioned as 'Interlinear
-		// Placeholders" in last page, probably because they conflict with v101 alphabet
-		allChars[i++] = '!'; // sort of "null" character used to align up interlinear text so all lines from
-								// different transcribers have same length
-		allChars[i++] = '%'; // sort of unreadable character used to align up interlinear text so all lines
-								// from different transcribers have same length
-	}
-
 	@Override
 	public char[] getAllChars() {
 		return allChars;
@@ -83,6 +53,36 @@ public final class EvaAlphabet extends Alphabet {
 		return unreadableChars;
 	}
 
+	private static final char[] allChars;
+	static {
+		allChars = new char[regularChars.length + wordSeparators.length + unreadableChars.length + 11];
+
+		int i = 0;
+		for (int j=0; j < regularChars.length; ++j, ++i)
+			allChars[i] = regularChars[j];
+		for (int j=0; j < wordSeparators.length; ++j, ++i)
+			allChars[i] = wordSeparators[j];
+		for (int j=0; j < unreadableChars.length; ++j, ++i)
+			allChars[i] = unreadableChars[j];
+
+		allChars[i++] = '<';
+		allChars[i++] = '>';
+		allChars[i++] = '@';
+		allChars[i++] = ';';
+		allChars[i++] = '{';
+		allChars[i++] = '}';
+		allChars[i++] = '[';
+		allChars[i++] = ':';
+		allChars[i++] = ']';
+		
+		// These are UNDOCUMENTED in IVTFF format (only mentioned as 'Interlinear
+		// Placeholders" in last page, probably because they conflict with v101 alphabet
+		allChars[i++] = '!'; // sort of "null" character used to align up interlinear text so all lines from
+								// different transcribers have same length
+		allChars[i++] = '%'; // sort of unreadable character used to align up interlinear text so all lines
+								// from different transcribers have same length
+	}
+	
 	protected EvaAlphabet() {
 	}
 }

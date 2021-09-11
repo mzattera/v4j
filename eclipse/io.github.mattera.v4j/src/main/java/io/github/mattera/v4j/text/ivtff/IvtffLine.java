@@ -534,21 +534,16 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 	 */
 	private static IvtffLine getMajorityVersion(List<IvtffLine> lines) throws ParseException {
 
-		Alphabet a = lines.get(0).getAlphabet();
-
-		// TODO add test case for merging line, take it from older library
-
 		StringBuilder result = new StringBuilder();
+		Alphabet a = lines.get(0).getAlphabet();
 
 		for (int c = 0; c < lines.get(0).getText().length(); ++c) {
 
 			// Count characters in a given position
 			Counter<Character> counter = new Counter<>();
 			for (int l = 0; l < lines.size(); ++l) {
-				counter.count(a.asPlain(lines.get(l).getText().charAt(c)));
+				counter.count(lines.get(l).getText().charAt(c));
 			}
-
-			// TODO print all combo found in actual text and write a test case
 
 			char ch = '!';
 			int max = counter.getHighestCount();
@@ -561,10 +556,17 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 					continue;
 				}
 
-				// if we are here, then there is a tie
+				// if we are here, then there is a tie; since c1 occurs max times and ch was already initialised
+				
+				// if the conflict is between spaces, we keep the "weak" space
+				if (a.isWordSeparator(c1) && a.isWordSeparator(ch)) {
+					ch = ',';
+					continue;
+				}
 
 				if (a.isRegularOrSeparator(c1) || a.isUreadableChar(c1)) {
-					ch = a.getUnreadable(); // conflicting "printable" chars, we return unreadable
+					// conflicting "printable" chars, we return unreadable
+					ch = a.getUnreadable(); 
 					break;
 				}
 
@@ -596,14 +598,11 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 
 		for (int c = 0; c < lines.get(0).getText().length(); ++c) {
 
-			if (lines.get(0).getDescriptor().getPageId().equals("f89v2") && lines.get(0).getDescriptor().getNumber().equals("22") && (c==32)) {
-				System.out.println("*");
-			}
-
-			char ch = a.asPlain(lines.get(0).getText().charAt(c));
+			char ch = lines.get(0).getText().charAt(c);
 			boolean conflict = false;
 			for (int l = 1; l < lines.size(); ++l) {
-				if (a.asPlain(lines.get(l).getText().charAt(c)) != ch) {
+				char c1 = lines.get(l).getText().charAt(c);
+				if ((c1 != ch) && !(a.isUreadableChar(c1) && a.isUreadableChar(ch))) { // % and ? should not be considered different 
 					conflict = true;
 					break;
 				}

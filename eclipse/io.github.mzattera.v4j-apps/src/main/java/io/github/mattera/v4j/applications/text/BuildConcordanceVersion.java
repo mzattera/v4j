@@ -33,18 +33,19 @@ public final class BuildConcordanceVersion {
 	/// MAKE SURE THIS IS CORRECT BUT DO NOT USE RESOURCE FOLDER AS IT IS READ
 	/// ONLY
 	private final static String OUTPUT_FOLDER = "D:\\";
+	 
+	public final static File INPUT_FILE = FileUtil.getResourceFile("Transcriptions/LSI_ivtff_0d_fixed.txt");
 
 	/**
 	 * @param args the command line arguments
 	 */
 	public static void main(String[] args) {
 		try {
-			File fIn = FileUtil.getResourceFile("Transcriptions/LSI_ivtff_0d_fixed.txt");
 //			URL url = ClassLoaderUtil.getResource("/tmp.txt", BuildConcordanceVersion.class);
 //			File fIn = new File(url.toURI());
 			File fOut = new File(OUTPUT_FOLDER, VoynichFactory.MZ_TRANSCRIPTION_FILE_NAME);
 
-			doWork(fIn, fOut, "ASCII", Alphabet.EVA);
+			doWork(INPUT_FILE, fOut, "ASCII", Alphabet.EVA);
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
 			System.exit(-1);

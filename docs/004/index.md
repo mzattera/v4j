@@ -33,11 +33,11 @@ It might be interesting to note that:
 
 - Most common terms in Herbal A pages (HA cluster) start with ch- or sh-; the latter prefix appearing only here,
 
-- Pharmaceutical (PA cluster) common terms end in -ol, which is rare for other clusters. Also they seem to prefer the ok- or qok- prefix.
+- Pharmaceutical (PA cluster) common terms end in -ol, which is rare for other clusters. In addition, they seem to prefer the ok- or qok- prefix.
 
-- Herbal B pages (HB cluster) prefers terms starting with qo(k)-.
+- Herbal B pages (HB cluster) prefer terms starting with qo(k)-.
 
-- Zodiac (ZZ cluster) common terms mostly start with ot-, uncommon for other clusters. Moreover, this cluster
+- Zodiac (ZZ cluster) common terms mostly start with ot-, this is uncommon for other clusters. Moreover, this cluster
 features single characters as common terms.
 
 ---

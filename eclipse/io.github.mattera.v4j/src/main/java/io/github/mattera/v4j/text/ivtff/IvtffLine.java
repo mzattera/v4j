@@ -50,7 +50,8 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 
 	@Override
 	public void setParent(CompositeText<?> page) {
-		// Page should never be null, but it might happen in some cases when we do partial processing (e.g. when building concordance version).
+		// Page should never be null, but it might happen in some cases when we do
+		// partial processing (e.g. when building concordance version).
 		if ((page != null) && !this.descriptor.getPageId().equals(page.getId()))
 			throw new IllegalArgumentException("Line " + this.getId() + " cannot be added to page " + page.getId());
 
@@ -94,8 +95,11 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 			.compile("<(f[0-9]{1,3}[rv][0-9]?|fRos)\\.([0-9]{1,3}[a-z]?),([\\+\\*\\-=&~@/][PLCR].)(;.)?>");
 
 	/**
-	 * Creates a new instance parsing given input string. It assumes the text is in
-	 * EVA alphabet.
+	 * Creates a new instance parsing given input string.
+	 * 
+	 * Same as calling IvtffLine(txt, -1, Alphabet.EVA)
+	 * 
+	 * Notice that the parsing proces
 	 */
 	public IvtffLine(String txt) throws ParseException {
 		this(txt, -1, Alphabet.EVA);
@@ -104,7 +108,17 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 	/**
 	 * Creates a new instance parsing input file.
 	 * 
-	 * @param row    a row as read from a text input file.
+	 * Notice this process:
+	 * <ul>
+	 * <li>Remove IVTFF comments; that is text in angle brackets. txt =
+	 * removeHighAscii(txt); txt = removeLigatures(txt); txt =
+	 * removeAlternativeReadings(txt); txt = txt.replaceAll("!", ""); // "null" char
+	 * in interlinear txt = txt.replaceAll("%",
+	 * getAlphabet().getUnreadableAsString()); // big unreadable part char in
+	 * interlinear txt = txt.trim();IvtffLine(String row, int rowNum, Alphabet a)
+	 * 
+	 * @param row    a row number if the line is read from a text input file. This
+	 *               is mostly used for debugging and is optional.
 	 * @param rowNum row number inside the file.
 	 */
 	public IvtffLine(String row, int rowNum, Alphabet a) throws ParseException {
@@ -574,36 +588,70 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 	 *         lines/transcriptions.
 	 * @throws ParseException if an error happens while merging lines.
 	 */
+	@SuppressWarnings("unused")
 	private static IvtffLine getConcordanceVersion(List<IvtffLine> lines) throws ParseException {
-
-		Alphabet a = lines.get(0).getAlphabet();
-
-		// TODO add test case for merging line, take it from older library
-
+		
 		StringBuilder result = new StringBuilder();
+		Alphabet a = lines.get(0).getAlphabet();
 
 		for (int c = 0; c < lines.get(0).getText().length(); ++c) {
 
+			if (lines.get(0).getDescriptor().getPageId().equals("f89v2") && lines.get(0).getDescriptor().getNumber().equals("22") && (c==32)) {
+				System.out.println("*");
+			}
+
 			char ch = a.asPlain(lines.get(0).getText().charAt(c));
 			boolean conflict = false;
-			boolean printableCharConflict = false;
 			for (int l = 1; l < lines.size(); ++l) {
-				char c1 = a.asPlain(lines.get(l).getText().charAt(c));
-				if (c1 != ch) {
+				if (a.asPlain(lines.get(l).getText().charAt(c)) != ch) {
 					conflict = true;
-					if (a.isRegularOrSeparator(c1) || a.isUreadableChar(c1) || a.isRegularOrSeparator(ch)
-							|| a.isUreadableChar(ch)) {
-						printableCharConflict = true;
-					}
+					break;
 				}
 			} // for each line
 
-			if (printableCharConflict)
-				result.append(a.getUnreadable());
-			else if (conflict)
-				result.append('!');
-			else
-				result.append(ch);
+			// The below is a bit clunky; maybe there is a better way tp cpde this behavior.
+			Character found = null;
+			if (conflict) {
+				// Ok not all chars are the same, we handle special cases here
+
+				// If conflict is only between spaces AND ! then put down a dubious space
+				boolean atLeastOneSpace = false;
+				boolean allVoid = true;
+				for (IvtffLine ln : lines) {
+					char c1 = ln.getText().charAt(c);
+					if (a.isWordSeparator(c1)) {
+						atLeastOneSpace = true;
+					} else if (c1 != '!') {
+						allVoid = false;
+						break;
+					}
+				}
+				if (atLeastOneSpace && allVoid) {
+					found = ',';
+				} else {
+				// If a conflict includes an actual character, word separator or unreadable char
+				// ('?')
+				// Then we acknowledge this is unreadable
+					for (IvtffLine ln : lines) {
+						char c1 = a.asPlain(ln.getText().charAt(c));
+						if (a.isRegularOrSeparator(c1) || a.isUreadableChar(c1)) {
+							found = a.getUnreadable();
+							break;
+						}
+					}
+				}
+
+				if (found == null)
+					found = '!';
+			} else {
+				found = ch;
+			}
+
+			// Guard
+			if (found == null)
+				throw new ParseException();
+
+			result.append(found);
 		} // for each char
 
 		LocusIdentifier id = new LocusIdentifier(lines.get(0).getDescriptor().getPageId(),

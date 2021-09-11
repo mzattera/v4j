@@ -43,6 +43,7 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	}
 
 	// Transcript version: A.B.x
+	// TODO this is not stored
 	private String version;
 
 	/**
@@ -75,18 +76,7 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	 * @param in The file from which the document has to be read.
 	 */
 	public IvtffText(File in) throws IOException, ParseException {
-		this(in, "ASCII");
-	}
-
-	/**
-	 * Creates a new instance of a document.
-	 * 
-	 * @param in       The file from which the document has to be read.
-	 * @param encoding File encoding.
-	 */
-	public IvtffText(File in, String encoding) throws IOException, ParseException {
-
-		this(new BufferedReader(new InputStreamReader(new FileInputStream(in), encoding)));
+		this(new BufferedReader(new InputStreamReader(new FileInputStream(in), "ASCII")));
 		this.id = in.getName();
 	}
 
@@ -94,7 +84,6 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	 * Build a document by parsing content of given string.
 	 */
 	public IvtffText(String content) throws IOException, ParseException {
-
 		this(new BufferedReader(new StringReader(content)));
 		this.id = "FROM_STRING";
 	}
@@ -177,8 +166,8 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	 * comment as described in Table 10. This is not yet used in any transcription
 	 * file. AND IS UNSUPPORTED
 	 */
-	private final static Pattern fileHeader = Pattern.compile("#=IVTFF (.{4}) ([0-9]+\\.[0-9]+)(\\.[0-9]+)?");
-
+	public final static Pattern FILE_HEADER_PATTERN = Pattern.compile("#=IVTFF (.{4}) ([0-9]+\\.[0-9]+)(\\.[0-9]+)?");
+	
 	/**
 	 * The notation used to identify a page in the Voynich MS is the character f
 	 * (for folio) followed by the folio number, followed by r (for recto - the
@@ -186,14 +175,13 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	 * 
 	 * For the foldout folios, fnr1, fnr2, etc, fnv1, fnv2, ...
 	 */
-	private final static Pattern pageHeader = Pattern.compile("<f[0-9]{1,3}[rv][0-9]?>|<fRos>");
+	public final static Pattern PAGE_HEADER_PATTERN = Pattern.compile("<f[0-9]{1,3}[rv][0-9]?>|<fRos>");
 
 	/**
-	 * Creates a new instance of Document.
+	 * Constructor from Reader.
+	 * Assumes EVA alphabet.
 	 * 
-	 * @param in       A reader from which the file is read.
-	 * @param voynich  If true, then the file must have line locators.
-	 * @param alphabet The alphabet for the document
+	 * @param in       A Reader from which the document content is read.
 	 */
 	private IvtffText(BufferedReader in) throws IOException, ParseException {
 
@@ -205,7 +193,9 @@ public class IvtffText extends CompositeText<IvtffPage> {
 			if (row == null)
 				throw new ParseException("The input file is empty.");
 
-			Matcher m = fileHeader.matcher(row);
+			// TODO add proper descriptor that includes header information.
+			// Also check and store IVTFF version of the file.
+			Matcher m = FILE_HEADER_PATTERN.matcher(row);
 			if (!m.matches())
 				throw new ParseException("Invalid file header: ", row);
 			if (m.group(1).equals("Eva-")) {
@@ -226,7 +216,7 @@ public class IvtffText extends CompositeText<IvtffPage> {
 				if (row.startsWith("#"))
 					continue; // comment
 
-				m = pageHeader.matcher(row);
+				m = PAGE_HEADER_PATTERN.matcher(row);
 				if (m.find() && (m.start() == 0)) {
 					// page header found
 					PageHeader pageDescriptor = new PageHeader(row, rowNum);
@@ -446,7 +436,7 @@ public class IvtffText extends CompositeText<IvtffPage> {
 		for (IvtffPage page : elements) {
 			Map<String, List<IvtffLine>> splitted = page.splitElements(splitter);
 			for (String category : splitted.keySet()) {
-				List<IvtffLine> l = splitted.get(category);
+				List<IvtffLine> l = lines.get(category);
 
 				if (l == null) {
 					l = new ArrayList<>();

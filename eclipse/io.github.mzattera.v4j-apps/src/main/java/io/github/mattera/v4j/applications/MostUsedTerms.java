@@ -39,7 +39,6 @@ public final class MostUsedTerms {
 			IvtffText voy = VoynichFactory.getDocument(TRANSCRIPTION, TRANSCRIPTION_TYPE);
 			System.out.println("\nCluster;Term;Count;Rel. Freq.");
 
-			// Entropy for Voynich sections
 			for (String cluster : PageHeader.CLUSTERS) {
 				IvtffText doc = voy.filterPages(new PageFilter.Builder().cluster(cluster).build());
 
@@ -55,7 +54,7 @@ public final class MostUsedTerms {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			System.out.println("Completed.");
+			System.out.println("\nCompleted.");
 		}
 	}
 }

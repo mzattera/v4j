@@ -54,7 +54,8 @@ public final class EvaAlphabet extends Alphabet {
 		allChars[i++] = ':';
 		allChars[i++] = ']';
 		allChars[i++] = '?';
-
+		// TODO add  /
+		
 		// These are UNDOCUMENTED in IVTFF format (only mentioned as 'Interlinear
 		// Placeholders" in last page, probably because they conflict with v101 alphabet
 		allChars[i++] = '!'; // sort of "null" character used to align up interlinear text so all lines from

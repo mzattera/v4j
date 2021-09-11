@@ -67,6 +67,8 @@ The main class in this package is `IvtffText` that represents a text in IVTFF (I
 as described on [René Zandbergen's website](http://www.voynich.nu/transcr.html). This website provides extensive information about the IVTFF format,
 please make sure you understand how the format works as its structure is reflected in the Java classes in this package.
 
+**Currently, v4j supports IVTFF version described in issue 1.5.1, 23/09/2017 of the format definition**; this is not the latest version of IVTFF.
+
 `VoynichFactory` class provides methods to get a copy of the Voynich text as `IvtffText`.
 As described on the René Zandbergen's website, there are different transcriptions of the Voynich,
 created by different authors (or "transcribers") using different alphabets. This library at the moment can provide two transcriptions (as defined by `IvtffText.Transcription`):

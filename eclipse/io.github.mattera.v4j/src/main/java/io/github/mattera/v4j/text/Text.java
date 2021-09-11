@@ -55,7 +55,7 @@ public abstract class Text implements Identifiable {
 	 * The default implementation of this method simply calls Alphabeth.toPlainText().
 	 * 
 	 * @return plain text contained in this element; that is the text stripped off
-	 *         all special characters. For example <!..> comments in IVTFF files, or
+	 *         of all meta-data and markup. For example <!..> comments in IVTFF files, or
 	 *         HTML tags will be absent in the returned text.
 	 *         In addition, sequence of word separator chars will be replaced by a single instance of Alphabet.getSpace().
 	 */

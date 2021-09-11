@@ -21,7 +21,7 @@ public class LineSplitter implements ElementSplitter<IvtffLine> {
 	private final boolean byGenericLocusType;
 	private final boolean byTranscriber;
 
-	public class Builder {
+	public static class Builder {
 
 		private boolean byPage = false;
 		private boolean byNumber = false;

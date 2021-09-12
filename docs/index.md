@@ -7,8 +7,8 @@ as resulting from my work with the [v4j library](https://github.com/mzattera/v4j
 
 In the below notes, we will try to be consistent with following terminology.
 
-- A **token** in a text is a single sequence of characters, separated by spaces. A **term** represents a set of identical tokens.
-In other terms, a token is an instance of a term. For example the below line in the Voynich text:
+- A **token** in a text is a single sequence of characters, separated by spaces. The list of **terms** is the list of tokens, without repetitions.
+In other terms, a token is an instance of a term. For example; the below line in the Voynich text:
 
   ```
   <f1r.15,+P0;m> daiin shckhey ckhor chor shey kol chol chol kor chol

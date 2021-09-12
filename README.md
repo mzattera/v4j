@@ -6,7 +6,7 @@ The outcomes of my experiments are tracked on the [project pages](https://mzatte
 
 The folder `eclipse` contains an eclipse workspace. The (Maven) project `io.github.mattera.v4j` holds the actual code for the Java library.
 The library content is described below. The (Maven) project `io.github.mattera.v4j-apps` contains classes I created to experiment with the 
-Voynich manuscript; here you cna find examples about how to use the library.
+Voynich manuscript; here you can find examples about how to use the library.
 
 **_Note:_** _In this document we use the terms "transcription" and "transliteration" interchangeably, though the latter is more correct._
 
@@ -201,9 +201,9 @@ This package contains some "utility" classes to deal with files, math, etc.
 Please take a look what is in here before implementing anythign from scratch.
 
 
-### Testing (under src/test/java) - `io.github.mattera.v4j.test
+### Testing
 
-Here you can find regression tests implemented with JUnit.
+Project `io.github.mattera.v4j-apps` contain JUnit tests for the v4j library and (some) of the "applications" in `v4j-apps`.
 
 
 

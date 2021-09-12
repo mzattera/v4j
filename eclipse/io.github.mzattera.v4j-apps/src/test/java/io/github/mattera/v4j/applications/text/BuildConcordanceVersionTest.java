@@ -198,7 +198,7 @@ public final class BuildConcordanceVersionTest {
 				}
 			});
 
-			System.out.println(toTest.getLines().get(0));
+//			System.out.println(toTest.getLines().get(0));
 
 			// Other transcriptions of same line
 			IvtffText intelinear = docIvtffText.filterLines(new ElementFilter<IvtffLine>() {

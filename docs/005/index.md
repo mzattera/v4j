@@ -55,7 +55,7 @@ as follows:
 
 - each slot can be empty or contain (what we think is) a single character in the Voynich alphabet [{1}](#Note1)). 
 
-- the choice of Voynich characters that can occupy a slot is very limited and for 8 out of 12 slot is as low as 2-3 possible characters.
+- the choice of Voynich characters that can occupy a slot is very limited and for 8 out of 12 slot it is as low as 2-3 possible characters.
 
 - each Voynich character can appear in only one or two slots (with exception of EVA 'd' that can appear in three different slots.
 
@@ -107,13 +107,14 @@ where each of these parts is a regular term. We will call these words "**separab
 
 - Remaining 618 tokens (2.0% of total), corresponding to 429 different terms (8.4% of total), are marked as "**unstructured**".
 
-  **TODO** Show that vast majority of unstructured words appear only once in the text.
+  **TODO** Show that vast majority of unstructured words appear only once in the text. This is probably true for separable too.
+  
 
 The below table summarizes these findings.
 
-**TODO** Table
+![Distribution of words accordingly to their classification.](images/Summary.PNG)
 
-In summary, almost 9 out of 10 tokens in the Voynich text exhibit a "slot" structure. Of the remaining, a fair amount can be decomposed in two parts each corresponding to regular terms
+In short, almost 9 out of 10 tokens in the Voynich text exhibit a "slot" structure. Of the remaining, a fair amount can be decomposed in two parts each corresponding to regular terms
 appearing elsewhere in the text. The remaining cases (2 out of 100) are mostly words appearing only once in the text.
 
 **TODO** Char count by slot
@@ -208,6 +209,10 @@ UNSTRUCTURED	Fhy	1
 
 # Conclusions 
 
+  **TODO** Can unstructured an separable be scribe errors?
+ 
+ - As far as we know, this attempt if defining an alphabet is the only one backed up by empirical evidence of Voynich word structure.
+ 
 	
 ---
 

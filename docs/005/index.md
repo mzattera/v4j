@@ -57,11 +57,11 @@ as follows:
 
 - each Voynich character can appear in only one or two slots (with exception of EVA 'd' that can appear in three different slots.
 
-The below table summarizes these rules.
+The below table summarizes these rules, showing for each of the 12 slots the Voynich characters that can occupy it.
 
 ![Slots](images/Slots Table.PNG)
 
-Below, we show how some common terms can be decomposed in slots;
+To exemplify this concept, we show how some common terms can be decomposed in slots;
 
 ```
 daiin
@@ -88,8 +88,39 @@ chcthor
 [   ] [   ] [   ] [   ] [ch ] [cth] [   ] [   ] [ o ] [   ] [ r ] [   ] 
 ```
 
+We then see that tokens can be classified as follows:
+
+- 27'743 tokens (88.6% of total), corresponding to 2'820 (55.2% of total) different terms, can be decomposed by using the above rules. We will call these words "**regular**".
+
+- 2'956 tokens (9.4% of total), corresponding to 1'856 (36.4% of total) different terms, can be divided in two parts, each composed by at least two Voynich characters, 
+where each of these parts is a regular term. We will call these words "**separable**".
+
+Moreover, we can see that for 1'379 separable terms, that is 74.3% of total separable terms, their constituent parts appear as tokens in the text at least as often the whole
+separable term. For example, the term 'chockhy' appears 18 times in the text; it is a separable term that can be divided in two parts, each one being a regular term, as
+'cho'-'ckhy' which appear in the text 79 and 39 times respectively. We think this is an indication that many separable terms are possibly just two regular words that were written together
+(or the space between them was not read correctly by the transcriber of the text).
+When we need to distinguish these terms from other separable terms, we will call them **verified separable** or simply **verified**.
+
+**TODO** check the length of the parts and see if only short terms are joined. Chek if separable tends to appear in tight spaces. 
+
+- Remaining 618 tokens (2.0% of total), corresponding to 429 (8.4% of total) different terms, are marked as "**unstructured**".
+
+**TODO** show these are mostly single tokens.
+
+The below table summarizes these findings.
+
+**TODO** Table
+
+In summary, almost 9 out of 10 tokens in the Voynich text exhibit a "slot" structure. Of the remaining, a fair amount can be decomposed in two parts each corresponding to a regular term.
+The remaining cases (2 out of 100) are mostly words appearing only once in the text.
+					
+
+
+
 
 **TODO** Decomposition.....
+
+**TODO** Char count by slot
 
 **TODO** Decomposition by cluster.
 
@@ -158,6 +189,8 @@ UNSTRUCTURED	ocfSy	1
 UNSTRUCTURED	theody	1
 UNSTRUCTURED	doFhy	1
 UNSTRUCTURED	Fhy	1
+
+**TODO** Why stooled gallows are not ligature of stool + gallow
 
 ### The Slot Alphabet 
 

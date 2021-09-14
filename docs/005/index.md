@@ -27,6 +27,8 @@ exists in any modern text as well. However, we will try to make claims that appl
 
 **TODO** _add the core/mantel/crust and the state machine works_.
 
+- This approach is easier to explain and has more implications.
+
 # Methodology
 
 We start our analysis from a concordance version of the Voynich text (see [Note 001](../001)); this is obtained from the 
@@ -88,45 +90,49 @@ chcthor
 [   ] [   ] [   ] [   ] [ch ] [cth] [   ] [   ] [ o ] [   ] [ r ] [   ] 
 ```
 
-We then see [{2}](#Note2)) that tokens can be classified as follows:
+We then see [{2}](#Note2) that tokens can be classified as follows:
 
-- 27'743 tokens (88.6% of total), corresponding to 2'820 (55.2% of total) different terms, can be decomposed by using the above rules. We will call these words "**regular**".
+- 27'743 tokens (88.6% of total), corresponding to 2'820 different terms (55.2% of total), can be decomposed by using the above rules. We will call these words "**regular**".
 
-- 2'956 tokens (9.4% of total), corresponding to 1'856 (36.4% of total) different terms, can be divided in two parts, each composed by at least two Voynich characters, 
+- 2'956 tokens (9.4% of total), corresponding to 1'856 different terms (36.4% of total), can be divided in two parts, each composed by at least two Voynich characters, 
 where each of these parts is a regular term. We will call these words "**separable**".
 
-Moreover, we can see that for 1'379 separable terms, that is 74.3% of total separable terms, their constituent parts appear as tokens in the text at least as often the whole
-separable term. For example, the term 'chockhy' appears 18 times in the text; it is a separable term that can be divided in two parts, each one being a regular term, as
-'cho'-'ckhy' which appear in the text 79 and 39 times respectively. We think this is an indication that many separable terms are possibly just two regular words that were written together
-(or the space between them was not read correctly by the transcriber of the text).
-When we need to distinguish these terms from other separable terms, we will call them **verified separable** or simply **verified**.
+  Moreover, we can see that for 1'379 separable terms, that is 74.3% of total separable terms, their constituent parts appear as tokens in the text at least as often the whole
+  separable term. For example, the term 'chockhy' appears 18 times in the text; it is a separable term that can be divided in two parts, each one being a regular term, as
+  'cho'-'ckhy' which appear in the text 79 and 39 times respectively. We think this is an indication that many separable terms are possibly just two regular words that were written together
+  (or the space between them was not read correctly by the transcriber of the text).
+  When we need to distinguish these terms from other separable terms, we will call them **verified separable** or simply **verified**.
 
-**TODO** check the length of the parts and see if only short terms are joined. Chek if separable tends to appear in tight spaces. 
+  **TODO** check the length of the parts and see if only short terms are joined. Check if separable tends to appear in tight spaces. 
 
-- Remaining 618 tokens (2.0% of total), corresponding to 429 (8.4% of total) different terms, are marked as "**unstructured**".
+- Remaining 618 tokens (2.0% of total), corresponding to 429 different terms (8.4% of total), are marked as "**unstructured**".
 
-**TODO** show these are mostly single tokens.
+  **TODO** Show that vast majority of unstructured words appear only once in the text.
 
 The below table summarizes these findings.
 
 **TODO** Table
 
-In summary, almost 9 out of 10 tokens in the Voynich text exhibit a "slot" structure. Of the remaining, a fair amount can be decomposed in two parts each corresponding to a regular term.
-The remaining cases (2 out of 100) are mostly words appearing only once in the text.
-					
-
-
-
-
-**TODO** Decomposition.....
+In summary, almost 9 out of 10 tokens in the Voynich text exhibit a "slot" structure. Of the remaining, a fair amount can be decomposed in two parts each corresponding to regular terms
+appearing elsewhere in the text. The remaining cases (2 out of 100) are mostly words appearing only once in the text.
 
 **TODO** Char count by slot
 
 **TODO** Decomposition by cluster.
 
-**TODO** Vast majority of unstructured words appear only once in the text.
 
 ## Alphabet
+
+The definition of the Voynich alphabet, that is of which hand-strokes should be considered a single character in the text, is still open.
+
+However, if we consider the above defined slots as relevant for the structure of terms, we can reasonably assume that the symbols appearing in each slot constitute a single Voynich character.
+
+- Voynich/EVA chars in slot cells constitute a morphological unit (character).
+
+- It is important both fro attacking the cypher and performing statistical analysis to have 1:1 mapping between Voynich and transcription characters.
+
+- This is the only alphabet that uses data-backed evidence in defining the char-set
+
 
 ### Rare Characters ('g', 'x', 'v', 'u')
 
@@ -197,6 +203,8 @@ UNSTRUCTURED	Fhy	1
 **TODO**
 
 **TODO** Comparison with other alphabets.
+
+**TODO** Create transcription.
 
 # Conclusions 
 

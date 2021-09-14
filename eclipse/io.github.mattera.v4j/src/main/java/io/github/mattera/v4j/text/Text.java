@@ -89,20 +89,18 @@ public abstract class Text implements Identifiable {
 	}
 
 	/**
-	 * The plain text is split in words using the default space char.
+	 * Return all words in the text; the plain text is split in words using the default space char.
 	 * 
 	 * @return all the words in this text, with their count.
 	 * 
-	 * @param regularOnly
-	 *            counts only the words that contain only regular chars (e.g. avoid
-	 *            words with unreadable chars).
+	 * @param readableOnly
+	 *            if true, counts only the words that do not contain any unreadable characters.
 	 */
-	// TODO make sure it is tested
-	public Counter<String> getWords(boolean regularOnly) {
+	public Counter<String> getWords(boolean readableOnly) {
 		Counter<String> result = new Counter<>();
 
 		for (String w : splitWords()) {
-			if (!regularOnly || getAlphabet().hasOnlyRegular(w))
+			if (!readableOnly || getAlphabet().hasOnlyRegular(w))
 				result.count(w);
 		}
 

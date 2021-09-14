@@ -39,7 +39,7 @@ list characters accordingly to their category.
 
 The `Alphabet` class provides some static fields to access already defined alphabets:
 
-- `Alphabet.EVA` is the EVA alphabet.
+- `Alphabet.EVA` is the Basic EVA alphabet.
 
 - `Alphabet.UTF_16` is the UTF-16 char-set used in Java. This is the alphabet to be used to process "normal" (as non-Voynich) text files and strings.
 	
@@ -121,10 +121,10 @@ IvtffText = VoynichFactory.getDocument(TranscriptionType.CONCORDANCE);
 Map<String, IvtffText> clusterMap = doc.splitPages(new PageSplitter.Builder().byCluster().build());
 ```
 
-### Other (Regular) Texts - `io.github.mattera.v4j.text.txt`
+### Other Texts - `io.github.mattera.v4j.text.txt`
 
-`TextString` represent a Java string as a `Text` document, whilst `TextFile` represents a text files 
-composed by numbered `TextLine`s. These classes allow processing regular (e.g. contemporary plain English)
+`TextString` represent a Java string as a `Text` document, whilst `TextFile` represents a text file
+composed by numbered `TextLine`s. These classes allow processing normal (e.g. contemporary plain English)
 texts within the vj4 library.
 
 Sometimes it is useful to compare Voynich statistics with those from a known text. For this reason

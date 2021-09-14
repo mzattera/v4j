@@ -31,7 +31,7 @@ public final class CountCharacters {
 	/**
 	 * Which transcription type to use.
 	 */
-	public static final TranscriptionType TRANSCRIPTION_TYPE = TranscriptionType.CONCORDANCE;
+	public static final TranscriptionType TRANSCRIPTION_TYPE = TranscriptionType.MAJORITY;
 
 	/** Filter to use on pages before analysis */
 	public static final ElementFilter<IvtffPage> FILTER = null;

@@ -88,7 +88,7 @@ chcthor
 [   ] [   ] [   ] [   ] [ch ] [cth] [   ] [   ] [ o ] [   ] [ r ] [   ] 
 ```
 
-We then see that tokens can be classified as follows:
+We then see [{2}](#Note2)) that tokens can be classified as follows:
 
 - 27'743 tokens (88.6% of total), corresponding to 2'820 (55.2% of total) different terms, can be decomposed by using the above rules. We will call these words "**regular**".
 
@@ -206,9 +206,12 @@ UNSTRUCTURED	Fhy	1
 **Notes**
 
 <a id="Note1">**{1}**</a> Please notice that it is still controversial what a single character is in Voynichese
-(that is, what group of hand strokes constitute a single character). For this reason different transcription alphabets have been developed.
+(that is, what group of hand strokes constitute a single character). For this reason, different transcription alphabets have been developed.
 
-We think this analysis provide some support fro defining the alphabet used by the author of the Voynich.
+We think this analysis provide some support for defining the alphabet used by the author of the Voynich.
+
+<a id="Note2">**{2}**</a> Class ['Slots']() has been used to perform this analysis. An Excel with its output can be found in the
+[analysis folder]().
  
 ---
 

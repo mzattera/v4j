@@ -25,7 +25,7 @@ public final class VoynichFactory {
 	public static final String TRANSCRIPTION_FOLDER = "Transcriptions/";
 
 	/**
-	 * Name of the original interlinear file inside TRANSCRIPTION_FOLDER.
+	 * Name of the original Landini-Stolfi Interlinear file inside TRANSCRIPTION_FOLDER.
 	 */
 	public static final String LSI_TRANSCRIPTION_FILE_NAME = "LSI_ivtff_0d.txt";
 

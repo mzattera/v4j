@@ -27,7 +27,7 @@ public final class GetWordsTest {
 	@DisplayName("Text.getWords(boolean) and therefore CountWords work - simple")
 	public void doTest() throws Exception {
 		String in = "#=IVTFF Eva- 1.5\n" + "<f1r>         <! $I=H $Q=C $P=E $L=A $H=1>\n"
-				+ "<f1r.1,@P0;H>       fachyy.ykal,a!!ataiin,shol,sho?y.fachyy.,shory,ct%%%ys.ct%%%ys.y.kor.sholdy!\n";
+				+ "<f1r.1,@P0;H>       fachyy.ykal,a!!ataiin,shol,sho?y.fachyy.,shory,ct%%%ys.ct%%%ys.y.kor.sh!oldy\n";
 
 		IvtffText doc = new IvtffText(in.toString());
 

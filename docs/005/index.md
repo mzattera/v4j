@@ -51,11 +51,11 @@ as follows:
 
 - each term can be considered as composed by 12 "slots"; for convenience we will number them from 0 to 11.
 
-- each slot can be empty or contain (what we think is) a single Voynich character [{1}](#Note1)). 
+- each slot can be empty or contain (what we think is) a single character in the Voynich alphabet [{1}](#Note1)). 
 
-- with the only exception of slot 7, the choice of characters that can be put in a slot is limited to at most 3 different characters.
+- the choice of Voynich characters that can occupy a slot is very limited and for 8 out of 12 slot is as low as 2-3 possible characters.
 
-- characters appear in only one or two slots (with exception of EVA 'd' that can appear in three different slots.
+- each Voynich character can appear in only one or two slots (with exception of EVA 'd' that can appear in three different slots.
 
 The below table summarizes these rules.
 
@@ -87,6 +87,13 @@ chcthor
   0     1     2     3     4     5     6     7     8     9    10    11
 [   ] [   ] [   ] [   ] [ch ] [cth] [   ] [   ] [ o ] [   ] [ r ] [   ] 
 ```
+
+
+**TODO** Decomposition.....
+
+**TODO** Decomposition by cluster.
+
+**TODO** Vast majority of unstructured words appear only once in the text.
 
 ## Alphabet
 

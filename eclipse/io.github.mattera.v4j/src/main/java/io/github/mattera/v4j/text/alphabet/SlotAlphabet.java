@@ -18,8 +18,9 @@ public class SlotAlphabet extends IvtffAlphabet {
 	 * Possible classification of words, based on their structure.
 	 */
 	public enum TermClassification {
-		REGULAR, // Can be decomposed in slots 
-		SEPARABLE, // Can be split in two parts, each longer then 1 char, that can be decomposed in slots
+		REGULAR, // Can be decomposed in slots
+		SEPARABLE, // Can be split in two parts, each longer then 1 char, that can be decomposed in
+					// slots
 		UNSTRUCTURED // all others
 	}
 
@@ -42,9 +43,9 @@ public class SlotAlphabet extends IvtffAlphabet {
 
 		/**
 		 * First part of term decomposition. For REGULAR terms, this correspond to the
-		 * whole term. For DOUBLETS, this describes the first part of decomposition. For
+		 * whole term. For SEPARABLE terms, this describes the first part of decomposition. For
 		 * UNSTRUCTURED terms, this correspond the initial part of the term that
-		 * eventually could have been decomposed.
+		 * has been decomposed.
 		 */
 		public String part1 = "";
 
@@ -55,8 +56,8 @@ public class SlotAlphabet extends IvtffAlphabet {
 
 		/**
 		 * Second part of term decomposition. For REGULAR terms, this is empty. For
-		 * DOUBLETS, this describes the second part of decomposition. For UNSTRUCTURED
-		 * terms, this correspond the ending part that could not have been decomposed.
+		 * SEPARABLE, this describes the second part of decomposition. For UNSTRUCTURED
+		 * terms, this correspond the ending part where decomposition failed.
 		 */
 		public String part2 = "";
 
@@ -122,24 +123,18 @@ public class SlotAlphabet extends IvtffAlphabet {
 	}
 
 	/*
-	private static char[] allChars = null;
-
-	@Override
-	public char[] getAllChars() {
-		if (allChars != null)
-			return allChars;
-
-		// We have a special char to denote an empty slot; we add it to the list of
-		// IVTFF standard characters
-		allChars = new char[super.getAllChars().length + 1];
-		int i = 0;
-		for (; i < super.getAllChars().length; ++i)
-			allChars[i] = super.getAllChars()[i];
-		allChars[i] = '=';
-
-		return allChars;
-	}
-	*/
+	 * private static char[] allChars = null;
+	 * 
+	 * @Override public char[] getAllChars() { if (allChars != null) return
+	 * allChars;
+	 * 
+	 * // We have a special char to denote an empty slot; we add it to the list of
+	 * // IVTFF standard characters allChars = new char[super.getAllChars().length +
+	 * 1]; int i = 0; for (; i < super.getAllChars().length; ++i) allChars[i] =
+	 * super.getAllChars()[i]; allChars[i] = '=';
+	 * 
+	 * return allChars; }
+	 */
 
 	/**
 	 * "Slots" for words; each element is a list of character combinations admitted
@@ -395,7 +390,7 @@ public class SlotAlphabet extends IvtffAlphabet {
 	public static Map<String, TermDecomposition> decompose(Collection<String> terms) {
 
 		Map<String, TermDecomposition> result = new HashMap<>(terms.size());
-		for (String t : terms) 
+		for (String t : terms)
 			result.put(t, decompose(t));
 
 		return result;

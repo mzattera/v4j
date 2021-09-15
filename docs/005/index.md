@@ -15,10 +15,10 @@ library code and JavaDoc._
 
 # Abstract
 
-We show how the structure of Voynich words can be described is simple terms by assuming each term is composed by "slots" that can be filled
+We show how the structure of Voynich words can be easily described by assuming each term is composed by "slots" that can be filled
 accordingly to simple rules, which are described below.
 
-This in turns shed some lights on the definition of Voynichese characters.
+This in turn sheds some lights on the definition of Voynichese characters (the Voynich alphabet).
 
 Given the nature of this topic, it is impossible to define rules that apply to 100% of cases; after all, syntactical and grammatical exceptions
 exists in any modern text as well. However, we will try to make claims that apply to the vast majority of cases. 
@@ -37,9 +37,10 @@ read by all authors in the same way are marked as unreadable. This to ensure the
 
 For reasons explained below, any occurrence of the following EVA characters is also marked as unreadable:
 
-- 'g', 'x', 'v', 'u'.
+- 'g', 'x', 'v', 'u' (40 occurrences in total, in 13 of them these characters appear alone in the text).
 
-- 'c' 'h', when they do NOT appear as 'ch', 'sh' or 'cXh', where 'X' is one of the "gallows" ('t', 'k', 'p', 'f').
+- 'c' and 'h', when they do not appear as 'ch', 'sh' or 'cXh', where 'X' is one of the "gallows" ('t', 'k', 'p', 'f');
+this sums up to 8 occurrences.
 
 As a second step, **tokens** are created by splitting the text where a space was detected by at least one of the transcribers.
 
@@ -112,7 +113,9 @@ where each of these parts is a regular term. We will call these words "**separab
 
 The below table summarizes these findings.
 
-![Distribution of words accordingly to their classification.](images/Summary.PNG)
+![Table with distribution of words accordingly to their classification.](images/Summary.PNG)
+
+![Pie chart with distribution of words accordingly to their classification.](images/Summary Pie.PNG)
 
 In short, almost 9 out of 10 tokens in the Voynich text exhibit a "slot" structure. Of the remaining, a fair amount can be decomposed in two parts each corresponding to regular terms
 appearing elsewhere in the text. The remaining cases (2 out of 100) are mostly words appearing only once in the text.

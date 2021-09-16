@@ -13,21 +13,28 @@ library code and JavaDoc._
 
 ---
 
+In this note, when referring to characters in the Voynich we will use the EVA alphabet in quotes, unless differently specified (e.g. 'o'). 
+In some cases, we will put Voynich script (e.g. text ass it looks in the Voynich),
+which might appear as EVA characters if the feature is not supported by your machine.
+
+
 # Abstract
 
 We show how the structure of Voynich words can be easily described by assuming each term is composed by "slots" that can be filled
 accordingly to simple rules, which are described below.
 
-This in turn sheds some lights on the definition of Voynichese characters (the Voynich alphabet).
+This in turn sheds some lights on the definition of what constitute a Voynich character (the Voynich alphabet).
 
 Given the nature of this topic, it is impossible to define rules that apply to 100% of cases; after all, syntactical and grammatical exceptions
-exists in any modern text as well. However, we will try to make claims that apply to the vast majority of cases. 
+exists in any modern text as well. However, we will try to focus on claims that apply to the vast majority of cases. 
+
 
 # Previous Works
 
 **TODO** _add the core/mantel/crust and the state machine works_.
 
 - This approach is easier to explain and has more implications.
+
 
 # Methodology
 
@@ -39,13 +46,13 @@ For reasons explained below, any occurrence of the following EVA characters is a
 
 - 'g', 'x', 'v', 'u' (40 occurrences in total, in 13 of them these characters appear alone in the text).
 
-- 'c' and 'h', when they do not appear as 'ch', 'sh' or 'cXh', where 'X' is one of the "gallows" ('t', 'k', 'p', 'f');
-this sums up to 8 occurrences.
+- 'c' and 'h', when they do not appear as "pedestal" ('ch', 'sh') or in "pedestalled gallows" ('cth', 'ckh', 'cph', 'cfh');
+this sums up to 8 occurrences [{3}](#Note3)).
 
-As a second step, **tokens** are created by splitting the text where a space was detected by at least one of the transcribers.
+As a second step, **tokens** are created by splitting the text where a space was detected by at least one of the transcribers; there are 31'317 tokens in the text.
 
-The list of **terms** is the list of tokens without repetition (this would be the "vocabulary" of the Voynich). These terms have then been analyzed as
-explained below.
+The list of **terms** is the list of tokens without repetition (this would be the "vocabulary" of the Voynich).
+These 5'105 total terms have then been analyzed as explained below.
 
 # Considerations
 
@@ -58,9 +65,9 @@ as follows:
 
 - the choice of Voynich characters that can occupy a slot is very limited and for 8 out of 12 slot it is as low as 2-3 possible characters.
 
-- each Voynich character can appear in only one or two slots (with exception of EVA 'd' that can appear in three different slots.
+- each Voynich character can appear in only one or two slots, with exception of 'd' that can appear in three different slots.
 
-The below table summarizes these rules, showing for each of the 12 slots the Voynich characters that can occupy it.
+The below table summarizes these rules, showing the 12 slots and the Voynich characters that can occupy them.
 
 ![Slots](images/Slots Table.PNG)
 
@@ -93,7 +100,7 @@ chcthor
 
 We then see [{2}](#Note2) that tokens can be classified as follows:
 
-- 27'743 tokens (88.6% of total), corresponding to 2'820 different terms (55.2% of total), can be decomposed by using the above rules. We will call these words "**regular**".
+- 27'743 tokens (88.6% of total), corresponding to 2'820 different terms (55.2% of total), can be decomposed in slots accordingly to the above rules. We will call these words "**regular**".
 
 - 2'956 tokens (9.4% of total), corresponding to 1'856 different terms (36.4% of total), can be divided in two parts, each composed by at least two Voynich characters, 
 where each of these parts is a regular term. We will call these words "**separable**".
@@ -109,7 +116,8 @@ where each of these parts is a regular term. We will call these words "**separab
 - Remaining 618 tokens (2.0% of total), corresponding to 429 different terms (8.4% of total), are marked as "**unstructured**".
 
   **TODO** Show that vast majority of unstructured words appear only once in the text. This is probably true for separable too.
-  
+
+- Sometime we contrast regular and separable terms to unstructured ones by calling th eformer ***structured***.  
 
 The below table summarizes these findings.
 
@@ -200,7 +208,7 @@ UNSTRUCTURED	theody	1
 UNSTRUCTURED	doFhy	1
 UNSTRUCTURED	Fhy	1
 
-**TODO** Why stooled gallows are not ligature of stool + gallow
+**TODO** Why pedestaled gallows are not ligature of pedestal + gallow
 
 ### The Slot Alphabet 
 
@@ -209,6 +217,8 @@ UNSTRUCTURED	Fhy	1
 **TODO** Comparison with other alphabets.
 
 **TODO** Create transcription.
+
+**TODO** Create HTML version.
 
 # Conclusions 
 
@@ -228,7 +238,9 @@ We think this analysis provide some support for defining the alphabet used by th
 
 <a id="Note2">**{2}**</a> Class ['Slots']() has been used to perform this analysis. An Excel with its output can be found in the
 [analysis folder]().
- 
+
+<a id="Note3">**{3}**</a> For a definition of "pedestal", "gallows", and "pedestalled gallows" and a tour of the Voynich script
+see [here](http://www.voynich.nu/writing.html).
 ---
 
 [**<< Home**](..)

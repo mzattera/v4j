@@ -76,7 +76,9 @@ created by different authors (or "transcribers") using different alphabets. This
 - **`LSI`**: The Landini-Stolfi Interlinear file, a file that uses EVA alphabet and merges transcriptions from several authors in an "interlinear" format,
 where multiple versions of each line in the manuscript are provided, one per author (or transcriber).
 
-- **`MZ`**: This is an augmented version of the LSI transcription where two "artificial" authors were created, each corresponding to one of two `IvtffText.TranscriptionType`.
+- **`AUGMENTED`**: This is an "augmented" version of the LSI transcription where two "artificial" transcribers were created, 
+each corresponding to one of `IvtffText.TranscriptionType` values; `IvtffText.TranscriptionType` can be used in factory methods described below to 
+get one of these transcriptions.
 
   - **`CONCORDANCE`**: each line of this transcription is created by merging readings from all available transcribers. Only characters that appears to be read 
   in the same way by all authors are considered; other characters (read differently by one ore more transcribers) are marked as unreadable.
@@ -85,7 +87,10 @@ where multiple versions of each line in the manuscript are provided, one per aut
   For example, if two authors read one character as "a" and a third author reads the character as "o", the majority version will show the character as "a"
   (whilst the concordance version will show a "?" instead).
 
-  - **`INTERLINEAR`**: If this type is used, the full (interlinear) transcription is returned.
+  - **`INTERLINEAR`**: If this `IvtffText.TranscriptionType` is used, the full (interlinear) transcription is returned.
+  
+Please notice that, for each of the above transcriptions, the contribution of an individual transcriber can be obtained by using the `filterLines()` and 
+`splitLines()` methods described below.
 
 There are several `VoynichFactory.getDocument(...)` methods to return available transcriptions. Please notice that not all combination of 
 transcription, transcription type and alphabet are available.
@@ -104,21 +109,39 @@ can be used to create IVTFF documents by filtering and/or splitting content of a
 Also notice that, based on [working note 003](https://mzattera.github.io/v4j/003/), `PageHeader` exposes a cluster for each page in the manuscript;
 this information can be used to filter or split the manuscripts into clusters.
 
+Same code snippets can be found below.
+
 ```Java
 /* Get a document containing all and only biological pages (MAJORITY transcription) */
 
 IvtffText doc = VoynichFactory.getDocument(TranscriptionType.MAJORITY);
 doc = doc.filterPages(new PageFilter.Builder().illustrationType("B").build());
+```
 
+```Java
 /*
-Split the manuscript into clusters (see https://mzattera.github.io/v4j/003/)
+Split the manuscript into clusters (see https://mzattera.github.io/v4j/003/).
 
-clusterMap will match any cluster name (see PageHeader.CLUSTERS) with a IvfttText 
+clusterMap will match a key like "Cluster=<cluster_name>" into a IvfttText 
 with pages in that cluster.
+
+See PageHeader.CLUSTERS for the list of possible <cluster_name> values.
 */
 
 IvtffText = VoynichFactory.getDocument(TranscriptionType.CONCORDANCE);
 Map<String, IvtffText> clusterMap = doc.splitPages(new PageSplitter.Builder().byCluster().build());
+```
+
+```Java
+/*
+Print all lines transcribed by Currier.
+*/
+
+IvtffText doc = VoynichFactory.getDocument(TranscriptionType.INTERLINEAR);
+doc = doc.filterLines(new LineFilter.Builder().transcriber("C").build());
+for (IvtffLine l:doc.getLines()) {
+	System.out.println(l);
+}
 ```
 
 ### Other Texts - `io.github.mattera.v4j.text.txt`

@@ -28,7 +28,7 @@ public final class ClusteringConfiguration {
 	/**
 	 * Which transcription to use.
 	 */
-	public static final Transcription TRANSCRIPTION = Transcription.MZ;
+	public static final Transcription TRANSCRIPTION = Transcription.AUGMENTED;
 
 	/**
 	 * Which transcription type to use.

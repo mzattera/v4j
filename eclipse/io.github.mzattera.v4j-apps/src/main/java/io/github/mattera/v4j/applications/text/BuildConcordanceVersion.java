@@ -43,7 +43,7 @@ public final class BuildConcordanceVersion {
 		try {
 //			URL url = ClassLoaderUtil.getResource("/tmp.txt", BuildConcordanceVersion.class);
 //			File fIn = new File(url.toURI());
-			File fOut = new File(OUTPUT_FOLDER, VoynichFactory.MZ_TRANSCRIPTION_FILE_NAME);
+			File fOut = new File(OUTPUT_FOLDER, VoynichFactory.AUGMENTED_TRANSCRIPTION_FILE_NAME);
 
 			doWork(INPUT_FILE, fOut, "ASCII", Alphabet.EVA);
 		} catch (Exception e) {

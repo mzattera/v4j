@@ -16,7 +16,7 @@ library code and JavaDoc._
 # Abstract
 
 This note discuss the application of k-means clustering algorithms to Voynich pages, showing how the terms in the page 
-strongly correlate with the page illustration type (Herbal, Biological, Pharmaceutical, etc.) and Courier's language (A or B).
+strongly correlate with the page illustration type (Herbal, Biological, Pharmaceutical, etc.) and Currier's language (A or B).
 
 # Previous Works
 
@@ -68,9 +68,9 @@ is available for your own exploration.
  
 ![T-SNE visualization of Voynich pages](images/SNE - Pages - ALL.PNG)
 
-#### Courier's Language
+#### Currier's Language
 
-The image below shows how pages tend to form three distinct clusters, which are highly correlated with Courier's languages (A or B).
+The image below shows how pages tend to form three distinct clusters, which are highly correlated with Currier's languages (A or B).
 
 - A cluster of pages using A language (in blue on top-left of the image), composed mostly by Pharmaceutical and Herbal A pages.
 - A cluster of pages using B language (in purple on right of the image), composed mostly by Biological and Stars pages.
@@ -87,13 +87,13 @@ These pages cluster closely together.
 
 #### Stars Pages
 
-The stars pages tend to cluster together, next to the Biological pages (they are all written in Courier's B language).
+The stars pages tend to cluster together, next to the Biological pages (they are all written in Currier's B language).
  
 ![T-SNE visualization of Voynich Stars pages](images/SNE - Pages - S-.PNG)
 
 #### Herbal B Pages
 
-The herbal pages written with Courier's language B tend to cluster together, well separated from Herbal A pages.
+The herbal pages written with Currier's language B tend to cluster together, well separated from Herbal A pages.
  
 ![T-SNE visualization of Voynich Herbal B pages](images/SNE - Pages - HB.PNG)
 
@@ -105,14 +105,14 @@ The zodiac pages tend to cluster together, next to Herbal B pages.
 
 #### Herbal A Pages
 
-The herbal pages written with Courier's language A tend to cluster together, well separated from Herbal B pages.
+The herbal pages written with Currier's language A tend to cluster together, well separated from Herbal B pages.
  
 ![T-SNE visualization of Voynich Herbal A pages](images/SNE - Pages - HA.PNG)
 
 #### Pharmaceutical Pages
 
 Those pages tend to cluster together, next to but separated from Herbal A; to be noticed that all Pharmaceutical pages are written
-using Courier's language A.
+using Currier's language A.
  
 ![T-SNE visualization of Voynich Pharmaceutical pages](images/SNE - Pages - PA.PNG)
 
@@ -205,7 +205,7 @@ The below image shows the results of clustering Biological, Stars, and Herbal B 
 
 Based on the above clustering analysis we can conclude that:
 
-- Pages written using Courier's language A look quite different from pages using language B.
+- Pages written using Currier's language A look quite different from pages using language B.
 
 - Pages tend to cluster in groups that are strongly correlated with illustration type and language.
 This is more evident when clustering whole parchments instead of single pages.
@@ -224,7 +224,7 @@ This is more evident when clustering whole parchments instead of single pages.
 - It has been already proposed (_citation needed_) that these similarities are either a proof that the Voynich is not an hoax
 as the vocabulary used in its page correlates with the page "topics" that can be inferred by the illustration type
 (this will not explain the differences between Herbal A and Herbal B pages though). Similarly, it can be argued that 
-Courier's languages reflect language differences in the underlying "clear" text.
+Currier's languages reflect language differences in the underlying "clear" text.
 
   However, it can be that these similarities reflect a different technique (or variations of the same technique) used to create
   the parchments. This technique could be either a proper cypher or a way to produce "random" text.  

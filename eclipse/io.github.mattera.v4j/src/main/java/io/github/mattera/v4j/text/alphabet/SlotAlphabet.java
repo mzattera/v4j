@@ -257,13 +257,13 @@ public class SlotAlphabet extends IvtffAlphabet {
 
 		// TODO add support for illegible words
 
-		txt = txt.replace("ch", "C");
-		txt = txt.replace("sh", "S");
-
 		txt = txt.replace("ckh", "K");
 		txt = txt.replace("cfh", "F");
 		txt = txt.replace("cth", "T");
 		txt = txt.replace("cph", "P");
+
+		txt = txt.replace("ch", "C");
+		txt = txt.replace("sh", "S");
 
 		txt = txt.replace("c", "?");
 		txt = txt.replace("h", "?");

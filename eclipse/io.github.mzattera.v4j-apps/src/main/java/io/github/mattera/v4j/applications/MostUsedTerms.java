@@ -22,7 +22,7 @@ import io.github.mattera.v4j.util.Counter;
  */
 public final class MostUsedTerms {
 
-	private final static Transcription TRANSCRIPTION = Transcription.MZ;
+	private final static Transcription TRANSCRIPTION = Transcription.AUGMENTED;
 	private final static TranscriptionType TRANSCRIPTION_TYPE = TranscriptionType.MAJORITY;
 	
 	private MostUsedTerms() {

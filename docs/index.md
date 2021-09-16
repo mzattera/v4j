@@ -36,7 +36,7 @@ In both cases, we refer either to the process of capturing a text (typically the
 - [Note 003 - Clustering](./003)
 
   Application of t-SNE visualization and K-Means clustering to the Voynich, showing how page with same illustration type and
-  Courier's language also share similar words.
+  Currier's language also share similar words.
   
   This should be considered when applying statistical analysis methods to the manuscript.
 

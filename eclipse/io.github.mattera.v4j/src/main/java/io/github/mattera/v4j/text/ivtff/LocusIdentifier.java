@@ -88,7 +88,56 @@ public class LocusIdentifier implements Identifiable {
 	private final String transcriber;
 
 	/**
-	 * @return transcriber (i.e. the letter after ; in LL part of ID).
+	 * Return the transcriber for this line.
+	 * 
+	 * C: Currier plus new additions from members of the voynich list as found in
+	 * the file voynich.now.
+	 * 
+	 *	public static final String MAJORITY_TRANSCRIBER = "m";
+	 *
+	 * c: (VoynichFactory.CONCORDANCE_TRANSCRIBER) "artificial" transcriber for lines that contain the "concordance" version. 
+	 * 
+	 * D: second choice from [|] in "C" lines.
+	 * 
+	 * F: First study group's (Friedman's) including various items as found in the
+	 * file FSG.NEW.
+	 * 
+	 * G: second choice from [|] in "F" lines, mostly from [1609|16xx].
+	 * 
+	 * H: Takeshi Takahashi.
+	 * 
+	 * I: second choice from [|] in "J" lines.
+	 * 
+	 * J: Jim Reed.
+	 * 
+	 * K: Karl Kluge.
+	 * 
+	 * L: Don Latham'.
+	 * 
+	 * M: second choice from [|] in "L" lines.
+	 * 
+	 * m: (VoynichFactory.MAJORITY_TRANSCRIBER) "artificial" transcriber for lines that contain the "majority" version. 
+	 * 
+	 * N: Gabriel Landini.
+	 * 
+	 * P: Father Th. Petersen.
+	 * 
+	 * Q: second choice from [|] in "K" lines.
+	 * 
+	 * R: Mike Roe.
+	 * 
+	 * T: John Tiltman.
+	 * 
+	 * U: Jorge Stolfi.
+	 * 
+	 * V: John Grove.
+	 * 
+	 * X: Denis V. Mardle.
+	 * 
+	 * Z: Rene Zandbergen.
+	 * 
+	 * @return transcriber (e.g. "C").
+	 * 
 	 */
 	public String getTranscriber() {
 		return transcriber;

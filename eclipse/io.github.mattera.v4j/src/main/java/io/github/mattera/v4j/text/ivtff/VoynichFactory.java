@@ -33,7 +33,7 @@ public final class VoynichFactory {
 	 * Name of the interlinear file including majority & concordance versions inside
 	 * TRANSCRIPTION_FOLDER.
 	 */
-	public static final String MZ_TRANSCRIPTION_FILE_NAME = "Interlinear_ivtff_1.5.txt";
+	public static final String AUGMENTED_TRANSCRIPTION_FILE_NAME = "Interlinear_ivtff_1.5.txt";
 
 	/**
 	 * Letter used as transcriber in interlinear files for lines that contain the
@@ -71,7 +71,7 @@ public final class VoynichFactory {
 		 */
 		LSI, // The Landini-Stolfi Interlinear file. Eva alphabeth. This includes FSG, CD and
 				// early version of TT (IT).
-		MZ // LSI interlinear file augmented with majority and concordance versions.
+		AUGMENTED // LSI interlinear file augmented with majority and concordance versions.
 	}
 
 	/**
@@ -100,11 +100,11 @@ public final class VoynichFactory {
 
 	/**
 	 * 
-	 * @return given transcription type for the Transcription.MZ transcription of
+	 * @return given transcription type for the Transcription.AUGMENTED transcription of
 	 *         the Voynich.
 	 */
 	public static IvtffText getDocument(TranscriptionType type) throws IOException, ParseException, URISyntaxException {
-		return getDocument(Transcription.MZ, type, null);
+		return getDocument(Transcription.AUGMENTED, type, null);
 	}
 
 	/**
@@ -134,12 +134,12 @@ public final class VoynichFactory {
 
 			return new IvtffText(FileUtil.getResourceFile(TRANSCRIPTION_FOLDER + LSI_TRANSCRIPTION_FILE_NAME));
 
-		case MZ:
+		case AUGMENTED:
 			if ((a != null) && (a != Alphabet.EVA))
 				throw new IllegalArgumentException("Unsupported alphabet " + a + " for transcription " + t);
 
 			IvtffText result = new IvtffText(
-					FileUtil.getResourceFile(TRANSCRIPTION_FOLDER + MZ_TRANSCRIPTION_FILE_NAME));
+					FileUtil.getResourceFile(TRANSCRIPTION_FOLDER + AUGMENTED_TRANSCRIPTION_FILE_NAME));
 
 			switch (type) {
 			case MAJORITY:

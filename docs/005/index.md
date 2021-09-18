@@ -48,8 +48,8 @@ For reasons explained below, any occurrence of the following characters is also 
 
 - 'g', 'x', 'v', 'u' (40 occurrences in total, in 13 of them these characters appear alone in the text).
 
-- 'c' and 'h', when they do not appear as "pedestal" ('ch', 'sh') or in "pedestalled gallows" ('cth', 'ckh', 'cph', 'cfh');
-this sums up to 8 occurrences [{3}](#Note3)).
+- 'c' and 'h', when they do not appear in combinations such as 'ch', 'sh', 'cth', 'ckh', 'cph', 'cfh';
+this sums up to 8 occurrences.
 
 As a second step, **tokens** are created by splitting the text where a space was detected by at least one of the transcribers; there are 31'317 tokens in the text.
 
@@ -64,7 +64,7 @@ as follows:
 
 - each term can be considered as composed by 12 "slots"; for convenience we will number them from 0 to 11.
 
-- each slot can be empty or contain a single glyph [{1}](#Note1)). 
+- each slot can be empty or contain a single glyph. 
 
 - the choice of glyphs that can occupy a slot is very limited and for 8 out of 12 slot it is as low as 2-3 possible glyphs.
 
@@ -101,7 +101,7 @@ To exemplify this concept, we show how some common terms can be decomposed in sl
 [   ] [   ] [   ] [   ] [ch ] [cth] [   ] [   ] [ o ] [   ] [ r ] [   ] 
 ```
 
-We then see [{2}](#Note2) that tokens can be classified as follows:
+We then see [{1}](#Note1) that tokens can be classified as follows:
 
 - 27'743 tokens (88.6% of total), corresponding to 2'820 different terms (55.2% of total), can be decomposed in slots accordingly to the above rules. We will call these tokens "**regular**".
 
@@ -200,6 +200,8 @@ The below table defines the Slots alphabet and compares it with other transliter
 
 ![The Slot alphabet and a comparison with other transliteration alphabets](images/Slot Alphabet.PNG)
 
+**TODO** i ii iii in alcuni alfabeti cambiano a seconda di come m r n sono trattate....evidenziarlo nella tabella.
+
 **TODO** Create transcription.
 
 **TODO** Create HTML version.
@@ -220,13 +222,9 @@ The below table defines the Slots alphabet and compares it with other transliter
 
 **Notes**
 
-**TODO** Sistemare numeri e riferimenti.
-
-<a id="Note2">**{2}**</a> Class [`Slots`]() has been used to perform this analysis. An Excel with its output can be found in the
+<a id="Note1">**{1}**</a> Class [`Slots`]() has been used to perform this analysis. An Excel with its output can be found in the
 [analysis folder]().
 
-<a id="Note3">**{3}**</a> For a definition of "pedestal", "gallows", and "pedestalled gallows" and a tour of the Voynich script
-see [here](http://www.voynich.nu/writing.html).
 ---
 
 [**<< Home**](..)

@@ -95,4 +95,14 @@ public class LineFilter implements ElementFilter<IvtffLine> {
 				&& (genericLocusType == null || genericLocusType.equals(h.getGenericLocusType()))
 				&& (transcriber == null || transcriber.equals(h.getTranscriber()));
 	}
+
+	@Override
+	public String toString() {
+		return "LineFilter [" + (page != null ? "page=" + page + ", " : "")
+				+ (number != null ? "number=" + number + ", " : "") + (locus != null ? "locus=" + locus + ", " : "")
+				+ (locator != null ? "locator=" + locator + ", " : "")
+				+ (locusType != null ? "locusType=" + locusType + ", " : "")
+				+ (genericLocusType != null ? "genericLocusType=" + genericLocusType + ", " : "")
+				+ (transcriber != null ? "transcriber=" + transcriber : "") + "]";
+	}
 }

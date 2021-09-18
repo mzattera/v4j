@@ -62,11 +62,12 @@ public class SlotAlphabet extends IvtffAlphabet {
 		public String part2 = "";
 
 		/**
-		 * Decomposition of part2 into slots.
+		 * Decomposition of part2 into slots, with the exception of UNSTRUCTURED terms,
+		 * where this is always empty.
 		 */
 		public String[] slots2 = new String[SLOTS.size()];
 
-		TermDecomposition(String term) {
+		private TermDecomposition(String term) {
 			this.term = term;
 			slots1 = new String[SLOTS.size()];
 			for (int i = 0; i < slots1.length; ++i)
@@ -269,8 +270,8 @@ public class SlotAlphabet extends IvtffAlphabet {
 	/**
 	 * Decompose a word into "slots".
 	 * 
-	 * @param term Term to decompose; currently does not support words with
-	 *             unreadable characters.
+	 * @param term Term to decompose, in Alphabet.SLOT alphabet; currently this does
+	 *             not support words with unreadable characters.
 	 * @return Two strings, the first is a decomposition of the word into slots, the
 	 *         second is any remaining part of the word that could not be
 	 *         successfully decomposed, or null.
@@ -316,7 +317,8 @@ public class SlotAlphabet extends IvtffAlphabet {
 
 		String s = term;
 
-		// TODO add support for words with unreadable characters (and an "unreadable" flag to TermDecomposition).
+		// TODO add support for words with unreadable characters (and an "unreadable"
+		// flag to TermDecomposition).
 		for (char c : s.toCharArray()) {
 			if (Alphabet.SLOT.isUreadableChar(c))
 				throw new IllegalArgumentException("Decomposition of unreadable texts not yet supported.");

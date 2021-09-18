@@ -170,9 +170,13 @@ These glyphs appear in slots 3, 4, 5, and 7 and are shown in the below table.
 
 It has been argued that pedestalled gallows might be a "ligature", that is a more compact from of writing a combination of the pedestal and a gallows character.
 If we look at slots 3 through 5, we might think that pedestalled gallows can be indeed a combination of a gallows character followed by the pedestal, in this specific order.
-However, we see that in slot 7 we can have gallows or pedestalled gallows but there is never a case
-where a pedestal appears between 'e', 'ee' or 'eee' in slot 6 and a gallows in slot 7. This leads me to think pedestalled gallows are 
-Voynich characters in their own, and not ligatures.
+However:
+
+- The combination of gallows in slot 3, followed by a pedestal in slot 4 is quite common (2'183 tokens) and written explicitly as two glyphs.
+ 
+- There is never a case where a pedestal appears between 'e', 'ee' or 'eee' in slot 6 and a gallows character in slot 7.
+
+This leads me to think pedestalled gallows are Voynich characters in their own, and not ligatures.
 
 In addition, the character 'c' appears outside of the pedestal or pedestalled gallows only in 4 terms ('c', 'oc','chcpar', 'ckshy', and 'ocfshy'), each appearing only once in the text.
 This is for me a strong indication that EVA 'c' does not correspond to a Voynich character.
@@ -183,13 +187,13 @@ Again, this seems a strong indication that EVA 'h' does not correspond to a Voyn
 
 ### 'e' and 'i'
 
-The characters 'e' and 'i' only appear in slots 6 and 9 respectively, in a sequence of 1, 2 or 3. Several transcribers have assumed these sequences of same characters are 
+The characters 'e' and 'i' only appear in slots 6 and 9 respectively, in a sequence of 1, 2 or 3. Currier has assumed these sequences of same characters are 
 single Voynich characters. Based upon how they appear in the slots, I think this is a reasonable assumption.
 
 
 # The Slot Alphabet 
 
-Finally, based on the above considerations, I propose a new transliteration alphabet, which I will call the **Slot alphabet** for obvious reasons.
+Finally, drawing from the above considerations, I propose a new transliteration alphabet, which I will call the **Slot alphabet** for obvious reasons.
 
 I think that, being based on the inner structure of Voynich terms, this alphabet is more suitable than others when performing statistical analysis that relies on 
 characters in words or when attempting to decipher the Voynich, where a closer correspondence between the transliteration characters and the Voynich character is paramount.
@@ -208,6 +212,10 @@ The below table defines the Slots alphabet and compares it with other transliter
 
 
 # Conclusions 
+
+- Inner structure of words, easier fro us to explain than Core or automata.
+
+- Excludes any (simple) substitution cypher.
 
 - This is the only alphabet that uses data-backed evidence in defining the char-set
 

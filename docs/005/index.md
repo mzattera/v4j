@@ -1,4 +1,4 @@
-## Note 005 - Slots and a New Alphabet
+# Note 005 - Slots and a New Alphabet
 
 _Last updated Sep. 12th, 2021._
 
@@ -16,7 +16,7 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 ---
 
 
-# Abstract
+## Abstract
 
 I show how the structure of Voynich words can be easily described by assuming each term is composed by "slots" that can be filled
 accordingly to simple rules, which are described below.
@@ -27,14 +27,14 @@ Given the nature of this topic, it is impossible to define rules that apply to 1
 exists in any modern text as well. However, I will try to focus on claims that apply to the vast majority of cases. 
 
 
-# Previous Works
+## Previous Works
 
 **TODO** _add the core/mantel/crust and the state machine works_.
 
 - This approach is easier to explain and has more implications.
 
 
-# Methodology
+## Methodology
 
 I start our analysis from a concordance version of the Voynich text (see [Note 001](../001)); this is obtained from the 
 Landini-Stolfi Interlinear file by merging available interlinear transcriptions for each transcriber. In the merging, characters that are not
@@ -53,7 +53,7 @@ The list of **terms** is the list of tokens without repetition (this would be th
 These 5'105 total terms have then been analyzed as explained below.
 
 
-# Considerations
+## Considerations
 
 By looking at the terms in the Voynich, we can see their structure (that is, the sequence of Voynich glyphs used to write them) can be easily described
 as follows:
@@ -132,7 +132,7 @@ appearing elsewhere in the text. The remaining cases (2 out of 100) are mostly w
 **TODO** Decomposition by cluster.
 
 
-## The Voynich Alphabet
+### The Voynich Alphabet
 
 The definition of the Voynich alphabet, that is of which glyphs should be considered a single Voynich character in the text, is still open.
 Each transcriber must continuously decide what symbols in the manuscript constitute instances of the same glyph and how each glyph needs to be mapped into 
@@ -144,7 +144,7 @@ As far as I know, this is the first time that a possible Voynich alphabet is sup
 Below I analyze more in detail some relationships between glyphs, as they appear in slots, and EVA characters.
 
 
-### Rare Characters
+#### Rare Characters
 
 The EVA characters 'g', 'x', 'v', and 'u' appear in the text only very few times, mostly as single characters, as shown in the table below.
 For this reason, I decided to ignore these characters and mark them as "unreadable character" for this analysis.
@@ -155,7 +155,7 @@ Notice that through the Voynich there are several glyphs which cannot be directl
 they are mostly ignored in any analysis of the text.
 
 
-### Gallows and Pedestals
+#### Gallows and Pedestals
 
 Some glyphs (EVA 't', 'k', 'p' and 'f') appear taller than other characters and are traditionally referred to as "gallows".
 The combination 'ch' is instead called "pedestal". Some glyphs (EVA 'cth', 'ckh', 'cph' and 'cfh') appear visually as a 
@@ -181,13 +181,13 @@ Finally, the character 'h' appears outside of the pedestal, the pedestalled gall
 Again, this seems a strong indication that EVA 'h' does not correspond to a Voynich character.
 
 
-### 'e' and 'i'
+#### 'e' and 'i'
 
 The characters 'e' and 'i' only appear in slots 6 and 9 respectively, in a sequence of 1, 2 or 3. Currier has assumed these sequences of same characters are 
 single Voynich characters. Based upon how they appear in the slots, I think this is a reasonable assumption.
 
 
-# The Slot Alphabet 
+## The Slot Alphabet 
 
 Finally, drawing from the above considerations, I propose a new transliteration alphabet, which I will call the **Slot alphabet** for obvious reasons.
 
@@ -207,7 +207,7 @@ The below table defines the Slots alphabet and compares it with other transliter
 **TODO** Create HTML version.
 
 
-# Conclusions 
+## Conclusions 
 
 - Inner structure of words, easier fro me to explain than Core or automata.
 

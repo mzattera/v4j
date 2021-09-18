@@ -1,4 +1,4 @@
-## Welcome to the Repeatable Voynich
+# Welcome to the Repeatable Voynich
 
 Hi, in these pages I store thoughts, working notes, rants and frustrations about the [Voynich manuscript](https://en.wikipedia.org/wiki/Voynich_manuscript)
 as resulting from my work with the [v4j library](https://github.com/mzattera/v4j).
@@ -16,11 +16,11 @@ On this site, I will try to be consistent with following terminology.
 format that can be printed or stored in computer files. I might sometime use the less correct term **transliteration** as a synonym and refer 
 to an author of a transliteration as a **transcriber**.
 
-  - I refer to the list of symbols used in the target script as the **transliteration alphabet** or simply as the **alphabet**.
+- I refer to the list of symbols used in the target script as the **transliteration alphabet** or simply as the **alphabet**.
 Each symbol in the alphabet is referred as a **transliteration character** or simply **character**.
 
 - The term **glyph** refers to a symbol in the Voynich that appears to constitute a single unit of text. In principle, a glyph could represent one or more
-symbols in the Voynich script, that is one or more of the **Voynich characters** that constitute the **Voynich alphabet**.
+ **Voynich characters** that constitute the **Voynich alphabet**.
 
   The question of which glyphs are actual single Voynich characters is still very open and it is at the basis of the different transliteration alphabets being created.
   
@@ -33,13 +33,13 @@ In other words, a token is an instance of a term. For example; the below line in
   <f1r.15,+P0;m> daiin shckhey ckhor chor shey kol chol chol kor chol
   ```
   
-  Contains 10 tokens ('daiin', 'shckhey', 'ckhor', 'chor', 'shey', 'kol', 'chol', 'chol', 'kor', 'chol') which are instances of 
+  contains 10 tokens ('daiin', 'shckhey', 'ckhor', 'chor', 'shey', 'kol', 'chol', 'chol', 'kor', 'chol') which are instances of 
   8 terms ('daiin', 'shckhey', 'ckhor', 'chor', 'shey', 'kol', 'chol', 'kor').
   
   When the distinction is not relevant, I might loosely use **word** to refer either to tokens or terms. 
 
 
-### Working Notes
+# Working Notes
 
 - [Note 001 - The Text](./001)
 

@@ -22,7 +22,7 @@ strongly correlate with the page illustration type (Herbal, Biological, Pharmace
 
 # Previous Works
 
-We are not the first one to apply this approach to the Voynich, just
+I am not the first one to apply this approach to the Voynich, just
 [google "Voynich clustering"](https://www.google.com/search?q=Voynich+clustering)
 and you will find many articles and blog posts o the topic.
 
@@ -30,8 +30,8 @@ I reserve the option to go over these publications in the future and compare the
 
 # Methodology
 
-Our starting point is the Voynich majority transcription of the text (see [v4j README](https://github.com/mzattera/v4j#ivtff));
-We use the EVA alphabet, but it is not relevant for this discussion, as we look at whole words in the Voynich, not to their inner components.
+Our starting point is the Voynich majority transliteration of the text (see [v4j README](https://github.com/mzattera/v4j#ivtff));
+I use the EVA alphabet, but it is not relevant for this discussion, as I look at whole words in the Voynich, not to their inner components.
 
 ## Embedding and Distance Measure
 
@@ -45,9 +45,9 @@ between two vectors assumed to have only positive components.
 
 ## Outliers
 
-Before clustering, we look for "outliers"; that is, textual units which appear very dissimilar from other textual units.
+Before clustering, I look for "outliers"; that is, textual units which appear very dissimilar from other textual units.
 
-Based on this analysis [{2}](#Note2)), we defined the following outliers, which are removed from the text before clustering.
+Based on this analysis [{2}](#Note2)), I defined the following outliers, which are removed from the text before clustering.
 
 - **f27v**, **f53r**: Herbal A pages, that do not look different from others to the naked eye.
 - **f57v**: 8 circles with words; part of a strange parchments including 2 Herbal B pages and f66r, a text-only page with text
@@ -145,7 +145,7 @@ The below table summarizes the result of clustering the manuscript pages using K
 
 ![K-Means clustering of Voynich pages](images/K-Means - Pages.PNG)
 
-We can see that:
+I can see that:
 
 - Biological pages are clearly clustered in their own cluster (#3).
 
@@ -156,9 +156,9 @@ We can see that:
   with remaining Herbal A pages (#6).
   
 In order to remove some noise, and noticing that in the vast majority of cases pages
-in a parchment share illustration type and language, we performed the clustering again, this time
+in a parchment share illustration type and language, I performed the clustering again, this time
 splitting the manuscript by parchment. Notice that parchments 29, 31, 32, 40 have been excluded
-as they contain Cosmological or Astronomical pages, which we know already do not cluster well.
+as they contain Cosmological or Astronomical pages, which I know already do not cluster well.
 
 The results are shown below (they are also available in
 [the TensorFlow projector](https://projector.tensorflow.org/?config=https://mzattera.github.io/v4j/003/data/projector_config_parchments.json));
@@ -167,7 +167,7 @@ following parameters have been used:
 
 ![T-SNE visualization of Voynich parchments](images/SNE - Parchments - ALL.PNG)
 
-We can see that there a strong tendency for parchments to cluster based on their illustration type and language, with two notable exceptions:
+I can see that there a strong tendency for parchments to cluster based on their illustration type and language, with two notable exceptions:
 
 - Zodiac pages (parchments 33 and 34) which tend to remain separate.
 
@@ -176,12 +176,12 @@ We can see that there a strong tendency for parchments to cluster based on their
   
   This parchment will be excluded from further processing.
 
-K-Means clustering of the parchments, confirms what we already found while clustering single pages
+K-Means clustering of the parchments, confirms what I already found while clustering single pages
 (table shows page count for each cluster, some of the smallest clusters omitted for clarity):
 
 ![K-Means clustering of Voynich parchments](images/K-Means - Parchments.PNG)
 
-We had a further deeper look into language A and B separately.
+I had a further deeper look into language A and B separately.
 
 The below image shows the results of clustering Pharmaceutical and Herbal A parchments
 (table shows page count for each cluster, some of the smallest clusters omitted for clarity):
@@ -205,7 +205,7 @@ The below image shows the results of clustering Biological, Stars, and Herbal B 
 
 # Conclusions 
 
-Based on the above clustering analysis we can conclude that:
+Based on the above clustering analysis I can conclude that:
 
 - Pages written using Currier's language A look quite different from pages using language B.
 

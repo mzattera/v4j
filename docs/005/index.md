@@ -15,20 +15,16 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 
 ---
 
-In this note, when referring to characters in the Voynich we will use the EVA alphabet in quotes, unless differently specified (e.g. 'o'). 
-In some cases, we will put Voynich script (e.g. text ass it looks in the Voynich),
-which might appear as EVA characters if the feature is not supported by your machine.
-
 
 # Abstract
 
-We show how the structure of Voynich words can be easily described by assuming each term is composed by "slots" that can be filled
+I show how the structure of Voynich words can be easily described by assuming each term is composed by "slots" that can be filled
 accordingly to simple rules, which are described below.
 
 This in turn sheds some lights on the definition of what constitute a Voynich character (the Voynich alphabet).
 
 Given the nature of this topic, it is impossible to define rules that apply to 100% of cases; after all, syntactical and grammatical exceptions
-exists in any modern text as well. However, we will try to focus on claims that apply to the vast majority of cases. 
+exists in any modern text as well. However, I will try to focus on claims that apply to the vast majority of cases. 
 
 
 # Previous Works
@@ -40,9 +36,9 @@ exists in any modern text as well. However, we will try to focus on claims that 
 
 # Methodology
 
-We start our analysis from a concordance version of the Voynich text (see [Note 001](../001)); this is obtained from the 
+I start our analysis from a concordance version of the Voynich text (see [Note 001](../001)); this is obtained from the 
 Landini-Stolfi Interlinear file by merging available interlinear transcriptions for each transcriber. In the merging, characters that are not
-read by all authors in the same way are marked as unreadable. This to ensure the terms we will extract from the text are the most accurate.
+read by all authors in the same way are marked as unreadable. This to ensure the terms I will extract from the text are the most accurate.
 
 For reasons explained below, any occurrence of the following characters is also marked as unreadable:
 
@@ -59,10 +55,10 @@ These 5'105 total terms have then been analyzed as explained below.
 
 # Considerations
 
-By looking at the terms in the Voynich, we see their structure (that is, the sequence of Voynich glyphs used to write them) can be easily described
+By looking at the terms in the Voynich, we can see their structure (that is, the sequence of Voynich glyphs used to write them) can be easily described
 as follows:
 
-- each term can be considered as composed by 12 "slots"; for convenience we will number them from 0 to 11.
+- each term can be considered as composed by 12 "slots"; for convenience I will number them from 0 to 11.
 
 - each slot can be empty or contain a single glyph. 
 
@@ -74,7 +70,7 @@ The below table summarizes these rules, showing the 12 slots and the glyphs that
 
 ![Slots](images/Slots Table.PNG)
 
-To exemplify this concept, we show how some common terms can be decomposed in slots;
+To exemplify this concept, I show how some common terms can be decomposed in slots;
 
 ```
 'daiin'
@@ -101,18 +97,18 @@ To exemplify this concept, we show how some common terms can be decomposed in sl
 [   ] [   ] [   ] [   ] [ch ] [cth] [   ] [   ] [ o ] [   ] [ r ] [   ] 
 ```
 
-We then see [{1}](#Note1) that tokens can be classified as follows:
+We can then see [{1}](#Note1) that tokens can be classified as follows:
 
-- 27'743 tokens (88.6% of total), corresponding to 2'820 different terms (55.2% of total), can be decomposed in slots accordingly to the above rules. We will call these tokens "**regular**".
+- 27'743 tokens (88.6% of total), corresponding to 2'820 different terms (55.2% of total), can be decomposed in slots accordingly to the above rules. I will call these tokens "**regular**".
 
 - 2'956 tokens (9.4% of total), corresponding to 1'856 different terms (36.4% of total), can be divided in two parts, each composed by at least two Voynich characters, 
-where each of these parts is a regular term. We will call these tokens "**separable**".
+where each of these parts is a regular term. I will call these tokens "**separable**".
 
   Moreover, we can see that for 1'379 separable terms (74.3% of total separable terms) their constituent parts appear as tokens in the text at least as often the whole
   separable term. For example, the term 'chockhy' appears 18 times in the text; it is a separable term that can be divided in two parts, each one being a regular term, as
-  'cho'-'ckhy' which appear in the text 79 and 39 times respectively. We think this is an indication that many separable terms are possibly just two regular words that were written together
+  'cho'-'ckhy' which appear in the text 79 and 39 times respectively. I think this is an indication that many separable terms are possibly just two regular words that were written together
   (or the space between them was not read correctly by the transcriber of the text).
-  When we need to distinguish these terms from other separable terms, we will call them **verified separable** or simply **verified**.
+  When I need to distinguish these terms from other separable terms, I will call them **verified separable** or simply **verified**.
 
   **TODO** check the length of the parts and see if only short terms are joined. Check if separable tends to appear in tight spaces. 
 
@@ -120,7 +116,7 @@ where each of these parts is a regular term. We will call these tokens "**separa
 
   **TODO** Show that vast majority of unstructured words appear only once in the text. This is probably true for separable too.
 
-- Sometime we contrast regular and separable terms to unstructured ones by calling the former ***structured***.  
+- Sometime I contrast regular and separable terms to unstructured ones by calling the former ***structured***.  
 
 The below table summarizes these findings.
 
@@ -140,12 +136,12 @@ appearing elsewhere in the text. The remaining cases (2 out of 100) are mostly w
 
 The definition of the Voynich alphabet, that is of which glyphs should be considered a single Voynich character in the text, is still open.
 Each transcriber must continuously decide what symbols in the manuscript constitute instances of the same glyph and how each glyph needs to be mapped into 
-one or more transcription characters.
+one or more transliteration characters.
 
 However, if we consider the above defined slots as relevant for the structure of terms, we can reasonably assume that each glyph appearing in a slot constitutes a single Voynich character.
 As far as I know, this is the first time that a possible Voynich alphabet is supported by empirical evidence of an inner structure of Voynich terms.
 
-Below we analyze more in detail some relationships between glyphs, as they appear in slots, and EVA characters.
+Below I analyze more in detail some relationships between glyphs, as they appear in slots, and EVA characters.
 
 
 ### Rare Characters
@@ -172,7 +168,7 @@ It has been argued that pedestalled gallows might be a "ligature", that is a mor
 If we look at slots 3 through 5, we might think that pedestalled gallows can be indeed a combination of a gallows character followed by the pedestal, in this specific order.
 However:
 
-- The combination of gallows in slot 3, followed by a pedestal in slot 4 is quite common (2'183 tokens) and written explicitly as two glyphs.
+- The combination of gallows in slot 3, followed by a pedestal in slot 4 is quite common in the text (2'183 tokens) and written explicitly as two glyphs.
  
 - There is never a case where a pedestal appears between 'e', 'ee' or 'eee' in slot 6 and a gallows character in slot 7.
 
@@ -206,14 +202,14 @@ The below table defines the Slots alphabet and compares it with other transliter
 
 **TODO** i ii iii in alcuni alfabeti cambiano a seconda di come m r n sono trattate....evidenziarlo nella tabella.
 
-**TODO** Create transcription.
+**TODO** Create transliteration.
 
 **TODO** Create HTML version.
 
 
 # Conclusions 
 
-- Inner structure of words, easier fro us to explain than Core or automata.
+- Inner structure of words, easier fro me to explain than Core or automata.
 
 - Excludes any (simple) substitution cypher.
 
@@ -221,7 +217,7 @@ The below table defines the Slots alphabet and compares it with other transliter
 
 - Voynich/EVA chars in slot cells constitute a morphological unit (character).
 
-- It is important both for attacking the cypher and performing statistical analysis to have 1:1 mapping between Voynich and transcription characters.
+- It is important both for attacking the cypher and performing statistical analysis to have 1:1 mapping between Voynich and transliteration characters.
 
  
  

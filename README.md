@@ -8,7 +8,7 @@ The folder `eclipse` contains an eclipse workspace. The (Maven) project `io.gith
 The library content is described below. The (Maven) project `io.github.mattera.v4j-apps` contains classes I created to experiment with the 
 Voynich manuscript; here you can find examples about how to use the library.
 
-**_Note:_** _In this document we use the terms "transcription" and "transliteration" interchangeably, though the latter is more correct._
+**_Note:_** _Plase check the [project pages](https://mzattera.github.io/v4j/) for some terminology that is relevant here.
 
 ## Packages and Library Overview - Project `io.github.mattera.v4j`
 
@@ -71,29 +71,29 @@ please make sure you understand how the format works as its structure is reflect
 
 `VoynichFactory` class provides methods to get a copy of the Voynich text as `IvtffText`.
 As described on the René Zandbergen's website, there are different transcriptions of the Voynich,
-created by different authors (or "transcribers") using different alphabets. This library at the moment can provide two transcriptions (as defined by `IvtffText.Transcription`):
+created by different authors (or "transcribers") using different alphabets. This library at the moment can provide two transcriptions (as defined by `IvtffText.Transliteration`):
 
 - **`LSI`**: The Landini-Stolfi Interlinear file, a file that uses EVA alphabet and merges transcriptions from several authors in an "interlinear" format,
 where multiple versions of each line in the manuscript are provided, one per author (or transcriber).
 
-- **`AUGMENTED`**: This is an "augmented" version of the LSI transcription where two "artificial" transcribers were created, 
+- **`AUGMENTED`**: This is an "augmented" version of the LSI transliteration where two "artificial" transcribers were created, 
 each corresponding to one of `IvtffText.TranscriptionType` values; `IvtffText.TranscriptionType` can be used in factory methods described below to 
 get one of these transcriptions.
 
-  - **`CONCORDANCE`**: each line of this transcription is created by merging readings from all available transcribers. Only characters that appears to be read 
+  - **`CONCORDANCE`**: each line of this transliteration is created by merging readings from all available transcribers. Only characters that appears to be read 
   in the same way by all authors are considered; other characters (read differently by one ore more transcribers) are marked as unreadable.
 
   - **`MAJORITY`**: Each character in each line is chosen with a "majority" vote, based on available transcriptions from different authors.
   For example, if two authors read one character as "a" and a third author reads the character as "o", the majority version will show the character as "a"
   (whilst the concordance version will show a "?" instead).
 
-  - **`INTERLINEAR`**: If this `IvtffText.TranscriptionType` is used, the full (interlinear) transcription is returned.
+  - **`INTERLINEAR`**: If this `IvtffText.TranscriptionType` is used, the full (interlinear) transliteration is returned.
   
 Please notice that, for each of the above transcriptions, the contribution of an individual transcriber can be obtained by using the `filterLines()` and 
 `splitLines()` methods described below.
 
 There are several `VoynichFactory.getDocument(...)` methods to return available transcriptions. Please notice that not all combination of 
-transcription, transcription type and alphabet are available.
+transliteration, transliteration type and alphabet are available.
 
 `IvtffText` is composed of `IvtffPage`s, each having a descriptor, a `PageHeader` instance that can be obtained by using `getDescriptor()`,
 which contains IVTFF metadata for the page, such as "language" (A or B), illustration type (Biological, Herbal, etc.), position of page in the text (quire, bifolio), etc.
@@ -112,7 +112,7 @@ this information can be used to filter or split the manuscripts into clusters.
 Same code snippets can be found below.
 
 ```Java
-/* Get a document containing all and only biological pages (MAJORITY transcription) */
+/* Get a document containing all and only biological pages (MAJORITY transliteration) */
 
 IvtffText doc = VoynichFactory.getDocument(TranscriptionType.MAJORITY);
 doc = doc.filterPages(new PageFilter.Builder().illustrationType("B").build());
@@ -188,7 +188,7 @@ int maxSize = 8;
 // best solution.
 int numTrials = 50;
 
-// This is the "evaluator" we use to determine the best trial (how good
+// This is the "evaluator" I use to determine the best trial (how good
 // the clustering is)
 ClusterEvaluator<BagOfWords> eval = new SilhouetteEvaluator<>(distance);
 

@@ -114,4 +114,16 @@ public class PageFilter implements ElementFilter<IvtffPage> {
 				&& (extraneousWriting == null || extraneousWriting.equals(h.getExtraneousWriting()))
 				&& (cluster == null || cluster.equals(h.getCluster()));
 	}
+
+	@Override
+	public String toString() {
+		return "PageFilter [" + (illustrationType != null ? "illustrationType=" + illustrationType + ", " : "")
+				+ (quire != null ? "quire=" + quire + ", " : "")
+				+ (pageInQuire != null ? "pageInQuire=" + pageInQuire + ", " : "")
+				+ (parchment != -1 ? "parchment=" + parchment + ", " : "")
+				+ (language != null ? "language=" + language + ", " : "") + (hand != null ? "hand=" + hand + ", " : "")
+				+ (hasKey != null ? "hasKey=" + hasKey + ", " : "")
+				+ (extraneousWriting != null ? "extraneousWriting=" + extraneousWriting + ", " : "")
+				+ (cluster != null ? "cluster=" + cluster : "") + "]";
+	}
 }

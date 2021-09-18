@@ -1,26 +1,41 @@
-## Welcome to the Grumpy Voynich
+## Welcome to the Repeatable Voynich
 
 Hi, in these pages I store thoughts, working notes, rants and frustrations about the [Voynich manuscript](https://en.wikipedia.org/wiki/Voynich_manuscript)
 as resulting from my work with the [v4j library](https://github.com/mzattera/v4j).
 
-### Terminology
+One of the aims of these pages is to link each consideration I make in my working note to a piece of code and a text that can be used to 
+reproduce my work and address errors and omissions. I also try in some of my working notes to reproduce past analysis or verify common claims about the Voynich
+in order to provide some (hopefully) more solid basis fro discussions and deciphering attempts.
 
-In the below notes, we will try to be consistent with following terminology.
+# Terminology, Definitions, and Conventions
 
+On this site, we will try to be consistent with following terminology.
+
+- A **transliteration** is a symbol-by-symbol conversion of one script into another. Transliteration is needed to represent the content of the Voynich in a 
+format that can be printed or stored in computer files. We will almost always use the less correct term **transcription** as a synonym.
+
+  - We refer to the list of symbols used in the target script as the **transliteration alphabet** or simply as the **alphabet**.
+Each symbol in the alphabet is referred as a **transliteration character** or simply **character**.
+
+- Unless stated otherwise, pieces of transcribed Voynich script use the "Basic Eva" as transliteration alphabet and are enclosed in single quotes (e.g. 'qockhey').
+
+- The term **glyph** refers to a symbol in the Voynich that appears to constitute a single unit of text. In principle, a glyph could represent one or more
+symbols in the Voynich script, that is one or more of the **Voynich characters** that constitute the **Voynich alphabet**.
+
+  The question of which glyphs are actual single Voynich characters is still very open and it is at the basis of the different transliteration alphabets being created.
+  
 - A **token** in a text is a single sequence of characters, separated by spaces. The list of **terms** is the list of tokens, without repetitions.
-In other terms, a token is an instance of a term. For example; the below line in the Voynich text:
+In other words, a token is an instance of a term. For example; the below line in the Voynich
 
   ```
   <f1r.15,+P0;m> daiin shckhey ckhor chor shey kol chol chol kor chol
   ```
   
-  Contains 10 tokens ("daiin", "shckhey", "ckhor", "chor", "shey", "kol", "chol", "chol", "kor", "chol") which are instances of 
-  8 terms ("daiin", "shckhey", "ckhor", "chor", "shey", "kol", "chol", "kor").
+  Contains 10 tokens ('daiin', 'shckhey', 'ckhor', 'chor', 'shey', 'kol', 'chol', 'chol', 'kor', 'chol') which are instances of 
+  8 terms ('daiin', 'shckhey', 'ckhor', 'chor', 'shey', 'kol', 'chol', 'kor').
   
-  When the distinction is not relevant, I might loosely use "word" (often in quotes) to refer to either tokens or terms. 
+  When the distinction is not relevant, I might loosely use **word** to refer either to tokens or terms. 
 
-- The terms "**transcription**" and "**transliteration**" are used more or less interchangeably, though the latter is more correct.
-In both cases, we refer either to the process of capturing a text (typically the Voynich) in a file or to the outcome of such process.
 
 ### Working Notes
 

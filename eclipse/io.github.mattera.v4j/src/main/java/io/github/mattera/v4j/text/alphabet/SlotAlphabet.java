@@ -43,9 +43,9 @@ public class SlotAlphabet extends IvtffAlphabet {
 
 		/**
 		 * First part of term decomposition. For REGULAR terms, this correspond to the
-		 * whole term. For SEPARABLE terms, this describes the first part of decomposition. For
-		 * UNSTRUCTURED terms, this correspond the initial part of the term that
-		 * has been decomposed.
+		 * whole term. For SEPARABLE terms, this describes the first part of
+		 * decomposition. For UNSTRUCTURED terms, this correspond the initial part of
+		 * the term that has been decomposed.
 		 */
 		public String part1 = "";
 
@@ -74,32 +74,6 @@ public class SlotAlphabet extends IvtffAlphabet {
 			slots2 = new String[SLOTS.size()];
 			for (int i = 0; i < slots2.length; ++i)
 				slots2[i] = "";
-		}
-
-		/**
-		 * Prints this in a way suitable for CSV files.
-		 */
-		// TODO remove
-		public String toCSV() {
-			StringBuffer result = new StringBuffer(classification.name()).append(';');
-
-			result.append(part1).append(';');
-			for (String s : slots1) {
-				if (!s.isBlank() && Character.isUpperCase(s.charAt(0)))
-					result.append(s).append("^;");
-				else
-					result.append(s).append(";");
-			}
-
-			result.append(part2).append(';');
-			for (String s : slots2) {
-				if (!s.isBlank() && Character.isUpperCase(s.charAt(0)))
-					result.append(s).append("^;");
-				else
-					result.append(s).append(";");
-			}
-
-			return result.toString();
 		}
 
 		@Override
@@ -203,7 +177,7 @@ public class SlotAlphabet extends IvtffAlphabet {
 		p.add("p");
 		p.add("F");
 		p.add("f");
-		p.add("x");
+		// p.add("x");
 		SLOTS.add(p);
 
 		//// 8 //////
@@ -237,7 +211,7 @@ public class SlotAlphabet extends IvtffAlphabet {
 		//// 11 //////
 		p = new ArrayList<String>();
 		p.add("y");
-		p.add("g");
+		// p.add("g");
 		SLOTS.add(p);
 	}
 
@@ -342,9 +316,13 @@ public class SlotAlphabet extends IvtffAlphabet {
 
 		String s = term;
 
-		for (char c : s.toCharArray())
-			if (!Alphabet.SLOT.isRegularOrSeparator(c) && !Alphabet.SLOT.isUreadableChar(c))
+		// TODO add support for words with unreadable characters (and an "unreadable" flag to TermDecomposition).
+		for (char c : s.toCharArray()) {
+			if (Alphabet.SLOT.isUreadableChar(c))
+				throw new IllegalArgumentException("Decomposition of unreadable texts not yet supported.");
+			if (!Alphabet.SLOT.isRegularOrSeparator(c))
 				throw new IllegalArgumentException("Term is not a plain SLOT text.");
+		}
 
 		TermDecomposition result = new TermDecomposition(term);
 

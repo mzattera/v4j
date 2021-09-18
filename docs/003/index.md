@@ -9,6 +9,8 @@ In addition, some of this note content might have become obsolete in more recent
 _Working notes are not providing detailed description of algorithms and classes used; for this, please refer to the 
 library code and JavaDoc._
 
+_Please refer to the [home page](..) for a set of definitions that might be relevant for this working note._
+
 [**<< Home**](..)
 
 ---

@@ -136,7 +136,7 @@ appearing elsewhere in the text. The remaining cases (2 out of 100) are mostly w
 **TODO** Decomposition by cluster.
 
 
-## Alphabet
+## The Voynich Alphabet
 
 The definition of the Voynich alphabet, that is of which glyphs should be considered a single Voynich character in the text, is still open.
 Each transcriber must continuously decide what symbols in the manuscript constitute instances of the same glyph and how each glyph needs to be mapped into 
@@ -145,45 +145,60 @@ one or more transcription characters.
 However, if we consider the above defined slots as relevant for the structure of terms, we can reasonably assume that each glyph appearing in a slot constitutes a single Voynich character.
 As far as I know, this is the first time that a possible Voynich alphabet is supported by empirical evidence of an inner structure of Voynich terms.
 
-Below we analyze more in detail some relationships between glyphs, as they appear in slots, and the EVA characters.
+Below we analyze more in detail some relationships between glyphs, as they appear in slots, and EVA characters.
 
 
 ### Rare Characters
 
 The EVA characters 'g', 'x', 'v', and 'u' appear in the text only very few times, mostly as single characters, as shown in the table below.
-For this reason, I decided to ignore these characters and mark them as "unreadable character".
+For this reason, I decided to ignore these characters and mark them as "unreadable character" for this analysis.
+
+![Statistics about 'g', 'x', 'v', and 'u'](images/Rare.PNG)
 
 Notice that through the Voynich there are several glyphs which cannot be directly transliterated into EVA characters (so called "weirdoes"); 
 they are mostly ignored in any analysis of the text.
 
-![Statistics about 'g', 'x', 'v', and 'u'](images/Rare.PNG)
+
+### Gallows and Pedestals
+
+Some glyphs (EVA 't', 'k', 'p' and 'f') appear taller than other characters and are traditionally referred to as "gallows".
+The combination 'ch' is instead called "pedestal". Some glyphs (EVA 'cth', 'ckh', 'cph' and 'cfh') appear visually as a 
+overlap of the pedestal with one of the gallows and therefore called "pedestalled gallows".
+These glyphs appear in slots 3, 4, 5, and 7 and are shown in the below table.
+
+![Gallows and Pedestal](images/Gallows.PNG)
+
+It has been argued that pedestalled gallows might be a "ligature", that is a more compact from of writing a combination of the pedestal and a gallows character.
+If we look at slots 3 through 5, we might think that pedestalled gallows can be indeed a combination of a gallows character followed by the pedestal, in this specific order.
+However, we see that in slot 7 we can have gallows or pedestalled gallows but there is never a case
+where a pedestal appears between 'e', 'ee' or 'eee' in slot 6 and a gallows in slot 7. This leads me to think pedestalled gallows are 
+Voynich characters in their own, and not ligatures.
+
+In addition, the character 'c' appears outside of the pedestal or pedestalled gallows only in 4 terms ('c', 'oc','chcpar', 'ckshy', and 'ocfshy'), each appearing only once in the text.
+This is for me a strong indication that EVA 'c' does not correspond to a Voynich character.
+
+Finally, the character 'h' appears outside of the pedestal, the pedestalled gallows or the glyph 'sh' only in 3 terms ('theody', 'docfhhy', and 'fhhy'), each appearing only once in the text.
+Again, this seems a strong indication that EVA 'h' does not correspond to a Voynich character.
 
 
-### Gallows
+### 'e' and 'i'
 
-**TODO** Why do we remove 'c' and 'h' left alone.
+The characters 'e' and 'i' only appear in slots 6 and 9 respectively, in a sequence of 1, 2 or 3. Several transcribers have assumed these sequences of same characters are 
+single Voynich characters. Based upon how they appear in the slots, I think this is a reasonable assumption.
 
-===[ c]=================================		
-		
-UNSTRUCTURED	c	1
-UNSTRUCTURED	oc	1
-UNSTRUCTURED	Ccpar	1
-UNSTRUCTURED	ckSy	1
-UNSTRUCTURED	ocfSy	1
-		
-===[ h]=================================		
-		
-UNSTRUCTURED	theody	1
-UNSTRUCTURED	doFhy	1
-UNSTRUCTURED	Fhy	1
-
-**TODO** Why pedestaled gallows are not ligature of pedestal + gallow
 
 # The Slot Alphabet 
 
-**TODO** s far as we know, this attempt if defining an alphabet is the only one backed up by empirical evidence of Voynich word structure.
- 
-**TODO** Comparison with other alphabets.
+Finally, based on the above considerations, I propose a new transliteration alphabet, which I will call the **Slot alphabet** for obvious reasons.
+
+I think that, being based on the inner structure of Voynich terms, this alphabet is more suitable than others when performing statistical analysis that relies on 
+characters in words or when attempting to decipher the Voynich, where a closer correspondence between the transliteration characters and the Voynich character is paramount.
+
+In addition, the alphabet can be easily converted into EVA, and vice-versa, therefore being used interchangeably.
+
+The below table defines the Slots alphabet and compares it with other transliteration alphabets.
+
+![The Slot alphabet and a comparison with other transliteration alphabets](images/Slot Alphabet.PNG)
 
 **TODO** Create transcription.
 
@@ -192,12 +207,12 @@ UNSTRUCTURED	Fhy	1
 
 # Conclusions 
 
+- This is the only alphabet that uses data-backed evidence in defining the char-set
 
 - Voynich/EVA chars in slot cells constitute a morphological unit (character).
 
 - It is important both for attacking the cypher and performing statistical analysis to have 1:1 mapping between Voynich and transcription characters.
 
-- This is the only alphabet that uses data-backed evidence in defining the char-set
  
  
 	

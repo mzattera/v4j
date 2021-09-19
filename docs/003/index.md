@@ -234,7 +234,7 @@ Currier's languages reflect language differences in the underlying "clear" text.
 - As the above grouping reflects a similar distribution of terms in the text, no matter what was the cause,
 these differences should be kept in mind when performing statistical analysis of the text or when trying it decipherment.
 
-  For this reason v4j library provides means to classify pages accordingly to above considerations, the resulting clusters are shown below
+  For this reason, v4j library provides means to classify pages accordingly to above considerations, the resulting clusters are shown below
   (also see [`PageHeader`](https://github.com/mzattera/v4j/blob/v.3.0.0/eclipse/io.github.mattera.v4j/src/main/java/io/github/mattera/v4j/text/ivtff/PageHeader.java) class).
  
   ![Cluster size in words](images/Clusters.PNG)

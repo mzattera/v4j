@@ -1,7 +1,10 @@
-#=IVTFF Eva- 1.5.2018092200
+#=IVTFF Eva- 1.5
+# Created automatically by io.github.mattera.v4j.applications.text.BuildConcordanceVersion on: 20210919.1526
+#
 # 
-# Minor changes made by Maxi to align trascription of a few lines, so they can be merged.
-# Last edited on 2018-09-22 17:13 by Maxi
+# This is based on Landini-Stolfi Interlinear file from http://www.voynich.nu/data/beta/LSI_ivtff_0d.txt
+# Minor changes made by Massimiliano Zattera to align transcription of a few lines, so they can be merged automatically.
+# Last edited on 2021-09-21 14:50 by Massimiliano Zattera.
 # 
 # # <f0.A> {}
 # Last edited on 1998-12-05 11:22:03 by stolfi

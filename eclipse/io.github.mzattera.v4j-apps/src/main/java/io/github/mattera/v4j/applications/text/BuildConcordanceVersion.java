@@ -8,7 +8,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 
@@ -90,7 +93,6 @@ public final class BuildConcordanceVersion {
 			String fLine = null;
 			IvtffLine line = null;
 			int lnum = 0;
-			Alphabet a = null;
 
 			// Parse file header
 			fLine = in.readLine();
@@ -98,20 +100,23 @@ public final class BuildConcordanceVersion {
 				throw new ParseException("Empty input.");
 			++lnum;
 
-			// TODO add proper descriptor that includes header information.
-			// TODO add support for other alphabets
 			Matcher m = IvtffText.FILE_HEADER_PATTERN.matcher(fLine);
 			if (!m.matches())
 				throw new ParseException("Invalid file header: ", fLine);
-			if (m.group(1).equals("Eva-")) {
-				a = Alphabet.EVA;
-			} else {
-				throw new ParseException("Unsupported alphabeth: " + m.group(1));
-			}
+
+			Alphabet a = Alphabet.getAlphabet(m.group(1));
+			if (a == null)
+				new ParseException("Unsupported alphabeth: " + m.group(1));
 
 			// Write header
 			out.write(fLine);
 			out.newLine();
+			
+			DateFormat f = new SimpleDateFormat("yyyyMMdd.HHmm");
+			out.write("# Created automatically by " + BuildConcordanceVersion.class.getName() + " on: " + f.format(new Date()));
+			out.newLine();
+			out.write("#");
+			out.newLine();			
 			
 			while ((fLine = in.readLine()) != null) {
 				++lnum;

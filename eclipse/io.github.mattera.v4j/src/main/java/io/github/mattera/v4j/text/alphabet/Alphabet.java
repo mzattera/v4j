@@ -7,7 +7,9 @@
 package io.github.mattera.v4j.text.alphabet;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Defines an alphabet of symbols used in a text.
@@ -25,8 +27,26 @@ public abstract class Alphabet {
 	/** The Slot alphabet (see https://mzattera.github.io/v4j/005/) */
 	public final static SlotAlphabet SLOT = new SlotAlphabet();
 
+	// All available alphabets, by code
+	private static final Map<String, Alphabet> ALPHABETS = new HashMap<>();
+	static {
+		ALPHABETS.put(EVA.getCodeString(), EVA);
+		ALPHABETS.put(UTF_16.getCodeString(), UTF_16);
+		ALPHABETS.put(SLOT.getCodeString(), SLOT);
+	}
+
 	/**
-	 * @return a string code for this alphabet, same as that used in the IVTFF file.
+	 * @param codeString a string code for this alphabet, same used in IVTFF file
+	 *                   header for the alphabet.
+	 * @return The Alphabet with given code, or null if it cannot be found.
+	 */
+	public static Alphabet getAlphabet(String codeString) {
+		return ALPHABETS.getOrDefault(codeString, null);
+	}
+
+	/**
+	 * @return a string code for this alphabet, same used in IVTFF file header for
+	 *         the alphabet.
 	 */
 	public abstract String getCodeString();
 

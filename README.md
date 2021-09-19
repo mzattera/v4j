@@ -8,7 +8,7 @@ The folder `eclipse` contains an eclipse workspace. The (Maven) project `io.gith
 The library content is described below. The (Maven) project `io.github.mattera.v4j-apps` contains classes I created to experiment with the 
 Voynich manuscript; here you can find examples about how to use the library.
 
-**_Note:_** _Plase check the [project pages](https://mzattera.github.io/v4j/) for some terminology that is relevant here.
+**_Note:_** Plase check the [project pages](https://mzattera.github.io/v4j/) for some terminology that is relevant here.
 
 ## Packages and Library Overview - Project `io.github.mattera.v4j`
 
@@ -226,7 +226,7 @@ Please take a look what is in here before implementing anythign from scratch.
 
 ### Testing
 
-Project `io.github.mattera.v4j-apps` contain JUnit tests for the v4j library and (some) of the "applications" in `v4j-apps`.
+Project `io.github.mattera.v4j-apps` contains JUnit tests for the v4j library and (some) of the "applications" in `v4j-apps`.
 
 
 

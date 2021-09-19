@@ -42,23 +42,18 @@ public class IvtffText extends CompositeText<IvtffPage> {
 		return id;
 	}
 
-	// Transcript version: A.B.x
-	// TODO this is not stored
 	private String version;
 
 	/**
-	 * 
 	 * @return Transcript version: A.B.x
 	 */
 	public String getVersion() {
 		return version;
 	}
 
-	// Major version: A.B
 	private String majorVersion;
 
 	/**
-	 * 
 	 * @return Transcript major version: A.B
 	 */
 	public String getMajorVersion() {
@@ -167,7 +162,7 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	 * file. AND IS UNSUPPORTED
 	 */
 	public final static Pattern FILE_HEADER_PATTERN = Pattern.compile("#=IVTFF (.{4}) ([0-9]+\\.[0-9]+)(\\.[0-9]+)?");
-	
+
 	/**
 	 * The notation used to identify a page in the Voynich MS is the character f
 	 * (for folio) followed by the folio number, followed by r (for recto - the
@@ -178,10 +173,9 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	public final static Pattern PAGE_HEADER_PATTERN = Pattern.compile("<f[0-9]{1,3}[rv][0-9]?>|<fRos>");
 
 	/**
-	 * Constructor from Reader.
-	 * Assumes EVA alphabet.
+	 * Constructor from Reader. Assumes EVA alphabet.
 	 * 
-	 * @param in       A Reader from which the document content is read.
+	 * @param in A Reader from which the document content is read.
 	 */
 	private IvtffText(BufferedReader in) throws IOException, ParseException {
 
@@ -193,16 +187,17 @@ public class IvtffText extends CompositeText<IvtffPage> {
 			if (row == null)
 				throw new ParseException("The input file is empty.");
 
-			// TODO add proper descriptor that includes header information.
-			// Also check and store IVTFF version of the file.
 			Matcher m = FILE_HEADER_PATTERN.matcher(row);
 			if (!m.matches())
 				throw new ParseException("Invalid file header: ", row);
-			if (m.group(1).equals("Eva-")) {
-				this.alphabet = Alphabet.EVA;
-			} else {
-				throw new ParseException("Unsupported alphabeth: " + m.group(1));
-			}
+
+			this.alphabet = Alphabet.getAlphabet(m.group(1));
+			if (this.alphabet == null)
+				new ParseException("Unsupported alphabeth: " + m.group(1));
+			this.majorVersion = m.group(2);
+			if (!this.majorVersion.equals("1.5"))
+				new ParseException("Unsupported IVTFF format version: " + this.majorVersion);				
+			this.version = m.group(2)+m.group(3);
 
 			IvtffPage currentPage = null;
 
@@ -304,6 +299,7 @@ public class IvtffText extends CompositeText<IvtffPage> {
 			out.newLine();
 			out.write("# Latest modified on: " + f.format(new Date()));
 			out.newLine();
+			out.write("#");
 			out.newLine();
 
 			for (IvtffPage page : elements) {

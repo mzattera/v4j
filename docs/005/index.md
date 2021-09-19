@@ -1,6 +1,6 @@
 # Note 005 - Slots and a New Alphabet
 
-_Last updated Sep. 12th, 2021._
+_Last updated Sep. 18th, 2021._
 
 _This note refers to [release v.5.0.0](https://github.com/mzattera/v4j/tree/v.5.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
@@ -21,7 +21,7 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 I show how the structure of Voynich words can be easily described by assuming each term is composed by "slots" that can be filled
 accordingly to simple rules, which are described below.
 
-This in turn sheds some lights on the definition of what constitute a Voynich character (the Voynich alphabet).
+This in turn sheds some lights on the definition of what might constitute a Voynich character (the Voynich alphabet).
 
 Given the nature of this topic, it is impossible to define rules that apply to 100% of cases; after all, syntactical and grammatical exceptions
 exists in any modern text as well. However, I will try to focus on claims that apply to the vast majority of cases. 
@@ -29,7 +29,9 @@ exists in any modern text as well. However, I will try to focus on claims that a
 
 ## Previous Works
 
-**TODO** _add the core/mantel/crust and the state machine works_.
+Either here or at the end as "Comparison with other works".
+
+**TODO** https://briancham1994.com/2014/12/17/curve-line-system/.
 
 - This approach is easier to explain and has more implications.
 
@@ -183,8 +185,8 @@ Again, this seems a strong indication that EVA 'h' does not correspond to a Voyn
 
 #### 'e' and 'i'
 
-The characters 'e' and 'i' only appear in slots 6 and 9 respectively, in a sequence of 1, 2 or 3. Currier has assumed these sequences of same characters are 
-single Voynich characters. Based upon how they appear in the slots, I think this is a reasonable assumption.
+The characters 'e' and 'i' only appear in slots 6 and 9 respectively, in a sequence of 1, 2 or 3. Currier has assumed each sequences of same characters is 
+a single Voynich character. Based upon how they appear in the slots, I think this is a reasonable assumption.
 
 
 ## The Slot Alphabet 

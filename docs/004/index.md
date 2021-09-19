@@ -1,6 +1,6 @@
 ## Note 004 - On Terms
 
-_Last updated Sep. 9th, 2021._
+_Last updated Sep. 18th, 2021._
 
 _This note refers to [release v.4.0.0](https://github.com/mzattera/v4j/tree/v.4.0.0) of v4j;
 **links to classes and files refer to this release** and files might have been changed, deleted or moved in the current master branch.
@@ -26,21 +26,22 @@ The below table summarizes the results, showing, the relative frequency of terms
 
 ![Most used terms](images/Terms.PNG)
 
-As expected from cluster analysis, beside terms that appear frequently in all clusters (such as **chey**, **daiin**, **dar**, and **dy**),
+As expected from cluster analysis, beside terms that appear frequently in all clusters (such as 'chey', 'daiin', 'dar', 'dy', and 'or'),
 there are terms characteristic of a single cluster; the table below shows them.
 
 ![Most used terms](images/Unique.PNG)
 
 It might be interesting to note that:
 
-- Most common terms in Herbal A pages (HA cluster) start with ch- or sh-; the latter prefix appearing only here,
+- Most common terms in Herbal A pages (HA cluster) start with 'ch-' or 'sh-'; the latter prefix appearing only here,
 
-- Pharmaceutical (PA cluster) common terms end in -ol, which is rare for other clusters. In addition, they seem to prefer the ok- or qok- prefix.
+- Pharmaceutical (PA cluster) common terms end in '-ol', which is rare for other clusters. In addition, they seem to prefer the 'ok-' or 'qok-' prefix.
 
-- Herbal B pages (HB cluster) prefer terms starting with qo(k)-.
+- Herbal B pages (HB cluster) prefer terms starting with 'qo-' and 'qok-'.
 
-- Zodiac (ZZ cluster) common terms mostly start with ot-, this is uncommon for other clusters. Moreover, this cluster
+- Zodiac (ZZ cluster) common terms mostly start with 'ot-', this is uncommon for other clusters. Moreover, this cluster
 features single characters as common terms.
+
 
 ---
 

@@ -44,11 +44,8 @@ public final class BuildConcordanceVersion {
 	 */
 	public static void main(String[] args) {
 		try {
-//			URL url = ClassLoaderUtil.getResource("/tmp.txt", BuildConcordanceVersion.class);
-//			File fIn = new File(url.toURI());
 			File fOut = new File(OUTPUT_FOLDER, VoynichFactory.AUGMENTED_TRANSCRIPTION_FILE_NAME);
-
-			doWork(INPUT_FILE, fOut, "ASCII", Alphabet.EVA);
+			doWork(INPUT_FILE, fOut, "ASCII");
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
 			System.exit(-1);
@@ -65,7 +62,7 @@ public final class BuildConcordanceVersion {
 	 * @param encoding Encoding used in files.
 	 * @param a        Alphabet for the transcription.
 	 */
-	private static void doWork(File fIn, File fOut, String encoding, Alphabet a) throws IOException, ParseException {
+	public static void doWork(File fIn, File fOut, String encoding) throws IOException, ParseException {
 		try (BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(fIn), encoding))) {
 			try (BufferedWriter out = new BufferedWriter(
 					new OutputStreamWriter(new FileOutputStream(fOut), encoding))) {
@@ -76,14 +73,13 @@ public final class BuildConcordanceVersion {
 
 	/**
 	 * Processes an interlinear file and adds a majority and a concordance version.
-	 * This is made available at package scope, so it is accessible to test classes.
 	 * 
 	 * @param in  A Reader containing the input document with interlinear
 	 *            transcription.
 	 * @param out A Writer where output is written.
 	 * @param a   Alphabet for the transcription.
 	 */
-	static void doWork(BufferedReader in, BufferedWriter out) throws IOException, ParseException {
+	public static void doWork(BufferedReader in, BufferedWriter out) throws IOException, ParseException {
 
 		String groupId = null;
 		List<IvtffLine> group = new ArrayList<>(); // group of lines being processed
@@ -107,6 +103,8 @@ public final class BuildConcordanceVersion {
 			Alphabet a = Alphabet.getAlphabet(m.group(1));
 			if (a == null)
 				new ParseException("Unsupported alphabeth: " + m.group(1));
+			if (!m.group(2).equals("1.5"))
+				new ParseException("Unsupported IVTFF format version: " + m.group(2));				
 
 			// Write header
 			out.write(fLine);

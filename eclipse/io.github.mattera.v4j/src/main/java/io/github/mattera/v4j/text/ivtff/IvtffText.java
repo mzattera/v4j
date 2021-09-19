@@ -34,6 +34,72 @@ import io.github.mattera.v4j.text.alphabet.Alphabet;
  */
 public class IvtffText extends CompositeText<IvtffPage> {
 
+	/**
+	 * The file header is the first line in the file. It must have at least 12
+	 * characters, but may be longer. The first 8 characters must be the sequence
+	 * #=IVTFF followed by one <space>. The four characters after this are used to
+	 * identify the transcription alphabet that is used in this file. Following this
+	 * code may be an indication of the version of the IVTFF format definition. The
+	 * format definition document may have a version number consisting of three
+	 * parts (A.B.x), which refers to format definition A.B regardless of the values
+	 * of x. The format indicator in the file only have meaning for versions 1.5 or
+	 * higher.
+	 * 
+	 * For the identification of the transcription alphabet, the following cases
+	 * have been pre-defined:
+	 * 
+	 * FSG- F The alphabet agreed by Friedman and his team
+	 * 
+	 * Curr C The alphabet used by Prescott Currier
+	 * 
+	 * FGuy G The frogguy alphabet by Jacques Guy
+	 * 
+	 * Eva- E Eva (either basic or extended Eva)
+	 * 
+	 * v101 V The voynich-101 alphabet by Glen Claston
+	 * 
+	 * Additional codes may be added by users.
+	 * 
+	 * The single-character code is intended to allow the use of several different
+	 * transcription alphabets in one file. It can be used in a dedicated in-line
+	 * comment as described in Table 10. This is not yet used in any transcription
+	 * file. AND IS UNSUPPORTED
+	 */
+	public final static Pattern FILE_HEADER_PATTERN = Pattern.compile("#=IVTFF (.{4}) ([0-9]+\\.[0-9]+)(\\.[0-9]+)?");
+
+	/**
+	 * The notation used to identify a page in the Voynich MS is the character f
+	 * (for folio) followed by the folio number, followed by r (for recto - the
+	 * front) or v (for verso - the reverse).
+	 * 
+	 * For the foldout folios, fnr1, fnr2, etc, fnv1, fnv2, ...
+	 */
+	public final static Pattern PAGE_HEADER_PATTERN = Pattern.compile("<f[0-9]{1,3}[rv][0-9]?>|<fRos>");
+
+	/**
+	 * Locus identifiers have the following format:
+	 * 
+	 * < page . num , code >
+	 * 
+	 * Or : < page . num , code ; T >
+	 * 
+	 * Whitespace is not allowed inside locus identifiers, but it is used in the
+	 * patterns above for clarity. The fields have the following meaning:
+	 * 
+	 * page The page name, which has to match the most recent page header.
+	 * 
+	 * num A sequence number, incrementing from 1 for each page. The highest number
+	 * that presently occurs is 160.
+	 * 
+	 * code A 3-character code, which is a 1-character locator followed by a
+	 * 2-character locus type
+	 * 
+	 * T An optional single-character transcriber ID. Only used in interlinear files
+	 * that include several parallel transcriptions.
+	 */
+	public final static Pattern LOCUS_IDENTIFIER_PATTERN = Pattern
+			.compile("<(f[0-9]{1,3}[rv][0-9]?|fRos)\\.([0-9]{1,3}[a-z]?),([\\+\\*\\-=&~@/][PLCR].)(;.)?>");
+
 	// unique ID
 	private String id;
 
@@ -129,48 +195,6 @@ public class IvtffText extends CompositeText<IvtffPage> {
 
 		return new IvtffText(doc, lines);
 	}
-
-	/**
-	 * The file header is the first line in the file. It must have at least 12
-	 * characters, but may be longer. The first 8 characters must be the sequence
-	 * #=IVTFF followed by one <space>. The four characters after this are used to
-	 * identify the transcription alphabet that is used in this file. Following this
-	 * code may be an indication of the version of the IVTFF format definition. The
-	 * format definition document may have a version number consisting of three
-	 * parts (A.B.x), which refers to format definition A.B regardless of the values
-	 * of x. The format indicator in the file only have meaning for versions 1.5 or
-	 * higher.
-	 * 
-	 * For the identification of the transcription alphabet, the following cases
-	 * have been pre-defined:
-	 * 
-	 * FSG- F The alphabet agreed by Friedman and his team
-	 * 
-	 * Curr C The alphabet used by Prescott Currier
-	 * 
-	 * FGuy G The frogguy alphabet by Jacques Guy
-	 * 
-	 * Eva- E Eva (either basic or extended Eva)
-	 * 
-	 * v101 V The voynich-101 alphabet by Glen Claston
-	 * 
-	 * Additional codes may be added by users.
-	 * 
-	 * The single-character code is intended to allow the use of several different
-	 * transcription alphabets in one file. It can be used in a dedicated in-line
-	 * comment as described in Table 10. This is not yet used in any transcription
-	 * file. AND IS UNSUPPORTED
-	 */
-	public final static Pattern FILE_HEADER_PATTERN = Pattern.compile("#=IVTFF (.{4}) ([0-9]+\\.[0-9]+)(\\.[0-9]+)?");
-
-	/**
-	 * The notation used to identify a page in the Voynich MS is the character f
-	 * (for folio) followed by the folio number, followed by r (for recto - the
-	 * front) or v (for verso - the reverse).
-	 * 
-	 * For the foldout folios, fnr1, fnr2, etc, fnv1, fnv2, ...
-	 */
-	public final static Pattern PAGE_HEADER_PATTERN = Pattern.compile("<f[0-9]{1,3}[rv][0-9]?>|<fRos>");
 
 	/**
 	 * Constructor from Reader. Assumes EVA alphabet.

@@ -1,6 +1,6 @@
 # Note 005 - Slots and a New Alphabet
 
-_Last updated Sep. 18th, 2021._
+_Last updated Sep. 19th, 2021._
 
 _This note refers to [release v.5.0.0](https://github.com/mzattera/v4j/tree/v.5.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
@@ -29,11 +29,9 @@ exists in any modern text as well. However, I will try to focus on claims that a
 
 ## Previous Works
 
-Either here or at the end as "Comparison with other works".
+I am not the first one analyzing the internal structure of Voynich words.
 
-**TODO** https://briancham1994.com/2014/12/17/curve-line-system/.
-
-- This approach is easier to explain and has more implications.
+One day I will create a [working note](../006) to compare this analysis with others.
 
 
 ## Methodology
@@ -112,11 +110,9 @@ where each of these parts is a regular term. I will call these tokens "**separab
   (or the space between them was not read correctly by the transcriber of the text).
   When I need to distinguish these terms from other separable terms, I will call them **verified separable** or simply **verified**.
 
-  **TODO** check the length of the parts and see if only short terms are joined. Check if separable tends to appear in tight spaces. 
-
 - Remaining 618 tokens (2.0% of total), corresponding to 429 different terms (8.4% of total), are marked as "**unstructured**".
 
-  **TODO** Show that vast majority of unstructured words appear only once in the text. This is probably true for separable too.
+  Notice that 366 out of these 429 terms appear only once in the text.
 
 - Sometime I contrast regular and separable terms to unstructured ones by calling the former ***structured***.  
 
@@ -129,12 +125,12 @@ The below table summarizes these findings.
 In short, almost 9 out of 10 tokens in the Voynich text exhibit a "slot" structure. Of the remaining, a fair amount can be decomposed in two parts each corresponding to regular terms
 appearing elsewhere in the text. The remaining cases (2 out of 100) are mostly words appearing only once in the text.
 
-**TODO** Char count by slot
+The below table shows occurrences of glyphs in slots for the regular terms [{2}](#Note2).
 
-**TODO** Decomposition by cluster.
+![Table with glyph count by slot.](images/Char Count by Slot.PNG)
 
 
-### The Voynich Alphabet
+## The Voynich Alphabet
 
 The definition of the Voynich alphabet, that is of which glyphs should be considered a single Voynich character in the text, is still open.
 Each transcriber must continuously decide what symbols in the manuscript constitute instances of the same glyph and how each glyph needs to be mapped into 
@@ -148,10 +144,11 @@ Below I analyze more in detail some relationships between glyphs, as they appear
 
 #### Rare Characters
 
-The EVA characters 'g', 'x', 'v', and 'u' appear in the text only very few times, mostly as single characters, as shown in the table below.
+Some EVA characters appears in the original interlinear transliteration very seldom, end even less frequently in the concordance version used, 
+where they appear mostly as single characters, as shown in the table below.
 For this reason, I decided to ignore these characters and mark them as "unreadable character" for this analysis.
 
-![Statistics about 'g', 'x', 'v', and 'u'](images/Rare.PNG)
+![Statistics about rare characters](images/Rare.PNG)
 
 Notice that through the Voynich there are several glyphs which cannot be directly transliterated into EVA characters (so called "weirdoes"); 
 they are mostly ignored in any analysis of the text.
@@ -202,27 +199,23 @@ The below table defines the Slots alphabet and compares it with other transliter
 
 ![The Slot alphabet and a comparison with other transliteration alphabets](images/Slot Alphabet.PNG)
 
-**TODO** i ii iii in alcuni alfabeti cambiano a seconda di come m r n sono trattate....evidenziarlo nella tabella.
+  * These alphabets treat sequence of EVA 'i' differently, depending on the letter following the sequence. Therefore there is no unique way to transliterate
+sequences of 'i' into these alphabets.
 
-**TODO** Create transliteration.
-
-**TODO** Create HTML version.
+A transliteration of the Landini-Stolfi interlinear file is available within [v4j library](https://github.com/mzattera/v4j) and accessible using `VoynichFactory` factory methods.
 
 
 ## Conclusions 
 
-- Inner structure of words, easier fro me to explain than Core or automata.
+- I think the slots easily describe the inner structure of Voynich words.
 
-- Excludes any (simple) substitution cypher.
+- Given they prove a structure in Voynich words that is not found in other languages, any attempt to propose a substitution cypher fro the Voynich should not be accepted.
 
-- This is the only alphabet that uses data-backed evidence in defining the char-set
-
-- Voynich/EVA chars in slot cells constitute a morphological unit (character).
-
-- It is important both for attacking the cypher and performing statistical analysis to have 1:1 mapping between Voynich and transliteration characters.
-
- 
- 
+- I think it is important, both for attacking the Voynich cypher and performing statistical analysis of the manuscript, 
+to have a one-to-one mapping between the Voynich characters and those in the transliteration alphabet.
+As far as I know, Slot alphabet is the first one that is created by empirical data about the structure of Voynich words, trying to capture the intent of the 
+Voynich author.
+  
 	
 ---
 
@@ -230,6 +223,9 @@ The below table defines the Slots alphabet and compares it with other transliter
 
 <a id="Note1">**{1}**</a> Class [`Slots`]() has been used to perform this analysis. An Excel with its output can be found in the
 [analysis folder]().
+
+<a id="Note2">**{2}**</a> Class [`CountCharsBySlot`]() has been used to produce this table.
+
 
 ---
 

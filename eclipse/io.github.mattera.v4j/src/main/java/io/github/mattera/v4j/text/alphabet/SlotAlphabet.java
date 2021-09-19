@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import io.github.mattera.v4j.text.ivtff.IvtffLine;
+import io.github.mattera.v4j.text.ivtff.ParseException;
+
 /**
  * "Slot" alphabet based on "slot" theory.
  * 
@@ -86,7 +89,7 @@ public class SlotAlphabet extends IvtffAlphabet {
 
 	@Override
 	public String getCodeString() {
-		return "Slt-";
+		return "Slot";
 	}
 
 	private final static char[] regularChars = { 'o', 'e', 'E', 'B', 'C', 'S', 'y', 'a', 'd', 'i', 'J', 'U', 'k', 'K',
@@ -220,15 +223,15 @@ public class SlotAlphabet extends IvtffAlphabet {
 	}
 
 	/**
-	 * Converts a text from Basic EVA alphabet. It only works for plain texts (see
-	 * Text.getPlainText()).
+	 * Converts a text from Basic EVA alphabet.
 	 * 
-	 * @param txt Plain text to be converted.
+	 * @param txt text to be converted.
+	 * @throws ParseException if text is not proper IVTFF text.
 	 */
-	public static String fromEva(String txt) {
-		for (char c : txt.toCharArray())
-			if (!Alphabet.EVA.isRegularOrSeparator(c) && !Alphabet.EVA.isUreadableChar(c))
-				throw new IllegalArgumentException("Text is not a plain EVA text.");
+	public static String fromEva(String txt) throws ParseException {
+		
+		// Remove comments as they migth interfer with replacement
+		txt = IvtffLine.removeComments(txt);
 
 		// TODO add support for illegible words
 
@@ -257,12 +260,10 @@ public class SlotAlphabet extends IvtffAlphabet {
 		txt = txt.replace("v", "?");
 		txt = txt.replace("x", "?");
 		txt = txt.replace("u", "?");
+		txt = txt.replace("j", "?");
+		txt = txt.replace("b", "?");
+		txt = txt.replace("z", "?");
 		txt = txt.replace("'", "?");
-
-		// TODO test - REMOVEME
-		for (char c : txt.toCharArray())
-			if (!Alphabet.SLOT.isRegularOrSeparator(c) && !Alphabet.SLOT.isUreadableChar(c))
-				throw new UnsupportedOperationException("Something went wrong in conversion");
 
 		return txt;
 	}

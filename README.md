@@ -42,6 +42,8 @@ The `Alphabet` class provides some static fields to access already defined alpha
 - `Alphabet.EVA` is the Basic EVA alphabet.
 
 - `Alphabet.UTF_16` is the UTF-16 char-set used in Java. This is the alphabet to be used to process "normal" (as non-Voynich) text files and strings.
+
+- `Alphabet.SLOT` is the Slot alphabet as defined in [this working note](https://mzattera.github.io/v4j/005/).
 	
 
 ### `io.github.mattera.v4j.text`
@@ -78,7 +80,7 @@ where multiple versions of each line in the manuscript are provided, one per aut
 
 - **`AUGMENTED`**: This is an "augmented" version of the LSI transliteration where two "artificial" transcribers were created, 
 each corresponding to one of `IvtffText.TranscriptionType` values; `IvtffText.TranscriptionType` can be used in factory methods described below to 
-get one of these transcriptions.
+get one of these transcriptions. This transliteration is available both in EVA and Slot alphabet.
 
   - **`CONCORDANCE`**: each line of this transliteration is created by merging readings from all available transcribers. Only characters that appears to be read 
   in the same way by all authors are considered; other characters (read differently by one ore more transcribers) are marked as unreadable.

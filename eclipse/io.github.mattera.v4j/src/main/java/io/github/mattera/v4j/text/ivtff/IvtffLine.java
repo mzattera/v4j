@@ -71,30 +71,6 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 	}
 
 	/**
-	 * Locus identifiers have the following format:
-	 * 
-	 * < page . num , code >
-	 * 
-	 * Or : < page . num , code ; T >
-	 * 
-	 * Whitespace is not allowed inside locus identifiers, but it is used in the
-	 * patterns above for clarity. The fields have the following meaning:
-	 * 
-	 * page The page name, which has to match the most recent page header.
-	 * 
-	 * num A sequence number, incrementing from 1 for each page. The highest number
-	 * that presently occurs is 160.
-	 * 
-	 * code A 3-character code, which is a 1-character locator followed by a
-	 * 2-character locus type
-	 * 
-	 * T An optional single-character transcriber ID. Only used in interlinear files
-	 * that include several parallel transcriptions.
-	 */
-	private final static Pattern locusIdentifier = Pattern
-			.compile("<(f[0-9]{1,3}[rv][0-9]?|fRos)\\.([0-9]{1,3}[a-z]?),([\\+\\*\\-=&~@/][PLCR].)(;.)?>");
-
-	/**
 	 * Creates a new instance parsing given input string.
 	 * 
 	 * Same as calling IvtffLine(txt, -1, Alphabet.EVA)
@@ -124,13 +100,8 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 	public IvtffLine(String row, int rowNum, Alphabet a) throws ParseException {
 		super(a);
 
-		if (!row.startsWith("<"))
-			throw new ParseException("Missing locus indentifier", row, rowNum);
-
-		row = row.trim();
-
 		// TODO check right combination of generic and complete type for the locus type
-		Matcher m = locusIdentifier.matcher(row);
+		Matcher m = IvtffText.LOCUS_IDENTIFIER_PATTERN.matcher(row);
 		if (!m.find() || (m.start() != 0)) {
 			throw new ParseException("Missing or malformed locus identifier", row, rowNum);
 		}
@@ -169,7 +140,7 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 		for (int i = 0; i < txt.length(); ++i)
 			if (!alphabet.isRegular(txt.charAt(i)) && !alphabet.isWordSeparator(txt.charAt(i))
 					&& !alphabet.isUreadableChar(txt.charAt(i)))
-				throw new ParseException("Line contains invalid characters", text);
+				throw new ParseException("Line contains invalid characters", text + " ['" + txt.charAt(i) + "']");
 
 		return getAlphabet().toPlainText(txt);
 	}
@@ -485,8 +456,14 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 		for (IvtffLine l : lines)
 			copy.add(new IvtffLine(l));
 
-		if (!align(copy))
+		if (!align(copy)) {
+
+			// TODO remove debug code
+			for (IvtffLine l : lines)
+				System.out.println(l);
+			
 			throw new ParseException("Cannot align the transcriptions.");
+		}
 
 		IvtffLine merged = null;
 		switch (type) {

@@ -199,7 +199,7 @@ The below table defines the Slots alphabet and compares it with other transliter
 
 ![The Slot alphabet and a comparison with other transliteration alphabets](images/Slot Alphabet.PNG)
 
-  * These alphabets treat sequence of EVA 'i' differently, depending on the letter following the sequence. Therefore there is no unique way to transliterate
+  Some alphabets treat sequence of EVA 'i' differently, depending on the letter following the sequence. Therefore there is no unique way to transliterate
 sequences of 'i' into these alphabets.
 
 A transliteration of the Landini-Stolfi interlinear file is available within [v4j library](https://github.com/mzattera/v4j) and accessible using `VoynichFactory` factory methods.

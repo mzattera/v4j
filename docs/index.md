@@ -61,7 +61,7 @@ In other words, a token is an instance of a term. For example; the below line in
 
   List of most common Voynichese terms and how they are split across different clusters.
 
-- [Note 005 - Slots and a New Alphabet](./004)
+- [Note 005 - Slots and a New Alphabet](./005)
 
   I show how the structure of Voynich words can be explained by some simple rules, and how these can be used to derive the original Voynich alphabet.
 

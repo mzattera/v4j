@@ -22,29 +22,29 @@ obtain an `IvtffText` instance with the Voynich text. At present the library pro
 Landini-Stolfi Interlinear file (**LSI**) and an augmented version of it, containing concordance and majority versions of the text.
 
 The corresponding IVTFF files (which are read by the factory) can be found in the
-[resource folder]()
+[resource folder](https://github.com/mzattera/v4j/tree/v.5.0.0/eclipse/io.github.mattera.v4j/src/main/resources/Transcriptions)
 of the library.
 
 The "augmented" EVA version is created using class
-[`BuildConcordanceVersion`]();
+[`BuildConcordanceVersion`](https://github.com/mzattera/v4j/blob/v.5.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mattera/v4j/applications/text/BuildConcordanceVersion.java);
 the input for the class is a slightly modified version of LSI that can be found in the
-[v4j-apps resource folder]().
+[v4j-apps resource folder](https://github.com/mzattera/v4j/tree/v.5.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/resources/Transcriptions).
 In this version, minor changes are done, that do not change the text content, in order to make sure
 all the different versions of the lines align properly, as required by `BuildConcordanceVersion` code.
 
 Class
-[`BuildSlotVersion`]();
+[`BuildSlotVersion`](https://github.com/mzattera/v4j/blob/v.5.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mattera/v4j/applications/text/BuildSlotVersion.java);
 is then used to transcribe the "augmented" version from EVA into Slot alphabeth.
 
 ### The Bible Text
 
 Similarly, class
-[`BuildBibleTranscription`]()
+[`BuildBibleTranscription`](https://github.com/mzattera/v4j/blob/v.5.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mattera/v4j/applications/text/BuildBibleTranscription.java)
 is used to produce .txt version if the Bible from  XML files that can be found in the
-[v4j-apps resource folder](https://github.com/mzattera/v4j/tree/v.1.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/resources/Transcriptions).
+[v4j-apps resource folder](https://github.com/mzattera/v4j/tree/v.5.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/resources/Transcriptions).
 
 The corresponding IVTFF files (which are read by the factory) can be found in the 
-[resource folder]()
+[resource folder](https://github.com/mzattera/v4j/tree/v.5.0.0/eclipse/io.github.mattera.v4j/src/main/resources/Transcriptions/Bible)
 of the library.
 
 ---

@@ -221,10 +221,14 @@ Voynich author.
 
 **Notes**
 
-<a id="Note1">**{1}**</a> Class [`Slots`]() has been used to perform this analysis. An Excel with its output can be found in the
-[analysis folder]().
+<a id="Note1">**{1}**</a> Class
+[`Slots`](https://github.com/mzattera/v4j/blob/v.5.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mattera/v4j/applications/slot/Slots.java)
+has been used to perform this analysis. An Excel with its output can be found in the
+[analysis folder](https://github.com/mzattera/v4j/tree/master/resources/analysis/slots).
 
-<a id="Note2">**{2}**</a> Class [`CountCharsBySlot`]() has been used to produce this table.
+<a id="Note2">**{2}**</a> Class
+[`CountCharsBySlot`](https://github.com/mzattera/v4j/blob/v.5.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mattera/v4j/applications/slot/CountCharsBySlot.java)
+has been used to produce this table.
 
 
 ---

@@ -1,6 +1,6 @@
 # Note 005 - Slots and a New Alphabet
 
-_Last updated Sep. 19th, 2021._
+_Last updated Sep. 20th, 2021._
 
 _This note refers to [release v.5.0.0](https://github.com/mzattera/v4j/tree/v.5.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
@@ -42,7 +42,7 @@ read by all authors in the same way are marked as unreadable. This to ensure the
 
 For reasons explained below, any occurrence of the following characters is also marked as unreadable:
 
-- 'g', 'x', 'v', 'u' (40 occurrences in total, in 13 of them these characters appear alone in the text).
+- 'g', 'x', 'v', 'u', 'j', 'b', 'z' (40 occurrences in total, in 13 of them these characters appear alone in the text).
 
 - 'c' and 'h', when they do not appear in combinations such as 'ch', 'sh', 'cth', 'ckh', 'cph', 'cfh';
 this sums up to 8 occurrences.

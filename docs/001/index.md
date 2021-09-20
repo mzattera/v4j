@@ -41,7 +41,7 @@ is then used to transcribe the "augmented" version from EVA into Slot alphabeth.
 Similarly, class
 [`BuildBibleTranscription`](https://github.com/mzattera/v4j/blob/v.5.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mattera/v4j/applications/text/BuildBibleTranscription.java)
 is used to produce .txt version if the Bible from  XML files that can be found in the
-[v4j-apps resource folder](https://github.com/mzattera/v4j/tree/v.5.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/resources/Transcriptions).
+[v4j-apps resource folder](https://github.com/mzattera/v4j/tree/v.5.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/resources/Transcriptions/Bible).
 
 The corresponding IVTFF files (which are read by the factory) can be found in the 
 [resource folder](https://github.com/mzattera/v4j/tree/v.5.0.0/eclipse/io.github.mattera.v4j/src/main/resources/Transcriptions/Bible)

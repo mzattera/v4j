@@ -145,7 +145,7 @@ The below table summarizes the result of clustering the manuscript pages using K
 
 ![K-Means clustering of Voynich pages](images/K-Means - Pages.PNG)
 
-I can see that:
+We can see that:
 
 - Biological pages are clearly clustered in their own cluster (#3).
 
@@ -158,7 +158,7 @@ I can see that:
 In order to remove some noise, and noticing that in the vast majority of cases pages
 in a parchment share illustration type and language, I performed the clustering again, this time
 splitting the manuscript by parchment. Notice that parchments 29, 31, 32, 40 have been excluded
-as they contain Cosmological or Astronomical pages, which I know already do not cluster well.
+as they contain Cosmological or Astronomical pages, which we know already do not cluster well.
 
 The results are shown below (they are also available in
 [the TensorFlow projector](https://projector.tensorflow.org/?config=https://mzattera.github.io/v4j/003/data/projector_config_parchments.json));
@@ -167,7 +167,7 @@ following parameters have been used:
 
 ![T-SNE visualization of Voynich parchments](images/SNE - Parchments - ALL.PNG)
 
-I can see that there a strong tendency for parchments to cluster based on their illustration type and language, with two notable exceptions:
+We can see that there a strong tendency for parchments to cluster based on their illustration type and language, with two notable exceptions:
 
 - Zodiac pages (parchments 33 and 34) which tend to remain separate.
 
@@ -205,7 +205,7 @@ The below image shows the results of clustering Biological, Stars, and Herbal B 
 
 # Conclusions 
 
-Based on the above clustering analysis I can conclude that:
+Based on the above clustering analysis we can conclude that:
 
 - Pages written using Currier's language A look quite different from pages using language B.
 

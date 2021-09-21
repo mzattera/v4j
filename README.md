@@ -156,6 +156,12 @@ Sometimes it is useful to compare Voynich statistics with those from a known tex
 `BibleFactory` provide methods to return the text of the Bible in different languages as `TextFile`
 instances.
 
+### Term Decomposition and Analysis
+
+`SlotAlphabet` allows you to decompose words in slots, as described in this [working note](https://mzattera.github.io/v4j/005/).
+Class `SlotAlphabet.TermDecomposition` allows you to access term components, including the term prefix, root and suffix fro which
+a formal definition is provided.
+
 ### Clustering
 
 v4j provides tools for k-means and hierarchical agglomerative clustering using Apache commons-math3 and `org.opencompare.hac`

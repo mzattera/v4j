@@ -80,6 +80,69 @@ public class SlotAlphabet extends IvtffAlphabet {
 				slots2[i] = "";
 		}
 
+		private String prefix = null;
+
+		/**
+		 * Prefix for this term
+		 * 
+		 * @return Content of slots 0-2 for the first part of this term decomposition.
+		 */
+		public String getPrefix() {
+			if (prefix == null) {
+				StringBuffer result = new StringBuffer();
+				for (int i = 0; i < 3; ++i)
+					result.append(slots1[i]);
+				prefix = result.toString();
+			}
+
+			return prefix;
+		}
+
+		private String suffix = null;
+
+		/**
+		 * Suffix for this term
+		 * 
+		 * @return For REGULAR terms, returns content of of slots 8-11 for the first
+		 *         part of this term decomposition. For SEPARABLE terms, returns content
+		 *         of of slots 8-11 for the second part of this term decomposition. For
+		 *         UNSTRUCTURED terms returns empty string.
+		 */
+		public String getSuffix() {
+			if (suffix == null) {
+				StringBuffer result = new StringBuffer();
+				switch (classification) {
+				case REGULAR:
+					for (int i = 8; i < slots1.length; ++i)
+						result.append(slots1[i]);
+					suffix = result.toString();
+					break;
+				case SEPARABLE:
+					for (int i = 8; i < slots2.length; ++i)
+						result.append(slots2[i]);
+					suffix = result.toString();
+					break;
+				case UNSTRUCTURED:
+					suffix = "";
+					break;
+				default:
+					throw new IllegalArgumentException("Unrecognized term classification: " + classification);
+
+				}
+			}
+
+			return suffix;
+		}
+
+		/**
+		 * Root for this term
+		 * 
+		 * @return The part of the term that it is not its prefix or suffix..
+		 */
+		public String getRoot() {
+			return term.substring(getPrefix().length(), term.length()-getSuffix().length());
+		}
+
 		@Override
 		public String toString() {
 			return "TermDecomposition [term=" + term + ", classification=" + classification + ", part1=" + part1
@@ -229,7 +292,7 @@ public class SlotAlphabet extends IvtffAlphabet {
 	 * @throws ParseException if text is not proper IVTFF text.
 	 */
 	public static String fromEva(String txt) throws ParseException {
-		
+
 		// Remove comments as they migth interfer with replacement
 		txt = IvtffLine.removeComments(txt);
 

@@ -293,31 +293,71 @@ public class SlotAlphabet extends IvtffAlphabet {
 	 */
 	public static String fromEva(String txt) throws ParseException {
 
-		// Remove comments as they migth interfer with replacement
+		// Remove comments as they might interfere with replacement
 		txt = IvtffLine.removeComments(txt);
 
-		// TODO add support for illegible words
-
+		// WHen transliterating we use 0 to denote an EVA character that transliterates into a 
+		// dubious Slot character; this happen because multiple EVA transliterate into a single Slot.
+		
 		txt = txt.replace("ckh", "K");
 		txt = txt.replace("cfh", "F");
 		txt = txt.replace("cth", "T");
 		txt = txt.replace("cph", "P");
 
+		// kh and ck are not single chars in SLOT.
+		// We replace with ??? so we can revert back to EVA and be aligned
+		txt = txt.replace("?kh", "?00");
+		txt = txt.replace("?fh", "?00");
+		txt = txt.replace("?th", "?00");
+		txt = txt.replace("?ph", "?00");
+		txt = txt.replace("c?h", "0?0");
+		txt = txt.replace("ck?", "00?");
+		txt = txt.replace("cf?", "00?");
+		txt = txt.replace("ct?", "00?");
+		txt = txt.replace("cp?", "00?");
+
+		// These might be K or ?k?
+		txt = txt.replace("?k?", "?0?");
+		txt = txt.replace("?f?", "?0?");
+		txt = txt.replace("?t?", "?0?");
+		txt = txt.replace("?p?", "?0?");
+
 		txt = txt.replace("ch", "C");
 		txt = txt.replace("sh", "S");
 
-		txt = txt.replace("c", "?");
-		txt = txt.replace("h", "?");
+		// These might be S or s?
+		txt = txt.replace("s?", "0?");
+	
+		txt = txt.replace("c", "0");
+		txt = txt.replace("h", "0");
 
 		txt = txt.replace("eee", "B");
-		txt = txt.replace("ee", "E");
+		// Can be B or E?
+		txt = txt.replace("?ee", "?00");
+		txt = txt.replace("ee?", "00?");
 
-		// txt = txt.replace("aiii","Z");
-		// txt = txt.replace("aii", "W");
-		// txt = txt.replace("ai", "V");
+		txt = txt.replace("ee", "E");
+		// Can be B or E? or e??
+		txt = txt.replace("e??", "0??");
+		txt = txt.replace("?e?", "?0?");
+		txt = txt.replace("??e", "??0");
+		txt = txt.replace("e?e", "0?0");
+		txt = txt.replace("?e", "?0");
+		txt = txt.replace("e?", "0?");
 
 		txt = txt.replace("iii", "U");
+		// Can be U or J?
+		txt = txt.replace("?ii", "?00");
+		txt = txt.replace("ii?", "00?");
+
 		txt = txt.replace("ii", "J");
+		// Can be U or J? or i??
+		txt = txt.replace("i??", "0??");
+		txt = txt.replace("?i?", "?0?");
+		txt = txt.replace("??i", "??0");
+		txt = txt.replace("i?i", "0?0");
+		txt = txt.replace("?i", "?0");
+		txt = txt.replace("i?", "0?");
 
 		txt = txt.replace("g", "?");
 		txt = txt.replace("v", "?");
@@ -327,6 +367,8 @@ public class SlotAlphabet extends IvtffAlphabet {
 		txt = txt.replace("b", "?");
 		txt = txt.replace("z", "?");
 		txt = txt.replace("'", "?");
+
+		txt = txt.replace("0", "?");
 
 		return txt;
 	}
@@ -363,9 +405,6 @@ public class SlotAlphabet extends IvtffAlphabet {
 			}
 		}
 
-//		if (term.equals("qokeCy"))
-//			System.out.println("COMPLETE");
-
 		return result;
 	}
 
@@ -383,6 +422,8 @@ public class SlotAlphabet extends IvtffAlphabet {
 
 		// TODO add support for words with unreadable characters (and an "unreadable"
 		// flag to TermDecomposition).
+		// Notice that fromEva() might introduce multiple ? where a single Slot character 
+		// might be present. When decomposing a sequence of ? can occupy one or more slots.
 		for (char c : s.toCharArray()) {
 			if (Alphabet.SLOT.isUreadableChar(c))
 				throw new IllegalArgumentException("Decomposition of unreadable texts not yet supported.");

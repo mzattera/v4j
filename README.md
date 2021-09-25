@@ -10,6 +10,7 @@ Voynich manuscript; here you can find examples about how to use the library.
 
 **_Note:_** Plase check the [project pages](https://mzattera.github.io/v4j/) for some terminology that is relevant here.
 
+
 ## Packages and Library Overview - Project `io.github.mattera.v4j`
 
 The idea of the library is to provide a "document" object; this is a (possibly) structured text written in one specific "alphabet".

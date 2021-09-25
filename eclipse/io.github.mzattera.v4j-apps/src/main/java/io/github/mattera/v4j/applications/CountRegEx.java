@@ -4,8 +4,12 @@ import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import io.github.mattera.v4j.text.ElementFilter;
+import io.github.mattera.v4j.text.alphabet.Alphabet;
+import io.github.mattera.v4j.text.ivtff.IvtffPage;
 import io.github.mattera.v4j.text.ivtff.IvtffText;
 import io.github.mattera.v4j.text.ivtff.VoynichFactory;
+import io.github.mattera.v4j.text.ivtff.VoynichFactory.Transcription;
 import io.github.mattera.v4j.text.ivtff.VoynichFactory.TranscriptionType;
 import io.github.mattera.v4j.util.Counter;
 
@@ -18,8 +22,26 @@ import io.github.mattera.v4j.util.Counter;
  */
 public final class CountRegEx {
 
+	/**
+	 * Which transcription to use.
+	 */
+	public static final Transcription TRANSCRIPTION = Transcription.AUGMENTED;
+
+	/**
+	 * Which transcription type to use.
+	 */
+	public static final TranscriptionType TRANSCRIPTION_TYPE = TranscriptionType.CONCORDANCE;
+
+	/**
+	 * Which Alphabet type to use.
+	 */
+	public static final Alphabet ALPHABET = Alphabet.EVA;
+
+	/** Filter to use on pages before analysis */
+	public static final ElementFilter<IvtffPage> FILTER = null;
+
 	// The RegEx to look for.
-	private final static String REGEX = "c([^tpfk]h|[tpfk][^h]|[^tpfkh])";
+	private final static String REGEX = "\\?[tpfk]h";
 //	private final static String REGEX = "c([^tpfk]h|[^tpfkh]|[tpfk][^h])";
 //	private final static String REGEX = "[^tpfkcs\\?]h|.\\?h";
 //	private final static String REGEX = ".c.";
@@ -32,19 +54,17 @@ public final class CountRegEx {
 	 */
 	public static void main(String[] args) {
 		try {
-			System.out.println(REGEX);
+			// Prints configuration parameters
+			System.out.println("Transcription     : " + TRANSCRIPTION);
+			System.out.println("Transcription Type: " + TRANSCRIPTION_TYPE);
+			System.out.println("Alphabet          : " + ALPHABET);
+			System.out.println("Filter            : " + (FILTER == null ? "<no-filter>" : FILTER));
+			System.out.println("RegEx             : " + REGEX);
 			System.out.println();
 
-			// Get the text to process
-			IvtffText doc = VoynichFactory.getDocument(TranscriptionType.MAJORITY);
-//			doc = doc.filterPages(new ElementFilter<IvtffPage>() {
-//
-//				@Override
-//				public boolean keep(IvtffPage element) {
-//					// This filter returns all pages which belong to the "main" clusters.
-//					return (element.getDescriptor().getCluster().length() == 3);
-//				}
-//			});
+			IvtffText doc = VoynichFactory.getDocument(TRANSCRIPTION, TRANSCRIPTION_TYPE, ALPHABET);
+			if (FILTER != null)
+				doc = doc.filterPages(FILTER);
 
 
 			Counter<String> c = process("." + doc.getPlainText() + ".", REGEX);

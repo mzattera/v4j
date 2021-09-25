@@ -41,7 +41,7 @@ public abstract class Alphabet {
 	 * @return The Alphabet with given code, or null if it cannot be found.
 	 */
 	public static Alphabet getAlphabet(String codeString) {
-		return ALPHABETS.getOrDefault(codeString, null);
+		return ALPHABETS.get(codeString);
 	}
 
 	/**
@@ -311,5 +311,10 @@ public abstract class Alphabet {
 	 */
 	public String toLowerCase(String txt) {
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public String toString() {
+		return "Alphabet [" + getCodeString() + "]";
 	}
 }

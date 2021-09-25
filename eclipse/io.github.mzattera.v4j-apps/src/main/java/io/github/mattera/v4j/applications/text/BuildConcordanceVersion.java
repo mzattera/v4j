@@ -102,9 +102,9 @@ public final class BuildConcordanceVersion {
 
 			Alphabet a = Alphabet.getAlphabet(m.group(1));
 			if (a == null)
-				new ParseException("Unsupported alphabeth: " + m.group(1));
+				throw new ParseException("Unsupported alphabeth: " + m.group(1));
 			if (!m.group(2).equals("1.5"))
-				new ParseException("Unsupported IVTFF format version: " + m.group(2));				
+				throw new ParseException("Unsupported IVTFF format version: " + m.group(2));				
 
 			// Write header
 			out.write(fLine);

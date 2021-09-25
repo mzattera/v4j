@@ -61,7 +61,7 @@ public final class BuildSlotVersion {
 				if (!m.group(1).equals(Alphabet.EVA.getCodeString()))
 					throw new ParseException("Unsupported alphabeth: " + m.group(1));
 				if (!m.group(2).equals("1.5"))
-					new ParseException("Unsupported IVTFF format version: " + m.group(2));
+					throw new ParseException("Unsupported IVTFF format version: " + m.group(2));
 
 				// Write header
 				slot.append("#=IVTFF " + Alphabet.SLOT.getCodeString() + " 1.5\n");

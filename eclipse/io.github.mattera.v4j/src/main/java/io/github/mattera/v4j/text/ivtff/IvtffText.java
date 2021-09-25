@@ -217,10 +217,10 @@ public class IvtffText extends CompositeText<IvtffPage> {
 
 			this.alphabet = Alphabet.getAlphabet(m.group(1));
 			if (this.alphabet == null)
-				new ParseException("Unsupported alphabeth: " + m.group(1));
+				throw new ParseException("Unsupported alphabeth: " + m.group(1));
 			this.majorVersion = m.group(2);
 			if (!this.majorVersion.equals("1.5"))
-				new ParseException("Unsupported IVTFF format version: " + this.majorVersion);				
+				throw new ParseException("Unsupported IVTFF format version: " + this.majorVersion);				
 			this.version = m.group(2)+m.group(3);
 
 			IvtffPage currentPage = null;

@@ -6,6 +6,7 @@ package io.github.mattera.v4j.applications;
 import java.util.Map.Entry;
 
 import io.github.mattera.v4j.text.ElementFilter;
+import io.github.mattera.v4j.text.alphabet.Alphabet;
 import io.github.mattera.v4j.text.ivtff.IvtffPage;
 import io.github.mattera.v4j.text.ivtff.IvtffText;
 import io.github.mattera.v4j.text.ivtff.VoynichFactory;
@@ -33,6 +34,11 @@ public final class CountCharacters {
 	 */
 	public static final TranscriptionType TRANSCRIPTION_TYPE = TranscriptionType.MAJORITY;
 
+	/**
+	 * Which Alphabet type to use.
+	 */
+	public static final Alphabet ALPHABET = Alphabet.SLOT;
+
 	/** Filter to use on pages before analysis */
 	public static final ElementFilter<IvtffPage> FILTER = null;
 
@@ -44,13 +50,14 @@ public final class CountCharacters {
 	 */
 	public static void main(String[] args) {
 		try {
-			// PRints configuration parameters
-			System.out.println("Transcription: " + TRANSCRIPTION);
+			// Prints configuration parameters
+			System.out.println("Transcription     : " + TRANSCRIPTION);
 			System.out.println("Transcription Type: " + TRANSCRIPTION_TYPE);
-			System.out.println("Filter: " + (FILTER == null ? " (none)" : FILTER));
+			System.out.println("Alphabet          : " + ALPHABET);
+			System.out.println("Filter            : " + (FILTER == null ? "<no-filter>" : FILTER));
 			System.out.println();
 
-			IvtffText doc = VoynichFactory.getDocument(TRANSCRIPTION, TRANSCRIPTION_TYPE);
+			IvtffText doc = VoynichFactory.getDocument(TRANSCRIPTION, TRANSCRIPTION_TYPE, ALPHABET);
 			if (FILTER != null)
 				doc = doc.filterPages(FILTER);
 

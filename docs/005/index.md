@@ -190,7 +190,7 @@ appear always in same slots, what it is relevant here would be the number of rep
 happens for Roman numerals the sequence VI must not be understood as a 2-character word, rather as the number 6.
 
 In addition, it should be noted that several characters in the Latin script might appear as repetitions of the same
-character, when written by hand; for eaxmple "m" looks like "nn", "w" cna be read as "uu", but these are single characters.
+character, when written by hand; for eaxmple "m" looks like "nn", "w" can be read as "uu", but these are single characters.
 
 Based on the above, we assume each sequence of 'e' and 'i' is probably a character in itself.
 

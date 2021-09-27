@@ -1,6 +1,6 @@
 # Note 005 - Slots and a New Alphabet
 
-_Last updated Sep. 20th, 2021._
+_Last updated Sep. 27th, 2021._
 
 _This note refers to [release v.5.0.0](https://github.com/mzattera/v4j/tree/v.5.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
@@ -125,7 +125,7 @@ The below table summarizes these findings.
 In short, almost 9 out of 10 tokens in the Voynich text exhibit a "slot" structure. Of the remaining, a fair amount can be decomposed in two parts each corresponding to regular terms
 appearing elsewhere in the text. The remaining cases (2 out of 100) are mostly words appearing only once in the text.
 
-The below table shows occurrences of glyphs in slots for the regular terms [{2}](#Note2).
+The below table shows occurrence of glyphs in slots for the regular tokens [{2}](#Note2).
 
 ![Table with glyph count by slot.](images/Char Count by Slot.PNG)
 
@@ -136,7 +136,8 @@ The definition of the Voynich alphabet, that is of which glyphs should be consid
 Each transcriber must continuously decide what symbols in the manuscript constitute instances of the same glyph and how each glyph needs to be mapped into 
 one or more transliteration characters.
 
-However, if we consider the above defined slots as relevant for the structure of terms, we can reasonably assume that each glyph appearing in a slot constitutes a single Voynich character.
+However, if we consider the above defined slots as relevant for the structure of terms, we can reasonably assume that each glyph appearing in a slot constitutes a single Voynich character. In other words, if there is an inner structure of the words, as I think it has been demostrated, and only some glyphs can appear in some parts of this stucture,
+it is reasonable to assume each glyph is a basic unit of information, that is a character in the Voynich alphabet.
 As far as I know, this is the first time that a possible Voynich alphabet is supported by empirical evidence of an inner structure of Voynich terms.
 
 Below I analyze more in detail some relationships between glyphs, as they appear in slots, and EVA characters.
@@ -182,16 +183,24 @@ Again, this seems a strong indication that EVA 'h' does not correspond to a Voyn
 
 #### 'e' and 'i'
 
-The characters 'e' and 'i' only appear in slots 6 and 9 respectively, in a sequence of 1, 2 or 3. Currier has assumed each sequences of same characters is 
-a single Voynich character. Based upon how they appear in the slots, I think this is a reasonable assumption.
+The characters 'e' and 'i' only appear in slots 6 and 9 respectively, in a sequence of 1, 2 or 3. Currier has assumed each sequences of same characters is a single Voynich character.
+
+It can be argued that these are indeed repetitions of the same character but, if this is the case, as these sequences
+appear always in same slots, what it is relevant here would be the number of repetitions. In other words, as it 
+happens for Roman numerals the sequence VI must not be understood as a 2-character word, rather as the number 6.
+
+In addition, it should be noted that several characters in the Latin script might appear as repetitions of the same
+character, when written by hand; for eaxmple "m" looks like "nn", "w" cna be read as "uu", but these are single characters.
+
+Based on the above, we assume each sequence of 'e' and 'i' is probably a character in itself.
 
 
 ## The Slot Alphabet 
 
 Finally, drawing from the above considerations, I propose a new transliteration alphabet, which I will call the **Slot alphabet** for obvious reasons.
 
-I think that, being based on the inner structure of Voynich terms, this alphabet is more suitable than others when performing statistical analysis that relies on 
-characters in words or when attempting to decipher the Voynich, where a closer correspondence between the transliteration characters and the Voynich character is paramount.
+I think that, being based on the inner structure of Voynich terms, this alphabet is more suitable than others when performing statistical analysis that relies on characters in words or when attempting to decipher the Voynich,
+where a one-to-one correspondence between the transliteration characters and the Voynich characters is paramount.
 
 In addition, the alphabet can be easily converted into EVA, and vice-versa, therefore being used interchangeably.
 

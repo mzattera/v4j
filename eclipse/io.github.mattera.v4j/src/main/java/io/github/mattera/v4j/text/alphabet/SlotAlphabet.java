@@ -140,7 +140,7 @@ public class SlotAlphabet extends IvtffAlphabet {
 		 * @return The part of the term that it is not its prefix or suffix..
 		 */
 		public String getRoot() {
-			return term.substring(getPrefix().length(), term.length()-getSuffix().length());
+			return term.substring(getPrefix().length(), term.length() - getSuffix().length());
 		}
 
 		@Override
@@ -293,12 +293,21 @@ public class SlotAlphabet extends IvtffAlphabet {
 	 */
 	public static String fromEva(String txt) throws ParseException {
 
+		// plant intrusion is replaced by a space
+		// TODO verify
+		txt = txt.replaceAll("<\\->", Alphabet.SLOT.getSpaceAsString());
+
 		// Remove comments as they might interfere with replacement
 		txt = IvtffLine.removeComments(txt);
 
-		// WHen transliterating we use 0 to denote an EVA character that transliterates into a 
-		// dubious Slot character; this happen because multiple EVA transliterate into a single Slot.
-		
+		// These might impact how unreadable characters are handled
+		txt = txt.replaceAll("!", ""); // "null" char in interlinear
+		txt = txt.replaceAll("%", Alphabet.SLOT.getUnreadableAsString());
+
+		// WHen transliterating we use 0 to denote an EVA character that transliterates
+		// into a dubious Slot character; this happen because multiple EVA transliterate
+		// into a single Slot.
+
 		txt = txt.replace("ckh", "K");
 		txt = txt.replace("cfh", "F");
 		txt = txt.replace("cth", "T");
@@ -327,7 +336,7 @@ public class SlotAlphabet extends IvtffAlphabet {
 
 		// These might be S or s?
 		txt = txt.replace("s?", "0?");
-	
+
 		txt = txt.replace("c", "0");
 		txt = txt.replace("h", "0");
 
@@ -422,8 +431,10 @@ public class SlotAlphabet extends IvtffAlphabet {
 
 		// TODO add support for words with unreadable characters (and an "unreadable"
 		// flag to TermDecomposition).
-		// Notice that fromEva() might introduce multiple ? where a single Slot character 
-		// might be present. When decomposing a sequence of ? can occupy one or more slots.
+		// Notice that fromEva() might introduce multiple ? where a single Slot
+		// character
+		// might be present. When decomposing a sequence of ? can occupy one or more
+		// slots.
 		for (char c : s.toCharArray()) {
 			if (Alphabet.SLOT.isUreadableChar(c))
 				throw new IllegalArgumentException("Decomposition of unreadable texts not yet supported.");

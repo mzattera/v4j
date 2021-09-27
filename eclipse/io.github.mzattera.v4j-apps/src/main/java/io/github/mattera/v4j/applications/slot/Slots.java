@@ -73,7 +73,7 @@ public final class Slots {
 
 		// Prints statistics
 		System.out.println("Transcription: " + TRANSCRIPTION + "-" + TRANSCRIPTION_TYPE
-				+ (FILTER == null ? " complete" : " with filter:"+FILTER));
+				+ (FILTER == null ? " complete" : " with filter:" + FILTER));
 		System.out.println(";;;;;;;");
 		System.out.println(";;Terms;%;;Tokens;%");
 		for (SlotAlphabet.TermClassification v : SlotAlphabet.TermClassification.values()) {
@@ -132,7 +132,7 @@ public final class Slots {
 
 		return result;
 	}
-	
+
 	/**
 	 * Prints term decomposition in in a way suitable for CSV files.
 	 */

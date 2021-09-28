@@ -129,6 +129,10 @@ The below table shows occurrence of glyphs in slots for the regular tokens [{2}]
 
 ![Table with glyph count by slot.](images/Char Count by Slot.PNG)
 
+As expected, the distribution of glyphs in slots varies based on Currier language an illustration:
+
+![Table with glyph count by slot for BB and HA clusters.](images/Char Count by Slot Clustered.PNG)
+
 
 ## The Voynich Alphabet
 

@@ -35,6 +35,7 @@ public final class CountCharsBySlot {
 
 	/** Filter to use on pages before analysis */
 	public static final ElementFilter<IvtffPage> FILTER = null;
+//	public static final ElementFilter<IvtffPage> FILTER = new PageFilter.Builder().cluster("HA").build();
 
 	private static final List<String> CHARS = new ArrayList<>();
 	static {
@@ -74,8 +75,8 @@ public final class CountCharsBySlot {
 
 		// Get the document to process
 		IvtffText doc = VoynichFactory.getDocument(TRANSCRIPTION, TRANSCRIPTION_TYPE, Alphabet.SLOT);
-		if (Slots.FILTER != null)
-			doc = doc.filterPages(Slots.FILTER);
+		if (FILTER != null)
+			doc = doc.filterPages(FILTER);
 
 		Counter<String> allWords = doc.getWords(true);
 
@@ -86,8 +87,8 @@ public final class CountCharsBySlot {
 		int terms = 0, tokens = 0;
 
 		// Prints statistics
-		System.out.println("Transcription: " + Slots.TRANSCRIPTION + "-" + Slots.TRANSCRIPTION_TYPE
-				+ (Slots.FILTER == null ? " (complete)" : " with filter: " + Slots.FILTER));
+		System.out.println("Transcription: " + TRANSCRIPTION + "-" + TRANSCRIPTION_TYPE
+				+ (FILTER == null ? " (complete)" : " with filter: " + FILTER));
 
 		// Each counters counts occurrence of tokens with a given character in a slot
 		@SuppressWarnings("unchecked")
@@ -97,7 +98,7 @@ public final class CountCharsBySlot {
 			termSlotCounter[i] = new Counter<String>();
 			tokenSlotCounter[i] = new Counter<String>();
 		}
-		
+
 		// Count all chars in slots
 		for (TermDecomposition d : classified.values()) {
 			if (d.classification != SlotAlphabet.TermClassification.REGULAR)
@@ -109,8 +110,7 @@ public final class CountCharsBySlot {
 				if (d.slots1[i].isEmpty()) {
 					termSlotCounter[i].count("=");
 					tokenSlotCounter[i].count("=", allWords.getCount(d.term));
-				}
-				else {
+				} else {
 					termSlotCounter[i].count(d.slots1[i]);
 					tokenSlotCounter[i].count(d.slots1[i], allWords.getCount(d.term));
 				}

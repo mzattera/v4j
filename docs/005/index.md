@@ -1,6 +1,6 @@
 # Note 005 - Slots and a New Alphabet
 
-_Last updated Sep. 27th, 2021._
+_Last updated Sep. 28th, 2021._
 
 _This note refers to [release v.5.0.0](https://github.com/mzattera/v4j/tree/v.5.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.

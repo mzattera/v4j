@@ -93,6 +93,7 @@ public final class CountCharsBySlot {
 		// Each counters counts occurrence of tokens with a given character in a slot
 		@SuppressWarnings("unchecked")
 		Counter<String>[] termSlotCounter = new Counter[SlotAlphabet.SLOTS.size()];
+		@SuppressWarnings("unchecked")
 		Counter<String>[] tokenSlotCounter = new Counter[SlotAlphabet.SLOTS.size()];
 		for (int i = 0; i < termSlotCounter.length; i++) {
 			termSlotCounter[i] = new Counter<String>();

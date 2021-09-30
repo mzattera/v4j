@@ -58,6 +58,18 @@ public class Counter<T> {
 	}
 
 	/**
+	 * Counts all items that are already counted in another Counter<>.
+	 * 
+	 * @return This Counter.
+	 */
+	public Counter<T> count(Counter<T> c) {
+		for (Entry<T,Integer> e : c.entrySet())
+			count(e.getKey(), e.getValue());
+
+		return this;
+	}
+
+	/**
 	 * 
 	 * @return number of times obj was counted.
 	 */

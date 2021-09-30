@@ -47,7 +47,7 @@ public final class EvaAlphabet extends IvtffAlphabet {
 	 * @return Three strings corresponding to the prefix, infix and suffix for given word.
 	 */
 	@Override
-	public String[] gerPreInSuffix(String word) {
+	public String[] getPreInSuffix(String word) {
 		String[] result = new String[3];
 		
 		// Prefix

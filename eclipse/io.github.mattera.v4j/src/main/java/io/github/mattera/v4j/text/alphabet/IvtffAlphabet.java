@@ -87,30 +87,30 @@ public abstract class IvtffAlphabet extends Alphabet {
 	 * 
 	 * @return Three strings corresponding to the prefix, infix and suffix for given word.
 	 */
-	public abstract String[] gerPreInSuffix(String word);
+	public abstract String[] getPreInSuffix(String word);
 	
 	/**
 	 * @return Prefix for given word.
-	 * @see #gerPreInSuffix(String)
+	 * @see #getPreInSuffix(String)
 	 */
-	public String gerPrefix(String word) {
-		return gerPreInSuffix(word)[0];
+	public String getPrefix(String word) {
+		return getPreInSuffix(word)[0];
 	}
 	
 	/**
 	 * @return Infix for given word.
-	 * @see #gerPreInSuffix(String)
+	 * @see #getPreInSuffix(String)
 	 */
-	public String gerInfix(String word) {
-		return gerPreInSuffix(word)[1];
+	public String getInfix(String word) {
+		return getPreInSuffix(word)[1];
 	}
 	
 	/**
 	 * @return Suffix for given word.
-	 * @see #gerPreInSuffix(String)
+	 * @see #getPreInSuffix(String)
 	 */
-	public String gerSuffix(String word) {
-		return gerPreInSuffix(word)[2];
+	public String getSuffix(String word) {
+		return getPreInSuffix(word)[2];
 	}
 	
 	protected IvtffAlphabet() {

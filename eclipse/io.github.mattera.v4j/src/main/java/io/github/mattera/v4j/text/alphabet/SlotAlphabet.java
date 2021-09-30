@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import io.github.mattera.v4j.text.ivtff.IvtffLine;
 import io.github.mattera.v4j.text.ivtff.ParseException;
@@ -78,69 +80,6 @@ public class SlotAlphabet extends IvtffAlphabet {
 			slots2 = new String[SLOTS.size()];
 			for (int i = 0; i < slots2.length; ++i)
 				slots2[i] = "";
-		}
-
-		private String prefix = null;
-
-		/**
-		 * Prefix for this term
-		 * 
-		 * @return Content of slots 0-2 for the first part of this term decomposition.
-		 */
-		public String getPrefix() {
-			if (prefix == null) {
-				StringBuffer result = new StringBuffer();
-				for (int i = 0; i < 3; ++i)
-					result.append(slots1[i]);
-				prefix = result.toString();
-			}
-
-			return prefix;
-		}
-
-		private String suffix = null;
-
-		/**
-		 * Suffix for this term
-		 * 
-		 * @return For REGULAR terms, returns content of of slots 8-11 for the first
-		 *         part of this term decomposition. For SEPARABLE terms, returns content
-		 *         of of slots 8-11 for the second part of this term decomposition. For
-		 *         UNSTRUCTURED terms returns empty string.
-		 */
-		public String getSuffix() {
-			if (suffix == null) {
-				StringBuffer result = new StringBuffer();
-				switch (classification) {
-				case REGULAR:
-					for (int i = 8; i < slots1.length; ++i)
-						result.append(slots1[i]);
-					suffix = result.toString();
-					break;
-				case SEPARABLE:
-					for (int i = 8; i < slots2.length; ++i)
-						result.append(slots2[i]);
-					suffix = result.toString();
-					break;
-				case UNSTRUCTURED:
-					suffix = "";
-					break;
-				default:
-					throw new IllegalArgumentException("Unrecognized term classification: " + classification);
-
-				}
-			}
-
-			return suffix;
-		}
-
-		/**
-		 * Root for this term
-		 * 
-		 * @return The part of the term that it is not its prefix or suffix..
-		 */
-		public String getRoot() {
-			return term.substring(getPrefix().length(), term.length() - getSuffix().length());
 		}
 
 		@Override
@@ -283,6 +222,46 @@ public class SlotAlphabet extends IvtffAlphabet {
 	}
 
 	protected SlotAlphabet() {
+	}
+	
+	/**
+	 * Split a word into prefix, infix and suffix.
+	 * 
+	 * @param words A word written in this alphabet, to be split into its pre-, in- and suffix.
+	 * 
+	 * @return Three strings corresponding to the prefix, infix and suffix for given word.
+	 */
+	@Override
+	public String[] gerPreInSuffix(String word) {
+		String[] result = new String[3];
+		
+		// Prefix
+		Pattern p = Pattern.compile("^([qsd]?[oy]?[lr]?).*");
+		Matcher m = p.matcher(word);
+		if (m.matches()) {
+			result[0] = m.group(1);
+			if (result[0].length() == word.length()) {
+				result[1] = "";
+				result[2] = "";
+				return result;
+			}
+		} else {
+			result[0] = "";			
+		}
+
+		// Suffix
+		p = Pattern.compile("^([y]?[dlrmn]?[iJU]?[oa]?).*");
+		m = p.matcher(new StringBuilder(word.substring(result[0].length())).reverse().toString());
+		if (m.matches()) {
+			result[2] = new StringBuilder(m.group(1)).reverse().toString();
+		} else {
+			result[2] = "";			
+		}
+
+		// Infix
+		result[1] = word.substring(result[0].length(), word.length()-result[2].length());
+		
+		return result;
 	}
 
 	/**

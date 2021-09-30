@@ -232,7 +232,7 @@ public class SlotAlphabet extends IvtffAlphabet {
 	 * @return Three strings corresponding to the prefix, infix and suffix for given word.
 	 */
 	@Override
-	public String[] gerPreInSuffix(String word) {
+	public String[] getPreInSuffix(String word) {
 		String[] result = new String[3];
 		
 		// Prefix
@@ -269,19 +269,23 @@ public class SlotAlphabet extends IvtffAlphabet {
 	 * 
 	 * @param txt text to be converted.
 	 * @throws ParseException if text is not proper IVTFF text.
+	 * 
+	 * @return Slot transliteration of given EVA text. Please notice comments and some metadata are removed.
 	 */
 	public static String fromEva(String txt) throws ParseException {
 
 		// plant intrusion is replaced by a space
-		// TODO verify
-		txt = txt.replaceAll("<\\->", Alphabet.SLOT.getSpaceAsString());
+		txt = txt.replace("<->", "-");
+
+		// Mark end of paragraph for later
+		txt = txt.replace("<$>", "$");
 
 		// Remove comments as they might interfere with replacement
 		txt = IvtffLine.removeComments(txt);
 
 		// These might impact how unreadable characters are handled
-		txt = txt.replaceAll("!", ""); // "null" char in interlinear
-		txt = txt.replaceAll("%", Alphabet.SLOT.getUnreadableAsString());
+		txt = txt.replace("!", ""); // "null" char in interlinear
+		txt = txt.replace("%", Alphabet.SLOT.getUnreadableAsString());
 
 		// WHen transliterating we use 0 to denote an EVA character that transliterates
 		// into a dubious Slot character; this happen because multiple EVA transliterate
@@ -357,6 +361,8 @@ public class SlotAlphabet extends IvtffAlphabet {
 		txt = txt.replace("'", "?");
 
 		txt = txt.replace("0", "?");
+		txt = txt.replace("$", "<$>");
+		txt = txt.replace("-", "<->");
 
 		return txt;
 	}

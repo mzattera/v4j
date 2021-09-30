@@ -66,7 +66,7 @@ public abstract class Text implements Identifiable {
 	/**
 	 * Counts regular characters contained in the plain text.
 	 * 
-	 * @return all the character in this text, with their count.
+	 * @return all the regular character in this text, with their count.
 	 */
 	// TODO make sure it is tested
 	public Counter<Character> getChars() {

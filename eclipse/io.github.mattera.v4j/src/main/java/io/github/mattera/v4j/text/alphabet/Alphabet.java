@@ -7,6 +7,7 @@
 package io.github.mattera.v4j.text.alphabet;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +43,13 @@ public abstract class Alphabet {
 	 */
 	public static Alphabet getAlphabet(String codeString) {
 		return ALPHABETS.get(codeString);
+	}
+
+	/**
+	 * @return All available alphabets.
+	 */
+	public static Collection<Alphabet> getAlphabets() {
+		return ALPHABETS.values();
 	}
 
 	/**

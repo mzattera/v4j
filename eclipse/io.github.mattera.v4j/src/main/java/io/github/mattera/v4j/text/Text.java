@@ -24,7 +24,7 @@ public abstract class Text implements Identifiable {
 	public Alphabet getAlphabet() {
 		return alphabet;
 	}
-	
+
 	private CompositeText<?> parent = null;
 
 	/**
@@ -52,15 +52,60 @@ public abstract class Text implements Identifiable {
 	public abstract String getText();
 
 	/**
-	 * The default implementation of this method simply calls Alphabeth.toPlainText().
+	 * The default implementation of this method simply calls
+	 * Alphabeth.toPlainText().
 	 * 
 	 * @return plain text contained in this element; that is the text stripped off
-	 *         of all meta-data and markup. For example <!..> comments in IVTFF files, or
-	 *         HTML tags will be absent in the returned text.
-	 *         In addition, sequence of word separator chars will be replaced by a single instance of Alphabet.getSpace().
+	 *         of all meta-data and markup. For example <!..> comments in IVTFF
+	 *         files, or HTML tags will be absent in the returned text. In addition,
+	 *         sequence of word separator chars will be replaced by a single
+	 *         instance of Alphabet.getSpace().
 	 */
 	public String getPlainText() {
 		return getAlphabet().toPlainText(getText());
+	}
+
+	/**
+	 * Counts regular characters contained in given string. The string is assumed to
+	 * use given alphabet. *Notice* the string is not processed in any way,
+	 * therefore all characters appearing as regular characters in the alphabet are
+	 * counted; e.g. text of comments is counted.
+	 * 
+	 * @return all the regular character in given string, with their count.
+	 */
+	// TODO make sure it is tested
+	public static Counter<Character> getChars(String txt, Alphabet a) {
+				return getChars(txt, a, false);
+	}
+
+	/**
+	 * Counts regular characters contained in given string. The string is assumed to
+	 * use given alphabet. *Notice* the string is not processed in any way,
+	 * therefore any character appearing as regular characters in the alphabet is
+	 * counted; e.g. text of IVTFF comments is counted.
+	 * 
+	 * @param toUpper If true, will convert text to upper case, if supported, before
+	 *                building the distribution.
+	 * 
+	 * @return all the regular character in given string, with their count.
+	 */
+	// TODO make sure it is tested
+	public static Counter<Character> getChars(String txt, Alphabet a, boolean toUpper) {
+		if (toUpper) {
+			try {
+				return  Text.getChars(a.toUpperCase(txt), a, false);
+			} catch (UnsupportedOperationException e) {
+				// toUpper() not supported in this alphabet
+			}
+		} 
+		
+		Counter<Character> result = new Counter<>();
+		for (char c : txt.toCharArray()) {
+			if (a.isRegular(c))
+				result.count(c);
+		}
+		
+		return result;
 	}
 
 	/**
@@ -70,14 +115,20 @@ public abstract class Text implements Identifiable {
 	 */
 	// TODO make sure it is tested
 	public Counter<Character> getChars() {
-		Counter<Character> result = new Counter<>();
+		return Text.getChars(getPlainText(), getAlphabet(), false);
+	}
 
-		for (char c : getPlainText().toCharArray()) {
-			if (getAlphabet().isRegular(c))
-				result.count(c);
-		}
-
-		return result;
+	/**
+	 * Counts regular characters contained in the plain text.
+	 * 
+	 * @param toUpper If true, will convert text to upper case, if supported, before
+	 *                building the distribution.
+	 * 
+	 * @return all the regular character in this text, with their count.
+	 */
+	// TODO make sure it is tested
+	public Counter<Character> getChars(boolean toUpper) {
+		return Text.getChars(getPlainText(), getAlphabet(), toUpper);
 	}
 
 	/**
@@ -89,12 +140,13 @@ public abstract class Text implements Identifiable {
 	}
 
 	/**
-	 * Return all words in the text; the plain text is split in words using the default space char.
+	 * Return all words in the text; the plain text is split in words using the
+	 * default space char.
 	 * 
 	 * @return all the words in this text, with their count.
 	 * 
-	 * @param readableOnly
-	 *            if true, counts only the words that do not contain any unreadable characters.
+	 * @param readableOnly if true, counts only the words that do not contain any
+	 *                     unreadable characters.
 	 */
 	public Counter<String> getWords(boolean readableOnly) {
 		Counter<String> result = new Counter<>();

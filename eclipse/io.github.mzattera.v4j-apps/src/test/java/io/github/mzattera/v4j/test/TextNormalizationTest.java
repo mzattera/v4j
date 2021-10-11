@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import io.github.mattera.v4j.text.alphabet.Alphabet;
+import io.github.mzattera.v4j.text.alphabet.Alphabet;
 
 /**
  * 

@@ -10,9 +10,9 @@ import java.util.Random;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import io.github.mattera.v4j.text.alphabet.Alphabet;
-import io.github.mattera.v4j.text.ivtff.IvtffText;
-import io.github.mattera.v4j.util.Counter;
+import io.github.mzattera.v4j.text.alphabet.Alphabet;
+import io.github.mzattera.v4j.text.ivtff.IvtffText;
+import io.github.mzattera.v4j.util.Counter;
 
 /**
  * Tests that counting chars works.

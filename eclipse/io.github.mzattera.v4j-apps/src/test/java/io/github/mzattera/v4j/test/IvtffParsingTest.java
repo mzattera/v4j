@@ -13,10 +13,10 @@ import java.io.IOException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import io.github.mattera.v4j.text.ivtff.IvtffLine;
-import io.github.mattera.v4j.text.ivtff.IvtffPage;
-import io.github.mattera.v4j.text.ivtff.IvtffText;
-import io.github.mattera.v4j.text.ivtff.ParseException;
+import io.github.mzattera.v4j.text.ivtff.IvtffLine;
+import io.github.mzattera.v4j.text.ivtff.IvtffPage;
+import io.github.mzattera.v4j.text.ivtff.IvtffText;
+import io.github.mzattera.v4j.text.ivtff.ParseException;
 
 /**
  * Performs minimum compliance test for our IVTFF document parser.

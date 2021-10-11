@@ -12,11 +12,11 @@ import java.util.List;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
-import io.github.mattera.v4j.text.ivtff.IvtffPage;
-import io.github.mattera.v4j.text.ivtff.IvtffText;
-import io.github.mattera.v4j.text.ivtff.PageHeader;
-import io.github.mattera.v4j.text.ivtff.VoynichFactory;
-import io.github.mattera.v4j.util.clustering.BagOfWords;
+import io.github.mzattera.v4j.text.ivtff.IvtffPage;
+import io.github.mzattera.v4j.text.ivtff.IvtffText;
+import io.github.mzattera.v4j.text.ivtff.PageHeader;
+import io.github.mzattera.v4j.text.ivtff.VoynichFactory;
+import io.github.mzattera.v4j.util.clustering.BagOfWords;
 
 /**
  * This class builds Bag Of Words out of the Voynich and generates some TSV

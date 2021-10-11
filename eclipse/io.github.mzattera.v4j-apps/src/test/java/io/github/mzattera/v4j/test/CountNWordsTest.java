@@ -11,9 +11,9 @@ import java.io.IOException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import io.github.mattera.v4j.text.ivtff.IvtffText;
-import io.github.mattera.v4j.text.ivtff.ParseException;
-import io.github.mattera.v4j.util.Counter;
+import io.github.mzattera.v4j.text.ivtff.IvtffText;
+import io.github.mzattera.v4j.text.ivtff.ParseException;
+import io.github.mzattera.v4j.util.Counter;
 
 /**
  * Tests io.github.mattera.v4j.applications.CountNWords.process()
@@ -45,7 +45,7 @@ public final class CountNWordsTest {
 		assertEquals(doc.getPlainText(),
 				"qodar.??s.eey.kcheolokal.do.r.chear.een.ychear.otchal.char.char.ckhy.or.chear.kor.chodaly.chom");
 
-		Counter<String> c = io.github.mattera.v4j.applications.CountNWords.process(doc, 3, false);
+		Counter<String> c = io.github.mzattera.v4j.applications.CountNWords.process(doc, 3, false);
 		assertEquals(c.size(), 16);
 		assertEquals(c.getCount("qodar.??s.eey"), 1);
 		assertEquals(c.getCount("??s.eey.kcheolokal"), 1);
@@ -64,7 +64,7 @@ public final class CountNWordsTest {
 		assertEquals(c.getCount("chear.kor.chodaly"), 1);
 		assertEquals(c.getCount("kor.chodaly.chom"), 1);
 
-		c = io.github.mattera.v4j.applications.CountNWords.process(doc, 3, true);
+		c = io.github.mzattera.v4j.applications.CountNWords.process(doc, 3, true);
 		assertEquals(c.size(), 14);
 		assertEquals(c.getCount("eey.kcheolokal.do"), 1);
 		assertEquals(c.getCount("kcheolokal.do.r"), 1);

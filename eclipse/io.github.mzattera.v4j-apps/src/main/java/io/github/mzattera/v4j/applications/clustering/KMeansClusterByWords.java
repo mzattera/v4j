@@ -10,13 +10,13 @@ import org.apache.commons.math3.ml.clustering.Clusterer;
 import org.apache.commons.math3.ml.clustering.evaluation.ClusterEvaluator;
 import org.apache.commons.math3.ml.distance.DistanceMeasure;
 
-import io.github.mattera.v4j.text.ivtff.IvtffText;
-import io.github.mattera.v4j.text.ivtff.VoynichFactory;
-import io.github.mattera.v4j.util.clustering.BagOfWords;
-import io.github.mattera.v4j.util.clustering.MultiSizeClusterer;
-import io.github.mattera.v4j.util.clustering.PositiveAngularDistance;
-import io.github.mattera.v4j.util.clustering.SilhouetteEvaluator;
-import io.github.mattera.v4j.util.clustering.hac.BagOfWordsExperiment;
+import io.github.mzattera.v4j.text.ivtff.IvtffText;
+import io.github.mzattera.v4j.text.ivtff.VoynichFactory;
+import io.github.mzattera.v4j.util.clustering.BagOfWords;
+import io.github.mzattera.v4j.util.clustering.MultiSizeClusterer;
+import io.github.mzattera.v4j.util.clustering.PositiveAngularDistance;
+import io.github.mzattera.v4j.util.clustering.SilhouetteEvaluator;
+import io.github.mzattera.v4j.util.clustering.hac.BagOfWordsExperiment;
 
 /**
  * @author Massimiliano_Zattera

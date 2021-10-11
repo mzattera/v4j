@@ -6,14 +6,14 @@ package io.github.mzattera.v4j.applications.clustering;
 import java.io.File;
 import java.io.IOException;
 
-import io.github.mattera.v4j.text.ElementFilter;
-import io.github.mattera.v4j.text.ElementSplitter;
-import io.github.mattera.v4j.text.ivtff.IvtffPage;
-import io.github.mattera.v4j.text.ivtff.PageHeader;
-import io.github.mattera.v4j.text.ivtff.PageSplitter;
-import io.github.mattera.v4j.text.ivtff.VoynichFactory.Transcription;
-import io.github.mattera.v4j.text.ivtff.VoynichFactory.TranscriptionType;
-import io.github.mattera.v4j.util.clustering.BagOfWords.BagOfWordsMode;
+import io.github.mzattera.v4j.text.ElementFilter;
+import io.github.mzattera.v4j.text.ElementSplitter;
+import io.github.mzattera.v4j.text.ivtff.IvtffPage;
+import io.github.mzattera.v4j.text.ivtff.PageHeader;
+import io.github.mzattera.v4j.text.ivtff.PageSplitter;
+import io.github.mzattera.v4j.text.ivtff.VoynichFactory.Transcription;
+import io.github.mzattera.v4j.text.ivtff.VoynichFactory.TranscriptionType;
+import io.github.mzattera.v4j.util.clustering.BagOfWords.BagOfWordsMode;
 
 /**
  * Static class holding global configuration parameters for application srelated

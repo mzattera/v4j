@@ -10,10 +10,10 @@ import java.util.List;
 import org.apache.commons.math3.ml.distance.DistanceMeasure;
 import org.apache.commons.math3.util.Pair;
 
-import io.github.mattera.v4j.text.ivtff.IvtffText;
-import io.github.mattera.v4j.text.ivtff.VoynichFactory;
-import io.github.mattera.v4j.util.clustering.BagOfWords;
-import io.github.mattera.v4j.util.clustering.PositiveAngularDistance;
+import io.github.mzattera.v4j.text.ivtff.IvtffText;
+import io.github.mzattera.v4j.text.ivtff.VoynichFactory;
+import io.github.mzattera.v4j.util.clustering.BagOfWords;
+import io.github.mzattera.v4j.util.clustering.PositiveAngularDistance;
 
 /**
  * This class prints average distance between each point in a set of Clusterable

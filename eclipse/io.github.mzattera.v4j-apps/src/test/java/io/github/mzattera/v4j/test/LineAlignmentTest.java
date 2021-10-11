@@ -12,8 +12,8 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import io.github.mattera.v4j.text.ivtff.IvtffLine;
-import io.github.mattera.v4j.text.ivtff.ParseException;
+import io.github.mzattera.v4j.text.ivtff.IvtffLine;
+import io.github.mzattera.v4j.text.ivtff.ParseException;
 
 /**
  * 

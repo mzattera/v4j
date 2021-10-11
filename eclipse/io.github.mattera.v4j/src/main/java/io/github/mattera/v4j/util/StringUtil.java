@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.regex.Pattern;
 
+import io.github.mattera.v4j.text.Text;
 import io.github.mattera.v4j.text.alphabet.Alphabet;
 
 /**
@@ -18,8 +19,8 @@ import io.github.mattera.v4j.text.alphabet.Alphabet;
  *
  */
 public final class StringUtil {
-	
-	private StringUtil() {		
+
+	private StringUtil() {
 	}
 
 	/**
@@ -58,6 +59,15 @@ public final class StringUtil {
 	}
 
 	/**
+	 * Shuffle words in given <code>Text</code> plain text.
+	 * 
+	 * @return The text with words randomly shuffled.
+	 */
+	public static String shuffleWords(Text txt) {
+		return shuffleWords(txt.getPlainText(), txt.getAlphabet(), new Random(System.currentTimeMillis()));
+	}
+
+	/**
 	 * Shuffle words in given plain text.
 	 * 
 	 * @param txt A plain text in the given alphabet.
@@ -77,5 +87,39 @@ public final class StringUtil {
 		List<String> words = Arrays.asList(StringUtil.splitWords(txt, a));
 		Collections.shuffle(words, rnd);
 		return String.join(a.getSpaceAsString(), words);
+	}
+
+	/**
+	 * Extract a random piece of text.
+	 * 
+	 * @param txt Source text.
+	 * @param len Length of the random sample to take.
+	 *
+	 * @return A piece of plain text from <code>txt</code> of given length.
+	 * 
+	 * @throws IllegalArgumentException if len is too big.
+	 */
+	public static String extractRandom(Text txt, int len) {
+		return extractRandom(txt, len, new Random(System.currentTimeMillis()));
+	}
+
+	/**
+	 * Extract a random piece of text.
+	 * 
+	 * @param txt Source text.
+	 * @param len Length of the random sample to take.
+	 *
+	 * @return A piece of plain text from <code>txt</code> of given length.
+	 * 
+	 * @throws IllegalArgumentException if len is too big.
+	 */
+	public static String extractRandom(Text txt, int len, Random rnd) {
+		String s = txt.getPlainText();
+		if (len >= s.length())
+			throw new IllegalArgumentException();
+
+		int pos = rnd.nextInt(s.length() - len);
+
+		return s.substring(pos, pos + len);
 	}
 }

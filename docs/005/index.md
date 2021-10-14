@@ -225,7 +225,7 @@ of the Landini-Stolfi interlinear file that uses the Slot alphabet is available 
 
 ## Conclusions 
 
-- Majority of words in the Voynich exhibit an inner structure described here where terms can be represented as composed by 12 "slots" that can be left empty or 
+- Majority of words in the Voynich exhibits an inner structure described here where terms can be represented as composed by 12 "slots" that can be left empty or 
 populated by a single glyph chosen among a very limited group of glyphs (usually 2-3 ones).
 
   - 88.6% of tokens (55.2% of terms) exhibit this structure (**regular** terms).
@@ -234,18 +234,18 @@ populated by a single glyph chosen among a very limited group of glyphs (usually
   
     For 74.3% of separable terms, their two constituent parts appear in the text more often than the separable term itself (**verified separable** terms).
   
-    This seems a strong indication that separable terms are made by two single regular terms written together.
+    This seems a strong indication that separable terms are made by two regular terms written together.
   
   - only 2.0% of tokens (8.4% of terms) do not exhibit this structure (**unstructured** terms).
   
-    85.3% of these terms appears only once in the text. In other words, *only 0.8% of tokens (1.2% of terms) are unstructured terms appearing at least twice in the text*.
+    85.3% of unstructured terms appears only once in the text. In other words, **only 0.8% of tokens (1.2% of terms) are unstructured terms appearing at least twice in the text**.
 	
 	I argue that these can be typos or plain text words encoded in a different way than the majority of the text (e.g. because they represent names or "incantations").
 	
 - I think the above evidence supports the idea that "slots" are a significant structural component of Voynich words.
 
 - If so, it is reasonable to assume that glyphs appearing in slots are basic unit of information; in other words these should be the characters of the Voynich alphabet.
-This led the creation of a new transliteration alphabet presented here (the **Slot alphabet**).
+This led the creation of a new transliteration alphabet presented here, the **Slot alphabet**.
 
 - As far as I know, Slot alphabet is the first one that is based on empirical data about the structure of Voynich words, trying to capture the intent of the 
 Voynich author.

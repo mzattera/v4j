@@ -118,7 +118,7 @@ where each of these parts is a regular term. I will call these tokens "**separab
 
 - Sometime I contrast regular and separable terms to unstructured ones by calling the former ***structured***.  
 
-The below table summarizes these findings.
+The below tables summarize these findings.
 
 ![Table with distribution of words accordingly to their classification.](images/Summary.PNG)
 
@@ -131,7 +131,7 @@ The below table shows occurrence of glyphs in slots for the regular tokens [{2}]
 
 ![Table with glyph count by slot.](images/Char Count by Slot.PNG)
 
-As expected, the distribution of glyphs in slots varies based on Currier language an illustration:
+As expected, the distribution of glyphs in slots varies based on Currier language and illustration:
 
 ![Table with glyph count by slot for BB and HA clusters.](images/Char Count by Slot Clustered.PNG)
 
@@ -189,7 +189,7 @@ Again, this seems a strong indication that EVA 'h' does not correspond to a Voyn
 
 #### 'e' and 'i'
 
-The characters 'e' and 'i' only appear in slots 6 and 9 respectively, in a sequence of 1, 2 or 3. Currier has assumed each sequences of same characters is a single Voynich character.
+The characters 'e' and 'i' only appear in slots 6 and 9 respectively, in a sequence of 1, 2 or 3. Some transcribers, like Currier, have assumed some of these sequences to be a single Voynich character.
 
 It can be argued that these are indeed repetitions of the same character but, if this is the case, as these sequences
 appear always in same slots, what it is relevant here would be the number of repetitions. In other words, as it 
@@ -198,7 +198,8 @@ happens for Roman numerals the sequence VI must not be understood as a 2-charact
 In addition, it should be noted that several characters in the Latin script might appear as repetitions of the same
 character, when written by hand; for eaxmple "m" looks like "nn", "w" can be read as "uu", but these are single characters.
 
-Based on the above, we assume each sequence of 'e' and 'i' is probably a character in itself.
+Based on the above, I assume each sequence of 'e' and 'i' is probably a character in itself (or anyway a single "unit", like in Italian where, even if "q" and "u" are distinct letters,
+"q" always appear in "qu-").
 
 
 ## The Slot Alphabet 
@@ -214,7 +215,7 @@ The below table defines the Slots alphabet and compares it with other transliter
 
 ![The Slot alphabet and a comparison with other transliteration alphabets](images/Slot Alphabet.PNG)
 
-  In some of the above alphabets, sequence of EVA 'i' are treated differently, depending on the letter following the sequence.
+  In some of the above alphabets, sequences of EVA 'i' are treated differently, depending on the letter following the sequence.
 Therefore, there is no unique way to transliterate sequences of 'i' into these alphabets without looking at the whole Voynich word being transliterated.
 
 A [transliteration](https://github.com/mzattera/v4j/blob/master/eclipse/io.github.mattera.v4j/src/main/resources/Transcriptions/Interlinear_slot_ivtff_1.5.txt)
@@ -250,7 +251,7 @@ This led the creation of a new transliteration alphabet presented here (the **Sl
 Voynich author.
 
   I think this is an important aspect to consider, both for attacking the Voynich cypher and performing statistical analysis of the manuscript, 
-when a one-to-one mapping between the Voynich characters and those in the transliteration alphabet is paramount.
+when a one-to-one mapping between the Voynich characters and those in the transliteration alphabet is crucial.
 
 - Since no natural language presents such an inner structure, the existence of "slots" constitutes a strong objection to any attempt to propose a substitution cipher for the Voynich.
 

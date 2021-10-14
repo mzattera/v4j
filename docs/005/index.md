@@ -199,7 +199,7 @@ In addition, it should be noted that several characters in the Latin script migh
 character, when written by hand; for example "m" looks like "nn", "w" can be read as "uu", but these are single characters.
 
 Based on the above, I assume each sequence of 'e' and 'i' is probably a character in itself (or anyway a single "unit", like in Italian where, even if "q" and "u" are distinct letters,
-"q" only appear as "qu-").
+"q" appears only in "qu-").
 
 
 ## The Slot Alphabet 
@@ -232,9 +232,9 @@ populated by a single glyph chosen among a very limited group of glyphs (usually
   
   - 9.4% of tokens (36.4% of terms) can be divided in two parts, each presenting the inner structure described above (**separable** terms). 
   
-    74.3% of these terms are such that their two parts appear as single Voynich terms more often than the separable term (**verified separable** terms).
+    For 74.3% of separable terms, their two constituent parts appear in the text more often than the separable term itself (**verified separable** terms).
   
-    This seems a strong indication that these words are single words written together.
+    This seems a strong indication that separable terms are made by two single regular terms written together.
   
   - only 2.0% of tokens (8.4% of terms) do not exhibit this structure (**unstructured** terms).
   

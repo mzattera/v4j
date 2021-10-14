@@ -183,8 +183,8 @@ This leads me to think pedestalled gallows are Voynich characters in their own, 
 In addition, the character 'c' appears outside of the pedestal or pedestalled gallows only in 4 terms ('c', 'oc','chcpar', 'ckshy', and 'ocfshy'), each appearing only once in the text.
 This is for me a strong indication that EVA 'c' does not correspond to a Voynich character.
 
-Finally, the character 'h' appears outside of the pedestal, the pedestalled gallows or the glyph 'sh' only in 3 terms ('theody', 'docfhhy', and 'fhhy'), each appearing only once in the text.
-Again, this seems a strong indication that EVA 'h' does not correspond to a Voynich character.
+Finally, the character 'h' appears outside of the pedestal, the pedestalled gallows or the "plumed" pedestal ('sh') only in 3 terms ('theody', 'docfhhy', and 'fhhy'),
+each appearing only once in the text. Again, this seems a strong indication that EVA 'h' does not correspond to a Voynich character.
 
 
 #### 'e' and 'i'
@@ -196,10 +196,10 @@ appear always in same slots, what it is relevant here would be the number of rep
 happens for Roman numerals the sequence VI must not be understood as a 2-character word, rather as the number 6.
 
 In addition, it should be noted that several characters in the Latin script might appear as repetitions of the same
-character, when written by hand; for eaxmple "m" looks like "nn", "w" can be read as "uu", but these are single characters.
+character, when written by hand; for example "m" looks like "nn", "w" can be read as "uu", but these are single characters.
 
 Based on the above, I assume each sequence of 'e' and 'i' is probably a character in itself (or anyway a single "unit", like in Italian where, even if "q" and "u" are distinct letters,
-"q" always appear in "qu-").
+"q" only appear as "qu-").
 
 
 ## The Slot Alphabet 

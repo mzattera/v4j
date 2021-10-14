@@ -89,6 +89,7 @@ public class LineSplitter implements ElementSplitter<IvtffLine> {
 		LocusIdentifier h = element.getDescriptor();
 		StringBuilder result = new StringBuilder();
 
+		// TODO probably use same approach used by PgeSplitter, which makes easier to get back a specific group
 		if (byPage)
 			result.append(h.getPageId());
 		if (byNumber)
@@ -102,7 +103,7 @@ public class LineSplitter implements ElementSplitter<IvtffLine> {
 		if (byGenericLocusType)
 			result.append(',').append(h.getGenericLocusType());
 		if (byTranscriber)
-			result.append(';').append(h.getPageId());
+			result.append(';').append(h.getTranscriber());
 
 		return result.toString();
 	}

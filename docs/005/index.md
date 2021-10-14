@@ -1,6 +1,6 @@
 # Note 005 - Slots and a New Alphabet
 
-_Last updated Sep. 28th, 2021._
+_Last updated Oct. 14th, 2021._
 
 _This note refers to [release v.5.0.0](https://github.com/mzattera/v4j/tree/v.5.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
@@ -101,7 +101,7 @@ We can then see [{1}](#Note1) that tokens can be classified as follows:
 
 - 27'743 tokens (88.6% of total), corresponding to 2'820 different terms (55.2% of total), can be decomposed in slots accordingly to the above rules. I will call these tokens "**regular**".
 
-- 2'956 tokens (9.4% of total), corresponding to 1'856 different terms (36.4% of total), can be divided in two parts, each composed by at least two Voynich characters, 
+- 2'956 tokens (9.4% of total), corresponding to 1'856 different terms (36.4% of total), can be divided in two parts, each composed by at least two Voynich glyphs, 
 where each of these parts is a regular term. I will call these tokens "**separable**".
 
   Moreover, we can see that for 1'379 separable terms (74.3% of total separable terms) their constituent parts appear as tokens in the text at least as often the whole
@@ -112,7 +112,9 @@ where each of these parts is a regular term. I will call these tokens "**separab
 
 - Remaining 618 tokens (2.0% of total), corresponding to 429 different terms (8.4% of total), are marked as "**unstructured**".
 
-  Notice that 366 out of these 429 terms appear only once in the text.
+  Notice that 366 out of these 429 terms, or 85.3%, appear only once in the text; this percentage is 60.3% for regular and separable terms considered together.
+  This might suggest that unstructured words are either typos or special words that are encoded differently than other words. if this would be the case, 
+  it can be a situation similar to hieroglyphics where proper names are spelled phonetically, while common words are written pictorially using a single glyph.
 
 - Sometime I contrast regular and separable terms to unstructured ones by calling the former ***structured***.  
 
@@ -222,14 +224,40 @@ of the Landini-Stolfi interlinear file that uses the Slot alphabet is available 
 
 ## Conclusions 
 
-- I think the slots easily describe the inner structure of Voynich words.
+- Majority of words in the Voynich exhibit an inner structure described here where terms can be represented as composed by 12 "slots" that can be left empty or 
+populated by a single glyph chosen among a very limited group of glyphs (usually 2-3 ones).
 
-- Given they prove a structure in Voynich words that is not found in other languages, any attempt to propose a substitution cypher fro the Voynich should not be accepted.
+  - 88.6% of tokens (55.2% of terms) exhibit this structure (**regular** terms).
+  
+  - 9.4% of tokens (36.4% of terms) can be divided in two parts, each presenting the inner structure described above (**separable** terms). 
+  
+    74.3% of these terms are such that their two parts appear as single Voynich terms more often than the separable term (**verified separable** terms).
+  
+    This seems a strong indication that these words are single words written together.
+  
+  - only 2.0% of tokens (8.4% of terms) do not exhibit this structure (**unstructured** terms).
+  
+    85.3% of these terms appears only once in the text. In other words, *only 0.8% of tokens (1.2% of terms) are unstructured terms appearing at least twice in the text*.
+	
+	I argue that these can be typos or plain text words encoded in a different way than the majority of the text (e.g. because they represent names or "incantations").
+	
+- I think the above evidence supports the idea that "slots" are a significant structural component of Voynich words.
 
-- I think it is important, both for attacking the Voynich cypher and performing statistical analysis of the manuscript, 
-to have a one-to-one mapping between the Voynich characters and those in the transliteration alphabet.
-As far as I know, Slot alphabet is the first one that is created by empirical data about the structure of Voynich words, trying to capture the intent of the 
+- If so, it is reasonable to assume that glyphs appearing in slots are basic unit of information; in other words these should be the characters of the Voynich alphabet.
+This led the creation of a new transliteration alphabet presented here (the **Slot alphabet**).
+
+- As far as I know, Slot alphabet is the first one that is based on empirical data about the structure of Voynich words, trying to capture the intent of the 
 Voynich author.
+
+  I think this is an important aspect to consider, both for attacking the Voynich cypher and performing statistical analysis of the manuscript, 
+when a one-to-one mapping between the Voynich characters and those in the transliteration alphabet is paramount.
+
+- Since no natural language presents such an inner structure, the existence of "slots" constitutes a strong objection to any attempt to propose a substitution cipher for the Voynich.
+
+- Similarly, the "slot" structure of words will condition character entropy in the text. Therefore, attempts to assign a natural language to the Voynich by looking at similarities in
+character entropy seem not to be based on solid ground.
+
+
   
 	
 ---

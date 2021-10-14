@@ -47,9 +47,10 @@ For reasons explained below, any occurrence of the following characters is also 
 - 'c' and 'h', when they do not appear in combinations such as 'ch', 'sh', 'cth', 'ckh', 'cph', 'cfh';
 this sums up to 8 occurrences.
 
-As a second step, **tokens** are created by splitting the text where a space was detected by at least one of the transcribers; there are 31'317 tokens in the text.
+As a second step, **tokens** are created by splitting the text where a space was detected by at least one of the transcribers; there are 31'317 tokens in the text,
+ignoring those that contain an unreadable character.
 
-The list of **terms** is the list of tokens without repetition (this would be the "vocabulary" of the Voynich).
+The list of **terms** is the list of tokens without repetitions (this would be the "vocabulary" of the Voynich).
 These 5'105 total terms have then been analyzed as explained below.
 
 
@@ -108,7 +109,7 @@ where each of these parts is a regular term. I will call these tokens "**separab
   separable term. For example, the term 'chockhy' appears 18 times in the text; it is a separable term that can be divided in two parts, each one being a regular term, as
   'cho'-'ckhy' which appear in the text 79 and 39 times respectively. I think this is an indication that many separable terms are possibly just two regular words that were written together
   (or the space between them was not read correctly by the transcriber of the text).
-  When I need to distinguish these terms from other separable terms, I will call them **verified separable** or simply **verified**.
+  When I need to distinguish these terms from other separable terms, I will call them "**verified separable**" or simply "**verified**".
 
 - Remaining 618 tokens (2.0% of total), corresponding to 429 different terms (8.4% of total), are marked as "**unstructured**".
 
@@ -116,7 +117,7 @@ where each of these parts is a regular term. I will call these tokens "**separab
   This might suggest that unstructured words are either typos or special words that are encoded differently than other words. if this would be the case, 
   it can be a situation similar to hieroglyphics where proper names are spelled phonetically, while common words are written pictorially using a single glyph.
 
-- Sometime I contrast regular and separable terms to unstructured ones by calling the former ***structured***.  
+- Sometime I contrast regular and separable terms to unstructured ones by calling the former "**structured**".  
 
 The below tables summarize these findings.
 
@@ -246,6 +247,9 @@ populated by a single glyph chosen among a very limited group of glyphs (usually
 
 - If so, it is reasonable to assume that glyphs appearing in slots are basic unit of information; in other words these should be the characters of the Voynich alphabet.
 This led the creation of a new transliteration alphabet presented here, the **Slot alphabet**.
+
+  A [transliteration](https://github.com/mzattera/v4j/blob/master/eclipse/io.github.mattera.v4j/src/main/resources/Transcriptions/Interlinear_slot_ivtff_1.5.txt)
+of the Landini-Stolfi interlinear file that uses the Slot alphabet is available
 
 - As far as I know, Slot alphabet is the first one that is based on empirical data about the structure of Voynich words, trying to capture the intent of the 
 Voynich author.

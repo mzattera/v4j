@@ -13,7 +13,7 @@ in order to provide some (hopefully) more solid basis for discussions and deciph
 On this site, I will try to be consistent with following terminology.
 
 - A **transliteration** is a symbol-by-symbol conversion of one script into another. Transliteration is needed to represent the content of the Voynich in a 
-format that can be printed or stored in computer files. I might sometimes use the less correct term **transliteration** as a synonym and refer 
+format that can be printed or stored in computer files. I might sometimes use the less correct term **transcription** as a synonym and refer 
 to an author of a transliteration as a **transcriber**.
 
   - I refer to the list of symbols used in the target script as the **transliteration alphabet** or simply as the **alphabet**.
@@ -24,7 +24,7 @@ Each symbol in the alphabet is referred as a **transliteration character** or si
 
   The question of which glyphs are actual single Voynich characters is still very open and it is at the basis of the different transliteration alphabets being created.
   
-- Unless stated otherwise, pieces of transliterated Voynich script use the "Basic Eva" as transliteration alphabet and are enclosed in single quotes (e.g. 'qockhey').
+- Unless stated otherwise, pieces of transliterated Voynich script I quote use the "Basic Eva" as transliteration alphabet and are enclosed in single quotes (e.g. 'qockhey').
 
 - A **token** in a text is a single sequence of characters, separated by spaces. The list of **terms** is the list of tokens, without repetitions.
 In other words, a token is an instance of a term. For example; the below line in the Voynich

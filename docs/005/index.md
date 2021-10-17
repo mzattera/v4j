@@ -219,7 +219,7 @@ of the Landini-Stolfi interlinear file that uses the Slot alphabet is available 
 
 ## Comparisons with Previous Works
 
-I am not the first one analyzing the internal structure of Voynich words.
+I am not the first one analyzing the internal structure of Voynich words; this section is going to be long and currently is a work in progress.
 
 After writing this notes, I realized Philip Neal published a [very similar concept](http://philipneal.net/voynichsources/transcription_neva_spaced/),
 but restricted to a single page (f103r). His point was that this could be the result of using a grille to produce the text,
@@ -228,7 +228,7 @@ Neal also proposes a NEVA transcription: "_NEVA, combines the strengths of EVA a
 and is stored as UTF8 instead of individual bytes_". As I am unable to download a description of the transcription alphabet,
 I cannot evaluate how close this is to the Slot alphabet. It seams Neal did not extended the analysis to the whole Voynich.
 
-One day I will create a [working note](../006) to compare this analysis with others.
+
 
 
 ## Conclusions 

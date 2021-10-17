@@ -6,18 +6,29 @@
 	<artifactId>io.github.mzattera.v4j</artifactId>
 	<version>0.1.0</version>
 	<name>v4j</name>
+	<description>Voynich for Java (v4j) library.</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>9</maven.compiler.source>
-		<maven.compiler.target>9</maven.compiler.target>
+		<maven.compiler.source>15</maven.compiler.source>
+		<maven.compiler.target>15</maven.compiler.target>
 	</properties>
+	<profiles>
+		<profile>
+			<id>java-8-api</id>
+			<activation>
+				<jdk>[9,)</jdk>
+			</activation>
+			<properties>
+				<maven.compiler.release>15</maven.compiler.release>
+			</properties>
+		</profile>
+	</profiles>
 	<repositories>
 		<repository>
 			<id>jitpack.io</id>
 			<url>https://jitpack.io</url>
 		</repository>
 	</repositories>
-
 	<dependencies>
 
 		<!-- Apache Commons -->
@@ -42,9 +53,9 @@
 
 		<!-- ClassLoader -->
 		<dependency>
-		    <groupId>com.opensymphony</groupId>
-		    <artifactId>xwork-core</artifactId>
-		    <version>2.1.6</version>
+			<groupId>com.opensymphony</groupId>
+			<artifactId>xwork-core</artifactId>
+			<version>2.1.6</version>
 		</dependency>
 
 		<!-- Watchmaker Framework - Genetic Algorithms <dependency> <groupId>org.uncommons.watchmaker</groupId> 
@@ -56,5 +67,4 @@
 		<!-- ELKI <dependency> <groupId>de.lmu.ifi.dbs.elki</groupId> <artifactId>elki</artifactId> 
 			<version>0.7.1</version> </dependency> -->
 	</dependencies>
-	<description>Voynich for Java (v4j) library.</description>
 </project>

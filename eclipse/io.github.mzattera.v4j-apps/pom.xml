@@ -6,10 +6,21 @@
 	<artifactId>io.github.mzattera.v4j-apps</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>v4j-apps</name>
+	<description>"Applications" using v4j Java to play with the Voynich manuscript.</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>9</maven.compiler.source>
-		<maven.compiler.target>9</maven.compiler.target>
+		<maven.compiler.source>15</maven.compiler.source>
+		<maven.compiler.target>15</maven.compiler.target>
 	</properties>
-	<description>"Applications" using v4j Java to play with the Voynich manuscript.</description>
+	<profiles>
+		<profile>
+			<id>java-8-api</id>
+			<activation>
+				<jdk>[9,)</jdk>
+			</activation>
+			<properties>
+				<maven.compiler.release>15</maven.compiler.release>
+			</properties>
+		</profile>
+	</profiles>
 </project>

@@ -15,7 +15,6 @@ import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import io.github.mzattera.v4j.applications.text.BuildConcordanceVersion;
 import io.github.mzattera.v4j.text.ElementFilter;
 import io.github.mzattera.v4j.text.ivtff.IvtffLine;
 import io.github.mzattera.v4j.text.ivtff.IvtffText;
@@ -157,7 +156,8 @@ public final class BuildConcordanceVersionTest {
 	}
 
 	/**
-	 * This tests that when , appear in text, they appear only where other spaces are there......more or less.
+	 * This tests that when , appear in text, they appear only where other spaces
+	 * are there......more or less.
 	 */
 	@Test
 	@DisplayName("Test Usage of Spaces")

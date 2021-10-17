@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import io.github.mzattera.v4j.applications.slot.Slots;
 import io.github.mzattera.v4j.text.ElementFilter;
 import io.github.mzattera.v4j.text.alphabet.Alphabet;
 import io.github.mzattera.v4j.text.alphabet.SlotAlphabet;
@@ -21,10 +20,9 @@ import io.github.mzattera.v4j.text.ivtff.VoynichFactory.Transcription;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory.TranscriptionType;
 
 /**
- * Funny check needed as regression test.
- * Creating the SLOT transcription, using fromEva(getText()).getPLainText() produced different results than 
- * performing conversion on the fly calling frmEva(getPlainText()).
- * This checks they match
+ * Funny check needed as regression test. Creating the SLOT transcription, using
+ * fromEva(getText()).getPLainText() produced different results than performing
+ * conversion on the fly calling frmEva(getPlainText()). This checks they match
  * 
  * @author Massimiliano "Maxi" Zattera
  *
@@ -64,7 +62,7 @@ public final class FromEva {
 			String s = sLines.get(i).getPlainText();
 			String e = SlotAlphabet.fromEva(eLines.get(i).getPlainText());
 
-			assertEquals(s,e);
+			assertEquals(s, e);
 		}
 	}
 }

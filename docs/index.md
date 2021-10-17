@@ -71,6 +71,16 @@ In other words, a token is an instance of a term. For example; the below line in
 I will try to put together an annotated [bibliography](./biblio.md) of the things I read, with my comments when I see appropriate.
 
 
+# The Voynich
+
+Below some links to browse the Voynich online.
+
+* [Voynich Manuscript Voyager](https://www.jasondavies.com/voynich/#outside_front_cover/0.422/0.371/2.30) by Jason Davies.
+
+* [Voynich Manuscript Project](https://ambertide.github.io/VoynichExplorer/index.html).
+
+
+
 ---
 
 Copyright Massimiliano Zattera.

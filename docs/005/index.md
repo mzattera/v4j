@@ -27,13 +27,6 @@ Given the nature of this topic, it is impossible to define rules that apply to 1
 exists in any modern text as well. However, I will try to focus on claims that apply to the vast majority of cases. 
 
 
-## Previous Works
-
-I am not the first one analyzing the internal structure of Voynich words.
-
-One day I will create a [working note](../006) to compare this analysis with others.
-
-
 ## Methodology
 
 I start our analysis from a concordance version of the Voynich text (see [Note 001](../001)); this is obtained from the 
@@ -224,6 +217,20 @@ of the Landini-Stolfi interlinear file that uses the Slot alphabet is available 
 [v4j library](https://github.com/mzattera/v4j#ivtff) and accessible using `VoynichFactory` factory methods.
 
 
+## Comparisons with Previous Works
+
+I am not the first one analyzing the internal structure of Voynich words.
+
+After writing this notes, I realized Philip Neal published a [very similar concept](http://philipneal.net/voynichsources/transcription_neva_spaced/),
+but restricted to a single page (f103r). His point was that this could be the result of using a grille to produce the text,
+something similar to the more complete approach from [Rugg](../bibilo.md).
+Neal also proposes a NEVA transcription: "_NEVA, combines the strengths of EVA and voyn101 by using Unicode to add diacritics to the EVA character set,
+and is stored as UTF8 instead of individual bytes_". As I am unable to download a description of the transcription alphabet,
+I cannot evaluate how close this is to the Slot alphabet. It seams Neal did not extended the analysis to the whole Voynich.
+
+One day I will create a [working note](../006) to compare this analysis with others.
+
+
 ## Conclusions 
 
 - Majority of words in the Voynich exhibits an inner structure described here, where terms can be represented as composed by 12 "slots" that can be left empty or 
@@ -251,7 +258,7 @@ This led the creation of a new transliteration alphabet presented here, the **Sl
   A [transliteration](https://github.com/mzattera/v4j/blob/master/eclipse/io.github.mzattera.v4j/src/main/resources/Transcriptions/Interlinear_slot_ivtff_1.5.txt)
 of the Landini-Stolfi interlinear file that uses the Slot alphabet is available
 
-- As far as I know, Slot alphabet is the first one that is based on empirical data about the structure of Voynich words, trying to capture the intent of the 
+- As far as I know (with the possible exception of Neal above), Slot alphabet is the first one that is based on empirical data about the structure of Voynich words, trying to capture the intent of the 
 Voynich author.
 
   I think this is an important aspect to consider, both for attacking the Voynich cypher and performing statistical analysis of the manuscript, 

@@ -1,6 +1,6 @@
 # Note 005 - Slots and a New Alphabet
 
-_Last updated Oct. 14th, 2021._
+_Last updated Oct. 17th, 2021._
 
 _This note refers to [release v.5.0.0](https://github.com/mzattera/v4j/tree/v.5.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
@@ -219,21 +219,21 @@ The below table defines the Slots alphabet and compares it with other transliter
   In some of the above alphabets, sequences of EVA 'i' are treated differently, depending on the letter following the sequence.
 Therefore, there is no unique way to transliterate sequences of 'i' into these alphabets without looking at the whole Voynich word being transliterated.
 
-A [transliteration](https://github.com/mzattera/v4j/blob/master/eclipse/io.github.mattera.v4j/src/main/resources/Transcriptions/Interlinear_slot_ivtff_1.5.txt)
+A [transliteration](https://github.com/mzattera/v4j/blob/master/eclipse/io.github.mzattera.v4j/src/main/resources/Transcriptions/Interlinear_slot_ivtff_1.5.txt)
 of the Landini-Stolfi interlinear file that uses the Slot alphabet is available within
 [v4j library](https://github.com/mzattera/v4j#ivtff) and accessible using `VoynichFactory` factory methods.
 
 
 ## Conclusions 
 
-- Majority of words in the Voynich exhibits an inner structure described here where terms can be represented as composed by 12 "slots" that can be left empty or 
-populated by a single glyph chosen among a very limited group of glyphs (usually 2-3 ones).
+- Majority of words in the Voynich exhibits an inner structure described here, where terms can be represented as composed by 12 "slots" that can be left empty or 
+populated by a single glyph chosen among a very limited group of glyphs (usually 2-3).
 
   - 88.6% of tokens (55.2% of terms) exhibit this structure (**regular** terms).
   
   - 9.4% of tokens (36.4% of terms) can be divided in two parts, each presenting the inner structure described above (**separable** terms). 
   
-    For 74.3% of separable terms, their two constituent parts appear in the text more often than the separable term itself (**verified separable** terms).
+    For 74.3% of separable terms, their two constituents appear in the text more often than the separable term itself (**verified separable** terms).
   
     This seems a strong indication that separable terms are made by two regular terms written together.
   
@@ -245,10 +245,10 @@ populated by a single glyph chosen among a very limited group of glyphs (usually
 	
 - I think the above evidence supports the idea that "slots" are a significant structural component of Voynich words.
 
-- If so, it is reasonable to assume that glyphs appearing in slots are basic unit of information; in other words these should be the characters of the Voynich alphabet.
+- If so, it is reasonable to assume that glyphs appearing in slots are basic unit of information; in other words, these should be the characters of the Voynich alphabet.
 This led the creation of a new transliteration alphabet presented here, the **Slot alphabet**.
 
-  A [transliteration](https://github.com/mzattera/v4j/blob/master/eclipse/io.github.mattera.v4j/src/main/resources/Transcriptions/Interlinear_slot_ivtff_1.5.txt)
+  A [transliteration](https://github.com/mzattera/v4j/blob/master/eclipse/io.github.mzattera.v4j/src/main/resources/Transcriptions/Interlinear_slot_ivtff_1.5.txt)
 of the Landini-Stolfi interlinear file that uses the Slot alphabet is available
 
 - As far as I know, Slot alphabet is the first one that is based on empirical data about the structure of Voynich words, trying to capture the intent of the 
@@ -257,6 +257,14 @@ Voynich author.
   I think this is an important aspect to consider, both for attacking the Voynich cypher and performing statistical analysis of the manuscript, 
 when a one-to-one mapping between the Voynich characters and those in the transliteration alphabet is crucial.
 
+- In addition, slots shows that next unit of information above characters are indeed words in the Voynich text. This does not mean that words in Voynich are
+actual words in a clear text, but shows that they are indeed a logic building block of the text.
+
+  _There might be an indication that lines and paragraphs are the next logical levels, this is left for further investigations._
+
+- Slots should be considered when attempting to decipher the text. Whether the Voynich has been created by encoding a plain text or by a mechanical process, 
+slots must be the basis of such mechanisms.
+  
 - Since no natural language presents such an inner structure, the existence of "slots" constitutes a strong objection to any attempt to propose a substitution cipher for the Voynich.
 
 - Similarly, the "slot" structure of words will condition character entropy in the text. Therefore, attempts to assign a natural language to the Voynich by looking at similarities in

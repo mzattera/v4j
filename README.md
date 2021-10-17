@@ -4,21 +4,21 @@ This is a Java library i created to experiment with the [Voynich manuscript](htt
 
 The outcomes of my experiments are tracked on the [project pages](https://mzattera.github.io/v4j/).
 
-The folder `eclipse` contains an eclipse workspace. The (Maven) project `io.github.mattera.v4j` holds the actual code for the Java library.
-The library content is described below. The (Maven) project `io.github.mattera.v4j-apps` contains classes I created to experiment with the 
+The folder `eclipse` contains an eclipse workspace. The (Maven) project `io.github.mzattera.v4j` holds the actual code for the Java library.
+The library content is described below. The (Maven) project `io.github.mzattera.v4j-apps` contains classes I created to experiment with the 
 Voynich manuscript; here you can find examples about how to use the library.
 
 **_Note:_** Plase check the [project pages](https://mzattera.github.io/v4j/) for some terminology that is relevant here.
 
 
-## Packages and Library Overview - Project `io.github.mattera.v4j`
+## Packages and Library Overview - Project `io.github.mzattera.v4j`
 
 The idea of the library is to provide a "document" object; this is a (possibly) structured text written in one specific "alphabet".
 I tried to document the classes using JavaDoc; please refer to the Java source for more details: the below is just a quick intro.
 
 <a id="alphabet"></a>
 
-### `io.github.mattera.v4j.text.alphabet`
+### `io.github.mzattera.v4j.text.alphabet`
 
 Each text processed by the library is written using a specific alphabet, that is a set of characters used to write the text.
 These characters are divided into several categories, that are relevant when processing a text. The `Alphabet` class provides
@@ -47,7 +47,7 @@ The `Alphabet` class provides some static fields to access already defined alpha
 - `Alphabet.SLOT` is the Slot alphabet as defined in [this working note](https://mzattera.github.io/v4j/005/).
 	
 
-### `io.github.mattera.v4j.text`
+### `io.github.mzattera.v4j.text`
 
 The `Text` class represents the simplest possible text.
 
@@ -64,7 +64,7 @@ or cut the text into parts, based on rules.
 
 <a id="ivtff"></a>
 
-### Getting the Voynich Text - `io.github.mattera.v4j.text.ivtff`
+### Getting the Voynich Text - `io.github.mzattera.v4j.text.ivtff`
 
 The main class in this package is `IvtffText` that represents a text in IVTFF (Intermediate Voynich Transliteration File Format) format,
 as described on [René Zandbergen's website](http://www.voynich.nu/transcr.html). This website provides extensive information about the IVTFF format,
@@ -147,7 +147,7 @@ for (IvtffLine l:doc.getLines()) {
 }
 ```
 
-### Other Texts - `io.github.mattera.v4j.text.txt`
+### Other Texts - `io.github.mzattera.v4j.text.txt`
 
 `TextString` represent a Java string as a `Text` document, whilst `TextFile` represents a text file
 composed by numbered `TextLine`s. These classes allow processing normal (e.g. contemporary plain English)
@@ -168,7 +168,7 @@ a formal definition is provided.
 v4j provides tools for k-means and hierarchical agglomerative clustering using Apache commons-math3 and `org.opencompare.hac`
 libraries respectively.
 
-The class `io.github.mattera.v4j.util.BagOfWords` can be used to build a Bag of Words out of some text(s).
+The class `io.github.mzattera.v4j.util.BagOfWords` can be used to build a Bag of Words out of some text(s).
 The class can build a BoW where dimensions can be (see `BagOfWordsMode`):
 
 - The count of occurrences for corresponding word.
@@ -179,7 +179,7 @@ The class can build a BoW where dimensions can be (see `BagOfWordsMode`):
 Notice this class is `Clusterable`, thus can be used with the Apache clustering API where subclasses of `Clusterer<T extends Clusterable>`
 are used to cluster set of `Clusterable` instances.
 
-#### K-Means Clustering - `io.github.mattera.v4j.util.clustering`
+#### K-Means Clustering - `io.github.mzattera.v4j.util.clustering`
 
 Below an example of how BoW instances can be clustered:
 
@@ -226,7 +226,7 @@ clusters.get(i).getPoints();
 ```
 
 
-### Useful Stuff - `io.github.mattera.v4j.util`
+### Useful Stuff - `io.github.mzattera.v4j.util`
 
 This package contains some "utility" classes to deal with files, math, etc.
 
@@ -235,7 +235,7 @@ Please take a look what is in here before implementing anythign from scratch.
 
 ### Testing
 
-Project `io.github.mattera.v4j-apps` contains JUnit tests for the v4j library and (some) of the "applications" in `v4j-apps`.
+Project `io.github.mzattera.v4j-apps` contains JUnit tests for the v4j library and (some) of the "applications" in `v4j-apps`.
 
 
 

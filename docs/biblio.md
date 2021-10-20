@@ -1,6 +1,10 @@
 # Bibliography
 
+<<<<<<< HEAD
 [**<< Home**](./index.md)
+=======
+[**<< Home**](./)
+>>>>>>> 93199d08d39b5c4bb6e73af8273818ae935e682d
 
 ---
 
@@ -20,7 +24,11 @@ Materials that discuss possible interpretation of the Voynich (e.g. meaning of i
 	
 ---
 
+<<<<<<< HEAD
 [**<< Home**](./index.md)
+=======
+[**<< Home**](./)
+>>>>>>> 93199d08d39b5c4bb6e73af8273818ae935e682d
 
 Copyright Massimiliano Zattera.
 

@@ -1,6 +1,6 @@
 # Bibliography
 
-[**<< Home**](..)
+[**<< Home**](./)
 
 ---
 
@@ -20,7 +20,7 @@ Materials that discuss possible interpretation of the Voynich (e.g. meaning of i
 	
 ---
 
-[**<< Home**](..)
+[**<< Home**](./)
 
 Copyright Massimiliano Zattera.
 

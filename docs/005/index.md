@@ -224,7 +224,7 @@ I am not the first one analyzing the internal structure of Voynich words; this s
 ### Philip Neal
 
 After writing this notes, I realized Philip Neal published a [very similar concept](http://philipneal.net/voynichsources/transcription_neva_spaced/);
-his point was that this could be the result of using a grille to produce the text, something similar to the more complete approach from [Rugg](../biblio.md).
+his point was that this could be the result of using a grille to produce the text, something similar to the more complete approach described in [RUGG (2004)](../biblio.md).
 
 Neal confirmed [{3}](#Note3) that his grid scheme (which pre-dates my notes) is much the same as the concept described here
 and, though he only put f103r on his website, he has analyzed every page of the manuscript along the same lines.

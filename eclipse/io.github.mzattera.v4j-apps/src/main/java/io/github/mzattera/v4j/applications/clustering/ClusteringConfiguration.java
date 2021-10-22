@@ -16,7 +16,7 @@ import io.github.mzattera.v4j.text.ivtff.VoynichFactory.TranscriptionType;
 import io.github.mzattera.v4j.util.clustering.BagOfWords.BagOfWordsMode;
 
 /**
- * Static class holding global configuration parameters for application srelated
+ * Static class holding global configuration parameters for application related
  * to clustering.
  * 
  * @author Massimiliano "Maxi" Zattera

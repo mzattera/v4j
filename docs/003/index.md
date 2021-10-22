@@ -226,7 +226,7 @@ This is more evident when clustering whole parchments instead of single pages.
 - It has been already proposed (_citation needed_) that these similarities are either a proof that the Voynich is not an hoax
 as the vocabulary used in its page correlates with the page "topics" that can be inferred by the illustration type
 (this will not explain the differences between Herbal A and Herbal B pages though). Similarly, it can be argued that 
-Currier's languages reflect language differences in the underlying "clear" text.
+Currier's languages reflect language differences in the underlying plain text.
 
   However, it can be that these similarities reflect a different technique (or variations of the same technique) used to create
   the parchments. This technique could be either a proper cypher or a way to produce "random" text.  

@@ -25,7 +25,7 @@ import io.github.mzattera.v4j.util.clustering.BagOfWords;
  * This class can work at page or parchment (bifolio)
  * level, this behavior is configurable (see ClusteringConfiguration class).
  * 
- * @author Massimiliano_Zattera
+ * @author Massimiliano "Maxi" Zattera
  *
  */
 public final class BuildBoW {

@@ -8,6 +8,18 @@ reproduce my work and address errors and omissions. In some cases, I also try to
 in order to provide some (hopefully) more solid basis for discussions and deciphering attempts.
 
 
+# The Voynich
+
+Below some links to browse the Voynich online.
+
+* [Voynich Manuscript Voyager](https://www.jasondavies.com/voynich/#outside_front_cover/0.422/0.371/2.30) by Jason Davies.
+
+* Zandbergen's [Voynich MS - Browser](http://www.voynich.nu/folios.html)
+
+* [Voynich Manuscript Project](https://ambertide.github.io/VoynichExplorer/index.html).
+
+
+
 # Terminology, Definitions, and Conventions
 
 On this site, I will try to be consistent with following terminology.
@@ -69,15 +81,6 @@ In other words, a token is an instance of a term. For example; the below line in
 # Bibliography and Reviews
 
 I will try to put together an annotated [bibliography](./biblio.md) of the things I read, with my comments when I see appropriate.
-
-
-# The Voynich
-
-Below some links to browse the Voynich online.
-
-* [Voynich Manuscript Voyager](https://www.jasondavies.com/voynich/#outside_front_cover/0.422/0.371/2.30) by Jason Davies.
-
-* [Voynich Manuscript Project](https://ambertide.github.io/VoynichExplorer/index.html).
 
 
 

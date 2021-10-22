@@ -19,7 +19,7 @@ import io.github.mzattera.v4j.util.clustering.SilhouetteEvaluator;
 import io.github.mzattera.v4j.util.clustering.hac.BagOfWordsExperiment;
 
 /**
- * @author Massimiliano_Zattera
+ * @author Massimiliano "Maxi" Zattera
  *
  */
 public final class KMeansClusterByWords {

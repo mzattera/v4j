@@ -16,7 +16,7 @@ public class TextLine extends Text {
 	private final String text;
 
 	/* (non-Javadoc)
-	 * @see io.github.mattera.v4j.text.Text#getText()
+	 * @see io.github.mzattera.v4j.text.Text#getText()
 	 */
 	@Override
 	public String getText() {

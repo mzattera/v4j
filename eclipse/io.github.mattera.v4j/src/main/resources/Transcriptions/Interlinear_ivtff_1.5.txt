@@ -1,5 +1,5 @@
 #=IVTFF Eva- 1.5
-# Created automatically by io.github.mattera.v4j.applications.text.BuildConcordanceVersion on: 20210919.1526
+# Created automatically by io.github.mzattera.v4j.applications.text.BuildConcordanceVersion on: 20211022.0858
 #
 # 
 # This is based on Landini-Stolfi Interlinear file from http://www.voynich.nu/data/beta/LSI_ivtff_0d.txt
@@ -2144,13 +2144,13 @@
 <f1r.15,+P0;m>	daiin.shckhey.ck!!!!hor.chor.shey.kol.chol.chol.kor.chol
 <f1r.15,+P0;c>	daiin.shckhey.ck!!!!?or.chor.shey.kol.chol.chol.kor.ch?l
 #  
-<f1r.16,+P0;H>	sho.chol.sh!odan.kshy.kchy.dor.chodaiin.sho.kchom
-<f1r.16,+P0;C>	sho.chol.sh.odan.kshy.kchy.dor.chodaiin.sho.keeam
-<f1r.16,+P0;F>	sho.chol.sh!odan.kshy.kchy.dor.chodaiin.sho.koeam
-<f1r.16,+P0;N>	sho.chol.sh!odan.kshy.kchy.dor.chodaiin.sho.kchom
-<f1r.16,+P0;U>	sho.chol.sh!odan.kshy.kchy.dor.chodaiin.sho.keeam
-<f1r.16,+P0;m>	sho.chol.sh!odan.kshy.kchy.dor.chodaiin.sho.k?eam
-<f1r.16,+P0;c>	sho.chol.sh,odan.kshy.kchy.dor.chodaiin.sho.k???m
+<f1r.16,+P0;H>	sho.chol.sh!odan.kshy.kchy.dor.chodaiin.sho.kch!om
+<f1r.16,+P0;C>	sho.chol.sh.odan.kshy.kchy.dor.chodaiin.sho.kee!am
+<f1r.16,+P0;F>	sho.chol.sh!odan.kshy.kchy.dor.chodaiin.sho.koe!am
+<f1r.16,+P0;N>	sho.chol.sh!odan.kshy.kchy.dor.chodaiin.sho.kch!om
+<f1r.16,+P0;U>	sho.chol.sh!odan.kshy.kchy.dor.chodaiin.sho.kee!am
+<f1r.16,+P0;m>	sho.chol.sh!odan.kshy.kchy.dor.chodaiin.sho.k?e!am
+<f1r.16,+P0;c>	sho.chol.sh,odan.kshy.kchy.dor.chodaiin.sho.k??!?m
 #  
 <f1r.17,+P0;H>	ycho.tchey.chokain.sheo.pshol.dydyd.cthy.daicthy
 <f1r.17,+P0;C>	ycho.tchey.chekain.sheo!pshol.dodyd.cthy.da!cthy
@@ -4666,7 +4666,7 @@
 #  
 #   [1] Carl Axel Magnus Lindman
 #   Bilder ur Nordens Flora
-#   227. A. Styvmorsviol, Viola tricolor L.; B. ?kerviol, Viola arvensis Murr.
+#   227. A. Styvmorsviol, Viola tricolor L.; B. ???kerviol, Viola arvensis Murr.
 #   http://www.lysator.liu.se/runeberg/nordflor/
 #   http://www.lysator.liu.se/runeberg/nordflor/227.html
 #  
@@ -13993,7 +13993,7 @@
 <f49v.28,=P0;m>	!!!!!!!!!!fcho!chor.shol.tchol.opcheodal.dchsy.!chotchy
 <f49v.28,=P0;c>	!!!!!!!!!!fcho,chor.shol.tchol.opcheodal.dchsy.!chotchy
 #  
-<f49v.30,=P0;H>	<!label ?->dcho.d.chol.chokchodaiin.chokchy.tchol<-><!plant>okcho!kol
+<f49v.30,=P0;H>	<!label ???->dcho.d.chol.chokchodaiin.chokchy.tchol<-><!plant>okcho!kol
 <f49v.30,=P0;C>	!!!!!!!!!!dcho.d!chol.chokchodaiin.chokchy.tchol<-><!plant>okcho!kol
 <f49v.30,=P0;F>	<!label s->dcho.d!chol.chokchodaiin.chokchy.tchol<-><!plant>okcho.kol
 <f49v.30,=P0;G>	<!label s->dcho.d.chol.chokchodaiin.chokchy.tchol<-><!plant>okcho.kol
@@ -14016,7 +14016,7 @@
 <f49v.34,=P0;m>	!!!!!!!!!!shocho!!.oaiin.sheo.choty<$>
 <f49v.34,=P0;c>	!!!!!!!!!!shocho??.oaiin.sheo.choty<$>
 #  
-<f49v.36,=P0;H>	<!label ?->qotcho.cheol.chol.s.cho.chcthey.dcheol<-><!plant>chotchody
+<f49v.36,=P0;H>	<!label ???->qotcho.cheol.chol.s.cho.chcthey.dcheol<-><!plant>chotchody
 <f49v.36,=P0;C>	!!!!!!!!!!qotcho.cheol.chol!s.cho.chcthey.dcheol<-><!plant>chotchody
 <f49v.36,=P0;F>	<!label r->qotcho.cheol.chol!s.cho.chcthey.dcheol<-><!plant>chotchody
 <f49v.36,=P0;U>	<!label r->qotcho.cheol.chol!s.cho,chcthey.dcheol<-><!plant>chotchody
@@ -16805,7 +16805,7 @@
 <f66r.8,+L0;H>	f!!!!!!!!!!!!ary
 <f66r.8,+L0;C>	f!!!!!!!!!!!!ary
 <f66r.8,+L0;F>	f!!!!!!!!!!!!ary
-<f66r.8,+L0;U>	f<!hooked arm>ary
+<f66r.8,+L0;U>	f<!hooked arm>!ary
 <f66r.8,+L0;m>	f!!!!!!!!!!!!ary
 <f66r.8,+L0;c>	f!!!!!!!!!!!!ary
 #  
@@ -49539,7 +49539,7 @@
 #   possible source for line 3.  Stolfi observes that there is also
 #   an "aror.sheey" on f104r.P.28.
 #  
-#   Stolfi [] remarks that "Olazabal" or "Olaz?bal" is a common mame
+#   Stolfi [] remarks that "Olazabal" or "Olaz???bal" is a common mame
 #   in Spanish-speaking areas, probably of Basque origin.
 #  
 #   THE DRAWINGS
@@ -49576,10 +49576,10 @@
 #  
 #   8    similar to RGA "d" (mainline variant), but the upper loop is smaller
 #          than the lower loop, and almost straight above it.
-#   ?    An "a" with a faint dot over it (probably noise).
-#   ?    A "c" with a vertical serif at the top end.
+#   ???    An "a" with a faint dot over it (probably noise).
+#   ???    A "c" with a vertical serif at the top end.
 #   h    very much like RGA "h", but with open bottom
-#   ?    A straight, short, thick descending stroke with a
+#   ???    A straight, short, thick descending stroke with a
 #          straight, long, thin "acute accent"; like
 #          an EVA "r" but with straight plume
 #   j    a partially obscured glyph; what can be seen looks
@@ -49591,7 +49591,7 @@
 #          first stroke turned inwards, the last slightly outwards.
 #   m    with inclined strokes, like "\/\/\".
 #   n    with inclined strokes, like "\/\".
-#   ?    like an "o" with a circumflex *under* it; or an EVA "l"
+#   ???    like an "o" with a circumflex *under* it; or an EVA "l"
 #          with very short "legs".
 #   )    like a small close parenthesis, extending slightly below
 #          the baseline; very much like the variant RGA "o"
@@ -49599,7 +49599,7 @@
 #   p    has an exaggerated "barb" on the left side of the
 #          stem.
 #   r    like a Greek lowercase "nu".
-#   ?    an "u" or "n" with a macron or overline (which may be noise).
+#   ???    an "u" or "n" with a macron or overline (which may be noise).
 #   X    Like RGA "x", but with the two strokes ligated on the right.
 #   y    similar to RGA "y", but more like a Greek "eta".
 #   +    like a math "+", raised so as to stand on the baseline.
@@ -49609,13 +49609,13 @@
 # In the "digits" line, "a" trough "d" mean "10" through "13",
 # each numeral being squeezed into single letter slot.
 #  
-# Line 0 Roman:    p**labo*.pin?n.pati*er=
+# Line 0 Roman:    p**labo*.pin???n.pati*er=
 #  
-# Line 1 Roman:    nuchiton.ola6?ba8.+.m?Lc?8.+.te.+,tar.cev?,+.porta8.+M++-
+# Line 1 Roman:    nuchiton.ola6???ba8.+.m???Lc???8.+.te.+,tar.cev???,+.porta8.+M++-
 # Line 1.5 Digits: .1234567.489a9bc*.*4**854d*.!**..,***.5545-
 #  
-# Line 2 Roman:    siX+*j?ariX+moriX+,v?X+abta+ma+ria+-
-# The "j?" is an "m" rather out of shape.
+# Line 2 Roman:    siX+*j???ariX+moriX+,v???X+abta+ma+ria+-
+# The "j???" is an "m" rather out of shape.
 # The "+" in "ma+ria" is raised and takes no space between the "a" and "r".
 #  
 <f116v.1,@Lx;U>	oror.sheey!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

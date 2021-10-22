@@ -16,7 +16,7 @@ import io.github.mzattera.v4j.text.ivtff.ParseException;
 import io.github.mzattera.v4j.util.Counter;
 
 /**
- * Tests io.github.mattera.v4j.applications.CountNWords.process()
+ * Tests io.github.mzattera.v4j.applications.CountNWords.process()
  * 
  * @author Massimiliano "Maxi" Zattera
  *

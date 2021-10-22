@@ -18,7 +18,7 @@ public class JavaCharset extends Alphabet {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see io.github.mattera.v4j.text.alphabet.Alphabet#getCodeString()
+	 * @see io.github.mzattera.v4j.text.alphabet.Alphabet#getCodeString()
 	 */
 	@Override
 	public String getCodeString() {
@@ -30,7 +30,7 @@ public class JavaCharset extends Alphabet {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see io.github.mattera.v4j.text.alphabet.Alphabet#getAllChars()
+	 * @see io.github.mzattera.v4j.text.alphabet.Alphabet#getAllChars()
 	 */
 	@Override
 	public char[] getAllChars() {
@@ -57,7 +57,7 @@ public class JavaCharset extends Alphabet {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see io.github.mattera.v4j.text.alphabet.Alphabet#getRegularChars()
+	 * @see io.github.mzattera.v4j.text.alphabet.Alphabet#getRegularChars()
 	 */
 	@Override
 	public char[] getRegularChars() {
@@ -83,7 +83,7 @@ public class JavaCharset extends Alphabet {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see io.github.mattera.v4j.text.alphabet.Alphabet#getWordSeparatorChars()
+	 * @see io.github.mzattera.v4j.text.alphabet.Alphabet#getWordSeparatorChars()
 	 */
 	@Override
 	public char[] getWordSeparatorChars() {
@@ -111,7 +111,7 @@ public class JavaCharset extends Alphabet {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see io.github.mattera.v4j.text.alphabet.Alphabet#getSpace()
+	 * @see io.github.mzattera.v4j.text.alphabet.Alphabet#getSpace()
 	 */
 	@Override
 	public char getSpace() {
@@ -123,7 +123,7 @@ public class JavaCharset extends Alphabet {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see io.github.mattera.v4j.text.alphabet.Alphabet#getUnreadableChars()
+	 * @see io.github.mzattera.v4j.text.alphabet.Alphabet#getUnreadableChars()
 	 */
 	@Override
 	public char[] getUnreadableChars() {

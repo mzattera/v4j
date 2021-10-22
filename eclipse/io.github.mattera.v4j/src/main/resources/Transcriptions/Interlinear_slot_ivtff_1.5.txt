@@ -1,6 +1,6 @@
 #=IVTFF Slot 1.5
-# Transliterated automatically by io.github.mattera.v4j.applications.text.BuildSlotVersion on: 20210930.2322
-# Created automatically by io.github.mattera.v4j.applications.text.BuildConcordanceVersion on: 20210919.1526
+# Transliterated automatically by io.github.mzattera.v4j.applications.text.BuildSlotVersion on: 20211022.0905
+# Created automatically by io.github.mzattera.v4j.applications.text.BuildConcordanceVersion on: 20211022.0858
 #
 # 
 # This is based on Landini-Stolfi Interlinear file from http://www.voynich.nu/data/beta/LSI_ivtff_0d.txt
@@ -4667,7 +4667,7 @@
 #  
 #   [1] Carl Axel Magnus Lindman
 #   Bilder ur Nordens Flora
-#   227. A. Styvmorsviol, Viola tricolor L.; B. ?kerviol, Viola arvensis Murr.
+#   227. A. Styvmorsviol, Viola tricolor L.; B. ???kerviol, Viola arvensis Murr.
 #   http://www.lysator.liu.se/runeberg/nordflor/
 #   http://www.lysator.liu.se/runeberg/nordflor/227.html
 #  
@@ -49540,7 +49540,7 @@
 #   possible source for line 3.  Stolfi observes that there is also
 #   an "aror.sheey" on f104r.P.28.
 #  
-#   Stolfi [] remarks that "Olazabal" or "Olaz?bal" is a common mame
+#   Stolfi [] remarks that "Olazabal" or "Olaz???bal" is a common mame
 #   in Spanish-speaking areas, probably of Basque origin.
 #  
 #   THE DRAWINGS
@@ -49577,10 +49577,10 @@
 #  
 #   8    similar to RGA "d" (mainline variant), but the upper loop is smaller
 #          than the lower loop, and almost straight above it.
-#   ?    An "a" with a faint dot over it (probably noise).
-#   ?    A "c" with a vertical serif at the top end.
+#   ???    An "a" with a faint dot over it (probably noise).
+#   ???    A "c" with a vertical serif at the top end.
 #   h    very much like RGA "h", but with open bottom
-#   ?    A straight, short, thick descending stroke with a
+#   ???    A straight, short, thick descending stroke with a
 #          straight, long, thin "acute accent"; like
 #          an EVA "r" but with straight plume
 #   j    a partially obscured glyph; what can be seen looks
@@ -49592,7 +49592,7 @@
 #          first stroke turned inwards, the last slightly outwards.
 #   m    with inclined strokes, like "\/\/\".
 #   n    with inclined strokes, like "\/\".
-#   ?    like an "o" with a circumflex *under* it; or an EVA "l"
+#   ???    like an "o" with a circumflex *under* it; or an EVA "l"
 #          with very short "legs".
 #   )    like a small close parenthesis, extending slightly below
 #          the baseline; very much like the variant RGA "o"
@@ -49600,7 +49600,7 @@
 #   p    has an exaggerated "barb" on the left side of the
 #          stem.
 #   r    like a Greek lowercase "nu".
-#   ?    an "u" or "n" with a macron or overline (which may be noise).
+#   ???    an "u" or "n" with a macron or overline (which may be noise).
 #   X    Like RGA "x", but with the two strokes ligated on the right.
 #   y    similar to RGA "y", but more like a Greek "eta".
 #   +    like a math "+", raised so as to stand on the baseline.
@@ -49610,13 +49610,13 @@
 # In the "digits" line, "a" trough "d" mean "10" through "13",
 # each numeral being squeezed into single letter slot.
 #  
-# Line 0 Roman:    p**labo*.pin?n.pati*er=
+# Line 0 Roman:    p**labo*.pin???n.pati*er=
 #  
-# Line 1 Roman:    nuchiton.ola6?ba8.+.m?Lc?8.+.te.+,tar.cev?,+.porta8.+M++-
+# Line 1 Roman:    nuchiton.ola6???ba8.+.m???Lc???8.+.te.+,tar.cev???,+.porta8.+M++-
 # Line 1.5 Digits: .1234567.489a9bc*.*4**854d*.!**..,***.5545-
 #  
-# Line 2 Roman:    siX+*j?ariX+moriX+,v?X+abta+ma+ria+-
-# The "j?" is an "m" rather out of shape.
+# Line 2 Roman:    siX+*j???ariX+moriX+,v???X+abta+ma+ria+-
+# The "j???" is an "m" rather out of shape.
 # The "+" in "ma+ria" is raised and takes no space between the "a" and "r".
 #  
 <f116v.1,@Lx;U>	oror.SEy

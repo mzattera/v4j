@@ -306,7 +306,7 @@ has been used to perform this analysis. An Excel with its output can be found in
 [`CountCharsBySlot`](https://github.com/mzattera/v4j/blob/v.5.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mattera/v4j/applications/slot/CountCharsBySlot.java)
 has been used to produce this table.
 
-<a id="Note3">**{3}**</a> Personal communication.
+<a id="Note3">**{3}**</a> Personal communication, October 2021.
 
 
 ---

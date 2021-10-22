@@ -77,6 +77,10 @@ In other words, a token is an instance of a term. For example; the below line in
 
   I show how the structure of Voynich words can be explained by some simple rules, and how these can be used to derive the original Voynich alphabet.
 
+- [Note 006 - Works on Word Structure](./006)
+
+  I list and discuss other approaches to describing the structure of Voynich words, comparing them with my "Slots" concept.
+  
 
 # Bibliography and Reviews
 

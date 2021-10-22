@@ -219,24 +219,8 @@ of the Landini-Stolfi interlinear file that uses the Slot alphabet is available 
 
 ## Comparisons with Previous Works
 
-I am not the first one analyzing the internal structure of Voynich words; this section is going to be long and currently is a work in progress.
-
-### Philip Neal
-
-After writing this notes, I realized Philip Neal published a [very similar concept](http://philipneal.net/voynichsources/transcription_neva_spaced/);
-his point was that this could be the result of using a grille to produce the text, something similar to the more complete approach described in [RUGG (2004)](../biblio.md).
-
-Neal confirmed [{3}](#Note3) that his grid scheme (which pre-dates my notes) is much the same as the concept described here
-and, though he only put f103r on his website, he has analyzed every page of the manuscript along the same lines.
-
-He also mentions he knows of at least another researcher coming to similar conclusions independently.
-
-Neal also proposes a NEVA transcription; in his own words: "_the NEVA transliteration scheme is designed to remedy the problem
-that GC's voyn_101 scheme looks nothing like the Voynichese characters it maps on to. I proposed using accents and diacritics to combine the readability of EVA
-with the fine distinctions identified by GC. However, this is less of a problem now that we can display voyn_101 in the Voynich font._" [{3}](#Note3).
-
-So NEVA and the Slot alphabet have different objectives, as my proposal aims at deriving an alphabet "grounds up" from the word structure and is further stepping away from the
-"fine distinctions" in Glen Claston's Voynich 101.
+I am not the first one analyzing the internal structure of Voynich words; as this section is going to be long and possibly continuously updated,
+I created a [separate page](../006).
 
 
 ## Conclusions 
@@ -289,7 +273,6 @@ is still impossible to say.
 
 - Similarly, the "slot" structure of words will condition character entropy in the text. Therefore, attempts to assign a natural language to the Voynich by looking at similarities in
 character entropy seem not to be based on solid ground.
-
 
   
 	

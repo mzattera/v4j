@@ -18,9 +18,7 @@ A small annotated (?) bibliography about the Voynich.
 
 * RUGG, Gordon (2004): [AN ELEGANT HOAX? A POSSIBLE SOLUTION TO THE VOYNICH MANUSCRIPT](http://dx.doi.org/10.1080/0161-110491892755), Cryptologia, 28:1, 31-46.
 
-* TILTMAN, John H. (1967): [THE VOYNICH MANUSCRIPT "The Most Mysterious Manuscript in the World"](https://www.nsa.gov/portals/75/documents/news-features/declassified-documents/tech-journals/voynich-manuscript-mysterious.pdf), NSA Technical Journal 12 (July 1967), pp.41-85 (_reference not verified_).
-
-  My summary and review can be found [here](../R001).
+* TILTMAN, John H. (1967): [THE VOYNICH MANUSCRIPT "The Most Mysterious Manuscript in the World"](https://www.nsa.gov/portals/75/documents/news-features/declassified-documents/tech-journals/voynich-manuscript-mysterious.pdf), NSA Technical Journal 12 (July 1967), pp.41-85 (_reference not verified_). [>>Review](./R001).
  
 * ZANDBERGEN, René (2021): [The Cardan grille approach to the Voynich MS taken to the next level](https://arxiv.org/abs/2104.12548).
 

@@ -2,7 +2,7 @@
 
 _Last updated Oct. 23rd, 2021._
 
-_A link to the text reviewed here can be found in my [bibliography page](../biblio.md)._
+_Reference for the text reviewed here can be found in my [bibliography page](../biblio.md)._
 
 _Please refer to the [home page](..) for a set of definitions that might be relevant for this working note._
 
@@ -14,7 +14,7 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 The below is my own commented summary from [TILTMAN (1967)](../biblio.md) (mostly a shortened cut & paste from the original).
 
 The original alphabet used by Tiltman is shown below (from [D'IMPERIO (1978b)](../biblio.md), Fig.19); in this summary
-I replaced Tiltman's alphabet with [Slot alphabet](../005). Notice that Tiltman uses "variants", that is, some
+I replaced Tiltman's alphabet with EVA. Notice that Tiltman uses "variants", that is, some
 transliterated letters correspond to two different glyphs; I indicated this with a dash
 (e.g. Tiltman's 'H' is indicated as 't'-'p', where 'p' is considered by Tiltman a variant writing for 't').
 
@@ -35,7 +35,7 @@ that 'a' is resolved into 'ei' or possibly 'oi').
 
 * No punctuation at all.
 
-* 'T', 'K', 'P', 'F' appear to be infixes of 't', 'k', 'p', 'f' within 'C'.
+* 'cth', 'ckh', 'cph', 'cfh' appear to be infixes of 't', 'k', 'p', 'f' within 'ch'.
 
   I [argued](../005) there is evidence of the opposite, in my opinion.
 
@@ -59,44 +59,44 @@ and it is here that we occasionally see 'yk'-'yf' or 'yt'-'yp'.
 
 * Tiltman divided words into "roots" and "suffixes".
 
-| Roots					| Suffixes				|
-| :---					|:---					|
-|ok-, of-				|-an, -ain, -aJn, -aUn	|
-|ot-, op-				|-ar, -air, -aJr, -aUr	|
-|qok-, qof-				|-al, -ail, -aJl, -aUl	|
-|qot-, qop-				|-or					|
-|C-						|-ol					|
-|S-						|-ey, -Ey, -By			|
-|d-						|-edy, -Edy, -Bdy		|
-|s-						|						|
-|lk-, lf-, mk-, mf- *	|						|
+  | Roots				| Suffixes											|
+  | :---				|:---												|
+  |ok-, of-				|-an, -ain, -aiin, -aiiin							|
+  |ot-, op-				|-ar, -air, -aiir, -aiiir							|
+  |qok-, qof-			|-al -am, -ail -aim, -aiil -aiim, -aiiil -aiiim *	|
+  |qot-, qop-			|-or												|
+  |ch-					|-ol												|
+  |sh-					|-ey, -eey, -eeey									|
+  |d-					|-edy, -eedy, -eeedy								|
+  |s-					|													|
+  |lk-, lf-, mk-, mf- *	|													|
 
-  (*) Notice these roots are missing from D'IMPERIO (1978b)](../biblio.md), Fig.27.
+  (*) Notice the roots with 'm' variants are missing from [D'IMPERIO (1978b)](../biblio.md), Fig.27.
   
-  Regarding the '-a' or '-o' suffixes, Tiltman points out that some of the combinations are very rare, while other are very common.
+* Regarding the '-a' or '-o' suffixes, Tiltman points out that some of the combinations are very rare, while other are very common.
 
-* Suffixes beginning with -a' have their own characteristic frequency throughout the manuscript and independent of context
+* Suffixes beginning with '-a' have their own characteristic frequency throughout the manuscript and independent of context
   (except in cases where two or more '-a' are together in series, as referred to later).
   
 * '-a' groups frequently occur attached directly to "roots", particularly 'ok'-'of', 'ot'-'op', 'd', and 's'.
-  'okaJn'-'ofaJn', 'qokaJn'-'qofaJn', and 'daJn' rank high among the commonest words in the manuscript.
+  'okaiin'-'ofaiin', 'qokaiin'-'qofaiin', and 'daiin' rank high among the commonest words in the manuscript.
 
 * There are however many examples of 2, 3, 4 or even 5 '-a' groups
 strung together on end with or without spaces between them. When
 this occurs, there appears to be some selective preference. For example,
-'ar' is very frequently doubled, i.e., 'ar ar', whereas 'aJn' which is
+'ar' is very frequently doubled, i.e., 'ar ar', whereas 'aiin' which is
 generally significantly commoner, is rarely found doubled. Perhaps
 the commonest succession of three of these groups is 'ar ar al'-'ar ar am'.
 'al'-'am' very frequently follows 'ar', but 'ar' hardly ever follows 'al'-'am'.
 
 * 'o', which has a very common and very definite function in
 "roots",  seems to occur frequently in "suffixes" in rather similar usage
-to 'a', but nearly always as 'or' and 'ol'-'om'. 'or aJn' is very common.
+to 'a', but nearly always as 'or' and 'ol'-'om'. 'or aiin' is very common.
 
 * If all the possible 'a' and 'o' combinations can occur, then
 there are 24 possibilities. They may, however, be modified or qualified
 in some way by the prefixed symbols 'k'-'f', 't'-'p', 'ok'-'of', 'ot'-'op',
-'C', 'S', 'd', 's', etc., but Tiltman was unable to come to any conclusion.
+'ch', 'sh', 'd', 's', etc., but Tiltman was unable to come to any conclusion.
 
 * 'l'-'m', usually preceded by 'a' or 'o', is very commonly followed by 'k'-'f',
 much less commonly by 't'-'p', with or without a space between. Tiltman suggests
@@ -112,8 +112,8 @@ place in an "order of precedence" within words; some symbols such as
   This is very in line with the slot model.
 
 * Some of the most common words, e.g., 'okeey'-'ofeey', 'okeedy'-'ofeedy',
-'qokeey'-'qofeey', 'okaJn'-'ofaJn', 'okar'-'ofar', 'okal'-'ofal'-'okam'-'ofam',
-'daJn', 'Cedy' occur twice running, occasionally three times.
+'qokeey'-'qofeey', 'okaiin'-'ofaiin', 'okar'-'ofar', 'okal'-'ofal'-'okam'-'ofam',
+'daiin', 'chedy' occur twice running, occasionally three times.
 
 * The occurrence of 'e' up to 3 times in one form of "suffix" and the symbol 'i'
 up to 3 times in the other must have some systematic significance.

@@ -1,6 +1,6 @@
 # Note 006 - Works on Word Structure
 
-_Last updated Oct. 22nd, 2021._
+_Last updated Oct. 23rd, 2021._
 
 _This note refers to [release v.5.0.0](https://github.com/mzattera/v4j/tree/v.5.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.

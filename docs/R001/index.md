@@ -22,7 +22,9 @@ transliterated letters correspond to two different glyphs; I indicated this with
 
 I also compare some of Tiltman's findings with my [slot model](../005) for Voynich words.
 
-From p.7:
+# Word Structure
+
+From pp. 7-9:
 
 * Limited the number of symbols in the transliteration alphabet to 17;
 most of the alphabet aligns with that used in the First Study Group (FSG).
@@ -153,6 +155,10 @@ yet I am not aware of any long repetitions of more than 2 or 3 words
 in succession, as might he expected for instance in the text under the
 botanical drawings._"
   
+# Other
+
+_WIP_
+
 
 	
 ---

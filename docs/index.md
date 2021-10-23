@@ -84,8 +84,11 @@ In other words, a token is an instance of a term. For example; the below line in
 
 # Bibliography and Reviews
 
-I will try to put together an annotated [bibliography](./biblio.md) of the things I read, with my comments when I see appropriate.
+I will try to put together an annotated [bibliography](./biblio.md) of the things I read.
+When appropriate, I will write a small "review" of some of these materials.
 
+- [Review 001 - TILTMAN, John H. (1967): THE VOYNICH MANUSCRIPT "The Most Mysterious Manuscript in the World"](./R001)
+ 
 
 
 ---

@@ -20,20 +20,24 @@ transliterated letters correspond to two different glyphs; I indicated this with
 
 ![Tiltman's alphabet](images/Alphabet.PNG)
 
+I also compare some of Tiltman's findings with my [slot model](../005) for Voynich words.
+
 From p.7:
 
 * Limited the number of symbols in the transliteration alphabet to 17;
 most of the alphabet aligns with that used in the First Study Group (FSG).
-
-* It is useless to take account of rare combinations of symbols.
+It is useless to take account of rare combinations of symbols.
 It is not even in every case possible to say what is a single
 symbol and what is not (e.g. Tiltman mentions not being satisfied
 that 'a' is resolved into 'ei' or possibly 'oi').
 
+  I take a similar approach in my Slots alphabet.
+
 * No punctuation at all.
 
 * 'T', 'K', 'P', 'F' appear to be infixes of 't', 'k', 'p', 'f' within 'C'.
-I [argued](../005) there is evidence of the opposite, in my opinion.
+
+  I [argued](../005) there is evidence of the opposite, in my opinion.
 
 * 'm' appears most commonly at the end of a line, rarely elsewhere.
 
@@ -98,13 +102,16 @@ in some way by the prefixed symbols 'k'-'f', 't'-'p', 'ok'-'of', 'ot'-'op',
 much less commonly by 't'-'p', with or without a space between. Tiltman suggests
 that a space must not necessarily be regarded as words separator.
 
+  On the other side, the slots model seem to suggest spaces play some role
+  (even though separable words might constitute a counter-example).
+
 * Speaking generally, each symbol behaves as if it had its own
 place in an "order of precedence" within words; some symbols such as
 'o' and 'y' seem to be able to occupy two functionally different places.
 
-  Notice this is very in line with the ["slots" concept](../005).
+  This is very in line with the slot model.
 
-* Some of the commoner words, e.g., 'okeey'-'ofeey', 'okeedy'-'ofeedy',
+* Some of the most common words, e.g., 'okeey'-'ofeey', 'okeedy'-'ofeedy',
 'qokeey'-'qofeey', 'okaJn'-'ofaJn', 'okar'-'ofar', 'okal'-'ofal'-'okam'-'ofam',
 'daJn', 'Cedy' occur twice running, occasionally three times.
 
@@ -128,7 +135,7 @@ has the same series of 17 symbols repeated 4 times.
 
   * <f.66r> also has an interesting column of symbols.
 
-  Notice Tiltman misses two other such sequences:
+  Tiltman does not mention two other such sequences:
   
   * <f.1r>	Sequences of single characters in the right margin, faded or erased.
   

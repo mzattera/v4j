@@ -22,9 +22,13 @@ When appropriate I will compare their findings with my [slots concept](../005).
 I expect these notes to grow and refine over time (as for the others, to be honest).
 
 
-# John Tiltman
+# John H. Tiltman
 
-Tiltman divided common words into "Roots" and "Suffixes".
+Please see my [review](../R001) of [TILTMAN (1967)](../biblio.md). In a nutshell:
+
+  "_(j) Speaking generally, each symbol behaves as if it had its own
+place in an "order of precedence" within words; some symbols such as
+'o' and 'y' seem to be able to occupy two functionally different places._" 
 
 
 # Jorge Stolfi

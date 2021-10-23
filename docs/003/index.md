@@ -26,6 +26,8 @@ I am not the first one to apply this approach to the Voynich, just
 [google "Voynich clustering"](https://www.google.com/search?q=Voynich+clustering)
 and you will find many articles and blog posts o the topic.
 
+Probably one of the first works in this area was that by D'Imperio ([D'IMPERIO [1978a](../biblio.md)).
+
 I reserve the option to go over these publications in the future and compare them with the contents of this note.
 
 # Methodology

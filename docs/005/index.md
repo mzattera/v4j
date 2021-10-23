@@ -1,6 +1,6 @@
 # Note 005 - Slots and a New Alphabet
 
-_Last updated Oct. 22nd, 2021._
+_Last updated Oct. 23rd, 2021._
 
 _This note refers to [release v.5.0.0](https://github.com/mzattera/v4j/tree/v.5.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
@@ -164,7 +164,8 @@ These glyphs appear in slots 3, 4, 5, and 7 and are shown in the below table.
 
 ![Gallows and Pedestal](images/Gallows.PNG)
 
-It has been argued that pedestalled gallows might be a "ligature", that is a more compact from of writing a combination of the pedestal and a gallows character.
+It has been hypothesized (e.g. [TILTMAN (1967)](../biblio.md) p.7 point (b.)) that pedestalled gallows might be a "ligature",
+that is a more compact from of writing a combination of the pedestal and a gallows character.
 If we look at slots 3 through 5, we might think that pedestalled gallows can be indeed a combination of a gallows character followed by the pedestal, in this specific order.
 However:
 
@@ -211,6 +212,9 @@ The below table defines the Slots alphabet and compares it with other transliter
 
   In some of the above alphabets, sequences of EVA 'i' are treated differently, depending on the letter following the sequence.
 Therefore, there is no unique way to transliterate sequences of 'i' into these alphabets without looking at the whole Voynich word being transliterated.
+
+  For Titlman, 'p' and 'f' are variant forms of 't' and 'k' respectively;
+similarly 'cph' and 'cfh' are variants for 'cth' and 'ckh'. I assume EVA 'm' is transliterated as a variant of 'l' (Tiltman's 'E').
 
 A [transliteration](https://github.com/mzattera/v4j/blob/master/eclipse/io.github.mzattera.v4j/src/main/resources/Transcriptions/Interlinear_slot_ivtff_1.5.txt)
 of the Landini-Stolfi interlinear file that uses the Slot alphabet is available within
@@ -270,6 +274,8 @@ Whether the differences we see in the text are the result of different "settings
 is still impossible to say.
 
 - Since no natural language presents such an inner structure, the existence of "slots" constitutes a strong objection to any attempt to propose a substitution cipher for the Voynich.
+
+  This was pointed out as early as in [TILTMAN (1967)](../biblio.md) (p. 9 paragraph (o)).
 
 - Similarly, the "slot" structure of words will condition character entropy in the text. Therefore, attempts to assign a natural language to the Voynich by looking at similarities in
 character entropy seem not to be based on solid ground.

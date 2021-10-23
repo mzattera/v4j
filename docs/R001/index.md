@@ -14,17 +14,21 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 The below is my own commented summary from [TILTMAN (1967)](../biblio.md) (mostly a shortened cut & paste from the original).
 
 The original alphabet used by Tiltman is shown below (from [D'IMPERIO (1978b)](../biblio.md), Fig.19); in this summary
-I replaced Tiltman's alphabet with [Slots](../005).
+I replaced Tiltman's alphabet with [Slot alphabet](../005). Notice that Tiltman uses "variants", that is, some
+transliterated letters correspond to two different glyphs; I indicated this with a dash
+(e.g. Tiltman's 'H' is indicated as 't'-'p', where 'p' is considered by Tiltman a variant writing for 't').
 
 ![Tiltman's alphabet](images/Alphabet.PNG)
 
 From p.7:
 
-* Limited the number of symbols in the transliteration alphabet to 17; most of the alphabet aligns with that used in the First Study Group (FSG).
+* Limited the number of symbols in the transliteration alphabet to 17;
+most of the alphabet aligns with that used in the First Study Group (FSG).
 
-* It is useless to take account at this stage of rare combinations of
-symbols. It is not even in every case possible to say what is a single
-symbol and what is not. (e.g. 'a' resolved into 'ei' or possibly 'oi').
+* It is useless to take account of rare combinations of symbols.
+It is not even in every case possible to say what is a single
+symbol and what is not (e.g. Tiltman mentions not being satisfied
+that 'a' is resolved into 'ei' or possibly 'oi').
 
 * No punctuation at all.
 
@@ -49,118 +53,103 @@ this is particularly noticeable in some of the captions to illustrations
 in the astronomical section of the manuscript these most commonly begin 'ok'-'of' or 'ot'-'op'
 and it is here that we occasionally see 'yk'-'yf' or 'yt'-'yp'.
 
-(e) Tiltman divided words into "roots" and "suffixes".
+* Tiltman divided words into "roots" and "suffixes".
 
-| Roots			| Are						|
-| :---			|:---						|
-|ok-, of-		|-an, -ain, -aiin, -aiiin	|
-|ot-, op-		|-ar, -air, -aiir, -aiiir	|
-|qok-, qof-		|-al, -ail, -aiil, -aiiil	|
-|qot-, qop-		|-or						|
-|ch-			|-ol						|
-|sh-			|-ey, -eey, -eeey			|
-|d-				|-edy, -eedy, -eeedy		|
-|s-				|							|
+| Roots					| Suffixes				|
+| :---					|:---					|
+|ok-, of-				|-an, -ain, -aJn, -aUn	|
+|ot-, op-				|-ar, -air, -aJr, -aUr	|
+|qok-, qof-				|-al, -ail, -aJl, -aUl	|
+|qot-, qop-				|-or					|
+|C-						|-ol					|
+|S-						|-ey, -Ey, -By			|
+|d-						|-edy, -Edy, -Bdy		|
+|s-						|						|
+|lk-, lf-, mk-, mf- *	|						|
 
-" This arrangement is shown at the
-bottom of Plate 17. Regarding the second type of suffix, some of the
-combinations are so rare that I have been uncertain whether to take
-any account of them at all. Some are very common indeed. It seems
-to me that each of these combinations beginning A has its own characteristic frequency which it maintains in general
-throughout the manuscript and independent of context (except in cases where two or more
-A groups are together in series, as referred to later). These A groups,
-e.g., AR or AIIL, frequently occur attached directly to "roots,"
-particularly OD, OH, 8 and 2. ODAIIL, 40DAIIL and 8AIIL rank
-high among the commonest words in the manuscript.
-7 
-Doc ID : 6 310 91 VOYNICH MANUSCRIPT
+  (*) Notice these roots are missing from D'IMPERIO (1978b)](../biblio.md), Fig.27.
+  
+  Regarding the '-a' or '-o' suffixes, Tiltman points out that some of the combinations are very rare, while other are very common.
 
-(f) There are however many examples of 2, 3, 4 or even 5 A groups
+* Suffixes beginning with -a' have their own characteristic frequency throughout the manuscript and independent of context
+  (except in cases where two or more '-a' are together in series, as referred to later).
+  
+* '-a' groups frequently occur attached directly to "roots", particularly 'ok'-'of', 'ot'-'op', 'd', and 's'.
+  'okaJn'-'ofaJn', 'qokaJn'-'qofaJn', and 'daJn' rank high among the commonest words in the manuscript.
+
+* There are however many examples of 2, 3, 4 or even 5 '-a' groups
 strung together on end with or without spaces between them. When
 this occurs, there appears to be some selective preference. For example,
-AR is very frequently doubled, i.e., AR AR, whereas AUL which is
+'ar' is very frequently doubled, i.e., 'ar ar', whereas 'aJn' which is
 generally significantly commoner, is rarely found doubled. Perhaps
-the commonest succession of three of these groups is AR AR AE.
-AE very frequently follows AR, but AR hardly ever follows AE.
+the commonest succession of three of these groups is 'ar ar al'-'ar ar am'.
+'al'-'am' very frequently follows 'ar', but 'ar' hardly ever follows 'al'-'am'.
 
-(g) 0, which has a very common and very definite function in
-"roots," seems to occur frequently in "suffixes" in rather similar usage
-to A, but nearly always as OR and OE. OR AIIL is very common.
+* 'o', which has a very common and very definite function in
+"roots",  seems to occur frequently in "suffixes" in rather similar usage
+to 'a', but nearly always as 'or' and 'ol'-'om'. 'or aJn' is very common.
 
-(h) The behaviour of the A (and 0) groups has suggested to me that
-they may in fact constitute some form of spelling. It might be, for
-instance, that the manuscript is intended to demonstrate some very
-primitive universal language and that the author was driven to spell
-out the ends of words in order to express the accidence of an inflected
-language. If all the possible A and 0 combinations can occur, then
+* If all the possible 'a' and 'o' combinations can occur, then
 there are 24 possibilities. They may, however, be modified or qualified
-in some way by the prefixed symbols D, H, OD, OH, T, S, 8, 2, etc.,
-and I have not so far found it possible to draw a line anywhere. This,
-coupled with ignorance of the basic language, if any, makes it difficult
-to make any sort of attempt at solution, even assuming that there is
-spelling.
+in some way by the prefixed symbols 'k'-'f', 't'-'p', 'ok'-'of', 'ot'-'op',
+'C', 'S', 'd', 's', etc., but Tiltman was unable to come to any conclusion.
 
-(i) E, usually preceded by A or 0, is very commonly followed by D,
-much less commonly by H, with or without a space between. In this
-connection, I have become more and more inclined to believe that a
-space, though not intended to deceive, must not necessarily be regarded as a mark of division between two words or concepts.
+* 'l'-'m', usually preceded by 'a' or 'o', is very commonly followed by 'k'-'f',
+much less commonly by 't'-'p', with or without a space between. Tiltman suggests
+that a space must not necessarily be regarded as words separator.
 
-(j) Speaking generally, each symbol behaves as if it had its own
+* Speaking generally, each symbol behaves as if it had its own
 place in an "order of precedence" within words; some symbols such as
-0 and G seem to be able to occupy two functionally different places.
+'o' and 'y' seem to be able to occupy two functionally different places.
 
-(k) Some of the commoner words, e.g., ODCCG, ODCC8G,
-40DCC8G, ODAIIL, ODAR, ODAE, 8AIIL, TCSG occur twice
-running, occasionally three times.
+  Notice this is very in line with the ["slots" concept](../005).
 
-(1) I am unable to avoid the conclusion that the occurrence of the
-symbol C up to 3 times in one form of "suffix" and the symbol I up to 3
-times in the other must have some systematic significance.
+* Some of the commoner words, e.g., 'okeey'-'ofeey', 'okeedy'-'ofeedy',
+'qokeey'-'qofeey', 'okaJn'-'ofaJn', 'okar'-'ofar', 'okal'-'ofal'-'okam'-'ofam',
+'daJn', 'Cedy' occur twice running, occasionally three times.
 
-(m) Peter Long has suggested to me that the A groups might represent Roman numerals. Thus AHL might be IIJ, and AR AR AE
-XXV, but this, if true, would only present one with a set of numbered
-categories which doesn't solve the problem. In any case, though it
+* The occurrence of 'e' up to 3 times in one form of "suffix" and the symbol 'i'
+up to 3 times in the other must have some systematic significance.
+
+* Peter Long has suggested to the author the 'a' groups might represent Roman numerals
+(e.g. 'ar ar al'-'ar ar am' for XXV). Though it
 accounts for the properties of the commoner combinations, it produces
 many impossible ones.
-8 
-DOCID: 631091 J. H. TILTMAN
 
-(n) The next three plates show pages where the symbols occur singly,
-apparently in series, and not in their normal functions. The column
-of symbols at the left in Plat£ 18 appears to show a repeating cycle
-of6 or 7 symbols D (or H), 0, 2, G, C,?. In Plate 19 the succession of
+* Tiltman identifies some "key-like" sequences where symbols occur singly, apparently in series,
+and not in their normal functions. In all cases there are symbols which rarely, if ever, occur elsewhere.
+
+  * The column of symbols at the left in <f.49v> appears to show a repeating cycle
+of 6 or 7 symbols 'k'-'f' (or 't'-'p'), 'o', 's', 'y', 'e', ?.
+
+  * In <f.57v> the succession of
 symbols in the circles must surely have some significance. One circle
-has the same series of 17 symbols repeated 4 times. Plate 20 also has
-an interesting column of symbols. In all three there are symbols which
-rarely, if ever, occur elsewhere.
+has the same series of 17 symbols repeated 4 times.
 
-(o) My analysis, I believe, shows that the text cannot be the result
-of substituting single symbols for letters in the natural order. Languages simply do not behave in this way. If the single words attached
+  * <f.66r> also has an interesting column of symbols.
+
+  Notice Tiltman misses two other such sequences:
+  
+  * <f.1r>	Sequences of single characters in the right margin, faded or erased.
+  
+  * <f.76r>	A vertical sequence of single characters in the left margin, aligned with some of the lines of writing.
+
+
+* Tiltman claims his analysis shows that the text cannot be the result
+of substituting single symbols for letters in the natural order:
+
+  "_Languages simply do not behave in this way. If the single words attached
 to stars in the astronomical drawings, for instance, are really, as they
 appear to be, captions expressing the names or qualities of those stars,
 there can hardly he any form of transposition system involved. And
 yet I am not aware of any long repetitions of more than 2 or 3 words
 in succession, as might he expected for instance in the text under the
-botanical drawings."
+botanical drawings._"
   
+
 	
 ---
 
-**Notes**
-
-<a id="Note1">**{1}**</a> Class
-[`Slots`](https://github.com/mzattera/v4j/blob/v.5.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mattera/v4j/applications/slot/Slots.java)
-has been used to perform this analysis. An Excel with its output can be found in the
-[analysis folder](https://github.com/mzattera/v4j/tree/master/resources/analysis/slots).
-
-<a id="Note2">**{2}**</a> Class
-[`CountCharsBySlot`](https://github.com/mzattera/v4j/blob/v.5.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mattera/v4j/applications/slot/CountCharsBySlot.java)
-has been used to produce this table.
-
-<a id="Note3">**{3}**</a> Personal communication, October 2021.
-
-
----
 
 [**<< Home**](..)
 

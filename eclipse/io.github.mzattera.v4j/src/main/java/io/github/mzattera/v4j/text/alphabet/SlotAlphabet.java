@@ -274,6 +274,8 @@ public class SlotAlphabet extends IvtffAlphabet {
 	 */
 	public static String fromEva(String txt) throws ParseException {
 
+		// TODO write test
+		
 		// plant intrusion is replaced by a space
 		txt = txt.replace("<->", "-");
 
@@ -287,7 +289,7 @@ public class SlotAlphabet extends IvtffAlphabet {
 		txt = txt.replace("!", ""); // "null" char in interlinear
 		txt = txt.replace("%", Alphabet.SLOT.getUnreadableAsString());
 
-		// WHen transliterating we use 0 to denote an EVA character that transliterates
+		// When transliterating we use 0 to denote an EVA character that transliterates
 		// into a dubious Slot character; this happen because multiple EVA transliterate
 		// into a single Slot.
 
@@ -367,6 +369,54 @@ public class SlotAlphabet extends IvtffAlphabet {
 		return txt;
 	}
 
+	
+
+	/**
+	 * Converts a text into Basic EVA alphabet.
+	 * 
+	 * @param txt text to be converted.
+	 * @throws ParseException if text is not proper IVTFF text.
+	 * 
+	 * @return EVA transliteration of given Slot text. Please notice comments and some metadata are removed.
+	 */
+	public static String toEva(String txt) throws ParseException {
+
+		// TODO write test
+		
+		// plant intrusion is replaced by a space
+		txt = txt.replace("<->", "-");
+
+		// Mark end of paragraph for later
+		txt = txt.replace("<$>", "$");
+
+		// Remove comments as they might interfere with replacement
+		txt = IvtffLine.removeComments(txt);
+
+		// These might impact how unreadable characters are handled
+		txt = txt.replace("!", ""); // "null" char in interlinear
+		txt = txt.replace("%", Alphabet.EVA.getUnreadableAsString());
+
+		txt = txt.replace("K", "ckh");
+		txt = txt.replace("F", "cfh");
+		txt = txt.replace("T", "cth");
+		txt = txt.replace("P", "cph");
+
+		txt = txt.replace("C", "ch");
+		txt = txt.replace("S", "sh");
+
+		txt = txt.replace("B", "eee");
+		txt = txt.replace("E", "ee");
+
+		txt = txt.replace("U", "iii");
+		txt = txt.replace("J", "ii");
+
+		txt = txt.replace("$", "<$>");
+		txt = txt.replace("-", "<->");
+
+		return txt;
+	}
+
+	
 	/**
 	 * Decompose a word into "slots".
 	 * 

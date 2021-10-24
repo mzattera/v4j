@@ -19,7 +19,7 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 # Abstract
 
 
-## Methodology
+# Methodology
 
 This work builds on my [slot model](../005) for Voynich words. 
 ** Unless differently noted, this pages uses the Slot alphabet to transliterate Voynich words. **
@@ -35,6 +35,9 @@ as this improves the graph (and might have implications with word structure as w
 The resulting graph is shown below and commented further.
 
 ![Complete word structure graph.](images/Complete.PNG)
+
+** To see the pictures properly, right click on them and open them in a different tab. **
+
 
 # Analysis
 
@@ -80,11 +83,17 @@ Characters here behave very differently.
 
 ## Slot 3
 
-Gallows in slot 3 behaves in the same way; they might be preceded by 'o' or 'y' from slot 1, or 'l' from slot 2.
-They are followed by a pedestal, an 'e' sequence in slot 6, 'o' or 'a' in slot 8.
-'k' might additionally be followed by a word final 'y' in slot 11.
+Gallows in slot 3 behave similarly but not in the same way; they might be preceded by 'o' or 'y' from slot 1, or 'l' from slot 2.
+They are followed by a pedestal, 'o' or 'a' in slot 8.
+'t' and 'k' can also link to an 'e' sequence in slot 6; 'k' might additionally be followed by a word final 'y' in slot 11.
 
-![3](images/3.PNG)
+'t' and 'k':
+
+![3_tk](images/3_tk.PNG)
+
+'p' and 'f':
+
+![3_pf](images/3_tk.PNG)
 
 ## Slot 4
 
@@ -97,6 +106,26 @@ Pedestals in slot 4 are preceded more or less by same characters but the do conn
 'S':
 
 ![4_S](images/4_S.PNG)
+
+## Slot 5
+
+Pedestalled gallows in slot 5 appear relatively seldom, they behaves in the same way:
+
+![5](images/5.PNG)
+
+## Slot 6
+
+Sequences of 'e' in slot 6 seem to behave in the same way.
+Worth noticing they never connect to an 'i' sequence in slot 9, or 'l','r','m','n' in slot 10.
+They however connect to 'd' in slot 10, and the word final 'y'.
+
+![6](images/6.PNG)
+
+## Slot 7 
+
+Slot 7 is composed by heterogeneous characters that behave differently.
+
+![6](images/6.PNG)
 
 
 

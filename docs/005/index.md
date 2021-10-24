@@ -35,7 +35,7 @@ read by all authors in the same way are marked as unreadable. This to ensure the
 
 For reasons explained below, any occurrence of the following characters is also marked as unreadable:
 
-- 'g', 'x', 'v', 'u', 'j', 'b', 'z' (40 occurrences in total, in 13 of them these characters appear alone in the text).
+- 'g', 'x', 'v', 'u', 'j', 'b', 'z' (47 occurrences in total, in 12 of them these characters appear alone in the text).
 
 - 'c' and 'h', when they do not appear in combinations such as 'ch', 'sh', 'cth', 'ckh', 'cph', 'cfh';
 this sums up to 8 occurrences.

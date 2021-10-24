@@ -51,12 +51,41 @@ though he only put f103r on his website, he has analyzed every page of the manus
 
 He also mentions he knows of at least another researcher coming to similar conclusions independently.
 
+I read of a Philip Neal’s Voynichese word generator in [Voynich Ninja forums](https://www.voynich.ninja/thread-762-post-6281.html?highlight=%5Bqd_%5D%5Baoy_%5D%5Blr_%5D%5BktpfKTPF_%5D%5BCS_%5D%5BeE_%5D%5Bd%5D%5Bao_%5D%5Blrmn_%5D%5By_%5D#pid6281), described as
+a regular expression:
+
+```
+^[qd_][aoy_][lr_][ktpfKTPF_][CS_][eE_][d][ao_][lrmn_][y_]
+
+(C =ch; S =sh; E =ee; KTPF = the complex gallows)
+```
+
+Another version is found in a [post on Cypher Mysteries](http://ciphermysteries.com/2010/11/22/sean-palmers-voynichese-word-generator):
+
+```
+^
+(d | k | l | p | r | s | t)?
+(o | a)?
+(l | r)?
+(f | k | p | t)?
+(sh | ch )?
+(e | ee | eee | eeee)?
+(d | cfh | ckh | cph | cth)?
+(a | o) ?
+(m | n | l | in | iin | iiin)?
+(y)?
+$
+```
+
 Neal also proposes a NEVA transcription; in his own words: "_the NEVA transliteration scheme is designed to remedy the problem
 that GC's voyn_101 scheme looks nothing like the Voynichese characters it maps on to. I proposed using accents and diacritics to combine the readability of EVA
 with the fine distinctions identified by GC. However, this is less of a problem now that we can display voyn_101 in the Voynich font._" [{1}](#Note1).
 
 So NEVA and the Slot alphabet have different objectives, as my proposal aims at deriving an alphabet "grounds up" from the word structure and is further stepping away from the
 "fine distinctions" in Glen Claston's Voynich 101.
+
+
+
 
 
 # Nick Pelling

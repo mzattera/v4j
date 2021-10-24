@@ -44,7 +44,9 @@ public final class CountRegEx {
 //	private final static String REGEX = "\\?[tpfk]h";
 //	private final static String REGEX = "c([^tpfk]h|[^tpfkh]|[tpfk][^h])";
 //	private final static String REGEX = "[^tpfkcs\\?]h|.\\?h";
-	private final static String REGEX = "(^|\\.)([^\\.]*[gxvujbz]+[^\\.]*)+(\\.|$)";
+//	private final static String REGEX = "(^|\\.)([^\\.]*[gxvujbz]+[^\\.]*)+(\\.|$)";
+	private final static String REGEX = "[gxvujbz]";
+//	private final static String REGEX = "(^|\\.)[gxvujbz](\\.|$)";
 
 	private CountRegEx() {
 	}

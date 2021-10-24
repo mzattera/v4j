@@ -32,6 +32,12 @@
 	<dependencies>
 
 		<!-- Apache Commons -->
+		<!-- Pair<L,R> -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.12.0</version>
+		</dependency>
 		<!-- CSV files handling -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>

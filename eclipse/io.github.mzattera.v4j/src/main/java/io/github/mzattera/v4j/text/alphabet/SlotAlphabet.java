@@ -120,7 +120,7 @@ public class SlotAlphabet extends IvtffAlphabet {
 	 * "Slots" for words; each element is a list of character combinations admitted
 	 * in that slot.
 	 */
-	public final static List<List<String>> SLOTS = new ArrayList<List<String>>(12);
+	public final static List<List<String>> SLOTS = new ArrayList<>(12);
 
 	static {
 		//// 0 //////

@@ -501,6 +501,46 @@ public class SlotAlphabet extends IvtffAlphabet {
 				result.slots1[i] = "";
 			}
 		}
+		
+		// Handle special cases: we push 'o' from slot 1 to 8 when possible
+		if (result.slots1[1].equals("o")) {
+			boolean dirty = false;
+			for (int i=2; !dirty && (i<=8); ++i) 
+				dirty = !result.slots1[i].equals("");
+			if (!dirty) {
+				result.slots1[1] = "";
+				result.slots1[8] = "o";
+			}
+		}
+		// Handle special cases: we push 'y' from slot 1 to 11 when possible
+		if (result.slots1[1].equals("y")) {
+			boolean dirty = false;
+			for (int i=2; !dirty && (i<=11); ++i) 
+				dirty = !result.slots1[i].equals("");
+			if (!dirty) {
+				result.slots1[1] = "";
+				result.slots1[11] = "y";
+			}
+		}
+		// Handle special cases: we push 'y' from 0->7->10 when possible
+		if (result.slots1[0].equals("d")) {
+			boolean dirty = false;
+			for (int i=1; !dirty && (i<=7); ++i) 
+				dirty = !result.slots1[i].equals("");
+			if (!dirty) {
+				result.slots1[1] = "";
+				result.slots1[7] = "d";
+			}
+		}
+		if (result.slots1[7].equals("d")) {
+			boolean dirty = false;
+			for (int i=8; !dirty && (i<=10); ++i) 
+				dirty = !result.slots1[i].equals("");
+			if (!dirty) {
+				result.slots1[7] = "";
+				result.slots1[10] = "d";
+			}
+		}
 
 		result.part2 = s;
 		if (s == null) {

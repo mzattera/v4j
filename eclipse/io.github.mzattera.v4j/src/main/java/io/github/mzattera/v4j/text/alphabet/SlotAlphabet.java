@@ -549,7 +549,7 @@ public class SlotAlphabet extends IvtffAlphabet {
 	private static void pushRight(String[] slots, String c, int begin, int end) {
 		if (slots[begin].equals(c)) {
 			boolean dirty = false;
-			for (int i=begin+1; !dirty && (i<end); ++i) 
+			for (int i=begin+1; !dirty && (i<=end); ++i) 
 				dirty = !slots[i].equals("");
 			if (!dirty) {
 				slots[begin] = "";

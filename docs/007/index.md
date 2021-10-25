@@ -25,9 +25,8 @@ This work builds on my [slot model](../005) for Voynich words.
 ** Unless differently noted, this pages uses the Slot alphabet to transliterate Voynich words. **
 
 I created a graph where nodes are charters in their slots; e.g. "1_o" represent character 'o' in slot number 1. 
-The slots considered here are first part of regular and separable words.
 
-After that, I connected node A with node B if there is a term (regular or separable) in the Voynich where character B follows directly character A;
+After that, I connected node A with node B if there is a regular term in the Voynich where character B follows directly character A;
 the connection is a directed edge with a weight equal the number of terms where the characters are connected.
 For visualization purposes I remove all edges with a weight less than 10.
 
@@ -43,6 +42,8 @@ The resulting graph is shown below and commented further.
 # Analysis
 
 Here i analyze char connections slot by slot.
+
+LE IMMAGINI SONO DA RIFARE (E ANCHE QUALCHE CONCLUSIONE)
 
 ## Slot 0
 

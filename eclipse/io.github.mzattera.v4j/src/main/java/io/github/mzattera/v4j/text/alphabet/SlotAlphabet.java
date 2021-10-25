@@ -502,45 +502,30 @@ public class SlotAlphabet extends IvtffAlphabet {
 			}
 		}
 		
-		// Handle special cases: we push 'o' from slot 1 to 8 when possible
-		if (result.slots1[1].equals("o")) {
-			boolean dirty = false;
-			for (int i=2; !dirty && (i<=8); ++i) 
-				dirty = !result.slots1[i].equals("");
-			if (!dirty) {
-				result.slots1[1] = "";
-				result.slots1[8] = "o";
-			}
-		}
-		// Handle special cases: we push 'y' from slot 1 to 11 when possible
-		if (result.slots1[1].equals("y")) {
-			boolean dirty = false;
-			for (int i=2; !dirty && (i<=11); ++i) 
-				dirty = !result.slots1[i].equals("");
-			if (!dirty) {
-				result.slots1[1] = "";
-				result.slots1[11] = "y";
-			}
-		}
-		// Handle special cases: we push 'y' from 0->7->10 when possible
-		if (result.slots1[0].equals("d")) {
-			boolean dirty = false;
-			for (int i=1; !dirty && (i<=7); ++i) 
-				dirty = !result.slots1[i].equals("");
-			if (!dirty) {
-				result.slots1[1] = "";
-				result.slots1[7] = "d";
-			}
-		}
-		if (result.slots1[7].equals("d")) {
-			boolean dirty = false;
-			for (int i=8; !dirty && (i<=10); ++i) 
-				dirty = !result.slots1[i].equals("");
-			if (!dirty) {
-				result.slots1[7] = "";
-				result.slots1[10] = "d";
-			}
-		}
+		// Push letters to the right when possible; the push is based on creating the best layered structure for slots.
+		// For that reason some characters are NOT pushed.
+		
+		// We can do this only after classification (reversing the string does not work :)).
+		pushRight(result.slots1, "s", 0, 7);
+		pushRight(result.slots1, "d", 0, 7);
+		
+//		pushRight(result.slots1, "d", 7, 10);		
+//		pushRight(result.slots1, "o", 1, 8);
+		
+		pushRight(result.slots1, "y", 1, 11);
+		
+		// 2_l is mostly connects to 1_o, do not push it right
+//		pushRight(result.slots1, "l", 2, 10);
+		
+		pushRight(result.slots1, "r", 2, 10);
+		pushRight(result.slots1, "t", 3, 7);
+		pushRight(result.slots1, "k", 3, 7);
+		pushRight(result.slots1, "p", 3, 7);
+		pushRight(result.slots1, "f", 3, 7);
+//		pushRight(result.slots1, "T", 5, 7);
+//		pushRight(result.slots1, "K", 5, 7);
+//		pushRight(result.slots1, "P", 5, 7);
+//		pushRight(result.slots1, "F", 5, 7);
 
 		result.part2 = s;
 		if (s == null) {
@@ -550,6 +535,27 @@ public class SlotAlphabet extends IvtffAlphabet {
 		}
 
 		return result;
+	}
+
+	/**
+	 * Pushes a char right in the slots, if possible.
+	 * I learned this from https://mzattera.github.io/v4j/007/
+	 * 
+	 * @param slots Slots where the word has been decomposed.
+	 * @param c Character to move.
+	 * @param begin Starting slot.
+	 * @param end Target slot.
+	 */
+	private static void pushRight(String[] slots, String c, int begin, int end) {
+		if (slots[begin].equals(c)) {
+			boolean dirty = false;
+			for (int i=begin+1; !dirty && (i<end); ++i) 
+				dirty = !slots[i].equals("");
+			if (!dirty) {
+				slots[begin] = "";
+				slots[end] = c;
+			}
+		}
 	}
 
 	/**

@@ -24,13 +24,14 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 This work builds on my [slot model](../005) for Voynich words. 
 ** Unless differently noted, this pages uses the Slot alphabet to transliterate Voynich words. **
 
-I created a graph where nodes are charters in their slots; e.g. "1_o" represent character 'o' in slot number 1.
-After that I connected node A with node B if there is a regular term in the Voynich where character B follows directly character A;
-the connection is a directed graph edge which weight is the number of terms where the characters are connected.
+I created a graph where nodes are charters in their slots; e.g. "1_o" represent character 'o' in slot number 1. 
+The slots considered here are first part of regular and separable words.
+
+After that, I connected node A with node B if there is a term (regular or separable) in the Voynich where character B follows directly character A;
+the connection is a directed edge with a weight equal the number of terms where the characters are connected.
 For visualization purposes I remove all edges with a weight less than 10.
 
-Final note, when possible I push 'o' from slot 1 to 8, 'y' from slot 1 to 11, and 'y' from 0 to  7 to 10,
-as this improves the graph (and might have implications with word structure as well.
+Final note, when possible I push characters to the rightmost available slot.
 
 The resulting graph is shown below and commented further.
 
@@ -47,91 +48,124 @@ Here i analyze char connections slot by slot.
 
 Characters in slot 0 behave quite different one another.
 
-'q' connects mostly with 'o':
+'q' connects almost exclusively with 'o' in slot 1:
 
 ![0_q](images/0_q.PNG)
 
-'d' connects with 'o' and 'y', pedestals or 'd' in slot 7:
+'d' connects with 'o' and 'y' in slot 1, 'l' in slot 2, or pedestals:
 
 ![0_d](images/0_d.PNG)
 
-'s' connects with 'o', pedestal 'C' or 'a' in slot 8:
+'s' connects with 'o' in slot 1 or pedestals:
 
 ![0_s](images/0_s.PNG)
 
 ## Slot 1
 
-'o' connects with most other characters:
+'o' connects with any other character, with the exception of slots 9-10 (a common trait with all other characters as shown below):
 
 ![1_o](images/1_o.PNG)
 
-'y' in slot 1 is optionally preceded by a 'd' and connects to gallows in slot 3 or pedestals in slot 4; notice it bypasses slot 2 completely:
+'y',  optionally preceded by a 'd', connects to gallows in slots 3 and 7, with pedestals (but NOT with pedestalled gallows) and less strongly with 'o'  in slot 8.
 
 ![1_y](images/1_y.PNG)
 
 ## Slot 2
 
-Characters here behave very differently.
+'l' and 'r' here behave very differently.
 
-'l', eventually preceded by 'o' connects to gallows, pedestals, 's' or 'd' in slot 7, 'o' or 'a' in slot 8:
+'l', eventually preceded by 'o' or 'd', connects to gallows (both in slot 3 and 7), pedestals, 'E','s' or 'd' in slot 7, 'o' or 'a' in slot 8:
 
 ![2_l](images/2_l.PNG)
 
-'r', still eventually preceded by 'o' connects to pedestals, and 'o' or 'a' in slot 8:
+'r', can be eventually preceded by 'o' but not by 'd'; in addition it connects only to pedestals, and 'o' or 'a' in slot 8, not to gallows:
 
 ![2_r](images/2_r.PNG)
 
 ## Slot 3
 
-Gallows in slot 3 behave similarly but not in the same way; they might be preceded by 'o' or 'y' from slot 1, or 'l' from slot 2.
-They are followed by a pedestal, 'o' or 'a' in slot 8.
-'t' and 'k' can also link to an 'e' sequence in slot 6; 'k' might additionally be followed by a word final 'y' in slot 11.
+Gallows in slot 3 behave very similarly; they might be preceded by 'o', 'y', 'r' and are followed by a pedestal, or an 'e' sequence.
 
-'t' and 'k':
-
-![3_tk](images/3_tk.PNG)
-
-'p' and 'f':
-
-![3_pf](images/3_tk.PNG)
+![3_gallows](images/3_gallows.PNG)
 
 ## Slot 4
 
-Pedestals in slot 4 are preceded more or less by same characters but the do connect to a very different set of suffixes:
+Pedestals in slot 4 behave mostly the same, with the most noticeable difference difference that 'C' connects to 's' in slot 7 whereas 'S' does not:
 
-'C':
-
-![4_C](images/4_C.PNG)
-
-'S':
-
-![4_S](images/4_S.PNG)
+![4_CS](images/4_CS.PNG)
 
 ## Slot 5
 
-Pedestalled gallows in slot 5 appear relatively seldom, they behaves in the same way:
+Pedestalled gallows in slot 5 appear relatively seldom, they behaves in the same way.
+
+They might be preceded by 'o' or by a pedestal and followed by 'e', 'd', 'a' or 'o' in slot 8 or the final 'y'
 
 ![5](images/5.PNG)
 
 ## Slot 6
 
-Sequences of 'e' in slot 6 seem to behave in the same way.
-Worth noticing they never connect to an 'i' sequence in slot 9, or 'l','r','m','n' in slot 10.
-They however connect to 'd' in slot 10, and the word final 'y'.
+Sequences of 'e' in slot 6 ('e', 'E', 'B') seem to behave in the same way.
+
+They connect into next slots 7 and 8 or to the word final 'y'.
 
 ![6](images/6.PNG)
 
 ## Slot 7 
 
-Slot 7 is composed by heterogeneous characters that behave differently.
+Characters in slot 7 are connected to slot 1, slot 2 (with the noticeable difference of 's', which almost never follows 'y' in slot 2), pedestals in slot 4 and 'e' sequences in slot 6. Notice they never connect to slots 0, 3 or 5. 
 
-![6](images/6.PNG)
+They are followed by 'o' and 'a' in slot 8 or the word ending 'y'. Notice 'd' followed by 'a' or 'y' is very common. 
 
+Pedestalled gallows are in this slot, but they appear infrequently.
 
+![7](images/7.PNG)
 
+## Slot 8 
 
+'o' and 'a' in slot 7 seem to act as a "bridge" between the previous slots and slots 9 ('i' sequences) and 10 ('d', 'l', 'm', and 'n');
+where slots before 7 connects to slots 9-10 only through slot 8.
 
+The main difference are:
 
+* 'o' strongly connects to 'd' in slot 10, which 'a' does not.
+
+* On the other side, 'a' has a strong tendency to be preceded by 'd' in slot 7, which almost never happen with 'o', which is mostly preceded by 'C' or 'e'.
+
+* 'a' tends to be followed more often that 'o' by a sequence of 'i' in slot 9.
+
+![8](images/8.PNG)
+
+## Slot 9 
+
+This slot contains sequences of 'i' ('i', 'J', 'U').
+
+They are preceeded only by 'o' or 'a' in slot 8 and connect only to slot 10. Notice they are not followed by 'd' or 'l' in this slot.
+
+![9](images/9.PNG)
+
+## Slot 10 
+
+Letters here are preceeded by those in slots 8 and 9.
+
+'d' is mostly preceded by 'o' and optionally followed by a word ending 'y'.
+
+![10_d](images/10_d.PNG)
+
+'l', 'r', 'm', 'n' can be preceded by 'o', 'a' (slot 8) or an 'i' sequence (slot 9).
+
+Noticeable difference is that, while 'l' and 'r' can be followed by the word final 'y'...
+
+![10_lr](images/10_lr.PNG)
+
+..., 'm' and 'n' are mostly word ending.
+
+![10_mn](images/10_mn.PNG)
+
+## Slot 11
+
+This slot contains the word ending 'y' alone.
+
+![11_d](images/11_d.PNG)
   
 	
 ---

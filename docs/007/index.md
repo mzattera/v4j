@@ -78,13 +78,13 @@ Characters in slot 0 behave quite different one another.
 
 ![2_l](images/2_l.PNG)
 
-'r', can be eventually preceded by 'o' but not by 'd'; in addition it connects only to pedestals, and 'o' or 'a' in slot 8, not to gallows:
+'r', can be eventually preceded by 'o' (but not by 'd'); in addition it connects only to pedestals, and 'o' or 'a' in slot 8, not to gallows:
 
 ![2_r](images/2_r.PNG)
 
 ## Slot 3
 
-Gallows in slot 3 behave very similarly; they might be preceded by 'o', 'y', 'r' and are followed by a pedestal, or an 'e' sequence.
+Gallows in slot 3 behave very similarly; they might be preceded by 'o', 'y', 'l' and are followed by a pedestal, or an 'e' sequence.
 
 ![3_gallows](images/3_gallows.PNG)
 
@@ -125,13 +125,13 @@ Pedestalled gallows are in this slot, but they appear infrequently.
 'o' and 'a' in slot 7 seem to act as a "bridge" between the previous slots and slots 9 ('i' sequences) and 10 ('d', 'l', 'm', and 'n');
 where slots before 7 connects to slots 9-10 only through slot 8.
 
-The main difference are:
+The main differences are:
 
 * 'o' strongly connects to 'd' in slot 10, which 'a' does not.
 
 * On the other side, 'a' has a strong tendency to be preceded by 'd' in slot 7, which almost never happen with 'o', which is mostly preceded by 'C' or 'e'.
 
-* 'a' tends to be followed more often that 'o' by a sequence of 'i' in slot 9.
+* 'a' tends to be followed more often than 'o' by a sequence of 'i' in slot 9.
 
 ![8](images/8.PNG)
 
@@ -166,13 +166,6 @@ Noticeable difference is that, while 'l' and 'r' can be followed by the word fin
 This slot contains the word ending 'y' alone.
 
 ![11_d](images/11_d.PNG)
-  
-	
----
-
-**Notes**
-
-<a id="Note1">**{1}**</a> Personal communication, October 2021.
 
 
 ---

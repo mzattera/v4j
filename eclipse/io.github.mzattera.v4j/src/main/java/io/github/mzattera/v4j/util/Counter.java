@@ -4,6 +4,7 @@
 package io.github.mzattera.v4j.util;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -58,12 +59,28 @@ public class Counter<T> {
 	}
 
 	/**
+	 * Counts all given items once.
+	 */
+	public void countAll(Collection<T> objs) {
+		for (T o : objs)
+			count(o);
+	}
+
+	/**
+	 * Counts all given items n times.
+	 */
+	public void countAll(Collection<T> objs, int n) {
+		for (T o : objs)
+			count(o, n);
+	}
+
+	/**
 	 * Counts all items that are already counted in another Counter<>.
 	 * 
 	 * @return This Counter.
 	 */
-	public Counter<T> count(Counter<T> c) {
-		for (Entry<T,Integer> e : c.entrySet())
+	public Counter<T> countAll(Counter<T> c) {
+		for (Entry<T, Integer> e : c.entrySet())
 			count(e.getKey(), e.getValue());
 
 		return this;

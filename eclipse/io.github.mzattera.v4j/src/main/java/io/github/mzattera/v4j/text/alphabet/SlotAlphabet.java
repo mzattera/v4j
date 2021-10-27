@@ -518,10 +518,10 @@ public class SlotAlphabet extends IvtffAlphabet {
 //		pushRight(result.slots1, "l", 2, 10);
 		
 		pushRight(result.slots1, "r", 2, 10);
-		pushRight(result.slots1, "t", 3, 7);
-		pushRight(result.slots1, "k", 3, 7);
-		pushRight(result.slots1, "p", 3, 7);
-		pushRight(result.slots1, "f", 3, 7);
+//		pushRight(result.slots1, "t", 3, 7);
+//		pushRight(result.slots1, "k", 3, 7);
+//		pushRight(result.slots1, "p", 3, 7);
+//		pushRight(result.slots1, "f", 3, 7);
 //		pushRight(result.slots1, "T", 5, 7);
 //		pushRight(result.slots1, "K", 5, 7);
 //		pushRight(result.slots1, "P", 5, 7);

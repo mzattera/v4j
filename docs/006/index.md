@@ -33,9 +33,9 @@ place in an "order of precedence" within words; some symbols such as
 
 # Jorge Stolfi
 
-[Describes](https://www.ic.unicamp.br/~stolfi/voynich/97-11-12-pms/) a decomposition of Voynichese words into three parts; prefix, midfix, and suffix,
-based on a classification of EVA characters into soft and hard letters then shows how almost every Voynichese word can be decomposed into
-a prefix and suffix composed entirely of soft letters, and a midfix composed entirely of hard letters.
+[Describes](https://www.ic.unicamp.br/~stolfi/voynich/97-11-12-pms/) a decomposition of Voynichese words into three parts; prefix, midfix, and suffix.
+Based on a classification of EVA characters into soft and hard letters, he then shows how Voynichese words can be decomposed into
+a prefix and suffix made entirely of soft letters, and a midfix made entirely of hard letters.
 
 He then refines this concept into a [grammar for Voynichese words](https://www.ic.unicamp.br/~stolfi/voynich/00-06-07-word-grammar/) where words are parsed into three nested layers;
 crust, mantle, and core each composed from a specific subset of the Voynichese alphabet.

@@ -22,7 +22,7 @@ When appropriate I will compare their findings with my [slots concept](../005).
 I expect these notes to grow and refine over time (as for the others, to be honest).
 
 
-# John H. Tiltman
+# John H. Tiltman [1967]
 
 Please see my [review](../R001) of [TILTMAN (1967)](../biblio.md). In a nutshell:
 
@@ -31,17 +31,31 @@ place in an "order of precedence" within words; some symbols such as
 'o' and 'y' seem to be able to occupy two functionally different places._" 
 
 
-# Jorge Stolfi
+# Mike Roe [1997]
+
+I found the below "generic word" grammar by Roe quoted by [Zandbergen](http://www.voynich.nu/a3_para.html) as published to the Voynich MS mailing list. Roe suggested that this could perhaps present evidence of grammar of the Voynich language:
+
+Image from Zandbergen's website.
+
+![Mike Roe's generic word.](images/pd_roe.gif)
+
+
+# Jorge Stolfi [2000]
 
 [Describes](https://www.ic.unicamp.br/~stolfi/voynich/97-11-12-pms/) a decomposition of Voynichese words into three parts; prefix, midfix, and suffix.
 Based on a classification of EVA characters into soft and hard letters, he then shows how Voynichese words can be decomposed into
 a prefix and suffix made entirely of soft letters, and a midfix made entirely of hard letters.
 
-He then refines this concept into a [grammar for Voynichese words](https://www.ic.unicamp.br/~stolfi/voynich/00-06-07-word-grammar/) where words are parsed into three nested layers;
-crust, mantle, and core each composed from a specific subset of the Voynichese alphabet.
+This is in line with the slots model, the picture below shows glyphs in their corresponding slots and how they map 
+into Stolfi definitions (red glyphs are "soft" letteres).
+
+![Slots accordingly to Stolfi classification.](images/HardNSoft.PNG)
+
+Stolfi develops some "paradigms" of Voynich words, like the [OKOKOKO](https://www.ic.unicamp.br/~stolfi/voynich/Notes/017/Note-017.html) paradigm and the crust-core-mantle decomposition 
+which, in his words, are incorporated and refined into a [grammar for Voynichese words](https://www.ic.unicamp.br/~stolfi/voynich/00-06-07-word-grammar/).
 
 
-# Philip Neal
+# Philip Neal [2016]
 
 After writing [working note 005](../005), I realized Philip Neal published a [very similar concept](http://philipneal.net/voynichsources/transcription_neva_spaced/);
 his point was that this could be the result of using a grille to produce the text, something similar to the more complete approach described in [RUGG (2004)](../biblio.md).
@@ -85,23 +99,20 @@ So NEVA and the Slot alphabet have different objectives, as my proposal aims at 
 "fine distinctions" in Glen Claston's Voynich 101.
 
 
+# Elmar Vogt [2009?]
+
+Created a [grammar](https://voynichthoughts.wordpress.com/grammar/) for existing words in the Voynich Manuscript.  
 
 
+# Nick Pelling [2010]
 
-# Nick Pelling
-
-Proposes a [Markov state machine](http://web.archive.org/web/20110106080456/http://www.ciphermysteries.com/2010/11/22/sean-palmers-voynichese-word-generator)
+Proposes a [Markov state machine](http://www.ciphermysteries.com/2010/11/22/sean-palmers-voynichese-word-generator)
 to generate Voynichese words.
 
 In his page he mentions grammars attributed to Sean Palmer and Philip Neal, which I should investigate and describe here in more detail.
 
 
-# Elmar Vogt
-
-Created a [grammar](https://voynichthoughts.wordpress.com/grammar/) for existing words in the Voynich Manuscript.  
-
-
-# Brian Cham
+# Brian Cham [2014]
 
 Brian Cham proposes a new pattern in the text of the Voynich Manuscript named the “[Curve-Line System](https://briancham1994.com/2014/12/17/curve-line-system/)” (CLS).
 This pattern is fundamentally based on shapes of individual glyphs but also informs the structure of words.

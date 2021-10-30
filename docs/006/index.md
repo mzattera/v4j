@@ -55,7 +55,7 @@ Stolfi develops some "paradigms" of Voynich words, like the [OKOKOKO](https://ww
 which, in his words, are incorporated and refined into a [grammar for Voynichese words](https://www.ic.unicamp.br/~stolfi/voynich/00-06-07-word-grammar/).
 
 
-# Philip Neal [2016]
+# Philip Neal [?]
 
 After writing [working note 005](../005), I realized Philip Neal published a [very similar concept](http://philipneal.net/voynichsources/transcription_neva_spaced/);
 his point was that this could be the result of using a grille to produce the text, something similar to the more complete approach described in [RUGG (2004)](../biblio.md).
@@ -73,6 +73,8 @@ a regular expression:
 
 (C =ch; S =sh; E =ee; KTPF = the complex gallows)
 ```
+
+Notice [d] here could possible be [d_] in the intention of the author, as it seems each group of character is optional.
 
 Another version is found in a [post on Cypher Mysteries](http://ciphermysteries.com/2010/11/22/sean-palmers-voynichese-word-generator):
 
@@ -99,9 +101,33 @@ So NEVA and the Slot alphabet have different objectives, as my proposal aims at 
 "fine distinctions" in Glen Claston's Voynich 101.
 
 
+# Sean B. Palmer [2004?]
+
+I found the below grammar attributed to Palmer by Pelling:
+
+```
+^                      
+(q | y | [ktfp])*      
+(C | T | D | A | O)*   
+(y | m | g)?           
+$                      
+
+
+C = [cs][ktfp]*h*e*    
+T = [ktfp]+e*          
+
+D = [dslr]             
+A = ai*n*              
+O = o
+```
+
+Accordingly to Pelling, Palmer claims this grammar can generate 97% of Voynichese words, but this is clearly (as Pelling says) this generates a lot of words (potentially infinite strictly looking at the grammar).
+
+
 # Elmar Vogt [2009?]
 
-Created a [grammar](https://voynichthoughts.wordpress.com/grammar/) for existing words in the Voynich Manuscript.  
+Created a [grammar](https://voynichthoughts.wordpress.com/grammar/) for existing words in the Voynich Manuscript by analyzing the 
+stars section of the Voynich, which is written in Currier's B language.  
 
 
 # Nick Pelling [2010]
@@ -109,7 +135,7 @@ Created a [grammar](https://voynichthoughts.wordpress.com/grammar/) for existing
 Proposes a [Markov state machine](http://www.ciphermysteries.com/2010/11/22/sean-palmers-voynichese-word-generator)
 to generate Voynichese words.
 
-In his page he mentions grammars attributed to Sean Palmer and Philip Neal, which I should investigate and describe here in more detail.
+In his page he mentions grammars attributed to Sean Palmer, which I should investigate and describe here in more detail.
 
 
 # Brian Cham [2014]

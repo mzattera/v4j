@@ -1,0 +1,13 @@
+{
+  "embeddings": [
+    {
+      "tensorName": "ABAP Program Dependencies",
+      "tensorShape": [
+        1000,
+        50
+      ],
+      "tensorPath": "https://mzattera.github.io/v4j/ABAP/vectors.tsv",
+      "metadataPath": "https://mzattera.github.io/v4j/ABAP/metadata.tsv"
+    }
+  ]
+}

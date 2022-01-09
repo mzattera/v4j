@@ -1,8 +1,8 @@
 # Note 006 - Works on Word Structure
 
-_Last updated Oct. 23rd, 2021._
+_Last updated Jan. 9th, 2022._
 
-_This note refers to [release v.5.0.0](https://github.com/mzattera/v4j/tree/v.5.0.0) of v4j;
+_This note refers to [release v.6.0.0](https://github.com/mzattera/v4j/tree/v.6.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
 In addition, some of this note content might have become obsolete in more recent versions of the library._
 
@@ -16,10 +16,11 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 ---
 
 
-In this page I will list, review, and comment works from different authors about the structure of Voynich words.
-When appropriate I will compare their findings with my [slots concept](../005).
+In this page I will list, review, and comment works from different authors about the inner structure of Voynich words.
+When appropriate, I will compare their findings with my [slots concept](../005).
 
 I expect these notes to grow and refine over time (as for the others, to be honest).
+Number in square brackets indicate the date when corresponding works were published (as far as I can determine it).
 
 
 # John H. Tiltman [1967]
@@ -31,6 +32,7 @@ place in an "order of precedence" within words; some symbols such as
 'o' and 'y' seem to be able to occupy two functionally different places._" 
 
 
+
 # Mike Roe [1997]
 
 I found the below "generic word" grammar by Roe quoted by [Zandbergen](http://www.voynich.nu/a3_para.html) as published to the Voynich MS mailing list. Roe suggested that this could perhaps present evidence of grammar of the Voynich language:
@@ -40,19 +42,63 @@ Image from Zandbergen's website.
 ![Mike Roe's generic word.](images/pd_roe.gif)
 
 
+
 # Jorge Stolfi [2000]
 
-[Describes](https://www.ic.unicamp.br/~stolfi/voynich/97-11-12-pms/) a decomposition of Voynichese words into three parts; prefix, midfix, and suffix.
+Stolfi initially describes a [decomposition of Voynichese words](https://www.ic.unicamp.br/~stolfi/voynich/97-11-12-pms/) into three parts; prefix, midfix, and suffix.
 Based on a classification of EVA characters into soft and hard letters, he then shows how Voynichese words can be decomposed into
 a prefix and suffix made entirely of soft letters, and a midfix made entirely of hard letters.
 
-This is in line with the slots model, the picture below shows glyphs in their corresponding slots and how they map 
-into Stolfi definitions (red glyphs are "soft" letteres).
+This is well in line with the slots model. The picture below shows glyphs in their corresponding slots and how they map 
+into Stolfi definitions (red glyphs are "hard" letters while blue represents "soft" ones).
 
-![Slots accordingly to Stolfi classification.](images/HardNSoft.PNG)
+![Stolfi's "soft" and "hard" letters in corresponding slots.](images/HardNSoft.PNG)
 
-Stolfi develops some "paradigms" of Voynich words, like the [OKOKOKO](https://www.ic.unicamp.br/~stolfi/voynich/Notes/017/Note-017.html) paradigm and the crust-core-mantle decomposition 
-which, in his words, are incorporated and refined into a [grammar for Voynichese words](https://www.ic.unicamp.br/~stolfi/voynich/00-06-07-word-grammar/).
+He continues his analysis with the "[OKOKOKO](https://www.ic.unicamp.br/~stolfi/voynich/Notes/017/Note-017.html)"
+paradigm, to describe the fine structure of Voynichese words; finally, 
+Stolfi develops these concepts into his well known "[crust-mantle-core](https://www.ic.unicamp.br/~stolfi/EXPORT/projects/voynich/00-06-07-word-grammar/)"
+decomposition that he describes by using a [formal grammar](https://www.ic.unicamp.br/~stolfi/EXPORT/projects/voynich/00-06-07-word-grammar/txt.n.html).
+
+Accordingly to this model, each Voynich word can be divided into three layers, each containing the others in an onion-skin pattern, so, the core is at the center of words,
+surrounded by the mantle, which in turn is surrounded by the crust. Each layer can be optionally empty and is, in general, defined by the letters it contains.
+
+Leaving aside letters 'a', 'o', 'e', and 'y', for which Stolfi has a separate treatment, the layers can be defined as follows:
+
+* Crust: letters 'd', 'l', 'r', 's', 'n', 'x', 'i', 'm', 'g'.
+
+* Mantle: pedestals and 'ee'.
+
+* Core: all gallows, pedestalled or not.
+
+The below image shows how glyphs in slots map into crust-core-mantle definitions:
+
+![Stolfi's crust-mantle-core glyps in corresponding slots.](images/CrustMantleCore.PNG)
+
+Stolfi comments: "_The distribution of the "circles", the EVA letters { a o y }, is rather complex. They may occur anywhere within the three main layers_ ... _We have arbitrarily chosen to parse each circle as if it were a modifier of the next non-circle letter; except that a circle at the end of the word (usually a y) is parsed as a letter by itself. ...  the rules about which circles may appear in each position seem to be fairly complex_". I think, in light of the slots model, this is an unnecessary complication
+as 'a', 'o' and 'y' can be unambiguously assigned to the crust layer in most of cases; furthermore, 
+it is clear in which position they can appear (slots 1, 8, and 11). Similarly, I do not understand the complicated parsing of isolated 'e' ("_we have chosen to parse isolated e letters as part of the preceding mantle or core letter_ ... Very rarely ... e occurs alone, surrounded by crust letters; in which case we parse it as the only letter in the mantle layer_", when the slots model 
+indicates 'e', 'ee', 'eee' play the same role in word structure.
+
+Undoubtedly, the interesting aspect of this model is that it proposes an "onion-like" structure
+for Voynich words. In Stolfi's own words: "_The grammar not only specifies the valid words, but also defines a parse tree for each word, which in turn implies a nested division of the same into smaller parts ... we believe that our parsing of each word into three nested layers must correspond to a major feature of the VMS encoding or of its underlying plaintext_"; however, I would argue this is not what the grammar indicates.
+
+For example, again by comparison with the slots model, and as Stolfi admits "_the crust is not homogeneous_"; it is composed by a "left" part, which constitutes word prefixes, and a "right" part that constitutes word suffixes and these parts are quite different; e.g. 'q' appears only in prefixes, while the 'ai*' or 'oi*' sequences (like '-aiin', '-am', etc., that Stolfi calls IN clusters) appears only in suffixes.
+
+Similarly, it can be seen that gallows in slots 3 and 7, which belong to the core layer, could well enclose pedestals or 'ee' in slots 4 and 6 that are classified as mantle. Again, Stolfi comments: "_The implied structure of the mantle is probably the weakest part of our paradigm. Actually, we still do not know whether the isolated e after the core is indeed a modifier for the gallows letter (as the grammar implies); or whether the pedestal of a platform gallows is to be counted as part of the mantle_".
+
+Stolfi notes: "_When designing the grammar, we tried to strike a useful balance between a simple and informative model and one that would cover as much of the corpus as possible. ... Conversely, the grammar is probably too permissive in many points, so that many words that it classifies as normal are in fact errors or non-word constructs_". It should be noted that the grammar is really good in parsing Voynichese
+(accordingly to Solfi it covers "_over 96.5% of all the tokens (word instances) in the text_") but,
+on the other side, it is also very bad in recognizing what is not Voynichese; the grammar accepts something in the order of 1.4e20 (100 billions of billions) different terms, only about 4'500 of which are terms in the manuscript ([concordance version](https://github.com/mzattera/v4j#ivtff)). Just for comparison, all the words that can be generated by the slot model amount at a total of 16'753'291 (13 order of magnitude less) of which around 2'800 are Voynich terms; the model covers slightly more than 88% of tokens (98% considering separable terms) but it is much easier to describe and understand.
+
+I summary, I do agree with Stolfi (and other authors) that the order in which characters appears in Voynich
+words is not arbitrary, but I think his model is misleading in suggesting a "layered" structure; for example,
+word prefixes and suffixes, which in Solfi's model both belong to the same layer (the crust), are indeed very different and assigning them to the same word structure looks completely arbitrary; ultimately, it seems
+the grammar suggests a "sequence" of possible characters, rather than a "onion-like" structure for words.
+If this is the case, it must be said the other, much simpler, models in this page show the same overall 
+structure of Voynich words even if in less details or with less coverage of Voynich terms.
+Regarding the fine details, these might not be as relevant as Stolfi admits that "_one should not give too much weight to the finer divisions and associations implied by our parse trees_". It should also be mentioned that the grammar
+looks unnecessary complex, mostly because of the way it handles "circles"; this makes very difficult to grasp the structure of Voynichese below the most superficial levels by looking at the grammar. This is further complicated by the fact that the huge majority of the words the grammar describes, are clearly very different by those we found in the text.
+
 
 
 # Philip Neal [?]
@@ -103,7 +149,7 @@ So NEVA and the Slot alphabet have different objectives, as my proposal aims at 
 
 # Sean B. Palmer [2004?]
 
-I found the below grammar attributed to Palmer by Pelling:
+I found the below grammar attributed to Palmer by [Pelling](http://ciphermysteries.com/2010/11/22/sean-palmers-voynichese-word-generator) (see also below):
 
 ```
 ^                      
@@ -121,7 +167,7 @@ A = ai*n*
 O = o
 ```
 
-Accordingly to Pelling, Palmer claims this grammar can generate 97% of Voynichese words, but this is clearly (as Pelling says) this generates a lot of words (potentially infinite strictly looking at the grammar).
+Accordingly to Pelling, Palmer claims this grammar can generate 97% of Voynichese words, but this is clearly (as Pelling says) because it generates a lot of words (potentially infinite strictly looking at the grammar).
 
 
 # Elmar Vogt [2009?]
@@ -134,8 +180,6 @@ stars section of the Voynich, which is written in Currier's B language.
 
 Proposes a [Markov state machine](http://www.ciphermysteries.com/2010/11/22/sean-palmers-voynichese-word-generator)
 to generate Voynichese words.
-
-In his page he mentions grammars attributed to Sean Palmer, which I should investigate and describe here in more detail.
 
 
 # Brian Cham [2014]

@@ -41,12 +41,13 @@ public final class CountRegEx {
 	public static final ElementFilter<IvtffPage> FILTER = null;
 
 	// The RegEx to look for.
-//	private final static String REGEX = "\\?[tpfk]h";
-//	private final static String REGEX = "c([^tpfk]h|[^tpfkh]|[tpfk][^h])";
-//	private final static String REGEX = "[^tpfkcs\\?]h|.\\?h";
-//	private final static String REGEX = "(^|\\.)([^\\.]*[gxvujbz]+[^\\.]*)+(\\.|$)";
-	private final static String REGEX = "[gxvujbz]";
-//	private final static String REGEX = "(^|\\.)[gxvujbz](\\.|$)";
+	
+	// Words with rare characters
+	private final static String REGEX = "[^\\.]*[gxvujbz]+[^\\.]*";
+	
+	// Total rare characters
+//	private final static String REGEX = "[gxvujbz]";
+
 
 	private CountRegEx() {
 	}
@@ -68,7 +69,6 @@ public final class CountRegEx {
 			if (FILTER != null)
 				doc = doc.filterPages(FILTER);
 
-
 			Counter<String> c = process("." + doc.getPlainText() + ".", REGEX);
 
 			for (Entry<String, Integer> e : c.reversed()) {
@@ -79,7 +79,6 @@ public final class CountRegEx {
 		} finally {
 			System.out.println("\nCompleted.");
 		}
-
 	}
 
 	public static Counter<String> process(String s, String regex) {

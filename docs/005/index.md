@@ -270,7 +270,7 @@ is still impossible to say.
 - Since no natural language presents such an inner structure, the existence of "slots" constitutes a strong objection to any attempt to propose a substitution cipher for the Voynich.
 
   This was pointed out as early as in [TILTMAN (1967)](../biblio.md) (p. 9 paragraph (o)), but also
-  by [Stolfi](https://www.ic.unicamp.br/~stolfi/EXPORT/projects/voynich/00-06-07-word-grammar/#ref4) (see "Discussion and conjectures").
+  by [Stolfi](https://www.ic.unicamp.br/~stolfi/EXPORT/projects/voynich/00-06-07-word-grammar/) (see "Discussion and conjectures").
   
 - Similarly, the "slot" structure of words will condition character entropy in the text. Therefore, attempts to assign a natural language to the Voynich by looking at similarities in
 character entropy seem not to be based on solid ground.
@@ -282,20 +282,20 @@ character entropy seem not to be based on solid ground.
 **Notes**
 
 <a id="Note1">**{1}**</a> Class
-[`Slots`](https://github.com/mzattera/v4j/blob/v.6.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mattera/v4j/applications/slot/Slots.java)
+[`Slots`](https://github.com/mzattera/v4j/blob/v.6.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/Slots.java)
 has been used to perform this analysis. An Excel with its output can be found in the
 [analysis folder](https://github.com/mzattera/v4j/tree/master/resources/analysis/slots).
 
 <a id="Note2">**{2}**</a> Class
-[`CountCharsBySlot`](https://github.com/mzattera/v4j/blob/v.6.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mattera/v4j/applications/slot/CountCharsBySlot.java)
+[`CountCharsBySlot`](https://github.com/mzattera/v4j/blob/v.6.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/CountCharsBySlot.java)
 has been used to produce this table.
 
 <a id="Note3">**{3}**</a> </a> Class
-[`CountRegEx`](https://github.com/mzattera/v4j/blob/v.6.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mattera/v4j/applications/CountRegEx.java)
+[`CountRegEx`](https://github.com/mzattera/v4j/blob/v.6.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/CountRegEx.java)
 can be used with regular expression `[^\\.]*[gxvujbz]+[^\\.]*` to find words with rare characters.
 
 <a id="Note4">**{4}**</a> Class
-[`FindStrangeCH`](https://github.com/mzattera/v4j/blob/v.6.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mattera/v4j/applications/slot/FindStrangeCH.java)
+[`FindStrangeCH`](https://github.com/mzattera/v4j/blob/v.6.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/FindStrangeCH.java)
 can be used to list words with these "strange" occurrences of 'c' and 'h'.
 
 <a id="Note5">**{5}**</a> Stolfi came to the same conclusion when defining his [grammar for Voynichese words](https://www.ic.unicamp.br/~stolfi/EXPORT/projects/voynich/00-06-07-word-grammar/txt.n.html).

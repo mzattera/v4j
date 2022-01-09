@@ -31,9 +31,8 @@ public final class CountNWords {
 	public static void main(String[] args) {
 		try {
 			IvtffText doc = VoynichFactory.getDocument(TranscriptionType.MAJORITY);
-			doc.filterPages(new PageFilter.Builder().cluster("B").build());
 			
-			Counter<String> c = process(doc, 3, true);
+			Counter<String> c = process(doc, 2, true);
 
 			System.out.println("Most repeated: " + c.getHighestCounted() + " = " + c.getHighestCount());
 			

@@ -16,7 +16,7 @@ Below some links to browse the Voynich online.
 
 * Zandbergen's [Voynich MS - Browser](http://www.voynich.nu/folios.html)
 
-* [Voynich Manuscript Project](https://ambertide.github.io/VoynichExplorer/index.html).
+* [Voynich Manuscript Project](https://ambertide.github.io/VoynichExplorer/index.html) by Ege Özkan.
 
 
 
@@ -38,7 +38,7 @@ Each symbol in the alphabet is referred as a **transliteration character** or si
   
 - Unless stated otherwise, pieces of transliterated Voynich script I quote use the "Basic Eva" as transliteration alphabet and are enclosed in single quotes (e.g. 'qockhey').
 
-- A **token** in a text is a single sequence of characters, separated by spaces. The list of **terms** is the list of tokens, without repetitions.
+- A **token** in a text is a single sequence of characters, separated by spaces. The list of **terms** is the list of tokens without repetitions.
 In other words, a token is an instance of a term. For example; the below line in the Voynich
 
   ```

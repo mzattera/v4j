@@ -1,9 +1,11 @@
-package io.github.mzattera.v4j.applications;
+/**
+ * 
+ */
+package io.github.mzattera.v4j.applications.slot;
 
 import java.util.Map.Entry;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+import io.github.mzattera.v4j.applications.CountRegEx;
 import io.github.mzattera.v4j.text.ElementFilter;
 import io.github.mzattera.v4j.text.alphabet.Alphabet;
 import io.github.mzattera.v4j.text.ivtff.IvtffPage;
@@ -14,13 +16,13 @@ import io.github.mzattera.v4j.text.ivtff.VoynichFactory.TranscriptionType;
 import io.github.mzattera.v4j.util.Counter;
 
 /**
- * Counts all the matches of a given regular expression (regex). It then prints
- * a list of the matches found together with their count.
+ * This class prints occurrences of 'c' and 'h' appearing alone (not in 'ch',
+ * 'sh', and gallows).
  * 
  * @author Massimiliano "Maxi" Zattera
  *
  */
-public final class CountRegEx {
+public class FindStrangeCH {
 
 	/**
 	 * Which transcription to use.
@@ -32,25 +34,8 @@ public final class CountRegEx {
 	 */
 	public static final TranscriptionType TRANSCRIPTION_TYPE = TranscriptionType.CONCORDANCE;
 
-	/**
-	 * Which Alphabet type to use.
-	 */
-	public static final Alphabet ALPHABET = Alphabet.EVA;
-
 	/** Filter to use on pages before analysis */
 	public static final ElementFilter<IvtffPage> FILTER = null;
-
-	// The RegEx to look for.
-	
-	// Words with rare characters
-	private final static String REGEX = "[^\\.]*[gxvujbz]+[^\\.]*";
-	
-	// Total rare characters
-//	private final static String REGEX = "[gxvujbz]";
-
-
-	private CountRegEx() {
-	}
 
 	/**
 	 * @param args
@@ -60,16 +45,23 @@ public final class CountRegEx {
 			// Prints configuration parameters
 			System.out.println("Transcription     : " + TRANSCRIPTION);
 			System.out.println("Transcription Type: " + TRANSCRIPTION_TYPE);
-			System.out.println("Alphabet          : " + ALPHABET);
 			System.out.println("Filter            : " + (FILTER == null ? "<no-filter>" : FILTER));
-			System.out.println("RegEx             : " + REGEX);
 			System.out.println();
 
-			IvtffText doc = VoynichFactory.getDocument(TRANSCRIPTION, TRANSCRIPTION_TYPE, ALPHABET);
+			IvtffText doc = VoynichFactory.getDocument(TRANSCRIPTION, TRANSCRIPTION_TYPE, Alphabet.EVA);
 			if (FILTER != null)
 				doc = doc.filterPages(FILTER);
 
-			Counter<String> c = process("." + doc.getPlainText() + ".", REGEX);
+			// Replaces "valid" occurrences of c and h
+			String txt = "." + doc.getPlainText() + ".";
+			txt = txt.replaceAll("c([tkpf\\?])h", "C$1H");
+			txt = txt.replaceAll("\\?([tkpf\\?])h", "?$1H");
+			txt = txt.replaceAll("c([tkpf\\?])\\?", "C$1?");
+			txt = txt.replaceAll("ch", "CH");
+			txt = txt.replaceAll("sh", "SH");
+			txt = txt.replaceAll("c\\?", "C?");
+			txt = txt.replaceAll("\\?h", "?H");
+			Counter<String> c = CountRegEx.process(txt, "[^\\.]*[ch]+[^\\.]*");
 
 			for (Entry<String, Integer> e : c.reversed()) {
 				System.out.println(e.getKey() + ";" + e.getValue());
@@ -81,14 +73,4 @@ public final class CountRegEx {
 		}
 	}
 
-	public static Counter<String> process(String s, String regex) {
-		Counter<String> result = new Counter<>();
-		Pattern p = Pattern.compile(regex);
-		Matcher m = p.matcher(s);
-		while (m.find()) {
-			result.count(m.group());
-		}
-
-		return result;
-	}
 }

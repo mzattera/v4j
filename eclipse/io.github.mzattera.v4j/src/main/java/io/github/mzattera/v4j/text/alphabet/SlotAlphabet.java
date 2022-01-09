@@ -276,10 +276,8 @@ public class SlotAlphabet extends IvtffAlphabet {
 
 		// TODO write test
 		
-		// plant intrusion is replaced by a space
+		// Mark plant intrusion and end of paragraph for later
 		txt = txt.replace("<->", "-");
-
-		// Mark end of paragraph for later
 		txt = txt.replace("<$>", "$");
 
 		// Remove comments as they might interfere with replacement

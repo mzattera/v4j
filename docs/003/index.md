@@ -1,6 +1,6 @@
 ## Note 003 - Clustering
 
-_Last updated Sep. 9th, 2021._
+_Last updated Jan. 9th, 2022._
 
 _This note refers to [release v.3.0.0](https://github.com/mzattera/v4j/tree/v.3.0.0) of v4j;
 **links to classes and files refer to this release** and files might have been changed, deleted or moved in the current master branch.
@@ -173,7 +173,7 @@ We can see that there a strong tendency for parchments to cluster based on their
 
 - Zodiac pages (parchments 33 and 34) which tend to remain separate.
 
-- Parchment 33 which indeed is a strange bi-folio combining two text pages, which also show stars (f58v and f58r), and
+- Parchment 30 which indeed is a strange bi-folio combining two text pages, which also show stars (f58v and f58r), and
   two herbal pages; f65r which is an outlier containing a single label with three words, and f65v.
   
   This parchment will be excluded from further processing.

@@ -199,7 +199,7 @@ This pattern is fundamentally based on shapes of individual glyphs but also info
 
 **Notes**
 
-<a id="Note1">**{1}**</a> Project [io.github.mzattera.v4j.cmc]() is a [Xtext](https://www.eclipse.org/Xtext/) project with a simple grammar that reads Stolfi's grammar and counts the number of terms it accepts. There is also some code to alternatively generate these terms in various way. Keep in mind, the number of these terms is huge. A local version of Stolfi's grammar suitable for parsing can be found [here]().
+<a id="Note1">**{1}**</a> Project [io.github.mzattera.v4j.cmc](https://github.com/mzattera/v4j/tree/v.7.0.0/eclipse/io.github.mzattera.v4j.cmc) is a [Xtext](https://www.eclipse.org/Xtext/) project with a simple grammar that reads Stolfi's grammar and counts the number of terms it accepts. There is also some code to alternatively generate these terms in various way. Keep in mind, the number of these terms is huge. A local version of Stolfi's grammar suitable for parsing can be found [here](https://github.com/mzattera/v4j/blob/v.7.0.0/resources/Stolfi/word.grx).
 
 <a id="Note2">**{2}**</a> Personal communication, October 2021.
 

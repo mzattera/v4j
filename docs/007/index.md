@@ -1,8 +1,8 @@
 # Note 007 - A Graph View on Word Structure
 
-_Last updated Oct. 24th, 2021._
+_Last updated Jan. 13th, 2021._
 
-_This note refers to [release v.5.0.0](https://github.com/mzattera/v4j/tree/v.5.0.0) of v4j;
+_This note refers to [release v.6.0.0](https://github.com/mzattera/v4j/tree/v.6.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
 In addition, some of this note content might have become obsolete in more recent versions of the library._
 
@@ -17,18 +17,20 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 
 
 # Abstract
+**At this stage, this note is a placeholder of a work in progress I should finalize ASAP.**
+**IMAGES AND RELATIVE COMMENTS MUST BE REFRESHED AND VALIDATED**
 
 
 # Methodology
 
 This work builds on my [slot model](../005) for Voynich words. 
-** Unless differently noted, this pages uses the Slot alphabet to transliterate Voynich words. **
+**Unless differently noted, this pages uses the Slot alphabet to transliterate Voynich words.**
 
-I created a graph where nodes are charters in their slots; e.g. "1_o" represent character 'o' in slot number 1. 
+I created a graph[{1}](#Note1) where nodes are charters in their slots; e.g. "1_o" represent character 'o' in slot number 1. 
 
 After that, I connected node A with node B if there is a regular term in the Voynich where character B follows directly character A;
 the connection is a directed edge with a weight equal the number of terms where the characters are connected.
-For visualization purposes I remove all edges with a weight less than 10.
+For visualization purposes I remove all edges with a weight less than 10[{2}](#Note2). 
 
 Final note, when possible I push characters to the rightmost available slot.
 
@@ -36,14 +38,12 @@ The resulting graph is shown below and commented further.
 
 ![Complete word structure graph.](images/Complete.PNG)
 
-** To see the pictures properly, right click on them and open them in a different tab. **
+**To see the pictures properly, right click on them and open them in a different tab.**
 
 
 # Analysis
 
 Here i analyze char connections slot by slot.
-
-LE IMMAGINI SONO DA RIFARE (E ANCHE QUALCHE CONCLUSIONE)
 
 ## Slot 0
 
@@ -167,6 +167,17 @@ Noticeable difference is that, while 'l' and 'r' can be followed by the word fin
 This slot contains the word ending 'y' alone.
 
 ![11_d](images/11_d.PNG)
+	
+---
+
+**Notes**
+
+<a id="Note1">**{1}**</a> Class [`io.github.mzattera.v4j.applications.slot.BuildSlotStateMachine`]() was used to generate the graph,
+that was then visualized using [Gephi](https://gephi.org/).
+
+<a id="Note2">**{2}**</a> Please notice that, as you can see 
+from the [glyph count by slot](../005/#GliphCountImg), some glyphs appear in less than 1% of the terms, that means they will
+have less than 28 total incoming connection, therefore they might look unconnected in this graph.
 
 
 ---

@@ -1,0 +1,33 @@
+/*
+ * This grammar reads Stolfi's grammar file and parses it into rules.
+ * 
+ * This is not meant to parse Voynich words, rather the grammar itself, in order to determine the number of
+ * terms it generates. This is the output of the generator, invoked by Main.
+ */
+grammar io.github.mzattera.v4j.cmc.count.CmcCounter hidden (WS, COMMENT)
+
+generate cmcCounter "http://www.github.io/mzattera/v4j/cmc/count/CmcCounter"
+
+import 'http://www.eclipse.org/emf/2002/Ecore' as ecore
+
+Grammar:
+	rules+=Rule*
+;
+	
+RuleOrText:
+	(rule=[Rule] | txt=VTEXT)
+;
+
+Rule:
+	name=ID ':' (expansions+=Expansion)+
+;
+
+Expansion:
+	count=DOUBLE frequency=DOUBLE cumulatedFreq=DOUBLE  ('.' | (rules+=RuleOrText ('.' rules+=RuleOrText)*))
+;
+
+terminal ID: ('A'..'Z')('a'..'z'|'A'..'Z')*;
+terminal VTEXT: ('a'..'z')+;
+terminal COMMENT : '#' !('\n'|'\r')* ('\r'? '\n')?;
+terminal DOUBLE returns ecore::EDouble: ('0'..'9')+'.'('0'..'9')+;
+terminal WS: (' '|'\t'|'\r'|'\n')+;

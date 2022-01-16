@@ -1,6 +1,6 @@
 # Note 005 - Slots and a New Alphabet
 
-_Last updated Jan. 9th, 2022._
+_Last updated Jan. 10th, 2022._
 
 _This note refers to [release v.6.0.0](https://github.com/mzattera/v4j/tree/v.6.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
@@ -124,6 +124,7 @@ appearing elsewhere in the text. The remaining cases (2 out of 100) are mostly w
 
 The below table shows occurrence of glyphs in slots for regular terms [{2}](#Note2).
 
+<a id="GliphCountImg" />
 ![Table with glyph count by slot.](images/Char Count by Slot.PNG)
 
 As expected, the distribution of glyphs in slots varies based on Currier language and illustration:
@@ -146,7 +147,7 @@ Below, I analyze more in detail some relationships between glyphs, as they appea
 
 #### Rare Characters
 
-Some EVA characters appears in the original interlinear transliteration very seldom[{3}](#Note3), end even less frequently in the concordance version used, 
+Some EVA characters seldom appear in the original interlinear transliteration[{3}](#Note3), end even less frequently in the concordance version used, 
 where they appear mostly as single characters, as shown in the table below (which also considers "unreadable" tokens).
 For this reason, I decided to ignore these characters and mark them as "unreadable character" for this analysis.
 
@@ -176,7 +177,7 @@ However:
 
 This leads me to think pedestalled gallows are Voynich characters in their own, and not ligatures.
 
-In addition, the character 'c' appears outside of the pedestal or pedestalled gallows only 7 times ('c', 'oc','chcpar', 'ckshy', 'ocfshy', 'cs?t?eey', and 'o?cs'); similarly, the character 'h' appears outside of the pedestal, the pedestalled gallows or the "plumed" pedestal ('sh') only 4 times ('theody', 'docfhhy', 'cfhhy', adn 'd?ithy'). This seems a strong indication that EVA 'c' and 'h' do not correspond to Voynich characters[{4}](#Note4)[{5}](#Note5). 
+In addition, the character 'c' appears outside of the pedestal or pedestalled gallows only 7 times ('c', 'oc', 'chcpar', 'ckshy', 'ocfshy', 'cs?t?eey', and 'o?cs'); similarly, the character 'h' appears outside of the pedestal, the pedestalled gallows or the "plumed" pedestal only 4 times ('theody', 'docfhhy', 'cfhhy', and 'd?ithy'). This seems a strong indication that EVA 'c' and 'h' do not correspond to Voynich characters[{4}](#Note4)[{5}](#Note5). 
 
 
 #### 'e' and 'i'

@@ -1,0 +1,1519 @@
+/*
+ * This is Xtext implementation of Stolfi's grammar for Voynich words.
+ * 
+ * THIS IS A LOST CAUSE, AS THE GRAMMAR IS NOT LEFT-RECURSIVE, IN STOLFI'S OWN WORDS.
+ * 
+ * CmcCounterGenerator.xtend however contains methods that i principle can generate the whole
+ * language defined by the grammar, but it uses in memory caching that breaks.
+ * 
+ * It covers only "normal words".
+ * 
+ * This grammar can be used to parse a Voynich term accordingly to Sotlfi's Core-Mantle-Crust paradigm.
+ */
+grammar io.github.mzattera.v4j.cmc.validate.CmcTermValidator with org.eclipse.xtext.common.Terminals
+
+generate cmcTermValidator "http://www.github.io/mzattera/v4j/cmc/validate/CmcTermValidator"
+
+Input:
+	words+=Word*
+;
+
+// ======================================================================
+// Simplified grammar for words from all sections 
+// ======================================================================
+
+// Data-File: prob/obs/txt n/word frq
+
+// ======================================================================
+// ALL WORDS, GOOD AND BAD
+// ======================================================================
+
+Word:
+       NormalWord
+//     | AbnormalWord
+;
+
+// ======================================================================
+// "NORMAL" WORDS
+// ======================================================================
+
+NormalWord:
+       cp=CrustPrefix mc=MantleCore cs=CrustSuffix
+       | wc=WholeCrust
+;
+
+MantleCore:
+       mp=MantlePrefix c=Core ms=MantleSuffix
+       | wm=WholeMantle
+;
+
+// ======================================================================
+// Crust components
+
+CrustPrefix:
+       q=Q? cp=CrP
+;
+
+CrP: {CrP}
+	(or+=OR (or+=OR)?)?       
+;
+
+CrustSuffix:
+       cs=CrS oof=OptOFinal
+;
+
+CrS: {CrS}
+	(or+=OR (or+=OR (or+=OR (or+=OR)?)?)?)?       
+;
+
+WholeCrust:
+        q=Q? cw=CrW oof=OptOFinal
+;
+
+CrW: {CrW}
+	(or+=OR (or+=OR (or+=OR (or+=OR (or+=OR)?)?)?)?)?       
+;
+
+Q:
+     y=Y? qt=QText
+;    
+
+QText returns Text:
+     txt='q'
+;    
+
+OR:
+  (o+=O (o+=O)?)? r=R
+ ;
+
+R returns Text:
+ txt=('d' | 'l' | 'r' | 's' | 'n' | 'x')
+;
+
+OptOFinal: {OptOFinal}
+ (o=O? f=Final)?
+;        
+
+Final:
+	y=Y
+    | a=A m=M
+    | a=A in=IN
+;
+
+O returns Text:
+ txt=('o' | 'a' | 'y')
+;
+
+
+Y returns Text:
+ txt=('y' | 'o')
+;
+
+A returns Text:
+	txt=('a' | 'o')
+;
+
+M returns Text:
+	txt='m'
+;
+
+IN returns Text:
+	txt=('i' | 'ii' | 'iii')('n' | 'r' | 'l' | 'm' | 's')
+;
+
+// ======================================================================
+// Mantle components:
+
+// Special handling of "ee" and CH in mantle suffix is needed to avoid
+// ambiguous parsing of "eee" and "eeee" groups  (Note that the core
+// may or may not end with "e" )
+
+MantlePrefix:
+   och=OCH? mtp=MtP
+;
+
+MtP: {MtP}	
+    oee=OEE? oe=OE?
+;
+
+// ----------------------------------------------------------------------
+// Mantle suffix of words with non-empty core 
+
+MantleSuffix: {MantleSuffix}
+	mts=MtS?
+;
+
+// ----------------------------------------------------------------------
+// Non-empty mantle of words without gallows core 
+
+// Again "ee" and "CH" require separate treatment to avoid 
+// "eee" ambiguities 
+
+WholeMantle:
+	mts=MtS
+	| oe=OE
+	| oe=OE mts=MtS
+;
+
+MtS:
+	oee=OEE
+	| oee=OEE och2=OCH
+	
+	| och1=OCH
+	| och1=OCH oe=OE
+	| och1=OCH oee=OEE
+	| och1=OCH och2=OCH
+	
+	| och1=OCH oe=OE och2=OCH
+	
+	| och1=OCH oe=OE oee=OEE
+	
+	| och1=OCH och2=OCH oe=OE
+;
+
+// ----------------------------------------------------------------------
+// Mantle elements:
+
+// ======================================================================
+// Non-empty core component:
+
+Core:
+       ogallows=OGallows oe=OE?
+;
+
+OGallows:
+    (y=Y)? gallows=Gallows
+;
+
+Gallows:
+	g=G
+	| pgt=PedestalledGallowsText
+;
+
+PedestalledGallowsText returns Text:
+	txt='c' ('t'|'p'|'k'|'f') 'h'
+;
+
+G returns Text:
+	txt=('t'|'p'|'k'|'f')
+;
+
+OE returns Text:
+	txt=('e'|'oe')
+;
+
+OEE returns Text:
+	txt=('ee'|'oee')
+;
+
+OCH:
+	(y=Y)? ch=CH
+;
+
+CH returns Text:
+	txt=('ch'|'sh')
+;
+
+// ======================================================================
+// "ABNORMAL" WORDS
+// ======================================================================
+/* 
+AbnormalWord:
+         Multiple
+         GroveWord
+         Weird
+
+// ======================================================================
+// John Grove's "detachable gallows" words
+// (look "normal" except for an extra initial gallows):
+
+GroveWord:
+           polchedy
+           pchocthy
+           tockhy
+           kalkal
+           korchy
+           polchdy
+           polched
+           polchey
+           polshy
+           tchoky
+           tokar
+           toky
+           tolkain
+           torchy
+           farsheey
+           fchcfhy
+           fchecfhy
+           fchocthar
+           fchoctheody
+           fchokshy
+           fchoky
+           fdeechdy
+           fdykain
+           fochof
+           folchear
+           folchey
+           folchol
+           folshody
+           kacthy
+           kalchdy
+           kalchedy
+           kaolkar
+           karchy
+           kcheeky
+           kchekain
+           kchetam
+           kchokchy
+           kchoty
+           kdchody
+           kochky
+           kockhos
+           kodalchy
+           kodeey
+           kodshey
+           kodshol
+           kokaiin
+           koky
+           kolchdy
+           kolchedy
+           kolcheey
+           kolches
+           kolfchdy
+           kolkar
+           kolkedy
+           kolky
+           kolpy
+           kolschees
+           kolshd
+           kolshes
+           kolshey
+           kolsho
+           kolyky
+           koshet
+           kotaly
+           kotchody
+           kotchy
+           kschdy
+           kshotol
+           kydeedy
+           kykaiin
+           kyty
+           palchar
+           palchd
+           palkeedy
+           palshsar
+           parchdy
+           pchcfhdy
+           pcheety
+           pcheockhy
+           pcheocphy
+           pcheoepchy
+           pcheokeey
+           pchety
+           pchocty
+           pchoetal
+           pchofar
+           pchotchy
+           pchtchdy
+           pdalshor
+           pdychoiin
+           podchey
+           podeesho
+           podkor
+           podshedy
+           poeokeey
+           pokain
+           pokar
+           pokeey
+           polalchdy
+           polchal
+           polchechy
+           polchls
+           polchs
+           polchy
+           poldaky
+           poldchody
+           poldshedy
+           poleedaran
+           poleeol
+           polkchy
+           polkeedal
+           polkeeo
+           polkeey
+           polkiin
+           polky
+           polshdal
+           polshdy
+           polshey
+           polshol
+           polshor
+           polteshol
+           polyshy
+           porachol
+           porarchy
+           porchey
+           posalshy
+           potoy
+           pschedal
+           psheoky
+           psheot
+           pydchdom
+           pykedy
+           pykeor
+           pykydal
+           talchos
+           talkl
+           talshdy
+           tarshor
+           tcfhy
+           tchcthy
+           tcheepchey
+           tcheoky
+           tchkaiin
+           tchoep
+           tchokedy
+           tchokyd
+           tchotchey
+           tchotchor
+           tchotshey
+           tchtcho
+           tchtod
+           tchty
+           tocpheey
+           tocphol
+           tocthey
+           tocthy
+           todashx
+           todeeey
+           todky
+           toealchs
+           toeeedchy
+           toeoky
+           tokary
+           tokol
+           tolchdaiin
+           tolchedy
+           tolchor
+           toldshy
+           toleeshal
+           tolkal
+           tolkchdy
+           tolkeeedy
+           tolkeol
+           tolkey
+           tolkshey
+           tolokeedy
+           tolpchy
+           tolsheo
+           tolsheol
+           tolshey
+           tolshosor
+           tolshy
+           topar
+           torchey
+           torolshsdy
+           torshor
+           totchy
+           totol
+           tsheokeedy
+           tshokeody
+           tshoky
+           typchey
+
+// ======================================================================
+// Words that resemble two or more normal words fused together:
+
+Multiple:
+         MultiCore
+         MultiCoreMantle
+         EmbeddedAIN
+          EmbeddedYQ
+
+// Words with multiple core letters:
+
+MultiCore:
+           oteotey
+           opalkaiin
+           otytam
+           pcholky
+           aikhckhy
+           akaiiky
+           cfhekchdy
+           chedyteokain
+           chekeek
+           cheokchet
+           cheolkeepchy
+           chepchefy
+           chesokchoteody
+           chkchykoly
+           chokeeoky
+           chokokor
+           chopcheopchy
+           choteoky
+           chpkcheos
+           chtocthy
+           ckheckhy
+           ckheokey
+           cphdacthy
+           cpheckhy
+           cpheocthy
+           cphocthy
+           cphokchol
+           ctheepchy
+           ctheety
+           ctheotol
+           ctholcthy
+           cthscthain
+           dorkcheky
+           ekokeey
+           fchedypaiin
+           fcheokair
+           kaipy
+           kchdpy
+           kcheat
+           kecheokeo
+           keocthy
+           keodky
+           keoky
+           lkedlkey
+           lkeopol
+           lkshykchy
+           oepchksheey
+           ofaramoty
+           ofcheefar
+           ofchtar
+           okacfhy
+           okaiifchody
+           okchdpchy
+           okcheefy
+           okchop
+           okchoteees
+           okeedaky
+           okeockhey
+           okeodof
+           okeokain
+           okeokear
+           okeokedr
+           okeoky
+           okeolkey
+           okeoteey
+           okeyteey
+           okeyty
+           okokam
+           okokchodm
+           okokeedy
+           okoksheo
+           okylky
+           okytaiin
+           olkeeycthy
+           opakam
+           opalefam
+           opalkam
+           opalkar
+           opcheeky
+           opchepy
+           opchety
+           opolkeor
+           opolkod
+           opotey
+           opykey
+           oraryteop
+           otacphy
+           otaiikam
+           otakar
+           otakeol
+           otaky
+           otalkain
+           otalkchy
+           otalky
+           otchetchar
+           otchoky
+           otchotar
+           otchoty
+           otchyky
+           oteatey
+           oteeoky
+           oteeolkeey
+           oteeykeey
+           oteoefol
+           oteokeey
+           oteoteotsho
+           oteotor
+           otkchedy
+           otokcho
+           otokeeey
+           otorkeol
+           ototar
+           ototay
+           otykeey
+           otykol
+           otyky
+           otytchol
+           otytchy
+           pchafdan
+           pchesfchy
+           pchof
+           pchofychy
+           pcholkal
+           pcholkeedy
+           pchykar
+           pofochey
+           polcheolkain
+           potchokar
+           psheoepoain
+           qepoepy
+           qocpheeckhy
+           qoekeeykeody
+           qofcheepy
+           qofockhdy
+           qokaekeeey
+           qokchocthor
+           qokchyky
+           qokechckhy
+           qokeefcy
+           qokeeokain
+           qokeeoky
+           qokeokedy
+           qokokchy
+           qokokil
+           qokolkain
+           qokolkchdy
+           qokolky
+           qokopy
+           qopchcfhy
+           qopchety
+           qopchypcho
+           qotchotchy
+           qotchytor
+           qotechoep
+           qoteotor
+           qotlolkal
+           qotocthey
+           qotokody
+           qotoky
+           racthty
+           shckhefy
+           shekeefy
+           shkakeedy
+           shokocfhy
+           shotchot
+           shotokody
+           soefchocphy
+           soeokeot
+           stolpchy
+           taipar
+           tchdoltdy
+           tcholkaiin
+           tchykchy
+           tdokchcfhy
+           teolkedain
+           teoteey
+           tshedky
+           tshodpy
+           tyqoky
+           ycphko
+           yfcheky
+           ykaipy
+           ykairolky
+           ykaky
+           ykcheolchcthy
+           ykchokeo
+           ykchotchy
+           ykecthey
+           ykedckhy
+           ykeealkey
+           ykeeykeey
+           ykeeyky
+           ykeockhey
+           ykofar
+           ykyka
+           ykykaiin
+           ypchedpy
+           ytapy
+           ytcheeky
+           ytchoky
+           yteokar
+           ytoeopchey
+           dakocth
+           ofacfom
+           ofakal
+           ofalcfhy
+           ofyskydal
+           okockhy
+           opashcfhedy
+           opchytch
+           opocphor
+           opokchor
+           otakaiman
+           otalef
+           otaleky
+           oteofy
+           otockhy
+           otokol
+           otoky
+           otolky
+           otorchety
+           otork
+           otykchs
+           ykeeepol
+           ykocfhy
+           ytokar
+
+
+// Words with at most one core, but with multiple coremantles:
+
+MultiCoreMantle:
+           chodchy
+           cholky
+           cholkal
+           chedchey
+           cheolkeedy
+           cheolky
+           cholchedy
+           cholchey
+           cholkaiin
+           cholkain
+           cholkar
+           cholkeedy
+           cholkeeey
+           chsky
+           okalchedy
+           okalchy
+           okolchy
+           otolchey
+           qokalchdy
+           sholkeedy
+           chalkain
+           chalkar
+           chalkeedy
+           chalolky
+           chdalchdy
+           chdalkair
+           chdchol
+           chdchy
+           chdeey
+           chdykchedy
+           chdypdaiin
+           chdyshdy
+           cheackhy
+           chedacphy
+           chedalkedy
+           chedchy
+           chedees
+           chedeey
+           chedkain
+           chedkel
+           chedky
+           chedykar
+           chedytey
+           chedyty
+           cheeorfor
+           cheesees
+           cheockhedchy
+           cheodchy
+           cheodeeey
+           cheodeey
+           cheodkedy
+           cheoiees
+           cheokorchey
+           cheolchal
+           cheolchdaiin
+           cheolchdy
+           cheolchey
+           cheolkain
+           cheolkeey
+           cheolshy
+           cheoltain
+           cheoltchedaiin
+           cheoltey
+           cheooky
+           chetalshy
+           chkalchy
+           chkorchy
+           chlchd
+           chlchpsheey
+           chodykchy
+           chokoishe
+           choldchy
+           choldshy
+           cholfchy
+           cholfor
+           cholfy
+           cholkchy
+           cholkedy
+           cholkeeedy
+           cholkeod
+           cholkshedy
+           cholp
+           cholpchd
+           cholsho
+           choltaiin
+           choltaly
+           choltam
+           choltar
+           choolkeey
+           chorcholsal
+           chorchor
+           chorchy
+           chorochy
+           chorolk
+           choschy
+           chrky
+           chsamoky
+           chseeor
+           cphodales
+           cthachchy
+           cthaichar
+           cthorchy
+           cthres
+           dchodees
+           dchrchy
+           deedyoty
+           eeoseeo
+           etsees
+           fachys
+           fchodees
+           fchodycheol
+           fshodchy
+           kadchy
+           kaich
+           kaiishdy
+           kaishd
+           kcheedchdy
+           kcholchdar
+           kechodshey
+           kedaleey
+           keedeedy
+           keolchey
+           ksholochey
+           lcholkaiin
+           lkarshar
+           lkedeed
+           lkedey
+           lkedshedy
+           lklcheol
+           lshalshy
+           ochoiky
+           ocholshod
+           oeeolchy
+           oeolales
+           okachey
+           okaeechey
+           okalchal
+           okalchdy
+           okalched
+           okalshdy
+           okalshey
+           okchodshy
+           okearcheol
+           okedes
+           okeedchsy
+           okeoschso
+           okesoe
+           okolchey
+           okoleeolar
+           okolshy
+           oksholshol
+           opaichy
+           opalchdy
+           opalshedy
+           opodeeol
+           oporchy
+           otalchal
+           otalshdy
+           otalshedy
+           otarcho
+           otarchol
+           otchodeey
+           otcholchy
+           otedeey
+           oteedchey
+           oteeolchor
+           oteodched
+           oteodchy
+           otlchdain
+           otleey
+           otodchy
+           otolches
+           otolosheey
+           otoralchy
+           otorchy
+           otorsheey
+           otorsheod
+           paichy
+           pchedchdy
+           pchedeey
+           pcheodchy
+           pdsheody
+           psheodshy
+           pydeey
+           qeedeey
+           qokairolchdy
+           qokalchal
+           qokalchey
+           qokededy
+           qokeeolchey
+           qokolchedy
+           qotedshedy
+           qotolchd
+           qotolchy
+           scharchy
+           schodchy
+           shackhy
+           shalkaiin
+           shalkl
+           shalky
+           shapchedy
+           shckhdchy
+           shdalky
+           shdchdy
+           shdchy
+           shdpchy
+           shdykairylam
+           shecthedchy
+           shedaitain
+           shedchy
+           shedeeey
+           shedkedy
+           shedshey
+           sheeodees
+           sheeolkain
+           shekalchdy
+           sheolkain
+           sheolkchy
+           sheolkedy
+           sheolsho
+           sheoltey
+           sheseky
+           shetcheodchs
+           shlches
+           shodshey
+           sholfaiin
+           sholfchor
+           sholfosdaiin
+           sholkair
+           sholkeechy
+           sholkshy
+           shoqoky
+           shorchdy
+           shoykcho
+           shoyty
+           tcheolchy
+           tcheorsho
+           tcholdchy
+           tedcheo
+           teodeear
+           teodeey
+           teolshy
+           toairshy
+           tshdshey
+           tshodeesy
+           ycheolk
+           ychoopy
+           ykarshy
+           ypolcheey
+           ysholshy
+           ytalchos
+           ytashy
+           cheoepy
+           dcheoekal
+           kaleearol
+           ochodare
+           ochoyk
+           oeedey
+           okaircham
+           okarchy
+           okodchy
+           okoroeey
+           olcheesey
+           oleoeder
+           opodchdal
+           otalchy
+           otalshy
+           otodeeodor
+           otolchd
+           otolchdy
+           porshols
+           sholeey
+           sholshdy
+           sochorcfhy
+           toeeodchy
+           tolchd
+           ytalshdy
+           ytarem
+
+// Words with simple core and mantles which contain embedded "y"
+// (other than "chy" and "shy"), or non-initial "q":
+
+EmbeddedYQ:
+           oykeey
+           chyqoldy
+           dayty
+           lshdyqo
+           oykchor
+           oykeedy
+           oykshy
+           oyshey
+           oyshy
+           oyteey
+           oytor
+           oytoyd
+           oyty
+           pyoaly
+           qoykeeey
+           qoykeey
+           qoyky
+           qoypchol
+           qyoeey
+           sayfchedy
+           saykeedy
+           ytyda
+           yyfchy
+           otyda
+           oyteedy
+
+// Words with simple core and mantle which contain
+// AIN groups or AM letters in non-final position:
+
+EmbeddedAIN:
+           daiidy
+           dairal
+           aiiny
+           dairy
+           aiinal
+           airody
+           dairody
+           sairy
+           airal
+           airam
+           airod
+           cholairy
+           daiindy
+           daiiral
+           dairar
+           dairo
+           damo
+           kairam
+           otairor
+           pairar
+           adairchdy
+           aiidaiim
+           aiidal
+           aiidy
+           aiildy
+           aiily
+           aiinaim
+           aiiral
+           aiiraly
+           aiirchar
+           aiirody
+           aiirol
+           aiiry
+           aiisom
+           aildy
+           ainy
+           airar
+           airchy
+           airol
+           airols
+           airoy
+           airy
+           aithy
+           alamchy
+           amam
+           aman
+           amchd
+           amchy
+           amd
+           amom
+           amy
+           arairaly
+           arakaiin
+           chaiind
+           chairal
+           chdairod
+           cheamar
+           cheamy
+           cheomam
+           chodaiindy
+           cphodaiils
+           cthaildy
+           daidy
+           daiidal
+           daiiidy
+           daiiiny
+           daiiirchy
+           daiild
+           daiildy
+           daiinol
+           daiiny
+           daiirol
+           daiiry
+           daildain
+           daimamdy
+           daimd
+           daimm
+           daind
+           dainkey
+           dainl
+           dainod
+           dairam
+           dairchey
+           dairl
+           dairod
+           dairol
+           dairom
+           dairydy
+           daisn
+           daraiinm
+           dchairam
+           doleodainn
+           epairody
+           faiiral
+           faimy
+           famam
+           kaiindal
+           kairy
+           kaisar
+           kamdam
+           karainy
+           kydainy
+           lkamo
+           llaiiry
+           llainal
+           mol
+           oairar
+           odaidy
+           odaiiily
+           ofaiino
+           oiinol
+           okaiiny
+           okaildy
+           okainy
+           okairo
+           okairody
+           okairy
+           olaiiny
+           oloiram
+           opaiiral
+           opailo
+           opairam
+           opdaildo
+           opdairody
+           oraiino
+           orairody
+           otaiilody
+           otaily
+           otairar
+           otairin
+           otamy
+           paiinody
+           pairody
+           pchedairs
+           pdrairdy
+           pdsairy
+           podairol
+           polairy
+           polsaisy
+           posairy
+           pysaiinor
+           qairal
+           qoirain
+           qoisal
+           qokamdy
+           qopairam
+           qotchoraiiny
+           rairal
+           ramshy
+           roiry
+           saiinchy
+           saiirol
+           saino
+           sairal
+           sairam
+           sairody
+           sairol
+           sairom
+           sairor
+           saraisl
+           sheainy
+           taidy
+           tairoor
+           tarairy
+           tchodairos
+           ydaraishy
+           aiinod
+           ainaly
+           ainam
+           amal
+           daiiine
+           daiisaly
+           dainy
+           dairkal
+           daisoldy
+           damamm
+           daramdal
+           oiinar
+           oiiny
+           okairady
+           oklairdy
+           opaiiino
+           opaiinar
+           opaloiiry
+           oparairdly
+           oraiiny
+           otainy
+           otaramy
+           otolaiino
+           saiindy
+           saiino
+           saiiny
+           sairaly
+           todaraiily
+           ydairol
+           ykairaiin
+           ykalairal
+           ytairal
+
+// ======================================================================
+// Words that don't seem to be multiple but
+// don't quite follow the paradigm:
+
+Weird:
+          WeirdM
+          WeirdI
+          WeirdSE
+         WeirdOther
+
+// Words with M letters not preceded by A:
+
+WeirdM:
+          m
+           dm
+           lchm
+           otchm
+           alcheem
+           allchdm
+           alm
+           chym
+           cthoem
+           darolm
+           dchm
+           docheesm
+           dym
+           kchm
+           keedym
+           keem
+           llm
+           lm
+           okaldm
+           okalm
+           oreeem
+           tolm
+           ykchdm
+           ytdm
+           otydm
+
+// Words that have badly-formed A IN groups:
+
+WeirdI:
+           dairin
+           iir
+           okai
+           aiees
+           aiichy
+           aiickhedy
+           aiicthy
+           aiikam
+           aiioly
+           aiior
+           aiip
+           aiy
+           apolairi
+           chariin
+           cheeir
+           chiin
+           chkaid
+           chpiir
+           daein
+           daichy
+           daicthy
+           daid
+           daiial
+           daiicthy
+           daiioam
+           daiiody
+           daiiol
+           daiity
+           daikam
+           daikeody
+           dairiy
+           dait
+           dariin
+           dchir
+           diiin
+           diin
+           diir
+           i
+           iiin
+           iirchal
+           odariin
+           oiiiin
+           oishy
+           okiin
+           okil
+           olkiir
+           oriin
+           otai
+           otaldiin
+           otariin
+           otiir
+           qoikeey
+           qokaiii
+           qokaiy
+           qokeeiin
+           qokiir
+           qotaiior
+           qotir
+           raii
+           raikchy
+           rokaix
+           sai
+           saiichor
+           skaiiodar
+           ykeedi
+           ai
+           aiky
+           saikchy
+           soity
+
+// Words with "se" groups:
+
+WeirdSE:
+           shese
+           chsey
+           eesey
+           arolser
+           chesey
+           chetses
+           chokesey
+           cseo
+           deeeese
+           desey
+           esechor
+           esedy
+           eses
+           ofseod
+           okcheese
+           oleesey
+           oltshsey
+           orchsey
+           osearees
+           otoeeseor
+           pchsed
+           shesed
+           shseor
+           ypchseds
+           ocsesy
+
+// Words with various other problems:
+
+WeirdOther:
+           da
+           c
+           ackhy
+           sa
+           sha
+           a
+           acfhy
+           acthy
+           akar
+           aky
+           aty
+           chdedy
+           chechey
+           cheda
+           chodey
+           cto
+           daky
+           acpheey
+           acphy
+           acthedy
+           acthey
+           akaiin
+           akair
+           akal
+           akarar
+           akchy
+           akey
+           aporair
+           apy
+           ashe
+           ataiin
+           ateey
+           atolm
+           cha
+           chak
+           chakain
+           chakod
+           chapchy
+           chataiin
+           chcheey
+           chcheky
+           chchoty
+           chckhoda
+           chckshy
+           chcpar
+           chcs
+           chea
+           checta
+           chedey
+           cheeta
+           chekeesshy
+           cheoekar
+           cheoet
+           chepa
+           cheyqy
+           chka
+           chocty
+           choekchcey
+           choikhy
+           chpa
+           chshek
+           chshoty
+           chyokeor
+           ckcho
+           ckchol
+           ckshy
+           cky
+           coy
+           ctar
+           ctchy
+           ctechy
+           ctha
+           ctoiin
+           ctos
+           dachy
+           dackhy
+           dakar
+           dala
+           daldeam
+           darala
+           dateey
+           dlssho
+           docodal
+           doeedey
+           doeoear
+           doithy
+           dyeees
+           fchedey
+           fsheda
+           ka
+           kara
+           kcheoey
+           keechey
+           keedey
+           keeees
+           keoedy
+           lchea
+           lcheoekam
+           lkeechey
+           lkeeshedy
+           oamr
+           oaorar
+           ockey
+           ockhh
+           octhede
+           octhole
+           oeeees
+           oeksa
+           oka
+           okalda
+           okeedey
+           okeoeeey
+           olqo
+           oochockhy
+           ooeeor
+           opa
+           oracphy
+           orokeeeey
+           ota
+           otchedey
+           pchedey
+           qocky
+           qodaikhy
+           qoedeey
+           qoeedeody
+           qoeeeey
+           qokaoy
+           qokeechey
+           qoleechedy
+           qoochey
+           qooko
+           qooto
+           qoqokeey
+           qota
+           qotea
+           qoteode
+           ra
+           rarolchl
+           sacthy
+           saeos
+           sakaiin
+           satar
+           shecphhedy
+           shedey
+           sheoe
+           sheoeky
+           shhy
+           shoda
+           somy
+           soocth
+           sqokeo
+           taedaiin
+           tchede
+           ycheechy
+           yeed
+           yees
+           yekees
+           yekey
+           yey
+           yhal
+           ykceol
+           ykcholqod
+           ykeda
+           ykeeeedaiir
+           ykeeshedy
+           ykeoeshy
+           yochedy
+           yochor
+           yoees
+           yokaiin
+           yokalod
+           yokeeol
+           yokeey
+           yokeody
+           yokor
+           yoky
+           yotaiin
+           yotedy
+           yteeoey
+           ytoda
+           cfhhy
+           chockhhy
+           dardsh
+           ddsschx
+           docfhhy
+           oecs
+           okchoda
+           okyeeshy
+           olackhy
+           qolsa
+           sachy
+           sacthey
+           yskhy
+
+// ======================================================================
+// Last edited on 2000-10-11 07:54:26 by stolfi
+*/

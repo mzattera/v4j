@@ -233,6 +233,11 @@ This package contains some "utility" classes to deal with files, math, etc.
 Please take a look what is in here before implementing anythign from scratch.
 
 
+### `io.github.mzattera.v4j.cmc`
+
+This is a [Xtext](https://www.eclipse.org/Xtext/) project created for [Note 006](https://mzattera.github.io/v4j/006/); please refer to it for more details.
+
+
 ### Testing
 
 Project `io.github.mzattera.v4j-apps` contains JUnit tests for the v4j library and (some) of the "applications" in `v4j-apps`.

@@ -233,6 +233,14 @@ This package contains some "utility" classes to deal with files, math, etc.
 Please take a look what is in here before implementing anythign from scratch.
 
 
+#### `io.github.mzattera.v4j.util.statemachine`
+
+This package provides classes to represent state machines, which were used initially to produce by [Note 007](https://mzattera.github.io/v4j/007/).
+
+It is not meant to replace other, more sophisticated packages fro state machines; is has been created as a quick hack to provide required
+analysis capabilities.
+
+
 ### `io.github.mzattera.v4j.cmc`
 
 This is a [Xtext](https://www.eclipse.org/Xtext/) project created for [Note 006](https://mzattera.github.io/v4j/006/); please refer to it for more details.

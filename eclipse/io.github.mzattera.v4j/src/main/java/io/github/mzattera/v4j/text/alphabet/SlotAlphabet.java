@@ -502,20 +502,20 @@ public class SlotAlphabet extends IvtffAlphabet {
 		
 		// Push letters to the right when possible; the push is based on creating the best layered structure for slots.
 		// For that reason some characters are NOT pushed.
-		
 		// We can do this only after classification (reversing the string does not work :)).
-		pushRight(result.slots1, "s", 0, 7);
-		pushRight(result.slots1, "d", 0, 7);
-		
-//		pushRight(result.slots1, "d", 7, 10);		
-//		pushRight(result.slots1, "o", 1, 8);
-		
+
 		pushRight(result.slots1, "y", 1, 11);
-		
-		// 2_l is mostly connects to 1_o, do not push it right
-//		pushRight(result.slots1, "l", 2, 10);
-		
+
+		pushRight(result.slots1, "d", 0, 10);
+		pushRight(result.slots1, "d", 7, 10);		
 		pushRight(result.slots1, "r", 2, 10);
+		pushRight(result.slots1, "l", 2, 10);
+
+		pushRight(result.slots1, "o", 1, 8);
+
+		pushRight(result.slots1, "d", 0, 7);
+		pushRight(result.slots1, "s", 0, 7);
+		
 //		pushRight(result.slots1, "t", 3, 7);
 //		pushRight(result.slots1, "k", 3, 7);
 //		pushRight(result.slots1, "p", 3, 7);
@@ -524,6 +524,7 @@ public class SlotAlphabet extends IvtffAlphabet {
 //		pushRight(result.slots1, "K", 5, 7);
 //		pushRight(result.slots1, "P", 5, 7);
 //		pushRight(result.slots1, "F", 5, 7);
+
 
 		result.part2 = s;
 		if (s == null) {

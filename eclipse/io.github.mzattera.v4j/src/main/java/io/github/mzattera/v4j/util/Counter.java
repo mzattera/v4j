@@ -33,6 +33,15 @@ public class Counter<T> {
 		counts = new HashMap<T, Integer>(initialCapacity);
 	}
 
+	/**
+	 * Creates a counter counting all terms in a Collection.
+	 * @param objs
+	 */
+	public Counter(Collection<T> objs) {
+		this();
+		countAll(objs);
+	}
+
 	public int getTotalCounted() {
 		return tot;
 	}

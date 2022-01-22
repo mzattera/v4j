@@ -223,18 +223,20 @@ public class SlotAlphabet extends IvtffAlphabet {
 
 	protected SlotAlphabet() {
 	}
-	
+
 	/**
 	 * Split a word into prefix, infix and suffix.
 	 * 
-	 * @param words A word written in this alphabet, to be split into its pre-, in- and suffix.
+	 * @param words A word written in this alphabet, to be split into its pre-, in-
+	 *              and suffix.
 	 * 
-	 * @return Three strings corresponding to the prefix, infix and suffix for given word.
+	 * @return Three strings corresponding to the prefix, infix and suffix for given
+	 *         word.
 	 */
 	@Override
 	public String[] getPreInSuffix(String word) {
 		String[] result = new String[3];
-		
+
 		// Prefix
 		Pattern p = Pattern.compile("^([qsd]?[oy]?[lr]?).*");
 		Matcher m = p.matcher(word);
@@ -246,7 +248,7 @@ public class SlotAlphabet extends IvtffAlphabet {
 				return result;
 			}
 		} else {
-			result[0] = "";			
+			result[0] = "";
 		}
 
 		// Suffix
@@ -255,12 +257,12 @@ public class SlotAlphabet extends IvtffAlphabet {
 		if (m.matches()) {
 			result[2] = new StringBuilder(m.group(1)).reverse().toString();
 		} else {
-			result[2] = "";			
+			result[2] = "";
 		}
 
 		// Infix
-		result[1] = word.substring(result[0].length(), word.length()-result[2].length());
-		
+		result[1] = word.substring(result[0].length(), word.length() - result[2].length());
+
 		return result;
 	}
 
@@ -270,12 +272,13 @@ public class SlotAlphabet extends IvtffAlphabet {
 	 * @param txt text to be converted.
 	 * @throws ParseException if text is not proper IVTFF text.
 	 * 
-	 * @return Slot transliteration of given EVA text. Please notice comments and some metadata are removed.
+	 * @return Slot transliteration of given EVA text. Please notice comments and
+	 *         some metadata are removed.
 	 */
 	public static String fromEva(String txt) throws ParseException {
 
 		// TODO write test
-		
+
 		// Mark plant intrusion and end of paragraph for later
 		txt = txt.replace("<->", "-");
 		txt = txt.replace("<$>", "$");
@@ -367,20 +370,19 @@ public class SlotAlphabet extends IvtffAlphabet {
 		return txt;
 	}
 
-	
-
 	/**
 	 * Converts a text into Basic EVA alphabet.
 	 * 
 	 * @param txt text to be converted.
 	 * @throws ParseException if text is not proper IVTFF text.
 	 * 
-	 * @return EVA transliteration of given Slot text. Please notice comments and some metadata are removed.
+	 * @return EVA transliteration of given Slot text. Please notice comments and
+	 *         some metadata are removed.
 	 */
 	public static String toEva(String txt) throws ParseException {
 
 		// TODO write test
-		
+
 		// plant intrusion is replaced by a space
 		txt = txt.replace("<->", "-");
 
@@ -414,7 +416,6 @@ public class SlotAlphabet extends IvtffAlphabet {
 		return txt;
 	}
 
-	
 	/**
 	 * Decompose a word into "slots".
 	 * 
@@ -460,14 +461,17 @@ public class SlotAlphabet extends IvtffAlphabet {
 	 */
 	private static TermDecomposition internalDecompose(String term) {
 
-		String s = term;
-
 		// TODO add support for words with unreadable characters (and an "unreadable"
 		// flag to TermDecomposition).
 		// Notice that fromEva() might introduce multiple ? where a single Slot
 		// character
 		// might be present. When decomposing a sequence of ? can occupy one or more
 		// slots.
+		if (Alphabet.SLOT.isUreadable(term))
+			throw new IllegalArgumentException("Unreadable term: '" + term + "'");
+
+		String s = term;
+
 		for (char c : s.toCharArray()) {
 			if (Alphabet.SLOT.isUreadableChar(c))
 				throw new IllegalArgumentException("Decomposition of unreadable texts not yet supported.");
@@ -499,15 +503,17 @@ public class SlotAlphabet extends IvtffAlphabet {
 				result.slots1[i] = "";
 			}
 		}
-		
-		// Push letters to the right when possible; the push is based on creating the best layered structure for slots.
+
+		// Push letters to the right when possible; the push is based on creating the
+		// best layered structure for slots.
 		// For that reason some characters are NOT pushed.
-		// We can do this only after classification (reversing the string does not work :)).
+		// We can do this only after classification (reversing the string does not work
+		// :)).
 
 		pushRight(result.slots1, "y", 1, 11);
 
 		pushRight(result.slots1, "d", 0, 10);
-		pushRight(result.slots1, "d", 7, 10);		
+		pushRight(result.slots1, "d", 7, 10);
 		pushRight(result.slots1, "r", 2, 10);
 		pushRight(result.slots1, "l", 2, 10);
 
@@ -515,7 +521,7 @@ public class SlotAlphabet extends IvtffAlphabet {
 
 		pushRight(result.slots1, "d", 0, 7);
 		pushRight(result.slots1, "s", 0, 7);
-		
+
 //		pushRight(result.slots1, "t", 3, 7);
 //		pushRight(result.slots1, "k", 3, 7);
 //		pushRight(result.slots1, "p", 3, 7);
@@ -524,7 +530,6 @@ public class SlotAlphabet extends IvtffAlphabet {
 //		pushRight(result.slots1, "K", 5, 7);
 //		pushRight(result.slots1, "P", 5, 7);
 //		pushRight(result.slots1, "F", 5, 7);
-
 
 		result.part2 = s;
 		if (s == null) {
@@ -537,18 +542,18 @@ public class SlotAlphabet extends IvtffAlphabet {
 	}
 
 	/**
-	 * Pushes a char right in the slots, if possible.
-	 * I learned this from https://mzattera.github.io/v4j/007/
+	 * Pushes a char right in the slots, if possible. I learned this from
+	 * https://mzattera.github.io/v4j/007/
 	 * 
 	 * @param slots Slots where the word has been decomposed.
-	 * @param c Character to move.
+	 * @param c     Character to move.
 	 * @param begin Starting slot.
-	 * @param end Target slot.
+	 * @param end   Target slot.
 	 */
 	private static void pushRight(String[] slots, String c, int begin, int end) {
 		if (slots[begin].equals(c)) {
 			boolean dirty = false;
-			for (int i=begin+1; !dirty && (i<=end); ++i) 
+			for (int i = begin + 1; !dirty && (i <= end); ++i)
 				dirty = !slots[i].equals("");
 			if (!dirty) {
 				slots[begin] = "";

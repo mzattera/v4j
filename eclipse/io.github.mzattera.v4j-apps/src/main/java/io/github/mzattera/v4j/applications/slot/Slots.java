@@ -49,6 +49,14 @@ public final class Slots {
 		// All readable words, after translating into Slot alphabet.
 		Counter<String> allWords = new TextString(txt, Alphabet.SLOT).getWords(true);
 
+		process(allWords);
+	}
+
+	/**
+	 * @param allWords Complete list of words to analize.
+	 */
+	public static void process(Counter<String> allWords) {
+		
 		// Classify the terms, based on their decomposition
 		Map<String, TermDecomposition> classified = SlotAlphabet.decompose(allWords.itemSet());
 

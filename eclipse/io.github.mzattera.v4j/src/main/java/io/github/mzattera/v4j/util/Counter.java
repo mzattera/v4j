@@ -68,19 +68,11 @@ public class Counter<T> {
 	}
 
 	/**
-	 * Counts all given items once.
+	 * Counts all given items.
 	 */
 	public void countAll(Collection<T> objs) {
 		for (T o : objs)
 			count(o);
-	}
-
-	/**
-	 * Counts all given items n times.
-	 */
-	public void countAll(Collection<T> objs, int n) {
-		for (T o : objs)
-			count(o, n);
 	}
 
 	/**

@@ -8,7 +8,6 @@ import java.util.Map.Entry;
 import io.github.mzattera.v4j.text.Text;
 import io.github.mzattera.v4j.text.alphabet.Alphabet;
 import io.github.mzattera.v4j.text.ivtff.IvtffText;
-import io.github.mzattera.v4j.text.ivtff.PageFilter;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory.TranscriptionType;
 import io.github.mzattera.v4j.util.Counter;
@@ -31,11 +30,11 @@ public final class CountNWords {
 	public static void main(String[] args) {
 		try {
 			IvtffText doc = VoynichFactory.getDocument(TranscriptionType.MAJORITY);
-			
+
 			Counter<String> c = process(doc, 2, true);
 
 			System.out.println("Most repeated: " + c.getHighestCounted() + " = " + c.getHighestCount());
-			
+
 			for (Entry<String, Integer> e : c.reversed()) {
 				System.out.println(e.getKey() + ": " + e.getValue());
 			}

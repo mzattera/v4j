@@ -1,21 +1,9 @@
 package io.github.mzattera.v4j.util.statemachine;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import io.github.mzattera.v4j.text.ElementFilter;
-import io.github.mzattera.v4j.text.alphabet.Alphabet;
-import io.github.mzattera.v4j.text.alphabet.SlotAlphabet;
-import io.github.mzattera.v4j.text.ivtff.IvtffPage;
-import io.github.mzattera.v4j.text.ivtff.IvtffText;
-import io.github.mzattera.v4j.text.ivtff.VoynichFactory;
-import io.github.mzattera.v4j.text.ivtff.VoynichFactory.Transcription;
-import io.github.mzattera.v4j.text.ivtff.VoynichFactory.TranscriptionType;
-import io.github.mzattera.v4j.util.Counter;
 
 /**
  * This is a model to generate Voyinich words based on ordered "slots" that can contain any between a set of strings.

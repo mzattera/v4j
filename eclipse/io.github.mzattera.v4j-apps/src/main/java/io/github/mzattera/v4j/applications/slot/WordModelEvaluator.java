@@ -84,7 +84,7 @@ public final class WordModelEvaluator {
 		evaluateCmc(voynichTokens);
 		System.out.println();
 
-		// evaluateSlots(voynichTokens);
+		 evaluateSlots(voynichTokens);
 
 		System.out.println();
 

@@ -10,7 +10,6 @@ import io.github.mzattera.v4j.text.alphabet.SlotAlphabet;
 import io.github.mzattera.v4j.text.alphabet.SlotAlphabet.TermDecomposition;
 import io.github.mzattera.v4j.text.ivtff.IvtffPage;
 import io.github.mzattera.v4j.text.ivtff.IvtffText;
-import io.github.mzattera.v4j.text.ivtff.PageFilter;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory.Transcription;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory.TranscriptionType;

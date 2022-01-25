@@ -84,9 +84,9 @@ To exemplify this concept, I show how some common terms can be decomposed in slo
 'qokeedy'
 
   0     1     2     3     4     5     6     7     8     9    10    11
-[ q ] [ o ] [   ] [ k ] [   ] [   ] [ee ] [ d ] [   ] [   ] [   ] [ y ] 
+[ q ] [ o ] [   ] [ k ] [   ] [   ] [ee ] [   ] [   ] [   ] [ d ] [ y ] 
 
-(notice 'd' is in slot 7 and not 10, even if both position would be legit)
+(notice 'd' is in slot 10 and not 7, even if both position would be legit)
 
 
 'chcthor'
@@ -148,7 +148,7 @@ Below, I analyze more in detail some relationships between glyphs, as they appea
 
 #### Rare Characters
 
-Some EVA characters seldom appear in the original interlinear transliteration[{4}](#Note4), end even less frequently in the concordance version used, 
+Some EVA characters seldom appear in the original interlinear transliteration [{4}](#Note4), end even less frequently in the concordance version used, 
 where they appear mostly as single characters, as shown in the table below (which also considers "unreadable" tokens).
 For this reason, I decided to ignore these characters and mark them as "unreadable character" for this analysis.
 
@@ -182,7 +182,7 @@ This leads me to think pedestalled gallows are Voynich characters in their own, 
 
 In addition, the character 'c' appears outside of the pedestal or pedestalled gallows only 7 times ('c', 'oc', 'chcpar', 'ckshy', 'ocfshy', 'cs?t?eey', and 'o?cs');
 similarly, the character 'h' appears outside of the pedestal, the pedestalled gallows or the "plumed" pedestal only 4 times ('theody', 'docfhhy', 'cfhhy', and 'd?ithy').
-This seems a strong indication that EVA 'c' and 'h' do not correspond to Voynich characters[{5}](#Note5)[{6}](#Note6). 
+This seems a strong indication that EVA 'c' and 'h' do not correspond to Voynich characters [{5}](#Note5)[{6}](#Note6). 
 
 
 #### 'e' and 'i'
@@ -293,14 +293,14 @@ attempts at creating a state machine that models word structure lead me to belie
 
 <a id="Note1">**{2}**</a> Class
 [`Slots`](https://github.com/mzattera/v4j/blob/v.8.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/Slots.java)
-has been used to perform this analysis. An Excel with its output can be found in the
+has been used to perform this analysis. An Excel (`Slots.xlsx`) with its output can be found in the
 [analysis folder](https://github.com/mzattera/v4j/tree/master/resources/analysis/slots).
 
 <a id="Note2">**{3}**</a> Class
 [`CountCharsBySlot`](https://github.com/mzattera/v4j/blob/v.8.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/CountCharsBySlot.java)
 has been used to produce this table.
 
-<a id="Note3">**{4}**</a> </a> Class
+<a id="Note3">**{4}**</a> Class
 [`CountRegEx`](https://github.com/mzattera/v4j/blob/v.8.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/CountRegEx.java)
 can be used with regular expression `[^\\.]*[gxvujbz]+[^\\.]*` to find words with rare characters.
 

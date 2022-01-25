@@ -182,10 +182,10 @@ This slot contains the word ending 'y' alone.
 
 **Notes**
 
-<a id="Note1">**{1}**</a> Class [`BuildSlotStateMachine`]() was used to generate the graph,
-that was then visualized using [Gephi](https://gephi.org/); the resulting Gephi workbench (´CharSequence.gephi´) is stored [here]().
+<a id="Note1">**{1}**</a> Class [`BuildSlotStateMachine`](https://github.com/mzattera/v4j/blob/v.8.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/BuildSlotStateMachine.java) was used to generate the graph,
+that was then visualized using [Gephi](https://gephi.org/); the resulting Gephi workbench (`CharSequence.gephi`) is stored [here](https://github.com/mzattera/v4j/tree/master/resources/analysis/slots).
 
-Please notice package [`io.github.mzattera.v4j.util.statemachine`]() provides classes to represent state machines, which are used by `BuildSlotStateMachine`.
+Please notice package [`io.github.mzattera.v4j.util.statemachine`](https://github.com/mzattera/v4j/tree/v.8.0.0/eclipse/io.github.mzattera.v4j/src/main/java/io/github/mzattera/v4j/util/statemachine) provides classes to represent state machines, which are used by `BuildSlotStateMachine`.
 
 <a id="Note2">**{2}**</a> As you can see 
 from the [glyph count by slot](../005/#GliphCountImg), some glyphs appear in less than 1% of the terms, that means they will

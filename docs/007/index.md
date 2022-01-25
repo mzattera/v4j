@@ -1,6 +1,6 @@
 # Note 007 - A Graph View on Word Structure
 
-_Last updated Jan. 16th, 2021._
+_Last updated Jan. 25th, 2021._
 
 _This note refers to [release v.8.0.0](https://github.com/mzattera/v4j/tree/v.8.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
@@ -18,7 +18,7 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 
 **Unless differently noted, this pages uses the Slot alphabet to transliterate Voynich words.**
 
-**To see the pictures properly, right click on them and open them in a different tab.**
+**For a better viewing, it is suggested to right click on the images and open them in a different browser tab.**
 
 
 # Abstract
@@ -31,8 +31,8 @@ In this note, I create and analyze a graph showing connections between character
 I created a graph where nodes are characters in their slots; e.g. "1_o" represent character 'o' in slot number 1. 
 
 After that, I connected node A with node B if there is a regular term in the Voynich where character B follows directly character A;
-the connection is a directed edge with a weight equal the number of terms where the characters are connected.
-For visualization purposes I remove all edges with a weight less than 10 [{2}](#Note2). 
+connections are therefore represented a directed edges with a weight equal to the number of regular terms where the characters are connected.
+For visualization purposes, I removed all edges with a weight less than 10 [{2}](#Note2). 
 
 The resulting graph is shown below and commented further.
 
@@ -65,7 +65,7 @@ Characters in slot 0 behave quite different one another.
 
 ![1_o](images/1_o.PNG)
 
-'y',  optionally preceded by a 'd', connects to gallows in slots 3, pedestals (but NOT with pedestalled gallows) and less strongly with 'd'  in slot 7:
+'y',  optionally preceded by a 'd', connects to gallows in slots 3 or pedestals (but NOT with pedestalled gallows):
 
 ![1_y](images/1_y.PNG)
 
@@ -73,7 +73,7 @@ Characters in slot 0 behave quite different one another.
 
 'l' and 'r' here behave very differently.
 
-'l', eventually preceded by 'o', connects to gallows (both in slot 3), pedestals, 's' or 'd' in slot 7, and 'o' or 'a' in slot 8:
+'l', eventually preceded by 'o', connects to gallows (but NOT with pedestalled gallows), pedestals, 's' or 'd' in slot 7, and 'o' or 'a' in slot 8:
 
 ![2_l](images/2_l.PNG)
 
@@ -83,8 +83,8 @@ Characters in slot 0 behave quite different one another.
 
 ## Slot 3
 
-Gallows in slot 3 behave very similarly; they might be preceded by 'o', 'y', 'l' and are followed by a pedestal, an 'e' sequence, or  'o' and 'a' in slot 8.
-'k' also link to the ending 'y' in slot 11, while 'p' links to 'd' in slot 7; these links are less marked though:
+Gallows in slot 3 behave very similarly; they are followed by a pedestal, an 'e' sequence, or  'o' and 'a' in slot 8.
+'k' also links, more weakly, to the ending 'y' in slot 11.
 
 ![3_gallows](images/3_gallows.PNG)
 
@@ -94,11 +94,11 @@ Pedestals in slot 4 behave in slightly different ways.
 
 As mentioned, they are preceded by same letters, with the exception that 'C' can be preceded by 's', which does not happen with 'S'.
 
-'S' connects to slots 6 ('e' sequences) or 8 ('a' and 'o') in addition to 'd' in slot 7 or final 'y' in slot 11:
+'S' connects to slots 6 ('e' sequences) or 8 ('a' and 'o') in addition to 'd' in slot 7 and final 'y' in slot 11:
 
 ![4_S](images/4_S.PNG)
 
-In addition to the above connections, 'C' connects to pedestalled gallows in slot 5, gallows and 's' in slot 7:
+In addition to the above connections, 'C' connects to pedestalled gallows in slot 5, and 's' in slot 7:
 
 ![4_C](images/4_C.PNG)
 
@@ -106,7 +106,7 @@ In addition to the above connections, 'C' connects to pedestalled gallows in slo
 
 Pedestalled gallows in slot 5 appear relatively seldom, they behaves in the same way.
 
-They might be preceded by 'o' or 'C' and followed by 'e', 'd', 'a' or 'o' in slot 8, or the final 'y' in slot 11:
+They might be preceded by 'o' or 'C' and followed by 'e' (slot 6), 'a' or 'o' (slot 8), or the final 'y' in slot 11:
 
 ![5](images/5.PNG)
 
@@ -114,13 +114,13 @@ They might be preceded by 'o' or 'C' and followed by 'e', 'd', 'a' or 'o' in slo
 
 Sequences of 'e' in slot 6 ('e', 'E', 'B') seem to behave in the same way.
 
-They connect into next slots 7 and 8 or to the word final 'y'.
+They connect into next slots 7 and 8, 'd' in slot 10 or the word final 'y'.
 
 ![6](images/6.PNG)
 
 ## Slot 7 
 
-Characters in slot 7 are followed by 'o' and 'a' in slot 8 or the word ending 'y'. Notice 'd' followed by 'a' or 'y' is very common. 
+Characters in slot 7 are followed by 'o' and 'a' in slot 8 or the word ending 'y'. Notice 'd' followed by 'a' is very common; in addition, 'd' can also be followed by 'l', which does not happen with 's'.
 
 Pedestalled gallows are present in this slot, but they appear very infrequently.
 
@@ -128,17 +128,16 @@ Pedestalled gallows are present in this slot, but they appear very infrequently.
 
 ## Slot 8 
 
-'o' and 'a' in slot 7 seem to act as a "bridge" between the previous slots and slots 9 ('i' sequences) and 10 ('d', 'l', 'm', and 'n');
-where slots before 7 connects to slots 9-10 only through slot 8.
+'o' and 'a' in slot 8 seem to act as a "bridge" between the previous slots and slots 9 ('i' sequences) and 10 ('d', 'l', 'm', and 'n');
+where slots before 8 connects to slots 9-10 only through slot 8 (with the exception of 7_d - 10_l sequence).
 
 The main differences are:
 
-* 'a' has a strong tendency to be preceded by 'd' in slot 7, which almost never happen with 'o', which is mostly preceded by 'C' or 'e'.
+* 'a' has a stronger tendency than 'o' to be preceded by 'd' in slot 7, whilst 'o', is mostly preceded by 'e' sequences.
 
-* 'o' strongly connects to 'd' in slot 10, which 'a' does not.
+* 'a' tends to be followed more often than 'o' by 'i' or 'J'; it also connect to 'n', which 'o' does not.
 
-* 'a' tends to be followed more often than 'o' by 'i' or 'J', while 'o' tends to connect more directly with letters in slot 10 (and less 
-often with the final 'y').
+* 'o' can be followed by the word-ending 'y', 'a' does not; in addition, 'o' connects very strongly with 'd'.
 
 'a' behavior:
 
@@ -164,7 +163,7 @@ Letters in slot 10 are preceded by those in slots 8 and 9.
 
 ![10_d](images/10_d.PNG)
 
-'l', 'r', 'm', 'n' can be preceded by 'o', 'a' (slot 8) or an 'i' sequence (slot 9).
+'l', 'r', 'm', 'n' can be preceded by 'o', 'a' (slot 8) or an 'i' sequence (slot 9); 'l' is the only one that can be preceded by a 'd' in slot 7.
 
 Noticeable difference is that, while 'l' and 'r' can be followed by the word final 'y'...
 
@@ -183,14 +182,14 @@ This slot contains the word ending 'y' alone.
 
 **Notes**
 
-<a id="Note1">**{1}**</a> Class [`io.github.mzattera.v4j.applications.slot.BuildSlotStateMachine`]() was used to generate the graph,
-that was then visualized using [Gephi](https://gephi.org/); the resulting Gephi workbench is stored [here]().
+<a id="Note1">**{1}**</a> Class [`BuildSlotStateMachine`]() was used to generate the graph,
+that was then visualized using [Gephi](https://gephi.org/); the resulting Gephi workbench (´CharSequence.gephi´) is stored [here]().
 
 Please notice package [`io.github.mzattera.v4j.util.statemachine`]() provides classes to represent state machines, which are used by `BuildSlotStateMachine`.
 
-<a id="Note2">**{2}**</a> Please notice that, as you can see 
+<a id="Note2">**{2}**</a> As you can see 
 from the [glyph count by slot](../005/#GliphCountImg), some glyphs appear in less than 1% of the terms, that means they will
-have less than 28 total incoming connection, therefore they might look unconnected in this graph.
+have less than 26 total incoming edges, therefore they might look disconnected in this graph.
 
 
 ---

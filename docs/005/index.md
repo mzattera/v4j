@@ -1,8 +1,8 @@
 # Note 005 - Slots and a New Alphabet
 
-_Last updated Jan. 10th, 2022._
+_Last updated Jan. 25th, 2022._
 
-_This note refers to [release v.6.0.0](https://github.com/mzattera/v4j/tree/v.6.0.0) of v4j;
+_This note refers to [release v.8.0.0](https://github.com/mzattera/v4j/tree/v.8.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
 In addition, some of this note content might have become obsolete in more recent versions of the library._
 
@@ -24,16 +24,17 @@ accordingly to simple rules, which are described below.
 This in turn sheds some lights on the definition of what might constitute a Voynich character (the Voynich alphabet).
 
 Given the nature of this topic, it is impossible to define rules that apply to 100% of cases; after all, syntactical and grammatical exceptions
-exists in any modern text as well. However, I will try to focus on claims that apply to the vast majority of cases. 
+exists in any modern text as well. However, I will try to focus on claims that apply to the vast majority of cases.
+
 
 
 ## Methodology
 
-I start our analysis from a concordance version of the Voynich text (see [Note 001](../001)); this is obtained from the 
+I start my analysis from a concordance version of the Voynich text (see [Note 001](../001)); this is obtained from the 
 Landini-Stolfi Interlinear file by merging available interlinear transcriptions for each transcriber. In the merging, characters that are not
 read by all authors in the same way are marked as unreadable. This to ensure the terms I will extract from the text are the most accurate.
 
-For reasons explained below, any occurrence of the following characters is also marked as unreadable:
+For reasons explained below, any occurrence of the following characters is also marked with an unreadable character:
 
 - 'g', 'x', 'v', 'u', 'j', 'b', 'z' (47 occurrences in total, 13 of them are single-letter words).
 
@@ -55,18 +56,18 @@ as follows:
 
 - each slot can be empty or contain a single glyph. 
 
-- the choice of glyphs that can occupy a slot is very limited and for 8 out of 12 slots it is as low as 2-3 possible glyphs.
+- the choice of glyphs that can occupy a slot is very limited and for 9 out of 12 slots it is as low as 2-3 possible glyphs.
 
 - each glyph can appear only in one or two slots, with exception of 'd' that can appear in three different slots.
 
-The below table which summarizes all of these rules, showing the 12 slots and the glyphs that can occupy them.
+The below table summarizes all of these rules, showing the 12 slots and the glyphs that can occupy them [{1}](#Note1).
 
 ![Slots](images/Slots Table.PNG)
 
 In some cases, the word structure can be ambiguous, since a glyph can occupy any of 2 available slots
 (e.g. the term 'y' can be seen as a 'y' either in slot 1 or slot 11); following some further
-[analysis on word structure](../007), I defined a "preferred" slot for glyphs, which is marked in red
-in the above table. Notice this is a "weak" rule that is quite arbitrary and has no impact on which
+[analysis on word structure](../007), when decomposing a word, I always put each glyph in the rightmost possible position.
+Notice this is a "weak" rule that is quite arbitrary and has no impact on which
 terms can or cannot be described by this model.
 
 To exemplify this concept, I show how some common terms can be decomposed in slots;
@@ -94,21 +95,22 @@ To exemplify this concept, I show how some common terms can be decomposed in slo
 [   ] [   ] [   ] [   ] [ch ] [cth] [   ] [   ] [ o ] [   ] [ r ] [   ] 
 ```
 
-We can then see [{1}](#Note1) that tokens can be classified as follows:
+We can then see [{2}](#Note2) that tokens can be classified as follows:
 
-- 27'743 tokens (88.6% of total), corresponding to 2'820 different terms (55.2% of total), can be decomposed in slots accordingly to the above rules. I will call these tokens "**regular**".
+- 27'114 tokens (86.6% of total), corresponding to 2'617 different terms (51.3% of total), can be decomposed in slots accordingly to the above rules. I will call these tokens "**regular**".
 
-- 2'956 tokens (9.4% of total), corresponding to 1'856 different terms (36.4% of total), can be divided in two parts, each composed by at least two Voynich glyphs, 
+- 3'249 tokens (10.4% of total), corresponding to 1'892 different terms (37.1% of total), can be divided in two parts, each composed by at least two Voynich glyphs, 
 where each of these parts is a regular term. I will call these tokens "**separable**".
 
-  Moreover, we can see that for 1'379 separable terms (74.3% of total separable terms) their constituent parts appear as tokens in the text at least as often as the whole
+  Moreover, we can see that for 2'219 separable terms (75.2% of total separable terms) their constituent parts appear as tokens in the text at least as often as the whole
   separable term. For example, the term 'chockhy' appears 18 times in the text; it is a separable term that can be divided in two parts, each one being a regular term, as
-  'cho' - 'ckhy' which appears in the text 79 and 39 times respectively. I think this is an indication that many separable terms are possibly just two regular words that were written together (or the space between them was not transcribed correctly).
+  'cho' - 'ckhy' which appears in the text 79 and 39 times respectively. I think this is an indication that many separable terms are possibly just two regular words that were written together
+  (or the space between them was not transcribed correctly).
   When I need to distinguish these terms from other separable terms, I will call them "**verified separable**" or simply "**verified**".
 
-- Remaining 618 tokens (2.0% of total), corresponding to 429 different terms (8.4% of total), are marked as "**unstructured**".
+- Remaining 954 tokens (3.0% of total), corresponding to 596 different terms (11.7% of total), are marked as "**unstructured**".
 
-  Notice that 366 out of these 429 terms, or 85.3%, appear only once in the text; this percentage is 60.3% for regular and separable terms considered together.
+  Notice that 489 out of these 596 terms, or 82%, appear only once in the text; this percentage is 59.8% for regular and separable terms considered together.
   This might suggest that unstructured words are either typos or special words that are encoded differently than other words.
 
 - Sometime I contrast regular and separable terms to unstructured ones by calling the former "**structured**".  
@@ -120,16 +122,15 @@ The below tables summarize these findings.
 ![Pie chart with distribution of words accordingly to their classification.](images/Summary Pie.PNG)
 
 In short, almost 9 out of 10 tokens in the Voynich text exhibit a "slot" structure. Of the remaining, a fair amount can be decomposed in two parts each corresponding to regular terms
-appearing elsewhere in the text. The remaining cases (2 out of 100) are mostly words appearing only once in the text.
+appearing elsewhere in the text. The remaining cases (3 out of 100) are mostly words appearing only once in the text.
 
-The below table shows occurrence of glyphs in slots for regular terms [{2}](#Note2).
+The below table shows percentage occurrence of glyphs in slots for regular terms [{3}](#Note3).
 
 <a id="GliphCountImg" />
 ![Table with glyph count by slot.](images/Char Count by Slot.PNG)
 
-As expected, the distribution of glyphs in slots varies based on Currier language and illustration:
+(it is expected the distribution to change based on Currier language and illustration; this is somehting to be further investigated).
 
-![Table with glyph count by slot for BB and HA clusters.](images/Char Count by Slot Clustered.PNG)
 
 
 ## The Voynich Alphabet
@@ -138,8 +139,8 @@ The definition of the Voynich alphabet, that is of which glyphs should be consid
 Each transcriber must continuously decide what symbols in the manuscript constitute instances of the same glyph and how each glyph needs to be mapped into 
 one or more transliteration characters.
 
-However, if we consider the above defined slots as relevant for the structure of terms, we can reasonably assume that each glyph appearing in a slot constitutes a single Voynich character. In other words, if there is an inner structure of the words and only some glyphs can appear in some parts of this structure,
-it is reasonable to assume each glyph is a basic unit of information, that is a character in the Voynich alphabet.
+However, if we consider the above defined slots as relevant for the structure of terms, we can reasonably assume that each glyph appearing in a slot constitutes 
+a basic unit of information, that is a character in the Voynich alphabet.
 As far as I know, this is the first time that a possible Voynich alphabet is supported by empirical evidence of an inner structure of Voynich terms.
 
 Below, I analyze more in detail some relationships between glyphs, as they appear in slots, and EVA characters.
@@ -147,14 +148,14 @@ Below, I analyze more in detail some relationships between glyphs, as they appea
 
 #### Rare Characters
 
-Some EVA characters seldom appear in the original interlinear transliteration[{3}](#Note3), end even less frequently in the concordance version used, 
+Some EVA characters seldom appear in the original interlinear transliteration[{4}](#Note4), end even less frequently in the concordance version used, 
 where they appear mostly as single characters, as shown in the table below (which also considers "unreadable" tokens).
 For this reason, I decided to ignore these characters and mark them as "unreadable character" for this analysis.
 
 ![Statistics about rare characters](images/Rare.PNG)
 
 Notice that through the Voynich there are several glyphs which cannot be directly transliterated into EVA characters (so called "weirdoes"); 
-they are mostly ignored in any analysis of the text.
+they are ignored by most authors in any analysis of the text.
 
 
 #### Gallows and Pedestals
@@ -162,22 +163,26 @@ they are mostly ignored in any analysis of the text.
 Some glyphs (EVA 't', 'k', 'p' and 'f') appear taller than other characters and are traditionally referred to as "gallows".
 The combination 'ch' is instead called "pedestal". Some glyphs (EVA 'cth', 'ckh', 'cph' and 'cfh') appear visually as a 
 overlap of the pedestal with one of the gallows and are therefore called "pedestalled gallows".
-These glyphs appear in slots 3, 4, 5, and 7 and are shown in the below table.
+These glyphs appear in slots 3, 4, and 5 and are shown in the below table.
 
 ![Gallows and Pedestal](images/Gallows.PNG)
 
 It has been hypothesized (e.g. [TILTMAN (1967)](../biblio.md) p.7 point (b.)) that pedestalled gallows might be a "ligature",
 that is a more compact from of writing a combination of the pedestal and a gallows character.
 If we look at slots 3 through 5, we might think that pedestalled gallows can be indeed a combination of a gallows character followed by the pedestal, in this specific order.
-However:
+However, 
 
-- The combination of gallows in slot 3, followed by a pedestal in slot 4 is quite common in the text (2'542 tokens) and written explicitly as two glyphs.
+  - The combination of gallows in slot 3 followed by a pedestal in slot 4 is quite common in the text. 2'185 tokens, or 419 regular terms, that is 16% of regular terms,
+and written explicitly as two glyphs.
  
-- There is never a case where a pedestal appears between 'e', 'ee' or 'eee' in slot 6 and a gallows character in slot 7.
+  - In 332 tokens, we have a pedestal followed by a pedestalled gallows. This would correspond to a double pedestal is in a word (or a separable word), which contrasts with the 
+structure suggested by slots. 
 
 This leads me to think pedestalled gallows are Voynich characters in their own, and not ligatures.
 
-In addition, the character 'c' appears outside of the pedestal or pedestalled gallows only 7 times ('c', 'oc', 'chcpar', 'ckshy', 'ocfshy', 'cs?t?eey', and 'o?cs'); similarly, the character 'h' appears outside of the pedestal, the pedestalled gallows or the "plumed" pedestal only 4 times ('theody', 'docfhhy', 'cfhhy', and 'd?ithy'). This seems a strong indication that EVA 'c' and 'h' do not correspond to Voynich characters[{4}](#Note4)[{5}](#Note5). 
+In addition, the character 'c' appears outside of the pedestal or pedestalled gallows only 7 times ('c', 'oc', 'chcpar', 'ckshy', 'ocfshy', 'cs?t?eey', and 'o?cs');
+similarly, the character 'h' appears outside of the pedestal, the pedestalled gallows or the "plumed" pedestal only 4 times ('theody', 'docfhhy', 'cfhhy', and 'd?ithy').
+This seems a strong indication that EVA 'c' and 'h' do not correspond to Voynich characters[{5}](#Note5)[{6}](#Note6). 
 
 
 #### 'e' and 'i'
@@ -185,21 +190,22 @@ In addition, the character 'c' appears outside of the pedestal or pedestalled ga
 The characters 'e' and 'i' only appear in slots 6 and 9 respectively, in a sequence of 1, 2 or 3. Some transcribers, like Currier, have assumed some of these sequences to be a single Voynich character.
 
 It can be argued that these are indeed repetitions of the same character but, if this is the case, as these sequences
-appear always in same slots, what it is relevant here would be the number of repetitions. In other words, as it 
-happens for Roman numerals the sequence "III" must not be understood as a 3-character word, rather as the number 3.
+appear always in same slots, what it is relevant here would be the number of repetitions. Using an example with 
+Roman numerals, the sequence "III" must not be understood as a 3-character word, rather as the number 3.
 
 In addition, it should be noted that several characters in the Latin script might appear as repetitions of the same
 character, when written by hand; for example "m" looks like "nn", "w" can be read as "uu", but these are single characters.
 
-Based on the above, I assume each sequence of 'e' and 'i' is probably a character in itself (or anyway a single "logical unit", like in Italian where, even if "q" and "u" are distinct letters, "q" appears only in "qu-").
+Based on the above, I assume each sequence of 'e' and 'i' is probably a character in itself
+(or anyway a single "logical unit", like in Italian where, even if "q" and "u" are distinct letters, "q" appears only in "qu-").
 
 
 ## The Slot Alphabet 
 
 Finally, drawing from the above considerations, I propose a new transliteration alphabet, which I will call the **Slot alphabet** for obvious reasons.
 
-I think that, being based on the inner structure of Voynich terms, this alphabet is more suitable than others when performing statistical analysis that relies on characters in words or when attempting to decipher the Voynich,
-where a one-to-one correspondence between the transliteration characters and the Voynich characters is paramount.
+I think that, being based on the inner structure of Voynich terms, this alphabet is more suitable than others when performing statistical analysis that relies on characters in words or when attempting
+to decipher the Voynich, where a one-to-one correspondence between the transliteration characters and the Voynich characters is paramount.
 
 In addition, the alphabet can be easily converted into EVA, and vice-versa, therefore being used interchangeably.
 
@@ -229,17 +235,17 @@ I created a [separate page](../006).
 - Majority of words in the Voynich exhibits an inner structure described here, where terms can be represented as composed by 12 "slots" that can be left empty or 
 populated by a single glyph chosen among a very limited group of glyphs (usually 2-3).
 
-  - 88.6% of tokens (55.2% of terms) exhibit this structure (**regular** terms).
+  - 86.6% of tokens (51.3% of terms) exhibit this structure (**regular** terms).
   
-  - 9.4% of tokens (36.4% of terms) can be divided in two parts, each presenting the inner structure described above (**separable** terms). 
+  - 10.4% of tokens (37.1% of terms) can be divided in two parts, each presenting the inner structure described above (**separable** terms). 
   
-    For 74.3% of separable terms, their two constituents appear in the text more often than the separable term itself (**verified separable** terms).
+    For 68.3% of separable terms, their two constituents appear in the text more often than the separable term itself (**verified separable** terms).
   
     This seems a strong indication that separable terms are made by two regular terms written together.
   
-  - only 2.0% of tokens (8.4% of terms) do not exhibit this structure (**unstructured** terms).
+  - only 3.0% of tokens (11.7% of terms) do not exhibit this structure (**unstructured** terms).
   
-    85.3% of unstructured terms appears only once in the text. In other words, **only 0.8% of tokens (1.2% of terms) are unstructured terms appearing at least twice in the text**.
+    82% of unstructured terms appears only once in the text. In other words, **only 1.5% of tokens (2.1% of terms) are unstructured terms appearing at least twice in the text**.
 	
 	I argue that these can be typos or plain text words encoded in a different way than the majority of the text (e.g. because they represent proper names or uncommon words).
 	
@@ -282,24 +288,27 @@ character entropy seem not to be based on solid ground.
 
 **Notes**
 
-<a id="Note1">**{1}**</a> Class
-[`Slots`](https://github.com/mzattera/v4j/blob/v.6.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/Slots.java)
+<a id="Note1">**{1}**</a> I have removed gallows and pedestalled gallows from slot 7, where they additionally appeared in earlier versions of this working note. This because my subsequent
+attempts at creating a state machine that models word structure lead me to believe this was a more correct and concise description.
+
+<a id="Note1">**{2}**</a> Class
+[`Slots`](https://github.com/mzattera/v4j/blob/v.8.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/Slots.java)
 has been used to perform this analysis. An Excel with its output can be found in the
 [analysis folder](https://github.com/mzattera/v4j/tree/master/resources/analysis/slots).
 
-<a id="Note2">**{2}**</a> Class
-[`CountCharsBySlot`](https://github.com/mzattera/v4j/blob/v.6.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/CountCharsBySlot.java)
+<a id="Note2">**{3}**</a> Class
+[`CountCharsBySlot`](https://github.com/mzattera/v4j/blob/v.8.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/CountCharsBySlot.java)
 has been used to produce this table.
 
-<a id="Note3">**{3}**</a> </a> Class
-[`CountRegEx`](https://github.com/mzattera/v4j/blob/v.6.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/CountRegEx.java)
+<a id="Note3">**{4}**</a> </a> Class
+[`CountRegEx`](https://github.com/mzattera/v4j/blob/v.8.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/CountRegEx.java)
 can be used with regular expression `[^\\.]*[gxvujbz]+[^\\.]*` to find words with rare characters.
 
-<a id="Note4">**{4}**</a> Class
-[`FindStrangeCH`](https://github.com/mzattera/v4j/blob/v.6.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/FindStrangeCH.java)
+<a id="Note4">**{5}**</a> Class
+[`FindStrangeCH`](https://github.com/mzattera/v4j/blob/v.8.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/FindStrangeCH.java)
 can be used to list words with these "strange" occurrences of 'c' and 'h'.
 
-<a id="Note5">**{5}**</a> Stolfi came to the same conclusion when defining his [grammar for Voynichese words](https://www.ic.unicamp.br/~stolfi/EXPORT/projects/voynich/00-06-07-word-grammar/txt.n.html).
+<a id="Note5">**{6}**</a> Stolfi came to the same conclusion when defining his [grammar for Voynichese words](https://www.ic.unicamp.br/~stolfi/EXPORT/projects/voynich/00-06-07-word-grammar/txt.n.html).
 
 
 ---

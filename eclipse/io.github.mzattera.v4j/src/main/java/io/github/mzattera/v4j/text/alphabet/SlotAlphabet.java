@@ -175,14 +175,14 @@ public class SlotAlphabet extends IvtffAlphabet {
 		p = new ArrayList<String>();
 		p.add("s");
 		p.add("d");
-		p.add("K");
-		p.add("k");
-		p.add("T");
-		p.add("t");
-		p.add("P");
-		p.add("p");
-		p.add("F");
-		p.add("f");
+//		p.add("K");
+//		p.add("k");
+//		p.add("T");
+//		p.add("t");
+//		p.add("P");
+//		p.add("p");
+//		p.add("F");
+//		p.add("f");
 		// p.add("x");
 		SLOTS.add(p);
 

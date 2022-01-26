@@ -125,7 +125,9 @@ Nodes are named after the letter they represent (as explained in [Note 007](../0
 ![State Machine](images/Graph.PNG)
 
 
-# Comparison with other works - Classifiers [`5]
+# Comparison with other works - Classifiers 
+
+See [^5].
 
 | Model 	| Generated terms 	| True Positives 	| Generated Tokens 	| Precision 	| Recall 	| F-Score |
 | :--- 	| ---: 	| ---: 	| ---: 	| ---: 	| ---: 	| ---: |
@@ -152,7 +154,7 @@ Nodes are named after the letter they represent (as explained in [Note 007](../0
 **Notes**
 
 <a id="Note1">**{1}**</a> Class [`BuildSlotStateMachine`](https://github.com/mzattera/v4j/blob/v.9.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/BuildSlotStateMachine.java) was used for
-this purpose. It provides means to generte and evaluate state machines and output thm indifferent formats, includign a grammar and Java code.
+this purpose. It provides means to generate and evaluate state machines and output thm indifferent formats, including a grammar and Java code.
 
 <a id="Note2">**{2}**</a> In this case, best result were obtained by setting minimum weight for edges to 5.
 

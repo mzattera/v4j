@@ -125,7 +125,7 @@ Nodes are named after the letter they represent (as explained in [Note 007](../0
 ![State Machine](images/Graph.PNG)
 
 
-# Comparison with other works - Classifiers
+# Comparison with other works - Classifiers [`5]
 
 | Model 	| Generated terms 	| True Positives 	| Generated Tokens 	| Precision 	| Recall 	| F-Score |
 | :--- 	| ---: 	| ---: 	| ---: 	| ---: 	| ---: 	| ---: |
@@ -145,6 +145,7 @@ Nodes are named after the letter they represent (as explained in [Note 007](../0
 
 
 
+[^5]: Class ... has been used for this.
 	
 ---
 

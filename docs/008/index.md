@@ -55,7 +55,8 @@ Of course, this list does not match exactly the list of terms in the Voynich 8th
 
 ```
 <BEGIN>:
-	 -> 0_d, 0_q, 0_s, 1_o, 1_y, 2_l, 2_r, 3_t|3_p|3_k|3_f, 4_C, 4_S, 5_T|5_P|5_K|5_F, 6_e|6_E|6_B, 7_d, 8_a, 8_o
+	 -> 0_d, 0_q, 0_s, 1_o, 1_y, 2_l, 2_r, 3_t|3_p|3_k|3_f,
+	    4_C, 4_S, 5_T|5_P|5_K|5_F, 6_e|6_E|6_B, 7_d, 8_a, 8_o
 
 0_q:
 	q -> 1_o, 8_o
@@ -83,7 +84,7 @@ Of course, this list does not match exactly the list of terms in the Voynich 8th
 	sh -> 6_e|6_E|6_B,           8_o, 10_d
 	
 5_T|5_P|5_K|5_F:
-	cfh, ckh, cph, cth -> 10_d, 6_e|6_E|6_B, 8_a, 8_o
+	cfh, ckh, cph, cth -> 6_e|6_E|6_B, 8_a, 8_o, 10_d
 
 6_e|6_E|6_B:
 	e, ee, eee -> 7_s, 8_o, 10_d, 11_y, <END>
@@ -126,6 +127,16 @@ Nodes are named after the letter they represent (as explained in [Note 007](../0
 
 # Comparison with other works - Classifiers
 
+| Model 	| Generated terms 	| True Positives 	| Generated Tokens 	| Precision 	| Recall 	| F-Score |
+| :--- 	| ---: 	| ---: 	| ---: 	| ---: 	| ---: 	| ---: |
+| BEST 	| 3,221	| 1,194	| 67.856%	| 0.371	| 0.232	| 0.286 |
+| ROE 	| 84	| 83	| 11.506%	| 0.988	| 0.016	| 0.032 |
+| NEAL_1 	| 174,818	| 1,782	| 66.013%	| 0.010	| 0.347	| 0.020 |
+| NEAL_2 	| 1,311,345	| 1,049	| 45.248%	| 0.001	| 0.204	| 0.002 |
+| VOGT 	| 3,331	| 202	| 20.333%	| 0.061	| 0.090	| 0.073 |
+| VOGT 	| 3,806	| 261	| 20.810%	| 0.069	| 0.051	| 0.058 |
+| CMC 	| 143,124,560,075,240,080,000	| 4,527	| 97.813%	| 0.000	| 0.881	| 0.000 |
+| SLOT 	| 4,643,467	| 2,617	| 86.447%	| 0.001	| 0.509	| 0.001 |
 
 # Considerations
 

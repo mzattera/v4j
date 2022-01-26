@@ -51,7 +51,7 @@ public final class WordModelEvaluator {
 	static {
 		INTEGER_F.setGroupingUsed(true);
 	}
-	private static NumberFormat DECIMAL_F = new DecimalFormat("#0.0000000");
+	private static NumberFormat DECIMAL_F = new DecimalFormat("#0.000");
 
 	public static void main(String[] args) throws Exception {
 
@@ -74,28 +74,21 @@ public final class WordModelEvaluator {
 
 		System.out.println("Total Voynich Terms: " + INTEGER_F.format(voynichTokens.size()));
 		System.out.println();
+		System.out.println("| Model \t| Generated terms \t| True Positives \t| Generated Tokens \t| Precision \t| Recall \t| F-Score |");
+		System.out.println("| :--- \t| ---: \t| ---: \t| ---: \t| ---: \t| ---: \t| ---: |");
 
 		evaluateBestSlotMachine(voynichTokens);
-
-		System.out.println();
-
 		evaluateRoe(voynichTokens);
 		evaluateNeal1(voynichTokens);
 		evaluateNeal2(voynichTokens);
 		evaluateVogt(stars.getWords(true));
 		evaluateVogt(voynichTokens);
 		evaluateCmc(voynichTokens);
-		System.out.println();
-
 		evaluateSlots(voynichTokens);
+//		evaluateSlotMachineOld(voynichTokens);
+//		evaluateSlotMachines(voynichTokens);
 
 		System.out.println();
-
-		evaluateSlotMachineOld(voynichTokens);
-
-		System.out.println();
-
-		evaluateSlotMachines(voynichTokens);
 	}
 
 	/**
@@ -563,11 +556,11 @@ public final class WordModelEvaluator {
 	public static void evaluate(String modelId, double voyTermsCount, double generatedCount, double truePositiveCount,
 			double voyTokensCount, double tokenCount) {
 
-		System.out.print("Model: " + modelId + "\tTerms: " + INTEGER_F.format(voyTermsCount) + "\t Generated: "
+		System.out.print("| " + modelId + " \t| " 
 				+ INTEGER_F.format(generatedCount));
 
-		System.out.print("\tTP: " + INTEGER_F.format(truePositiveCount));
-		System.out.print("\t% Tokens: " + DECIMAL_F.format(tokenCount / voyTokensCount * 100) + "%");
+		System.out.print("\t| " + INTEGER_F.format(truePositiveCount));
+		System.out.print("\t| " + DECIMAL_F.format(tokenCount / voyTokensCount * 100) + "%");
 
 		// Precision: % of positives were correct = TP / (TP+FP) ->
 		// (# generated terms in Voynich) / (total generated terms)
@@ -584,9 +577,9 @@ public final class WordModelEvaluator {
 		double f1 = 2 * precision * recall / (precision + recall);
 
 		// Print results
-		System.out.print("\tPrecision: " + DECIMAL_F.format(precision));
-		System.out.print("\tRecall   : " + DECIMAL_F.format(recall));
-		System.out.println("\tF-score  : " + DECIMAL_F.format(f1));
+		System.out.print("\t| " + DECIMAL_F.format(precision));
+		System.out.print("\t| " + DECIMAL_F.format(recall));
+		System.out.println("\t| " + DECIMAL_F.format(f1) + " |");
 	}
 
 	private final static String[] ABNORMAL_WORDS_ARRAY = { "a", "acfhy", "ackhy", "acpheey", "acphy", "acthedy",

@@ -20,6 +20,7 @@ import io.github.mzattera.v4j.text.alphabet.SlotAlphabet.TermDecomposition;
 import io.github.mzattera.v4j.text.ivtff.IvtffPage;
 import io.github.mzattera.v4j.text.ivtff.IvtffText;
 import io.github.mzattera.v4j.text.ivtff.PageFilter;
+import io.github.mzattera.v4j.text.ivtff.ParseException;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory.Transcription;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory.TranscriptionType;
@@ -37,14 +38,17 @@ import io.github.mzattera.v4j.util.statemachine.StateMachine.TrainMode;
  */
 public class BuildSlotStateMachine {
 
+	// Folder where created wirtual machines will be stored
+	private static final String OUT_FOLDER = "D:\\";
+
+	// Minimum weight for an edge before being discarded when building the SM
+	private static final int MIN_WEIGTH = 5;
+
 	/** Name of begin state. */
 	private static final String INITIAL_STATE = "<BEGIN>";
 
 	/** Name of end state. */
 	public static final String END_STATE = "<END>";
-
-	// Minimum weight for an edge before being discarded when building the SM
-	private static final int MIN_WEIGTH = 10;
 
 	// Cluster to limit modeling to....or null.
 	private static final String CLUSTER = null;
@@ -73,35 +77,103 @@ public class BuildSlotStateMachine {
 			if (FILTER != null)
 				voynich = voynich.filterPages(FILTER);
 
-			Counter<String> voynichTokens = voynich.getWords(true);
-			Set<String> voynichTerms = voynichTokens.itemSet();
-			String name = "SM_" + ((CLUSTER == null) ? "" : CLUSTER + "_") + MIN_WEIGTH;
+			process(voynich, OUT_FOLDER, MIN_WEIGTH);
 
-			// Notice at each state, weights of the state machine will reflect how many
-			// TERMS are generated through a given edge.
-
-			StateMachine m = BuildSlotStateMachine.process(voynichTerms, MIN_WEIGTH);
-			m.write("D:\\", name + "_RAW");
-			WordModelEvaluator.evaluate(name + "_RAW", voynichTokens, m.emit().itemSet());
-
-			m.train(voynichTerms, TrainMode.F1);
-			m.write("D:\\", name + "_TRN");
-			WordModelEvaluator.evaluate(name + "_TRAIN", voynichTokens, m.emit().itemSet());
-
-			merge(m, voynichTerms);
-			m.train(voynichTerms, TrainMode.F1);
-			m.write("D:\\", name + "_MRG");
-			WordModelEvaluator.evaluate(name + "_MERGE", voynichTokens, m.emit().itemSet());
-
-			m.updateWeights(voynichTokens);
-			m.write("D:\\", name + "_TKN");
-
-			System.out.println("\n\n\n" + m.toJava());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			System.out.println("\nCompleted.");
 		}
+	}
+
+	/**
+	 * Peturns a state machine that models given document vocabulary.
+	 * 
+	 * @param doc       The document to model (must use slot alphabet).
+	 * @param outFolder Output folder where to put the state machine being created
+	 *                  at different stages.
+	 * @param minWeigth Each edge that has weight below this (that is it does not
+	 *                  generate this number of terms in the initial setup) will be
+	 *                  discarded.
+	 * 
+	 * @return best version of the state machine (kinda).
+	 * 
+	 * @throws IOException
+	 * @throws ParseException
+	 */
+	public static StateMachine process(IvtffText doc, String outFolder, int minWeigth)
+			throws IOException, ParseException {
+
+		if (!doc.getAlphabet().equals(Alphabet.SLOT))
+			throw new IllegalArgumentException();
+
+		return process(doc.getWords(true), outFolder, minWeigth, true);
+	}
+
+	/**
+	 * Returns a state machine that models given set of tokens.
+	 * 
+	 * @param voynichTokens Words to model (must use slot alphabet).
+	 * @param outFolder     Output folder where to put the state machine being
+	 *                      created at its different stages. If this is null,
+	 *                      nothing will be written.
+	 * @param minWeigth     Each edge that has weight below this (that is it does
+	 *                      not generate this number of terms in the initial setup)
+	 *                      will be discarded.
+	 * @param evaluate      If true, will evaluate generated machine at all its
+	 *                      intermediate state.
+	 * 
+	 * @return best version of the state machine (kinda).
+	 * 
+	 * @throws IOException
+	 * @throws ParseException
+	 */
+	public static StateMachine process(Counter<String> voynichTokens, String outFolder, int minWeigth, boolean evaluate)
+			throws IOException, ParseException {
+
+		Set<String> voynichTerms = voynichTokens.itemSet();
+		String name = "SM_" + minWeigth;
+
+		// Notice at each state, weights of the state machine will reflect how many
+		// TERMS are generated through a given edge.
+
+		StateMachine m = BuildSlotStateMachine.build(voynichTerms, minWeigth);
+		if (outFolder != null)
+			m.write(outFolder, name + "_RAW");
+		if (evaluate)
+			WordModelEvaluator.evaluate(name + "_RAW", voynichTokens, m.emit().itemSet());
+
+		m.train(voynichTerms, TrainMode.F1);
+		if (outFolder != null)
+			m.write(outFolder, name + "_TRAINED");
+		if (evaluate)
+			WordModelEvaluator.evaluate(name + "_TRAIN", voynichTokens, m.emit().itemSet());
+
+		merge(m, voynichTerms);
+		m.train(voynichTerms, TrainMode.F1);
+		if (outFolder != null)
+			m.write(outFolder, name + "_MERGED");
+		if (evaluate)
+			WordModelEvaluator.evaluate(name + "_MERGE", voynichTokens, m.emit().itemSet());
+
+		m.trim(minWeigth);
+		if (outFolder != null)
+			m.write(outFolder, name + "_TRIMMED");
+		if (evaluate)
+			WordModelEvaluator.evaluate(name + "_TRIMMED", voynichTokens, m.emit().itemSet());
+
+		m.updateWeights(voynichTokens);
+		if (outFolder != null)
+			m.write(outFolder, name + "_TOKENS");
+
+		if (outFolder != null) {
+			System.out.println("\n\n");
+			System.out.println(m.toJava());
+			System.out.println("\n\n");
+			System.out.println(m.toGrammar());
+		}
+
+		return m;
 	}
 
 	/**
@@ -115,8 +187,8 @@ public class BuildSlotStateMachine {
 	 * 
 	 * @throws IOException
 	 */
-	public static StateMachine process(IvtffText doc, int minWeight) throws IOException {
-		return process(doc.getWords(true).itemSet(), minWeight);
+	public static StateMachine build(IvtffText doc, int minWeight) throws IOException {
+		return build(doc.getWords(true).itemSet(), minWeight);
 	}
 
 	/**
@@ -138,7 +210,7 @@ public class BuildSlotStateMachine {
 	 * 
 	 * @throws IOException
 	 */
-	public static StateMachine process(Set<String> terms, int minWeight) throws IOException {
+	public static StateMachine build(Set<String> terms, int minWeight) throws IOException {
 
 		// All terms, with their classification
 		Map<String, TermDecomposition> classifiedTerms = SlotAlphabet.decompose(terms);
@@ -275,25 +347,25 @@ public class BuildSlotStateMachine {
 		r = merge(r, m.getState("6_E"));
 		r = merge(r, m.getState("6_B"));
 
-		r = m.getState("7_t");
-		r = merge(r, m.getState("7_p"));
-		r = merge(r, m.getState("7_k"));
-		r = merge(r, m.getState("7_f"));
-
-		r = m.getState("7_T");
-		r = merge(r, m.getState("7_P"));
-		r = merge(r, m.getState("7_K"));
-		r = merge(r, m.getState("7_F"));
+//		r = m.getState("7_t");
+//		r = merge(r, m.getState("7_p"));
+//		r = merge(r, m.getState("7_k"));
+//		r = merge(r, m.getState("7_f"));
+//
+//		r = m.getState("7_T");
+//		r = merge(r, m.getState("7_P"));
+//		r = merge(r, m.getState("7_K"));
+//		r = merge(r, m.getState("7_F"));
 
 		r = m.getState("9_i");
 		r = merge(r, m.getState("9_J"));
 		r = merge(r, m.getState("9_U"));
 
-		r = m.getState("10_l");
-		r = merge(r, m.getState("10_r"));
-
-		r = m.getState("10_m");
-		r = merge(r, m.getState("10_n"));
+//		r = m.getState("10_l");
+//		r = merge(r, m.getState("10_r"));
+//
+//		r = m.getState("10_m");
+//		r = merge(r, m.getState("10_n"));
 
 		// Weights must be recomputed
 		m.updateWeights(terms);

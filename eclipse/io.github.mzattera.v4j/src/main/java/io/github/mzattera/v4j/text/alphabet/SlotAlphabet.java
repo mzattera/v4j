@@ -3,13 +3,17 @@ package io.github.mzattera.v4j.text.alphabet;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import io.github.mzattera.v4j.text.ivtff.IvtffLine;
 import io.github.mzattera.v4j.text.ivtff.ParseException;
+import io.github.mzattera.v4j.util.Counter;
 
 /**
  * "Slot" alphabet based on "slot" theory.
@@ -276,29 +280,29 @@ public class SlotAlphabet extends IvtffAlphabet {
 	 *         some metadata are removed.
 	 */
 	public static String fromEva(String txt) throws ParseException {
-
+	
 		// TODO write test
-
+	
 		// Mark plant intrusion and end of paragraph for later
 		txt = txt.replace("<->", "-");
 		txt = txt.replace("<$>", "$");
-
+	
 		// Remove comments as they might interfere with replacement
 		txt = IvtffLine.removeComments(txt);
-
+	
 		// These might impact how unreadable characters are handled
 		txt = txt.replace("!", ""); // "null" char in interlinear
 		txt = txt.replace("%", Alphabet.SLOT.getUnreadableAsString());
-
+	
 		// When transliterating we use 0 to denote an EVA character that transliterates
 		// into a dubious Slot character; this happen because multiple EVA transliterate
 		// into a single Slot.
-
+	
 		txt = txt.replace("ckh", "K");
 		txt = txt.replace("cfh", "F");
 		txt = txt.replace("cth", "T");
 		txt = txt.replace("cph", "P");
-
+	
 		// kh and ck are not single chars in SLOT.
 		// We replace with ??? so we can revert back to EVA and be aligned
 		txt = txt.replace("?kh", "?00");
@@ -310,27 +314,27 @@ public class SlotAlphabet extends IvtffAlphabet {
 		txt = txt.replace("cf?", "00?");
 		txt = txt.replace("ct?", "00?");
 		txt = txt.replace("cp?", "00?");
-
+	
 		// These might be K or ?k?
 		txt = txt.replace("?k?", "?0?");
 		txt = txt.replace("?f?", "?0?");
 		txt = txt.replace("?t?", "?0?");
 		txt = txt.replace("?p?", "?0?");
-
+	
 		txt = txt.replace("ch", "C");
 		txt = txt.replace("sh", "S");
-
+	
 		// These might be S or s?
 		txt = txt.replace("s?", "0?");
-
+	
 		txt = txt.replace("c", "0");
 		txt = txt.replace("h", "0");
-
+	
 		txt = txt.replace("eee", "B");
 		// Can be B or E?
 		txt = txt.replace("?ee", "?00");
 		txt = txt.replace("ee?", "00?");
-
+	
 		txt = txt.replace("ee", "E");
 		// Can be B or E? or e??
 		txt = txt.replace("e??", "0??");
@@ -339,12 +343,12 @@ public class SlotAlphabet extends IvtffAlphabet {
 		txt = txt.replace("e?e", "0?0");
 		txt = txt.replace("?e", "?0");
 		txt = txt.replace("e?", "0?");
-
+	
 		txt = txt.replace("iii", "U");
 		// Can be U or J?
 		txt = txt.replace("?ii", "?00");
 		txt = txt.replace("ii?", "00?");
-
+	
 		txt = txt.replace("ii", "J");
 		// Can be U or J? or i??
 		txt = txt.replace("i??", "0??");
@@ -353,7 +357,7 @@ public class SlotAlphabet extends IvtffAlphabet {
 		txt = txt.replace("i?i", "0?0");
 		txt = txt.replace("?i", "?0");
 		txt = txt.replace("i?", "0?");
-
+	
 		txt = txt.replace("g", "?");
 		txt = txt.replace("v", "?");
 		txt = txt.replace("x", "?");
@@ -362,12 +366,40 @@ public class SlotAlphabet extends IvtffAlphabet {
 		txt = txt.replace("b", "?");
 		txt = txt.replace("z", "?");
 		txt = txt.replace("'", "?");
-
+	
 		txt = txt.replace("0", "?");
 		txt = txt.replace("$", "<$>");
 		txt = txt.replace("-", "<->");
-
+	
 		return txt;
+	}
+
+	/**
+	 * Convert a set of EVA words into Slot; those that will become unreadable will
+	 * be removed.
+	 */
+	public static Set<String> fromEva(Set<String> evaTerms) throws ParseException {
+		Set<String> slotTerms = new HashSet<>(evaTerms.size());
+		for (String eva : evaTerms) {
+			String slot = fromEva(eva);
+			if (!Alphabet.SLOT.isUreadable(slot))
+				slotTerms.add(slot);
+		}
+		return slotTerms;
+	}
+
+	/**
+	 * Convert EVA words in a Counter into a Counted with their corresponding Slot
+	 * version; those words that will become unreadable will not be counted.
+	 */
+	public static Counter<String> fromEva(Counter<String> evaTerms) throws ParseException {
+		Counter<String> slotTerms = new Counter<>();
+		for (Entry<String, Integer> e : evaTerms.entrySet()) {
+			String slot = fromEva(e.getKey());
+			if (!Alphabet.SLOT.isUreadable(slot))
+				slotTerms.count(slot, e.getValue());
+		}
+		return slotTerms;
 	}
 
 	/**
@@ -414,6 +446,30 @@ public class SlotAlphabet extends IvtffAlphabet {
 		txt = txt.replace("-", "<->");
 
 		return txt;
+	}
+
+	/**
+	 * Convert a set of Slot words into EVA.
+	 */
+	public static Set<String> toEva(Set<String> slotTerms) throws ParseException {
+		Set<String> evaTerms = new HashSet<>(slotTerms.size());
+		for (String slot : slotTerms) {
+			evaTerms.add(toEva(slot));
+		}
+		return evaTerms;
+	}
+
+	/**
+	 * Convert Slot words in a Counter into a Counter with their corresponding EVA
+	 * version.
+	 */
+	public static Counter<String> toEva(Counter<String> slotTerms) throws ParseException {
+		Counter<String> evaTerms = new Counter<>();
+		for (Entry<String, Integer> e : slotTerms.entrySet()) {
+			String eva = toEva(e.getKey());
+			evaTerms.count(eva, e.getValue());
+		}
+		return evaTerms;
 	}
 
 	/**

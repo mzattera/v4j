@@ -1,0 +1,27 @@
+Transcription     : AUGMENTED
+Transcription Type: CONCORDANCE
+Filter            : None
+
+Total Voynich Terms: 5,141
+
+Model: BEST		Terms: 5,141	 Generated: 3,221	TP: 1,194	% Tokens: 67.8558903%	Precision: 0.3706923	Recall   : 0.2322505	F-score  : 0.2855776
+
+Model: ROE		Terms: 5,141	 Generated: 84		TP: 83		% Tokens: 11.5064562%	Precision: 0.9880952	Recall   : 0.0161447	F-score  : 0.0317703
+Model: NEAL_1	Terms: 5,141	 Generated: 174,818	TP: 1,782	% Tokens: 66.0130719%	Precision: 0.0101935	Recall   : 0.3466252	F-score  : 0.0198045
+Model: NEAL_2	Terms: 5,141	 Generated: 1,311,.	TP: 1,049	% Tokens: 45.2478878%	Precision: 0.0007999	Recall   : 0.2040459	F-score  : 0.0015936
+Model: VOGT		Terms: 2,237	 Generated: 3,331	TP: 202		% Tokens: 20.3334825%	Precision: 0.0606424	Recall   : 0.0902995	F-score  : 0.0725575
+Model: VOGT		Terms: 5,141	 Generated: 3,806	TP: 261		% Tokens: 20.8098199%	Precision: 0.0685759	Recall   : 0.0507683	F-score  : 0.0583436
+Model: CMC		Terms: 5,141	 Generated: 143,.	TP: 4,527	% Tokens: 97.8128487%	Precision: 0.0000000	Recall   : 0.8805680	F-score  : 0.0000000
+
+Model: SLOT		Terms: 5,141	 Generated: 4,...	TP: 2,617	% Tokens: 86.4466762%	Precision: 0.0005636	Recall   : 0.5090449	F-score  : 0.0011259
+
+Model: SMOLD	Terms: 5,141	 Generated: 42,351	TP: 1,810	% Tokens: 71.7934003%	Precision: 0.0427381	Recall   : 0.3520716	F-score  : 0.0762234
+Model: SMOLDTRN	Terms: 5,141	 Generated: 2,572	TP: 731		% Tokens: 40.5579468%	Precision: 0.2842146	Recall   : 0.1421902	F-score  : 0.1895501
+	
+Model: SM_0		Terms: 5,141	 Generated: 3,503	TP: 1,177	% Tokens: 59.6237845%	Precision: 0.3359977	Recall   : 0.2289438	F-score  : 0.2723276
+Model: SM_5		Terms: 5,141	 Generated: 3,221	TP: 1,194	% Tokens: 67.8558903%	Precision: 0.3706923	Recall   : 0.2322505	F-score  : 0.2855776
+Model: SM_10	Terms: 5,141	 Generated: 3,110	TP: 1,113	% Tokens: 62.0404910%	Precision: 0.3578778	Recall   : 0.2164948	F-score  : 0.2697855
+Model: SM_15	Terms: 5,141	 Generated: 2,497	TP: 930		% Tokens: 46.4466762%	Precision: 0.3724469	Recall   : 0.1808987	F-score  : 0.2435192
+Model: SM_20	Terms: 5,141	 Generated: 3,020	TP: 1,018	% Tokens: 47.4414156%	Precision: 0.3370861	Recall   : 0.1980160	F-score  : 0.2494792
+Model: SM_25	Terms: 5,141	 Generated: 2,276	TP: 926		% Tokens: 44.9736968%	Precision: 0.4068541	Recall   : 0.1801206	F-score  : 0.2496966
+Model: SM_30	Terms: 5,141	 Generated: 2,106	TP: 777		% Tokens: 40.1849195%	Precision: 0.3689459	Recall   : 0.1511379	F-score  : 0.2144336

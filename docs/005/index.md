@@ -178,6 +178,8 @@ and written explicitly as two glyphs.
   - In 332 tokens, we have a pedestal followed by a pedestalled gallows. This would correspond to a double pedestal is in a word (or a separable word), which contrasts with the 
 structure suggested by slots. 
 
+  - Gallows ans pedestalled gallows are proceeded by different characters (see [Note 007](../007)).
+
 This leads me to think pedestalled gallows are Voynich characters in their own, and not ligatures.
 
 In addition, the character 'c' appears outside of the pedestal or pedestalled gallows only 7 times ('c', 'oc', 'chcpar', 'ckshy', 'ocfshy', 'cs?t?eey', and 'o?cs');

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.HashSet;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.mzattera.v4j.text.ElementFilter;
@@ -76,6 +75,10 @@ public final class WordModelEvaluator {
 		System.out.println("Total Voynich Terms: " + INTEGER_F.format(voynichTokens.size()));
 		System.out.println();
 
+		evaluateBestSlotMachine(voynichTokens);
+
+		System.out.println();
+
 		evaluateRoe(voynichTokens);
 		evaluateNeal1(voynichTokens);
 		evaluateNeal2(voynichTokens);
@@ -84,7 +87,7 @@ public final class WordModelEvaluator {
 		evaluateCmc(voynichTokens);
 		System.out.println();
 
-		 evaluateSlots(voynichTokens);
+		evaluateSlots(voynichTokens);
 
 		System.out.println();
 
@@ -369,81 +372,77 @@ public final class WordModelEvaluator {
 	 */
 	private static void evaluateSlotMachines(Counter<String> voynichTokens) throws ParseException, IOException {
 
-		Set<String> slotTerms = toSlot(voynichTokens.itemSet());
-		StateMachine s5 = null;
+		Counter<String> slotTerms = SlotAlphabet.fromEva(voynichTokens);
 
 		for (int i = 0; i <= 30; i += 5) {
 			String name = "SM_" + i;
-
-			StateMachine m = BuildSlotStateMachine.process(slotTerms, i);
-			evaluate(name + "_RAW", voynichTokens, toEva(m.emit().itemSet()));
-
-			m.train(slotTerms, TrainMode.F1);
-			evaluate(name + "_TRAIN", voynichTokens, toEva(m.emit().itemSet()));
-
-			BuildSlotStateMachine.merge(m, slotTerms);
-			m.train(slotTerms, TrainMode.F1);
-			evaluate(name + "_MERGE", voynichTokens, toEva(m.emit().itemSet()));
-
-			if (i == 5)
-				s5 = m;
+			evaluate(name, voynichTokens,
+					SlotAlphabet.toEva(BuildSlotStateMachine.process(slotTerms, null, i, false).emit().itemSet()));
 		}
-
-		if (s5 != null)
-			evaluateBestSlotMachine(voynichTokens, s5);
 	}
 
 	/**
-	 * Convert a set of EVA words into Slot; those that will become unreadable will
-	 * be removed.
-	 */
-	private static Set<String> toSlot(Set<String> evaTerms) throws ParseException {
-		Set<String> slotTerms = new HashSet<>(evaTerms.size());
-		for (String eva : evaTerms) {
-			String slot = SlotAlphabet.fromEva(eva);
-			if (!Alphabet.SLOT.isUreadable(slot))
-				slotTerms.add(slot);
-		}
-		return slotTerms;
-	}
-
-	/**
-	 * Convert a set of EVA words into Slot; those that will become unreadable will
-	 * be removed.
-	 */
-	private static Counter<String> toSlot(Counter<String> evaTerms) throws ParseException {
-		Counter<String> slotTerms = new Counter<>();
-		for (Entry<String, Integer> e : evaTerms.entrySet()) {
-			String slot = SlotAlphabet.fromEva(e.getKey());
-			if (!Alphabet.SLOT.isUreadable(slot))
-				slotTerms.count(slot, e.getValue());
-		}
-		return slotTerms;
-	}
-
-	/**
-	 * Convert a set of Slot words into EVA.
-	 */
-	private static Set<String> toEva(Set<String> slotTerms) throws ParseException {
-		Set<String> evaTerms = new HashSet<>(slotTerms.size());
-		for (String slot : slotTerms) {
-			evaTerms.add(SlotAlphabet.toEva(slot));
-		}
-		return evaTerms;
-	}
-
-	/**
-	 * Evaluate Slots state machine model. This is The best auto-generated model
-	 * (MIN_WEIGHT=5 merged & trained) with some minor manual tweaks.
+	 * Evaluate best Slots state machine model we have so far (automatically
+	 * generated with BuildSlotSttteMachine and MIN_WEIGHT=5 .
 	 * 
 	 * @param voynichTokens List of Voynich terms (EVA).
-	 * @throws ParseException
 	 */
-	private static void evaluateBestSlotMachine(Counter<String> voynichTokens, StateMachine m) throws ParseException {
-		System.out.println();
-		m.updateWeights(toSlot(voynichTokens));
-		m.trim(20);
-		evaluate("*BEST*", voynichTokens, toEva(m.emit().itemSet()));
+	private static void evaluateBestSlotMachine(Counter<String> voynichTokens) throws ParseException {
+
+		StateMachine m = new StateMachine();
+		m.addState("10_r", new String[] { "r" }, false);
+		m.addState("4_S", new String[] { "S" }, false);
+		m.addState("3_t|3_p|3_k|3_f", new String[] { "p", "t", "f", "k" }, false);
+		m.addState("9_i|9_J", new String[] { "i", "J" }, false);
+		m.addState("11_y", new String[] { "y" }, false);
+		m.addState("<BEGIN>", new String[] { "" }, false);
+		m.addState("10_d", new String[] { "d" }, false);
+		m.addState("0_d", new String[] { "d" }, false);
+		m.addState("10_n", new String[] { "n" }, false);
+		m.addState("8_a", new String[] { "a" }, false);
+		m.addState("10_m", new String[] { "m" }, false);
+		m.addState("10_l", new String[] { "l" }, false);
+		m.addState("6_e|6_E|6_B", new String[] { "B", "e", "E" }, false);
+		m.addState("7_d", new String[] { "d" }, false);
+		m.addState("2_l", new String[] { "l" }, false);
+		m.addState("1_o", new String[] { "o" }, false);
+		m.addState("0_q", new String[] { "q" }, false);
+		m.addState("0_s", new String[] { "s" }, false);
+		m.addState("2_r", new String[] { "r" }, false);
+		m.addState("8_o", new String[] { "o" }, false);
+		m.addState("1_y", new String[] { "y" }, false);
+		m.addState("7_s", new String[] { "s" }, false);
+		m.addState("5_T|5_P|5_K|5_F", new String[] { "P", "T", "F", "K" }, false);
+		m.addState("<END>", new String[] { "" }, true);
+		m.addState("4_C", new String[] { "C" }, false);
+		m.setInitialState("<BEGIN>");
+		m.addNext("10_r", new String[] { "<END>" });
+		m.addNext("4_S", new String[] { "10_d", "6_e|6_E|6_B", "8_o" });
+		m.addNext("3_t|3_p|3_k|3_f", new String[] { "4_C", "11_y", "8_a", "<END>", "6_e|6_E|6_B", "8_o" });
+		m.addNext("9_i|9_J", new String[] { "10_n", "10_r" });
+		m.addNext("11_y", new String[] { "<END>" });
+		m.addNext("<BEGIN>", new String[] { "4_C", "0_q", "0_s", "8_a", "5_T|5_P|5_K|5_F", "3_t|3_p|3_k|3_f",
+				"6_e|6_E|6_B", "2_l", "2_r", "1_o", "1_y", "0_d", "7_d", "8_o", "4_S" });
+		m.addNext("10_d", new String[] { "11_y", "<END>" });
+		m.addNext("0_d", new String[] { "4_C", "6_e|6_E|6_B", "4_S" });
+		m.addNext("10_n", new String[] { "<END>" });
+		m.addNext("8_a", new String[] { "10_l", "10_n", "<END>", "10_r", "10_m", "9_i|9_J" });
+		m.addNext("10_m", new String[] { "<END>" });
+		m.addNext("10_l", new String[] { "11_y", "<END>" });
+		m.addNext("6_e|6_E|6_B", new String[] { "11_y", "10_d", "<END>", "7_s", "8_o" });
+		m.addNext("7_d", new String[] { "8_a", "8_o" });
+		m.addNext("2_l", new String[] { "4_C", "8_a", "3_t|3_p|3_k|3_f", "8_o", "4_S" });
+		m.addNext("1_o", new String[] { "4_C", "8_a", "7_d", "3_t|3_p|3_k|3_f", "6_e|6_E|6_B" });
+		m.addNext("0_q", new String[] { "1_o", "8_o" });
+		m.addNext("0_s", new String[] { "4_C", "4_S" });
+		m.addNext("2_r", new String[] { "4_C", "8_a", "8_o" });
+		m.addNext("8_o", new String[] { "10_l", "10_d", "<END>", "10_r" });
+		m.addNext("1_y", new String[] { "4_C", "8_a", "7_d", "3_t|3_p|3_k|3_f", "4_S" });
+		m.addNext("7_s", new String[] { "<END>" });
+		m.addNext("5_T|5_P|5_K|5_F", new String[] { "8_a", "10_d", "6_e|6_E|6_B", "8_o" });
+		m.addNext("4_C", new String[] { "11_y", "8_a", "10_d", "<END>", "6_e|6_E|6_B", "7_s", "8_o" });
+
+		evaluate("BEST", voynichTokens, SlotAlphabet.toEva(m.emit().itemSet()));
 	}
 
 	/**

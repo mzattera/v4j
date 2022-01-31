@@ -376,65 +376,64 @@ public final class WordModelEvaluator {
 
 	/**
 	 * Evaluate best Slots state machine model we have so far (automatically
-	 * generated with BuildSlotSttteMachine and MIN_WEIGHT=5 .
+	 * generated with BuildSlotSttteMachine and MIN_WEIGHT=10; not the best but simple to describe and good enough).
 	 * 
 	 * @param voynichTokens List of Voynich terms (EVA).
 	 */
 	private static void evaluateBestSlotMachine(Counter<String> voynichTokens) throws ParseException {
 
 		StateMachine m = new StateMachine();
-		m.addState("10_r", new String[] { "r" }, false);
-		m.addState("4_S", new String[] { "S" }, false);
-		m.addState("3_t|3_p|3_k|3_f", new String[] { "p", "t", "f", "k" }, false);
-		m.addState("9_i|9_J", new String[] { "i", "J" }, false);
-		m.addState("11_y", new String[] { "y" }, false);
-		m.addState("<BEGIN>", new String[] { "" }, false);
-		m.addState("10_d", new String[] { "d" }, false);
-		m.addState("0_d", new String[] { "d" }, false);
-		m.addState("10_n", new String[] { "n" }, false);
-		m.addState("8_a", new String[] { "a" }, false);
-		m.addState("10_m", new String[] { "m" }, false);
-		m.addState("10_l", new String[] { "l" }, false);
-		m.addState("6_e|6_E|6_B", new String[] { "B", "e", "E" }, false);
-		m.addState("7_d", new String[] { "d" }, false);
-		m.addState("2_l", new String[] { "l" }, false);
-		m.addState("1_o", new String[] { "o" }, false);
-		m.addState("0_q", new String[] { "q" }, false);
-		m.addState("0_s", new String[] { "s" }, false);
-		m.addState("2_r", new String[] { "r" }, false);
-		m.addState("8_o", new String[] { "o" }, false);
-		m.addState("1_y", new String[] { "y" }, false);
-		m.addState("7_s", new String[] { "s" }, false);
-		m.addState("5_T|5_P|5_K|5_F", new String[] { "P", "T", "F", "K" }, false);
-		m.addState("<END>", new String[] { "" }, true);
-		m.addState("4_C", new String[] { "C" }, false);
+		m.addState("10_r", new String[] {"r"}, false);
+		m.addState("4_S", new String[] {"S"}, false);
+		m.addState("3_t|3_p|3_k|3_f", new String[] {"p","t","f","k"}, false);
+		m.addState("9_i|9_J", new String[] {"i","J"}, false);
+		m.addState("11_y", new String[] {"y"}, false);
+		m.addState("<BEGIN>", new String[] {""}, false);
+		m.addState("10_d", new String[] {"d"}, false);
+		m.addState("0_d", new String[] {"d"}, false);
+		m.addState("10_n", new String[] {"n"}, false);
+		m.addState("8_a", new String[] {"a"}, false);
+		m.addState("10_m", new String[] {"m"}, false);
+		m.addState("10_l", new String[] {"l"}, false);
+		m.addState("6_e|6_E|6_B", new String[] {"B","e","E"}, false);
+		m.addState("7_d", new String[] {"d"}, false);
+		m.addState("5_T|5_P|5_K", new String[] {"P","T","K"}, false);
+		m.addState("2_l", new String[] {"l"}, false);
+		m.addState("1_o", new String[] {"o"}, false);
+		m.addState("0_q", new String[] {"q"}, false);
+		m.addState("0_s", new String[] {"s"}, false);
+		m.addState("2_r", new String[] {"r"}, false);
+		m.addState("8_o", new String[] {"o"}, false);
+		m.addState("1_y", new String[] {"y"}, false);
+		m.addState("7_s", new String[] {"s"}, false);
+		m.addState("<END>", new String[] {""}, true);
+		m.addState("4_C", new String[] {"C"}, false);
 		m.setInitialState("<BEGIN>");
-		m.addNext("10_r", new String[] { "<END>" });
-		m.addNext("4_S", new String[] { "10_d", "6_e|6_E|6_B", "8_o" });
-		m.addNext("3_t|3_p|3_k|3_f", new String[] { "4_C", "11_y", "8_a", "<END>", "6_e|6_E|6_B", "8_o" });
-		m.addNext("9_i|9_J", new String[] { "10_n", "10_r" });
-		m.addNext("11_y", new String[] { "<END>" });
-		m.addNext("<BEGIN>", new String[] { "4_C", "0_q", "0_s", "8_a", "5_T|5_P|5_K|5_F", "3_t|3_p|3_k|3_f",
-				"6_e|6_E|6_B", "2_l", "2_r", "1_o", "1_y", "0_d", "7_d", "8_o", "4_S" });
-		m.addNext("10_d", new String[] { "11_y", "<END>" });
-		m.addNext("0_d", new String[] { "4_C", "6_e|6_E|6_B", "4_S" });
-		m.addNext("10_n", new String[] { "<END>" });
-		m.addNext("8_a", new String[] { "10_l", "10_n", "<END>", "10_r", "10_m", "9_i|9_J" });
-		m.addNext("10_m", new String[] { "<END>" });
-		m.addNext("10_l", new String[] { "11_y", "<END>" });
-		m.addNext("6_e|6_E|6_B", new String[] { "11_y", "10_d", "<END>", "7_s", "8_o" });
-		m.addNext("7_d", new String[] { "8_a", "8_o" });
-		m.addNext("2_l", new String[] { "4_C", "8_a", "3_t|3_p|3_k|3_f", "8_o", "4_S" });
-		m.addNext("1_o", new String[] { "4_C", "8_a", "7_d", "3_t|3_p|3_k|3_f", "6_e|6_E|6_B" });
-		m.addNext("0_q", new String[] { "1_o", "8_o" });
-		m.addNext("0_s", new String[] { "4_C", "4_S" });
-		m.addNext("2_r", new String[] { "4_C", "8_a", "8_o" });
-		m.addNext("8_o", new String[] { "10_l", "10_d", "<END>", "10_r" });
-		m.addNext("1_y", new String[] { "4_C", "8_a", "7_d", "3_t|3_p|3_k|3_f", "4_S" });
-		m.addNext("7_s", new String[] { "<END>" });
-		m.addNext("5_T|5_P|5_K|5_F", new String[] { "8_a", "10_d", "6_e|6_E|6_B", "8_o" });
-		m.addNext("4_C", new String[] { "11_y", "8_a", "10_d", "<END>", "6_e|6_E|6_B", "7_s", "8_o" });
-
+		m.addNext("10_r", new String[] {"<END>"});
+		m.addNext("4_S", new String[] {"6_e|6_E|6_B","8_o"});
+		m.addNext("3_t|3_p|3_k|3_f", new String[] {"4_C","11_y","8_a","6_e|6_E|6_B","8_o"});
+		m.addNext("9_i|9_J", new String[] {"10_n","10_r"});
+		m.addNext("11_y", new String[] {"<END>"});
+		m.addNext("<BEGIN>", new String[] {"4_C","0_q","0_s","8_a","3_t|3_p|3_k|3_f","5_T|5_P|5_K","2_l","2_r","1_o","1_y","0_d","7_d","4_S"});
+		m.addNext("10_d", new String[] {"11_y","<END>"});
+		m.addNext("0_d", new String[] {"4_C","4_S"});
+		m.addNext("10_n", new String[] {"<END>"});
+		m.addNext("8_a", new String[] {"10_l","10_n","10_r","9_i|9_J","10_m"});
+		m.addNext("10_m", new String[] {"<END>"});
+		m.addNext("10_l", new String[] {"11_y","<END>"});
+		m.addNext("6_e|6_E|6_B", new String[] {"11_y","10_d","<END>","7_s","8_o"});
+		m.addNext("7_d", new String[] {"8_a","8_o"});
+		m.addNext("5_T|5_P|5_K", new String[] {"8_a","6_e|6_E|6_B","8_o"});
+		m.addNext("2_l", new String[] {"4_C","3_t|3_p|3_k|3_f","4_S"});
+		m.addNext("1_o", new String[] {"4_C","2_r","8_a","7_d","6_e|6_E|6_B","3_t|3_p|3_k|3_f","5_T|5_P|5_K"});
+		m.addNext("0_q", new String[] {"1_o"});
+		m.addNext("0_s", new String[] {"4_C"});
+		m.addNext("2_r", new String[] {"8_a"});
+		m.addNext("8_o", new String[] {"10_l","10_d","<END>","10_r"});
+		m.addNext("1_y", new String[] {"4_C","3_t|3_p|3_k|3_f","4_S"});
+		m.addNext("7_s", new String[] {"<END>"});
+		m.addNext("4_C", new String[] {"11_y","8_a","10_d","6_e|6_E|6_B","8_o"});
+		
 		evaluate("BEST", voynichTokens, SlotAlphabet.toEva(m.emit().itemSet()));
 	}
 

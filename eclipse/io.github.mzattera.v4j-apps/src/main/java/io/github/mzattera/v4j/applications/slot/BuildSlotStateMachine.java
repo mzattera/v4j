@@ -42,7 +42,7 @@ public class BuildSlotStateMachine {
 	private static final String OUT_FOLDER = "D:\\";
 
 	// Minimum weight for an edge before being discarded when building the SM
-	private static final int MIN_WEIGTH = 5;
+	private static final int MIN_WEIGTH = 10;
 
 	/** Name of begin state. */
 	private static final String INITIAL_STATE = "<BEGIN>";

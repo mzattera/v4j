@@ -1,6 +1,6 @@
 # Note 007 - A Graph View on Word Structure
 
-_Last updated Jan. 25th, 2021._
+_Last updated Feb. 20th, 2022._
 
 _This note refers to [release v.8.0.0](https://github.com/mzattera/v4j/tree/v.8.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
@@ -176,6 +176,14 @@ Noticeable difference is that, while 'l' and 'r' can be followed by the word fin
 ## Slot 11
 
 This slot contains the word ending 'y' alone.
+
+
+# Considerations
+
+1_o can be followed basically from any other character; this might signify that the initial o- or even qo- (given that 'q' mostly pairs with 'o' at the beginning of a word)
+have a special meaning, that they are not "normal" characters.
+
+Less surprising the peculiar role of 'i' sequences, mostly appearing as a(i|ii)(r|n) sequences.
 
 
 # Conclusions

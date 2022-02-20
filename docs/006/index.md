@@ -211,6 +211,8 @@ stars section of the Voynich, which is written in Currier's B language.
 Proposes a [Markov state machine](http://www.ciphermysteries.com/2010/11/22/sean-palmers-voynichese-word-generator)
 to generate Voynichese words.
 
+Notice that, because of the loop in "Column 3", this also generate an infinite set of terms.
+
 
 # Brian Cham [2014]
 

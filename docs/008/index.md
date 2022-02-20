@@ -65,7 +65,7 @@ Of course, this list does not match exactly the list of terms in the Voynich (th
 	r ->                  8_a
 
 3_tpkf:
-	f, k, p, t -> 4_C, 6_eEB, 8_a, 8_o, 11_y
+	t, p, k, f -> 4_C, 6_eEB, 8_a, 8_o, 11_y
 
 4_C:
 	ch -> 6_eEB, 8_a, 8_o, 10_d, 11_y
@@ -73,7 +73,7 @@ Of course, this list does not match exactly the list of terms in the Voynich (th
 	sh -> 6_eEB,      8_o
 
 5_TPK:
-	ckh, cph, cth -> 6_eEB, 8_a, 8_o
+	cth, cph, ckh -> 6_eEB, 8_a, 8_o
 
 6_eEB:
 	e, ee, eee -> 7_s, 8_o, 10_d, 11_y, <END>
@@ -169,16 +169,16 @@ The table below compares our grammar with other models described in [Note 006](.
 | Model 	| Generated strings 	| True Positives 	| Positive Tokens 	| Precision 	| Recall 	| F1 |
 | :--- 	| ---: 	| ---: 	| ---: 	| ---: 	| ---: 	| ---: |
 | ROE 	| 120	| 112	| 15.954%	| <span style="color:red">0.933</span>	| 0.022	| 0.043 |
-| STOLFI 	| 143,124,560,075,240,080,000	| 4,527	| 97.813%	| 0.000	| 0.881	| 0.000 |
+| STOLFI 	| 143,124,560,075,240,080,000	| 4,527	| 97.813%	| 0.000	| <span style="color:red">0.881</span>	| 0.000 |
 | NEAL_1a 	| 87,480	| 535	| 20.083%	| 0.006	| 0.104	| 0.012 |
 | NEAL_1b 	| 174,818	| 1,782	| 66.013%	| 0.010	| 0.347	| 0.020 |
 | NEAL_2 	| 1,311,345	| 1,049	| 45.248%	| 0.001	| 0.204	| 0.002 |
-| PALMER 	| ∞	| 4,547	| 97.280%	| 0.000	| 0.884	| 0.000 |
+| PALMER 	| ∞	| 4,547	| 97.280%	| 0.000	| <span style="color:red">0.884</span>	| 0.000 |
 | VOGT (Recipes) 	| 32,575	| 424	| 58.697%	| 0.013	| 0.190	| 0.024 |
 | VOGT 	| 32,575	| 565	| 55.734%	| 0.017	| 0.110	| 0.030 |
 | PELLING 	| ∞	| 259	| 32.099%	| 0.000	| 0.050	| 0.000 |
-| SLOT 	| 4,643,467	| 2,617	| 86.447%	| 0.001	| 0.509	| 0.001 |
-| SM 	| 3,110	| 1,113	| 62.040%	| 0.358	| 0.216	| 0.270 |
+| SLOT 	| 4,643,467	| 2,617	| 86.447%	| 0.001	| <span style="color:orange">0.509</span>	| 0.001 |
+| SM 	| 3,110	| 1,113	| 62.040%	| <span style="color:orange">0.358</span>	| 0.216	| <span style="color:red">0.270</span> |
 
 
   - **STOLFI**: Jorge Stolfi's "crust-mantle-core" model. As it is impossible to generate and test all words for this model, I assume any term in the Voynich that is not listed in Solfi's `AbnormalWord` is a true positive.
@@ -210,7 +210,7 @@ A machine with higher F1 (TP=1'194, Precision=0.371, Recall=0.232, F1=0.286)  ca
 [StateMachine05_grammar.txt](https://github.com/mzattera/v4j/blob/v.9.0.0/resources/analysis/slots/StateMachine05_grammar.txt) and a graphical representation suitable for [Gephi](https://gephi.org/) can be found in `StateMachine05.gephi` in [same folder](https://github.com/mzattera/v4j/blob/v.9.0.0/resources/analysis/slots/).
 I this discussion, I am ignoring it, as it is also slightly more complex that the one presented here.
 
-<a id="Note3">**{3}**</a> A version of this graph that can be visualized using [Gephi](https://gephi.org/) (`StateMachine.gephi`) is stored [here](https://github.com/mzattera/v4j/tree/master/resources/analysis/slots).
+<a id="Note3">**{3}**</a> A version of this graph that can be visualized using [Gephi](https://gephi.org/) (`StateMachine.gephi`) is stored [here](https://github.com/mzattera/v4j/blob/v.9.0.0/resources/analysis/slots/).
 
 <a id="Note1">**{4}**</a> Class [`WordModelEvaluator`](https://github.com/mzattera/v4j/blob/v.9.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/WordModelEvaluator.java) was used for
 this purpose.

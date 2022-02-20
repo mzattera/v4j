@@ -29,7 +29,9 @@ as it is typically possible to move from one representation to an equivalent one
  
 # Methodology
 
-I wrote some code [{1}](#Note1) that, starting from the list of terms in the concordance version of the Voynich (see [Note 001](../001)), creates a state machine which is described by the below grammar [{2}](#Note2); in this notation:
+I wrote some code [{1}](#Note1) that, starting from the list of terms in the concordance version of the Voynich (see [Note 001](../001)), creates a state machine which is described by the below grammar [{2}](#Note2).
+
+The notation:
 
 ```
 S:
@@ -43,50 +45,50 @@ Of course, this list does not match exactly the list of terms in the Voynich (th
 ```
 <BEGIN>:
 	 -> 0_d, 0_q, 0_s, 1_o, 1_y, 2_l, 2_r,
-	    3_t|3_p|3_k|3_f, 4_C, 4_S, 5_T|5_P|5_K, 7_d, 8_a
+	    3_tpkf, 4_C, 4_S, 5_TPK, 7_d, 8_a
 
 0_d:
-	d ->      4_C, 4_S
+	d ->     4_C, 4_S
 0_q:
 	q -> 1_o
 0_s:
-	s ->      4_C
+	s ->     4_C
 
 1_o:
-	o -> 2_r, 3_t|3_p|3_k|3_f, 4_C,      5_T|5_P|5_K, 6_e|6_E|6_B, 7_d, 8_a
+	o -> 2_r, 3_tpkf, 4_C,     5_TPK, 6_eEB, 7_d, 8_a
 1_y:
-	y ->      3_t|3_p|3_k|3_f, 4_C, 4_S
+	y ->      3_tpkf, 4_C, 4_S
 
 2_l:
-	l -> 3_t|3_p|3_k|3_f, 4_C, 4_S
+	l -> 3_tpkf, 4_C, 4_S
 2_r:
-	r ->                            8_a
+	r ->                  8_a
 
-3_t|3_p|3_k|3_f:
-	f, k, p, t -> 4_C, 6_e|6_E|6_B, 8_a, 8_o, 11_y
+3_tpkf:
+	f, k, p, t -> 4_C, 6_eEB, 8_a, 8_o, 11_y
 
 4_C:
-	ch -> 6_e|6_E|6_B, 8_a, 8_o, 10_d, 11_y
+	ch -> 6_eEB, 8_a, 8_o, 10_d, 11_y
 4_S:
-	sh -> 6_e|6_E|6_B,      8_o
+	sh -> 6_eEB,      8_o
 
-5_T|5_P|5_K:
-	ckh, cph, cth -> 6_e|6_E|6_B, 8_a, 8_o
+5_TPK:
+	ckh, cph, cth -> 6_eEB, 8_a, 8_o
 
-6_e|6_E|6_B:
-	e, ee, eee -> 7_s, 8_o, 10_d, 11_y,     <END>
+6_eEB:
+	e, ee, eee -> 7_s, 8_o, 10_d, 11_y, <END>
 
 7_d:
 	d -> 8_a, 8_o
 7_s:
-	s ->           <END>
+	s ->          <END>
 
 8_a:
-	a -> 9_i|9_J,       10_l, 10_m, 10_n, 10_r
+	a -> 9_iJ,       10_l, 10_m, 10_n, 10_r
 8_o:
-	o ->          10_d, 10_l,             10_r, <END>
+	o ->       10_d, 10_l,             10_r, <END>
 
-9_i|9_J:
+9_iJ:
 	i, ii -> 10_n, 10_r
 
 10_d:
@@ -200,11 +202,11 @@ The table below compares our grammar with other models described in [Note 006](.
 <a id="Note1">**{1}**</a> Class [`BuildSlotStateMachine`](https://github.com/mzattera/v4j/blob/v.9.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/BuildSlotStateMachine.java) was used for
 this purpose. It provides means to generate and evaluate state machines and output thm indifferent formats, including a grammar and Java code.
 
-<a id="Note2">**{2}**</a> A parameter my code use, is the minimum amount of terms using an edge of the state machine
+<a id="Note2">**{2}**</a> A parameter my code uses is the minimum amount of terms using an edge of the state machine
 (that is, a specific sequence of two characters). For the machine in this note, I used a minimum weight of 10.
-A machine with higher F-Score (TP=1'194, Precision=0.371, Recall=0.232, F-score0.286)  can be created using a minimum weight of 5; its grammar is described in 
-[StateMachine05_grammar.txt](https://github.com/mzattera/v4j/blob/v.9.0.0/resources/analysis/slots/StateMachine05_grammar.txt) and a graphical representation suitable fro Gephi can be found in `StateMachine05.gephi` in [same folder](https://github.com/mzattera/v4j/blob/v.9.0.0/resources/analysis/slots/).
-I this discussion I am ignoring it, as it is also slightly more complex that the one presented here.
+A machine with higher F-Score (TP=1'194, Precision=0.371, Recall=0.232, F-score=0.286)  can be created using a minimum weight of 5; its grammar is described in 
+[StateMachine05_grammar.txt](https://github.com/mzattera/v4j/blob/v.9.0.0/resources/analysis/slots/StateMachine05_grammar.txt) and a graphical representation suitable for [Gephi](https://gephi.org/) can be found in `StateMachine05.gephi` in [same folder](https://github.com/mzattera/v4j/blob/v.9.0.0/resources/analysis/slots/).
+I this discussion, I am ignoring it, as it is also slightly more complex that the one presented here.
 
 <a id="Note3">**{3}**</a> A version of this graph that can be visualized using [Gephi](https://gephi.org/) (`StateMachine.gephi`) is stored [here](https://github.com/mzattera/v4j/tree/master/resources/analysis/slots).
 

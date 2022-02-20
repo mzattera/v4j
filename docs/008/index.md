@@ -20,7 +20,7 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 
 Following the work described in [Note 005](../005) and [Note 007](../007), I created a grammar for words in the Voynich.
 This grammar covers almost two thirds of tokens (62% of tokens, or 21.6% of terms) in the concordance version of the manuscript. Moreover, it
-is the best grammar created so far accordingly to the F-Score, a standard measure widely adopted to quantify performance of classifiers.
+is the best grammar created so far accordingly to the F1, a standard measure widely adopted to quantify performance of classifiers.
 
 In this note I use the terms "model", "graph", "grammar", "state machine", and "classifier" more or less interchangeably to indicate a representation of the inner structure of Voynich words,
 as it is typically possible to move from one representation to an equivalent one (e.g. from a formal grammar to the equivalent state machine, to the graph depicting the machine,
@@ -121,7 +121,7 @@ of such structure in a way that provides some insights (e.g. show that a particu
 for any model to operate some choices and simplifications in order to highlight what looks like a common pattern disregarding what seems more a "special case".
 How can we evaluate how good a model is? In other terms, how well does it describes Voynich terms, without indulging too much in useless details and exceptions?
 
-An answer to this question can come from the theory of [classifiers](). We can look at each model as a tool that given a word in Voynichese can tell whether the 
+An answer to this question comes from the theory of [classifiers](https://en.wikipedia.org/wiki/Classifier_(machine_learning)). We can look at each model as a tool that given a word in Voynichese can tell whether the 
 word is a true Voynich word or not; this is done by looking at the set of terms a model can generate and classify a term as a Voynich term if it belongs to this set.
 In this context, we can have 4 possible cases for each term T we want to classify:
 
@@ -154,7 +154,7 @@ Potentially, a model that generates all possible combinations of letters in the 
 huge amount of words that are not in the Voynich (false positives).
 
 You can see there is a tension between precision and recall; one can increase recall by having the model to generate more words, but this increases the risk of generating terms which are not Voynich terms (false positives), thus reducing precision. There is a need of a single number that represents a compromise between best recall and best precision; in the 
-theory of classifiers this number is called **F1** or **F-Score** and is defended as:
+theory of classifiers this number is called **F1** and is defined as:
 
 ```
 F1 = 2 * precision * recall / (precision + recall)
@@ -162,11 +162,13 @@ F1 = 2 * precision * recall / (precision + recall)
 
 You can see F1 tends to 0 if either precision or recall tend to 0, while it tends to 1 if both recall and precision tend to 1.
 
-The table below compares our grammar with other models described in [Note 006](../006), providing their precision, accuracy and F-Score [{4}](#Note4).
+The table below compares our grammar with other models described in [Note 006](../006), providing their precision, accuracy and F1 [{4}](#Note4).
 
-| Model 	| Generated strings 	| True Positives 	| Positive Tokens 	| Precision 	| Recall 	| F-Score |
+ "Generated strings" is the number of strings a model generates. "Positive Tokens" is the percentage of tokens in the Voynich that the model recognizes.
+
+| Model 	| Generated strings 	| True Positives 	| Positive Tokens 	| Precision 	| Recall 	| F1 |
 | :--- 	| ---: 	| ---: 	| ---: 	| ---: 	| ---: 	| ---: |
-| ROE 	| 120	| 112	| 15.954%	| 0.933	| 0.022	| 0.043 |
+| ROE 	| 120	| 112	| 15.954%	| <style="color:red">0.933</style>	| 0.022	| 0.043 |
 | STOLFI 	| 143,124,560,075,240,080,000	| 4,527	| 97.813%	| 0.000	| 0.881	| 0.000 |
 | NEAL_1a 	| 87,480	| 535	| 20.083%	| 0.006	| 0.104	| 0.012 |
 | NEAL_1b 	| 174,818	| 1,782	| 66.013%	| 0.010	| 0.347	| 0.020 |
@@ -178,7 +180,7 @@ The table below compares our grammar with other models described in [Note 006](.
 | SLOT 	| 4,643,467	| 2,617	| 86.447%	| 0.001	| 0.509	| 0.001 |
 | SM 	| 3,110	| 1,113	| 62.040%	| 0.358	| 0.216	| 0.270 |
 
-  - "Generated strings" is the number of strings a model generates. "Positive Tokens" is the percentage of tokens in the Voynich that the model generates.
+
   - **STOLFI**: Jorge Stolfi's "crust-mantle-core" model. As it is impossible to generate and test all words for this model, I assume any term in the Voynich that is not listed in Solfi's `AbnormalWord` is a true positive.
   - There are three versions of grammars described by Philip Neal:
     - **NEAL_1a**: the version from Voynich Ninja forums.
@@ -204,7 +206,7 @@ this purpose. It provides means to generate and evaluate state machines and outp
 
 <a id="Note2">**{2}**</a> A parameter my code uses is the minimum amount of terms using an edge of the state machine
 (that is, a specific sequence of two characters). For the machine in this note, I used a minimum weight of 10.
-A machine with higher F-Score (TP=1'194, Precision=0.371, Recall=0.232, F-score=0.286)  can be created using a minimum weight of 5; its grammar is described in 
+A machine with higher F1 (TP=1'194, Precision=0.371, Recall=0.232, F1=0.286)  can be created using a minimum weight of 5; its grammar is described in 
 [StateMachine05_grammar.txt](https://github.com/mzattera/v4j/blob/v.9.0.0/resources/analysis/slots/StateMachine05_grammar.txt) and a graphical representation suitable for [Gephi](https://gephi.org/) can be found in `StateMachine05.gephi` in [same folder](https://github.com/mzattera/v4j/blob/v.9.0.0/resources/analysis/slots/).
 I this discussion, I am ignoring it, as it is also slightly more complex that the one presented here.
 

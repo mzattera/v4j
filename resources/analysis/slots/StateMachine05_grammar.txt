@@ -1,4 +1,4 @@
-# Grammar for auomatically generated state machine wih MIN_WEIGHT=5
+# Grammar for automatically generated state machine with MIN_WEIGHT=5
 
 <BEGIN>:
 	 -> 0_d, 0_q, 0_s, 1_o, 1_y, 2_l, 2_r, 3_t|3_p|3_k|3_f,

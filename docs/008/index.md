@@ -19,37 +19,24 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 # Abstract
 
 Following the work described in [Note 005](../005) and [Note 007](../007), I created a grammar for words in the Voynich.
-This grammar covers more than 60% of the tokens (21% of terms) in the concordance version of the manuscript. Moreover, it
+This grammar covers almost two thirds of tokens (62% of tokens, or 21.6% of terms) in the concordance version of the manuscript. Moreover, it
 is the best grammar created so far accordingly to the F-Score, a standard measure widely adopted to quantify performance of classifiers.
 
-In this note I use the terms "model", "graph", "grammar", "state machine", and "classifier" more or less interchangeably to indicate a representation of the inner structure of Voynich words
+In this note I use the terms "model", "graph", "grammar", "state machine", and "classifier" more or less interchangeably to indicate a representation of the inner structure of Voynich words,
 as it is typically possible to move from one representation to an equivalent one (e.g. from a formal grammar to the equivalent state machine, to the graph depicting the machine,
  and all those can be viewed as classifiers, as explained below).
 
  
 # Methodology
 
-I wrote some code [{1}](#Note1) that, starting from the list of terms in the concordance version of the Voynich (see [Note 001](../001)):
-
-  - Decompose these terms accordingly to the slot model (see [Note 005](../005)).
-  
-  - Creates a graph connecting character in these terms; edges below a given weight (that is, that are not used by a high enough number of terms).
-This is similar to what has been described in [Note 007](../007) [{2}](#Note2).
-
-  - Removes edges in order to increase the F-Score for the corresponding classifier (see below).
-  
-  - Merges some nodes deemed equivalent (e.g. all sequences of 'e' are made into a single node).
-  
-  - Perform further optimizations to increase F-Score and remove edges with a given weight.
-  
-The resulting state machine is described by the below grammar [{3}](#Note3); in this notation:
+I wrote some code [{1}](#Note1) that, starting from the list of terms in the concordance version of the Voynich (see [Note 001](../001)), creates a state machine which is described by the below grammar [{2}](#Note2); in this notation:
 
 ```
 S:
 	a,b, -> X,Y
 ```
 
-means that when the machine is in state S, it can emit any of the two string a or b and then enters in any of the two states X or Y. If we start from the initial state (`<BEGIN>`)
+means that when the machine is in state S, it can emit any of the two strings a or b and then enters in any of the two states X or Y. If we start from the initial state (`<BEGIN>`)
 and follow the evolution of the state machine through all possible paths ending with the final state (`<END>`) we will generate all the terms this model defines as terms in the Voynich.
 Of course, this list does not match exactly the list of terms in the Voynich (that is, the Voynich vocabulary); how good this match is, it is discussed in the below sections of this note.
 
@@ -95,9 +82,9 @@ Of course, this list does not match exactly the list of terms in the Voynich (th
 	s ->           <END>
 
 8_a:
-	a ->       10_l, 10_m, 10_n, 10_r, 9_i|9_J
+	a -> 9_i|9_J,       10_l, 10_m, 10_n, 10_r
 8_o:
-	o -> 10_d, 10_l,             10_r,          <END>
+	o ->          10_d, 10_l,             10_r, <END>
 
 9_i|9_J:
 	i, ii -> 10_n, 10_r
@@ -175,7 +162,7 @@ You can see F1 tends to 0 if either precision or recall tend to 0, while it tend
 
 The table below compares our grammar with other models described in [Note 006](../006), providing their precision, accuracy and F-Score [{4}](#Note4).
 
-| Model 	| Generated strings 	| True Positives 	| Generated Tokens 	| Precision 	| Recall 	| F-Score |
+| Model 	| Generated strings 	| True Positives 	| Positive Tokens 	| Precision 	| Recall 	| F-Score |
 | :--- 	| ---: 	| ---: 	| ---: 	| ---: 	| ---: 	| ---: |
 | ROE 	| 120	| 112	| 15.954%	| 0.933	| 0.022	| 0.043 |
 | STOLFI 	| 143,124,560,075,240,080,000	| 4,527	| 97.813%	| 0.000	| 0.881	| 0.000 |
@@ -189,14 +176,15 @@ The table below compares our grammar with other models described in [Note 006](.
 | SLOT 	| 4,643,467	| 2,617	| 86.447%	| 0.001	| 0.509	| 0.001 |
 | SM 	| 3,110	| 1,113	| 62.040%	| 0.358	| 0.216	| 0.270 |
 
-  - **STOLFI**: Jorge Stolfi's "crust-mantle-core" model. As it is impossible to generate and test all words for this model, I assume any term in the Voynich that is not listed in Solfi's "AbnormalWord" is a true positive.
+  - "Generated strings" is the number of strings a model generates. "Positive Tokens" is the percentage of tokens in the Voynich that the model generates.
+  - **STOLFI**: Jorge Stolfi's "crust-mantle-core" model. As it is impossible to generate and test all words for this model, I assume any term in the Voynich that is not listed in Solfi's `AbnormalWord` is a true positive.
   - There are three versions of grammars described by Philip Neal:
     - **NEAL_1a**: the version from Voynich Ninja forums.
     - **NEAL_1b**: same as above, with `[d]` replaced by `[d_]` (not sure whether this was intended by the author).
     - **NEAL_2**: version from Cypher Mysteries.
   - Vogt's model was created only for the "recipes" section (Stars B); here a comparison is provided both limited to that section and for the entire text.
   - When implementing Pelling's state machine, I assumed all arrows have the same meaning (even if some are dashed) and the red boxes are non-emitting states.
-  - **SLOT** considers all terms generated by the [Slot model](../003).
+  - **SLOT** considers all terms generated by the [Slot model](../005 +).
   - **SM** Is the state machine I describe above.
   
 # Considerations
@@ -212,8 +200,11 @@ The table below compares our grammar with other models described in [Note 006](.
 <a id="Note1">**{1}**</a> Class [`BuildSlotStateMachine`](https://github.com/mzattera/v4j/blob/v.9.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/BuildSlotStateMachine.java) was used for
 this purpose. It provides means to generate and evaluate state machines and output thm indifferent formats, including a grammar and Java code.
 
-<a id="Note2">**{2}**</a> In this case, I set minimum weight for edges to 10. A machine with higer F-Score can be created using a minimum weight of 5; its grammar is described
-[here]() and a graphical representation can [be found here](). I this discussion I am ignoring it, as it isalso slightly more complex that the one presented here.
+<a id="Note2">**{2}**</a> A parameter my code use, is the minimum amount of terms using an edge of the state machine
+(that is, a specific sequence of two characters). For the machine in this note, I used a minimum weight of 10.
+A machine with higher F-Score (TP=1'194, Precision=0.371, Recall=0.232, F-score0.286)  can be created using a minimum weight of 5; its grammar is described in 
+[StateMachine05_grammar.txt](https://github.com/mzattera/v4j/blob/v.9.0.0/resources/analysis/slots/StateMachine05_grammar.txt) and a graphical representation suitable fro Gephi can be found in `StateMachine05.gephi` in [same folder](https://github.com/mzattera/v4j/blob/v.9.0.0/resources/analysis/slots/).
+I this discussion I am ignoring it, as it is also slightly more complex that the one presented here.
 
 <a id="Note3">**{3}**</a> A version of this graph that can be visualized using [Gephi](https://gephi.org/) (`StateMachine.gephi`) is stored [here](https://github.com/mzattera/v4j/tree/master/resources/analysis/slots).
 

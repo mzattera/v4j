@@ -137,18 +137,21 @@ public class BuildSlotStateMachine {
 		// Notice at each state, weights of the state machine will reflect how many
 		// TERMS are generated through a given edge.
 
+		// "Raw" machine from terms
 		StateMachine m = BuildSlotStateMachine.build(voynichTerms, minWeigth);
 		if (outFolder != null)
 			m.write(outFolder, name + "_RAW");
 		if (evaluate)
 			WordModelEvaluator.evaluate(name + "_RAW", voynichTokens, m.emit().itemSet());
 
+		// Optimized f-score
 		m.train(voynichTerms, TrainMode.F1);
 		if (outFolder != null)
 			m.write(outFolder, name + "_TRAINED");
 		if (evaluate)
 			WordModelEvaluator.evaluate(name + "_TRAIN", voynichTokens, m.emit().itemSet());
 
+		// Merge states we know are equivalent
 		merge(m, voynichTerms);
 		m.train(voynichTerms, TrainMode.F1);
 		if (outFolder != null)
@@ -156,12 +159,14 @@ public class BuildSlotStateMachine {
 		if (evaluate)
 			WordModelEvaluator.evaluate(name + "_MERGE", voynichTokens, m.emit().itemSet());
 
+		// Remove any edge below starting threshold. TRIMMED is the state machien you want
 		m.trim(minWeigth);
 		if (outFolder != null)
 			m.write(outFolder, name + "_TRIMMED");
 		if (evaluate)
 			WordModelEvaluator.evaluate(name + "_TRIMMED", voynichTokens, m.emit().itemSet());
 
+		// Update weights using terms, which is typically what you want to show.
 		m.updateWeights(voynichTokens);
 		if (outFolder != null)
 			m.write(outFolder, name + "_TOKENS");
@@ -346,16 +351,6 @@ public class BuildSlotStateMachine {
 		r = m.getState("6_e");
 		r = merge(r, m.getState("6_E"));
 		r = merge(r, m.getState("6_B"));
-
-//		r = m.getState("7_t");
-//		r = merge(r, m.getState("7_p"));
-//		r = merge(r, m.getState("7_k"));
-//		r = merge(r, m.getState("7_f"));
-//
-//		r = m.getState("7_T");
-//		r = merge(r, m.getState("7_P"));
-//		r = merge(r, m.getState("7_K"));
-//		r = merge(r, m.getState("7_F"));
 
 		r = m.getState("9_i");
 		r = merge(r, m.getState("9_J"));

@@ -76,7 +76,7 @@ public final class WordModelEvaluator {
 		System.out.println("Total Voynich Terms: " + INTEGER_F.format(voynichTokens.size()));
 		System.out.println();
 		System.out.println(
-				"| Model \t| Generated strings \t| True Positives \t| Positive Tokens \t| Precision \t| Recall \t| F-Score |");
+				"| Model \t| Generated Strings \t| True Positives \t| Positive Tokens \t| Precision \t| Recall \t| F1 Score |");
 		System.out.println("| :--- \t| ---: \t| ---: \t| ---: \t| ---: \t| ---: \t| ---: |");
 
 		evaluateRoe(voynichTokens);

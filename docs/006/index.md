@@ -1,6 +1,6 @@
 # Note 006 - Works on Word Structure
 
-_Last updated Jan. 16th, 2022._
+_Last updated Feb. 20th, 2022._
 
 _This note refers to [release v.7.0.0](https://github.com/mzattera/v4j/tree/v.7.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
@@ -174,6 +174,30 @@ O = o
 ```
 
 Accordingly to Pelling, Palmer claims this grammar can generate 97% of Voynichese words, but this is clearly (as Pelling says) because it generates a lot of words (potentially infinite strictly looking at the grammar).
+Worth mentioning Pelling in his page is a bit confusing about the interpretation of `*`, `+`, and `?` in the grammar; I assume they have the usual meaning attributed in regular expressions:
+
+  - `*` = zero or more
+  - `+` = one or more
+  - `?` = zero or one
+
+If we look to actual terms in the Voynich, the above grammar can be made finite as follows:
+
+```
+^                      
+(q | y | [ktfp]){0,4}
+(C | T | D | A | O){0,10}
+(y | m | g)?
+$
+ 
+C = [cs][ktfp]? (h | hh)? (e | ee | eee)?
+T = [ktfp] ( e | ee | eee | eeee)?
+
+D = [dslr]
+A = a (i | ii | iii)? n?
+O = o
+```
+
+Were `{m,n}` denotes a sequence that can be repeated at least m and at most n times. Still, the grammar generates approximately 5*10^25 terms.
 
 
 # Elmar Vogt [2009]

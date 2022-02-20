@@ -18,6 +18,7 @@ Below some links to browse the Voynich online.
 
 * [Voynich Manuscript Project](https://ambertide.github.io/VoynichExplorer/index.html) by Ege Özkan.
 
+* [VIB - Voynich information browser](http://voynich.freie-literatur.de/index.php) by Elias Schwerdtfeger.
 
 
 # Terminology, Definitions, and Conventions

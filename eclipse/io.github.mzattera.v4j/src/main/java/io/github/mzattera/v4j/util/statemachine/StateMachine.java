@@ -411,7 +411,7 @@ public class StateMachine {
 			// This will store possible edges that can be removed for optimization.
 			// We do not consider edges from/to begin or end state if they are not emitting.
 			// They must be excluded from optimization as they are just inheriting what
-			// happens downstream.
+			// happens downstream; not doing so produces much worse results.
 			Set<ImmutablePair<String, String>> edges = new HashSet<>();
 			for (ImmutablePair<String, String> p : generatedByEdge.keySet()) {
 				State s = getState(p.left);

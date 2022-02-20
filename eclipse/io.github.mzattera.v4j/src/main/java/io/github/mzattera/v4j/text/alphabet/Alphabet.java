@@ -287,7 +287,7 @@ public abstract class Alphabet {
 	/**
 	 * @return true if the string contains one or more unreadable char.
 	 */
-	public boolean isUreadable(String s) {
+	public boolean isUnreadable(String s) {
 		for (int i = 0; i < s.length(); ++i)
 			if (isUreadableChar(s.charAt(i)))
 				return true;

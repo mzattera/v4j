@@ -382,7 +382,7 @@ public class SlotAlphabet extends IvtffAlphabet {
 		Set<String> slotTerms = new HashSet<>(evaTerms.size());
 		for (String eva : evaTerms) {
 			String slot = fromEva(eva);
-			if (!Alphabet.SLOT.isUreadable(slot))
+			if (!Alphabet.SLOT.isUnreadable(slot))
 				slotTerms.add(slot);
 		}
 		return slotTerms;
@@ -396,7 +396,7 @@ public class SlotAlphabet extends IvtffAlphabet {
 		Counter<String> slotTerms = new Counter<>();
 		for (Entry<String, Integer> e : evaTerms.entrySet()) {
 			String slot = fromEva(e.getKey());
-			if (!Alphabet.SLOT.isUreadable(slot))
+			if (!Alphabet.SLOT.isUnreadable(slot))
 				slotTerms.count(slot, e.getValue());
 		}
 		return slotTerms;
@@ -523,7 +523,7 @@ public class SlotAlphabet extends IvtffAlphabet {
 		// character
 		// might be present. When decomposing a sequence of ? can occupy one or more
 		// slots.
-		if (Alphabet.SLOT.isUreadable(term))
+		if (Alphabet.SLOT.isUnreadable(term))
 			throw new IllegalArgumentException("Unreadable term: '" + term + "'");
 
 		String s = term;

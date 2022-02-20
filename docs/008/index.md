@@ -176,20 +176,24 @@ You can see F1 tends to 0 if either precision or recall tend to 0, while it tend
 The table below compares our grammar with other models described in [Note 006](../006), providing their precision, accuracy and F-Score [{4}](#Note4).
 
 
-| Model 	| Generated terms 	| True Positives 	| Generated Tokens 	| Precision 	| Recall 	| F-Score |
+| Model 	| Generated strings 	| True Positives 	| Generated Tokens 	| Precision 	| Recall 	| F-Score |
 | :--- 	| ---: 	| ---: 	| ---: 	| ---: 	| ---: 	| ---: |
-| BEST 	| 3,110	| 1,113	| 62.040%	| 0.358	| 0.216	| 0.270 |
-| ROE 	| 84	| 83	| 11.506%	| 0.988	| 0.016	| 0.032 |
-| NEAL_1 	| 174,818	| 1,782	| 66.013%	| 0.010	| 0.347	| 0.020 |
+| ROE 	| 120	| 112	| 15.954%	| 0.933	| 0.022	| 0.043 |
+| STOLFI 	| 143,124,560,075,240,080,000	| 4,527	| 97.813%	| 0.000	| 0.881	| 0.000 |
+| NEAL_1a 	| 87,480	| 535	| 20.083%	| 0.006	| 0.104	| 0.012 |
+| NEAL_1b 	| 174,818	| 1,782	| 66.013%	| 0.010	| 0.347	| 0.020 |
 | NEAL_2 	| 1,311,345	| 1,049	| 45.248%	| 0.001	| 0.204	| 0.002 |
-| VOGT 	| 3,331	| 202	| 20.333%	| 0.061	| 0.090	| 0.073 |
-| VOGT 	| 3,806	| 261	| 20.810%	| 0.069	| 0.051	| 0.058 |
-| CMC 	| 143,124,560,075,240,080,000	| 4,527	| 97.813%	| 0.000	| 0.881	| 0.000 |
-| SLOT 	| 4,643,467	| 2,617	| 86.447%	| 0.001	| 0.509	| 0.001 |
+| PALMER 	| ∞	| 4,547	| 97.280%	| 0.000	| 0.884	| 0.000 |
+| VOGT (Recipes) 	| 32,575	| 424	| 58.697%	| 0.013	| 0.190	| 0.024 |
+| VOGT 	| 32,575	| 565	| 55.734%	| 0.017	| 0.110	| 0.030 |
 
-  - **ROE**: Mike Roes's grammar as described in [Note 006](../006).
-  - There are three versions of grammars described by Philip Neal in [Note 006](../006):
+
+  - **STOLFI**: Jorge Stolfi's "crust-mantle-core" model. As it is impossible to generate and test all words for this model, I assume any term in the Voynich that is not listed in Solfi's "AbnormalWord" is a true positive.
+  - There are three versions of grammars described by Philip Neal:
     - **NEAL_1a**: the version from Voynich Ninja forums.
+    - **NEAL_1b**: same as above, with `[d]` replaced by `[d_]` (not sure whether this was intended by the author).
+    - **NEAL_2**: version from Cypher Mysteries.
+  - Vogt's model was created only for the "recipes" section (Stars B); here a comparison is provided both limited to that section and for the entire text.
   
 # Considerations
 

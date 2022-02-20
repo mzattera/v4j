@@ -85,7 +85,7 @@ public final class CountNWords {
 			}
 
 			String s = nw.toString();
-			if (!readableOnly || !a.isUreadable(s))
+			if (!readableOnly || !a.isUnreadable(s))
 				result.count(s);
 		}
 

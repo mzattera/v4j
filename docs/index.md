@@ -86,6 +86,10 @@ In other words, a token is an instance of a term. For example; the below line in
 
   I create a graph showing how characters in words are connected, based on "Slots" concept.
   
+- [Note 008 - Simply the Best Grammar for Voynichese (as far as I know)](./008)
+
+  I create a grammar to explain structure of Voynich words, showing it has the best F1 among all proposed models.
+   
 
 # Bibliography and Reviews
 

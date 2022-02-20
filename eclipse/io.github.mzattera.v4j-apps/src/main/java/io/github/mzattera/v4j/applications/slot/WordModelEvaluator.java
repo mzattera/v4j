@@ -21,7 +21,6 @@ import io.github.mzattera.v4j.text.ivtff.VoynichFactory.TranscriptionType;
 import io.github.mzattera.v4j.util.Counter;
 import io.github.mzattera.v4j.util.statemachine.SlotBasedModel;
 import io.github.mzattera.v4j.util.statemachine.StateMachine;
-import io.github.mzattera.v4j.util.statemachine.StateMachine.TrainMode;
 
 /**
  * Evaluates F1 score for models of Voynich words, considered as a classifiers
@@ -351,7 +350,7 @@ public final class WordModelEvaluator {
 
 			if (p.matcher(t).matches()) {
 				++tp;
-				ttp += voynichTokens.getCount(t);				
+				ttp += voynichTokens.getCount(t);
 			}
 		}
 
@@ -632,88 +631,6 @@ public final class WordModelEvaluator {
 		m.addNext("4_C", new String[] { "11_y", "8_a", "10_d", "6_e|6_E|6_B", "8_o" });
 
 		evaluate("SM", voynichTokens, SlotAlphabet.toEva(m.emit().itemSet()));
-	}
-
-	/**
-	 * Evaluate Slots state machine model. This is old model written manually.
-	 * 
-	 * @param voynichTokens List of Voynich terms (EVA).
-	 */
-	private static void evaluateSlotMachineOld(Counter<String> voynichTokens) throws ParseException {
-
-		StateMachine m = new StateMachine();
-		m.setInitialState(m.addState("Start"));
-		m.addState("Slot_0");
-		m.addState("0_q", "q");
-		m.addState("0_s", "s");
-		m.addState("0_d", "d");
-		m.addState("Slot_1");
-		m.addState("1_y", "y");
-		m.addState("1_o", "o");
-		m.addState("Slot_2");
-		m.addState("2_r", "r");
-		m.addState("2_l", "l");
-		m.addState("3_Gallows", new String[] { "t", "p", "k", "f" });
-		m.addState("4_Pedestals", new String[] { "ch", "sh" });
-		m.addState("5_PedGallows", new String[] { "cth", "cph", "ckh" }); // MISSING cfh
-		m.addState("6_eSeq", new String[] { "e", "ee" }); // MISSING eee
-		m.addState("Slot_7");
-		m.addState("7_d", "d");
-		m.addState("7_s", "s");
-		// m.addState("7_Gallows", new String[] {"t","p","k","f"});
-		m.addState("7_Gallows", new String[] {}); // REMOVED
-		m.addState("Slot_8");
-		m.addState("8_a", "a");
-		m.addState("8_o", "o");
-		m.addState("9_iSeq", new String[] { "i", "ii" }); // MISSING iii
-		m.addState("Slot_10");
-		m.addState("10_d", "d");
-		m.addState("10_lr", new String[] { "l", "r" });
-		m.addState("10_mn", new String[] { "m", "n" });
-		m.addState("11_y", "y");
-		m.addState("End", true);
-
-		// ***** TODO test optional states, optional characters and splitting C and S
-
-		m.addNext("Start", new String[] { "Slot_0", "Slot_1", "Slot_2", "3_Gallows", "4_Pedestals", "5_PedGallows",
-				"7_d", "7_s", "8_a", "6_eSeq" }); // (Possibly slot 6) IT WORKS
-		m.addNext("Slot_0", new String[] { "0_q", "0_d", "0_s" });
-		m.addNext("0_q", new String[] { "1_o" });
-		m.addNext("0_s", new String[] { "1_o", "4_Pedestals" });
-		m.addNext("0_d", new String[] { "1_o", "1_y", "4_Pedestals" });
-		m.addNext("Slot_1", new String[] { "1_y", "1_o" });
-		m.addNext("1_y", new String[] { "3_Gallows", "4_Pedestals" });
-		m.addNext("1_o", new String[] { "Slot_2", "3_Gallows", "4_Pedestals", "5_PedGallows", "6_eSeq", "7_d", "8_a" });
-		m.addNext("Slot_2", new String[] { "2_l", "2_r" });
-		m.addNext("2_r", new String[] { "4_Pedestals", "Slot_8" });
-		m.addNext("2_l", new String[] { "3_Gallows", "4_Pedestals", "7_d", "Slot_8" });
-		m.addNext("3_Gallows", new String[] { "4_Pedestals", "6_eSeq", "Slot_8", "11_y" }); // (7_d, 11_y ??) 11_y WORKS
-		m.addNext("4_Pedestals", new String[] { "6_eSeq", "Slot_7", "Slot_8", "11_y" }); // consider keeping them
-																							// separate? S won-t connect
-																							// to 7_s
-		m.addNext("5_PedGallows", new String[] { "6_eSeq", "Slot_8", "7_d", "11_y" }); // (possibly 7_d, 11_y) THEY BOTH
-																						// WORK
-		m.addNext("6_eSeq", new String[] { "Slot_7", "Slot_8", "11_y", "End" }); // possibly End // WORKS
-		m.addNext("Slot_7", new String[] { "7_d", "7_s", "7_Gallows" });
-		m.addNext("7_d", new String[] { "8_o", "8_a", "11_y", "End" });
-		m.addNext("7_s", new String[] { "8_a", "11_y", "End" }); // possibly 8_o? it does in slot 1 - NOT WORKING ->
-																	// looks better if 8_a is removed
-		m.addNext("7_Gallows", new String[] { "8_a", "11_y" }); // possibly 8_o? - NOT WORKING -> Looks better if
-																// removed completely
-		m.addNext("Slot_8", new String[] { "8_a", "8_o" });
-		m.addNext("8_a", new String[] { "9_iSeq", "10_lr", "10_mn" }); // Possibly END? - NOT WORKING
-		m.addNext("8_o", new String[] { "10_lr", "10_mn", "End" }); // Possibly END? - IT WORKS VERY WELL
-		m.addNext("9_iSeq", new String[] { "10_lr", "10_mn" });
-		m.addNext("Slot_10", new String[] { "10_d", "10_lr", "10_mn" });
-		m.addNext("10_d", new String[] { "11_y", "End" });
-		m.addNext("10_lr", new String[] { "11_y", "End" });
-		m.addNext("10_mn", new String[] { "End" });
-		m.addNext("11_y", new String[] { "End" });
-
-		evaluate("SMOLD", voynichTokens, m.emit().itemSet());
-
-		m.train(voynichTokens.itemSet(), TrainMode.F1);
-		evaluate("SMOLDTRN", voynichTokens, m.emit().itemSet());
 	}
 
 	/**

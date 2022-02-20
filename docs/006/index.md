@@ -220,7 +220,6 @@ Brian Cham proposes a new pattern in the text of the Voynich Manuscript named th
 This pattern is fundamentally based on shapes of individual glyphs but also informs the structure of words.
 
   
-	
 ---
 
 **Notes**

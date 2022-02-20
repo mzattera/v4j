@@ -168,7 +168,7 @@ The table below compares our grammar with other models described in [Note 006](.
 
 | Model 	| Generated strings 	| True Positives 	| Positive Tokens 	| Precision 	| Recall 	| F1 |
 | :--- 	| ---: 	| ---: 	| ---: 	| ---: 	| ---: 	| ---: |
-| ROE 	| 120	| 112	| 15.954%	| <div style="color:red">0.933</div>	| 0.022	| 0.043 |
+| ROE 	| 120	| 112	| 15.954%	| <span style="color:red">0.933</span>	| 0.022	| 0.043 |
 | STOLFI 	| 143,124,560,075,240,080,000	| 4,527	| 97.813%	| 0.000	| 0.881	| 0.000 |
 | NEAL_1a 	| 87,480	| 535	| 20.083%	| 0.006	| 0.104	| 0.012 |
 | NEAL_1b 	| 174,818	| 1,782	| 66.013%	| 0.010	| 0.347	| 0.020 |

@@ -1,6 +1,6 @@
 # Note 007 - A Graph View on Word Structure
 
-_Last updated Feb. 20th, 2022._
+_Last updated Feb. 21st, 2022._
 
 _This note refers to [release v.8.0.0](https://github.com/mzattera/v4j/tree/v.8.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
@@ -47,7 +47,7 @@ Here i analyze char connections slot by slot.
 
 Characters in slot 0 behave quite different one another.
 
-'q' connects almost exclusively with 'o' in slot 1:
+'q' connects exclusively with 'o' in slot 1:
 
 ![0_q](images/0_q.PNG)
 
@@ -94,7 +94,7 @@ Pedestals in slot 4 behave in slightly different ways.
 
 As mentioned, they are preceded by same letters, with the exception that 'C' can be preceded by 's', which does not happen with 'S'.
 
-'S' connects to slots 6 ('e' sequences) or 8 ('a' and 'o') in addition to 'd' in slot 7 and final 'y' in slot 11:
+'S' connects to slots 6 ('e' sequences) or 8 ('a' and 'o') in addition to 'd' in slot 7 and 10 and final 'y' in slot 11:
 
 ![4_S](images/4_S.PNG)
 
@@ -121,8 +121,6 @@ They connect into next slots 7 and 8, 'd' in slot 10 or the word final 'y'.
 ## Slot 7 
 
 Characters in slot 7 are followed by 'o' and 'a' in slot 8 or the word ending 'y'. Notice 'd' followed by 'a' is very common; in addition, 'd' can also be followed by 'l', which does not happen with 's'.
-
-Pedestalled gallows are present in this slot, but they appear very infrequently.
 
 ![7](images/7.PNG)
 
@@ -183,7 +181,7 @@ This slot contains the word ending 'y' alone.
 1_o can be followed basically from any other character; this might signify that the initial o- or even qo- (given that 'q' mostly pairs with 'o' at the beginning of a word)
 have a special meaning, that they are not "normal" characters.
 
-Less surprising the peculiar role of 'i' sequences, mostly appearing as a(i|ii)(r|n) sequences.
+Less surprising the peculiar role of 'i' sequences, mostly appearing as a(i,ii)(r,n) sequences.
 
 
 # Conclusions

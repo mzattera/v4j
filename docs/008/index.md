@@ -1,4 +1,4 @@
-# Note 008 - Simply the Best Grammar for Voynichese (as far as I know):-)
+# Note 008 - Simply the Best Grammar for Voynichese :-)
 
 _Last updated Jan. 31st, 2021._
 

@@ -1,6 +1,6 @@
 # Note 005 - Slots and a New Alphabet
 
-_Last updated Jan. 25th, 2022._
+_Last updated Feb. 21st, 2022._
 
 _This note refers to [release v.8.0.0](https://github.com/mzattera/v4j/tree/v.8.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
@@ -243,7 +243,7 @@ populated by a single glyph chosen among a very limited group of glyphs (usually
   
     For 68.3% of separable terms, their two constituents appear in the text more often than the separable term itself (**verified separable** terms).
   
-    This seems a strong indication that separable terms are made by two regular terms written together.
+    This seems a strong indication that separable terms are made by two regular terms written or transcribed together.
   
   - only 3.0% of tokens (11.7% of terms) do not exhibit this structure (**unstructured** terms).
   
@@ -276,7 +276,7 @@ between language A and B, different word endings, etc.). This might suggest the 
 Whether the differences we see in the text are the result of different "settings" used on the process or the effect of differences in the plain text possibly encoded,
 is still impossible to say.
 
-- Since no natural language presents such an inner structure, the existence of "slots" constitutes a strong objection to any attempt to propose a substitution cipher for the Voynich.
+- Since no natural language presents such an inner structure, the existence of "slots" constitutes a strong objection to any attempt to propose a simple substitution cipher for the Voynich.
 
   This was pointed out as early as in [TILTMAN (1967)](../biblio.md) (p. 9 paragraph (o)), but also
   by [Stolfi](https://www.ic.unicamp.br/~stolfi/EXPORT/projects/voynich/00-06-07-word-grammar/) (see "Discussion and conjectures").

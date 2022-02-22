@@ -61,23 +61,29 @@ public class BuildSlotStateMachine {
 
 	/** Filter to use on pages before analysis */
 	public static final ElementFilter<IvtffPage> FILTER = (CLUSTER == null) ? null
-			: new PageFilter.Builder().cluster("HA").build();
+			: new PageFilter.Builder().cluster(CLUSTER).build();
 
 	public static void main(String[] args) {
 		try {
 			// Prints configuration parameters
-			System.out.println("Transcription     : " + TRANSCRIPTION);
-			System.out.println("Transcription Type: " + TRANSCRIPTION_TYPE);
-			System.out.println("Filter            : " + (FILTER == null ? "None" : FILTER.toString()));
-			System.out.println("Min Weight        : " + MIN_WEIGTH);
-			System.out.println();
+			System.out.println("Transcription      : " + TRANSCRIPTION);
+			System.out.println("Transcription Type : " + TRANSCRIPTION_TYPE);
+			System.out.println("Filter             : " + (FILTER == null ? "None" : FILTER.toString()));
+			System.out.println("Min Weight         : " + MIN_WEIGTH);
 
 			// Get the document to process
 			IvtffText voynich = VoynichFactory.getDocument(TRANSCRIPTION, TRANSCRIPTION_TYPE, Alphabet.SLOT);
+			int totTerms =  voynich.getWords(true).itemSet().size();
 			if (FILTER != null)
 				voynich = voynich.filterPages(FILTER);
+			int terms =  voynich.getWords(true).itemSet().size();
 
-			process(voynich, OUT_FOLDER, MIN_WEIGTH);
+			// Scale MIN_WEIGHT to the number of terms in the filtered text
+			int minWeight = (int) Math.max(1,  Math.round(((double)terms)/totTerms*MIN_WEIGTH));
+			System.out.println("Min Weight (scaled): " + minWeight);
+			System.out.println();
+
+			process(voynich, OUT_FOLDER, minWeight);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -159,14 +165,14 @@ public class BuildSlotStateMachine {
 		if (evaluate)
 			WordModelEvaluator.evaluate(name + "_MERGE", voynichTokens, m.emit().itemSet());
 
-		// Remove any edge below starting threshold. TRIMMED is the state machien you want
+		// Remove any edge below starting threshold. TRIMMED is the state machine you want
 		m.trim(minWeigth);
 		if (outFolder != null)
 			m.write(outFolder, name + "_TRIMMED");
 		if (evaluate)
 			WordModelEvaluator.evaluate(name + "_TRIMMED", voynichTokens, m.emit().itemSet());
 
-		// Update weights using terms, which is typically what you want to show.
+		// Update weights using tokens in the text, which is typically what you want to show.
 		m.updateWeights(voynichTokens);
 		if (outFolder != null)
 			m.write(outFolder, name + "_TOKENS");

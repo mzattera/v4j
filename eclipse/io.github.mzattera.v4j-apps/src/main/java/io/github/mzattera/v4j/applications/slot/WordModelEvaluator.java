@@ -630,7 +630,7 @@ public final class WordModelEvaluator {
 		m.addNext("7_s", new String[] { "<END>" });
 		m.addNext("4_C", new String[] { "11_y", "8_a", "10_d", "6_e|6_E|6_B", "8_o" });
 
-		evaluate("SM", voynichTokens, SlotAlphabet.toEva(m.emit().itemSet()));
+		evaluate("SLOT MACHINE", voynichTokens, SlotAlphabet.toEva(m.emit().itemSet()));
 	}
 
 	/**

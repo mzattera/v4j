@@ -194,6 +194,8 @@ this means that the information encoded by each single character is not much. Co
 where a position in a text can encode 4-5 bits (it can be occupied by any of about 25 letters),
 a position in a Voynich word can be filled only by a smaller set of symbols, this encoding less information.
 
+In addition, it is clear that characters have a different role based on the slot they appear; so 
+'o' in slot 1 (1_o) has not the same "meaning" or "function" than the same character in slot 8 (8_o).
 	
 ---
 

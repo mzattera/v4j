@@ -521,6 +521,7 @@ public class StateMachine {
 				}
 			}
 		}
+		removeUnreachableStates();
 	}
 
 	/**

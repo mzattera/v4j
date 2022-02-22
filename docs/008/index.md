@@ -1,6 +1,6 @@
 # Note 008 - Simply the Best Grammar for Voynichese :-)
 
-_Last updated Jan. 31st, 2021._
+_Last updated Feb. 22nd, 2022._
 
 _This note refers to [release v.9.0.0](https://github.com/mzattera/v4j/tree/v.9.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
@@ -112,6 +112,12 @@ The state machine is also depicted below [{3}](#Note3) (`<BEGIN>` and `<END>` st
 Nodes are named after the letter they represent (as explained in [Note 007](../007)), weights on edges show how many tokens in the Voynich contain any given sequence of characters.
 
 ![State Machine](images/Graph.PNG)
+
+In an attempt to make the above picture and the state machine a bit easier to understand, I have created two diagram where I split the characters between "initials", which can appear 
+at the beginning of words and that are shown in green, and "finals" that can appear at the end of a word and are shown in orange.
+
+![Initial characters in words](images/initials.PNG)
+![Final characters in words](images/finals.PNG)
 
 
 # Comparison with other works - Classifiers 

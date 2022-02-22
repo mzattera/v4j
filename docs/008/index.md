@@ -175,17 +175,17 @@ The table below compares our grammar with other models described in [Note 006](.
 | Model 	| Generated Strings 	| True Positives 	| Positive Tokens 	| Precision 	| Recall 	| F1 Score |
 | :--- 	| ---: 	| ---: 	| ---: 	| ---: 	| ---: 	| ---: |
 | ROE 	| 120	| 112	| 15.954%	| <span style="color:red">0.933</span>	| 0.022	| 0.043 |
-| STOLFI 	| 143'124'560'075'240'080'000	| 4'527	| 97.813%	| 0.000	| <span style="color:red">0.881</span>	| 0.000 |
+| STOLFI 	| 143'124'560'075'240'080'000	| 4'527	| <span style="color:red">97.813%</span>	| 0.000	| <span style="color:red">0.881</span>	| 0.000 |
 | NEAL_1a 	| 87'480	| 535	| 20.083%	| 0.006	| 0.104	| 0.012 |
-| NEAL_1b 	| 174'818	| 1'782	| 66.013%	| 0.010	| 0.347	| 0.020 |
+| NEAL_1b 	| 174'818	| 1'782	| <span style="color:orange">66.013%</span>	| 0.010	| 0.347	| 0.020 |
 | NEAL_2 	| 1'311'345	| 1'049	| 45.248%	| 0.001	| 0.204	| 0.002 |
-| PALMER 	| ∞	| 4'547	| 97.280%	| 0.000	| <span style="color:red">0.884</span>	| 0.000 |
+| PALMER 	| ∞	| 4'547	| <span style="color:red">97.280%</span>	| 0.000	| <span style="color:red">0.884</span>	| 0.000 |
 | VOGT (Recipes) 	| 32'575	| 424	| 58.697%	| 0.013	| 0.190	| 0.024 |
-| VOGT 	| 32'575	| 565	| 55.734%	| 0.017	| 0.110	| 0.030 |
+| VOGT 	| 32'575	| 565	| <span style="color:orange">55.734%</span>	| 0.017	| 0.110	| 0.030 |
 | PELLING 	| ∞	| 259	| 32.099%	| 0.000	| 0.050	| 0.000 |
 | PELLING_2 	| 1'192	| 259	| 32.099%	| 0.217	| 0.050	| 0.081 |
-| SLOT 	| 4'643'467	| 2'617	| 86.447%	| 0.001	| <span style="color:orange">0.509</span>	| 0.001 |
-| <span style="color:green">**SLOT MACHINE**</span> 	| 3'110	| 1'113	| 62.040%	| <span style="color:orange">0.358</span>	| 0.216	| <span style="color:red">0.270</span> |
+| SLOT 	| 4'643'467	| 2'617	| <span style="color:red">86.447%</span>	| 0.001	| <span style="color:orange">0.509</span>	| 0.001 |
+| <span style="color:green">**SLOT MACHINE**</span> 	| 3'110	| 1'113	| <span style="color:orange">62.040%</span>	| <span style="color:orange">0.358</span>	| 0.216	| <span style="color:red">0.270</span> |
 
   - **STOLFI**: Jorge Stolfi's "crust-mantle-core" model. As it is impossible to generate and test all words for this model, I assume any term in the Voynich that is not listed in Solfi's `AbnormalWord` is a true positive.
   - There are three versions of grammars described by Philip Neal:

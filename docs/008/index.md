@@ -193,7 +193,7 @@ The table below compares our grammar with other models described in [Note 006](.
     - **NEAL_1b**: same as above, with `[d]` replaced by `[d_]` (not sure whether this was intended by the author).
     - **NEAL_2**: version from Cypher Mysteries.
   - When interpreting [Palmer's model](http://ciphermysteries.com/2010/11/22/sean-palmers-voynichese-word-generator) I assume the standard notation for sequences of characters in regular expressions
-  (* = zero or more, + = one or more, ? = zero or one)
+  (* = zero or more, + = one or more, ? = zero or one).
   - Vogt's model was created only for the "recipes" section (Stars section, language B); here a comparison is provided both limited to that section and for the entire text.
   - When implementing Pelling's state machine, I assumed all arrows have the same meaning (even if some are dashed) and the red boxes are non-emitting states.
     - The author claims the model should generate about 1'200 terms, but in my interpretation a loop in "Column 3" makes this generate a potentially infinite number of terms. **PELLING_2** shows the calculations assuming the model generates only 1'192 strings.
@@ -224,8 +224,8 @@ I this discussion, I am ignoring it, as it is also slightly more complex that th
 
 <a id="Note3">**{3}**</a> A version of this graph that can be visualized using [Gephi](https://gephi.org/) (`StateMachine10.gephi`) is stored [here](https://github.com/mzattera/v4j/blob/v.9.0.0/resources/analysis/slots/).
 
-<a id="Note4">**{4}**</a> Class [`WordModelEvaluator`](https://github.com/mzattera/v4j/blob/v.9.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/WordModelEvaluator.java) was used for
-this purpose.
+<a id="Note4">**{4}**</a> Class [`WordModelEvaluator`](https://github.com/mzattera/v4j/blob/v.9.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/WordModelEvaluator.java) was used 
+to create this table.
 
 ---
 

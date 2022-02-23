@@ -197,7 +197,7 @@ A = a (i | ii | iii)? n?
 O = o
 ```
 
-Were `{m,n}` denotes a sequence that can be repeated at least m and at most n times. Still, the grammar generates approximately 5*10^25 terms.
+Were `{m,n}` denotes a sequence that can be repeated at least m and at most n times. Still, the grammar generates approximately 5e25 terms.
 
 
 # Elmar Vogt [2009]

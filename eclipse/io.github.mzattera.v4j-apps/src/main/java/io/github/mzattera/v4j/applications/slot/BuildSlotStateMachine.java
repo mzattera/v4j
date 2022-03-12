@@ -51,7 +51,7 @@ public class BuildSlotStateMachine {
 	public static final String END_STATE = "<END>";
 
 	// Cluster to limit modeling to....or null.
-	private static final String CLUSTER = null;
+	private static final String CLUSTER = "ZZ";
 
 	/** Transcription to use */
 	public static final Transcription TRANSCRIPTION = Transcription.AUGMENTED;

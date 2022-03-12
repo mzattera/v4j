@@ -173,7 +173,7 @@ public class Counter<T> {
 
 	/**
 	 * 
-	 * @return size of item set (how many distinct objects have bee counted).
+	 * @return size of item set (how many distinct objects have been counted).
 	 */
 	public int size() {
 		return counts.size();

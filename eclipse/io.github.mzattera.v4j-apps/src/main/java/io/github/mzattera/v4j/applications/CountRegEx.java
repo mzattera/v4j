@@ -43,7 +43,8 @@ public final class CountRegEx {
 	// The RegEx to look for.
 	
 	// Words with rare characters
-	private final static String REGEX = "[^\\.]*[gxvujbz]+[^\\.]*";
+//	private final static String REGEX = "[^\\.]*[gxvujbz]+[^\\.]*";
+	private final static String REGEX = "e.*$";
 	
 	// Total rare characters
 //	private final static String REGEX = "[gxvujbz]";

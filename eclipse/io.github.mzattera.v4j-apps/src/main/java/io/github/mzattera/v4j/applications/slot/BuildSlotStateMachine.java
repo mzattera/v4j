@@ -60,8 +60,9 @@ public class BuildSlotStateMachine {
 	public static final TranscriptionType TRANSCRIPTION_TYPE = TranscriptionType.CONCORDANCE;
 
 	/** Filter to use on pages before analysis */
-	public static final ElementFilter<IvtffPage> FILTER = (CLUSTER == null) ? null
-			: new PageFilter.Builder().cluster(CLUSTER).build();
+//	public static final ElementFilter<IvtffPage> FILTER = (CLUSTER == null) ? null
+//			: new PageFilter.Builder().cluster(CLUSTER).build();
+	public static final ElementFilter<IvtffPage> FILTER = new PageFilter.Builder().illustrationType("C").build();
 
 	public static void main(String[] args) {
 		try {

@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 
 import io.github.mzattera.v4j.text.Text;
 import io.github.mzattera.v4j.text.alphabet.Alphabet;
+import io.github.mzattera.v4j.text.txt.TextString;
 
 /**
  * Set of string processing Util
@@ -108,6 +109,7 @@ public final class StringUtil {
 	 * 
 	 * @param txt Source text.
 	 * @param len Length of the random sample to take.
+	 * @param rnd Random number generator.
 	 *
 	 * @return A piece of plain text from <code>txt</code> of given length.
 	 * 
@@ -121,5 +123,51 @@ public final class StringUtil {
 		int pos = rnd.nextInt(s.length() - len);
 
 		return s.substring(pos, pos + len);
+	}
+
+	/**
+	 * Extract a random piece of text containing given number of words.
+	 * 
+	 * @param txt Source text.
+	 * @param len Length (tokens) of the random sample to take.
+	 *
+	 * @return A piece of plain text from <code>txt</code> with given number of
+	 *         tokens.
+	 * 
+	 * @throws IllegalArgumentException if len is too big.
+	 */
+	public static TextString extractRandomWords(Text txt, int len) {
+		return extractRandomWords(txt, len, new Random(System.currentTimeMillis()));
+	}
+
+	/**
+	 * Extract a random piece of text containing given number of words.
+	 * 
+	 * @param txt Source text.
+	 * @param len Length (tokens) of the random sample to take.
+	 * @param rnd Random number generator.
+	 *
+	 * @return A piece of plain text from <code>txt</code> with given number of
+	 *         tokens.
+	 * 
+	 * @throws IllegalArgumentException if len is too big.
+	 */
+	public static TextString extractRandomWords(Text txt, int len, Random rnd) {
+		String space = txt.getAlphabet().getSpaceAsString();
+		String[] tokens = txt.getPlainText().split(Pattern.quote(space));
+
+		if (len >= tokens.length)
+			throw new IllegalArgumentException();
+
+		int pos = rnd.nextInt(tokens.length - len + 1);
+
+		StringBuilder b = new StringBuilder();
+		for (int i = 0; i < len; ++i) {
+			if (i > 0)
+				b.append(space);
+			b.append(tokens[pos + i]);
+		}
+
+		return new TextString(b.toString(), txt.getAlphabet());
 	}
 }

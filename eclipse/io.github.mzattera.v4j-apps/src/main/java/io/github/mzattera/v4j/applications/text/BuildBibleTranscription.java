@@ -41,6 +41,7 @@ public final class BuildBibleTranscription {
 			convert(FileUtil.getResourceFile("Transcriptions/Bible/German.xml"));
 			convert(FileUtil.getResourceFile("Transcriptions/Bible/Italian.xml"));
 			convert(FileUtil.getResourceFile("Transcriptions/Bible/Latin.xml"));
+			convert(FileUtil.getResourceFile("Transcriptions/Bible/Spanish.xml"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

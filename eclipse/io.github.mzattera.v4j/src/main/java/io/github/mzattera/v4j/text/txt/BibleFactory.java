@@ -21,7 +21,7 @@ public class BibleFactory {
 	/**
 	 * Languages in which the bible is available.
 	 */
-	public static final String[] LANGUAGES = { "Italian", "Latin", "German", "French" };
+	public static final String[] LANGUAGES = { "Italian", "Latin", "German", "French", "English" };
 
 	/**
 	 * Name of folder with transcriptions (inside resource folder), including

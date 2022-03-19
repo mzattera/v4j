@@ -68,7 +68,7 @@ The below images have been obtained using the projector with following parameter
 ; a
 [pre-populated version](https://projector.tensorflow.org/?config=https://mzattera.github.io/v4j/003/data/projector_config.json),
 is available for your own exploration.
-```T-SNE 2D projection, Label By=ID, Color By=Illustration + LanguagePerplexity, Learning rate=0.01, Supervise=0, Iteration=10'000```.
+```T-SNE 2D projection, Label By=ID, Color By=Illustration + Language, Perplexity=5, Learning rate=0.01, Supervise=0, Iteration=10'000```.
  
 ![T-SNE visualization of Voynich pages](images/SNE - Pages - ALL.PNG)
 
@@ -165,7 +165,7 @@ as they contain Cosmological or Astronomical pages, which we know already do not
 The results are shown below (they are also available in
 [the TensorFlow projector](https://projector.tensorflow.org/?config=https://mzattera.github.io/v4j/003/data/projector_config_parchments.json));
 following parameters have been used:
-```T-SNE 2D projection, Label By=ID, Color By=Illustration + LanguagePerplexity, Perplexity=5, Learning rate=1, Supervise=0, Iteration=1'000```. 
+```T-SNE 2D projection, Label By=ID, Color By=Illustration + Language, Perplexity=5, Learning rate=1, Supervise=0, Iteration=1'000```. 
 
 ![T-SNE visualization of Voynich parchments](images/SNE - Parchments - ALL.PNG)
 

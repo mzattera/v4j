@@ -218,11 +218,11 @@ special meaning for the dashed arrows that is not made explicit in the text.
 # Brian Cham [2014]
 
 Brian Cham proposes a new pattern in the text of the Voynich Manuscript named the “[Curve-Line System](https://briancham1994.com/2014/12/17/curve-line-system/)” (CLS).
-This pattern is fundamentally based on shapes of individual glyphs but also informs the structure of words.
+This pattern is based on shapes of individual glyphs and the order in which they appear in words.
 
-I only had a quick look at his article, but at a glance it seems [my grammar](../008) for Voynichese aligns and confirms
-his work. Indeed, exceptions to the CLS pattern are created by the below grammar rules (numbers refer to [concordance](https://github.com/mzattera/v4j#ivtff) EVA version of the text, including unreadable or irregular words);
-and correspond to Cham's "aberrant glyphs" he already identified.
+It seems [my grammar](../008) for Voynichese aligns and independently confirms
+this work. Indeed, exceptions to the CLS pattern are created only by the below grammar rules (numbers refer to [concordance](https://github.com/mzattera/v4j#ivtff) EVA version of the text, including unreadable or irregular words);
+and correspond to Cham's "aberrant glyphs" he already identified. Other rules are in accordance with his system.
 
   - **Rule 1_o** and **8_o**: an 'o' in slot 1 or 8 followed by 'l' or 'r'.
   
@@ -248,7 +248,8 @@ and correspond to Cham's "aberrant glyphs" he already identified.
   and 'lshedy' (30).
   
     This is partially spotted and addressed in Cham's "Patch #2" section, regarding 'l' at the beginning of words
-	(words like 'olchedy' escape this patch).
+	(words like 'olchedy' escape this patch). Notice the other pattern ('olch-') has already been flagged as
+	problematic above.
 
   - **Rule 10_l**: words ending in '-ly'.
  

@@ -224,32 +224,36 @@ I only had a quick look at his article, but at a glance it seems my grammar for 
 his work. Indeed, exceptions to the CLS pattern are created by the below grammar rules (numbers refer to [concordance](https://github.com/mzattera/v4j#ivtff) EVA version of the text, including unreadable or irregular words);
 and correspond to Cham's "aberrant glyphs" he already identified.
 
-  - Rule 1_o and 8_o: an 'o' in slot 1 or 8 followed by 'l' or 'r'.
-  The patterns 'ol' and 'or' occur 5'115 and 2'352 times respectively. 
+  - **Rule 1_o** and **8_o**: an 'o' in slot 1 or 8 followed by 'l' or 'r'.
+  
+     The patterns 'ol' and 'or' occur 5'115 and 2'352 times respectively. 
   The most common words are 'ol' (599), 'chol' (396), 'or' (373), 'chor' (209), 'shol' (176), 'qol' (173),
   'cheol' (161), 'sheol' (108), 'dol' (104).
   
-  In Cham's article this is one of the most evident features (see e.g. section 4.5.4); his  "Patch #1"
+    In Cham's article this is one of the most evident features (see his section 4.5.4); his  "Patch #1"
   suggestion make me think these could be actual Voynich characters. I would like to explore this
   possibility  in the future.
 
-  - Rule 2_r: an 'r' in slot 2 followed by 'a'.
-  There are 267 occurrences of this rule, most common in words beginning with 'ra-' (155) and ora- (95).
+  - **Rule 2_r**: an 'r' in slot 2 followed by 'a'.
+  
+     There are 267 occurrences of this rule, most common in words beginning with 'ra-' (155) and 'ora-' (95).
   Most common words in this group are 'raiin' and 'oraiin' occurring 62 and 28 times respectively.
   
-  Again, this is addressed in Cham's "Patch #1" section.
+    Again, this is addressed in Cham's "Patch #1" section.
 
-  - Rule 2_l: an 'l' in slot 2 followed by 'ch' or 'sh'.
-  There are 621 occurrences of this rule, most common in words beginning with 'lch-' (291), 'olch-' (135),
+  - **Rule 2_l**: an 'l' in slot 2 followed by 'ch' or 'sh'.
+     
+	There are 621 occurrences of this rule, most common in words beginning with 'lch-' (291), 'olch-' (135),
   and 'lsh-' (99). Most common words in this group are 'lchedy' (98), 'lchey' (39), 'olchedy' (34),
   and 'lshedy' (30).
   
-  This is partially spotted and addressed in Cham's "Patch #2" section, regarding 'l' at the beginning of words.
+    This is partially spotted and addressed in Cham's "Patch #2" section, regarding 'l' at the beginning of words
+	(words like 'olchedy' escape this patch).
 
-  - Rule 10_l: words ending in '-ly'.
-  There are 460 such words, most common being 'oly' (54), 'aly' (26) and 'daly' (25).
+  - **Rule 10_l**: words ending in '-ly'.
+  There are 460 such words, most common being 'oly' (54), 'aly' (26), and 'daly' (25).
   
-  This is mentioned in rule 2. of Cham's section 4.5.4 "Rules".
+     This is mentioned in rule 2. of Cham's section 4.5.4 "Rules".
 
   
 ---

@@ -251,7 +251,8 @@ and correspond to Cham's "aberrant glyphs" he already identified.
 	(words like 'olchedy' escape this patch).
 
   - **Rule 10_l**: words ending in '-ly'.
-  There are 460 such words, most common being 'oly' (54), 'aly' (26), and 'daly' (25).
+ 
+     There are 460 such words, most common being 'oly' (54), 'aly' (26), and 'daly' (25).
   
      This is mentioned in rule 2. of Cham's section 4.5.4 "Rules".
 

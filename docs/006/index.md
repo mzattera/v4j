@@ -221,7 +221,9 @@ Brian Cham proposes a new pattern in the text of the Voynich Manuscript named th
 This pattern is based on shapes of individual glyphs and the order in which they appear in words.
 
 It seems [my grammar](../008) for Voynichese aligns and independently confirms
-this work. Indeed, exceptions to the CLS pattern are created only by the below grammar rules (numbers refer to [concordance](https://github.com/mzattera/v4j#ivtff) EVA version of the text, including unreadable or irregular words);
+this work. Indeed, exceptions to the CLS pattern are created only by the below grammar rules (numbers refer to
+tokens occurrences in [concordance](https://github.com/mzattera/v4j#ivtff) EVA version of the text,
+including unreadable or irregular ones);
 and correspond to Cham's "aberrant glyphs" he already identified. Other rules are in accordance with his system.
 
   - **Rule 1_o** and **8_o**: an 'o' in slot 1 or 8 followed by 'l' or 'r'.

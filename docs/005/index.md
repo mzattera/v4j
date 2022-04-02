@@ -1,8 +1,8 @@
 # Note 005 - Slots and a New Alphabet
 
-_Last updated Feb. 21st, 2022._
+_Last updated Apr. 2nd, 2022._
 
-_This note refers to [release v.8.0.0](https://github.com/mzattera/v4j/tree/v.8.0.0) of v4j;
+_This note refers to [release v.10.0.0](https://github.com/mzattera/v4j/tree/v.10.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
 In addition, some of this note content might have become obsolete in more recent versions of the library._
 
@@ -284,6 +284,19 @@ is still impossible to say.
 - Similarly, the "slot" structure of words will condition character entropy in the text. Therefore, attempts to assign a natural language to the Voynich by looking at similarities in
 character entropy seem not to be based on solid ground.
 
+- Because of this structure of Voynich words, removing a character in a word (that is, emptying a slot),
+has good chances to produce a valid word. The below table shows how many times removing a character from a 
+Voynich word produces another word in the text (for this concordance version of the text, using the slot 
+alphabet has been used){7}](#Note7).
+
+|                          | From Any Word | From Any Word Appearing at Least 5 Times |
+| :---                     | ---:  | ---:  | 
+| Removing any character   | 37.2% | 65.3% |
+| Removing first character | 61.5% | 89.9% |
+
+This is relevant, for example, in considering John Grove's theory that many ordinary-looking words occur 
+prefixed with a spurious "gallows" letter (so called "Grove words"). 
+
   
 	
 ---
@@ -293,24 +306,27 @@ character entropy seem not to be based on solid ground.
 <a id="Note1">**{1}**</a> I have removed gallows and pedestalled gallows from slot 7, where they additionally appeared in earlier versions of this working note. This because my subsequent
 attempts at creating a state machine that models word structure lead me to believe this was a more correct and concise description.
 
-<a id="Note1">**{2}**</a> Class
-[`Slots`](https://github.com/mzattera/v4j/blob/v.8.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/Slots.java)
+<a id="Note2">**{2}**</a> Class
+[`Slots`](https://github.com/mzattera/v4j/blob/v.10.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/Slots.java)
 has been used to perform this analysis. An Excel (`Slots.xlsx`) with its output can be found in the
 [analysis folder](https://github.com/mzattera/v4j/tree/master/resources/analysis/slots).
 
-<a id="Note2">**{3}**</a> Class
-[`CountCharsBySlot`](https://github.com/mzattera/v4j/blob/v.8.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/CountCharsBySlot.java)
+<a id="Note3">**{3}**</a> Class
+[`CountCharsBySlot`](https://github.com/mzattera/v4j/blob/v.10.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/CountCharsBySlot.java)
 has been used to produce this table.
 
-<a id="Note3">**{4}**</a> Class
-[`CountRegEx`](https://github.com/mzattera/v4j/blob/v.8.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/CountRegEx.java)
+<a id="Note4">**{4}**</a> Class
+[`CountRegEx`](https://github.com/mzattera/v4j/blob/v.10.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/CountRegEx.java)
 can be used with regular expression `[^\\.]*[gxvujbz]+[^\\.]*` to find words with rare characters.
 
-<a id="Note4">**{5}**</a> Class
-[`FindStrangeCH`](https://github.com/mzattera/v4j/blob/v.8.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/FindStrangeCH.java)
+<a id="Note5">**{5}**</a> Class
+[`FindStrangeCH`](https://github.com/mzattera/v4j/blob/v.10.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/FindStrangeCH.java)
 can be used to list words with these "strange" occurrences of 'c' and 'h'.
 
-<a id="Note5">**{6}**</a> Stolfi came to the same conclusion when defining his [grammar for Voynichese words](https://www.ic.unicamp.br/~stolfi/EXPORT/projects/voynich/00-06-07-word-grammar/txt.n.html).
+<a id="Note6">**{6}**</a> Stolfi came to the same conclusion when defining his [grammar for Voynichese words](https://www.ic.unicamp.br/~stolfi/EXPORT/projects/voynich/00-06-07-word-grammar/txt.n.html).
+
+<a id="Note7">**{7}**</a> To perform this analysis class 
+[`RemoveChar`](https://github.com/mzattera/v4j/blob/v.10.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/RemoveChar.java)
 
 
 ---

@@ -1,6 +1,6 @@
 # Note 006 - Works on Word Structure
 
-_Last updated Apr. 1st, 2022._
+_Last updated Apr. 2nd, 2022._
 
 _This note refers to [release v.7.0.0](https://github.com/mzattera/v4j/tree/v.7.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
@@ -221,10 +221,12 @@ Brian Cham proposes a new pattern in the text of the Voynich Manuscript named th
 This pattern is based on shapes of individual glyphs and the order in which they appear in words.
 
 It seems [my grammar](../008) for Voynichese aligns and independently confirms
-this work. Indeed, exceptions to the CLS pattern are created only by the below grammar rules (numbers refer to
+this work. Indeed, words created by the grammar follow the CLS pattern the only 
+exceptions are created only by the below grammar rules
+and correspond to Cham's "aberrant glyphs" he already identified. 
+The numbers in brackets refer to
 tokens occurrences in [concordance](https://github.com/mzattera/v4j#ivtff) EVA version of the text,
-including unreadable or irregular ones);
-and correspond to Cham's "aberrant glyphs" he already identified. Other rules are in accordance with his system.
+including unreadable or irregular ones (total 39'425 tokens).
 
   - **Rule 1_o** and **8_o**: an 'o' in slot 1 or 8 followed by 'l' or 'r'.
   
@@ -250,8 +252,14 @@ and correspond to Cham's "aberrant glyphs" he already identified. Other rules ar
   and 'lshedy' (30).
   
     This is partially spotted and addressed in Cham's "Patch #2" section, regarding 'l' at the beginning of words
-	(words like 'olchedy' escape this patch). Notice the other pattern ('olch-') has already been flagged as
-	problematic above.
+	(words like 'olchedy' escape this patch).
+	Worth mentioning that some care is needed here when applying the "patch" introduced 
+	by Cham and consider 'l' at the beginning of words optional. 
+	Indeed, because of the slot nature of Voynich terms, removing a character in words most often leads to
+    another Voynich word (see conclusions to my [note 005](../005)); this should not lead to considering
+	that character optional.
+	
+	Notice the other pattern ('olch-') has already been flagged as problematic above. 
 
   - **Rule 10_l**: words ending in '-ly'.
  

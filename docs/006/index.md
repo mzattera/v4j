@@ -267,7 +267,14 @@ including unreadable or irregular ones (total 39'425 tokens).
   
      This is mentioned in rule 2. of Cham's section 4.5.4 "Rules".
 
-  
+
+# Emma May Smith [2019]
+
+ This [blog post](https://agnosticvoynich.wordpress.com/2019/05/06/a-new-word-structure/) 
+ presents her proposed structure of words, based on “syllables” which are "_regular divisions of words according to some basic rules_".
+ 
+ 
+ 
 ---
 
 **Notes**

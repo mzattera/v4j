@@ -287,14 +287,14 @@ character entropy seem not to be based on solid ground.
 - Because of this structure of Voynich words, removing a character in a word (that is, emptying a slot),
 has good chances to produce a valid word. The below table shows how many times removing a character from a 
 Voynich word produces another word in the text (for this concordance version of the text, using the slot 
-alphabet has been used){7}](#Note7).
+alphabet has been used)[{7}](#Note7).
 
-|                          | From Any Word | From Any Word Appearing at Least 5 Times |
-| :---                     | ---:  | ---:  | 
-| Removing any character   | 37.2% | 65.3% |
-| Removing first character | 61.5% | 89.9% |
+  |                          | From Any Word | From Any Word Appearing at Least 5 Times |
+  | :---                     | ---:  | ---:  | 
+  | Removing any character   | 37.2% | 65.3% |
+  | Removing first character | 61.5% | 89.9% |
 
-This is relevant, for example, in considering John Grove's theory that many ordinary-looking words occur 
+  This is relevant, for example, in considering John Grove's theory that many ordinary-looking words occur 
 prefixed with a spurious "gallows" letter (so called "Grove words"). 
 
   
@@ -326,7 +326,7 @@ can be used to list words with these "strange" occurrences of 'c' and 'h'.
 <a id="Note6">**{6}**</a> Stolfi came to the same conclusion when defining his [grammar for Voynichese words](https://www.ic.unicamp.br/~stolfi/EXPORT/projects/voynich/00-06-07-word-grammar/txt.n.html).
 
 <a id="Note7">**{7}**</a> To perform this analysis class 
-[`RemoveChar`](https://github.com/mzattera/v4j/blob/v.10.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/RemoveChar.java)
+[`RemoveChar`](https://github.com/mzattera/v4j/blob/v.10.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/RemoveChar.java) has been used.
 
 
 ---

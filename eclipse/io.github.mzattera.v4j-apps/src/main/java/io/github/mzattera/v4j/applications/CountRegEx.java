@@ -43,8 +43,10 @@ public final class CountRegEx {
 	// The RegEx to look for.
 	
 	// Words with rare characters
-//	private final static String REGEX = "[^\\.]*[gxvujbz]+[^\\.]*";
-	private final static String REGEX = "e.*$";
+//	private final static String REGEX = "\\.[dqs]?[oy]?l(ch|sh)";
+//	private final static String REGEX = "\\.[dqs]?[oy]?l(ch|sh)[^\\.]*\\.";
+//	private final static String REGEX = "\\.[dqs]?[oy]?ra[^\\.]*\\.";
+	private final static String REGEX = "\\.[^\\.]*ly\\.";
 	
 	// Total rare characters
 //	private final static String REGEX = "[gxvujbz]";
@@ -69,6 +71,12 @@ public final class CountRegEx {
 			IvtffText doc = VoynichFactory.getDocument(TRANSCRIPTION, TRANSCRIPTION_TYPE, ALPHABET);
 			if (FILTER != null)
 				doc = doc.filterPages(FILTER);
+
+			System.out.println("Tokens (all)      : " + doc.getWords(false).getTotalCounted());
+			System.out.println("Terms (all)       : " + doc.getWords(false).size());
+			System.out.println("Tokens (readable) : " + doc.getWords(true).getTotalCounted());
+			System.out.println("Terms (readable)  : " + doc.getWords(true).size());
+			System.out.println();
 
 			Counter<String> c = process("." + doc.getPlainText() + ".", REGEX);
 

@@ -170,4 +170,13 @@ public final class StringUtil {
 
 		return new TextString(b.toString(), txt.getAlphabet());
 	}
+
+	/**
+	 * Remove character at given position in a string.
+	 */
+	public static String removeCharAt(String s, int pos) {
+		StringBuilder sb = new StringBuilder(s);
+		sb.deleteCharAt(pos);
+		return sb.toString();
+	}
 }

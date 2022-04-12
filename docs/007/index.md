@@ -23,7 +23,9 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 
 # Abstract
 
-In this note, I create and analyze a graph showing connections between characters in Voynich terms accordingly to my [slot model](../005) [{1}](#Note1).
+In this note, I create and analyze a graph showing connections between characters in Voynich terms accordingly to my [slot model](../005) [{1}](#Note1);
+unless differently mentioned, the Slot alphabet is used.
+
  
 
 # Methodology
@@ -196,6 +198,10 @@ a position in a Voynich word can be filled only by a smaller set of symbols, thi
 
 In addition, it is clear that characters have a different role based on the slot they appear; so 
 'o' in slot 1 (1_o) has not the same "meaning" or "function" than the same character in slot 8 (8_o).
+
+Finally, the letter 'o' in slot 1 seems to connect to far more other characters than other letters.
+This might suggest some special role of 'o', which is also hinted in Cham's article about 
+his [Curve-Line System](../006) (CLS). 
 	
 ---
 

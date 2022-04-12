@@ -39,8 +39,7 @@ It might be interesting to note that:
 
 - Herbal B pages (HB cluster) prefer terms starting with 'qo-' and 'qok-'.
 
-- Zodiac (ZZ cluster) common terms mostly start with 'ot-', this is uncommon for other clusters. Moreover, this cluster
-features single characters as common terms.
+- Zodiac (ZZ) common terms mostly start with 'ot-', this is uncommon for clusters above. Moreover, these pages feature single characters as common terms.
 
 
 ---

@@ -1,6 +1,6 @@
 ## Note 003 - Clustering
 
-_Last updated Jan. 9th, 2022._
+_Last updated Mar. 20th, 2022._
 
 _This note refers to [release v.3.0.0](https://github.com/mzattera/v4j/tree/v.3.0.0) of v4j;
 **links to classes and files refer to this release** and files might have been changed, deleted or moved in the current master branch.
@@ -223,7 +223,7 @@ This is more evident when clustering whole parchments instead of single pages.
   - **Biological** and **Stars** pages form two close, albeit separate, groups.
   
   - The grouping behavior of remaining pages (**Astronomical**, **Text**, **Zodiac** and **Cosmological**)
-  is more difficult to assess. However, **Zodiac** pages seem to show some internal consistency and a similarity with **Herbal B**.
+  is more difficult to assess.
 
 - It has been already proposed (_citation needed_) that these similarities are either a proof that the Voynich is not an hoax
 as the vocabulary used in its page correlates with the page "topics" that can be inferred by the illustration type
@@ -236,7 +236,7 @@ Currier's languages reflect language differences in the underlying plain text.
 - As the above grouping reflects a similar distribution of terms in the text, no matter what was the cause,
 these differences should be kept in mind when performing statistical analysis of the text or when trying to decipher it.
 
-  For this reason, v4j library provides means to classify pages accordingly to above considerations, the resulting clusters are shown below
+  For this reason, v4j library provides means to classify pages accordingly to above considerations, the resulting clusters are shown below[{5}](#Note5)
   (also see [`PageHeader`](https://github.com/mzattera/v4j/blob/v.3.0.0/eclipse/io.github.mattera.v4j/src/main/java/io/github/mattera/v4j/text/ivtff/PageHeader.java) class).
  
   ![Cluster size in words](images/Clusters.PNG)
@@ -265,6 +265,9 @@ performs K-Means clustering and prints out a report that can be easily converted
 The class can be parameterized to run different types of experiments; its outputs, with some additional data,
 can be found as Excel files in the [analysis folder](https://github.com/mzattera/v4j/tree/master/resources/analysis).
 Keep in mind K-Means algorithm include some randomness, therefore slightly different clustering might result at each experiment.
+
+<a id="Note5">**{5}**</a> After publishing [note 009](../009), I decided to remove the zodiac pages (former "ZZ" cluster) from this list of clusters,
+since there is no much evidence their cluster is better formed than Cosmological or Astronomical ones.
  
 ---
 

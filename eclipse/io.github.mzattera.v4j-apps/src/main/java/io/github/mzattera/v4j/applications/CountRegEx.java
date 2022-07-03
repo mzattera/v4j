@@ -8,6 +8,7 @@ import io.github.mzattera.v4j.text.ElementFilter;
 import io.github.mzattera.v4j.text.alphabet.Alphabet;
 import io.github.mzattera.v4j.text.ivtff.IvtffPage;
 import io.github.mzattera.v4j.text.ivtff.IvtffText;
+import io.github.mzattera.v4j.text.ivtff.PageFilter;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory.Transcription;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory.TranscriptionType;
@@ -35,10 +36,11 @@ public final class CountRegEx {
 	/**
 	 * Which Alphabet type to use.
 	 */
-	public static final Alphabet ALPHABET = Alphabet.EVA;
+//	public static final Alphabet ALPHABET = Alphabet.EVA;
+	public static final Alphabet ALPHABET = Alphabet.SLOT;
 
 	/** Filter to use on pages before analysis */
-	public static final ElementFilter<IvtffPage> FILTER = null;
+	public static final ElementFilter<IvtffPage> FILTER = new PageFilter.Builder().cluster("SB").build();
 
 	// The RegEx to look for.
 	
@@ -46,7 +48,10 @@ public final class CountRegEx {
 //	private final static String REGEX = "\\.[dqs]?[oy]?l(ch|sh)";
 //	private final static String REGEX = "\\.[dqs]?[oy]?l(ch|sh)[^\\.]*\\.";
 //	private final static String REGEX = "\\.[dqs]?[oy]?ra[^\\.]*\\.";
-	private final static String REGEX = "\\.[^\\.]*ly\\.";
+//	private final static String REGEX = "\\.[^\\.]*ly\\.";
+//	private final static String REGEX = "a[^\\.]*\\.";
+//	private final static String REGEX = "[^\\.]*[ktpfd]a[^\\.iJUnmlr]*\\.";
+	private final static String REGEX = "(a[iJU]?[mnlr]|d?y)\\.";
 	
 	// Total rare characters
 //	private final static String REGEX = "[gxvujbz]";

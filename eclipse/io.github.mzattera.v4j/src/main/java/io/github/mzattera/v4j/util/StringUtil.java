@@ -3,10 +3,14 @@
  */
 package io.github.mzattera.v4j.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import io.github.mzattera.v4j.text.Text;
@@ -178,5 +182,75 @@ public final class StringUtil {
 		StringBuilder sb = new StringBuilder(s);
 		sb.deleteCharAt(pos);
 		return sb.toString();
+	}
+	
+	/**
+	 * @return Count of chars in a string.
+	 */
+	public static Counter<Character> countChars (String txt) {
+		Counter<Character> result = new Counter<>();
+		for (int i=0; i<txt.length(); ++i)
+			result.count(txt.charAt(i));
+		return result;
+	}
+	
+	/**
+	 * Performs replacements described in given Map over txt.
+	 * The replacement is such that a string in Map is a substring of another string in Map, only the longer replacement is used.
+	 * In addition, any piece of the original text that is not replaced, is replace later by mask.
+	 * 
+	 * NOTICE the order in which replacements of same length are applied, could still made some of them invalid.
+	 * 
+	 * @param mask A character used to mask chars not replaced in txt.
+	 * @param replacements A map from substrings in txt to their replacement.
+	 * @return
+	 */
+	public static String smartReplace(String txt, Map<String,String> replacements, char mask) {
+		
+		boolean[] masked = new boolean[txt.length()]; // true if corresponding char in txt has already been replaced
+		String[] replaced = new String[txt.length()]; // records what we replaced at each position.
+
+		// Strings to replace, from longest
+		List<String> keys= new ArrayList<>(replacements.keySet());
+		keys.sort(new Comparator<>() {
+
+			@Override
+			public int compare(String o1, String o2) {
+				return -Integer.compare(o1.length(), o2.length());
+			}
+		});
+		
+		for (String key : keys) {
+			Pattern p = Pattern.compile(Pattern.quote(key));
+			Matcher m = p.matcher(txt);
+			while (m.find()) { // found a match
+				int pos = m.start();
+				
+				// Check if this part has been replaced already (so the match should not happen)
+				boolean b = false;
+				for (int i =pos; !b && i<m.end(); ++i)
+					b = masked[i];
+				if (b) continue;
+
+				replaced[pos] = replacements.get(key);
+				masked[pos] = true;
+				
+				// mark other positions as being replaced already
+				for (int i=pos+1; i<m.end(); ++i) {
+					replaced[i] = "";
+					masked[i] = true;
+				}
+			}
+		}
+		
+		StringBuffer result = new StringBuffer();
+		for (int i=0; i< replaced.length; ++i) {
+			if (replaced[i] == null)
+				result.append(mask);
+			else 
+				result.append((replaced[i]));
+		}
+		
+		return result.toString();
 	}
 }

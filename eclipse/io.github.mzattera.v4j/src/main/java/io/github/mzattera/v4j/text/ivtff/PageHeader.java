@@ -36,7 +36,6 @@ public class PageHeader implements Identifiable {
 			"HB", // Herbal B
 			"BB", // Biological
 			"SB", // Stars
-			"ZZ" // Zodiac
 	};
 
 	// Maps each folio in its corresponding parchment (or "parchment").
@@ -388,8 +387,6 @@ public class PageHeader implements Identifiable {
 	 * 
 	 * SB: Stars
 	 * 
-	 * ZZ: Zodiac
-	 * 
 	 * @returns assigned cluster for the page, or "?" if the page wasn't assigned
 	 *          any cluster (e.g. for outliers pages).
 	 */
@@ -407,14 +404,18 @@ public class PageHeader implements Identifiable {
 				return "?";
 		}
 
-		// First page in the Voynich is a Text in an HA parchment
-		if (getId().equals("f1r"))
-			return "?";
+		String result = getIllustrationType() + getLanguage();
+		for (String c : CLUSTERS)
+			if (c.equals(result)) return result;
+		
+		return "?";
+	}
 
-		if (getIllustrationType().equals("Z"))
-			return "ZZ";
-		else
-			return getIllustrationType() + getLanguage();
+	/**
+	 * @returns Illustration type + Currier Language (e.g. "HA" or "Z?").
+	 */
+	public String getIllustrationAndLanguage() {
+		return getIllustrationType() + getLanguage();
 	}
 
 	/**

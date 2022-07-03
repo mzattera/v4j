@@ -66,6 +66,15 @@ public abstract class Text implements Identifiable {
 	}
 
 	/**
+	 * Get number of characters in the plain text, ignoring spaces.
+	 * 
+	 * @return number of characters in the plain text, ignoring spaces.
+	 */
+	public int getTotalCharCount() {
+		return getPlainText().replace(getAlphabet().getSpaceAsString(), "").length();
+	}
+
+	/**
 	 * Counts regular characters contained in given string. The string is assumed to
 	 * use given alphabet. *Notice* the string is not processed in any way,
 	 * therefore all characters appearing as regular characters in the alphabet are
@@ -75,7 +84,7 @@ public abstract class Text implements Identifiable {
 	 */
 	// TODO make sure it is tested
 	public static Counter<Character> getChars(String txt, Alphabet a) {
-				return getChars(txt, a, false);
+		return getChars(txt, a, false);
 	}
 
 	/**
@@ -93,18 +102,18 @@ public abstract class Text implements Identifiable {
 	public static Counter<Character> getChars(String txt, Alphabet a, boolean toUpper) {
 		if (toUpper) {
 			try {
-				return  Text.getChars(a.toUpperCase(txt), a, false);
+				return Text.getChars(a.toUpperCase(txt), a, false);
 			} catch (UnsupportedOperationException e) {
 				// toUpper() not supported in this alphabet
 			}
-		} 
-		
+		}
+
 		Counter<Character> result = new Counter<>();
 		for (char c : txt.toCharArray()) {
 			if (a.isRegular(c))
 				result.count(c);
 		}
-		
+
 		return result;
 	}
 

@@ -15,7 +15,7 @@ import io.github.mzattera.v4j.util.Counter;
 import io.github.mzattera.v4j.util.StringUtil;
 
 /**
- * This code show how, due to the "slot" nature of Voynichese, removing a
+ * This code shows how, due to the "slot" nature of Voynichese, removing a
  * character in a word leads to another valid word.
  * 
  * @author Massimiliano "Maxi" Zattera
@@ -142,16 +142,5 @@ public final class RemoveChar {
 		} finally {
 			System.out.println("\nCompleted.");
 		}
-	}
-
-	public static Counter<String> process(String s, String regex) {
-		Counter<String> result = new Counter<>();
-		Pattern p = Pattern.compile(regex);
-		Matcher m = p.matcher(s);
-		while (m.find()) {
-			result.count(m.group());
-		}
-
-		return result;
 	}
 }

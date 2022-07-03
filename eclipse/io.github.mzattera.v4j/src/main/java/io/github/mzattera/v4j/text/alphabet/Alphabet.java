@@ -308,8 +308,11 @@ public abstract class Alphabet {
 	/**
 	 * @return upper case version of given text. Text is assumed to be using this
 	 *         Alphabet. Notice that not all alphabets support this method.
+	 * 
+	 * @exception UnsupportedOperationException if the alphabet does not support
+	 *                                          this.
 	 */
-	public String toUpperCase(String txt) {
+	public String toUpperCase(String txt) throws UnsupportedOperationException {
 		throw new UnsupportedOperationException();
 	}
 

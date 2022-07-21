@@ -4,7 +4,9 @@
 package io.github.mzattera.v4j.text.txt;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import io.github.mzattera.v4j.text.CompositeText;
@@ -47,10 +49,14 @@ public class TextFile extends CompositeText<TextLine> {
 	}
 
 	public TextFile(File file, Alphabet a, String encoding) throws IOException {
+		this(file.getCanonicalPath(), new FileInputStream(file), a, encoding);
+	}
+
+	public TextFile(String id, InputStream stream, Alphabet a, String encoding) throws IOException {
 		super(a);
-		id = file.getCanonicalPath();
-		
-		List<String> lines = FileUtil.read(file, encoding);
+		this.id = id;
+
+		List<String> lines = FileUtil.read(stream, encoding);
 
 		for (int i = 0; i < lines.size(); ++i) {
 			addElement(new TextLine(i, lines.get(i)));

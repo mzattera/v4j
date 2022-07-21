@@ -53,6 +53,13 @@ public class BagOfWords implements Clusterable {
 		return dimensions;
 	}
 
+	/**
+	 * @return Value of given dimension (represented by a word).
+	 */
+	public double getDimensionValue(String word) {
+		return x[dimensions.get(word)];
+	}
+
 	// vector representation of this BoW
 	private double[] x;
 

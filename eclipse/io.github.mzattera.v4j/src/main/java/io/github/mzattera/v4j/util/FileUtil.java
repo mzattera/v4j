@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.URISyntaxException;
@@ -53,6 +54,15 @@ public final class FileUtil {
 		} catch (URISyntaxException e) {
 			return null;
 		}
+	}
+
+	/**
+	 * Gets a stream to read a file in the resource folder.
+	 * 
+	 * @param resourceName Name for the resource, including path.
+	 */
+	public static InputStream getResourceStream(String resourceName) {
+		return ClassLoaderUtil.getResourceAsStream(resourceName, FileUtil.class);
 	}
 
 	/**
@@ -145,25 +155,26 @@ public final class FileUtil {
 	 * @throws IOException
 	 */
 	public static List<String> read(String fileName, String encoding) throws IOException {
+		return read(new FileInputStream(fileName), encoding);
+	}
+
+	/**
+	 * Reads text from given stream and returns its contents as a list of non-empty
+	 * lines.
+	 * 
+	 * @throws IOException
+	 */
+	public static List<String> read(InputStream stream, String encoding) throws IOException {
 
 		List<String> rows = new ArrayList<String>();
 
-		BufferedReader in = null;
-		try {
-			in = new BufferedReader(new InputStreamReader(new FileInputStream(fileName), encoding));
+		try (BufferedReader in = new BufferedReader(new InputStreamReader(stream, encoding))) {
 			String row;
 			while ((row = in.readLine()) != null) {
 				rows.add(row);
 			}
 
 			return rows;
-		} finally {
-			if (in != null)
-				try {
-					in.close();
-				} catch (Exception e) {
-				}
 		}
 	}
-
 }

@@ -40,4 +40,12 @@ public class BibleFactory {
 		return new TextFile(FileUtil.getResourceFile(TRANSCRIPTION_FOLDER + language + ".txt"), Alphabet.UTF_16,
 				"UTF-8");
 	}
+	
+	public static void main(String[] argv) {
+		try {
+			System.out.print(getDocument("italian"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

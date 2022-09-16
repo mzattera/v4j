@@ -18,7 +18,7 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 
 ## Abstract
 
-I show how the structure of Voynich words can be easily described by assuming each term is composed by "slots" that can be filled
+I show how the structure of Voynich words can be easily described by assuming each word type is composed by "slots" that can be filled
 accordingly to simple rules, which are described below.
 
 This in turn sheds some lights on the definition of what might constitute a Voynich character (the Voynich alphabet).
@@ -32,27 +32,27 @@ exists in any modern text as well. However, I will try to focus on claims that a
 
 I start my analysis from a concordance version of the Voynich text (see [Note 001](../001)); this is obtained from the 
 Landini-Stolfi Interlinear file by merging available interlinear transcriptions for each transcriber. In the merging, characters that are not
-read by all authors in the same way are marked as unreadable. This to ensure the terms I will extract from the text are the most accurate.
+read by all authors in the same way are marked as unreadable. This to ensure the word types I will extract from the text are the most accurate.
 
 For reasons explained below, any occurrence of the following characters is also marked with an unreadable character:
 
 - 'g', 'x', 'v', 'u', 'j', 'b', 'z' (47 occurrences in total, 13 of them are single-letter words).
 
-- 'c' and 'h', when they do not appear in combinations such as 'ch', 'sh', 'cth', 'ckh', 'cph', 'cfh'; this sums up to 11 terms.
+- 'c' and 'h', when they do not appear in combinations such as 'ch', 'sh', 'cth', 'ckh', 'cph', 'cfh'; this sums up to 11 word types.
 
 As a second step, **tokens** are created by splitting the text where a space was detected by at least one of the transcribers; there are 31'317 tokens in the text,
 ignoring those that contain an unreadable character.
 
-The list of **terms** is the list of tokens without repetitions (this would be the "vocabulary" of the Voynich).
-These 5'105 total terms have then been analyzed as explained below.
+The list of **word types** is the list of tokens without repetitions (this would be the "vocabulary" of the Voynich).
+These 5'105 total word types have then been analyzed as explained below.
 
 
 ## Considerations
 
-By looking at the terms in the Voynich, we can see their structure (that is, the sequence of Voynich glyphs used to write them) can be easily described
+By looking at the word types in the Voynich, we can see their structure (that is, the sequence of Voynich glyphs used to write them) can be easily described
 as follows:
 
-- each term can be considered as composed by 12 "slots"; for convenience I will number them from 0 to 11.
+- each word type can be considered as composed by 12 "slots"; for convenience I will number them from 0 to 11.
 
 - each slot can be empty or contain a single glyph. 
 
@@ -65,12 +65,12 @@ The below table summarizes all of these rules, showing the 12 slots and the glyp
 ![Slots](images/Slots Table.PNG)
 
 In some cases, the word structure can be ambiguous, since a glyph can occupy any of 2 available slots
-(e.g. the term 'y' can be seen as a 'y' either in slot 1 or slot 11); following some further
+(e.g. the word type 'y' can be seen as a 'y' either in slot 1 or slot 11); following some further
 [analysis on word structure](../007), when decomposing a word, I always put each glyph in the rightmost possible position.
 Notice this is a "weak" rule that is quite arbitrary and has no impact on which
-terms can or cannot be described by this model.
+word types can or cannot be described by this model.
 
-To exemplify this concept, I show how some common terms can be decomposed in slots;
+To exemplify this concept, I show how some common word types can be decomposed in slots;
 
 ```
 'daiin'
@@ -97,23 +97,23 @@ To exemplify this concept, I show how some common terms can be decomposed in slo
 
 We can then see [{2}](#Note2) that tokens can be classified as follows:
 
-- 27'114 tokens (86.6% of total), corresponding to 2'617 different terms (51.3% of total), can be decomposed in slots accordingly to the above rules. I will call these tokens "**regular**".
+- 27'114 tokens (86.6% of total), corresponding to 2'617 different word types (51.3% of total), can be decomposed in slots accordingly to the above rules. I will call these tokens "**regular**".
 
-- 3'249 tokens (10.4% of total), corresponding to 1'892 different terms (37.1% of total), can be divided in two parts, each composed by at least two Voynich glyphs, 
-where each of these parts is a regular term. I will call these tokens "**separable**".
+- 3'249 tokens (10.4% of total), corresponding to 1'892 different word types (37.1% of total), can be divided in two parts, each composed by at least two Voynich glyphs, 
+where each of these parts is a regular word type. I will call these tokens "**separable**".
 
-  Moreover, we can see that for 2'219 separable terms (75.2% of total separable terms) their constituent parts appear as tokens in the text at least as often as the whole
-  separable term. For example, the term 'chockhy' appears 18 times in the text; it is a separable term that can be divided in two parts, each one being a regular term, as
-  'cho' - 'ckhy' which appears in the text 79 and 39 times respectively. I think this is an indication that many separable terms are possibly just two regular words that were written together
+  Moreover, we can see that for 2'219 separable word types (75.2% of total separable word types) their constituent parts appear as tokens in the text at least as often as the whole
+  separable word type. For example, the word type 'chockhy' appears 18 times in the text; it is a separable word type that can be divided in two parts, each one being a regular word type, as
+  'cho' - 'ckhy' which appears in the text 79 and 39 times respectively. I think this is an indication that many separable word types are possibly just two regular words that were written together
   (or the space between them was not transcribed correctly).
-  When I need to distinguish these terms from other separable terms, I will call them "**verified separable**" or simply "**verified**".
+  When I need to distinguish these word types from other separable word types, I will call them "**verified separable**" or simply "**verified**".
 
-- Remaining 954 tokens (3.0% of total), corresponding to 596 different terms (11.7% of total), are marked as "**unstructured**".
+- Remaining 954 tokens (3.0% of total), corresponding to 596 different word types (11.7% of total), are marked as "**unstructured**".
 
-  Notice that 489 out of these 596 terms, or 82%, appear only once in the text; this percentage is 59.8% for regular and separable terms considered together.
+  Notice that 489 out of these 596 word types, or 82%, appear only once in the text; this percentage is 59.8% for regular and separable word types considered together.
   This might suggest that unstructured words are either typos or special words that are encoded differently than other words.
 
-- Sometime I contrast regular and separable terms to unstructured ones by calling the former "**structured**".  
+- Sometime I contrast regular and separable word types to unstructured ones by calling the former "**structured**".  
 
 The below tables summarize these findings.
 
@@ -121,10 +121,10 @@ The below tables summarize these findings.
 
 ![Pie chart with distribution of words accordingly to their classification.](images/Summary Pie.PNG)
 
-In short, almost 9 out of 10 tokens in the Voynich text exhibit a "slot" structure. Of the remaining, a fair amount can be decomposed in two parts each corresponding to regular terms
+In short, almost 9 out of 10 tokens in the Voynich text exhibit a "slot" structure. Of the remaining, a fair amount can be decomposed in two parts each corresponding to regular word types
 appearing elsewhere in the text. The remaining cases (3 out of 100) are mostly words appearing only once in the text.
 
-The below table shows percentage occurrence of glyphs in slots for regular terms [{3}](#Note3).
+The below table shows percentage occurrence of glyphs in slots for regular word types [{3}](#Note3).
 
 <a id="GliphCountImg" />
 ![Table with glyph count by slot.](images/Char Count by Slot.PNG)
@@ -139,9 +139,9 @@ The definition of the Voynich alphabet, that is of which glyphs should be consid
 Each transcriber must continuously decide what symbols in the manuscript constitute instances of the same glyph and how each glyph needs to be mapped into 
 one or more transliteration characters.
 
-However, if we consider the above defined slots as relevant for the structure of terms, we can reasonably assume that each glyph appearing in a slot constitutes 
+However, if we consider the above defined slots as relevant for the structure of word types, we can reasonably assume that each glyph appearing in a slot constitutes 
 a basic unit of information, that is a character in the Voynich alphabet.
-As far as I know, this is the first time that a possible Voynich alphabet is supported by empirical evidence of an inner structure of Voynich terms.
+As far as I know, this is the first time that a possible Voynich alphabet is supported by empirical evidence of an inner structure of Voynich word types.
 
 Below, I analyze more in detail some relationships between glyphs, as they appear in slots, and EVA characters.
 
@@ -172,7 +172,7 @@ that is a more compact from of writing a combination of the pedestal and a gallo
 If we look at slots 3 through 5, we might think that pedestalled gallows can be indeed a combination of a gallows character followed by the pedestal, in this specific order.
 However, 
 
-  - The combination of gallows in slot 3 followed by a pedestal in slot 4 is quite common in the text. 2'185 tokens, or 419 regular terms, that is 16% of regular terms,
+  - The combination of gallows in slot 3 followed by a pedestal in slot 4 is quite common in the text. 2'185 tokens, or 419 regular word types, that is 16% of regular word types,
 and written explicitly as two glyphs.
  
   - In 332 tokens, we have a pedestal followed by a pedestalled gallows. This would correspond to a double pedestal is in a word (or a separable word), which contrasts with the 
@@ -206,7 +206,7 @@ Based on the above, I assume each sequence of 'e' and 'i' is probably a characte
 
 Finally, drawing from the above considerations, I propose a new transliteration alphabet, which I will call the **Slot alphabet** for obvious reasons.
 
-I think that, being based on the inner structure of Voynich terms, this alphabet is more suitable than others when performing statistical analysis that relies on characters in words or when attempting
+I think that, being based on the inner structure of Voynich word types, this alphabet is more suitable than others when performing statistical analysis that relies on characters in words or when attempting
 to decipher the Voynich, where a one-to-one correspondence between the transliteration characters and the Voynich characters is paramount.
 
 In addition, the alphabet can be easily converted into EVA, and vice-versa, therefore being used interchangeably.
@@ -234,20 +234,20 @@ I created a [separate page](../006).
 
 ## Conclusions 
 
-- Majority of words in the Voynich exhibits an inner structure described here, where terms can be represented as composed by 12 "slots" that can be left empty or 
+- Majority of words in the Voynich exhibits an inner structure described here, where word types can be represented as composed by 12 "slots" that can be left empty or 
 populated by a single glyph chosen among a very limited group of glyphs (usually 2-3).
 
-  - 86.6% of tokens (51.3% of terms) exhibit this structure (**regular** terms).
+  - 86.6% of tokens (51.3% of word types) exhibit this structure (**regular** word types).
   
-  - 10.4% of tokens (37.1% of terms) can be divided in two parts, each presenting the inner structure described above (**separable** terms). 
+  - 10.4% of tokens (37.1% of word types) can be divided in two parts, each presenting the inner structure described above (**separable** word types). 
   
-    For 68.3% of separable terms, their two constituents appear in the text more often than the separable term itself (**verified separable** terms).
+    For 68.3% of separable word types, their two constituents appear in the text more often than the separable word type itself (**verified separable** word types).
   
-    This seems a strong indication that separable terms are made by two regular terms written or transcribed together.
+    This seems a strong indication that separable word types are made by two regular word types written or transcribed together.
   
-  - only 3.0% of tokens (11.7% of terms) do not exhibit this structure (**unstructured** terms).
+  - only 3.0% of tokens (11.7% of word types) do not exhibit this structure (**unstructured** word types).
   
-    82% of unstructured terms appears only once in the text. In other words, **only 1.5% of tokens (2.1% of terms) are unstructured terms appearing at least twice in the text**.
+    82% of unstructured word types appears only once in the text. In other words, **only 1.5% of tokens (2.1% of word types) are unstructured word types appearing at least twice in the text**.
 	
 	I argue that these can be typos or plain text words encoded in a different way than the majority of the text (e.g. because they represent proper names or uncommon words).
 	

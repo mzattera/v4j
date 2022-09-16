@@ -1,4 +1,4 @@
-## Note 004 - On Terms
+## Note 004 - On Word types
 
 _Last updated Sep. 18th, 2021._
 
@@ -17,29 +17,29 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 
 The class
 ['MostUsedTerms'](https://github.com/mzattera/v4j/blob/v.4.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mattera/v4j/applications/MostUsedTerms.java)
-finds top 20 most used terms for each cluster defined in [Note 003](../003) and prints out the result in .CSV format.
+finds top 20 most used word types for each cluster defined in [Note 003](../003) and prints out the result in .CSV format.
 
 An Excel file ("`MostUsedTerms.xlsx`") containing this data can be found under the
 [analysis folder](https://github.com/mzattera/v4j/tree/master/resources/analysis).
 
-The below table summarizes the results, showing, the relative frequency of terms in each cluster.
+The below table summarizes the results, showing, the relative frequency of word types in each cluster.
 
-![Most used terms](images/Terms.PNG)
+![Most used word types](images/Word types.PNG)
 
-As expected from cluster analysis, beside terms that appear frequently in all clusters (such as 'chey', 'daiin', 'dar', 'dy', and 'or'),
-there are terms characteristic of a single cluster; the table below shows them.
+As expected from cluster analysis, beside word types that appear frequently in all clusters (such as 'chey', 'daiin', 'dar', 'dy', and 'or'),
+there are word types characteristic of a single cluster; the table below shows them.
 
-![Most used terms](images/Unique.PNG)
+![Most used word types](images/Unique.PNG)
 
 It might be interesting to note that:
 
-- Most common terms in Herbal A pages (HA cluster) start with 'ch-' or 'sh-'; the latter prefix appearing only here,
+- Most common word types in Herbal A pages (HA cluster) start with 'ch-' or 'sh-'; the latter prefix appearing only here,
 
-- Pharmaceutical (PA cluster) common terms end in '-ol', which is rare for other clusters. In addition, they seem to prefer the 'ok-' or 'qok-' prefix.
+- Pharmaceutical (PA cluster) common word types end in '-ol', which is rare for other clusters. In addition, they seem to prefer the 'ok-' or 'qok-' prefix.
 
-- Herbal B pages (HB cluster) prefer terms starting with 'qo-' and 'qok-'.
+- Herbal B pages (HB cluster) prefer word types starting with 'qo-' and 'qok-'.
 
-- Zodiac (ZZ) common terms mostly start with 'ot-', this is uncommon for clusters above. Moreover, these pages feature single characters as common terms.
+- Zodiac (ZZ) common word types mostly start with 'ot-', this is uncommon for clusters above. Moreover, these pages feature single characters as common word types.
 
 
 ---

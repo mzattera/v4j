@@ -17,7 +17,7 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 
 # Abstract
 
-This note discuss the application of k-means clustering algorithms to Voynich pages, showing how the terms in the page 
+This note discuss the application of k-means clustering algorithms to Voynich pages, showing how the word types in the page 
 strongly correlate with the page illustration type (Herbal, Biological, Pharmaceutical, etc.) and Currier's language (A or B).
 
 # Previous Works
@@ -38,9 +38,9 @@ I use the EVA alphabet, but it is not relevant for this discussion, as I look at
 ## Embedding and Distance Measure
 
 The text is split into units for analysis, that could be single pages or bigger portions of text (e.g. parchments / bi-folios).
-Each unit is embedded as a bag of words where the dimensions are the "readable" terms in the Voynich (that is, Voynich "words" with no
+Each unit is embedded as a bag of words where the dimensions are the "readable" word types in the Voynich (that is, Voynich "words" with no
 "unreadable" characters [{1}](#Note1))
-and the value for the dimension is the number of times corresponding term appears in the text unit.
+and the value for the dimension is the number of times corresponding word type appears in the text unit.
 
 Similarity between textual units is computed as positive angular distance of corresponding embedding; this returns angular distance
 between two vectors assumed to have only positive components.
@@ -233,7 +233,7 @@ Currier's languages reflect language differences in the underlying plain text.
   However, it can be that these similarities reflect a different technique (or variations of the same technique) used to create
   the parchments. This technique could be either a proper cypher or a way to produce "random" text.  
 
-- As the above grouping reflects a similar distribution of terms in the text, no matter what was the cause,
+- As the above grouping reflects a similar distribution of word types in the text, no matter what was the cause,
 these differences should be kept in mind when performing statistical analysis of the text or when trying to decipher it.
 
   For this reason, v4j library provides means to classify pages accordingly to above considerations, the resulting clusters are shown below[{5}](#Note5)

@@ -26,30 +26,30 @@ Below some links to browse the Voynich online.
 On this site, I will try to be consistent with following terminology.
 
 - A **transliteration** is a symbol-by-symbol conversion of one script into another. Transliteration is needed to represent the content of the Voynich in a 
-format that can be printed or stored in computer files. I might sometimes use the less correct term **transcription** as a synonym and refer 
+format that can be printed or stored in computer files. I might sometimes use the less correct word type **transcription** as a synonym and refer 
 to an author of a transliteration as a **transcriber**.
 
   - I refer to the list of symbols used in the target script as the **transliteration alphabet** or simply as the **alphabet**.
 Each symbol in the alphabet is referred as a **transliteration character** or simply **character**.
 
-- The term **glyph** refers to a symbol in the Voynich that appears to constitute a basic unit of text. In principle, a glyph could represent one or more
+- The word type **glyph** refers to a symbol in the Voynich that appears to constitute a basic unit of text. In principle, a glyph could represent one or more
  **Voynich characters** that constitute the **Voynich alphabet**.
 
   The question of which glyphs are actual single Voynich characters is still very open and it is at the basis of the different transliteration alphabets being created.
   
 - Unless stated otherwise, pieces of transliterated Voynich script I quote use the "Basic Eva" as transliteration alphabet and are enclosed in single quotes (e.g. 'qockhey').
 
-- A **token** in a text is a single sequence of characters, separated by spaces. The list of **terms** is the list of tokens without repetitions.
-In other words, a token is an instance of a term. For example; the below line in the Voynich
+- A **token** in a text is a single sequence of characters, separated by spaces. The list of **word types** (or simply **types**) is the list of tokens without repetitions.
+In other words, a token is an instance of a word type. For example; the below line in the Voynich
 
   ```
   <f1r.15,+P0;m> daiin shckhey ckhor chor shey kol chol chol kor chol
   ```
   
   contains 10 tokens ('daiin', 'shckhey', 'ckhor', 'chor', 'shey', 'kol', 'chol', 'chol', 'kor', 'chol') which are instances of 
-  8 terms ('daiin', 'shckhey', 'ckhor', 'chor', 'shey', 'kol', 'chol', 'kor').
+  8 word types ('daiin', 'shckhey', 'ckhor', 'chor', 'shey', 'kol', 'chol', 'kor').
   
-  When the distinction is not relevant, I might loosely use **word** to refer either to tokens or terms. 
+  When the distinction is not relevant, I might loosely use **word** to refer either to tokens or word types. 
 
 
 # Working Notes
@@ -70,9 +70,9 @@ In other words, a token is an instance of a term. For example; the below line in
   
   This should be considered when applying statistical analysis methods to the manuscript.
 
-- [Note 004 - On Terms](./004)
+- [Note 004 - On Word types](./004)
 
-  List of most common Voynichese terms and how they are split across different clusters.
+  List of most common Voynichese word types and how they are split across different clusters.
 
 - [Note 005 - Slots and a New Alphabet](./005)
 

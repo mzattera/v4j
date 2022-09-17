@@ -19,8 +19,8 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 # Abstract
 
 In this note, I show evidence of structural differences in words appearing in the 5 main clusters (see [note 003](../003)) of the Voynich,
-suggesting that the two Currier's "languages" A and B are probably only a major distinction in a bigger group of such "languages".
-I also argue how these languages are the result of different parametrizations of the cypher technique.
+suggesting that the two Currier's languages A and B are probably only a major distinction in a bigger group of such "languages".
+I also argue how these languages might be the result of different "parametrizations" of the cypher.
 
 
 # Methodology
@@ -38,7 +38,10 @@ to create a decision tree[{4}](#Note4) that classifies pages based on these patt
 The decision tree is shown below.
 
 ```
-if <= 2% of tokens contain 'ed' then [ This is Currier's Language A
+if <= 2% of tokens contain 'ed' then [ 
+
+	- This is Currier's Language A -
+	
 	if > 14% of tokens contain 'eo' then [
 		if > 4% of tokens begin with 'cth' [
 			Cluster is HA
@@ -48,7 +51,10 @@ if <= 2% of tokens contain 'ed' then [ This is Currier's Language A
 	] else [
 		Cluster is HA
 	]
-} else [ This is Currier's Language B
+] else [ 
+
+	- This is Currier's Language B -
+	
 	if any token contains 'so' then [
 		if > 4% of tokens contain 'eo' then [
 			Cluster is SB
@@ -103,16 +109,16 @@ a difference in terminology in the plaintext.
 
 <a id="Note1">**{1}**</a> Class [`BuildSlotStateMachine`](https://github.com/mzattera/v4j/blob/v.11.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/BuildSlotStateMachine.java) was used for this purpose. Concordance version of the Voynich was used (Slot alphabet transcription).
 
-<a id="Note2">**{2}**</a> A complete list of grammars for each section can be found [here](https://github.com/mzattera/master/resources/analysis/grammar/). The file 'Grammars Comparison.docx' summarizes
+<a id="Note2">**{2}**</a> A complete list of grammars for each section can be found [here](https://github.com/mzattera/v4j/tree/master/resources/analysis/grammar). The file 'Grammars Comparison.docx' summarizes
 the differences being found.
 
 <a id="Note3">**{3}**</a> Class [`ExtractGrammaticalFeatures`](https://github.com/mzattera/v4j/blob/v.11.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/ExtractGrammaticalFeatures.java) was used for this purpose.
-The result can be seen in file `Features.xlsx` saved [here](https://github.com/mzattera/master/resources/analysis/grammar/).
+The result can be seen in file `Features.xlsx` saved [here](https://github.com/mzattera/v4j/tree/master/resources/analysis/grammar).
 
 <a id="Note4">**{4}**</a> [This folder](https://github.com/mzattera/master/KNIME/Word%20Structure%20Clustering/) contains the KNIME workspace with the workflow used to create the decision tree.
 
 <a id="Note5">**{5}**</a> Class [`DecisionTreeTest`](https://github.com/mzattera/v4j/blob/v.11.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/DecisionTreeTest.java)
-was used to create these statistics. Its output can be seen in file `ClusterPrediction.xlsx` saved [here](https://github.com/mzattera/master/resources/analysis/grammar/).
+was used to create these statistics. Its output can be seen in file `ClusterPrediction.xlsx` saved [here](https://github.com/mzattera/v4j/tree/master/resources/analysis/grammar).
 
 
 

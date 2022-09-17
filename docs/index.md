@@ -90,6 +90,11 @@ In other words, a token is an instance of a word type. For example; the below li
 
   I created a grammar to explain structure of Voynich words, showing it has the best F1 score among all proposed models.
    
+- [Note 009 - The Five Languages of the Voynich](./009)
+
+  Used insights from above grammar to show structural differences in words appearing in different sections of the Voynich.
+  This suggests: 1) that Currier's languages can be more than 2 and 2) clustering might not be showing a difference in topics.
+   
 
 # Bibliography and Reviews
 

@@ -85,16 +85,16 @@ not permitted). It can be an indication that the two Currier’s "languages" A a
 only a major distinction within a group of (at least) five such "languages".
 
 In [note 005](../005) I showed how the slot structure applies to the entire text; 
-at the same time, the grammar in note 008can generate about 62% of tokens in the whole manuscript, an indication that the
+at the same time, the grammar in note 008 can generate about 62% of tokens in the whole manuscript, an indication that the
 method used to create the text is somewhat uniform across the different clusters. On the
-other side, the fact that sections of the text can be identified just looking at some character
+other side, the fact that clusters can be identified just looking at some character
 sequences in words suggests that this general method has somehow been “tweaked” for each
 section. One could speculate that the method used to create the text, whether it is an actual
 cypher or a way to generate gibberish, relies on some parameters (e.g., a table, a grill) which
-are made different for each section. This also suggests that any decipherment attempt, or
-statistical analysis, should be conducted separately for these sections.
+are made different for each cluster. This also suggests that any decipherment attempt, or
+statistical analysis, should be conducted separately for each cluster.
 
-Finally, the difference in word structure across the different sections of the text will obviously affect
+Finally, the difference in word structure across the different clusters will obviously affect
 the list of word types appearing in each section; in turn, this will affect any clustering
 algorithm that uses words as features. The implication here is that previous works that used
 clustering to support the idea of different topics in different sections, might be just surfacing

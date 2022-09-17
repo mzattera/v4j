@@ -32,10 +32,9 @@ The differences between each grammar and the grammar in note 008 were used to id
 For example, in the grammar for the SB cluster (and not in the one in note 008), the production rule 6_eEB can be generated from the initial rule,
 meaning that sequences like 'e-', 'ee-', or 'eee-' at the beginning of words are a potentially distinctive feature of this cluster. 
 
-Afterwards, frequencies with which these patterns appear in the different sections are collected[{3}](#Note3) and fed into an algorithm 
-to create a decision tree[{4}](#Note4) that classifies pages based on these patterns.
+Frequencies with which these patterns appear in each page are collected[{3}](#Note3) and fed into an algorithm 
+to create a decision tree[{4}](#Note4) that classifies pages based on these patterns, which is shown below.
 
-The decision tree is shown below.
 
 ```
 if <= 2% of tokens contain 'ed' then [ 
@@ -109,13 +108,13 @@ a difference in terminology in the plaintext.
 
 <a id="Note1">**{1}**</a> Class [`BuildSlotStateMachine`](https://github.com/mzattera/v4j/blob/v.11.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/BuildSlotStateMachine.java) was used for this purpose. Concordance version of the Voynich was used (Slot alphabet transcription).
 
-<a id="Note2">**{2}**</a> A complete list of grammars for each section can be found [here](https://github.com/mzattera/v4j/tree/master/resources/analysis/grammar). The file 'Grammars Comparison.docx' summarizes
+<a id="Note2">**{2}**</a> A complete list of grammars for each section can be found [here](https://github.com/mzattera/v4j/tree/master/resources/analysis/grammar). The file `Grammars Comparison.docx` summarizes
 the differences being found.
 
 <a id="Note3">**{3}**</a> Class [`ExtractGrammaticalFeatures`](https://github.com/mzattera/v4j/blob/v.11.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/ExtractGrammaticalFeatures.java) was used for this purpose.
 The result can be seen in file `Features.xlsx` saved [here](https://github.com/mzattera/v4j/tree/master/resources/analysis/grammar).
 
-<a id="Note4">**{4}**</a> [This folder](https://github.com/mzattera/master/KNIME/Word%20Structure%20Clustering/) contains the KNIME workspace with the workflow used to create the decision tree.
+<a id="Note4">**{4}**</a> [This folder](https://github.com/mzattera/v4j/tree/v.11.0.0/KNIME/Word%20Structure%20Clustering) contains the KNIME workspace with the workflow used to create the decision tree.
 
 <a id="Note5">**{5}**</a> Class [`DecisionTreeTest`](https://github.com/mzattera/v4j/blob/v.11.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/DecisionTreeTest.java)
 was used to create these statistics. Its output can be seen in file `ClusterPrediction.xlsx` saved [here](https://github.com/mzattera/v4j/tree/master/resources/analysis/grammar).

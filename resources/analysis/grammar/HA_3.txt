@@ -1,0 +1,55 @@
+Transcription      : AUGMENTED
+Transcription Type : CONCORDANCE
+Filter             : PageFilter [cluster=HA]
+Min Weight         : 10
+Min Weight (scaled): 3
+
+| SM_3_TRIMMED 	| 1,130	| 542	| 65.578%	| 0.480	| 0.319	| 0.383 |
+
+<BEGIN>:
+	 -> 0_d, 0_q, 0_s, 1_o, 1_y, 2_l, 3_t|3_p|3_k, 4_C, 4_S, 5_T|5_P|5_K, 7_d, 7_s, 8_a, 8_o
+0_d:
+	d -> 4_C, 4_S, 6_e|6_E
+0_q:
+	q -> 1_o, 8_o
+0_s:
+	s -> 4_C
+1_o:
+	o -> 3_t|3_p|3_k, 7_d, 8_a
+1_y:
+	y -> 3_t|3_p|3_k, 4_C, 7_d
+2_l:
+	l -> 8_o
+3_t|3_p|3_k:
+	k, p, t -> 11_y, 4_C, 4_S, 6_e|6_E, 8_a, 8_o, <END>
+4_C:
+	ch -> 11_y, 6_e|6_E, 8_a, 8_o, <END>
+4_S:
+	sh -> 11_y, 8_o, <END>
+5_T|5_P|5_K:
+	ckh, cph, cth -> 11_y, 6_e|6_E, 8_a, 8_o
+6_e|6_E:
+	e, ee -> 11_y, 8_o
+7_d:
+	d -> 10_l, 8_a, 8_o
+7_s:
+	s -> 8_a, 8_o
+8_a:
+	a -> 10_l, 10_m, 10_n, 10_r, 9_i|9_J, <END>
+8_o:
+	o -> 10_d, 10_l, 10_m, 10_r, <END>
+9_i|9_J:
+	i, ii -> 10_n
+10_d:
+	d -> 11_y, <END>
+10_l:
+	l -> <END>
+10_m:
+	m -> <END>
+10_n:
+	n -> <END>
+10_r:
+	r -> <END>
+11_y:
+	y -> <END>
+<END>:

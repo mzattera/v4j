@@ -1,0 +1,4 @@
+/VoynichFeatures.csv
+/VoynichFeatures2.csv
+/BibleFeatures.csv
+file:/D:/features.csv

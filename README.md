@@ -4,9 +4,11 @@ This is a Java library i created to experiment with the [Voynich manuscript](htt
 
 The outcomes of my experiments are tracked on the [project pages](https://mzattera.github.io/v4j/).
 
-The folder `eclipse` contains an eclipse workspace. The (Maven) project `io.github.mzattera.v4j` holds the actual code for the Java library.
+The folder `eclipse` contains an [Eclipse](https://www.eclipse.org/ide/) workspace. The (Maven) project `io.github.mzattera.v4j` holds the actual code for the Java library.
 The library content is described below. The (Maven) project `io.github.mzattera.v4j-apps` contains classes I created to experiment with the 
 Voynich manuscript; here you can find examples about how to use the library.
+
+The folder `KNIME` contains several sub-folders, each corresponding to a different [KNIME](https://www.knime.com/) project.
 
 **_Note:_** Plase check the [project pages](https://mzattera.github.io/v4j/) for some terminology that is relevant here.
 

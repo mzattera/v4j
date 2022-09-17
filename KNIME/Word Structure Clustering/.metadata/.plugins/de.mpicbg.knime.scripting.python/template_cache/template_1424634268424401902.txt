@@ -1,0 +1,482 @@
+########################################################################################
+# name: Move CV7000 images to subfolders, (deprecated)
+# author: Marc Bickle, Martin Stoeter
+# category: utilities
+# preview: 
+
+This script moves all images of one CV7000 measurement into separate folders 
+for wells (e.g. C04) or well-fields (e.g. C04_F002).
+- select folder with CV7000 measurement or folder containing many measurements
+- measurement folder is recognized as folder containing correction images ("DC_sCMOS...", "OTF_sCMOS", "back_DC_sCMOS..." or "back_OTF_sCMOS...")
+- script runs recursively and goes through all subfolders
+######
+
+<rgg>
+
+<!--1. Title and short description -->
+
+<h3 text="$$$TEMPLATE_NAME$$$" aligment="center" span="full"/>
+<h3 text="Create directories for well and move images inside" aligment="center" span="full"/>
+<separator label="Description" span="full"/>
+<labelarea span="full">$$$TEMPLATE_DESC$$$</labelarea>
+<gaprow height="1"/>
+
+<!-- 2. Configuration-->
+
+<separator label="Options" span="full"/>
+<gaprow height="2"/>
+path = <filechooser label="Image Folder" description="Folder containing CV7000 .tif files" fileselection-mode="directories-only" size ="25"/>
+
+folderStructure = <combobox items="wells,well-fields" label="folder structure:" span="full"/>
+
+<!-- 3. Script-->
+
+<![CDATA[
+#import libraries
+import os as os
+import re as re
+
+#functions
+def moveImagesToSubDirs(subDir):
+	pattern = re.compile('(?P<Plate>.*)_(?P<Well>[A-P][0-9]{2})_(?P<TimePoint>T[0-9]{4})(?P<Field>F[0-9]{3}).*(?P<AqcuisitionNumber>A[0-9]{2})(?P<Plane>Z[0-9]{0,2})(?P<ChannelNumber>C[0-9]{2}).tif$')
+	for file in os.listdir("."):
+		if file.startswith(subDir) and file.endswith("tif"):
+			#find only the files starting with platename, i.e. the images of interest
+			res = re.search(pattern, file)
+			barcode, well, field = res.group("Plate"), res.group("Well"), res.group("Field")
+			if folderStructure == "wells":
+				if not os.path.exists(well):
+					os.makedirs(well)
+				os.rename(file, well+"/"+file)
+			if folderStructure == "well-fields":
+				if not os.path.exists(well+"_"+field):
+					os.makedirs(well+"_"+field)
+				os.rename(file, well+"_"+field+"/"+file)
+
+def doSubDir(subDir):
+	folderWithCV7000images = False  #this variable stores the information if this directory is actually the one containing CV7000 images (.tif)
+	os.chdir(subDir)				#go into directory
+	os.listdir(".")				 #get all files incl. directories
+	for file in os.listdir("."):
+		if os.path.isdir(file):  #if it is a directory, go into this function again (as new interation with this subdirectory)
+			doSubDir(file)
+		else:
+			if file.startswith("DC_sCMOS") | file.startswith("back_DC_sCMOS") | file.startswith("OTF_sCMOS") | file.startswith("back_OTF_sCMOS"):  #if such a file is found (a correction file), the this folder contains CV7000 images (.tif)
+				folderWithCV7000images = True 
+	if folderWithCV7000images:
+		moveImagesToSubDirs(subDir)
+	os.chdir("..") #go out of subdirectory again		
+
+#start of code
+os.chdir(path)   #change to the directory containing images and then one folder up for recursive folder search
+os.chdir("..")
+patternDir = re.compile("(.*/)(.*)")  #get first folder name and call recursive function
+resDir = re.search(patternDir, path)
+doSubDir(resDir.group(2))
+
+pyOut = kIn #in is equal to out
+
+]]>
+</rgg>
+
+########################################################################################
+# name: Move CV7000 images to subfolders, (uses folder name)
+# author: Marc Bickle, Martin Stoeter
+# category: utilities
+# preview: 
+
+This script moves all images of one CV7000 measurement into separate folders 
+for wells (e.g. C04) or well-fields (e.g. C04_F002).
+- select folder with CV7000 measurement or folder containing many measurements
+- CV7000 image name containing barcode, well, etc. is checked if .tif file starts with barcode name
+- script runs recursively and goes through all subfolders
+######
+
+<rgg>
+
+<!--1. Title and short description -->
+
+<h3 text="$$$TEMPLATE_NAME$$$" aligment="center" span="full"/>
+<h3 text="Create directories for well and move images inside" aligment="center" span="full"/>
+<separator label="Description" span="full"/>
+<labelarea span="full">$$$TEMPLATE_DESC$$$</labelarea>
+<gaprow height="1"/>
+
+<!-- 2. Configuration-->
+
+<separator label="Options" span="full"/>
+<gaprow height="2"/>
+path = <filechooser label="Image Folder" description="Folder containing CV7000 .tif files" fileselection-mode="directories-only" size ="25"/>
+
+folderStructure = <combobox items="wells,well-fields" label="folder structure:" span="full"/>
+
+<!-- 3. Script-->
+
+<![CDATA[
+
+#import libraries
+import os as os
+import re as re
+
+#functions
+
+def doSubDir(subDir):
+	pattern = re.compile('(?P<Plate>.*)_(?P<Well>[A-P][0-9]{2})_(?P<TimePoint>T[0-9]{4})(?P<Field>F[0-9]{3}).*(?P<AqcuisitionNumber>A[0-9]{2})(?P<Plane>Z[0-9]{0,2})(?P<ChannelNumber>C[0-9]{2}).tif$')
+	patternDir = re.compile("(.*/)(.*)")  #get first folder name and call recursive function
+	folderWithCV7000images = False  #this variable stores the information if this directory is actually the one containing CV7000 images (.tif)
+	os.chdir(subDir)				#go into directory
+	os.listdir(".")				 #get all files incl. directories
+	for file in os.listdir("."):
+		if os.path.isdir(file):  #if it is a directory, go into this function again (as new interation with this subdirectory)
+			doSubDir(file)
+		else:
+			if file.endswith(".tif"): #if file is an images
+				res = re.search(pattern, file)
+				if res != None:
+					barcode, well, field = res.group("Plate"), res.group("Well"), res.group("Field")
+					if barcode == subDir:  #if file starts with with name of the folder name above
+						if folderStructure == "wells":
+							if not os.path.exists(well):
+								os.makedirs(well)
+							os.rename(file, well+"/"+file)
+						if folderStructure == "well-fields":
+							if not os.path.exists(well+"_"+field):
+								os.makedirs(well+"_"+field)
+							os.rename(file, well+"_"+field+"/"+file)
+	os.chdir("..") #go out of subdirectory again		
+
+#start of code
+os.chdir(path)   #change to the directory containing images and then one folder up for recursive folder search
+os.chdir("..")
+patternDir = re.compile("(.*/)(.*)")  #get first folder name and call recursive function
+resDir = re.search(patternDir, path)
+doSubDir(resDir.group(2))
+
+pyOut = kIn #in is equal to out
+
+]]>
+</rgg>
+
+########################################################################################
+# name: Move CV7000 images from subfolders one folder up
+# author: Martin Stoeter, Marc Bickle 
+# category: utilities
+# preview: 
+
+This script moves all images of a CV7000 measurement from separate folders 
+one folder up (reverse function of snippet: Move CV7000 images to subfolders)
+- select folder with CV7000 measurement or folder containing many measurements
+- CV7000 image name containing barcode, well, etc. is checked if .tif file starts with barcode name
+- script runs recursively and goes through all subfolders, but doest delete subfolders
+######
+
+<rgg>
+
+<!--1. Title and short description -->
+
+<h3 text="$$$TEMPLATE_NAME$$$" aligment="center" span="full"/>
+<h3 text="Move images from well folder one folder up" aligment="center" span="full"/>
+<separator label="Description" span="full"/>
+<labelarea span="full">$$$TEMPLATE_DESC$$$</labelarea>
+<gaprow height="1"/>
+
+<!-- 2. Configuration-->
+
+<separator label="Options" span="full"/>
+<gaprow height="2"/>
+path = <filechooser label="Image Folder" description="Folder containing CV7000 .tif files" fileselection-mode="directories-only" size ="25"/>
+
+<!-- 3. Script-->
+
+<![CDATA[
+#import libraries
+import os as os
+import re as re
+
+#functions
+def doSubDir(subDir):
+	#patter is file name pattern of CV7000 files
+	pattern = re.compile('(?P<Plate>.*)_(?P<Well>[A-P][0-9]{2})_(?P<TimePoint>T[0-9]{4})(?P<Field>F[0-9]{3}).*(?P<AqcuisitionNumber>A[0-9]{2})(?P<Plane>Z[0-9]{0,2})(?P<ChannelNumber>C[0-9]{2}).tif$')
+	folderWithCV7000images = False  #this variable stores the information if this directory is actually the one containing CV7000 images (.tif)
+	os.chdir(subDir)				#go into directory
+	os.listdir(".")				 #get all files incl. directories
+	for file in os.listdir("."):
+		if os.path.isdir(file):  #if it is a directory, go into this function again (as new interation with this subdirectory)
+			doSubDir(file)
+		else:
+			if file.endswith(".tif"): #if file is an images
+				#find only the files starting with platename, i.e. the images of interest
+				res = re.search(pattern, file)
+				if res != None: 
+					barcode, well, field = res.group("Plate"), res.group("Well"), res.group("Field")
+					if well == subDir or well+"_"+field == subDir:
+						os.rename(file, "../"+file)
+	os.chdir("..") #go out of subdirectory again		
+
+#start of code
+os.chdir(path)   #change to the directory containing images and then one folder up for recursive folder search
+os.chdir("..")
+patternDir = re.compile("(.*/)(.*)")  #get first folder name and call recursive function
+resDir = re.search(patternDir, path)
+doSubDir(resDir.group(2))
+
+pyOut = kIn #in is equal to out
+
+]]>
+</rgg>
+
+########################################################################################
+# name: Compute the intersection of lists
+# author: Marc Bickle
+# category: relations
+# preview: 
+
+Computes the intersection of lists (for a Venn diagram use the corresponding Python plot). Accepts 2 or 3 columns of data and returns all possible intersections and the unique values.
+
+
+######
+<rgg>
+
+<!--1. Title and short description -->
+
+<h3 text="$$$TEMPLATE_NAME$$$" aligment="center" span="full"/>
+<separator label="Description" span="full"/>
+<labelarea span="full">$$$TEMPLATE_DESC$$$</labelarea>
+<gaprow height="1"/>
+
+
+<!-- 2. Configuration-->
+
+<separator label="Options" span="full"/>
+<gaprow height="2"/>
+
+<group>
+
+# b) Define what values to use
+features = [<panellistbox label="Features of interest" items="$$$ALL_ATTRIBUTES$$$" visible-row-count="5" span="full"/>]
+
+
+</group>
+
+<!-- 3. Script-->
+
+<![CDATA[
+
+
+
+import pandas as pd
+import numpy as np
+   
+
+kIn = pd.DataFrame(kIn.values(), index = kIn.keys()).T
+DF = kIn[features]
+
+
+
+if len(features) == 2:
+	set1 = DF[features[0]].dropna()
+	set2 = DF[features[1]].dropna()
+	commonset = "common set between " + features[0] + " and " + features[1]
+	uniqueset1 = "unique set of " + features[0]
+	uniqueset2 = "unique set of " + features[1]
+	common1_2 = list(set(set1)&set(set2))
+	unique1 = [x for x in set(set1) if x not in common1_2]
+	unique2 = [x for x in set(set2) if x not in common1_2]
+	result = {commonset: common1_2,
+          uniqueset1: unique1,
+          uniqueset2: unique2}
+elif len(features) == 3:
+	set1 = DF[features[0]].dropna()
+	set2 = DF[features[1]].dropna()
+	set3 = DF[features[2]].dropna()
+	commonset = "common set between " + features[0] + ", " + features[1] + " and " + features[2]
+	commonset1set2 = "common set between " + features[0] + " and " + features[1]
+	commonset1set3 = "common set between " + features[0] + " and " + features[2]
+	commonset2set3 = "common set between " + features[1] + " and " + features[2]
+	uniqueset1 = "unique set of " + features[0]
+	uniqueset2 = "unique set of " + features[1]
+	uniqueset3 = "unique set of " + features[2]
+	common1_2_3 =list(set(set1)&set(set2)&set(set3))
+	common1_2 = [x for x in list(set(set1)&set(set2)) if x not in common1_2_3]
+	common1_3 = [x for x in list(set(set1)&set(set3)) if x not in common1_2_3]
+	common2_3 = [x for x in list(set(set2)&set(set3)) if x not in common1_2_3]
+	unique1 = [x for x in set(set1) if x not in common1_2_3 + common1_2 + common1_3 + common2_3]
+	unique2 = [x for x in set(set2) if x not in common1_2_3 + common1_2 + common1_3 + common2_3]
+	unique3 = [x for x in set(set3) if x not in common1_2_3 + common1_2 + common1_3 + common2_3]
+	result = {commonset: common1_2_3,
+          commonset1set2: common1_2,
+          commonset1set3: common1_3,
+          commonset2set3: common2_3,
+          uniqueset1: unique1,
+          uniqueset2: unique2,
+          uniqueset3: unique3}
+else:
+	raise Exception("More than 3 categories in the data")
+pyOut = pd.DataFrame(result.values(), result.keys()).T
+
+
+]]>
+
+</rgg>
+
+########################################################################################
+# name: estimate gaussion intersection
+# author: Felix Meyenhofer
+# category: statistics
+# preview: gaussian-intersection.png
+
+compute the histograms of random variables, fit a gaussian and compute the intersection points.
+(use the python figure template with the same name to produce the control plots)
+
+######
+
+<rgg>
+
+<!--1. Title and short description -->
+
+<h3 text="$$$TEMPLATE_NAME$$$" aligment="center" span="full"/>
+<separator label="Description" span="full"/>
+<labelarea span="full">$$$TEMPLATE_DESC$$$</labelarea>
+<gaprow height="1"/>
+
+
+<!-- 2. Configuration-->
+
+<separator label="Options" span="full"/>
+<gaprow height="2"/>
+
+<group>
+# a) Define your treatments of interest
+strColName = <combobox label="Grouping column" items="$$$STR_ATTRIBUTES$$$" span="full"/>
+
+# b) Define what numerical values to use
+numColName = <combobox label="Numerical values" items="$$$NUM_ATTRIBUTES$$$" span="full"/>
+
+# c) number of bins.
+nBins = int(<textfield label="Number of bins" var="" data-type="number" default-value= "30" size="10" span="full"/>)
+</group>
+
+
+<!-- 3. Python script-->
+
+<![CDATA[
+
+import numpy as np
+from scipy import optimize, integrate
+#from matplotlib import pyplot
+from scipy.optimize import fsolve
+
+
+# Objective function to solve intersection
+def fun(xy, f1, f2):
+    x, y = xy
+    z = np.array([y - f1(x), y - f2(x)])
+    return z
+
+
+def findIntersection(vect1, vect2):
+
+    # make the histogram
+    y1,x1 = np.histogram(vect1, bins=nBins, normed=True)
+    y2,x2 = np.histogram(vect2, bins=nBins, normed=True)
+
+    # calculate the center of the bins
+    x1 = np.mean(np.column_stack((x1[:-1], x1[1:])).T,0)
+    x2 = np.mean(np.column_stack((x2[:-1], x2[1:])).T,0)
+
+    # estimate the parameter of the gaussian function
+    mue1 = sum(x1*y1)/sum(y1)
+    sig1 = np.sqrt(abs(sum((x1-mue1)**2*y1)/sum(y1)))
+    a1 = y1.max()
+    mue2 = sum(x2*y2)/sum(y2)
+    sig2 = np.sqrt(abs(sum((x2-mue1)**2*y2)/sum(y2)))
+    a2 = y2.max()
+
+    # Fit
+    fitfunc = lambda p, x: p[0]*np.exp(-(x-p[1])**2/(2*p[2]**2))       # Target function
+    errfunc = lambda p, x, y: fitfunc(p, x) - y                     # Distance to the target function
+
+    p0 = [a1, mue1, sig1]
+    p1, success = optimize.leastsq(errfunc, p0[:], args=(x1, y1))
+    g1 = lambda x : p1[0]*np.exp(-(x-p1[1])**2/(2*p1[2]**2))
+
+    p0 = [a2, mue2, sig2]
+    p2, success = optimize.leastsq(errfunc, p0[:], args=(x2, y2))
+    g2 = lambda x : p2[0]*np.exp(-(x-p2[1])**2/(2*p2[2]**2))
+
+
+    # Find the instersection.
+    x0 = np.mean([mue1, mue2])
+    y0 = g1(x0)
+    intersection = fsolve(fun, [x0, y0], (g1, g2))
+
+    # Compute overlap
+    sig15 = sig1*5
+    i1 = integrate.quad(g1, mue1-sig15, mue1+sig15)
+    if mue1 > intersection[0]:
+        o1 = integrate.quad(g1, mue1-sig15, intersection[0])
+    else:
+        o1 = integrate.quad(g1, intersection[0], mue1+sig15)
+
+    sig25 = sig2*5
+    i2 = integrate.quad(g2, mue1-sig25, mue1+sig25)
+    if mue2 > intersection[0]:
+        o2 = integrate.quad(g2, mue2-sig25, intersection[0])
+    else:
+        o2 = integrate.quad(g2, intersection[0], mue2+sig15)
+
+    overlap = (o1[0] + o2[0]) / (i1[0] + i2[0])
+
+    return (intersection[0], intersection[1], overlap, mue1, sig1, p1[1], p1[2], mue2, sig2, p2[1], p2[2])
+
+#    # Control plot.
+#    sigm = np.max([sig1, sig2])*4
+#    muemi = np.min([mue1, mue2])
+#    muema = np.max([mue1, mue2])
+#    x = np.linspace(muemi-sigm, muema+sigm, 100)
+#    plot(x, g1(x), 'b', x, g2(x), 'g', intersection[0], intersection[1], 'rx')
+
+
+# pyOut = {'x coord.':[], 'y coord.':[], 'group a':[], 'mean(a) estimate':[], 'sd(a) estimate':[], 'mean(a) fit':[], 'sd(a) fit':[],
+#                       'group b':[], 'mean(b) estimate':[], 'sd(b) estimate':[], 'mean(b) fit':[], 'sd(b) fit':[]}
+
+pyOut = OrderedDict()
+for key in ['x coord.', 'y coord.', '% overlap', 'group a', 'mean(a) estimate', 'sd(a) estimate', 'mean(a) fit', 'sd(a) fit','group b', 'mean(b) estimate', 'sd(b) estimate', 'mean(b) fit', 'sd(b) fit']:
+	pyOut[key] = []
+
+
+vec = kIn[numColName]
+cat = kIn[strColName]
+
+sets = {}
+for index in range(0,len(vec)-1):
+    if sets.has_key(cat[index]):
+        sets[cat[index]].append(vec[index])
+    else:
+        sets[cat[index]] = [vec[index]]
+
+
+keys = sets.keys()
+numSets = len(keys)
+for a in range(0, numSets-1):
+    seta = sets[keys[a]]
+    for b in range(a+1,numSets):
+        setb = sets[keys[b]]
+        data = findIntersection(seta, setb)
+        pyOut['x coord.'].append(data[0])
+        pyOut['y coord.'].append(data[1])
+        pyOut['% overlap'].append(data[2])
+        pyOut['group a'].append(keys[a])
+        pyOut['mean(a) estimate'].append(data[3])
+        pyOut['sd(a) estimate'].append(data[4])
+        pyOut['mean(a) fit'].append(data[5])
+        pyOut['sd(a) fit'].append(data[6])
+        pyOut['group b'].append(keys[b])
+        pyOut['mean(b) estimate'].append(data[7])
+        pyOut['sd(b) estimate'].append(data[8])
+        pyOut['mean(b) fit'].append(data[9])
+        pyOut['sd(b) fit'].append(data[10])
+
+]]>
+
+</rgg>

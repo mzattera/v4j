@@ -1,0 +1,129 @@
+
+{
+    "version": "4.6.0.v202206091215",
+    "created": "2022-03-09 08:27",
+    "nodestats": {
+        "nodes": [
+            {
+                "id": "org.knime.base.node.mine.decisiontree2.learner2.DecisionTreeLearnerNodeFactory3#Decision Tree Learner",
+                "nrexecs": 256,
+                "nrfails": 0,
+                "exectime": 8682,
+                "nrcreated": 1,
+                "successor": "org.knime.base.node.mine.decisiontree2.predictor2.DecTreePredictorNodeFactory#Decision Tree Predictor"
+            },
+            {
+                "id": "org.knime.base.node.io.filehandling.csv.reader.CSVTableReaderNodeFactory#CSV Reader",
+                "nrexecs": 27,
+                "nrfails": 0,
+                "exectime": 2524,
+                "nrcreated": 0,
+                "successor": "org.knime.base.node.preproc.filter.column.DataColumnSpecFilterNodeFactory#Column Filter"
+            },
+            {
+                "id": "org.knime.base.node.mine.scorer.accuracy.AccuracyScorer2NodeFactory#Scorer",
+                "nrexecs": 210,
+                "nrfails": 0,
+                "exectime": 614,
+                "nrcreated": 1,
+                "successor": "n/a"
+            },
+            {
+                "id": "org.knime.base.node.mine.decisiontree2.predictor2.DecTreePredictorNodeFactory#Decision Tree Predictor",
+                "nrexecs": 210,
+                "nrfails": 0,
+                "exectime": 13438,
+                "nrcreated": 1,
+                "successor": "org.knime.base.node.mine.scorer.accuracy.AccuracyScorer2NodeFactory#Scorer"
+            },
+            {
+                "id": "org.knime.base.node.rules.engine.decisiontree.FromDecisionTreeNodeFactory#Decision Tree to Ruleset",
+                "nrexecs": 211,
+                "nrfails": 0,
+                "exectime": 12799,
+                "nrcreated": 1,
+                "successor": "n/a"
+            },
+            {
+                "id": "org.knime.base.node.preproc.filter.column.DataColumnSpecFilterNodeFactory#Column Filter",
+                "nrexecs": 138,
+                "nrfails": 0,
+                "exectime": 163,
+                "nrcreated": 1,
+                "successor": "org.knime.base.node.mine.decisiontree2.learner2.DecisionTreeLearnerNodeFactory3#Decision Tree Learner"
+            },
+            {
+                "id": "org.knime.base.node.preproc.filter.row.RowFilterNodeFactory#Row Filter",
+                "nrexecs": 73,
+                "nrfails": 0,
+                "exectime": 1301,
+                "nrcreated": 1,
+                "successor": "org.knime.base.node.mine.decisiontree2.learner2.DecisionTreeLearnerNodeFactory3#Decision Tree Learner"
+            },
+            {
+                "id": "org.knime.base.node.preproc.append.row.AppendedRowsNodeFactory#Concatenate",
+                "nrexecs": 0,
+                "nrfails": 0,
+                "exectime": 0,
+                "nrcreated": 1,
+                "successor": "n/a"
+            },
+            {
+                "id": "org.knime.ext.jep.JEPNodeFactory#Math Formula",
+                "nrexecs": 0,
+                "nrfails": 0,
+                "exectime": 0,
+                "nrcreated": 1,
+                "successor": "n/a"
+            },
+            {
+                "id": "org.knime.base.node.jsnippet.JavaSnippetNodeFactory#Java Snippet",
+                "nrexecs": 13,
+                "nrfails": 0,
+                "exectime": 250,
+                "nrcreated": 1,
+                "successor": "org.knime.base.node.mine.decisiontree2.predictor2.DecTreePredictorNodeFactory#Decision Tree Predictor"
+            },
+            {
+                "id": "org.knime.ext.poi3.node.io.filehandling.excel.writer.ExcelTableWriterNodeFactory#Excel Writer",
+                "nrexecs": 2,
+                "nrfails": 1,
+                "exectime": 561,
+                "nrcreated": 1,
+                "successor": "n/a"
+            },
+            {
+                "id": "org.knime.base.node.preproc.rename.RenameNodeFactory#Column Rename",
+                "nrexecs": 7,
+                "nrfails": 0,
+                "exectime": 71,
+                "nrcreated": 2,
+                "successor": "org.knime.base.node.mine.decisiontree2.predictor2.DecTreePredictorNodeFactory#Decision Tree Predictor"
+            },
+            {
+                "id": "org.knime.expressions.base.node.formulas.FormulasNodeFactory#Column Expressions",
+                "nrexecs": 3,
+                "nrfails": 0,
+                "exectime": 83,
+                "nrcreated": 1,
+                "successor": "org.knime.base.node.mine.decisiontree2.predictor2.DecTreePredictorNodeFactory#Decision Tree Predictor"
+            }
+        ],
+        "metaNodes": {
+        },
+        "wrappedNodes": {
+        }
+    },
+    "uptime": 422049,
+    "workflowsOpened": 14,
+    "remoteWorkflowsOpened": 0,
+    "columnarStorageWorkflowsOpened": 0,
+    "workflowsImported": 0,
+    "workflowsExported": 0,
+    "webUIPerspectiveSwitches": 0,
+    "launches": 8,
+    "lastApplicationID": "org.knime.product.KNIME_APPLICATION",
+    "timeSinceLastStart": 3376399,
+    "crashes": 0,
+    "properlyShutDown": true
+}

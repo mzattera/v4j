@@ -1,0 +1,181 @@
+2022-03-09 08:30:09,531 : WARN  : main :  : Node : Decision Tree Learner : 3:2 : Guessing target column: "Column324".
+2022-03-09 08:32:06,716 : WARN  : main :  : Node : Scorer : 3:3 : No columns selected yet.
+2022-03-09 08:32:16,755 : WARN  : main :  : Node : Scorer : 3:3 : No columns selected yet.
+2022-03-09 08:50:45,971 : WARN  : main :  : Node : Decision Tree Learner : 3:11 : Class column "Cluster" not found or incompatible
+2022-03-09 08:51:13,403 : WARN  : main :  : Node : Row Filter : 3:12 : No row filter specified
+2022-03-09 08:51:30,669 : WARN  : KNIME-Worker-19-Column Filter 3:10 :  : Node : Row Filter : 3:12 : No row filter specified
+2022-03-09 08:52:05,498 : WARN  : main :  : Node : Decision Tree Learner : 3:11 : Class column "Cluster" not found or incompatible
+2022-03-09 08:52:07,603 : WARN  : KNIME-Worker-20-Row Filter 3:12 :  : Node : Decision Tree Learner : 3:11 : Class column "Cluster" not found or incompatible
+2022-03-09 08:52:21,516 : WARN  : main :  : Node : Decision Tree Learner : 3:11 : Class column "Cluster" not found or incompatible
+2022-03-09 08:53:23,550 : WARN  : main :  : Node : Scorer : 3:8 : Column 'Cluster' not found.
+2022-03-09 09:01:26,326 : WARN  : main :  : Node : Row Filter : 3:13 : Column range filter: Input table doesn't contain specified column name
+2022-03-09 09:04:36,876 : WARN  : main :  : Node : Row Filter : 3:16 : Column range filter: Input table doesn't contain specified column name
+2022-03-09 09:04:46,125 : WARN  : main :  : Node : Decision Tree Learner : 3:19 : Class column "Cluster" not found or incompatible
+2022-03-09 09:04:54,063 : WARN  : main :  : Node : Scorer : 3:14 : Column 'Cluster' not found.
+2022-03-09 09:06:39,251 : WARN  : main :  : Node : Row Filter : 3:22 : Column range filter: Input table doesn't contain specified column name
+2022-03-09 09:06:42,796 : WARN  : KNIME-Worker-29-Column Filter 3:23 :  : Node : Row Filter : 3:22 : Column range filter: Input table doesn't contain specified column name
+2022-03-09 09:07:01,882 : WARN  : main :  : Node : Decision Tree Learner : 3:25 : Class column "Language" not found or incompatible
+2022-03-09 09:07:17,160 : WARN  : main :  : Node : Scorer : 3:21 : Column 'Language' not found.
+2022-03-09 09:51:35,748 : WARN  : main :  : Node : Math Formula : 3:33 : No configuration available
+2022-03-09 09:54:25,531 : WARN  : main :  : Node : Decision Tree Learner : 3:26 : Class column "Image" not found or incompatible
+2022-03-09 09:54:31,203 : WARN  : main :  : Node : Scorer : 3:28 : Column 'Image' not found.
+2022-03-09 23:15:16,492 : WARN  : main :  : Node : Excel Writer : 3:37 : Please specify a file
+2022-03-09 23:15:17,475 : ERROR : AWT-EventQueue-0 :  : ExcelTableWriterNodeDialog : Excel Writer : 3:37 : Could not get sheet names!
+java.nio.file.AccessDeniedException: C:\Users\mzatt
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(Unknown Source)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(Unknown Source)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(Unknown Source)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.newByteChannel(Unknown Source)
+	at org.knime.filehandling.core.fs.local.fs.LocalFileSystemProvider.newByteChannel(LocalFileSystemProvider.java:148)
+	at java.base/java.nio.file.Files.newByteChannel(Unknown Source)
+	at java.base/java.nio.file.Files.newByteChannel(Unknown Source)
+	at java.base/java.nio.file.spi.FileSystemProvider.newInputStream(Unknown Source)
+	at java.base/java.nio.file.Files.newInputStream(Unknown Source)
+	at org.knime.ext.poi3.node.io.filehandling.excel.writer.ExcelTableWriterNodeDialog$SheetUpdater.readXLSXSheets(ExcelTableWriterNodeDialog.java:525)
+	at org.knime.ext.poi3.node.io.filehandling.excel.writer.ExcelTableWriterNodeDialog$SheetUpdater.doInBackgroundWithContext(ExcelTableWriterNodeDialog.java:516)
+	at org.knime.ext.poi3.node.io.filehandling.excel.writer.ExcelTableWriterNodeDialog$SheetUpdater.doInBackgroundWithContext(ExcelTableWriterNodeDialog.java:1)
+	at org.knime.core.util.SwingWorkerWithContext.doInBackground(SwingWorkerWithContext.java:106)
+	at java.desktop/javax.swing.SwingWorker$1.call(Unknown Source)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.desktop/javax.swing.SwingWorker.run(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+2022-03-09 23:15:22,249 : ERROR : AWT-EventQueue-0 :  : ExcelTableWriterNodeDialog : Excel Writer : 3:37 : Could not get sheet names!
+java.nio.file.AccessDeniedException: D:
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(Unknown Source)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(Unknown Source)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(Unknown Source)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.newByteChannel(Unknown Source)
+	at org.knime.filehandling.core.fs.local.fs.LocalFileSystemProvider.newByteChannel(LocalFileSystemProvider.java:148)
+	at java.base/java.nio.file.Files.newByteChannel(Unknown Source)
+	at java.base/java.nio.file.Files.newByteChannel(Unknown Source)
+	at java.base/java.nio.file.spi.FileSystemProvider.newInputStream(Unknown Source)
+	at java.base/java.nio.file.Files.newInputStream(Unknown Source)
+	at org.knime.ext.poi3.node.io.filehandling.excel.writer.ExcelTableWriterNodeDialog$SheetUpdater.readXLSXSheets(ExcelTableWriterNodeDialog.java:525)
+	at org.knime.ext.poi3.node.io.filehandling.excel.writer.ExcelTableWriterNodeDialog$SheetUpdater.doInBackgroundWithContext(ExcelTableWriterNodeDialog.java:516)
+	at org.knime.ext.poi3.node.io.filehandling.excel.writer.ExcelTableWriterNodeDialog$SheetUpdater.doInBackgroundWithContext(ExcelTableWriterNodeDialog.java:1)
+	at org.knime.core.util.SwingWorkerWithContext.doInBackground(SwingWorkerWithContext.java:106)
+	at java.desktop/javax.swing.SwingWorker$1.call(Unknown Source)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.desktop/javax.swing.SwingWorker.run(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+2022-03-09 23:15:23,243 : ERROR : AWT-EventQueue-0 :  : ExcelTableWriterNodeDialog : Excel Writer : 3:37 : Could not get sheet names!
+java.nio.file.NoSuchFileException: D:\
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(Unknown Source)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(Unknown Source)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(Unknown Source)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.newByteChannel(Unknown Source)
+	at org.knime.filehandling.core.fs.local.fs.LocalFileSystemProvider.newByteChannel(LocalFileSystemProvider.java:148)
+	at java.base/java.nio.file.Files.newByteChannel(Unknown Source)
+	at java.base/java.nio.file.Files.newByteChannel(Unknown Source)
+	at java.base/java.nio.file.spi.FileSystemProvider.newInputStream(Unknown Source)
+	at java.base/java.nio.file.Files.newInputStream(Unknown Source)
+	at org.knime.ext.poi3.node.io.filehandling.excel.writer.ExcelTableWriterNodeDialog$SheetUpdater.readXLSXSheets(ExcelTableWriterNodeDialog.java:525)
+	at org.knime.ext.poi3.node.io.filehandling.excel.writer.ExcelTableWriterNodeDialog$SheetUpdater.doInBackgroundWithContext(ExcelTableWriterNodeDialog.java:516)
+	at org.knime.ext.poi3.node.io.filehandling.excel.writer.ExcelTableWriterNodeDialog$SheetUpdater.doInBackgroundWithContext(ExcelTableWriterNodeDialog.java:1)
+	at org.knime.core.util.SwingWorkerWithContext.doInBackground(SwingWorkerWithContext.java:106)
+	at java.desktop/javax.swing.SwingWorker$1.call(Unknown Source)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.desktop/javax.swing.SwingWorker.run(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+2022-03-09 23:19:34,685 : ERROR : KNIME-Worker-70-Excel Writer 3:37 :  : Node : Excel Writer : 3:37 : Execute failed: Output file 'D:\t.xlsx' exists and must not be overwritten due to user settings.
+java.io.IOException: Output file 'D:\t.xlsx' exists and must not be overwritten due to user settings.
+	at org.knime.ext.poi3.node.io.filehandling.excel.writer.ExcelTableWriterNodeModel.getWorkbookHandler(ExcelTableWriterNodeModel.java:266)
+	at org.knime.ext.poi3.node.io.filehandling.excel.writer.ExcelTableWriterNodeModel.write(ExcelTableWriterNodeModel.java:193)
+	at org.knime.ext.poi3.node.io.filehandling.excel.writer.ExcelTableWriterNodeModel.execute(ExcelTableWriterNodeModel.java:159)
+	at org.knime.core.node.NodeModel.executeModel(NodeModel.java:549)
+	at org.knime.core.node.Node.invokeFullyNodeModelExecute(Node.java:1267)
+	at org.knime.core.node.Node.execute(Node.java:1041)
+	at org.knime.core.node.workflow.NativeNodeContainer.performExecuteNode(NativeNodeContainer.java:559)
+	at org.knime.core.node.exec.LocalNodeExecutionJob.mainExecute(LocalNodeExecutionJob.java:95)
+	at org.knime.core.node.workflow.NodeExecutionJob.internalRun(NodeExecutionJob.java:201)
+	at org.knime.core.node.workflow.NodeExecutionJob.run(NodeExecutionJob.java:117)
+	at org.knime.core.util.ThreadUtils$RunnableWithContextImpl.runWithContext(ThreadUtils.java:367)
+	at org.knime.core.util.ThreadUtils$RunnableWithContext.run(ThreadUtils.java:221)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at org.knime.core.util.ThreadPool$MyFuture.run(ThreadPool.java:123)
+	at org.knime.core.util.ThreadPool$Worker.run(ThreadPool.java:246)
+2022-03-10 08:28:40,433 : WARN  : main :  : Node : Row Filter : 3:16 : Column range filter: Input table doesn't contain specified column name
+2022-03-10 09:58:40,675 : WARN  : main :  : Node : Java Snippet : 3:33 : Compile with errors:
+Error in line 32: Syntax error, insert ") Statement" to complete IfStatement
+
+2022-03-10 10:02:31,999 : WARN  : main :  : Node : Row Filter : 3:40 : Column range filter: Input table doesn't contain specified column name
+2022-03-12 14:21:03,749 : WARN  : main :  : Node : Row Filter : 3:50 : Column range filter: Input table doesn't contain specified column name
+2022-03-13 10:32:12,354 : WARN  : KNIME-Worker-203-Row Filter 3:43 :  : Node : Row Filter : 3:43 : Node created an empty data table.
+2022-03-13 10:32:12,359 : WARN  : KNIME-Worker-204-Column Filter 3:34 :  : Node : Column Filter : 3:34 : Node created an empty data table.
+2022-03-13 10:35:28,546 : WARN  : main :  : Node : Row Filter : 3:56 : Column range filter: Input table doesn't contain specified column name
+2022-03-13 10:35:42,702 : WARN  : main :  : Node : Decision Tree Learner : 3:54 : Class column "Cluster" not found or incompatible
+2022-03-13 10:36:49,383 : WARN  : main :  : Node : Column Rename : 3:59 : No configuration available
+2022-03-13 10:37:05,762 : WARN  : main :  : Node : Decision Tree Learner : 3:54 : Class column "Cluster" not found or incompatible
+2022-03-13 10:37:30,925 : WARN  : main :  : Node : Scorer : 3:53 : Column 'Cluster' not found.
+2022-03-13 14:31:01,514 : WARN  : main :  : Node : Row Filter : 0:43 : Column range filter: Input table doesn't contain specified column name
+2022-03-13 14:31:07,028 : WARN  : main :  : Node : Java Snippet : 0:33 : The column "Image" is not found in the input table.
+2022-03-13 14:31:07,029 : WARN  : main :  : Node : Row Filter : 0:60 : Column range filter: Input table doesn't contain specified column name
+2022-03-13 14:31:07,033 : WARN  : main :  : Node : Row Filter : 0:13 : Column range filter: Input table doesn't contain specified column name
+2022-03-13 14:31:50,872 : WARN  : main :  : Node : Row Filter : 0:13 : Column range filter: Input table doesn't contain specified column name
+2022-03-13 14:31:54,909 : WARN  : KNIME-Worker-214-CSV Reader 0:1 :  : Node : Row Filter : 0:13 : Column range filter: Input table doesn't contain specified column name
+2022-03-13 14:32:05,823 : WARN  : main :  : Node : Decision Tree Learner : 0:2 : Class column "Cluster" not found or incompatible
+2022-03-13 14:32:32,969 : WARN  : main :  : Node : Scorer : 0:3 : Column 'Cluster' not found.
+2022-03-13 14:32:36,539 : WARN  : KNIME-Worker-214-Decision Tree Predictor 0:4 :  : Node : Scorer : 0:3 : Column 'Cluster' not found.
+2022-03-14 08:17:29,114 : WARN  : main :  : Node : Decision Tree Predictor : 0:4 : Learning column "X" not found in input data to be predicted
+2022-03-19 18:02:53,905 : WARN  : main :  : Node : Decision Tree Learner : 3:26 : The selected column for the root split "-edy-" is not in the table.
+2022-03-19 18:03:08,343 : WARN  : KNIME-Worker-7-CSV Reader 3:1 :  : Node : Decision Tree Learner : 3:26 : The selected column for the root split "-edy-" is not in the table.
+2022-03-20 12:10:17,008 : WARN  : main :  : Node : Java Snippet : 0:33 : The column "Image" is not found in the input table.
+2022-03-20 12:10:21,203 : WARN  : main :  : Node : Java Snippet : 0:33 : The column "Image" is not found in the input table.
+2022-03-20 12:10:26,931 : WARN  : main :  : Node : Java Snippet : 0:33 : The column "Image" is not found in the input table.
+2022-03-20 12:11:15,567 : WARN  : KNIME-Worker-49-CSV Reader 0:1 :  : Node : Java Snippet : 0:33 : The column "Image" is not found in the input table.
+2022-03-20 12:11:15,576 : WARN  : KNIME-Worker-51-Column Filter 0:34 :  : Node : Java Snippet : 0:33 : The column "Image" is not found in the input table.
+2022-03-20 12:20:58,949 : WARN  : main :  : Node : Row Filter : 0:50 : Column range filter: Input table doesn't contain specified column name
+2022-03-20 12:21:11,993 : WARN  : main :  : Node : Row Filter : 0:50 : Column range filter: Input table doesn't contain specified column name
+2022-03-20 12:21:26,369 : WARN  : main :  : Node : Decision Tree Learner : 0:26 : Class column "ImageNLanguage" not found or incompatible
+2022-03-20 12:21:31,858 : WARN  : main :  : Node : Scorer : 0:28 : Column 'ImageNLanguage' not found.
+2022-03-20 12:21:31,859 : WARN  : main :  : Node : Scorer : 0:52 : Column 'ImageNLanguage' not found.
+2022-03-20 12:21:37,739 : WARN  : KNIME-Worker-73-Decision Tree Predictor 0:51 :  : Node : Scorer : 0:52 : Column 'ImageNLanguage' not found.
+2022-03-20 12:23:16,974 : WARN  : main :  : Node : Scorer : 0:28 : Column 'ImageNLanguage' not found.
+2022-03-20 12:25:16,223 : WARN  : main :  : Node : Scorer : 0:28 : Column 'ImageNLanguage' not found.
+2022-03-21 08:13:59,196 : WARN  : main :  : Node : Scorer : 0:28 : Column 'ImageNLanguage' not found.
+2022-03-21 08:14:11,482 : WARN  : KNIME-Worker-100-CSV Reader 0:1 :  : Node : Scorer : 0:28 : Column 'ImageNLanguage' not found.
+2022-03-21 08:51:18,196 : WARN  : main :  : Node : Scorer : 0:28 : Column 'ImageNLanguage' not found.
+2022-03-21 09:06:15,377 : WARN  : main :  : Node : Scorer : 0:28 : Column 'ImageNLanguage' not found.
+2022-03-21 09:08:31,591 : WARN  : KNIME-Worker-139-CSV Reader 0:1 :  : Node : Scorer : 0:28 : Column 'ImageNLanguage' not found.
+2022-07-03 10:39:59,198 : WARN  : ModalContext :  : Node : Scorer : 0:28 : Column 'ImageNLanguage' not found.
+2022-08-30 21:06:21,102 : WARN  : ModalContext :  : Node : Scorer : 3:28 : Column 'ImageNLanguage' not found.
+2022-08-30 21:09:46,224 : WARN  : main :  : Node : Scorer : 3:28 : Column 'ImageNLanguage' not found.
+2022-08-30 21:09:57,654 : WARN  : main :  : Node : Scorer : 3:28 : Column 'ImageNLanguage' not found.
+2022-08-30 21:21:32,084 : WARN  : main :  : Node : Decision Tree Predictor : 3:57 : Learning column "RandomGorup05" not found in input data to be predicted
+2022-08-30 21:21:44,527 : WARN  : main :  : Node : Decision Tree Learner : 3:54 : Class column "RandomGroup" not found or incompatible
+2022-08-30 21:21:50,744 : WARN  : main :  : Node : Column Rename : 3:59 : The following columns are configured but no longer exist: "RandomGroup"
+2022-08-30 21:21:50,760 : WARN  : main :  : Node : Decision Tree Learner : 3:54 : Class column "RandomGroup" not found or incompatible
+2022-08-30 21:22:24,011 : WARN  : main :  : Node : Decision Tree Learner : 3:54 : Class column "RandomGroup" not found or incompatible
+2022-08-30 21:22:28,283 : WARN  : KNIME-Worker-21-Column Expressions 3:61 :  : Node : Decision Tree Learner : 3:54 : Class column "RandomGroup" not found or incompatible
+2022-08-30 21:24:15,741 : WARN  : main :  : Node : Decision Tree Learner : 3:54 : Class column "RandomGroup" not found or incompatible
+2022-08-30 21:24:18,642 : WARN  : KNIME-Worker-22-Column Expressions 3:61 :  : Node : Decision Tree Learner : 3:54 : Class column "RandomGroup" not found or incompatible
+2022-08-30 21:24:24,488 : WARN  : main :  : Node : Scorer : 3:53 : Column 'RandomGroup' not found.
+2022-09-17 08:25:12,555 : WARN  : ModalContext :  : Node : Scorer : 3:28 : Column 'ImageNLanguage' not found.
+2022-09-17 08:31:23,114 : WARN  : main :  : Node : Scorer : 3:28 : Column 'ImageNLanguage' not found.
+2022-09-17 09:14:17,979 : WARN  : ModalContext :  : Node : Scorer : 3:28 : Column 'ImageNLanguage' not found.
+2022-09-17 09:14:25,022 : WARN  : main :  : Node : Scorer : 3:28 : Column 'ImageNLanguage' not found.
+2022-09-17 09:14:32,396 : WARN  : KNIME-Worker-2-CSV Reader 3:1 :  : Node : Scorer : 3:28 : Column 'ImageNLanguage' not found.
+2022-09-17 10:07:43,284 : WARN  : main :  : Node : Scorer : 3:28 : Column 'ImageNLanguage' not found.
+2022-09-17 10:08:02,666 : WARN  : KNIME-Worker-31-CSV Reader 3:1 :  : Node : Scorer : 3:28 : Column 'ImageNLanguage' not found.
+2022-09-17 10:12:46,942 : WARN  : main :  : Node : Scorer : 3:28 : Column 'ImageNLanguage' not found.
+2022-09-17 10:12:57,641 : WARN  : KNIME-Worker-37-CSV Reader 3:62 :  : Node : Scorer : 3:28 : Column 'ImageNLanguage' not found.
+2022-09-17 10:14:40,826 : WARN  : main :  : Node : Scorer : 3:28 : Column 'ImageNLanguage' not found.
+2022-09-17 10:15:02,327 : WARN  : main :  : Node : Row Filter : 3:50 : Column range filter: Input table doesn't contain specified column name
+2022-09-17 10:15:13,083 : WARN  : main :  : Node : Row Filter : 3:50 : Column range filter: Input table doesn't contain specified column name
+2022-09-17 10:15:24,054 : WARN  : main :  : Node : Row Filter : 3:50 : Column range filter: Input table doesn't contain specified column name
+2022-09-17 10:15:39,205 : WARN  : main :  : Node : Row Filter : 3:50 : Column range filter: Input table doesn't contain specified column name
+2022-09-17 11:32:44,568 : WARN  : main :  : Node : Row Filter : 3:50 : Column range filter: Input table doesn't contain specified column name
+2022-09-17 11:33:04,205 : WARN  : KNIME-Worker-103-CSV Reader 3:62 :  : Node : Row Filter : 3:50 : Column range filter: Input table doesn't contain specified column name
+2022-09-17 12:11:19,374 : WARN  : main :  : Node : Decision Tree Learner : 3:54 : Class column "RandomGorup05" not found or incompatible
+2022-09-17 12:11:29,157 : WARN  : main :  : Node : Decision Tree Learner : 3:54 : Class column "RandomGorup05" not found or incompatible
+2022-09-17 12:11:37,092 : WARN  : main :  : Node : Decision Tree Learner : 3:54 : Class column "RandomGorup05" not found or incompatible
+2022-09-17 12:12:31,985 : WARN  : main :  : Node : Column Rename : 3:63 : No configuration available
+2022-09-17 12:12:46,865 : WARN  : main :  : Node : Decision Tree Learner : 3:54 : Class column "RandomGorup05" not found or incompatible
+2022-09-17 12:13:46,354 : WARN  : main :  : Node : Scorer : 3:53 : Column 'RandomGorup05' not found.

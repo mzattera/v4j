@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.knime.org/2008/09/XMLConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.knime.org/2008/09/XMLConfig http://www.knime.org/XMLConfig_2008_09.xsd" key="settings.xml">
+    <entry key="node_file" type="xstring" value="settings.xml"/>
+    <config key="flow_stack"/>
+    <config key="internal_node_subsettings">
+        <entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
+    </config>
+    <config key="model">
+        <config key="column-filter">
+            <entry key="filter-type" type="xstring" value="STANDARD"/>
+            <config key="included_names">
+                <entry key="array-size" type="xint" value="67"/>
+                <entry key="0" type="xstring" value="Page"/>
+                <entry key="1" type="xstring" value="Cluster"/>
+                <entry key="2" type="xstring" value="Illustration"/>
+                <entry key="3" type="xstring" value="Language"/>
+                <entry key="4" type="xstring" value="IllustrationAndLanguage"/>
+                <entry key="5" type="xstring" value="RandomGroup"/>
+                <entry key="6" type="xstring" value="y-"/>
+                <entry key="7" type="xstring" value="o-"/>
+                <entry key="8" type="xstring" value="q-"/>
+                <entry key="9" type="xstring" value="d-"/>
+                <entry key="10" type="xstring" value="l-"/>
+                <entry key="11" type="xstring" value="T-"/>
+                <entry key="12" type="xstring" value="s-"/>
+                <entry key="13" type="xstring" value="r-"/>
+                <entry key="14" type="xstring" value="dC-"/>
+                <entry key="15" type="xstring" value="-od-"/>
+                <entry key="16" type="xstring" value="-ol-"/>
+                <entry key="17" type="xstring" value="-oa-"/>
+                <entry key="18" type="xstring" value="-os-"/>
+                <entry key="19" type="xstring" value="-or-"/>
+                <entry key="20" type="xstring" value="-y-"/>
+                <entry key="21" type="xstring" value="-yk-"/>
+                <entry key="22" type="xstring" value="-yC-"/>
+                <entry key="23" type="xstring" value="-yt-"/>
+                <entry key="24" type="xstring" value="-l-"/>
+                <entry key="25" type="xstring" value="-lk-"/>
+                <entry key="26" type="xstring" value="-la-"/>
+                <entry key="27" type="xstring" value="-ld-"/>
+                <entry key="28" type="xstring" value="-lo-"/>
+                <entry key="29" type="xstring" value="-lC-"/>
+                <entry key="30" type="xstring" value="-lS-"/>
+                <entry key="31" type="xstring" value="-r-"/>
+                <entry key="32" type="xstring" value="-ra-"/>
+                <entry key="33" type="xstring" value="-ro-"/>
+                <entry key="34" type="xstring" value="-p-"/>
+                <entry key="35" type="xstring" value="-f-"/>
+                <entry key="36" type="xstring" value="-tC-"/>
+                <entry key="37" type="xstring" value="-pC-"/>
+                <entry key="38" type="xstring" value="-ka-"/>
+                <entry key="39" type="xstring" value="-ta-"/>
+                <entry key="40" type="xstring" value="-kC-"/>
+                <entry key="41" type="xstring" value="-Co-"/>
+                <entry key="42" type="xstring" value="-Cd-"/>
+                <entry key="43" type="xstring" value="-Ce-"/>
+                <entry key="44" type="xstring" value="-CE-"/>
+                <entry key="45" type="xstring" value="-Ca-"/>
+                <entry key="46" type="xstring" value="-Se-"/>
+                <entry key="47" type="xstring" value="-So-"/>
+                <entry key="48" type="xstring" value="-SE-"/>
+                <entry key="49" type="xstring" value="-Sy-"/>
+                <entry key="50" type="xstring" value="-Ke-"/>
+                <entry key="51" type="xstring" value="-Ty-"/>
+                <entry key="52" type="xstring" value="-To-"/>
+                <entry key="53" type="xstring" value="-Ky-"/>
+                <entry key="54" type="xstring" value="-B-"/>
+                <entry key="55" type="xstring" value="-ed-"/>
+                <entry key="56" type="xstring" value="-eo-"/>
+                <entry key="57" type="xstring" value="-Eo-"/>
+                <entry key="58" type="xstring" value="-Ed-"/>
+                <entry key="59" type="xstring" value="-so-"/>
+                <entry key="60" type="xstring" value="-sa-"/>
+                <entry key="61" type="xstring" value="-s"/>
+                <entry key="62" type="xstring" value="-i-"/>
+                <entry key="63" type="xstring" value="-ir-"/>
+                <entry key="64" type="xstring" value="-ly"/>
+                <entry key="65" type="xstring" value="-ry"/>
+                <entry key="66" type="xstring" value="-d"/>
+            </config>
+            <config key="excluded_names">
+                <entry key="array-size" type="xint" value="1"/>
+                <entry key="0" type="xstring" value="Tokens"/>
+            </config>
+            <entry key="enforce_option" type="xstring" value="EnforceExclusion"/>
+            <config key="name_pattern">
+                <entry key="pattern" type="xstring" value=""/>
+                <entry key="type" type="xstring" value="Wildcard"/>
+                <entry key="caseSensitive" type="xboolean" value="true"/>
+                <entry key="excludeMatching" type="xboolean" value="false"/>
+            </config>
+            <config key="datatype">
+                <config key="typelist">
+                    <entry key="org.knime.core.data.StringValue" type="xboolean" value="false"/>
+                    <entry key="org.knime.core.data.IntValue" type="xboolean" value="false"/>
+                    <entry key="org.knime.core.data.DoubleValue" type="xboolean" value="false"/>
+                    <entry key="org.knime.core.data.BooleanValue" type="xboolean" value="false"/>
+                    <entry key="org.knime.core.data.LongValue" type="xboolean" value="false"/>
+                    <entry key="org.knime.core.data.date.DateAndTimeValue" type="xboolean" value="false"/>
+                </config>
+            </config>
+        </config>
+    </config>
+    <config key="nodeAnnotation">
+        <entry key="text" type="xstring" value="Remove%%00013%%00010# Tokens"/>
+        <entry key="bgcolor" type="xint" value="16777215"/>
+        <entry key="x-coordinate" type="xint" value="147"/>
+        <entry key="y-coordinate" type="xint" value="159"/>
+        <entry key="width" type="xint" value="106"/>
+        <entry key="height" type="xint" value="30"/>
+        <entry key="alignment" type="xstring" value="CENTER"/>
+        <entry key="borderSize" type="xint" value="0"/>
+        <entry key="borderColor" type="xint" value="16777215"/>
+        <entry key="defFontSize" type="xint" value="9"/>
+        <entry key="annotation-version" type="xint" value="20151123"/>
+        <config key="styles">
+            <config key="style_0">
+                <entry key="start" type="xint" value="8"/>
+                <entry key="length" type="xint" value="8"/>
+                <entry key="fontname" type="xstring" value="Arial"/>
+                <entry key="fontstyle" type="xint" value="0"/>
+                <entry key="fontsize" type="xint" value="9"/>
+                <entry key="fgcolor" type="xint" value="0"/>
+            </config>
+        </config>
+    </config>
+    <entry key="customDescription" type="xstring" isnull="true" value=""/>
+    <entry key="state" type="xstring" value="CONFIGURED"/>
+    <entry key="factory" type="xstring" value="org.knime.base.node.preproc.filter.column.DataColumnSpecFilterNodeFactory"/>
+    <entry key="node-name" type="xstring" value="Column Filter"/>
+    <entry key="node-bundle-name" type="xstring" value="KNIME Base Nodes"/>
+    <entry key="node-bundle-symbolic-name" type="xstring" value="org.knime.base"/>
+    <entry key="node-bundle-vendor" type="xstring" value="KNIME AG, Zurich, Switzerland"/>
+    <entry key="node-bundle-version" type="xstring" value="4.6.0.v202206100904"/>
+    <entry key="node-feature-name" type="xstring" value="KNIME Base nodes"/>
+    <entry key="node-feature-symbolic-name" type="xstring" value="org.knime.features.base.feature.group"/>
+    <entry key="node-feature-vendor" type="xstring" value="KNIME AG, Zurich, Switzerland"/>
+    <entry key="node-feature-version" type="xstring" value="4.6.0.v202206100904"/>
+    <config key="factory_settings"/>
+    <entry key="name" type="xstring" value="Column Filter"/>
+    <entry key="hasContent" type="xboolean" value="false"/>
+    <entry key="isInactive" type="xboolean" value="false"/>
+    <config key="ports">
+        <config key="port_1">
+            <entry key="index" type="xint" value="1"/>
+            <entry key="port_dir_location" type="xstring" isnull="true" value=""/>
+        </config>
+    </config>
+    <config key="filestores">
+        <entry key="file_store_location" type="xstring" isnull="true" value=""/>
+        <entry key="file_store_id" type="xstring" isnull="true" value=""/>
+    </config>
+</config>

@@ -72,7 +72,10 @@ as can be seen in the below confusion matrix.
 ![Confusion matrix](images/ConfusionMatrix.PNG)
 
 As a test, the same pages have been assigned a random cluster out of possible 5, and the process has been repeated. The resulting decision tree contains 11 rules (instead of 6) and reaches only a 54%
-accuracy, showing that structural features we identified are indeed correlated with clusters we identified in note 003.
+accuracy, showing that structural features we found are indeed correlated with clusters we identified in note 003. As further confirmation,
+the below picture is an UMAP projection of the pages, using the patterns as dimensions. As you can see, Currier's languages are clearly separated and pages in the same cluster group nicely together.
+
+![UMAP projection (Neighbors=35) of pages, using patterns as dimensions](images/UMAP.png)
 
  
 # Conclusions

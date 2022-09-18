@@ -1,6 +1,6 @@
 # Note 009 - The Five Languages of the Voynich
 
-_Last updated Sep. 17th, 2022._
+_Last updated Sep. 18th, 2022._
 
 _This note refers to [release v.11.0.0](https://github.com/mzattera/v4j/tree/v.11.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
@@ -103,7 +103,8 @@ algorithm that uses words as features. The implication here is that previous wor
 clustering to support the idea of different topics in different sections, might be just surfacing
 a difference which is the result of the mechanism used to generate words, and not
 a difference in terminology in the plaintext. 
-  
+
+Again, these differences shows once more how analysis of the Voynich should be performed separately for each cluster.  
 	
 ---
 
@@ -115,7 +116,10 @@ a difference in terminology in the plaintext.
 the differences being found.
 
 <a id="Note3">**{3}**</a> Class [`ExtractGrammaticalFeatures`](https://github.com/mzattera/v4j/blob/v.11.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/slot/ExtractGrammaticalFeatures.java) was used for this purpose.
+The analysis is conducted on the [Slot transcription](https://github.com/mzattera/v4j/blob/master/eclipse/io.github.mzattera.v4j/src/main/resources/Transcriptions/Interlinear_slot_ivtff_1.5.txt)
+of the Voynich, considering the whole text, including unreadable words, and discarding those features appearing in less than 0.6% of tokens (meaning that, on average, they are unlikely to appear once on a page).
 The result can be seen in file `Features.xlsx` saved [here](https://github.com/mzattera/v4j/tree/master/resources/analysis/grammar).
+The file contains also a [summary](images/Features.PNG) showing the average % of the tokens exhibiting each feature in each cluster.
 
 <a id="Note4">**{4}**</a> [This folder](https://github.com/mzattera/v4j/tree/v.11.0.0/KNIME/Word%20Structure%20Clustering) contains the KNIME workspace with the workflow used to create the decision tree.
 

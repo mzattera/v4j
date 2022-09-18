@@ -49,6 +49,24 @@ The results are shown in the below table[{1}](#Note1)[{2}](#Note2):
 # Considerations and Comparison with Previous Works
 
 CountCharactersByCluster  -> Character distribution by cluster.
+
+The most evident thing is that, apart for very few exceptions, characters behave very differently in the different clusters. 
+If we look to behaviors that appear consistently across clusters, we can see that:
+
+  * 'k' does not appear in first line of pages and in first line of paragraphs (with a slightly less significance for BB cluster).
+  * 'S' and 'p' appear with high frequency in first line of paragraphs.
+  * 'y', 't', and 'd' tend to appear as first letter in a line; with the exception of cluster HA where 'd' has the opposite behavior.
+    'C', 'S', 'o', and 'a' hardly do; with the exception of cluster HA again where 'o' appears with high frequency.
+  * 'l' and 'r' tend not to appear as terminal letter of last word in a line.
+
+## 'm'
+
+[TILTMAN (1967)](../biblio.md) already noticed (p.7 point (b.))
+
+ 
+  
+
+
  
 # Conclusions
 

@@ -48,6 +48,7 @@ The results are shown in the below table[{1}](#Note1)[{2}](#Note2):
  
 # Considerations and Comparison with Previous Works
 
+CountCharactersByCluster  -> Character distribution by cluster.
  
 # Conclusions
 

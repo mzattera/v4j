@@ -218,7 +218,8 @@ special meaning for the dashed arrows that is not made explicit in the text.
 # Brian Cham [2014]
 
 Brian Cham proposes a new pattern in the text of the Voynich Manuscript named the “[Curve-Line System](https://briancham1994.com/2014/12/17/curve-line-system/)” (CLS).
-This pattern is based on shapes of individual glyphs and the order in which they appear in words.
+This pattern is based on shapes of individual glyphs and the order in which they appear in words; it might have been hinted initially in [CURRIER (1976)](../biblio.md),
+but not fully developed.
 
 It seems [my grammar](../008) for Voynichese aligns and independently confirms
 this work. Indeed, words created by the grammar follow the CLS pattern the only 

@@ -19,7 +19,7 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 # Abstract
 
 In this note, I show evidence of structural differences in words appearing in the 5 main clusters (see [note 003](../003)) of the Voynich,
-suggesting that the two Currier's languages A and B are probably only a major distinction in a bigger group of such "languages".
+suggesting that the two Currier's languages A and B (see [CURRIER (1976)](../biblio.md)) are probably only a major distinction in a bigger group of such "languages".
 I also argue how these languages might be the result of different "parametrizations" of the cypher.
 
 

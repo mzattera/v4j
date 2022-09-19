@@ -129,7 +129,7 @@ The below table shows percentage occurrence of glyphs in slots for regular word 
 <a id="GliphCountImg" />
 ![Table with glyph count by slot.](images/Char Count by Slot.PNG)
 
-(it is expected the distribution to change based on Currier language and illustration; this is somehting to be further investigated).
+(it is expected the distribution to change based on Currier's language and illustration; this is something to be further investigated).
 
 
 
@@ -181,6 +181,7 @@ structure suggested by slots.
   - Gallows and pedestalled gallows are preceded by different characters (see [Note 007](../007)).
 
 This leads me to think pedestalled gallows are Voynich characters in their own, and not ligatures.
+Incidentally, [CURRIER (1976)](../biblio.md) came to the same conclusion.
 
 In addition, the character 'c' appears outside of the pedestal or pedestalled gallows only 7 times ('c', 'oc', 'chcpar', 'ckshy', 'ocfshy', 'cs?t?eey', and 'o?cs');
 similarly, the character 'h' appears outside of the pedestal, the pedestalled gallows or the "plumed" pedestal only 4 times ('theody', 'docfhhy', 'cfhhy', and 'd?ithy').
@@ -278,7 +279,7 @@ is still impossible to say.
 
 - Since no natural language presents such an inner structure, the existence of "slots" constitutes a strong objection to any attempt to propose a simple substitution cipher for the Voynich.
 
-  This was pointed out as early as in [TILTMAN (1967)](../biblio.md) (p. 9 paragraph (o)), but also
+  This was pointed out as early as in [TILTMAN (1967)](../biblio.md) (p. 9 paragraph (o)), [CURRIER (1976)](../biblio.md), and also
   by [Stolfi](https://www.ic.unicamp.br/~stolfi/EXPORT/projects/voynich/00-06-07-word-grammar/) (see "Discussion and conjectures").
   
 - Similarly, the "slot" structure of words will condition character entropy in the text, as already noted in [BOWEN (2020)](../biblio.md),

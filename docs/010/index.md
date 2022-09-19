@@ -63,18 +63,48 @@ If we look to behaviors that appear consistently across clusters, we can see tha
     'C', 'S', 'o', and 'a' hardly do; with the exception of cluster HA again where 'o' appears with high frequency.
   * 'l' and 'r' tend not to appear as terminal letter of last word in a line.
 
-** URGENT http://www.voynich.nu/a2_char.html **
-
-** URGENT KNIGHT entrambi **
-
-** Guy THE DISTRIBUTION OF LETTERS c AND o IN THE VOYNICH MANUSCRIPT: EVIDENCE FOR A REAL LANGUAGE? **
-
 [TILTMAN (1967)](../biblio.md) 'm' appears most commonly at the end of a line, rarely elsewhere (b).
 
 [TILTMAN (1967)](../biblio.md) Paragraphs nearly always begin with gallows, most commonly 'f' or 'p', which also occur frequently in words in the top lines of paragraphs where there is some extra space (c).
 
-
 [TILTMAN (1967)](../biblio.md) 'y' occurs quite frequently as the initial symbol of a line followed immediately by a combination of symbols which seem to be happy without it in any part of a line away from the beginning (d).
+
+[CURRIER (1976)](../biblio.md)
+
+  * In those pages where the text is presented linearly, the line is a functional entity. The following three bullets clarify this general observation
+	  * the frequency counts of characters at beginnings and endings of lines are markedly different from elsewhere.
+	  The frequency counts of the beginnings and endings of lines are markedly different from the counts of the same characters internally.
+	  There are, for instance, some characters that may not occur initially in a line.
+	  There are others whose occurrence as the initial syllable of the first ‘‘word’’ of a line is about one hundredth of the expected.
+	  * The ends of the lines contain what seem to be, in many cases, meaningless symbols:
+	  little groups of letters which don’t occur anywhere else, and just look as if they were added to fill out the line to the margin.
+	  Although this isn’t always true, it frequently happens.
+	  There is, for instance, one symbol that, while it does occur elsewhere, occurs at the end of the last ‘‘words’’ of lines 85% of the time (????? maybe 'm')
+	  * there is not one single case of a repeat going over the end of a line to the beginning of the next
+  
+  * Skewed frequencies at beginnings of lines may be illustrated by the two letters ch and Sh.
+  If its occurrence as an initial were random, we would expect it to occur one seventh of the time in each word position of a line.
+  Actually, it is a very infrequent word initial at the beginning of a line, except when there is an intercalated o. This applies only to 'Language' A.
+  Other ‘words’ occur in this position far more frequently than expected, particularly ‘words’ with initial ‘dC,’ ‘qC’ etc.,
+  which have the appearance of ‘C’-initial ‘words’ suitably modified for line-initial use
+  
+  * The 'ligatures' [ cKh cTh cFh cPh ] can never occur as paragraph initial, and almost never line initial.
+
+  * 'p' & 'f' appear 90-95% of the time in the first lines of paragraphs, in some 400 occurrences in one section of the manuscript.
+
+
+** leggi questo qui sono solo millemila pagine**
+[D'IMPERIO (1978b)](../biblio.md)
+The split gallows seem only to occur on first lines of paragraphs, and in labels.
+On most herbal folios, the first paragraph usually starts with t, k, p or f, usually immediately followed by ch, Sh, o, y, aiin or dy.
+Labels very rarely start with t, k, p or f . Instead, they often start with o, d, y or sometimes s or ch.
+
+[D'IMPERIO (1978b)](../biblio.md)
+One example (of char statistics) is found in D'Imperio (1978) (see note 4), Fig. 28 on p.106, from several sources but none covering the entire MS text.
+
+** Guy THE DISTRIBUTION OF LETTERS c AND o IN THE VOYNICH MANUSCRIPT: EVIDENCE FOR A REAL LANGUAGE? **
+
+** URGENT KNIGHT entrambi **
 
 [BOWERN (2020)](../biblio.md)
 The clearest example of this phenomenon is the paragraph, which usually begins with a
@@ -97,6 +127,7 @@ particularly m. It is plausible that m m and g g are variant forms of the word-f
 However, if this is an orthographic convention, it is not applied in a consistent manner: the forms -iin iin and -y
 y are also found line-finally, albeit somewhat less frequently.
 
+** leggi questo qui**
 [FIRTH]()
 On gallows: https://www.ic.unicamp.br/~stolfi/voynich/mirror/firth/16.txt
 
@@ -135,10 +166,14 @@ there are some issues with that hypothesis.
 
 ## Pedestals  
 
-  * 'C' e 'S' in first line of paragraphs and first letter in line.
-  Nobody noticed, maybe because in EVA this is treated as two
-	characters ('sh'), which skews the statistics.
-	Guarda comunque anche le differenze nelle percentuali
+  * 'S' in first line of paragraphs 
+
+  * 'C' e 'S' in first line of paragraphs and first letter in line. -> lo aveva visto Currier come inizio riga
+  
+  * Nobody noticed, maybe because in EVA this is treated as two characters ('sh'), which skews the statistics.
+  except for Currier who transcripes this as S Z.
+
+	* Guarda comunque anche le differenze nelle percentuali
 
 # 'a' and 'o'
 

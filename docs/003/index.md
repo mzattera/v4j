@@ -18,7 +18,7 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 # Abstract
 
 This note discuss the application of k-means clustering algorithms to Voynich pages, showing how the word types in the page 
-strongly correlate with the page illustration type (Herbal, Biological, Pharmaceutical, etc.) and Currier's language (A or B).
+strongly correlate with the page illustration type (Herbal, Biological, Pharmaceutical, etc.) and Currier's language (see [CURRIER (1976)](../biblio.md)).
 
 # Previous Works
 
@@ -174,7 +174,7 @@ We can see that there a strong tendency for parchments to cluster based on their
 - Zodiac pages (parchments 33 and 34) which tend to remain separate.
 
 - Parchment 30 which indeed is a strange bi-folio combining two text pages, which also show stars (f58v and f58r), and
-  two herbal pages; f65r which is an outlier containing a single label with three words, and f65v.
+  two herbal pages; f65r which is an outlier containing a single label with three words, and f65v[{6}](#Note6).
   
   This parchment will be excluded from further processing.
 
@@ -268,7 +268,12 @@ Keep in mind K-Means algorithm include some randomness, therefore slightly diffe
 
 <a id="Note5">**{5}**</a> After publishing [note 009](../009), I decided to remove the zodiac pages (former "ZZ" cluster) from this list of clusters,
 since there is no much evidence their cluster is better formed than Cosmological or Astronomical ones.
- 
+
+<a id="Note6">**{6}**</a> [CURRIER (1976)](../biblio.md) contains this comment:
+"The Newbold foliation indicates that the Biological Section extends through ff 85-86 and it would appear from the illustrations that the Pharmaceutical Section does not
+begin until f 87. However, frequency counts before and after the break at f 84/f 85 indicate a change from Biological material to something else.".
+
+
 ---
 
 [**<< Home**](..)

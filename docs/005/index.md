@@ -281,8 +281,8 @@ is still impossible to say.
   This was pointed out as early as in [TILTMAN (1967)](../biblio.md) (p. 9 paragraph (o)), but also
   by [Stolfi](https://www.ic.unicamp.br/~stolfi/EXPORT/projects/voynich/00-06-07-word-grammar/) (see "Discussion and conjectures").
   
-- Similarly, the "slot" structure of words will condition character entropy in the text. Therefore, attempts to assign a natural language to the Voynich by looking at similarities in
-character entropy seem not to be based on solid ground.
+- Similarly, the "slot" structure of words will condition character entropy in the text, as already noted in [BOWEN (2020)](../biblio.md),
+Therefore, attempts to assign a natural language to the Voynich by looking at similarities in character entropy seem not to be based on solid ground.
 
 - Because of this structure of Voynich words, removing a character in a word (that is, emptying a slot),
 has good chances to produce a valid word. The below table shows how many times removing a character from a 

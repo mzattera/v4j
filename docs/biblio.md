@@ -10,6 +10,8 @@
 
 A small annotated (?) bibliography about the Voynich.
 
+* BOWERN, Claire L. et. al. (2020): [The Linguistics of the Voynich Manuscript](https://www.academia.edu/44025265/The_Linguistics_of_the_Voynich_Manuscript), Annual Review of Linguistics 2021 7:1, 285-308.
+
 * D'IMPERIO, Mary E. (UNDATED): [An Application of PTAH to the Voynich Manuscript](https://www.nsa.gov/portals/75/documents/news-features/declassified-documents/tech-journals/application-of-ptah.pdf), NSA.
 
 * D'IMPERIO, Mary E. (1978a): [An Application of Cluster Analysis to the Question of "Hands" and "Languages" in the Voynich Manuscript](https://www.nsa.gov/portals/75/documents/news-features/declassified-documents/voynich/an-application-of-cluster-analysis.pdf), NSA/CSS.

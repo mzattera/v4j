@@ -125,7 +125,7 @@ at the beginning of words and that are shown in green, and "finals" that can app
 As discussed in [Note 006](../006), several models for the inner structure of Voynich word types have been created. The purpose of these models is to provide a description
 of such structure in a way that provides some insights (e.g. show that a particular sequence of character is often used). In this process, it is necessary
 for any model to operate some choices and simplifications in order to highlight what looks like a common pattern disregarding what seems more a "special case".
-How can we evaluate how good a model is? In other word types, how well does it describes Voynich word types, without indulging too much in useless details and exceptions?
+How can we evaluate how good a model is? How well does it describe Voynich word types, without indulging too much in useless details and exceptions?
 
 An answer to this question comes from the theory of [classifiers](https://en.wikipedia.org/wiki/Classifier_(machine_learning)). We can look at each model as a tool that given a word in Voynichese can tell whether the 
 word is a true Voynich word or not; this is done by looking at the set of word types a model can generate and classify a word type as a Voynich word type if it belongs to this set.

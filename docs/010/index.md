@@ -29,7 +29,7 @@ This note looks into this, using for the first time the [Slot transcription](htt
 # Methodology
 
 In this note I will show the result of several experiments. In each experiment, the text of the Voynich is split into two groups, for example the initial lines of paragraphs are in one group whilst the 
-other lines are in the second group; the character distribution of the two groups is compared using a chi-squared test, if the test shows a statistically significative variation in character distribution,
+other lines are in the second group; the character distribution of the two groups is compared using a chi-squared test, if the test shows a statistically sigificant variation in character distribution,
 then each character is tested individually, to highlight a difference in distribution among the two groups. The experiments are done separately for each [cluster](../003); 
 a concordance version of the text is used; only text appearing in paragraphs is considered (IVTFF locus type = P0 or P1).
 
@@ -48,9 +48,13 @@ The results are shown in the below table[{1}](#Note1)[{2}](#Note2):
  
 # Considerations and Comparison with Previous Works
 
-CountCharactersByCluster  -> Character distribution by cluster.
+**CountCharactersByCluster  -> Character distribution by cluster is different**
 
-The most evident thing is that, apart for very few exceptions, characters behave very differently in the different clusters. 
+The most evident thing is that, apart for very few exceptions, characters behave differently in the different clusters.
+We summarize below the main trends, but we invite to refer to the above table for a detailed analysis, case by case.
+
+** Casi piu evidenti q d l o n che si comportano in modo marcatamente opposto in cluster diversi**
+ 
 If we look to behaviors that appear consistently across clusters, we can see that:
 
   * 'k' does not appear in first line of pages and in first line of paragraphs (with a slightly less significance for BB cluster).
@@ -59,16 +63,90 @@ If we look to behaviors that appear consistently across clusters, we can see tha
     'C', 'S', 'o', and 'a' hardly do; with the exception of cluster HA again where 'o' appears with high frequency.
   * 'l' and 'r' tend not to appear as terminal letter of last word in a line.
 
-## 'm'
+** URGENT http://www.voynich.nu/a2_char.html **
 
-[TILTMAN (1967)](../biblio.md) already noticed (p.7 point (b.))
+** URGENT KNIGHT entrambi **
 
- 
+** Guy THE DISTRIBUTION OF LETTERS c AND o IN THE VOYNICH MANUSCRIPT: EVIDENCE FOR A REAL LANGUAGE? **
+
+[TILTMAN (1967)](../biblio.md) 'm' appears most commonly at the end of a line, rarely elsewhere (b).
+
+[TILTMAN (1967)](../biblio.md) Paragraphs nearly always begin with gallows, most commonly 'f' or 'p', which also occur frequently in words in the top lines of paragraphs where there is some extra space (c).
+
+
+[TILTMAN (1967)](../biblio.md) 'y' occurs quite frequently as the initial symbol of a line followed immediately by a combination of symbols which seem to be happy without it in any part of a line away from the beginning (d).
+
+[BOWERN (2020)](../biblio.md)
+The clearest example of this phenomenon is the paragraph, which usually begins with a
+gallows character. 85% of the paragraphs in the text begin with one of t, k, f, p. These
+“gallows-initial” words are (1) otherwise fairly infrequent; and (2) have the same structure as
+normal Voynich words except that they are preceded by a gallows character. John Grove first
+hypothesized that gallows-initial words were variants of other words
+Furthermore gallows-initial words, when they do appear elsewhere, 
+usually begin with k k or f f rather than p p or t t. 
+
+[BOWERN (2020)](../biblio.md)
+There is a similar but less robust pattern associated with the beginning of each line. The
+first word is somewhat more likely to begin with s- s. This may be another orthographic
+variant, but it appears to only occur with words that otherwise begin with o- o or a- a. Thus
+aiin aiin, ol ol, and or or are replaced with saiin saiin, sol sol, and sor sor.
+
+[BOWERN (2020)](../biblio.md)
+There are also characters which usually appear at the end of the last word of the line,
+particularly m. It is plausible that m m and g g are variant forms of the word-final glyphs -iin iin and -y y
+However, if this is an orthographic convention, it is not applied in a consistent manner: the forms -iin iin and -y
+y are also found line-finally, albeit somewhat less frequently.
+
+[FIRTH]()
+On gallows: https://www.ic.unicamp.br/~stolfi/voynich/mirror/firth/16.txt
+
+[ZANDBERGEN (2021)](../biblio.md)
+The first is that the first word in each paragraph typically starts with a character from a very small group,
+and this character seems to have been pre-fixed to this word. This character is often written larger than
+the other characters on the page, and if this character is removed, a regular Voynich word appears, at
+least in most cases. These words play a special role in Stolfi’s word grammar, because they usually don’t
+fit the grammar, when the extra character is included.
+
+[ZANDBERGEN (2021)](../biblio.md)
+The second feature is a much more serious one. This is that the characters f and p , and also cFh and
+cPh , tend to appear only in top lines of paragraphs. Furthermore, this is not a very hard rule – they do
+appear elsewhere too, but the predominance in top lines of paragraphs is very strong. T 
+
+[ZANDBERGEN (2021)](../biblio.md)
+The third feature is similar to the second, but it is less pronounced, and could be easier to explain. This is
+the character m that is a word-final character that predominantly (but again not always) appears at the
+ends of lines. In this case, the letter could conceivably be a line final variant form of either r or l , but
+there are some issues with that hypothesis. 
+
+
+**I comportamenti a inizio paragrafo o inizio linea soo piu' marcati che alla fine....Qualcos aqundo inizia ascrivere un paragrafo o una line cambia....**
+
+## Removing a character at beginning of words
+
+  * L'abbondanza di p e t in prima riga sembra dovita al fatto che vengono aggiunte arbitrariamente a inizio parola di parole che si trovano
+  comunque nel test (Groove words) -> occhio che togliendo un carattere dall'iizio di parola si ottiene omunque spesso un-altra parola valida....quindi sto concetto va ussato con prudenza
+  idem per 's' in BOWERN
   
+  * Stolfi: https://www.ic.unicamp.br/~stolfi/EXPORT/projects/voynich/00-06-07-word-grammar/#ref4 :
+    The paradigm also provides strong support for John Grove's theory that many ordinary-looking words occur prefixed with a spurious "gallows" letter
+	(k t p f in the EVA alphabet). => THIS IS THE CASE IN FIRST LINE
 
 
+
+## Pedestals  
+
+  * 'C' e 'S' in first line of paragraphs and first letter in line.
+  Nobody noticed, maybe because in EVA this is treated as two
+	characters ('sh'), which skews the statistics.
+	Guarda comunque anche le differenze nelle percentuali
+
+# 'a' and 'o'
+
+commento aparte first letter in line.
  
 # Conclusions
+
+** 	The distribution is not the same across all clusters. Only some letters behave the same across all document Ancora una volta bisogna  fare analisi separate**
 
 	
 ---

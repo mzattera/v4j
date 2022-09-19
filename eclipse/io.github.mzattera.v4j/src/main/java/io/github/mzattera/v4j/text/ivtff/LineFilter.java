@@ -21,6 +21,19 @@ public class LineFilter implements ElementFilter<IvtffLine> {
 	private final String genericLocusType;
 	private final String transcriber;
 
+	/**
+	 * Pre-made filter to return "paragraph" text; that is terxt contained in "P0"
+	 * or "P1" loci.
+	 */
+	public static final ElementFilter<IvtffLine> PARAGRAPH_TEXT_FILTER = new ElementFilter<IvtffLine>() {
+
+		@Override
+		public boolean keep(IvtffLine line) {
+			LocusIdentifier h = line.getDescriptor();
+			return h.getLocusType().equals("P0") || h.getLocusType().equals("P1");
+		}
+	};
+
 	public static class Builder {
 
 		private String page = null;
@@ -28,7 +41,7 @@ public class LineFilter implements ElementFilter<IvtffLine> {
 		private String locus = null;
 		private String locator = null;
 		private String locusType = null;
-		private String genericLocusType = null;		
+		private String genericLocusType = null;
 		private String transcriber = null;
 
 		public Builder() {
@@ -74,7 +87,8 @@ public class LineFilter implements ElementFilter<IvtffLine> {
 		}
 	}
 
-	public LineFilter(String page, String number, String locus, String locator, String locusType, String genericLocusType, String transcriber) {
+	public LineFilter(String page, String number, String locus, String locator, String locusType,
+			String genericLocusType, String transcriber) {
 		this.page = page;
 		this.number = number;
 		this.locus = locus;
@@ -85,12 +99,11 @@ public class LineFilter implements ElementFilter<IvtffLine> {
 	}
 
 	@Override
-	public boolean keep(IvtffLine element) {
-		LocusIdentifier h = element.getDescriptor();
+	public boolean keep(IvtffLine line) {
+		LocusIdentifier h = line.getDescriptor();
 
 		return (page == null || page.equals(h.getPageId())) && (number == null || number.equals(h.getNumber()))
-				&& (locus == null || locus.equals(h.getLocus()))
-				&& (locator == null || locator.equals(h.getLocator()))
+				&& (locus == null || locus.equals(h.getLocus())) && (locator == null || locator.equals(h.getLocator()))
 				&& (locusType == null || locusType.equals(h.getLocusType()))
 				&& (genericLocusType == null || genericLocusType.equals(h.getGenericLocusType()))
 				&& (transcriber == null || transcriber.equals(h.getTranscriber()));

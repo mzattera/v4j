@@ -5,6 +5,8 @@ package io.github.mzattera.v4j.applications.chars;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 
 import io.github.mzattera.v4j.text.Text;
@@ -14,6 +16,7 @@ import io.github.mzattera.v4j.text.ivtff.IvtffPage;
 import io.github.mzattera.v4j.text.ivtff.IvtffText;
 import io.github.mzattera.v4j.text.ivtff.LineFilter;
 import io.github.mzattera.v4j.text.txt.TextString;
+import io.github.mzattera.v4j.util.Counter;
 
 /**
  * This is a container for subclasses of CharDistributionExperiment that
@@ -23,7 +26,7 @@ import io.github.mzattera.v4j.text.txt.TextString;
  *
  */
 public final class Experiments {
-	
+
 	/**
 	 * Uses Chi-Square test to validate assumptions about character distributions.
 	 * 
@@ -220,5 +223,130 @@ public final class Experiments {
 			return new Text[] { new TextString(last.toString(), Alphabet.SLOT),
 					new TextString(others.toString(), Alphabet.SLOT) };
 		}
+	}
+
+	/**
+	 * 
+	 * @return A list of Counter, where Counter[0] counts words appearing in doc at
+	 *         first position in a line, Counter[1] is the same for second position
+	 *         and so on.
+	 */
+	public static List<Counter<String>> getWordsByPosition(IvtffText doc) {
+		return getWordsByPosition(doc, 0, Integer.MAX_VALUE, false, false);
+	}
+
+	/**
+	 * 
+	 * @param minLineLen If line has less than this number of words, ignore it.
+	 * @return A list of Counter, where Counter[0] counts words appearing in doc at
+	 *         first position in a line, Counter[1] is the same for second position
+	 *         and so on.
+	 */
+	public static List<Counter<String>> getWordsByPosition(IvtffText doc, int minLineLen) {
+		return getWordsByPosition(doc, minLineLen, Integer.MAX_VALUE, false, false);
+	}
+
+	/**
+	 * 
+	 * @param minLineLen If line has less than this number of words, ignore it.
+	 * @param maxLineLen If line has more than this number of words, ignore it.
+	 * @return A list of Counter, where Counter[0] counts words appearing in doc at
+	 *         first position in a line, Counter[1] is the same for second position
+	 *         and so on.
+	 */
+	public static List<Counter<String>> getWordsByPosition(IvtffText doc, int minLineLen, int maxLineLen) {
+		return getWordsByPosition(doc, minLineLen, maxLineLen, false, false);
+	}
+
+	/**
+	 * 
+	 * @param minLineLen If line has less than this number of words, ignore it.
+	 * @param maxLineLen If line has more than this number of words, ignore it.
+	 * @param skipFirst  If true, ignore first word in each line.
+	 * @param skipLast   If true, ignore last word in each line.
+	 * @return A list of Counter, where Counter[0] counts words appearing in doc at
+	 *         first position in a line, Counter[1] is the same for second position
+	 *         and so on.
+	 */
+	public static List<Counter<String>> getWordsByPosition(IvtffText doc, int minLineLen, int maxLineLen,
+			boolean skipFirst, boolean skipLast) {
+		List<Counter<String>> result = new ArrayList<>(50);
+		if (skipFirst)
+			result.add(new Counter<>()); // add first counter (which will stay empty).
+		int min = skipFirst ? 1 : 0;
+
+		for (IvtffPage p : doc.getElements()) {
+			for (IvtffLine l : p.getElements()) {
+				String[] w = l.splitWords();
+				if ((w.length < minLineLen) || (w.length > maxLineLen))
+					continue;
+				for (int i = min; i < (skipLast ? w.length - 1 : w.length); ++i) {
+					if (result.size() <= i)
+						result.add(new Counter<>());
+					if (!doc.getAlphabet().isUnreadable(w[i]))
+						result.get(i).count(w[i]);
+				}
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * @param discardFirstLine If true, remove first line of each paragraph.
+	 * @param discardLastLine  If true, remove last line of each paragraph.
+	 * @return Input document, after filtering.
+	 */
+	public static IvtffText filterLines(IvtffText doc, boolean discardFirstLine, boolean discardLastLine) {
+		// note the order is important because how Experiments work
+		if (discardFirstLine)
+			doc = (IvtffText) new FirstParagraphLine().splitDocument(doc)[1];
+		if (discardLastLine)
+			doc = (IvtffText) new LastParagraphLine().splitDocument(doc)[1];
+		return doc;
+	}
+
+	/**
+	 * 
+	 * @param counter     Word distribution to observe (as returned by
+	 *                    <code>Experiments</code>).
+	 * @param bins        The words to consider as "bins" for chi-squared test. Each
+	 *                    word is mapped into an index of the returned array.
+	 * @param addGericBin If true, crate an additional element at end of result,
+	 *                    counting all words not in <code>bins</code>; otherwise
+	 *                    they are ignored.
+	 * @return An array with count of words in features.
+	 */
+	public static long[] observe(Counter<String> counter, Map<String, Integer> bins, boolean addGenericBin) {
+		return observe(counter, bins, addGenericBin, null);
+	}
+
+	/**
+	 * 
+	 * @param counter     Word distribution to observe (as returned by
+	 *                    <code>Experiments</code>).
+	 * @param bins        The words to consider as "bins" for chi-squared test. Each
+	 *                    word is mapped into an index of the returned array.
+	 * @param addGericBin If true, crate an additional element at end of result,
+	 *                    counting all words not in <code>bins</code>; otherwise
+	 *                    they are ignored.
+	 * @param current     If not null, counts will be added to this array; it is
+	 *                    expected this is created with right dimensions.
+	 * @return An array with count of words in features.
+	 */
+	public static long[] observe(Counter<String> counter, Map<String, Integer> bins, boolean addGenericBin,
+			long[] current) {
+		if (current == null)
+			current = new long[addGenericBin ? bins.size() + 1 : bins.size() + 1];
+
+		for (Entry<String, Integer> e : counter.entrySet()) {
+			if (bins.containsKey(e.getKey())) { // the word is a feature; record its observed count
+				current[bins.get(e.getKey())] += e.getValue();
+			} else { // add this to "all other stuff bin"
+				if (addGenericBin)
+					current[bins.size()] += e.getValue();
+			}
+		}
+		return current;
 	}
 }

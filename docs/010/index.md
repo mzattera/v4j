@@ -102,8 +102,6 @@ Labels very rarely start with t, k, p or f . Instead, they often start with o, d
 [D'IMPERIO (1978b)](../biblio.md)
 One example (of char statistics) is found in D'Imperio (1978) (see note 4), Fig. 28 on p.106, from several sources but none covering the entire MS text.
 
-** Guy THE DISTRIBUTION OF LETTERS c AND o IN THE VOYNICH MANUSCRIPT: EVIDENCE FOR A REAL LANGUAGE? **
-
 ** URGENT KNIGHT entrambi **
 
 [BOWERN (2020)](../biblio.md)
@@ -127,10 +125,6 @@ particularly m. It is plausible that m m and g g are variant forms of the word-f
 However, if this is an orthographic convention, it is not applied in a consistent manner: the forms -iin iin and -y
 y are also found line-finally, albeit somewhat less frequently.
 
-** leggi questo qui**
-[FIRTH]()
-On gallows: https://www.ic.unicamp.br/~stolfi/voynich/mirror/firth/16.txt
-
 [ZANDBERGEN (2021)](../biblio.md)
 The first is that the first word in each paragraph typically starts with a character from a very small group,
 and this character seems to have been pre-fixed to this word. This character is often written larger than
@@ -152,11 +146,19 @@ there are some issues with that hypothesis.
 
 **I comportamenti a inizio paragrafo o inizio linea soo piu' marcati che alla fine....Qualcos aqundo inizia ascrivere un paragrafo o una line cambia....**
 
+
+** Here or on a separate note? First words in a line do not have same vocabularly than others (see io.github.mzattera.v4j.applications.line.*).
+    It is not different words from same dictionary are chosen; it's that new words not used elsewhere are used. Smae for laswt word
+	Would be interesting to see the first and last letters of these words.**
+
+** Here or in a separate ote: words in differnt clusters have differnt lenght, but they exhibit the behavior described by VOgt**
+
+
 ## Removing a character at beginning of words
 
   * L'abbondanza di p e t in prima riga sembra dovita al fatto che vengono aggiunte arbitrariamente a inizio parola di parole che si trovano
   comunque nel test (Groove words) -> occhio che togliendo un carattere dall'iizio di parola si ottiene omunque spesso un-altra parola valida....quindi sto concetto va ussato con prudenza
-  idem per 's' in BOWERN
+  idem per 's' in BOWERN -> check if it is still true for words not in frist or last position in a line ;)
   
   * Stolfi: https://www.ic.unicamp.br/~stolfi/EXPORT/projects/voynich/00-06-07-word-grammar/#ref4 :
     The paradigm also provides strong support for John Grove's theory that many ordinary-looking words occur prefixed with a spurious "gallows" letter

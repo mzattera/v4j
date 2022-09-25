@@ -45,7 +45,12 @@ The results are shown in the below table[{1}](#Note1)[{2}](#Note2):
 
 ![Summary table of anomalies in char distribution](images/SummaryTable.PNG)
 
- 
+   * Tests:
+     * No significance for middle lines compared with themselves
+	 * Quando fai le statistiche dei caratteri fallo anche con una versione col testo mescolato del voynich per vedere cosa succede
+	 
+	 
+	 
 # Considerations and Comparison with Previous Works
 
 **CountCharactersByCluster  -> Character distribution by cluster is different**
@@ -102,7 +107,13 @@ Labels very rarely start with t, k, p or f . Instead, they often start with o, d
 [D'IMPERIO (1978b)](../biblio.md)
 One example (of char statistics) is found in D'Imperio (1978) (see note 4), Fig. 28 on p.106, from several sources but none covering the entire MS text.
 
-** URGENT KNIGHT entrambi **
+
+[KNIGHT]
+Confirms uneven char distribution but does it for the entire text
+It is particularly interesting that lower frequency characters occur more at line-ends,
+and higher-frequency ones at the beginnings of lines.
+    -> DAVVERO!?!?!? INTERESSANTE DA TESTARE
+
 
 [BOWERN (2020)](../biblio.md)
 The clearest example of this phenomenon is the paragraph, which usually begins with a

@@ -229,7 +229,7 @@ public final class Experiments {
 	 * 
 	 * @return A list of Counter, where Counter[0] counts words appearing in doc at
 	 *         first position in a line, Counter[1] is the same for second position
-	 *         and so on.
+	 *         and so on. "Unreadable" words are ignored.
 	 */
 	public static List<Counter<String>> getWordsByPosition(IvtffText doc) {
 		return getWordsByPosition(doc, 0, Integer.MAX_VALUE, false, false);
@@ -252,7 +252,7 @@ public final class Experiments {
 	 * @param maxLineLen If line has more than this number of words, ignore it.
 	 * @return A list of Counter, where Counter[0] counts words appearing in doc at
 	 *         first position in a line, Counter[1] is the same for second position
-	 *         and so on.
+	 *         and so on. "Unreadable" words are ignored.
 	 */
 	public static List<Counter<String>> getWordsByPosition(IvtffText doc, int minLineLen, int maxLineLen) {
 		return getWordsByPosition(doc, minLineLen, maxLineLen, false, false);
@@ -266,7 +266,7 @@ public final class Experiments {
 	 * @param skipLast   If true, ignore last word in each line.
 	 * @return A list of Counter, where Counter[0] counts words appearing in doc at
 	 *         first position in a line, Counter[1] is the same for second position
-	 *         and so on.
+	 *         and so on. "Unreadable" words are ignored.
 	 */
 	public static List<Counter<String>> getWordsByPosition(IvtffText doc, int minLineLen, int maxLineLen,
 			boolean skipFirst, boolean skipLast) {

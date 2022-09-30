@@ -22,11 +22,11 @@ public class PageHeader implements Identifiable {
 	public static final String[] OUTLIER_PAGES = { "f27v", "f53r", "f57v", "f65r", "f68r1", "f68r2", "f72v1", "f116v" };
 
 	/**
-	 * These are parchments we know look different from others (see
+	 * These are parchment we know look different from others (see
 	 * https://mzattera.github.io/v4j/003/)
 	 */
-	public static final int[] OUTLIER_PARCHMENTS = { 25, 29, 30, 31, 32, 40 };
-
+	public static final int[] OUTLIER_PARCHMENTS = { 29, 30, 31, 32, 40 };
+	
 	/**
 	 * List of clusters I defined, based on cluster analysis (see
 	 * https://mzattera.github.io/v4j/003/)

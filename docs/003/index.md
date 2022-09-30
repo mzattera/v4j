@@ -268,6 +268,8 @@ Keep in mind K-Means algorithm include some randomness, therefore slightly diffe
 
 <a id="Note5">**{5}**</a> After publishing [note 009](../009), I decided to remove the zodiac pages (former "ZZ" cluster) from this list of clusters,
 since there is no much evidence their cluster is better formed than Cosmological or Astronomical ones.
+I also noticed that parchment 25 has been wrongly excluded by this table, which is now re-generated using code in 
+[release v.12.0.0](https://github.com/mzattera/v4j/tree/v.12.0.0).
 
 <a id="Note6">**{6}**</a> [CURRIER (1976)](../biblio.md) contains this comment:
 "The Newbold foliation indicates that the Biological Section extends through ff 85-86 and it would appear from the illustrations that the Pharmaceutical Section does not

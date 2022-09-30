@@ -2,7 +2,7 @@
 
 _Last updated Sep. 18th, 2022._
 
-_This note refers to [release v.12.0.0](https://github.com/mzattera/v4j/tree/v.12.0.0) of v4j;
+_This note refers to [release v.13.0.0](https://github.com/mzattera/v4j/tree/v.13.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
 In addition, some of this note content might have become obsolete in more recent versions of the library._
 
@@ -285,7 +285,7 @@ Check those appearing as coulm at line initial compared to our list of prefixes 
 
 **Notes**
 
-<a id="Note1">**{1}**</a> Class [`TwoSamplesCharDistributionTest`](https://github.com/mzattera/v4j/blob/v.12.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/chars/TwoSamplesCharDistributionTest.java) was used for this purpose.
+<a id="Note1">**{1}**</a> Class [`TwoSamplesCharDistributionTest`](https://github.com/mzattera/v4j/blob/v.13.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/chars/TwoSamplesCharDistributionTest.java) was used for this purpose.
 
 <a id="Note2">**{2}**</a> The  file `CharacterDistribution.xlsx` in [this folder](https://github.com/mzattera/v4j/blob/master/resources/analysis/char%20distribution) contains 
 detailed results of the analysis.

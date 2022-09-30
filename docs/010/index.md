@@ -21,22 +21,27 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 # Abstract
 
 It is known since the very beginning of Voynich studies, that the distribution of character across the pages has some statistical anomalies.
-This note looks into this, using for the first time the [Slot transcription](https://github.com/mzattera/v4j/blob/master/eclipse/io.github.mzattera.v4j/src/main/resources/Transcriptions/Interlinear_slot_ivtff_1.5.txt).
+This note looks into it, using for the first time the
+[Slot transcription](https://github.com/mzattera/v4j/blob/master/eclipse/io.github.mzattera.v4j/src/main/resources/Transcriptions/Interlinear_slot_ivtff_1.5.txt).
 
-**Unless differently indicated, the rest of this note uses the Slot alphabet when quoting Voynich text.**
-
+**Unless differently indicated, the rest of this note uses the [Slot alphabet](../005) when quoting Voynich text.** 
+Please notice that lowercase letters represent same characters both in EVA and Slot alphabets; uppercase letters used in the Slot alphabet represent groups of
+characters in EVA (e.g., 'qoCey' in Slot corresponds to 'qochey' in EVA).
 
 # Methodology
 
-In this note I will show the result of several experiments. In each experiment, the text of the Voynich is split into two groups, for example the initial lines of paragraphs are in one group whilst the 
-other lines are in the second group; the character distribution of the two groups is compared using a chi-squared test, if the test shows a statistically sigificant variation in character distribution,
-then each character is tested individually, to highlight a difference in distribution among the two groups. The experiments are done separately for each [cluster](../003); 
+In this note I will show the result of several experiments. In each experiment, the text of the Voynich is split into two groups,
+for example the first lines of every paragraph are form one group whilst the  other lines are in the second group;
+the character distribution of the two groups is compared using a chi-squared test;
+if the test shows a statistically significant variation, then each character is tested individually (again, using a chi-squared test),
+to highlight which characters behave differently in the two groups.
+The experiments are done separately for each [cluster](../003); 
 a concordance version of the text is used; only text appearing in paragraphs is considered (IVTFF locus type = P0 or P1).
 
 The set of experiments is as follows:
 
   * First line in page - all text appearing in first lines of pages is compared with the rest of the text.
-  * First line in paragraph - first lines of paragraphs is compared with the rest of the text.
+  * First line in paragraph - text in first line of a paragraph is compared with the rest of the text.
   * Last line in paragraph - all text appearing in last lines of paragraphs is compared with the rest of the text.
   * First letter in a line - initial character of first word in a line is compared with initial characters of all other words.
   * Last letter in a line - final character of last word in a line is compared with last characters of all other words.
@@ -46,14 +51,14 @@ The results are shown in the below table[{1}](#Note1)[{2}](#Note2):
 ![Summary table of anomalies in char distribution](images/SummaryTable.PNG)
 
    * Tests:
-     * No significance for middle lines compared with themselves
+     * No significance for middle lines compared with themselves ->dovremmo magari avere sempi delle stesse dimensioni
 	 * Quando fai le statistiche dei caratteri fallo anche con una versione col testo mescolato del voynich per vedere cosa succede
-	 
-	 
 	 
 # Considerations and Comparison with Previous Works
 
-**CountCharactersByCluster  -> Character distribution by cluster is different**
+** Maybe start with a simple table of char frequency by cluster **
+
+**CountCharactersByCluster  -> Character frequencies by cluster is different**
 
 The most evident thing is that, apart for very few exceptions, characters behave differently in the different clusters.
 We summarize below the main trends, but we invite to refer to the above table for a detailed analysis, case by case.
@@ -100,14 +105,88 @@ If we look to behaviors that appear consistently across clusters, we can see tha
 
 ** leggi questo qui sono solo millemila pagine**
 [D'IMPERIO (1978b)](../biblio.md)
-The split gallows seem only to occur on first lines of paragraphs, and in labels.
-On most herbal folios, the first paragraph usually starts with t, k, p or f, usually immediately followed by ch, Sh, o, y, aiin or dy.
-Labels very rarely start with t, k, p or f . Instead, they often start with o, d, y or sometimes s or ch.
+Pag, 28 4.4.1
+The following list of characteristics to be explained by any good cryptanalytic theory summarizes the findings of several researches,
+notably the Friedmans and Tiltman; it includes also some observations which I have added from my own study of the text.
+1) The basic alphabet of frequently occurring symbols is small (as few as fifteen according to some students and probably no more than twentyfive).
+2) THe basic forms are compounded or ligatured to create a large variety of complex symbols.
+3) THe symbols are groped into "words" separated by spaces (although some students have expressed doubts about the consistency of spacing).
+4) THe number of different words seems surprisingly limited.
+5) The words are short...
+6) The same word is frequently repeated two, three or more times in immediate succession -> MA DOVE CHE NON TROVO RIPETIZIONI
+7) Many words differ from each other by only one or two symbols and such words often occur in immediate succession.
+8) Certain symbols occurs characteristically at the beginning, middle, and ends of words, and in certain preferred sequences.
+9) Certain symbols appear very rarely and only on certain pages, indicating some special functions or meaning.
+10) THere are very few doublets and those involve primarily 'e' and 'i', occasionally also 'y', 'd', 'o'.
+11) Very few symbols occur singly in running text; these are primarily 's' and 'y'.
+12) "Prefix" like elements are tacked in front of certain words that also occur commonly without them; such prefix elements are 'qo', 'o' and 'y'.
+13) the symbol 'q' occurs almost invariably followed by 'o; the resulting compound symbol is rarely seen elsewhere than at the beginning of words.
+14) On most herbal folios the first line of the first paragraph begins with a very small set of symbols,
+    primarily 't', 'k', 'p', 'f', these are usually immediately followed by 'ch', 'sh', 'o', 'y'.
+15) Single words occurring as labels...very rarely begin with the four looped symbols (=gallows?);
+    instead they often start with 'o', 'd', 'y' and occasionally 's' and 'ch'.
+
+
+
+[D'IMPERIO (1978b)](../biblio.md)
+The split gallows seem only to occur on first lines of paragraphs, and in labels. -> NON SO DA DOVE ARRIVA
+
 
 [D'IMPERIO (1978b)](../biblio.md)
 One example (of char statistics) is found in D'Imperio (1978) (see note 4), Fig. 28 on p.106, from several sources but none covering the entire MS text.
 
+[D'IMPERIO (1978b)](../biblio.md)
+Pag. 23 similarita' fra i Gallows e il ms. Capelli (individuato da TILTMANN).
+Pag. 25 Mss. Nill the original text seems not to show corrections or erasures -> it is probably the beginning of this lore.
+Pag. 27 Peterson made an elaborated and complete manual concordance of the text, and studied occurrences of ligatured and compound forms of symbols.
+Pag. 29 a list of cypher techniques used in 16th century,
 
+
+** This MIGHT ** be the definition of Grove words? http://voynich.net/Arch/2004/09/msg00478.html it also provide some rules on Gallows.
+Gallows are very problematic because:
+		F and P are first line of paragraph dependant (out on the limb - about 95%
+of them);
+		First Gallows on a page can normally be detached from the first word to
+form a relatively normal VMS word;
+		Split Gallows are quite rare - but do appear as labels or first words on a
+page;
+		K and T word patterns are very similar okedy otedy;
+		Add the ch versions and we now have 8 Gallows plus Split-Gallows;
+		The same first line of paragraph dependancy shows on cph and cfh as well.
+
+	I can't see how f,p, cph(iph), cfh(ifh) can be part of some coding scheme
+since they are so dependant on first line of a paragraph (unless the whole
+first line is setting up a cipher for the rest of the paragraph).
+No...another reference here: http://voynich.net/Arch/2004/09/msg00442.html	(STOLFI TALKING ABOUT GROVE WORDS)	
+The graphs are new, but the explanation for those peaks in the
+line-sorted graph may be a discovery that John Grove made several
+years ago: on many lines, the first word looks like a "normal" word
+with an extra gallows attached at the beginning.
+IIRC, the evidence that those initial gallows are not really part of
+the word includes: (1) many of those words are fairly rare, but if one
+removes those "detachable gallows" (as John called them), one often
+obtains a relatively common word. (2) words that start with a gallows
+letter are more common at the beginning of lines than elsewhere; (3)
+those words often have two gallows, which is a fairly rare feature of
+Voynichese words.
+About item (3): to be precise, in some trenscription of the VMS there
+are ~930 tokens (in 35,000, or 2.6%) that do not fit my word grammar
+because they violate the three-layer (crust-mantle-core-mantle-crust)
+rule. Most of these words occur only once in the text. Of those ~930
+tokens, ~210 look like Grove words in that they start with a gallows,
+and by removing that gallows one obtains a word that fits my word
+grammar. (Most of the remaining ~720 anomalies could be pairs of words
+that were run together)
+I have not checked whether those ~210 "Grove-like" tokens occur at the
+beginning of lines or not. They seem to occur at about the same rate
+in most sections, but twice as often in Biological, and hardly at all
+in Astro/Cosmo. None of them occur as labels.
+The big question is what the Grove Words mean. Apart from
+cryptographic devices, they could be separators (like the reversed "P"
+sign that scribes used to separate paragraphs). Or they could be tags
+indicating "fields" in a "form", e.g.
+
+		
 [KNIGHT]
 Confirms uneven char distribution but does it for the entire text
 It is particularly interesting that lower frequency characters occur more at line-ends,
@@ -162,7 +241,9 @@ there are some issues with that hypothesis.
     It is not different words from same dictionary are chosen; it's that new words not used elsewhere are used. Smae for laswt word
 	Would be interesting to see the first and last letters of these words.**
 
-** Here or in a separate ote: words in differnt clusters have differnt lenght, but they exhibit the behavior described by VOgt**
+** Here or in a separate note: words in differnt clusters have differnt lenght, but they exhibit the behavior described by VOgt**
+
+** f.76r l'elenco di caratteri sono caratteri che compaiono troppo o troppo poco....quasi tutti
 
 
 ## Removing a character at beginning of words
@@ -192,6 +273,9 @@ there are some issues with that hypothesis.
 
 commento aparte first letter in line.
  
+# Key-like sequences
+
+Check those appearing as coulm at line initial compared to our list of prefixes (e.g. f49v).
 # Conclusions
 
 ** 	The distribution is not the same across all clusters. Only some letters behave the same across all document Ancora una volta bisogna  fare analisi separate**

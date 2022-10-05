@@ -32,6 +32,11 @@ public class LineFilter implements ElementFilter<IvtffLine> {
 			LocusIdentifier h = line.getDescriptor();
 			return h.getLocusType().equals("P0") || h.getLocusType().equals("P1");
 		}
+
+		@Override
+		public String toString() {
+			return "LineFilter [Returns text in P0 and P1 loci (paragraphs of running text)]";
+		}
 	};
 
 	public static class Builder {

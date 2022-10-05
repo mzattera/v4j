@@ -1,4 +1,4 @@
-# Note 010 - On character distribution
+# Note 010 - Character distribution through the page
 
 _Last updated Sep. 18th, 2022._
 
@@ -20,7 +20,7 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 
 # Abstract
 
-It is known since the very beginning of Voynich studies, that the distribution of character across the pages has some statistical anomalies.
+It is known since the very beginning of Voynich studies, that the distribution of character withing the page presents some statistical anomalies.
 This note looks into it, using for the first time the
 [Slot transcription](https://github.com/mzattera/v4j/blob/master/eclipse/io.github.mzattera.v4j/src/main/resources/Transcriptions/Interlinear_slot_ivtff_1.5.txt).
 
@@ -30,8 +30,14 @@ characters in EVA (e.g., 'qoCey' in Slot corresponds to 'qochey' in EVA).
 
 # Methodology
 
+** Maybe start with a simple table of char frequency by cluster **
+  -> **CountCharactersByCluster  -> Character frequencies by cluster is different**
+
+ * [D'IMPERIO (1978b)](../biblio.md)
+  One example (of char statistics) is found in D'Imperio (1978) (see note 4), Fig. 28 on p.106, from several sources but none covering the entire MS text.
+
 In this note I will show the result of several experiments. In each experiment, the text of the Voynich is split into two groups,
-for example the first lines of every paragraph are form one group whilst the  other lines are in the second group;
+for example the first lines of every paragraph will form the first group, whilst the other lines are in the second group;
 the character distribution of the two groups is compared using a chi-squared test;
 if the test shows a statistically significant variation, then each character is tested individually (again, using a chi-squared test),
 to highlight which characters behave differently in the two groups.
@@ -40,107 +46,88 @@ a concordance version of the text is used; only text appearing in paragraphs is 
 
 The set of experiments is as follows:
 
-  * First line in page - all text appearing in first lines of pages is compared with the rest of the text.
-  * First line in paragraph - text in first line of a paragraph is compared with the rest of the text.
-  * Last line in paragraph - all text appearing in last lines of paragraphs is compared with the rest of the text.
+  * First line in page - first lines of pages are compared with the rest of the text.
+  * First line in paragraph - first lines of paragraphs are compared with the rest of the text.
+  * Last line in paragraph - last lines of paragraphs are compared with the rest of the text.
   * First letter in a line - initial character of first word in a line is compared with initial characters of all other words.
   * Last letter in a line - final character of last word in a line is compared with last characters of all other words.
 
 The results are shown in the below table[{1}](#Note1)[{2}](#Note2):
 
+** FAI UN NUOVO TAGLI INCOLLA PERCHE' LA TABELLA e' STAT RIFATTA**
 ![Summary table of anomalies in char distribution](images/SummaryTable.PNG)
 
    * Tests:
      * No significance for middle lines compared with themselves ->dovremmo magari avere sempi delle stesse dimensioni
 	 * Quando fai le statistiche dei caratteri fallo anche con una versione col testo mescolato del voynich per vedere cosa succede
+	 * Usa dinomial invece di chi squared per i carateri?
 	 
-# Considerations and Comparison with Previous Works
+# Considerations and Previous Works
 
-** Maybe start with a simple table of char frequency by cluster **
 
-**CountCharactersByCluster  -> Character frequencies by cluster is different**
+## Removing Characters from beginning of a Words
 
-The most evident thing is that, apart for very few exceptions, characters behave differently in the different clusters.
-We summarize below the main trends, but we invite to refer to the above table for a detailed analysis, case by case.
 
-** Casi piu evidenti q d l o n che si comportano in modo marcatamente opposto in cluster diversi**
+## The Line is a Functional Entity
+
+[CURRIER (1976)](../biblio.md) advocated the idea of the line, when the text is running linearly, being a "functional entity",
+based on the below considerations:
+
+  * "The frequency counts of the beginnings and endings of lines are markedly different from the counts of the same characters internally".
+    
+	This is undeniable and widely discussed below. 
+	
+  * "The ends of the lines contain what seem to be, in many cases, meaningless symbols:
+	little groups of letters which don’t occur anywhere else, and just look as if they were
+	added to fill out the line to the margin [...] There is, for instance, one symbol that, while it does occur elsewhere, occurs at the
+	end of the last ‘words’ of lines 85% of the time".
+	
+	Concerning the "meaningless symbols", I didn't find this statement in other authors and it's not clear what Currier means here.
+	I quickly checked if length of words decreases towards the end of a line (more on this topic to come),
+	but I could not find any evidence of that.
+	If for "one symbol" Currier refers to 'm', this is widely acknowledged and discussed below.
+	
+  * "In \[the herbal material and of the biological material\] ... there is not one single case of a repeat going over the end of a line to
+	the beginning of the next".
+
+	**COUNT AND TEST REPEATS**
+	
+   * "These three findings have convinced me that the line is a functional entity, (what its function is, I don’t know),
+   and that the occurrence of certain symbols is governed by the position of a ‘word’ in a line. For instance, 
+   there is a particular symbol which almost never occurs as the first letter of a ‘word’ in a line 
+   except when it is followed by the letter that looks like ‘o’".
+   
+   **Il caso di q e' un po' strano qui, forse posso semplicemente ignorarlo**
+
+
+## First Line in a Page
+
+The distribution of characters in the first line of a page seems to follow same patterns that characters appearing in first line of a paragraph.
+For the time being, I will assume that the differences between first line of a page and first line in a paragraph are only due to the fact that,
+being the sample much smaller fro beginning of pages, the trends are just less marked.
+
+
+
+## First Line in a Paragraph
+
+[TILTMAN (1967)](../biblio.md) Paragraphs nearly always begin with gallows, most commonly 'f' or 'p',
+which also occur frequently in words in the top lines of paragraphs where there is some extra space (c).
  
-If we look to behaviors that appear consistently across clusters, we can see that:
-
-  * 'k' does not appear in first line of pages and in first line of paragraphs (with a slightly less significance for BB cluster).
-  * 'S' and 'p' appear with high frequency in first line of paragraphs.
-  * 'y', 't', and 'd' tend to appear as first letter in a line; with the exception of cluster HA where 'd' has the opposite behavior.
-    'C', 'S', 'o', and 'a' hardly do; with the exception of cluster HA again where 'o' appears with high frequency.
-  * 'l' and 'r' tend not to appear as terminal letter of last word in a line.
-
-[TILTMAN (1967)](../biblio.md) 'm' appears most commonly at the end of a line, rarely elsewhere (b).
-
-[TILTMAN (1967)](../biblio.md) Paragraphs nearly always begin with gallows, most commonly 'f' or 'p', which also occur frequently in words in the top lines of paragraphs where there is some extra space (c).
-
-[TILTMAN (1967)](../biblio.md) 'y' occurs quite frequently as the initial symbol of a line followed immediately by a combination of symbols which seem to be happy without it in any part of a line away from the beginning (d).
-
 [CURRIER (1976)](../biblio.md)
-
-  * In those pages where the text is presented linearly, the line is a functional entity. The following three bullets clarify this general observation
-	  * the frequency counts of characters at beginnings and endings of lines are markedly different from elsewhere.
-	  The frequency counts of the beginnings and endings of lines are markedly different from the counts of the same characters internally.
-	  There are, for instance, some characters that may not occur initially in a line.
-	  There are others whose occurrence as the initial syllable of the first ‘‘word’’ of a line is about one hundredth of the expected.
-	  * The ends of the lines contain what seem to be, in many cases, meaningless symbols:
-	  little groups of letters which don’t occur anywhere else, and just look as if they were added to fill out the line to the margin.
-	  Although this isn’t always true, it frequently happens.
-	  There is, for instance, one symbol that, while it does occur elsewhere, occurs at the end of the last ‘‘words’’ of lines 85% of the time (????? maybe 'm')
-	  * there is not one single case of a repeat going over the end of a line to the beginning of the next
-  
-  * Skewed frequencies at beginnings of lines may be illustrated by the two letters ch and Sh.
-  If its occurrence as an initial were random, we would expect it to occur one seventh of the time in each word position of a line.
-  Actually, it is a very infrequent word initial at the beginning of a line, except when there is an intercalated o. This applies only to 'Language' A.
-  Other ‘words’ occur in this position far more frequently than expected, particularly ‘words’ with initial ‘dC,’ ‘qC’ etc.,
-  which have the appearance of ‘C’-initial ‘words’ suitably modified for line-initial use
-  
-  * The 'ligatures' [ cKh cTh cFh cPh ] can never occur as paragraph initial, and almost never line initial.
-
   * 'p' & 'f' appear 90-95% of the time in the first lines of paragraphs, in some 400 occurrences in one section of the manuscript.
-
-
-** leggi questo qui sono solo millemila pagine**
-[D'IMPERIO (1978b)](../biblio.md)
-Pag, 28 4.4.1
-The following list of characteristics to be explained by any good cryptanalytic theory summarizes the findings of several researches,
-notably the Friedmans and Tiltman; it includes also some observations which I have added from my own study of the text.
-1) The basic alphabet of frequently occurring symbols is small (as few as fifteen according to some students and probably no more than twentyfive).
-2) THe basic forms are compounded or ligatured to create a large variety of complex symbols.
-3) THe symbols are groped into "words" separated by spaces (although some students have expressed doubts about the consistency of spacing).
-4) THe number of different words seems surprisingly limited.
-5) The words are short...
-6) The same word is frequently repeated two, three or more times in immediate succession -> MA DOVE CHE NON TROVO RIPETIZIONI
-7) Many words differ from each other by only one or two symbols and such words often occur in immediate succession.
-8) Certain symbols occurs characteristically at the beginning, middle, and ends of words, and in certain preferred sequences.
-9) Certain symbols appear very rarely and only on certain pages, indicating some special functions or meaning.
-10) THere are very few doublets and those involve primarily 'e' and 'i', occasionally also 'y', 'd', 'o'.
-11) Very few symbols occur singly in running text; these are primarily 's' and 'y'.
-12) "Prefix" like elements are tacked in front of certain words that also occur commonly without them; such prefix elements are 'qo', 'o' and 'y'.
-13) the symbol 'q' occurs almost invariably followed by 'o; the resulting compound symbol is rarely seen elsewhere than at the beginning of words.
-14) On most herbal folios the first line of the first paragraph begins with a very small set of symbols,
-    primarily 't', 'k', 'p', 'f', these are usually immediately followed by 'ch', 'sh', 'o', 'y'.
-15) Single words occurring as labels...very rarely begin with the four looped symbols (=gallows?);
-    instead they often start with 'o', 'd', 'y' and occasionally 's' and 'ch'.
-
-
+ 
+[CURRIER (1976)](../biblio.md)
+  * The 'ligatures' [ cKh cTh cFh cPh ] can never occur as paragraph initial, and almost never line initial.
 
 [D'IMPERIO (1978b)](../biblio.md)
 The split gallows seem only to occur on first lines of paragraphs, and in labels. -> NON SO DA DOVE ARRIVA
+forse e' na roba di Grove? (vedi sotto)
 
 
 [D'IMPERIO (1978b)](../biblio.md)
-One example (of char statistics) is found in D'Imperio (1978) (see note 4), Fig. 28 on p.106, from several sources but none covering the entire MS text.
-
-[D'IMPERIO (1978b)](../biblio.md)
-Pag. 23 similarita' fra i Gallows e il ms. Capelli (individuato da TILTMANN).
-Pag. 25 Mss. Nill the original text seems not to show corrections or erasures -> it is probably the beginning of this lore.
-Pag. 27 Peterson made an elaborated and complete manual concordance of the text, and studied occurrences of ligatured and compound forms of symbols.
-Pag. 29 a list of cypher techniques used in 16th century,
-
+Pag, 28 4.4.1
+14) On most herbal folios the first line of the first paragraph begins with a very small set of symbols,
+    primarily 't', 'k', 'p', 'f', these are usually immediately followed by 'ch', 'sh', 'o', 'y'.
 
 ** This MIGHT ** be the definition of Grove words? http://voynich.net/Arch/2004/09/msg00478.html it also provide some rules on Gallows.
 Gallows are very problematic because:
@@ -156,7 +143,7 @@ page;
 
 	I can't see how f,p, cph(iph), cfh(ifh) can be part of some coding scheme
 since they are so dependant on first line of a paragraph (unless the whole
-first line is setting up a cipher for the rest of the paragraph).
+first line is setting up a cipher for the rest of the paragraph).  -> ESATTAMENTE IL MIO PUNTO, DA CITARE
 No...another reference here: http://voynich.net/Arch/2004/09/msg00442.html	(STOLFI TALKING ABOUT GROVE WORDS)	
 The graphs are new, but the explanation for those peaks in the
 line-sorted graph may be a discovery that John Grove made several
@@ -176,7 +163,7 @@ rule. Most of these words occur only once in the text. Of those ~930
 tokens, ~210 look like Grove words in that they start with a gallows,
 and by removing that gallows one obtains a word that fits my word
 grammar. (Most of the remaining ~720 anomalies could be pairs of words
-that were run together)
+that were run together) -> SEPARABLE WORDS???
 I have not checked whether those ~210 "Grove-like" tokens occur at the
 beginning of lines or not. They seem to occur at about the same rate
 in most sections, but twice as often in Biological, and hardly at all
@@ -186,12 +173,9 @@ cryptographic devices, they could be separators (like the reversed "P"
 sign that scribes used to separate paragraphs). Or they could be tags
 indicating "fields" in a "form", e.g.
 
-		
-[KNIGHT]
-Confirms uneven char distribution but does it for the entire text
-It is particularly interesting that lower frequency characters occur more at line-ends,
-and higher-frequency ones at the beginnings of lines.
-    -> DAVVERO!?!?!? INTERESSANTE DA TESTARE
+  * Stolfi: https://www.ic.unicamp.br/~stolfi/EXPORT/projects/voynich/00-06-07-word-grammar/#ref4 :
+    The paradigm also provides strong support for John Grove's theory that many ordinary-looking words occur prefixed with a spurious "gallows" letter
+	(k t p f in the EVA alphabet). => THIS IS THE CASE IN FIRST LINE
 
 
 [BOWERN (2020)](../biblio.md)
@@ -202,18 +186,6 @@ normal Voynich words except that they are preceded by a gallows character. John 
 hypothesized that gallows-initial words were variants of other words
 Furthermore gallows-initial words, when they do appear elsewhere, 
 usually begin with k k or f f rather than p p or t t. 
-
-[BOWERN (2020)](../biblio.md)
-There is a similar but less robust pattern associated with the beginning of each line. The
-first word is somewhat more likely to begin with s- s. This may be another orthographic
-variant, but it appears to only occur with words that otherwise begin with o- o or a- a. Thus
-aiin aiin, ol ol, and or or are replaced with saiin saiin, sol sol, and sor sor.
-
-[BOWERN (2020)](../biblio.md)
-There are also characters which usually appear at the end of the last word of the line,
-particularly m. It is plausible that m m and g g are variant forms of the word-final glyphs -iin iin and -y y
-However, if this is an orthographic convention, it is not applied in a consistent manner: the forms -iin iin and -y
-y are also found line-finally, albeit somewhat less frequently.
 
 [ZANDBERGEN (2021)](../biblio.md)
 The first is that the first word in each paragraph typically starts with a character from a very small group,
@@ -227,6 +199,49 @@ The second feature is a much more serious one. This is that the characters f and
 cPh , tend to appear only in top lines of paragraphs. Furthermore, this is not a very hard rule – they do
 appear elsewhere too, but the predominance in top lines of paragraphs is very strong. T 
 
+
+## Last Line in a Paragraph
+
+
+
+
+## First Letter in a Line
+
+[TILTMAN (1967)](../biblio.md) 'y' occurs quite frequently as the initial symbol of a line followed immediately by a combination of symbols which seem
+to be happy without it in any part of a line away from the beginning (d).
+  
+[CURRIER (1976)](../biblio.md)
+  * The 'ligatures' [ cKh cTh cFh cPh ] can never occur as paragraph initial, and almost never line initial.
+  
+[CURRIER (1976)](../biblio.md)
+ * Skewed frequencies at beginnings of lines may be illustrated by the two letters ch and Sh.
+  If its occurrence as an initial were random, we would expect it to occur one seventh of the time in each word position of a line.
+  Actually, it is a very infrequent word initial at the beginning of a line, except when there is an intercalated o. This applies only to 'Language' A.
+  Other ‘words’ occur in this position far more frequently than expected, particularly ‘words’ with initial ‘dC,’ ‘qC’ etc.,
+  which have the appearance of ‘C’-initial ‘words’ suitably modified for line-initial use
+    ->  Nobody noticed, maybe because in EVA this is treated as two characters ('sh'), which skews the statistics.
+  except for Currier who transcripes this as S Z.
+  ->Guarda comunque anche le differenze nelle percentuali
+    
+[BOWERN (2020)](../biblio.md)
+There is a similar but less robust pattern associated with the beginning of each line. The
+first word is somewhat more likely to begin with s- s. This may be another orthographic
+variant, but it appears to only occur with words that otherwise begin with o- o or a- a. Thus
+aiin aiin, ol ol, and or or are replaced with saiin saiin, sol sol, and sor sor.
+
+
+
+
+## Last Letter in a Line
+
+[TILTMAN (1967)](../biblio.md) 'm' appears most commonly at the end of a line, rarely elsewhere (b).
+
+[BOWERN (2020)](../biblio.md)
+There are also characters which usually appear at the end of the last word of the line,
+particularly m. It is plausible that m m and g g are variant forms of the word-final glyphs -iin iin and -y y
+However, if this is an orthographic convention, it is not applied in a consistent manner: the forms -iin iin and -y
+y are also found line-finally, albeit somewhat less frequently.
+
 [ZANDBERGEN (2021)](../biblio.md)
 The third feature is similar to the second, but it is less pronounced, and could be easier to explain. This is
 the character m that is a word-final character that predominantly (but again not always) appears at the
@@ -234,51 +249,33 @@ ends of lines. In this case, the letter could conceivably be a line final varian
 there are some issues with that hypothesis. 
 
 
-**I comportamenti a inizio paragrafo o inizio linea soo piu' marcati che alla fine....Qualcos aqundo inizia ascrivere un paragrafo o una line cambia....**
+
+## Other Patterns
+		
+[KNIGHT]
+Confirms uneven char distribution but does it for the entire text
+It is particularly interesting that lower frequency characters occur more at line-ends,
+and higher-frequency ones at the beginnings of lines.
+    -> DAVVERO!?!?!? INTERESSANTE DA TESTARE vedi io.github.mzattera.v4j.applications.chars.CharByPositionTest
 
 
-** Here or on a separate note? First words in a line do not have same vocabularly than others (see io.github.mzattera.v4j.applications.line.*).
-    It is not different words from same dictionary are chosen; it's that new words not used elsewhere are used. Smae for laswt word
-	Would be interesting to see the first and last letters of these words.**
-
-** Here or in a separate note: words in differnt clusters have differnt lenght, but they exhibit the behavior described by VOgt**
-
-** f.76r l'elenco di caratteri sono caratteri che compaiono troppo o troppo poco....quasi tutti
-
-
-## Removing a character at beginning of words
-
-  * L'abbondanza di p e t in prima riga sembra dovita al fatto che vengono aggiunte arbitrariamente a inizio parola di parole che si trovano
-  comunque nel test (Groove words) -> occhio che togliendo un carattere dall'iizio di parola si ottiene omunque spesso un-altra parola valida....quindi sto concetto va ussato con prudenza
-  idem per 's' in BOWERN -> check if it is still true for words not in frist or last position in a line ;)
-  
-  * Stolfi: https://www.ic.unicamp.br/~stolfi/EXPORT/projects/voynich/00-06-07-word-grammar/#ref4 :
-    The paradigm also provides strong support for John Grove's theory that many ordinary-looking words occur prefixed with a spurious "gallows" letter
-	(k t p f in the EVA alphabet). => THIS IS THE CASE IN FIRST LINE
-
-
-
-## Pedestals  
-
-  * 'S' in first line of paragraphs 
-
-  * 'C' e 'S' in first line of paragraphs and first letter in line. -> lo aveva visto Currier come inizio riga
-  
-  * Nobody noticed, maybe because in EVA this is treated as two characters ('sh'), which skews the statistics.
-  except for Currier who transcripes this as S Z.
-
-	* Guarda comunque anche le differenze nelle percentuali
-
-# 'a' and 'o'
-
-commento aparte first letter in line.
- 
-# Key-like sequences
-
-Check those appearing as coulm at line initial compared to our list of prefixes (e.g. f49v).
 # Conclusions
 
-** 	The distribution is not the same across all clusters. Only some letters behave the same across all document Ancora una volta bisogna  fare analisi separate**
+The most evident thing is that, apart for very few exceptions, characters behave differently in the different clusters.
+We summarize below the main trends, but we invite to refer to the above table for a detailed analysis, case by case.
+  -> Cluster piu' aprticolare HA
+
+** Casi piu evidenti q d l o n che si comportano in modo marcatamente opposto in cluster diversi**
+ 
+If we look to behaviors that appear consistently across clusters, we can see that:
+
+  * 'k' does not appear in first line of pages and in first line of paragraphs (with a slightly less significance for BB cluster).
+  * 'S' and 'p' appear with high frequency in first line of paragraphs.
+  * 'y', 't', and 'd' tend to appear as first letter in a line; with the exception of cluster HA where 'd' has the opposite behavior.
+    'C', 'S', 'o', and 'a' hardly do; with the exception of cluster HA again where 'o' appears with high frequency.
+  * 'l' and 'r' tend not to appear as terminal letter of last word in a line.
+
+Is Currier's lien as a functional entity valid?
 
 	
 ---

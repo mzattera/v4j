@@ -62,6 +62,9 @@ public abstract class TwoSamplesCharDistributionTest {
 	 */
 	private static final double ALPHA2 = 0.05d;
 
+	/** Compact output */
+	private static final boolean COMPACT = false;
+
 	protected TwoSamplesCharDistributionTest() {
 	}
 
@@ -150,7 +153,7 @@ public abstract class TwoSamplesCharDistributionTest {
 			System.out.print(cluster + ";");
 			double confidence = ChiSquared.chiSquareTestDataSetsComparison(parts[0], parts[1], adjustedDistribution,
 					false);
-			System.out.printf("%.2f%%;", confidence*100);
+			System.out.printf("%.2f%%;", confidence * 100);
 			if (confidence > ALPHA) { // The two parts do not differ significatively enough; skip this test
 				System.out.println();
 				continue;
@@ -212,8 +215,12 @@ public abstract class TwoSamplesCharDistributionTest {
 					}
 				} // expected count high enough
 
-				System.out.print(" (" + obs1[0] + " / " + obs1[1] + ") ");
-				System.out.printf("(%.2f%% / %.2f%%);", (p1 * 100.0), (p2 * 100.0));
+				if (!COMPACT) {
+					System.out.print(" (" + obs1[0] + " / " + obs1[1] + ") ");
+					System.out.printf("(%.2f%% / %.2f%%)", (p1 * 100.0), (p2 * 100.0));
+				}
+				System.out.print(";");
+
 			} // For each char
 
 			System.out.println();

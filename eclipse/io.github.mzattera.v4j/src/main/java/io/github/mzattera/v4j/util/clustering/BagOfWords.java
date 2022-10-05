@@ -53,6 +53,18 @@ public class BagOfWords implements Clusterable {
 		return dimensions;
 	}
 
+	// Reverse map, from dimension index to corresponding word.
+	private HashMap<Integer, String> reverseDimensions;
+
+
+	/**
+	 * @return a map that maps each index for a dimension in the data point to corresponding
+	 * word.
+	 */
+	public  HashMap<Integer, String> getReverseDimensions() {
+		return reverseDimensions;
+	}
+	
 	/**
 	 * @return Value of given dimension (represented by a word).
 	 */
@@ -88,6 +100,7 @@ public class BagOfWords implements Clusterable {
 		return tot;
 	}
 
+
 	/**
 	 * 
 	 * @param text the Text used to create the Bag of Words. all words with no
@@ -121,6 +134,11 @@ public class BagOfWords implements Clusterable {
 			if (x[i] > 0)
 				++tot;
 
+		reverseDimensions = new HashMap<>();
+		for (Entry<String, Integer> e : this.dimensions.entrySet()) {
+			reverseDimensions.put(e.getValue(), e.getKey());
+		}
+		
 		// adjust values based on mode
 		switch (mode) {
 		case COUNT:

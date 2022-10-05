@@ -19,8 +19,11 @@ import io.github.mzattera.v4j.text.txt.TextString;
 import io.github.mzattera.v4j.util.Counter;
 
 /**
- * This is a container for subclasses of CharDistributionExperiment that
+ * This class is a container for subclasses of CharDistributionExperiment that
  * implement different experiments.
+ * 
+ * It also provides static methods to conveniently split Voynich text into 
+ * useful parts fro analysis (e.g., all first words in a line).
  * 
  * @author Massimiliano "Maxi" Zattera
  *
@@ -258,11 +261,12 @@ public final class Experiments {
 		return getWordsByPosition(doc, minLineLen, maxLineLen, false, false);
 	}
 
+	
 	/**
 	 * 
 	 * @param minLineLen If line has less than this number of words, ignore it.
 	 * @param maxLineLen If line has more than this number of words, ignore it.
-	 * @param skipFirst  If true, ignore first word in each line.
+	 * @param skipFirst  If true, ignore first word in each line. Notice that if this is true, Counter[0] will be empty.
 	 * @param skipLast   If true, ignore last word in each line.
 	 * @return A list of Counter, where Counter[0] counts words appearing in doc at
 	 *         first position in a line, Counter[1] is the same for second position
@@ -292,6 +296,74 @@ public final class Experiments {
 		return result;
 	}
 
+
+	/**
+	 * 
+	 * @return A list of Counter, where Counter[0] counts words appearing in doc at
+	 *         last position in a line, Counter[1] is the same for second last position
+	 *         and so on. "Unreadable" words are ignored.
+	 */
+	public static List<Counter<String>> getWordsByPositionReversed(IvtffText doc) {
+		return getWordsByPositionReversed(doc, 0, Integer.MAX_VALUE, false, false);
+	}
+
+	/**
+	 * 
+	 * @param minLineLen If line has less than this number of words, ignore it.
+	 * @return A list of Counter, where Counter[0] counts words appearing in doc at
+	 *         last position in a line, Counter[1] is the same for second last position
+	 *         and so on. "Unreadable" words are ignored.
+	 */
+	public static List<Counter<String>> getWordsByPositionReversed(IvtffText doc, int minLineLen) {
+		return getWordsByPositionReversed(doc, minLineLen, Integer.MAX_VALUE, false, false);
+	}
+
+	/**
+	 * 
+	 * @param minLineLen If line has less than this number of words, ignore it.
+	 * @param maxLineLen If line has more than this number of words, ignore it.
+	 * @return A list of Counter, where Counter[0] counts words appearing in doc at
+	 *         last position in a line, Counter[1] is the same for second last position
+	 *         and so on. "Unreadable" words are ignored.
+	 */
+	public static List<Counter<String>> getWordsByPositionReversed(IvtffText doc, int minLineLen, int maxLineLen) {
+		return getWordsByPositionReversed(doc, minLineLen, maxLineLen, false, false);
+	}
+	
+	/**
+	 * 
+	 * @param minLineLen If line has less than this number of words, ignore it.
+	 * @param maxLineLen If line has more than this number of words, ignore it.
+	 * @param skipFirst  If true, ignore first word in each line.
+	 * @param skipFirst  If true, ignore last word in each line. Notice that if this is true, Counter[0] will be empty.
+	 * @return A list of Counter, where Counter[0] counts words appearing in doc at
+	 *         last position in a line, Counter[1] is the same for second last position
+	 *         and so on. "Unreadable" words are ignored.
+	 */
+	public static List<Counter<String>> getWordsByPositionReversed(IvtffText doc, int minLineLen, int maxLineLen,
+			boolean skipFirst, boolean skipLast) {
+		List<Counter<String>> result = new ArrayList<>(50);
+		if (skipLast)
+			result.add(new Counter<>()); // add first counter (which will stay empty).
+		int min = skipLast ? 1 : 0;
+
+		for (IvtffPage p : doc.getElements()) {
+			for (IvtffLine l : p.getElements()) {
+				String[] w = l.splitWords();
+				if ((w.length < minLineLen) || (w.length > maxLineLen))
+					continue;
+				for (int i = min; i < (skipFirst ? w.length - 1 : w.length); ++i) {
+					if (result.size() <= i)
+						result.add(new Counter<>());
+					if (!doc.getAlphabet().isUnreadable(w[w.length-1-i]))
+						result.get(i).count(w[w.length-1-i]);
+				}
+			}
+		}
+
+		return result;
+	}
+
 	/**
 	 * @param discardFirstLine If true, remove first line of each paragraph.
 	 * @param discardLastLine  If true, remove last line of each paragraph.
@@ -308,14 +380,13 @@ public final class Experiments {
 
 	/**
 	 * 
-	 * @param counter     Word distribution to observe (as returned by
-	 *                    <code>Experiments</code>).
+	 * @param counter     Word distribution to observe.
 	 * @param bins        The words to consider as "bins" for chi-squared test. Each
 	 *                    word is mapped into an index of the returned array.
 	 * @param addGericBin If true, crate an additional element at end of result,
 	 *                    counting all words not in <code>bins</code>; otherwise
 	 *                    they are ignored.
-	 * @return An array with count of words in features.
+	 * @return An array with count of words in each bin.
 	 */
 	public static long[] observe(Counter<String> counter, Map<String, Integer> bins, boolean addGenericBin) {
 		return observe(counter, bins, addGenericBin, null);
@@ -323,16 +394,15 @@ public final class Experiments {
 
 	/**
 	 * 
-	 * @param counter     Word distribution to observe (as returned by
-	 *                    <code>Experiments</code>).
+	 * @param counter     Word distribution to observe.
 	 * @param bins        The words to consider as "bins" for chi-squared test. Each
 	 *                    word is mapped into an index of the returned array.
 	 * @param addGericBin If true, crate an additional element at end of result,
 	 *                    counting all words not in <code>bins</code>; otherwise
 	 *                    they are ignored.
 	 * @param current     If not null, counts will be added to this array; it is
-	 *                    expected this is created with right dimensions.
-	 * @return An array with count of words in features.
+	 *                    expected this not null and having the right length.
+	 * @return An array with count of words in each bin.
 	 */
 	public static long[] observe(Counter<String> counter, Map<String, Integer> bins, boolean addGenericBin,
 			long[] current) {

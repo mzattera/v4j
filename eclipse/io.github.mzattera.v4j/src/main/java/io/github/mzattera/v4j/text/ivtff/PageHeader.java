@@ -504,7 +504,7 @@ public class PageHeader implements Identifiable {
 		txt.append("$P=").append(pageInQuire).append(" ");
 		txt.append("$L=").append(language).append(" ");
 		txt.append("$H=").append(hand).append(" ");
-		txt.append("$K=").append(hasKey).append(" ");
+		if (hasKey) txt.append("$K=Y ");
 		txt.append("$X=").append(extraneousWriting).append(">");
 		return txt.toString();
 	}

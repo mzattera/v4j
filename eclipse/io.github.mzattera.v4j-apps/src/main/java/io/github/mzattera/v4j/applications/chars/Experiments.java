@@ -42,7 +42,7 @@ public final class Experiments {
 	public static class Null extends TwoSamplesCharDistributionTest {
 
 		@Override
-		protected Text[] splitDocument(Text txt) {
+		public Text[] splitDocument(Text txt) {
 			// Consider only paragraphs
 			IvtffText paragraphs = ((IvtffText) txt).filterLines(LineFilter.PARAGRAPH_TEXT_FILTER);
 
@@ -81,7 +81,7 @@ public final class Experiments {
 	public static class FirstLineInPage extends TwoSamplesCharDistributionTest {
 
 		@Override
-		protected Text[] splitDocument(Text txt) {
+		public Text[] splitDocument(Text txt) {
 			// Consider only paragraphs
 			IvtffText paragraphs = ((IvtffText) txt).filterLines(LineFilter.PARAGRAPH_TEXT_FILTER);
 
@@ -110,7 +110,7 @@ public final class Experiments {
 	public static class FirstParagraphLine extends TwoSamplesCharDistributionTest {
 
 		@Override
-		protected Text[] splitDocument(Text txt) {
+		public Text[] splitDocument(Text txt) {
 			// Consider only paragraphs
 			IvtffText paragraphs = ((IvtffText) txt).filterLines(LineFilter.PARAGRAPH_TEXT_FILTER);
 
@@ -144,7 +144,7 @@ public final class Experiments {
 	public static class LastParagraphLine extends TwoSamplesCharDistributionTest {
 
 		@Override
-		protected Text[] splitDocument(Text txt) {
+		public Text[] splitDocument(Text txt) {
 			// Consider only paragraphs
 			IvtffText paragraphs = ((IvtffText) txt).filterLines(LineFilter.PARAGRAPH_TEXT_FILTER);
 
@@ -174,7 +174,7 @@ public final class Experiments {
 	public static class FirstLetter extends TwoSamplesCharDistributionTest {
 
 		@Override
-		protected Text[] splitDocument(Text txt) {
+		public Text[] splitDocument(Text txt) {
 			// Consider only paragraphs
 			IvtffText paragraphs = ((IvtffText) txt).filterLines(LineFilter.PARAGRAPH_TEXT_FILTER);
 
@@ -207,7 +207,7 @@ public final class Experiments {
 	public static class LastLetter extends TwoSamplesCharDistributionTest {
 
 		@Override
-		protected Text[] splitDocument(Text txt) {
+		public Text[] splitDocument(Text txt) {
 			// Consider only paragraphs
 			IvtffText paragraphs = ((IvtffText) txt).filterLines(LineFilter.PARAGRAPH_TEXT_FILTER);
 

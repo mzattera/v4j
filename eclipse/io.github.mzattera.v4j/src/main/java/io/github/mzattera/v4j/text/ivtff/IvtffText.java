@@ -12,12 +12,15 @@ import java.io.StringReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -126,6 +129,14 @@ public class IvtffText extends CompositeText<IvtffPage> {
 		return majorVersion;
 	}
 
+	/**
+	 * 
+	 * @return The file header (#=IVTFF...) for this document.
+	 */
+	public String getFileHeader() {
+		return "#=IVTFF " + getAlphabet().getCodeString() + " " + getVersion();
+	}
+
 	@Override
 	public void setParent(CompositeText<?> parent) {
 		throw new UnsupportedOperationException();
@@ -220,8 +231,8 @@ public class IvtffText extends CompositeText<IvtffPage> {
 				throw new ParseException("Unsupported alphabeth: " + m.group(1));
 			this.majorVersion = m.group(2);
 			if (!this.majorVersion.equals("1.5"))
-				throw new ParseException("Unsupported IVTFF format version: " + this.majorVersion);				
-			this.version = m.group(2)+m.group(3);
+				throw new ParseException("Unsupported IVTFF format version: " + this.majorVersion);
+			this.version = (m.group(3) == null) ? this.majorVersion : this.majorVersion + m.group(3);
 
 			IvtffPage currentPage = null;
 
@@ -472,5 +483,57 @@ public class IvtffText extends CompositeText<IvtffPage> {
 		}
 
 		return result;
+	}
+
+	/**
+	 * @param txt The Voynich text to shuffle.
+	 * @return A shuffled version of the text, with the same number of pages, number
+	 *         of lines per page, number of words per line, but with words shuffled
+	 *         at random. This method maintains the original structure of the text,
+	 *         and preserves paragraph separators (<$>).
+	 */
+	public IvtffText shuffledText() {
+		return shuffledText(new Random(System.currentTimeMillis()));
+	}
+
+	/**
+	 * @param txt The Voynich text to shuffle.
+	 * @return A shuffled version of the text, with the same number of pages, number
+	 *         of lines per page, number of words per line, but with words shuffled
+	 *         at random. This method maintains the original structure of the text,
+	 *         and preserves paragraph separators (<$>).
+	 */
+	public IvtffText shuffledText(Random rnd) {
+
+		// List with shuffled words
+		List<String> words = Arrays.asList(splitWords());
+		Collections.shuffle(words, rnd);
+		int pos = 0;
+
+		char space = getAlphabet().getSpace();
+		StringBuffer result = new StringBuffer();
+		result.append(getFileHeader()).append('\n');
+		for (IvtffPage p : getElements()) {
+			result.append(p.getDescriptor()).append('\n');
+			for (IvtffLine l : p.getElements()) {
+				result.append(l.getDescriptor()).append(' ');
+				for (int i = 0; i < l.splitWords().length; ++i) {
+					if (i > 0)
+						result.append(space);
+					result.append(words.get(pos++));
+				}
+				if (l.getText().endsWith("<$>"))
+					result.append("<$>");
+				result.append('\n');
+			} // for each line
+		} // for each page
+
+		if (pos != words.size())
+			throw new RuntimeException("PROT! " + pos + " " + words.size());
+		try {
+			return new IvtffText(result.toString());
+		} catch (Exception e) {
+			return null; // shall never happen
+		}
 	}
 }

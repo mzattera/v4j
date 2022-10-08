@@ -231,5 +231,5 @@ public abstract class TwoSamplesCharDistributionTest {
 	 * Split a document in two parts; these are the parts compared accordingly to
 	 * the rules for the experiment.
 	 */
-	protected abstract Text[] splitDocument(Text doc);
+	public abstract Text[] splitDocument(Text doc);
 }

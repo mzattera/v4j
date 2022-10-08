@@ -3,8 +3,11 @@
  */
 package io.github.mzattera.v4j.text;
 
+import java.util.Random;
+
 import io.github.mzattera.v4j.Identifiable;
 import io.github.mzattera.v4j.text.alphabet.Alphabet;
+import io.github.mzattera.v4j.text.txt.TextString;
 import io.github.mzattera.v4j.util.Counter;
 import io.github.mzattera.v4j.util.StringUtil;
 
@@ -141,14 +144,6 @@ public abstract class Text implements Identifiable {
 	}
 
 	/**
-	 * 
-	 * @return the plain text split by words at word separators.
-	 */
-	public String[] splitWords() {
-		return StringUtil.splitWords(getPlainText(), getAlphabet());
-	}
-
-	/**
 	 * Return all words in the text; the plain text is split in words using the
 	 * default space char.
 	 * 
@@ -166,6 +161,62 @@ public abstract class Text implements Identifiable {
 		}
 
 		return result;
+	}
+
+	/**
+	 * @return The plain text split by words at word separators.
+	 */
+	public String[] splitWords() {
+		return StringUtil.splitWords(getPlainText(), getAlphabet());
+	}
+
+	/**
+	 * @return The plain text, with words shuffled randomly.
+	 */
+	public TextString shuffledWords() {
+		return new TextString(StringUtil.shuffledWords(getPlainText(), getAlphabet()), getAlphabet());
+	}
+
+	/**
+	 * Extract a random piece of text containing given number of words.
+	 * 
+	 * @param len Length (in tokens) of the random sample to take.
+	 *
+	 * @return A piece of plain text with given number of tokens.
+	 * 
+	 * @throws IllegalArgumentException if len is too big.
+	 */
+	public TextString randomContent(int len) {
+		return randomContent(len, new Random(System.currentTimeMillis()));
+	}
+
+	/**
+	 * Extract a random piece of text containing given number of words.
+	 * 
+	 * @param len Length (in tokens) of the random sample to take.
+	 * @param rnd Random number generator.
+	 *
+	 * @return A piece of plain text with given number of tokens.
+	 * 
+	 * @throws IllegalArgumentException if len is too big.
+	 */
+	public TextString randomContent(int len, Random rnd) {
+		char space = getAlphabet().getSpace();
+		String[] tokens = splitWords();
+
+		if (len >= tokens.length)
+			throw new IllegalArgumentException();
+
+		int pos = rnd.nextInt(tokens.length - len + 1);
+
+		StringBuilder b = new StringBuilder();
+		for (int i = 0; i < len; ++i) {
+			if (i > 0)
+				b.append(space);
+			b.append(tokens[pos + i]);
+		}
+
+		return new TextString(b.toString(), getAlphabet());
 	}
 
 	@Override

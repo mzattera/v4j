@@ -15,6 +15,9 @@ import java.util.regex.Pattern;
 
 import io.github.mzattera.v4j.text.Text;
 import io.github.mzattera.v4j.text.alphabet.Alphabet;
+import io.github.mzattera.v4j.text.ivtff.IvtffLine;
+import io.github.mzattera.v4j.text.ivtff.IvtffPage;
+import io.github.mzattera.v4j.text.ivtff.IvtffText;
 import io.github.mzattera.v4j.text.txt.TextString;
 
 /**
@@ -64,12 +67,13 @@ public final class StringUtil {
 	}
 
 	/**
-	 * Shuffle words in given <code>Text</code> plain text.
+	 * Shuffle words in given plain text.
 	 * 
+	 * @param txt A plain text in the given alphabet.
 	 * @return The text with words randomly shuffled.
 	 */
-	public static String shuffleWords(Text txt) {
-		return shuffleWords(txt.getPlainText(), txt.getAlphabet(), new Random(System.currentTimeMillis()));
+	public static String shuffledWords(String txt, Alphabet a) {
+		return shuffledWords(txt, a, new Random(System.currentTimeMillis()));
 	}
 
 	/**
@@ -78,101 +82,46 @@ public final class StringUtil {
 	 * @param txt A plain text in the given alphabet.
 	 * @return The text with words randomly shuffled.
 	 */
-	public static String shuffleWords(String txt, Alphabet a) {
-		return shuffleWords(txt, a, new Random(System.currentTimeMillis()));
-	}
-
-	/**
-	 * Shuffle words in given plain text.
-	 * 
-	 * @param txt A plain text in the given alphabet.
-	 * @return The text with words randomly shuffled.
-	 */
-	public static String shuffleWords(String txt, Alphabet a, Random rnd) {
+	public static String shuffledWords(String txt, Alphabet a, Random rnd) {
 		List<String> words = Arrays.asList(StringUtil.splitWords(txt, a));
 		Collections.shuffle(words, rnd);
 		return String.join(a.getSpaceAsString(), words);
 	}
 
 	/**
-	 * Extract a random piece of text.
+	 * Extract a substring of given length, taken from a random position.
+	 * Notice this does not starts at words boundaries.
 	 * 
 	 * @param txt Source text.
 	 * @param len Length of the random sample to take.
 	 *
-	 * @return A piece of plain text from <code>txt</code> of given length.
+	 * @return a substring of given length, taken from a random position.
 	 * 
 	 * @throws IllegalArgumentException if len is too big.
 	 */
-	public static String extractRandom(Text txt, int len) {
-		return extractRandom(txt, len, new Random(System.currentTimeMillis()));
+	public static String randomSubstring(String txt, int len) {
+		return randomSubstring(txt, len, new Random(System.currentTimeMillis()));
 	}
 
 	/**
-	 * Extract a random piece of text.
+	 * Extract a substring of given length, taken from a random position.
+	 * Notice this does not starts at words boundaries.
 	 * 
 	 * @param txt Source text.
 	 * @param len Length of the random sample to take.
 	 * @param rnd Random number generator.
 	 *
-	 * @return A piece of plain text from <code>txt</code> of given length.
+	 * @return a substring of given length, taken from a random position.
 	 * 
 	 * @throws IllegalArgumentException if len is too big.
 	 */
-	public static String extractRandom(Text txt, int len, Random rnd) {
-		String s = txt.getPlainText();
-		if (len >= s.length())
+	public static String randomSubstring(String txt, int len, Random rnd) {
+		if (len >= txt.length())
 			throw new IllegalArgumentException();
 
-		int pos = rnd.nextInt(s.length() - len);
+		int pos = rnd.nextInt(txt.length() - len);
 
-		return s.substring(pos, pos + len);
-	}
-
-	/**
-	 * Extract a random piece of text containing given number of words.
-	 * 
-	 * @param txt Source text.
-	 * @param len Length (tokens) of the random sample to take.
-	 *
-	 * @return A piece of plain text from <code>txt</code> with given number of
-	 *         tokens.
-	 * 
-	 * @throws IllegalArgumentException if len is too big.
-	 */
-	public static TextString extractRandomWords(Text txt, int len) {
-		return extractRandomWords(txt, len, new Random(System.currentTimeMillis()));
-	}
-
-	/**
-	 * Extract a random piece of text containing given number of words.
-	 * 
-	 * @param txt Source text.
-	 * @param len Length (tokens) of the random sample to take.
-	 * @param rnd Random number generator.
-	 *
-	 * @return A piece of plain text from <code>txt</code> with given number of
-	 *         tokens.
-	 * 
-	 * @throws IllegalArgumentException if len is too big.
-	 */
-	public static TextString extractRandomWords(Text txt, int len, Random rnd) {
-		String space = txt.getAlphabet().getSpaceAsString();
-		String[] tokens = txt.getPlainText().split(Pattern.quote(space));
-
-		if (len >= tokens.length)
-			throw new IllegalArgumentException();
-
-		int pos = rnd.nextInt(tokens.length - len + 1);
-
-		StringBuilder b = new StringBuilder();
-		for (int i = 0; i < len; ++i) {
-			if (i > 0)
-				b.append(space);
-			b.append(tokens[pos + i]);
-		}
-
-		return new TextString(b.toString(), txt.getAlphabet());
+		return txt.substring(pos, pos + len);
 	}
 
 	/**
@@ -183,35 +132,37 @@ public final class StringUtil {
 		sb.deleteCharAt(pos);
 		return sb.toString();
 	}
-	
+
 	/**
 	 * @return Count of chars in a string.
 	 */
-	public static Counter<Character> countChars (String txt) {
+	public static Counter<Character> countChars(String txt) {
 		Counter<Character> result = new Counter<>();
-		for (int i=0; i<txt.length(); ++i)
+		for (int i = 0; i < txt.length(); ++i)
 			result.count(txt.charAt(i));
 		return result;
 	}
-	
+
 	/**
-	 * Performs replacements described in given Map over txt.
-	 * The replacement is such that a string in Map is a substring of another string in Map, only the longer replacement is used.
-	 * In addition, any piece of the original text that is not replaced, is replace later by mask.
+	 * Performs replacements described in given Map over txt. The replacement is
+	 * such that a string in Map is a substring of another string in Map, only the
+	 * longer replacement is used. In addition, any piece of the original text that
+	 * is not replaced, is replace later by mask.
 	 * 
-	 * NOTICE the order in which replacements of same length are applied, could still made some of them invalid.
+	 * NOTICE the order in which replacements of same length are applied, could
+	 * still made some of them invalid.
 	 * 
-	 * @param mask A character used to mask chars not replaced in txt.
+	 * @param mask         A character used to mask chars not replaced in txt.
 	 * @param replacements A map from substrings in txt to their replacement.
 	 * @return
 	 */
-	public static String smartReplace(String txt, Map<String,String> replacements, char mask) {
-		
+	public static String smartReplace(String txt, Map<String, String> replacements, char mask) {
+
 		boolean[] masked = new boolean[txt.length()]; // true if corresponding char in txt has already been replaced
 		String[] replaced = new String[txt.length()]; // records what we replaced at each position.
 
 		// Strings to replace, from longest
-		List<String> keys= new ArrayList<>(replacements.keySet());
+		List<String> keys = new ArrayList<>(replacements.keySet());
 		keys.sort(new Comparator<>() {
 
 			@Override
@@ -219,38 +170,39 @@ public final class StringUtil {
 				return -Integer.compare(o1.length(), o2.length());
 			}
 		});
-		
+
 		for (String key : keys) {
 			Pattern p = Pattern.compile(Pattern.quote(key));
 			Matcher m = p.matcher(txt);
 			while (m.find()) { // found a match
 				int pos = m.start();
-				
+
 				// Check if this part has been replaced already (so the match should not happen)
 				boolean b = false;
-				for (int i =pos; !b && i<m.end(); ++i)
+				for (int i = pos; !b && i < m.end(); ++i)
 					b = masked[i];
-				if (b) continue;
+				if (b)
+					continue;
 
 				replaced[pos] = replacements.get(key);
 				masked[pos] = true;
-				
+
 				// mark other positions as being replaced already
-				for (int i=pos+1; i<m.end(); ++i) {
+				for (int i = pos + 1; i < m.end(); ++i) {
 					replaced[i] = "";
 					masked[i] = true;
 				}
 			}
 		}
-		
+
 		StringBuffer result = new StringBuffer();
-		for (int i=0; i< replaced.length; ++i) {
+		for (int i = 0; i < replaced.length; ++i) {
 			if (replaced[i] == null)
 				result.append(mask);
-			else 
+			else
 				result.append((replaced[i]));
 		}
-		
+
 		return result.toString();
 	}
 }

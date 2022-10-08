@@ -265,7 +265,11 @@ The most evident thing is that, apart for very few exceptions, characters behave
 We summarize below the main trends, but we invite to refer to the above table for a detailed analysis, case by case.
   -> Cluster piu' aprticolare HA
 
+**Little progress has been made since Tillman and currier on char distribution until now**
+
 ** Casi piu evidenti q d l o n che si comportano in modo marcatamente opposto in cluster diversi**
+
+**Highlight char anomalies which nobody discovered before (e.g., 'a' or 'y' as first char in a line)**
  
 If we look to behaviors that appear consistently across clusters, we can see that:
 

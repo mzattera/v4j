@@ -146,6 +146,21 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 	}
 
 	/**
+	 * Return true if this is a last line in a paragraph.
+	 * 
+	 * @return True if this is a line containing <$> or in a L, C, R generic locus.
+	 */
+	public boolean isLast() {
+		// If it's not a paragraph, then it is a single line.
+		if (!descriptor.getGenericLocusType().equals("P"))
+			return true;
+
+		// Look for end of paragraph marker, notice that sometimes it is followed by
+		// other special characters
+		return text.contains("<$>");
+	}
+
+	/**
 	 * 
 	 * @return txt after removing ALL comments.
 	 * @throws ParseException if there are unmatched angle brackets in text.
@@ -461,7 +476,7 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 			// TODO remove debug code
 			for (IvtffLine l : lines)
 				System.out.println(l);
-			
+
 			throw new ParseException("Cannot align the transcriptions.");
 		}
 
@@ -533,8 +548,9 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 					continue;
 				}
 
-				// if we are here, then there is a tie; since c1 occurs max times and ch was already initialised
-				
+				// if we are here, then there is a tie; since c1 occurs max times and ch was
+				// already initialised
+
 				// if the conflict is between spaces, we keep the "weak" space
 				if (a.isWordSeparator(c1) && a.isWordSeparator(ch)) {
 					ch = ',';
@@ -543,7 +559,7 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 
 				if (a.isRegularOrSeparator(c1) || a.isUreadableChar(c1)) {
 					// conflicting "printable" chars, we return unreadable
-					ch = a.getUnreadable(); 
+					ch = a.getUnreadable();
 					break;
 				}
 
@@ -569,7 +585,7 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 	 */
 	@SuppressWarnings("unused")
 	private static IvtffLine getConcordanceVersion(List<IvtffLine> lines) throws ParseException {
-		
+
 		StringBuilder result = new StringBuilder();
 		Alphabet a = lines.get(0).getAlphabet();
 
@@ -579,7 +595,8 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 			boolean conflict = false;
 			for (int l = 1; l < lines.size(); ++l) {
 				char c1 = lines.get(l).getText().charAt(c);
-				if ((c1 != ch) && !(a.isUreadableChar(c1) && a.isUreadableChar(ch))) { // % and ? should not be considered different 
+				if ((c1 != ch) && !(a.isUreadableChar(c1) && a.isUreadableChar(ch))) { // % and ? should not be
+																						// considered different
 					conflict = true;
 					break;
 				}
@@ -605,9 +622,9 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 				if (atLeastOneSpace && allVoid) {
 					found = ',';
 				} else {
-				// If a conflict includes an actual character, word separator or unreadable char
-				// ('?')
-				// Then we acknowledge this is unreadable
+					// If a conflict includes an actual character, word separator or unreadable char
+					// ('?')
+					// Then we acknowledge this is unreadable
 					for (IvtffLine ln : lines) {
 						char c1 = a.asPlain(ln.getText().charAt(c));
 						if (a.isRegularOrSeparator(c1) || a.isUreadableChar(c1)) {

@@ -63,7 +63,7 @@ public abstract class TwoSamplesCharDistributionTest {
 	private static final double ALPHA2 = 0.05d;
 
 	/** Compact output */
-	private static final boolean COMPACT = false;
+	private static final boolean COMPACT = true;
 
 	protected TwoSamplesCharDistributionTest() {
 	}
@@ -111,8 +111,6 @@ public abstract class TwoSamplesCharDistributionTest {
 		new Experiments.FirstLetter().executeExperiments(voynich);
 		System.out.print("\n\n[ Last letter in a line   ];\n");
 		new Experiments.LastLetter().executeExperiments(voynich);
-		System.out.print("\n\n[ *** NULL TEST ****      ];\n");
-		new Experiments.Null().executeExperiments(voynich);
 	}
 
 	/**
@@ -142,6 +140,7 @@ public abstract class TwoSamplesCharDistributionTest {
 			// Creates an "adjusted" distribution for the whole text, where each bin is big
 			// enough for chi-square
 			// (merges smaller bins together)
+// TEST			IvtffText clusterText = doc.filterPages(new PageFilter.Builder().cluster(cluster).build()).shuffledText();
 			IvtffText clusterText = doc.filterPages(new PageFilter.Builder().cluster(cluster).build());
 			List<CharDistribution> charDistribution = ChiSquared.getCharDistribution(clusterText, false);
 			Text[] parts = splitDocument(clusterText);

@@ -1,6 +1,6 @@
 # Note 010 - Character distribution through the page
 
-_Last updated Sep. 18th, 2022._
+_Last updated Oct. 16th, 2022._
 
 _This note refers to [release v.13.0.0](https://github.com/mzattera/v4j/tree/v.13.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
@@ -30,19 +30,15 @@ characters in EVA (e.g., 'qoCey' in Slot corresponds to 'qochey' in EVA).
 
 # Methodology
 
-** Maybe start with a simple table of char frequency by cluster **
-  -> **CountCharactersByCluster  -> Character frequencies by cluster is different**
+In this note I will show the result of several experiments. In each experiment, the text of the Voynich is split into two parts,
+for example first lines of every paragraph will form the first part of text, whilst the other lines are in the second part;
+the character distribution of the two parts is compared using a chi-squared test, where each "bin " is a character.
+If the test shows a statistically significant variation, then each character is tested individually (again, using a chi-squared test),
+to highlight which characters behave differently in the two parts of the text.
 
- * [D'IMPERIO (1978b)](../biblio.md)
-  One example (of char statistics) is found in D'Imperio (1978) (see note 4), Fig. 28 on p.106, from several sources but none covering the entire MS text.
-
-In this note I will show the result of several experiments. In each experiment, the text of the Voynich is split into two groups,
-for example the first lines of every paragraph will form the first group, whilst the other lines are in the second group;
-the character distribution of the two groups is compared using a chi-squared test;
-if the test shows a statistically significant variation, then each character is tested individually (again, using a chi-squared test),
-to highlight which characters behave differently in the two groups.
-The experiments are done separately for each [cluster](../003); 
-a concordance version of the text is used; only text appearing in paragraphs is considered (IVTFF locus type = P0 or P1).
+In all experiments, a [concordance version](https://github.com/mzattera/v4j/blob/master/eclipse/io.github.mzattera.v4j/src/main/resources/Transcriptions/Interlinear_slot_ivtff_1.5.txt)
+of the Voynich in the Slot alphabet is used; only text appearing in paragraphs is considered (IVTFF locus type = P0 or P1).
+The experiments are done separately for each [cluster](../003);.
 
 The set of experiments is as follows:
 
@@ -52,59 +48,80 @@ The set of experiments is as follows:
   * First letter in a line - initial character of first word in a line is compared with initial characters of all other words.
   * Last letter in a line - final character of last word in a line is compared with last characters of all other words.
 
+*** FAI UN TEST DEL BINNING USATO PER I TEST ***
+
 The results are shown in the below table[{1}](#Note1)[{2}](#Note2):
 
-** FAI UN NUOVO TAGLI INCOLLA PERCHE' LA TABELLA e' STAT RIFATTA**
 ![Summary table of anomalies in char distribution](images/SummaryTable.PNG)
 
-   * Tests:
-     * No significance for middle lines compared with themselves ->dovremmo magari avere sempi delle stesse dimensioni
-	 * Quando fai le statistiche dei caratteri fallo anche con una versione col testo mescolato del voynich per vedere cosa succede
-	 * Usa dinomial invece di chi squared per i carateri?
+As a test, experiments have been repeated with a shuffled version of the Voynich where the layouts has not been changed but words were shuffled around randomly
+and the anomalies in distribution disappeared.
 	 
 # Considerations and Previous Works
 
+## Character Distribution
 
-## Removing Characters from beginning of a Words
+** Maybe start with a simple table of char frequency by cluster **
+  -> CountCharactersByCluster  -> Character frequencies by cluster is different
+  -> CountVsTypesScatter -> Shows how distribution in clusters by token/type is different
+
+ * [D'IMPERIO (1978b)](../biblio.md)
+  One example (of char statistics) is found in D'Imperio (1978) (see note 4), Fig. 28 on p.106, from several sources but none covering the entire MS text.
+
+
+
+## Removing Characters from beginning of Words
+
+In previous works about character distribution, one theory or another has been pitched by claiming something like:
+"character X appears in this place, but if we remove it, we obtain another word that appears somewhere else in the Voynich".
+
+I want to re-state here what I said already at the end of [Note 005](../005). Because of the "slot"  structure of Voynich words,
+removing a character in a word (that is, emptying a slot), has good chances to produce a valid word.
+If you remove a character from a random common word (appearing at least 5 times in the Voynich), 9 times in 10 you will end up with a word that also appears somewhere else in the text.
+Doing this for a random character in a word creates  2 out of 3 times a word that appears somewhere else.
+
+This criteria, though if it might make some sense, should thus taken with a grain of salt.
+
 
 
 ## The Line is a Functional Entity
 
-[CURRIER (1976)](../biblio.md) advocated the idea of the line, when the text is running linearly, being a "functional entity",
-based on the below considerations:
+[CURRIER (1976)](../biblio.md) advocated the idea of the line, when the text is running linearly, being a "functional entity":
+"These three findings have convinced me that the line is a functional entity, (what its function is, I don’t know), 
+and that the occurrence of certain symbols is governed by the position of a ‘word’ in a line":
 
-  * "The frequency counts of the beginnings and endings of lines are markedly different from the counts of the same characters internally".
-    
-	This is undeniable and widely discussed below. 
-	
-  * "The ends of the lines contain what seem to be, in many cases, meaningless symbols:
+  1. "The frequency counts of the beginnings and endings of lines are markedly different from the counts of the same characters internally".
+
+  2. "The ends of the lines contain what seem to be, in many cases, meaningless symbols:
 	little groups of letters which don’t occur anywhere else, and just look as if they were
-	added to fill out the line to the margin [...] There is, for instance, one symbol that, while it does occur elsewhere, occurs at the
-	end of the last ‘words’ of lines 85% of the time".
+	added to fill out the line to the margin".
 	
-	Concerning the "meaningless symbols", I didn't find this statement in other authors and it's not clear what Currier means here.
-	I quickly checked if length of words decreases towards the end of a line (more on this topic to come),
-	but I could not find any evidence of that.
-	If for "one symbol" Currier refers to 'm', this is widely acknowledged and discussed below.
-	
-  * "In \[the herbal material and of the biological material\] ... there is not one single case of a repeat going over the end of a line to
+  3. "In \[the herbal material and of the biological material\] ... there is not one single case of a repeat going over the end of a line to
 	the beginning of the next".
 
-	**COUNT AND TEST REPEATS**
+The first point, is the topic of this note.
+
+The second point hasn't been picked up by any author I know. A quick test shows no indication that words get shorter towards the end of a line.
+Something to be investigated further.
+
+On the third point I could find only the below exceptions in the majority version of the Slot transcription[{3}](#Note3); whether they are problematic, I leave it for another time.
+
+  * Herbal A
+    * 'daJn' on f35v.16-17, f87r.13-14, f90r2.5-6
+  * Biological
+    * 'dar' f84r.22-23
+    * 'qol' on f78v.22-23
+    * 'qokaJn' on f82r.3-4 
+    * 'qokEdy' on f84r.39-40 
+  * 'qokaJn' on f86v6.42-43 (Text page in the Rosetta quire)
+
+
 	
-   * "These three findings have convinced me that the line is a functional entity, (what its function is, I don’t know),
-   and that the occurrence of certain symbols is governed by the position of a ‘word’ in a line. For instance, 
-   there is a particular symbol which almost never occurs as the first letter of a ‘word’ in a line 
-   except when it is followed by the letter that looks like ‘o’".
-   
-   **Il caso di q e' un po' strano qui, forse posso semplicemente ignorarlo**
-
-
 ## First Line in a Page
 
-The distribution of characters in the first line of a page seems to follow same patterns that characters appearing in first line of a paragraph.
+The distribution of characters in the first line of a page seems to follow the same patterns shown by characters appearing in first line of a paragraph.
 For the time being, I will assume that the differences between first line of a page and first line in a paragraph are only due to the fact that,
-being the sample much smaller fro beginning of pages, the trends are just less marked.
+being the sample much smaller for beginning of pages, the trends are just less marked.
 
 
 
@@ -236,6 +253,12 @@ aiin aiin, ol ol, and or or are replaced with saiin saiin, sol sol, and sor sor.
 
 [TILTMAN (1967)](../biblio.md) 'm' appears most commonly at the end of a line, rarely elsewhere (b).
 
+[CURRIER (1976)](../biblio.md) advocated the idea of the line, when the text is running linearly, being a "functional entity",
+based on the below considerations:
+
+  2. There is, for instance, one symbol that, while it does occur elsewhere, occurs at the
+	end of the last ‘words’ of lines 85% of the time".
+	
 [BOWERN (2020)](../biblio.md)
 There are also characters which usually appear at the end of the last word of the line,
 particularly m. It is plausible that m m and g g are variant forms of the word-final glyphs -iin iin and -y y
@@ -261,7 +284,12 @@ and higher-frequency ones at the beginnings of lines.
 
 # Conclusions
 
-The most evident thing is that, apart for very few exceptions, characters behave differently in the different clusters.
+The distribution of characters across the page presents some anomalies which are statistically significant and are summarized in the table above.
+May of these anomalies have been detected by several authors in the past.
+
+However, this is possibly the first time when it is shown that the list of characters presenting anomalies in their distribution, the extent and the direction of these anomalies
+differ across different sections of the Voynich. By looking at each cluster separately, I also identified some anomalies which, as far as I know, are new.
+
 We summarize below the main trends, but we invite to refer to the above table for a detailed analysis, case by case.
   -> Cluster piu' aprticolare HA
 
@@ -291,6 +319,7 @@ Is Currier's lien as a functional entity valid?
 <a id="Note2">**{2}**</a> The  file `CharacterDistribution.xlsx` in [this folder](https://github.com/mzattera/v4j/blob/master/resources/analysis/char%20distribution) contains 
 detailed results of the analysis.
 
+<a id="Note1">**{3}**</a> See class [`CurrierRepeatTest`](https://github.com/mzattera/v4j/blob/v.13.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/chars/CurrierRepeatTest.java).
 
 ---
 

@@ -68,6 +68,28 @@ public final class Experiments {
 	/**
 	 * Uses Chi-Square test to validate assumptions about character distributions.
 	 * 
+	 * This experiment compares first word in paragraphs with "standard" population
+	 * (see GetStandardWordsPopulation()). Notice this considers only words in
+	 * running paragraph text.
+	 * 
+	 * @author Massimiliano "Maxi" Zattera
+	 *
+	 */
+	public static class FirstInParagraphVsStandard extends TwoSamplesCharDistributionTest {
+
+		@Override
+		public Text[] splitDocument(Text txt) {
+			Counter<String> first = Experiments
+					.getWordsByPosition((IvtffText) new Experiments.FirstParagraphLine().splitDocument(txt)[0]).get(0);
+			Counter<String> other = Experiments.getStandardWordsPopulation((IvtffText) txt);
+
+			return new Text[] { new TextString(first, txt.getAlphabet()), new TextString(other, txt.getAlphabet()) };
+		}
+	}
+
+	/**
+	 * Uses Chi-Square test to validate assumptions about character distributions.
+	 * 
 	 * This experiment compares first line of paragraphs with reminder of the text.
 	 * Notice only the text in running paragraphs is considered.
 	 * 
@@ -134,8 +156,7 @@ public final class Experiments {
 	 * Uses Chi-Square test to validate assumptions about character distributions.
 	 * 
 	 * This experiment compares first letter of each line with first letter of other
-	 * words in the text.
-	 * Notice only the text in running paragraphs is considered.
+	 * words in the text. Notice only the text in running paragraphs is considered.
 	 * 
 	 * @author Massimiliano "Maxi" Zattera
 	 *
@@ -168,8 +189,7 @@ public final class Experiments {
 	 * Uses Chi-Square test to validate assumptions about character distributions.
 	 * 
 	 * This experiment compares last letter of each line with last letter of other
-	 * words in the text.
-	 * Notice only the text in running paragraphs is considered.
+	 * words in the text. Notice only the text in running paragraphs is considered.
 	 * 
 	 * @author Massimiliano "Maxi" Zattera
 	 *
@@ -382,9 +402,29 @@ public final class Experiments {
 	}
 
 	/**
+	 * Returns "standard" population of words in a text. We know from analysis that
+	 * words in first line of paragraphs and those at the beginning or end of a line
+	 * have particular statistical behaviors (e.g., in length, char distribution,
+	 * etc.). This method returns all other words in the text. Notice this returns
+	 * only text in running paragraphs.
+	 */
+	public static Counter<String> getStandardWordsPopulation(IvtffText txt) {
+
+		List<Counter<String>> other = Experiments.getWordsByPosition(Experiments.filterLines(txt, true, false), 0,
+				Integer.MAX_VALUE, true, true);
+		Counter<String> population = new Counter<>();
+		for (int i = 0; i < other.size(); ++i) {
+			population.countAll(other.get(i));
+		}
+
+		return population;
+	}
+
+	/**
 	 * @param discardFirstLine If true, remove first line of each paragraph.
 	 * @param discardLastLine  If true, remove last line of each paragraph.
-	 * @return Input document, after filtering.
+	 * @return Input document, after filtering. Notice only text n running
+	 *         paragraphs is returned.
 	 */
 	public static IvtffText filterLines(IvtffText doc, boolean discardFirstLine, boolean discardLastLine) {
 		// note the order is important because how Experiments work
@@ -515,7 +555,7 @@ public final class Experiments {
 	public static double[] getInterestingWordsPercent(List<Counter<String>> wordsByPosition) {
 		double[] result = new double[wordsByPosition.size()];
 		for (int i = 0; i < wordsByPosition.size(); ++i) {
-	
+
 			// Words in position i vs. all other words
 			Counter<String> first = wordsByPosition.get(i);
 			Counter<String> other = new Counter<>();
@@ -524,11 +564,11 @@ public final class Experiments {
 					continue;
 				other.countAll(wordsByPosition.get(j));
 			}
-	
+
 			Counter<String> interesting = getInterstingWords(first, other);
 			result[i] = (double) interesting.getTotalCounted() / wordsByPosition.get(i).getTotalCounted();
 		}
-	
+
 		return result;
 	}
 }

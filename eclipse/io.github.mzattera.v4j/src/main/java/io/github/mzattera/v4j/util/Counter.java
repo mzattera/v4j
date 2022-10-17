@@ -35,6 +35,7 @@ public class Counter<T> {
 
 	/**
 	 * Creates a counter counting all terms in a Collection.
+	 * 
 	 * @param objs
 	 */
 	public Counter(Collection<T> objs) {
@@ -177,5 +178,31 @@ public class Counter<T> {
 	 */
 	public int size() {
 		return counts.size();
+	}
+
+	/**
+	 * Prints the contents of the Counter; each item is printed with its count in
+	 * ascending order of count.
+	 */
+	public void print() {
+		print(false);
+	}
+
+	/**
+	 * Prints the contents of the Counter; each item is printed with its count.
+	 * 
+	 * @param reversed If true, print items in descending count value. Otherwise
+	 *                 they are printed in ascending order.
+	 */
+	public void print(boolean reversed) {
+		if (reversed) {
+			for (Entry<T, Integer> e : reversed()) {
+				System.out.println(e.getKey() + ":\t" + e.getValue());
+			}
+		} else {
+			for (Entry<T, Integer> e : sorted()) {
+				System.out.println(e.getKey() + ":\t" + e.getValue());
+			}
+		}
 	}
 }

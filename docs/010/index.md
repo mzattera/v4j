@@ -49,6 +49,7 @@ The set of experiments is as follows:
   * Last letter in a line - final character of last word in a line is compared with last characters of all other words.
 
 *** FAI UN TEST DEL BINNING USATO PER I TEST ***
+*** FAI UN TEST DEI METODI STATICI IN EXPERIMENTS (I TEST PER LE SINGLOE CLASSI PIU' O MENO ESISTONO) ***
 
 The results are shown in the below table[{1}](#Note1)[{2}](#Note2):
 
@@ -127,6 +128,18 @@ being the sample much smaller for beginning of pages, the trends are just less m
 
 ## First Line in a Paragraph
 
+Words starting with non-pedestalled gallows are almost always found as first word in a paragraph.
+Words starting with pedestalled gallows are more rare and distributed more or less evenly, but tend not to appear at the beginning of a line other than first line of paragraphs.
+
+75-95% of first words in paragraphs start with a (pedestalled) gallows.
+
+p, f, P, F appear almost exclusively in first line of a paragraph; p and f, when appearing in the first word; are almost always initials.
+
+Other (pedestalled) gallows tend to not appear as word initials.
+
+
+
+
 [TILTMAN (1967)](../biblio.md) Paragraphs nearly always begin with gallows, most commonly 'f' or 'p',
 which also occur frequently in words in the top lines of paragraphs where there is some extra space (c).
  
@@ -202,7 +215,7 @@ gallows character. 85% of the paragraphs in the text begin with one of t, k, f, 
 normal Voynich words except that they are preceded by a gallows character. John Grove first
 hypothesized that gallows-initial words were variants of other words
 Furthermore gallows-initial words, when they do appear elsewhere, 
-usually begin with k k or f f rather than p p or t t. 
+usually begin with k k or f f rather than p p or t t. <- sbagliato
 
 [ZANDBERGEN (2021)](../biblio.md)
 The first is that the first word in each paragraph typically starts with a character from a very small group,

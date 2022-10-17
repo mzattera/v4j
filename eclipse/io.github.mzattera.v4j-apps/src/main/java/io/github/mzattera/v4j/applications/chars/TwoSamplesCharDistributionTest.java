@@ -111,6 +111,8 @@ public abstract class TwoSamplesCharDistributionTest {
 		new Experiments.FirstLetter().executeExperiments(voynich);
 		System.out.print("\n\n[ Last letter in a line   ];\n");
 		new Experiments.LastLetter().executeExperiments(voynich);
+		
+//		new Experiments.FirstInParagraphVsStandard().executeExperiments(voynich);
 	}
 
 	/**

@@ -137,9 +137,33 @@ public class BuildSlotStateMachine {
 	 */
 	public static StateMachine process(Counter<String> voynichTokens, String outFolder, int minWeigth, boolean evaluate)
 			throws IOException, ParseException {
+		return process(voynichTokens, outFolder, "SM", minWeigth, evaluate);
+	}
+
+	/**
+	 * Returns a state machine that models given set of tokens.
+	 * 
+	 * @param voynichTokens Words to model (must use slot alphabet).
+	 * @param outFolder     Output folder where to put the state machine being
+	 *                      created at its different stages. If this is null,
+	 *                      nothing will be written.
+	 * @param baseName      Name prefix for output file.
+	 * @param minWeigth     Each edge that has weight below this (that is it does
+	 *                      not generate this number of terms in the initial setup)
+	 *                      will be discarded.
+	 * @param evaluate      If true, will evaluate generated machine at all its
+	 *                      intermediate state.
+	 * 
+	 * @return best version of the state machine (kinda).
+	 * 
+	 * @throws IOException
+	 * @throws ParseException
+	 */
+	public static StateMachine process(Counter<String> voynichTokens, String outFolder, String baseName, int minWeigth,
+			boolean evaluate) throws IOException, ParseException {
 
 		Set<String> voynichTerms = voynichTokens.itemSet();
-		String name = "SM_" + minWeigth;
+		String name = baseName + minWeigth;
 
 		// Notice at each state, weights of the state machine will reflect how many
 		// TERMS are generated through a given edge.

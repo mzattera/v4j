@@ -3,6 +3,9 @@
  */
 package io.github.mzattera.v4j.text;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 import io.github.mzattera.v4j.Identifiable;
@@ -171,10 +174,19 @@ public abstract class Text implements Identifiable {
 	}
 
 	/**
-	 * @return The plain text, with words shuffled randomly.
+	 * @return A shuffled version of the text, with words in plain text in random order.
 	 */
-	public TextString shuffledWords() {
-		return new TextString(StringUtil.shuffledWords(getPlainText(), getAlphabet()), getAlphabet());
+	public Text shuffledText() {
+		return shuffledText(new Random(System.currentTimeMillis()));
+	}
+
+	/**
+	 * @return A shuffled version of the text, with words in plain text in random order.
+	 */
+	public Text shuffledText(Random rnd) {
+		List<String> words = Arrays.asList(splitWords());
+		Collections.shuffle(words, rnd);
+		return new TextString(String.join(alphabet.getSpaceAsString(), words), alphabet);
 	}
 
 	/**

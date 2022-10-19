@@ -13,12 +13,7 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import io.github.mzattera.v4j.text.Text;
 import io.github.mzattera.v4j.text.alphabet.Alphabet;
-import io.github.mzattera.v4j.text.ivtff.IvtffLine;
-import io.github.mzattera.v4j.text.ivtff.IvtffPage;
-import io.github.mzattera.v4j.text.ivtff.IvtffText;
-import io.github.mzattera.v4j.text.txt.TextString;
 
 /**
  * Set of string processing Util
@@ -89,8 +84,8 @@ public final class StringUtil {
 	}
 
 	/**
-	 * Extract a substring of given length, taken from a random position.
-	 * Notice this does not starts at words boundaries.
+	 * Extract a substring of given length, taken from a random position. Notice
+	 * this does not starts at words boundaries.
 	 * 
 	 * @param txt Source text.
 	 * @param len Length of the random sample to take.
@@ -104,8 +99,8 @@ public final class StringUtil {
 	}
 
 	/**
-	 * Extract a substring of given length, taken from a random position.
-	 * Notice this does not starts at words boundaries.
+	 * Extract a substring of given length, taken from a random position. Notice
+	 * this does not starts at words boundaries.
 	 * 
 	 * @param txt Source text.
 	 * @param len Length of the random sample to take.

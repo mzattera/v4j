@@ -42,6 +42,8 @@ The experiments are done separately for each [cluster](../003);.
 
 The set of experiments is as follows:
 
+*** Ricontrolla che le definizioni qui sotto siano giuste ***
+
   * First line in page - first lines of pages are compared with the rest of the text.
   * First line in paragraph - first lines of paragraphs are compared with the rest of the text.
   * Last line in paragraph - last lines of paragraphs are compared with the rest of the text.
@@ -49,9 +51,11 @@ The set of experiments is as follows:
   * Last letter in a line - final character of last word in a line is compared with last characters of all other words.
 
 *** FAI UN TEST DEL BINNING USATO PER I TEST ***
-*** FAI UN TEST DEI METODI STATICI IN EXPERIMENTS (I TEST PER LE SINGLOE CLASSI PIU' O MENO ESISTONO) ***
+*** FAI UN TEST DEI METODI STATICI IN EXPERIMENTS (I TEST PER LE SINGOLE CLASSI ESISTONO) ***
 
 The results are shown in the below table[{1}](#Note1)[{2}](#Note2):
+
+** PRENDI L ULTIMA VERSIONE PE RLO SCREENSHOT **
 
 ![Summary table of anomalies in char distribution](images/SummaryTable.PNG)
 

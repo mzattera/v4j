@@ -34,6 +34,16 @@ public class Counter<T> {
 	}
 
 	/**
+	 * Creates a counter counting all terms in an Array.
+	 * 
+	 * @param objs
+	 */
+	public Counter(T[] objs) {
+		this();
+		countAll(objs);
+	}
+
+	/**
 	 * Creates a counter counting all terms in a Collection.
 	 * 
 	 * @param objs
@@ -69,7 +79,15 @@ public class Counter<T> {
 	}
 
 	/**
-	 * Counts all given items.
+	 * Counts all given items once.
+	 */
+	public void countAll(T[] objs) {
+		for (T o : objs)
+			count(o);
+	}
+
+	/**
+	 * Counts all given items once.
 	 */
 	public void countAll(Collection<T> objs) {
 		for (T o : objs)
@@ -78,6 +96,7 @@ public class Counter<T> {
 
 	/**
 	 * Counts all items that are already counted in another Counter<>.
+	 * Each item is counted the corresponding number of times.
 	 * 
 	 * @return This Counter.
 	 */

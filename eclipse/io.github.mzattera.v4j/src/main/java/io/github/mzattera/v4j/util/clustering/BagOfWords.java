@@ -56,15 +56,14 @@ public class BagOfWords implements Clusterable {
 	// Reverse map, from dimension index to corresponding word.
 	private HashMap<Integer, String> reverseDimensions;
 
-
 	/**
-	 * @return a map that maps each index for a dimension in the data point to corresponding
-	 * word.
+	 * @return a map that maps each index for a dimension in the data point to
+	 *         corresponding word.
 	 */
-	public  HashMap<Integer, String> getReverseDimensions() {
+	public HashMap<Integer, String> getReverseDimensions() {
 		return reverseDimensions;
 	}
-	
+
 	/**
 	 * @return Value of given dimension (represented by a word).
 	 */
@@ -99,7 +98,6 @@ public class BagOfWords implements Clusterable {
 	public int getDifferentWordCount() {
 		return tot;
 	}
-
 
 	/**
 	 * 
@@ -138,7 +136,7 @@ public class BagOfWords implements Clusterable {
 		for (Entry<String, Integer> e : this.dimensions.entrySet()) {
 			reverseDimensions.put(e.getValue(), e.getKey());
 		}
-		
+
 		// adjust values based on mode
 		switch (mode) {
 		case COUNT:
@@ -231,5 +229,32 @@ public class BagOfWords implements Clusterable {
 	 */
 	public static Map<String, Integer> buildDimensions(Text doc) {
 		return buildDimensions(doc.getWords(true).itemSet());
+	}
+
+	/**
+	 * Since to build BoW we need "dimensions" (e.g. the words to use in the BoW) we
+	 * provide here a utility method to get dimensions out of a Text.
+	 * 
+	 * @param paragraphs all "readable" words appearing in at least two documents
+	 *                   will be used as possible dimensions in the BoW.
+	 * @return a Map representing the BoW dimensions.
+	 */
+	public static Map<String, Integer> buildCommonDimensions(Collection<? extends Text> paragraphs) {
+
+		// Counts in how many documents a word appear
+		Counter<String> features = new Counter<>();
+		for (Text d : paragraphs) {
+			features.countAll(d.getWords(true).itemSet());
+		}
+
+		int i = 0;
+		Map<String, Integer> result = new HashMap<>();
+		for (Entry<String, Integer> e : features.reversed()) {
+			if (e.getValue() < 2)
+				break;
+			result.put(e.getKey(), i++);
+		}
+
+		return result;
 	}
 }

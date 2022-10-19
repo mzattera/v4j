@@ -2,11 +2,13 @@ package io.github.mzattera.v4j.text.ivtff;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.StringReader;
 import java.text.DateFormat;
@@ -170,9 +172,23 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	 *              belong to doc.
 	 */
 	public IvtffText(IvtffText doc, Collection<IvtffLine> lines) {
+		this(doc, lines, doc.getId());
+	}
+
+	/**
+	 * Copy constructor (kinda). Creates a new instance of a document from a list of
+	 * lines contained in another document. Notice that lines are copied into the
+	 * new document; they are not shared.
+	 *
+	 * @param doc   original document where the lines come from.
+	 * @param lines list of lines that must go into the new document, they must
+	 *              belong to doc.
+	 * @param ID    ID for newly created document.
+	 */
+	public IvtffText(IvtffText doc, Collection<IvtffLine> lines, String ID) {
 
 		super(doc.getAlphabet());
-		this.id = doc.getId();
+		this.id = ID;
 		this.version = doc.version;
 		this.majorVersion = doc.majorVersion;
 
@@ -200,11 +216,27 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	 *              belong to doc.
 	 */
 	public static IvtffText fromPages(IvtffText doc, Collection<IvtffPage> pages) {
+		return fromPages(doc, pages, doc.getId());
+	}
+
+	/**
+	 * Copy constructor (kinda). Creates a new instance of a document from a list of
+	 * pages contained in another document. Notice that lines in pages are copied
+	 * into the new document; they are not shared.
+	 * 
+	 * Must be provided as factory method because of signature overlap.
+	 *
+	 * @param doc   original document where the pages come from.
+	 * @param pages list of lines that must go into the new document, they must
+	 *              belong to doc.
+	 * @param ID    ID for the newly crated document.
+	 */
+	public static IvtffText fromPages(IvtffText doc, Collection<IvtffPage> pages, String ID) {
 		List<IvtffLine> lines = new ArrayList<>();
 		for (IvtffPage p : pages)
 			lines.addAll(p.getElements());
 
-		return new IvtffText(doc, lines);
+		return new IvtffText(doc, lines, ID);
 	}
 
 	/**
@@ -324,40 +356,40 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	 * Write this Document into one file.
 	 */
 	public void write(File fOut) throws IOException {
-
-		BufferedWriter out = null;
-		try {
-			out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fOut), "ASCII"));
-
-			DateFormat f = new SimpleDateFormat("yyyyMMdd.HHmm");
-			out.write("#=IVTFF " + getAlphabet().getCodeString() + " " + getVersion());
-			out.newLine();
-			out.write("# Latest modified on: " + f.format(new Date()));
-			out.newLine();
-			out.write("#");
-			out.newLine();
-
-			for (IvtffPage page : elements) {
-
-				out.write(page.getDescriptor().toString());
-				out.newLine();
-
-				for (IvtffLine line : page.getElements()) {
-					out.write(line.getDescriptor().toString());
-					out.write("\t");
-					out.write(line.getText());
-					out.newLine();
-				}
-			}
-
-			out.flush();
-		} finally {
-			if (out != null)
-				try {
-					out.close();
-				} catch (Exception e) {
-				}
+		try (OutputStream os = new FileOutputStream(fOut)) {
+			write(os);
 		}
+	}
+
+	/**
+	 * Write this Document into one Stream.
+	 */
+	public void write(OutputStream os) throws IOException {
+
+		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(os, "ASCII"));
+
+		DateFormat f = new SimpleDateFormat("yyyyMMdd.HHmm");
+		out.write("#=IVTFF " + getAlphabet().getCodeString() + " " + getVersion());
+		out.newLine();
+		out.write("# Latest modified on: " + f.format(new Date()));
+		out.newLine();
+		out.write("#");
+		out.newLine();
+
+		for (IvtffPage page : elements) {
+
+			out.write(page.getDescriptor().toString());
+			out.newLine();
+
+			for (IvtffLine line : page.getElements()) {
+				out.write(line.getDescriptor().toString());
+				out.write("\t");
+				out.write(line.getText());
+				out.newLine();
+			}
+		}
+
+		out.flush();
 	}
 
 	/**
@@ -447,6 +479,7 @@ public class IvtffText extends CompositeText<IvtffPage> {
 		Map<String, IvtffText> result = new HashMap<>();
 		Map<String, List<IvtffPage>> pages = splitElements(splitter);
 
+		// TODO change ID of returned documents?
 		for (String category : pages.keySet())
 			result.put(category, fromPages(this, pages.get(category)));
 
@@ -478,6 +511,7 @@ public class IvtffText extends CompositeText<IvtffPage> {
 			}
 		}
 
+		// TODO change ID of generated documents?
 		for (Entry<String, List<IvtffLine>> entry : lines.entrySet()) {
 			result.put(entry.getKey(), new IvtffText(this, entry.getValue()));
 		}
@@ -486,7 +520,44 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	}
 
 	/**
-	 * @param txt The Voynich text to shuffle.
+	 * Splits the running text (P0 and P1 loci) of this document into paragraphs.
+	 * Notice other parts of the document are ignored.
+	 * 
+	 * @return A List of paragraphs from given document.
+	 */
+	public List<IvtffText> toParagraphs() {
+		return IvtffText.toParagraphs(this);
+	}
+
+	/**
+	 * Splits the running text (P0 and P1 loci) of given document into paragraphs.
+	 * Notice other parts of the document are ignored.
+	 * 
+	 * @param doc The input document.
+	 * @return A List of paragraphs from given document.
+	 */
+	public static List<IvtffText> toParagraphs(IvtffText doc) {
+		doc = doc.filterLines(LineFilter.PARAGRAPH_TEXT_FILTER);
+		List<IvtffText> paragraphs = new ArrayList<>();
+		for (IvtffPage p : doc.getElements()) {
+			List<IvtffLine> parLines = new ArrayList<>();
+			for (IvtffLine l : p.getElements()) {
+				parLines.add(l);
+				boolean isParEnd = (l.isLast());
+				if (isParEnd) {
+					String id = doc.getId() + "_" + l.getId();
+					paragraphs.add(new IvtffText(doc, parLines, id));
+					parLines.clear();
+				}
+			}
+			if (parLines.size() > 0) { // collect last paragraph
+				paragraphs.add(new IvtffText(doc, parLines, doc.getId() + "_" + parLines.get(0).getId()));
+			}
+		}
+		return paragraphs;
+	}
+
+	/**
 	 * @return A shuffled version of the text, with the same number of pages, number
 	 *         of lines per page, number of words per line, but with words shuffled
 	 *         at random. This method maintains the original structure of the text,
@@ -497,7 +568,6 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	}
 
 	/**
-	 * @param txt The Voynich text to shuffle.
 	 * @return A shuffled version of the text, with the same number of pages, number
 	 *         of lines per page, number of words per line, but with words shuffled
 	 *         at random. This method maintains the original structure of the text,
@@ -534,6 +604,20 @@ public class IvtffText extends CompositeText<IvtffPage> {
 			return new IvtffText(result.toString());
 		} catch (Exception e) {
 			return null; // shall never happen
+		}
+	}
+
+	/**
+	 * Prints the whole document using IVTFF format
+	 */
+	@Override
+	public String toString() {
+		try {
+			ByteArrayOutputStream os = new ByteArrayOutputStream();
+			write(os);
+			return os.toString(java.nio.charset.StandardCharsets.US_ASCII);
+		} catch (Exception e) { // should never happen
+			return super.toString();
 		}
 	}
 }

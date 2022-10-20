@@ -259,7 +259,7 @@ public final class Experiments {
 
 		/**
 		 * 
-		 * @param skipFirst If true, skip first line of paragraphs.
+		 * @param skipFirst    If true, skip first line of paragraphs.
 		 * @param readableOnly if true, consider only the words that do not contain any
 		 *                     unreadable characters.
 		 */
@@ -338,6 +338,8 @@ public final class Experiments {
 			StringBuilder initials = new StringBuilder();
 
 			for (String w : doc.splitWords()) {
+				if (w.length() == 0)
+					continue;
 				char c = w.charAt(0);
 				if (!readableOnly || !a.isUreadableChar(c))
 					initials.append(c);
@@ -388,6 +390,8 @@ public final class Experiments {
 			StringBuilder finals = new StringBuilder();
 
 			for (String w : doc.splitWords()) {
+				if (w.length() == 0)
+					continue;
 				char c = w.charAt(w.length() - 1);
 				if (!readableOnly || !a.isUreadableChar(c))
 					finals.append(c);
@@ -805,6 +809,7 @@ public final class Experiments {
 	/**
 	 * @param sample
 	 * @param population
+	 * @param alpha
 	 * @return A list of words that appear more frequently in sample (given alpha)
 	 *         than in the population.
 	 */
@@ -812,18 +817,42 @@ public final class Experiments {
 		Counter<String> result = new Counter<>();
 
 		for (String w : sample.itemSet()) {
-			double observed = (double) sample.getCount(w) / sample.getTotalCounted();
-			double expected = (double) population.getCount(w) / population.getTotalCounted();
-			if (observed <= expected)
-				continue;
-			double sig = BINOMIAL.binomialTest(sample.getTotalCounted(), sample.getCount(w), expected,
-					AlternativeHypothesis.GREATER_THAN);
-			if (sig < alpha) {
+			if (isInterstingWord(w, sample, population, alpha))
 				result.count(w, sample.getCount(w));
-			}
 		}
 
 		return result;
+	}
+
+	/**
+	 * @param w          Word to test.
+	 * @param sample
+	 * @param population
+	 * @param alpha
+	 * @return True if given word appear more frequently in sample (given alpha)
+	 *         than in the population.
+	 */
+	public static boolean isInterstingWord(String w, Counter<String> sample, Counter<String> population) {
+		return isInterstingWord(w, sample, population, 0.01);
+	}
+
+	/**
+	 * @param w          Word to test
+	 * @param observed   Observed frequency of word in sample.
+	 * @param population
+	 * @param alpha
+	 * @return True if given words appears more frequently in sample (given alpha)
+	 *         than in the population.
+	 */
+	public static boolean isInterstingWord(String w, Counter<String> sample, Counter<String> population, double alpha) {
+		double observed = (double) sample.getCount(w) / sample.getTotalCounted();
+		double expected = (double) population.getCount(w) / population.getTotalCounted();
+
+		if (observed <= expected)
+			return false;
+		double sig = BINOMIAL.binomialTest(sample.getTotalCounted(), sample.getCount(w), expected,
+				AlternativeHypothesis.GREATER_THAN);
+		return (sig < alpha);
 	}
 
 	/**

@@ -255,9 +255,9 @@ public class IvtffText extends CompositeText<IvtffPage> {
 				throw new ParseException("The input file is empty.");
 
 			Matcher m = FILE_HEADER_PATTERN.matcher(row);
-			if (!m.matches())
+			if (!m.matches()) 
 				throw new ParseException("Invalid file header: ", row);
-
+			
 			this.alphabet = Alphabet.getAlphabet(m.group(1));
 			if (this.alphabet == null)
 				throw new ParseException("Unsupported alphabeth: " + m.group(1));

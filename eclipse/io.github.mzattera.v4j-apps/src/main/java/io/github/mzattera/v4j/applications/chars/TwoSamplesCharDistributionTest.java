@@ -90,10 +90,12 @@ public abstract class TwoSamplesCharDistributionTest {
 			new Experiments.LastLineInParagraph().process(voynich);
 			System.out.print("\n\n[ First letter in a line  ];\n");
 			new Experiments.Initials(new Experiments.FirstWordInLine(false, false), true).process(voynich);
-			System.out.print("\n\n[ Last letter in a line   ];\n");
-			new Experiments.Finals(new Experiments.LastWordInLine(false, false), true).process(voynich);
 
-//			new Experiments.FirstInParagraphVsStandard().executeExperiments(voynich);
+//			IvtffText voynich = new IvtffText(new File("D:\\Voynich_normalized.txt"));
+//			new Experiments.Initials(
+//					new Experiments.WithStandardPopulation(new Experiments.FirstWordInLine(true, true), true), true)
+//					.process(voynich);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

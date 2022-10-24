@@ -53,6 +53,10 @@ public class Counter<T> {
 		countAll(objs);
 	}
 
+	/**
+	 * 
+	 * @return Total number of items counted.
+	 */
 	public int getTotalCounted() {
 		return tot;
 	}
@@ -105,6 +109,17 @@ public class Counter<T> {
 			count(e.getKey(), e.getValue());
 
 		return this;
+	}
+
+	/**
+	 * Resets the counter.
+	 * @return Total number of items counted so far.
+	 */
+	public int clear() {
+		int result = tot;
+		counts.clear();
+		tot=0;
+		return result;
 	}
 
 	/**

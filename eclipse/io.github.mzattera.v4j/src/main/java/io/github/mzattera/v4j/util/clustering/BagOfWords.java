@@ -235,15 +235,15 @@ public class BagOfWords implements Clusterable {
 	 * Since to build BoW we need "dimensions" (e.g. the words to use in the BoW) we
 	 * provide here a utility method to get dimensions out of a Text.
 	 * 
-	 * @param paragraphs all "readable" words appearing in at least two documents
+	 * @param texts List of documents to use; all "readable" words appearing in at least two documents
 	 *                   will be used as possible dimensions in the BoW.
 	 * @return a Map representing the BoW dimensions.
 	 */
-	public static Map<String, Integer> buildCommonDimensions(Collection<? extends Text> paragraphs) {
+	public static Map<String, Integer> buildCommonDimensions(Collection<? extends Text> texts) {
 
 		// Counts in how many documents a word appear
 		Counter<String> features = new Counter<>();
-		for (Text d : paragraphs) {
+		for (Text d : texts) {
 			features.countAll(d.getWords(true).itemSet());
 		}
 

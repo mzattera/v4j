@@ -800,6 +800,26 @@ public final class Experiments {
 	 * @param sample
 	 * @param population
 	 * @return A list of words that appear more frequently in sample (alpha=1%) than
+	 *         in the population. Only readable words are counted.
+	 */
+	public static Counter<String> getInterstingWords(Text sample, Text population) {
+		return getInterstingWords(sample.getWords(true), population.getWords(true), 0.01);
+	}
+
+	/**
+	 * @param sample
+	 * @param population
+	 * @return A list of words that appear more frequently in sample (alpha=1%) than
+	 *         in the population. Only readable words are counted.
+	 */
+	public static Counter<String> getInterstingWords(Text sample, Text population, double alpha) {
+		return getInterstingWords(sample.getWords(true), population.getWords(true), alpha);
+	}
+
+	/**
+	 * @param sample
+	 * @param population
+	 * @return A list of words that appear more frequently in sample (alpha=1%) than
 	 *         in the population.
 	 */
 	public static Counter<String> getInterstingWords(Counter<String> sample, Counter<String> population) {

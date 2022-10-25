@@ -132,6 +132,14 @@ public class Counter<T> {
 
 	/**
 	 * 
+	 * @return number of times obj was counted divided by the total number of items counted.
+	 */
+	public double getFrequency(T obj) {
+		return (double)getCount(obj) / tot;
+	}
+
+	/**
+	 * 
 	 * @return item that was recurring most of the time.
 	 */
 	public T getHighestCounted() {

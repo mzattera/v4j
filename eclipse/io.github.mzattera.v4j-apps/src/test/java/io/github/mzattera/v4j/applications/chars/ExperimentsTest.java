@@ -96,9 +96,27 @@ public final class ExperimentsTest {
 	}
 
 	@Test
-	@DisplayName("Experiments.FirstLineInParagraph().splitDocument()")
-	public void FirstLineInParagraph() throws Exception {
-		Text[] splitted = new Experiments.FirstLineInParagraph().splitDocument(INPUT);
+	@DisplayName("Experiments.FirstLineInParagraph(TRUE).splitDocument()")
+	public void FirstLineInParagraphT() throws Exception {
+		Text[] splitted = new Experiments.FirstLineInParagraph(true).splitDocument(INPUT);
+		test((IvtffText) splitted[0],
+				new String[][] { { "ykal", "ar", "ataJn", "Sol", "Sory", "Tres", "y", "kor", "Soldy" },
+						{ "odar", "sy", "Sol", "Poy", "oydar", "S", "s", "FoaJn", "Sodary" },
+						{ "ydain", "PesaJn", "ol", "s", "Pey", "ytain", "SoSy", "Podales" },
+						{ "SaJn", "SokCEy", "Col", "tSodEsy", "Sey", "pydEy", "Cy", "ro", "d?" } });
+		test((IvtffText) splitted[1],
+				new String[][] { { "?ory", "Kar", "or", "y", "kair", "CtaJn", "Sar", "are", "Tar", "Tar", "dan" },
+						{ "syaJr", "Seky", "or", "yka??Jn", "Sod", "Toary", "Tes", "daraJn", "sy" },
+						{ "ySey", "Sody", "okCoy", "otCol", "CoTy", "osCy", "dain", "Cor", "kos" },
+						{ "daJn", "Sos", "Fol", "Sody" },
+						{ "dCar", "STaJn", "okaJr", "Cey", "?Cy", "potol", "Tols", "d?o?ta" },
+						{ "Sok", "Cor", "Cey", "dain", "Key" } });
+	}
+
+	@Test
+	@DisplayName("Experiments.FirstLineInParagraph(FALSE).splitDocument()")
+	public void FirstLineInParagraphF() throws Exception {
+		Text[] splitted = new Experiments.FirstLineInParagraph(false).splitDocument(INPUT);
 		test((IvtffText) splitted[0],
 				new String[][] { { "faCys", "ykal", "ar", "ataJn", "Sol", "Sory", "Tres", "y", "kor", "Soldy" },
 						{ "?", "odar", "sy", "Sol", "Poy", "oydar", "S", "s", "FoaJn", "Sodary" },

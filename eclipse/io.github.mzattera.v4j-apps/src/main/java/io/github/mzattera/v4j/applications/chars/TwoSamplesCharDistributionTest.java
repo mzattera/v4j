@@ -85,7 +85,7 @@ public abstract class TwoSamplesCharDistributionTest {
 			System.out.print("[ First line in page      ];\n");
 			new Experiments.FirstLineInPage().process(voynich);
 			System.out.print("\n\n[ First line in paragraph ];\n");
-			new Experiments.FirstLineInParagraph().process(voynich);
+			new Experiments.FirstLineInParagraph(false).process(voynich);
 			System.out.print("\n\n[ Last line in paragraph  ];\n");
 			new Experiments.LastLineInParagraph().process(voynich);
 			System.out.print("\n\n[ First letter in a line  ];\n");

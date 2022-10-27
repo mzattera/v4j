@@ -21,6 +21,7 @@ import io.github.mzattera.v4j.text.ivtff.IvtffLine;
 import io.github.mzattera.v4j.text.ivtff.IvtffPage;
 import io.github.mzattera.v4j.text.ivtff.IvtffText;
 import io.github.mzattera.v4j.text.ivtff.LineFilter;
+import io.github.mzattera.v4j.text.ivtff.ParseException;
 import io.github.mzattera.v4j.text.txt.TextString;
 import io.github.mzattera.v4j.util.Counter;
 
@@ -72,15 +73,31 @@ public final class Experiments {
 	 * This experiment compares first line of paragraphs with reminder of the text.
 	 * Notice only the text in running paragraphs is considered.
 	 * 
+	 * A flag can be passed to the constructor to decide whether to skip first word
+	 * in the paragraph.
+	 * 
 	 * @author Massimiliano "Maxi" Zattera
 	 *
 	 */
 	public static class FirstLineInParagraph extends TwoSamplesCharDistributionTest {
 
+		private final boolean skipFirst;
+
+		/**
+		 * 
+		 * @param skipFirst    If true, skip first line of paragraphs.
+		 * @param readableOnly if true, consider only the words that do not contain any
+		 *                     unreadable characters.
+		 */
+		public FirstLineInParagraph(boolean skipFirst) {
+			this.skipFirst = skipFirst;
+		}
+
 		@Override
 		public Text[] splitDocument(Text txt) {
 			// Consider only paragraphs
 			IvtffText paragraphs = ((IvtffText) txt).filterLines(LineFilter.PARAGRAPH_TEXT_FILTER);
+			Alphabet a = txt.getAlphabet();
 
 			List<IvtffLine> first = new ArrayList<>();
 			List<IvtffLine> others = new ArrayList<>();
@@ -88,11 +105,29 @@ public final class Experiments {
 			for (IvtffPage p : paragraphs.getElements()) {
 				boolean parEnd = true; // Was last line a paragraph end?
 				for (IvtffLine l : p.getElements()) {
-					if (parEnd)
-						first.add(l);
-					else
-						others.add(l);
+					if (parEnd) { // first line of paragraph
+						if (skipFirst) { // remove first word, if required
+							String[] w = l.splitWords();
+							if (w.length == 0) {
+								first.add(l);
+								continue;
+							}
 
+							IvtffLine n = new IvtffLine(l);
+							try {
+								n.setText(
+										StringUtils.join(w, a.getSpace(), 1, w.length) + (l.isLast() ? "<$>" : ""));
+							} catch (ParseException e) { // shall never happen
+							}
+							first.add(n);
+							
+						} else { // ad the line as it is
+							first.add(l);
+						}
+					} else { // not first line
+						others.add(l);
+					}
+					
 					parEnd = l.isLast();
 				}
 			}
@@ -128,7 +163,7 @@ public final class Experiments {
 		@Override
 		public Text[] splitDocument(Text txt) {
 
-			IvtffText[] parts = (IvtffText[]) (new Experiments.FirstLineInParagraph().splitDocument(txt));
+			IvtffText[] parts = (IvtffText[]) (new Experiments.FirstLineInParagraph(false).splitDocument(txt));
 
 			// Words in first lines, by position
 			List<Counter<String>> words = Experiments.getWordsByPosition(parts[0], readableOnly);
@@ -680,7 +715,7 @@ public final class Experiments {
 	public static IvtffText filterLines(IvtffText doc, boolean discardFirstLine, boolean discardLastLine) {
 		// note the order is important because how Experiments work
 		if (discardFirstLine)
-			doc = (IvtffText) new FirstLineInParagraph().splitDocument(doc)[1];
+			doc = (IvtffText) new FirstLineInParagraph(false).splitDocument(doc)[1];
 		if (discardLastLine)
 			doc = (IvtffText) new LastLineInParagraph().splitDocument(doc)[1];
 		return doc;

@@ -115,19 +115,18 @@ public final class Experiments {
 
 							IvtffLine n = new IvtffLine(l);
 							try {
-								n.setText(
-										StringUtils.join(w, a.getSpace(), 1, w.length) + (l.isLast() ? "<$>" : ""));
+								n.setText(StringUtils.join(w, a.getSpace(), 1, w.length) + (l.isLast() ? "<$>" : ""));
 							} catch (ParseException e) { // shall never happen
 							}
 							first.add(n);
-							
+
 						} else { // ad the line as it is
 							first.add(l);
 						}
 					} else { // not first line
 						others.add(l);
 					}
-					
+
 					parEnd = l.isLast();
 				}
 			}
@@ -336,6 +335,74 @@ public final class Experiments {
 	/**
 	 * Uses Chi-Square test to validate assumptions about character distributions.
 	 * 
+	 * This experiment compares words in a given position in the line with all other
+	 * words in the text. In the constructor, an optional flag can be passed to skip
+	 * first line of each paragraph; in addition, the position in the line you are
+	 * interested in must be provided. Finally, a flag is used to indicate whether
+	 * "unreadable" words should be considered or not.
+	 * 
+	 * Notice only the text in running paragraphs is considered.
+	 * 
+	 * @author Massimiliano "Maxi" Zattera
+	 *
+	 */
+	public static class WordInPositionInLine extends TwoSamplesCharDistributionTest {
+
+		private final boolean skipFirstLine;
+
+		private final boolean skipFirstWordInLine;
+
+		private final boolean readableOnly;
+
+		private final int position;
+
+		/**
+		 * 
+		 * @param skipFirstLine If true, skip first line of paragraphs.
+		 * @param readableOnly  if true, consider only the words that do not contain any
+		 *                      unreadable characters.
+		 */
+		public WordInPositionInLine(int position, boolean skipFirstLine, boolean skipFirstWordInLine,
+				boolean readableOnly) {
+			this.position = position;
+			this.skipFirstLine = skipFirstLine;
+			this.skipFirstWordInLine = skipFirstWordInLine;
+			this.readableOnly = readableOnly;
+		}
+
+		@Override
+		public Text[] splitDocument(Text txt) {
+			Alphabet a = txt.getAlphabet();
+
+			// Consider only paragraphs
+			IvtffText paragraphs = ((IvtffText) txt).filterLines(LineFilter.PARAGRAPH_TEXT_FILTER);
+
+			if (skipFirstLine)
+				paragraphs = Experiments.filterLines(paragraphs, true, false);
+
+			List<Counter<String>> words = getWordsByPosition((IvtffText) txt, readableOnly, 0, Integer.MAX_VALUE,
+					skipFirstWordInLine, false);
+
+			List<String> result = new ArrayList<>(words.get(position).itemSet());
+			List<String> others = new ArrayList<>();
+
+			for (int i = 0; i < words.size() - 1; ++i) {
+				if (i == position)
+					continue; // we already have this
+				for (Counter<String> c : words)
+					for (String w : c.itemSet())
+						others.add(w);
+			}
+
+			char space = a.getSpace();
+			return new Text[] { new TextString(StringUtils.join(result, space), a),
+					new TextString(StringUtils.join(others, space), a) };
+		}
+	}
+
+	/**
+	 * Uses Chi-Square test to validate assumptions about character distributions.
+	 * 
 	 * This experiment uses the class passed in the constructor to split the text.
 	 * Then it extracts only initial letter from words in each part. A TextString is
 	 * returned for each part, with all initials, without spaces.
@@ -475,6 +542,7 @@ public final class Experiments {
 			return new Text[] { experiment.splitDocument(txt)[0], new TextString(
 					Experiments.getStandardWordsPopulation((IvtffText) txt, readableOnly), txt.getAlphabet()) };
 		}
+
 	}
 
 	/**

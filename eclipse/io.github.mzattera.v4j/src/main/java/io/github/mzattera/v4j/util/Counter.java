@@ -99,8 +99,8 @@ public class Counter<T> {
 	}
 
 	/**
-	 * Counts all items that are already counted in another Counter<>.
-	 * Each item is counted the corresponding number of times.
+	 * Counts all items that are already counted in another Counter<>. Each item is
+	 * counted the corresponding number of times.
 	 * 
 	 * @return This Counter.
 	 */
@@ -113,12 +113,13 @@ public class Counter<T> {
 
 	/**
 	 * Resets the counter.
+	 * 
 	 * @return Total number of items counted so far.
 	 */
 	public int clear() {
 		int result = tot;
 		counts.clear();
-		tot=0;
+		tot = 0;
 		return result;
 	}
 
@@ -132,15 +133,17 @@ public class Counter<T> {
 
 	/**
 	 * 
-	 * @return number of times obj was counted divided by the total number of items counted.
+	 * @return number of times obj was counted divided by the total number of items
+	 *         counted.
 	 */
 	public double getFrequency(T obj) {
-		return (double)getCount(obj) / tot;
+		return (double) getCount(obj) / tot;
 	}
 
 	/**
 	 * 
-	 * @return item that was recurring most of the time.
+	 * @return item that was recurring most often. Notice more than one such items
+	 *         might exist.
 	 */
 	public T getHighestCounted() {
 		int max = 0;
@@ -169,6 +172,40 @@ public class Counter<T> {
 		}
 
 		return max;
+	}
+
+	/**
+	 * 
+	 * @return item that was recurring least of the times (but at least once).
+	 *         Notice more than one such items might exist.
+	 */
+	public T getLowestCounted() {
+		int min = Integer.MAX_VALUE;
+		T result = null;
+
+		for (Map.Entry<T, Integer> entry : counts.entrySet()) {
+			if (entry.getValue() < min) {
+				min = entry.getValue();
+				result = entry.getKey();
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * 
+	 * @return number of times least recurring item was counted.
+	 */
+	public int getLowestCount() {
+		int min = Integer.MAX_VALUE;
+
+		for (int c : counts.values()) {
+			if (c < min)
+				min = c;
+		}
+
+		return min;
 	}
 
 	/**

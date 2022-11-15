@@ -101,7 +101,7 @@ public final class DecisionTreeTest {
 //					}
 //				}
 
-				// Accuracy: 92.134834%
+				// Accuracy: ~92%
 				if (ExtractGrammaticalFeatures.calculatePercentMatch(p, "-ed-") <= 0.02) { // Language A
 					if (ExtractGrammaticalFeatures.calculatePercentMatch(p, "-eo-") > 0.14) {
 						if (ExtractGrammaticalFeatures.calculatePercentMatch(p, "T-") > 0.04)

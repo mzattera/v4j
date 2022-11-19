@@ -10,11 +10,15 @@ The Slot alphabet is my proposal for a new transliteration alphabet; you can fin
 
 ![The Slot alphabet and a comparison with other transliteration alphabets](005/images/Slot Alphabet.PNG)
 
-The alphabet is very similar to basic EVA, with the difference that some combinations of EVA characters (the pedestals, the gallows and the 'i' and 'e' sequences) are represented in the Slot alphabet by a single 
+The alphabet is very similar to Basic EVA, with the difference that some combinations of EVA characters (pedestals,  pedestalled gallows, and sequences of 'i' and 'e') are represented in Slot alphabet by a single 
 uppercase letter; these differences are summarized in the table below.
 
 ![Table showing the differences between Slot and EVA alphabets](images/EVA_Differences.PNG)
 
+A [transliteration](https://github.com/mzattera/v4j/blob/master/eclipse/io.github.mzattera.v4j/src/main/resources/Transcriptions/Interlinear_slot_ivtff_1.5.txt)
+of the Landini-Stolfi interlinear file that uses the Slot alphabet is available within
+[v4j library](https://github.com/mzattera/v4j#ivtff) and accessible using `VoynichFactory` factory methods.
+	
 	
 ---
 

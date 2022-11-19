@@ -74,6 +74,12 @@ and the anomalies in distribution disappeared.
   One example (of char statistics) is found in D'Imperio (1978) (see note 4), Fig. 28 on p.106, from several sources but none covering the entire MS text.
 
 
+## Lenght & Interesting
+
+Here or in another note study lenght and number of intersting words.
+For interesting words, add also "last line of paragraph" to the study, similar to what we did with last word....count from the end.
+
+
 
 ## Removing Characters from beginning of Words
 

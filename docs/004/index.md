@@ -24,7 +24,7 @@ An Excel file ("`MostUsedTerms.xlsx`") containing this data can be found under t
 
 The below table summarizes the results, showing, the relative frequency of word types in each cluster.
 
-![Most used word types](images/Word types.PNG)
+![Most used word types](images/Terms.PNG)
 
 As expected from cluster analysis, beside word types that appear frequently in all clusters (such as 'chey', 'daiin', 'dar', 'dy', and 'or'),
 there are word types characteristic of a single cluster; the table below shows them.

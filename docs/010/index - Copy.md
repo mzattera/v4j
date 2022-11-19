@@ -24,7 +24,7 @@ It is known since the very beginning of Voynich studies, that the distribution o
 This note looks into it, using for the first time the
 [Slot transcription](https://github.com/mzattera/v4j/blob/master/eclipse/io.github.mzattera.v4j/src/main/resources/Transcriptions/Interlinear_slot_ivtff_1.5.txt).
 
-**Unless differently indicated, the rest of this note uses the [Slot alphabet](../005) when quoting Voynich text.** 
+**Unless differently indicated, the rest of this note uses the [Slot alphabet](../alphabet) when quoting Voynich text.** 
 Please notice that lowercase letters represent same characters both in EVA and Slot alphabets; uppercase letters used in the Slot alphabet represent groups of
 characters in EVA (e.g., 'qoCey' in Slot corresponds to 'qochey' in EVA).
 

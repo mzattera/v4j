@@ -20,7 +20,7 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 
 # Abstract
 
-It is known since the very beginning of Voynich studies, that the distribution of character withing the page presents some statistical anomalies.
+It is known since the very beginning of Voynich studies, that the distribution of character within the page presents some statistical anomalies.
 This note looks into it, using for the first time the
 [Slot transcription](https://github.com/mzattera/v4j/blob/master/eclipse/io.github.mzattera.v4j/src/main/resources/Transcriptions/Interlinear_slot_ivtff_1.5.txt).
 

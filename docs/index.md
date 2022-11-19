@@ -35,9 +35,11 @@ Each symbol in the alphabet is referred as a **transliteration character** or si
 - The word type **glyph** refers to a symbol in the Voynich that appears to constitute a basic unit of text. In principle, a glyph could represent one or more
  **Voynich characters** that constitute the **Voynich alphabet**.
 
-  The question of which glyphs are actual single Voynich characters is still very open and it is at the basis of the different transliteration alphabets being created.
+-  The question of which glyphs are actual single Voynich characters is still very open and it is at the basis of the different available transliteration alphabets.
+   Following my analysis in [Note 005](./005), I created a new transliteration alphabet called the [Slot alphabet](alphabet).
   
-- Unless stated otherwise, pieces of transliterated Voynich script I quote use the "Basic Eva" as transliteration alphabet and are enclosed in single quotes (e.g. 'qockhey').
+   Unless stated otherwise, pieces of transliterated Voynich script I quote use the "Basic Eva" as transliteration alphabet and are enclosed in single quotes (e.g. 'qockhey').
+   More and more frequently, Slot alphabet will be used instead; this will be mention explicitly case by case.
 
 - A **token** in a text is a single sequence of characters, separated by spaces. The list of **word types** (or simply **types**) is the list of tokens without repetitions.
 In other words, a token is an instance of a word type. For example; the below line in the Voynich

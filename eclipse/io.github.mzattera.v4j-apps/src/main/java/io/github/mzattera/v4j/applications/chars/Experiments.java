@@ -85,7 +85,7 @@ public final class Experiments {
 
 		/**
 		 * 
-		 * @param skipFirst    If true, skip first line of paragraphs.
+		 * @param skipFirst    If true, skip first word in line.
 		 * @param readableOnly if true, consider only the words that do not contain any
 		 *                     unreadable characters.
 		 */

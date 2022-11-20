@@ -1,7 +1,7 @@
 /**
  * 
  */
-package io.github.mzattera.v4j.test;
+package io.github.mzattera.v4j.text.ivtff;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -12,11 +12,6 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import io.github.mzattera.v4j.text.ivtff.IvtffLine;
-import io.github.mzattera.v4j.text.ivtff.IvtffPage;
-import io.github.mzattera.v4j.text.ivtff.IvtffText;
-import io.github.mzattera.v4j.text.ivtff.ParseException;
 
 /**
  * Performs minimum compliance test for our IVTFF document parser.

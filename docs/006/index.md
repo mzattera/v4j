@@ -281,6 +281,7 @@ including unreadable or irregular ones (total 39'425 tokens).
 **Notes**
 
 <a id="Note1">**{1}**</a> Project [io.github.mzattera.v4j.cmc](https://github.com/mzattera/v4j/tree/v.7.0.0/eclipse/io.github.mzattera.v4j.cmc) is a [Xtext](https://www.eclipse.org/Xtext/) project with a simple grammar that reads Stolfi's grammar and counts the number of word types it accepts. There is also some code to alternatively generate these word types in various way. Keep in mind, the number of these word types is huge. A local version of Stolfi's grammar suitable for parsing can be found [here](https://github.com/mzattera/v4j/blob/v.7.0.0/resources/Stolfi/word.grx).
+Please notice you will need to install Xtext inside Eclipse in order for this project to work.
 
 <a id="Note2">**{2}**</a> Personal communication, October 2021.
 

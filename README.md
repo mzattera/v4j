@@ -4,11 +4,18 @@ This is a Java library i created to experiment with the [Voynich manuscript](htt
 
 The outcomes of my experiments are tracked on the [project pages](https://mzattera.github.io/v4j/).
 
-The folder `eclipse` contains an [Eclipse](https://www.eclipse.org/ide/) workspace. The (Maven) project `io.github.mzattera.v4j` holds the actual code for the Java library.
-The library content is described below. The (Maven) project `io.github.mzattera.v4j-apps` contains classes I created to experiment with the 
+- The folder `eclipse` contains an [Eclipse](https://www.eclipse.org/ide/) workspace.
+
+  - The (Maven) project `io.github.mzattera.v4j` holds the actual code for the Java library.
+The library content is described below.
+
+  - The (Maven) project `io.github.mzattera.v4j-apps` contains classes I created to experiment with the 
 Voynich manuscript; here you can find examples about how to use the library.
 
-The folder `KNIME` contains several sub-folders, each corresponding to a different [KNIME](https://www.knime.com/) project.
+  - The project `io.github.mzattera.v4j.cmc` is a [Xtext](https://www.eclipse.org/Xtext/) creating when writing [Note 006](https://mzattera.github.io/v4j/006/). 
+Please notice you will need to install Xtext inside Eclipse in order for this project to work.
+
+- The folder `KNIME` contains several sub-folders, each corresponding to a different [KNIME](https://www.knime.com/) project.
 
 **_Note:_** Plase check the [project pages](https://mzattera.github.io/v4j/) for some terminology that is relevant here.
 
@@ -250,7 +257,7 @@ This is a [Xtext](https://www.eclipse.org/Xtext/) project created for [Note 006]
 
 ### Testing
 
-Project `io.github.mzattera.v4j-apps` contains JUnit tests for the v4j library and (some) of the "applications" in `v4j-apps`.
+Both projects `io.github.mzattera.v4j` and `io.github.mzattera.v4j-apps` contain JUnit tests.
 
 
 

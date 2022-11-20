@@ -1,8 +1,6 @@
 package io.github.mzattera.v4j.applications;
 
 import java.util.Map.Entry;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import io.github.mzattera.v4j.text.ElementFilter;
 import io.github.mzattera.v4j.text.alphabet.Alphabet;

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package io.github.mzattera.v4j.test;
+package io.github.mzattera.v4j.applications.text;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

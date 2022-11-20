@@ -46,7 +46,7 @@ The set of experiments is as follows:
   * First letter in a line - initial character of first word in a line is compared with initial characters of all other words.
   * Last letter in a line - final character of last word in a line is compared with last characters of all other words.
 
-*** FAI UN TEST DEI METODI STATICI IN EXPERIMENTS (I TEST PER LE SINGOLE CLASSI ESISTONO tranne che per WordInPositionInLine) ***
+*** FAI UN TEST DEI METODI STATICI IN EXPERIMENTS (I TEST PER LE SINGOLE CLASSI ESISTONO) ***
 *** FAI UN TEST DEL BINNING USATO PER I TEST ***
 
 The results are shown in the below table[{1}](#Note1)[{2}](#Note2):

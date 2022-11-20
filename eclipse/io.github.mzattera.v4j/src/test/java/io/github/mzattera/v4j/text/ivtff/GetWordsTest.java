@@ -1,7 +1,7 @@
 /**
  * 
  */
-package io.github.mzattera.v4j.test;
+package io.github.mzattera.v4j.text.ivtff;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,8 +13,6 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import io.github.mzattera.v4j.text.ivtff.IvtffText;
-import io.github.mzattera.v4j.text.ivtff.ParseException;
 import io.github.mzattera.v4j.util.Counter;
 
 /**
@@ -58,7 +56,7 @@ public final class GetWordsTest {
 			}
 		}
 
-		// Gets onle readable words
+		// Gets only readable words
 		m = doc.getWords(true);
 		assertEquals(m.size(), words.size());
 		for (String w : words) {

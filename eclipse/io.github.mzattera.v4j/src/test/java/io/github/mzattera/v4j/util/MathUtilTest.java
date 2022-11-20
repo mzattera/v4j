@@ -1,15 +1,12 @@
 /**
  * 
  */
-package io.github.mzattera.v4j.test;
+package io.github.mzattera.v4j.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import io.github.mzattera.v4j.util.Counter;
-import io.github.mzattera.v4j.util.MathUtil;
 
 /**
  * Tests MathUtil.entropy()

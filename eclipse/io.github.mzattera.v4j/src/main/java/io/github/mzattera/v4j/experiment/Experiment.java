@@ -574,6 +574,8 @@ public abstract class Experiment {
 	}
 
 	/**
+	 * Notice this considers the entirety of given text, not only the text in paragraphs.
+	 * 
 	 * @param readableOnly if true, consider only the words that do not contain any
 	 *                     unreadable characters.
 	 * @param minLineLen   If line has less than this number of words, ignore it.
@@ -602,8 +604,11 @@ public abstract class Experiment {
 				for (int i = min; i < (skipLast ? w.length - 1 : w.length); ++i) {
 					if (result.size() <= i)
 						result.add(new Counter<>());
-					if (!readableOnly || !a.isUnreadable(w[i]))
+					if (!readableOnly || !a.isUnreadable(w[i])) {
+						if (w[i].equals("Sody"))
+							System.out.println("~~~~ " + l);
 						result.get(i).count(w[i]);
+					}
 				}
 			}
 		}

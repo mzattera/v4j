@@ -33,7 +33,7 @@ import io.github.mzattera.v4j.text.txt.TextString;
  * @author Massimiliano "Maxi" Zattera
  *
  */
-public abstract class TwoSamplesCharDistributionTest {
+public abstract class CharDistributionAnalysis {
 
 	/**
 	 * Which transcription to use.
@@ -63,7 +63,7 @@ public abstract class TwoSamplesCharDistributionTest {
 	/** Compact output */
 	private static final boolean COMPACT = false;
 
-	protected TwoSamplesCharDistributionTest() {
+	protected CharDistributionAnalysis() {
 	}
 
 	/**

@@ -46,7 +46,7 @@ The set of experiments is as follows:
   * First letter in a line - initial character of first word in a line is compared with initial characters of all other words.
   * Last letter in a line - final character of last word in a line is compared with last characters of all other words.
 
-*** FAI UN TEST DEI METODI STATICI IN EXPERIMENTS (I TEST PER LE SINGOLE CLASSI ESISTONO) ***
+*** FAI UN TEST DEI METODI STATICI IN EXPERIMENTS (I TEST PER LE SINGOLE CLASSI ESISTONO, getWordsByPosition() ha i test -> ExperimentMethodsTest) ***
 *** FAI UN TEST DEL BINNING USATO PER I TEST ***
 
 The results are shown in the below table[{1}](#Note1)[{2}](#Note2):
@@ -337,7 +337,7 @@ Is Currier's lien as a functional entity valid?
 
 **Notes**
 
-<a id="Note1">**{1}**</a> Class [`TwoSamplesCharDistributionTest`](https://github.com/mzattera/v4j/blob/v.13.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/chars/TwoSamplesCharDistributionTest.java) was used for this purpose.
+<a id="Note1">**{1}**</a> Class [`CharDistributionAnalysis`](https://github.com/mzattera/v4j/blob/v.13.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/chars/CharDistributionAnalysis.java) was used for this purpose.
 
 <a id="Note2">**{2}**</a> The  file `CharacterDistribution.xlsx` in [this folder](https://github.com/mzattera/v4j/blob/master/resources/analysis/char%20distribution) contains 
 detailed results of the analysis.

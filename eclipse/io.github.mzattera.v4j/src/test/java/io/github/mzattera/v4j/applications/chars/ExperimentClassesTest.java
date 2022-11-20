@@ -24,7 +24,7 @@ import io.github.mzattera.v4j.util.Counter;
  * @author Massimiliano "Maxi" Zattera
  * 
  */
-public final class ExperimentsTest {
+public final class ExperimentClassesTest {
 
 	private static IvtffText INPUT;
 	static {

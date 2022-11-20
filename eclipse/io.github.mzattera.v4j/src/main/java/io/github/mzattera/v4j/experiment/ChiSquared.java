@@ -1,7 +1,7 @@
 /**
  * 
  */
-package io.github.mzattera.v4j.applications.chars;
+package io.github.mzattera.v4j.experiment;
 
 import java.util.ArrayList;
 import java.util.List;

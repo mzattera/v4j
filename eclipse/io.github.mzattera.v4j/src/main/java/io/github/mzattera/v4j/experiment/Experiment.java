@@ -1,7 +1,7 @@
 /**
  * 
  */
-package io.github.mzattera.v4j.applications.chars;
+package io.github.mzattera.v4j.experiment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,27 +26,27 @@ import io.github.mzattera.v4j.text.txt.TextString;
 import io.github.mzattera.v4j.util.Counter;
 
 /**
- * This class is a container for subclasses of CharDistributionExperiment that
- * implement different experiments.
+ * Each Experiment inner class, divides a Text in two parts, accordingly some
+ * rules, these are typically used to collect and compare statistical properties
+ * of the two parts (e.g. to check if char distribution differs).
  * 
- * It also provides static methods to conveniently split Voynich text into
- * useful parts for analysis (e.g., all first words in a line).
+ * In addition, this class also provides static methods to conveniently slice
+ * and dice Voynich text for analysis, and to collect data about text, useful in
+ * analysis.
  * 
  * @author Massimiliano "Maxi" Zattera
  *
  */
-public final class Experiments {
+public abstract class Experiment {
 
 	/**
-	 * Uses Chi-Square test to validate assumptions about character distributions.
-	 * 
-	 * This experiment compares first line of pages with reminder of the text.
-	 * Notice only the text in running paragraphs is considered.
+	 * This Experiment splits first line of pages from reminder of the text. Notice
+	 * only the text in running paragraphs is considered.
 	 * 
 	 * @author Massimiliano "Maxi" Zattera
 	 *
 	 */
-	public static class FirstLineInPage extends TwoSamplesCharDistributionTest {
+	public static class FirstLineInPage extends Experiment {
 
 		@Override
 		public Text[] splitDocument(Text txt) {
@@ -68,9 +68,7 @@ public final class Experiments {
 	}
 
 	/**
-	 * Uses Chi-Square test to validate assumptions about character distributions.
-	 * 
-	 * This experiment compares first line of paragraphs with reminder of the text.
+	 * This Experiment splits first line of paragraphs from reminder of the text.
 	 * Notice only the text in running paragraphs is considered.
 	 * 
 	 * A flag can be passed to the constructor to decide whether to skip first word
@@ -79,7 +77,7 @@ public final class Experiments {
 	 * @author Massimiliano "Maxi" Zattera
 	 *
 	 */
-	public static class FirstLineInParagraph extends TwoSamplesCharDistributionTest {
+	public static class FirstLineInParagraph extends Experiment {
 
 		private final boolean skipFirst;
 
@@ -136,10 +134,8 @@ public final class Experiments {
 	}
 
 	/**
-	 * Uses Chi-Square test to validate assumptions about character distributions.
-	 * 
-	 * This experiment compares first word in paragraphs with all others. Notice
-	 * only the text in running paragraphs is considered.
+	 * This Experiment splits first word in paragraphs from all others. Notice only
+	 * the text in running paragraphs is considered.
 	 * 
 	 * In the constructor, a flag is used to indicate whether "unreadable" words
 	 * should be considered or not.
@@ -147,7 +143,7 @@ public final class Experiments {
 	 * @author Massimiliano "Maxi" Zattera
 	 *
 	 */
-	public static class FirstWordInParagraph extends TwoSamplesCharDistributionTest {
+	public static class FirstWordInParagraph extends Experiment {
 
 		private final boolean readableOnly;
 
@@ -162,10 +158,10 @@ public final class Experiments {
 		@Override
 		public Text[] splitDocument(Text txt) {
 
-			IvtffText[] parts = (IvtffText[]) (new Experiments.FirstLineInParagraph(false).splitDocument(txt));
+			IvtffText[] parts = (IvtffText[]) (new Experiment.FirstLineInParagraph(false).splitDocument(txt));
 
 			// Words in first lines, by position
-			List<Counter<String>> words = Experiments.getWordsByPosition(parts[0], readableOnly);
+			List<Counter<String>> words = Experiment.getWordsByPosition(parts[0], readableOnly);
 
 			// First words in first lines
 			Counter<String> first = words.get(0);
@@ -183,15 +179,13 @@ public final class Experiments {
 	}
 
 	/**
-	 * Uses Chi-Square test to validate assumptions about character distributions.
-	 * 
-	 * This experiment compares last line of paragraphs with reminder of the text.
+	 * This Experiment splits last line of paragraphs from reminder of the text.
 	 * Notice only the text in running paragraphs is considered.
 	 * 
 	 * @author Massimiliano "Maxi" Zattera
 	 *
 	 */
-	public static class LastLineInParagraph extends TwoSamplesCharDistributionTest {
+	public static class LastLineInParagraph extends Experiment {
 
 		@Override
 		public Text[] splitDocument(Text txt) {
@@ -213,9 +207,7 @@ public final class Experiments {
 	}
 
 	/**
-	 * Uses Chi-Square test to validate assumptions about character distributions.
-	 * 
-	 * This experiment compares first word of each line with all other words in the
+	 * This Experiment splits first word of each line from all other words in the
 	 * text. In the constructor, an optional flag can be passed to skip first line
 	 * of each paragraph. In addition, a flag is used to indicate whether
 	 * "unreadable" words should be considered or not.
@@ -225,7 +217,7 @@ public final class Experiments {
 	 * @author Massimiliano "Maxi" Zattera
 	 *
 	 */
-	public static class FirstWordInLine extends TwoSamplesCharDistributionTest {
+	public static class FirstWordInLine extends Experiment {
 
 		private final boolean skipFirst;
 
@@ -250,7 +242,7 @@ public final class Experiments {
 			IvtffText paragraphs = ((IvtffText) txt).filterLines(LineFilter.PARAGRAPH_TEXT_FILTER);
 
 			if (skipFirst)
-				paragraphs = Experiments.filterLines(paragraphs, true, false);
+				paragraphs = Experiment.filterLines(paragraphs, true, false);
 
 			List<String> first = new ArrayList<>();
 			List<String> others = new ArrayList<>();
@@ -285,7 +277,7 @@ public final class Experiments {
 	 * @author Massimiliano "Maxi" Zattera
 	 *
 	 */
-	public static class LastWordInLine extends TwoSamplesCharDistributionTest {
+	public static class LastWordInLine extends Experiment {
 
 		private final boolean skipFirst;
 
@@ -310,7 +302,7 @@ public final class Experiments {
 			IvtffText paragraphs = ((IvtffText) txt).filterLines(LineFilter.PARAGRAPH_TEXT_FILTER);
 
 			if (skipFirst)
-				paragraphs = Experiments.filterLines(paragraphs, true, false);
+				paragraphs = Experiment.filterLines(paragraphs, true, false);
 
 			List<String> last = new ArrayList<>();
 			List<String> others = new ArrayList<>();
@@ -333,21 +325,20 @@ public final class Experiments {
 	}
 
 	/**
-	 * Uses Chi-Square test to validate assumptions about character distributions.
+	 * This Experiment splits words found in a given position in the line from all
+	 * other words in the text. In the constructor, an optional flag can be passed
+	 * to skip first line of each paragraph; in addition, the position in the line
+	 * you are interested in must be provided. Finally, a flag is used to indicate
+	 * whether "unreadable" words should be considered or not.
 	 * 
-	 * This experiment compares words in a given position in the line with all other
-	 * words in the text. In the constructor, an optional flag can be passed to skip
-	 * first line of each paragraph; in addition, the position in the line you are
-	 * interested in must be provided. Finally, a flag is used to indicate whether
-	 * "unreadable" words should be considered or not.
-	 * 
-	 * Notice only the text in running paragraphs is considered. In addition, 
-	 * the position of words in line do not change if you decide to ignore the first word of each line.
+	 * Notice only the text in running paragraphs is considered. In addition, the
+	 * position of words in line do not change if you decide to ignore the first
+	 * word of each line.
 	 * 
 	 * @author Massimiliano "Maxi" Zattera
 	 *
 	 */
-	public static class WordInPositionInLine extends TwoSamplesCharDistributionTest {
+	public static class WordInPositionInLine extends Experiment {
 
 		private final boolean skipFirstLine;
 
@@ -380,7 +371,7 @@ public final class Experiments {
 			IvtffText paragraphs = ((IvtffText) txt).filterLines(LineFilter.PARAGRAPH_TEXT_FILTER);
 
 			if (skipFirstLine)
-				paragraphs = Experiments.filterLines(paragraphs, true, false);
+				paragraphs = Experiment.filterLines(paragraphs, true, false);
 
 			List<String> result = new ArrayList<>();
 			List<String> others = new ArrayList<>();
@@ -407,11 +398,9 @@ public final class Experiments {
 	}
 
 	/**
-	 * Uses Chi-Square test to validate assumptions about character distributions.
-	 * 
-	 * This experiment uses the class passed in the constructor to split the text.
-	 * Then it extracts only initial letter from words in each part. A TextString is
-	 * returned for each part, with all initials, without spaces.
+	 * This experiment first split the text using Experiment passed in constructor;
+	 * it then it extracts only initial letter from words in each part. A TextString
+	 * is returned for each part, with all initials, without spaces.
 	 * 
 	 * A flag in the constructor is used to indicate whether "unreadable" chars be
 	 * considered or not. Pay attention that this is NOT the same thing as ignoring
@@ -420,16 +409,16 @@ public final class Experiments {
 	 * @author Massimiliano "Maxi" Zattera
 	 *
 	 */
-	public static class Initials extends TwoSamplesCharDistributionTest {
+	public static class Initials extends Experiment {
 
-		private final TwoSamplesCharDistributionTest experiment;
+		private final Experiment experiment;
 
 		private final boolean readableOnly;
 
 		/**
 		 * @param readableOnly if true, consider only readable characters.
 		 */
-		public Initials(TwoSamplesCharDistributionTest experiment, boolean readableOnly) {
+		public Initials(Experiment experiment, boolean readableOnly) {
 			this.experiment = experiment;
 			this.readableOnly = readableOnly;
 		}
@@ -458,10 +447,8 @@ public final class Experiments {
 	}
 
 	/**
-	 * Uses Chi-Square test to validate assumptions about character distributions.
-	 * 
-	 * This experiment uses the class passed in the constructor to split the text.
-	 * Then it extracts only final letter from words in each part. A TextString is
+	 * This experiment first split the text using Experiment passed in constructor;
+	 * it then extracts only final letter from words in each part. A TextString is
 	 * returned for each part, with all finals, without spaces. Notice only regular
 	 * chars are considered.
 	 * 
@@ -472,16 +459,16 @@ public final class Experiments {
 	 * @author Massimiliano "Maxi" Zattera
 	 *
 	 */
-	public static class Finals extends TwoSamplesCharDistributionTest {
+	public static class Finals extends Experiment {
 
-		private final TwoSamplesCharDistributionTest experiment;
+		private final Experiment experiment;
 
 		private final boolean readableOnly;
 
 		/**
 		 * @param readableOnly if true, consider only readable characters.
 		 */
-		public Finals(TwoSamplesCharDistributionTest experiment, boolean readableOnly) {
+		public Finals(Experiment experiment, boolean readableOnly) {
 			this.experiment = experiment;
 			this.readableOnly = readableOnly;
 		}
@@ -510,11 +497,9 @@ public final class Experiments {
 	}
 
 	/**
-	 * Uses Chi-Square test to validate assumptions about character distributions.
-	 * 
-	 * This experiment first split the text using TwoSamplesCharDistributionTest
-	 * passed in constructor, it then replace the second part (the "population")
-	 * with "standard" population (see GetStandardWordsPopulation()).
+	 * This experiment first split the text using Experiment passed in constructor;
+	 * it then replace the second part (the "population") with "standard" population
+	 * (see GetStandardWordsPopulation()).
 	 * 
 	 * In addition, in the constructor, a flag is used to indicate whether
 	 * "unreadable" words should be considered part of the standard population or
@@ -528,9 +513,9 @@ public final class Experiments {
 	 * @author Massimiliano "Maxi" Zattera
 	 *
 	 */
-	public static class WithStandardPopulation extends TwoSamplesCharDistributionTest {
+	public static class WithStandardPopulation extends Experiment {
 
-		private final TwoSamplesCharDistributionTest experiment;
+		private final Experiment experiment;
 
 		private final boolean readableOnly;
 
@@ -538,7 +523,7 @@ public final class Experiments {
 		 * @param readableOnly if true, consider only the words that do not contain any
 		 *                     unreadable characters.
 		 */
-		public WithStandardPopulation(TwoSamplesCharDistributionTest experiment, boolean readableOnly) {
+		public WithStandardPopulation(Experiment experiment, boolean readableOnly) {
 			this.experiment = experiment;
 			this.readableOnly = readableOnly;
 		}
@@ -546,7 +531,7 @@ public final class Experiments {
 		@Override
 		public Text[] splitDocument(Text txt) {
 			return new Text[] { experiment.splitDocument(txt)[0], new TextString(
-					Experiments.getStandardWordsPopulation((IvtffText) txt, readableOnly), txt.getAlphabet()) };
+					Experiment.getStandardWordsPopulation((IvtffText) txt, readableOnly), txt.getAlphabet()) };
 		}
 
 	}
@@ -808,7 +793,7 @@ public final class Experiments {
 	 */
 	public static Counter<String> getStandardWordsPopulation(IvtffText txt, boolean readableOnly) {
 
-		List<Counter<String>> other = Experiments.getWordsByPosition(Experiments.filterLines(txt, true, false),
+		List<Counter<String>> other = Experiment.getWordsByPosition(Experiment.filterLines(txt, true, false),
 				readableOnly, 0, Integer.MAX_VALUE, true, true);
 		Counter<String> population = new Counter<>();
 		for (int i = 0; i < other.size(); ++i) {
@@ -1011,4 +996,10 @@ public final class Experiments {
 
 		return result;
 	}
+
+	/**
+	 * Split a document in two parts; these are the parts compared accordingly to
+	 * the rules for the experiment.
+	 */
+	public abstract Text[] splitDocument(Text doc);
 }

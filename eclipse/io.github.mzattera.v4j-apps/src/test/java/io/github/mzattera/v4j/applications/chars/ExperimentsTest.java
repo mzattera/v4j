@@ -12,6 +12,7 @@ import java.util.Map.Entry;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import io.github.mzattera.v4j.experiment.Experiment;
 import io.github.mzattera.v4j.text.Text;
 import io.github.mzattera.v4j.text.ivtff.IvtffLine;
 import io.github.mzattera.v4j.text.ivtff.IvtffText;
@@ -80,7 +81,7 @@ public final class ExperimentsTest {
 	@Test
 	@DisplayName("Experiments.FirstLineInPage().splitDocument()")
 	public void FirstLineInPage() throws Exception {
-		Text[] splitted = new Experiments.FirstLineInPage().splitDocument(INPUT);
+		Text[] splitted = new Experiment.FirstLineInPage().splitDocument(INPUT);
 		test((IvtffText) splitted[0],
 				new String[][] { { "faCys", "ykal", "ar", "ataJn", "Sol", "Sory", "Tres", "y", "kor", "Soldy" } });
 		test((IvtffText) splitted[1],
@@ -98,7 +99,7 @@ public final class ExperimentsTest {
 	@Test
 	@DisplayName("Experiments.FirstLineInParagraph(TRUE).splitDocument()")
 	public void FirstLineInParagraphT() throws Exception {
-		Text[] splitted = new Experiments.FirstLineInParagraph(true).splitDocument(INPUT);
+		Text[] splitted = new Experiment.FirstLineInParagraph(true).splitDocument(INPUT);
 		test((IvtffText) splitted[0],
 				new String[][] { { "ykal", "ar", "ataJn", "Sol", "Sory", "Tres", "y", "kor", "Soldy" },
 						{ "odar", "sy", "Sol", "Poy", "oydar", "S", "s", "FoaJn", "Sodary" },
@@ -116,7 +117,7 @@ public final class ExperimentsTest {
 	@Test
 	@DisplayName("Experiments.FirstLineInParagraph(FALSE).splitDocument()")
 	public void FirstLineInParagraphF() throws Exception {
-		Text[] splitted = new Experiments.FirstLineInParagraph(false).splitDocument(INPUT);
+		Text[] splitted = new Experiment.FirstLineInParagraph(false).splitDocument(INPUT);
 		test((IvtffText) splitted[0],
 				new String[][] { { "faCys", "ykal", "ar", "ataJn", "Sol", "Sory", "Tres", "y", "kor", "Soldy" },
 						{ "?", "odar", "sy", "Sol", "Poy", "oydar", "S", "s", "FoaJn", "Sodary" },
@@ -134,7 +135,7 @@ public final class ExperimentsTest {
 	@Test
 	@DisplayName("Experiments.FirstWordInParagraph().splitDocument() TRUE")
 	public void FirstWordInParagraphT() throws Exception {
-		Text[] splitted = new Experiments.FirstWordInParagraph(true).splitDocument(INPUT);
+		Text[] splitted = new Experiment.FirstWordInParagraph(true).splitDocument(INPUT);
 		test(splitted[0], new String[] { "faCys", "Po" });
 		testCount(splitted[1], new String[] { "ykal", "ar", "ataJn", "Sol", "Sory", "Tres", "y", "kor", "Soldy", "Kar",
 				"or", "y", "kair", "CtaJn", "Sar", "are", "Tar", "Tar", "dan", "syaJr", "Seky", "or", "Sod", "Toary",
@@ -147,7 +148,7 @@ public final class ExperimentsTest {
 	@Test
 	@DisplayName("Experiments.FirstWordInParagraph().splitDocument( FALSE)")
 	public void FirstWordInParagraphF() throws Exception {
-		Text[] splitted = new Experiments.FirstWordInParagraph(false).splitDocument(INPUT);
+		Text[] splitted = new Experiment.FirstWordInParagraph(false).splitDocument(INPUT);
 		test(splitted[0], new String[] { "faCys", "?", "?", "Po" });
 		testCount(splitted[1],
 				new String[] { "ykal", "ar", "ataJn", "Sol", "Sory", "Tres", "y", "kor", "Soldy", "?ory", "Kar", "or",
@@ -162,7 +163,7 @@ public final class ExperimentsTest {
 	@Test
 	@DisplayName("Experiments.LastLineInParagraph().splitDocument()")
 	public void LastLineInParagraph() throws Exception {
-		Text[] splitted = new Experiments.LastLineInParagraph().splitDocument(INPUT);
+		Text[] splitted = new Experiment.LastLineInParagraph().splitDocument(INPUT);
 		test((IvtffText) splitted[0],
 				new String[][] { { "syaJr", "Seky", "or", "yka??Jn", "Sod", "Toary", "Tes", "daraJn", "sy" },
 						{ "daJn", "Sos", "Fol", "Sody" }, { "Sok", "Cor", "Cey", "dain", "Key" },
@@ -179,7 +180,7 @@ public final class ExperimentsTest {
 	@Test
 	@DisplayName("Experiments.FirstWordInLine(FALSE, TRUE).splitDocument()")
 	public void FirstWordInLineFT() throws Exception {
-		Text[] splitted = new Experiments.FirstWordInLine(false, true).splitDocument(INPUT);
+		Text[] splitted = new Experiment.FirstWordInLine(false, true).splitDocument(INPUT);
 		testCount(splitted[0], new String[] { "faCys", "syaJr", "ySey", "daJn", "dCar", "Sok", "Po" });
 		testCount(splitted[1],
 				new String[] { "ykal", "ar", "ataJn", "Sol", "Sory", "Tres", "y", "kor", "Soldy", "Kar", "or", "y",
@@ -193,7 +194,7 @@ public final class ExperimentsTest {
 	@Test
 	@DisplayName("Experiments.FirstWordInLine(TRUE, FALSE).splitDocument() FALSE")
 	public void FirstWordInLineTF() throws Exception {
-		Text[] splitted = new Experiments.FirstWordInLine(true, false).splitDocument(INPUT);
+		Text[] splitted = new Experiment.FirstWordInLine(true, false).splitDocument(INPUT);
 		testCount(splitted[0], new String[] { "?ory", "syaJr", "ySey", "daJn", "dCar", "Sok" });
 		testCount(splitted[1],
 				new String[] { "Kar", "or", "y", "kair", "CtaJn", "Sar", "are", "Tar", "Tar", "dan", "Seky", "or",
@@ -205,7 +206,7 @@ public final class ExperimentsTest {
 	@Test
 	@DisplayName("Experiments.LastWordInLine(FALSE, TRUE).splitDocument()")
 	public void LastWordInLineFT() throws Exception {
-		Text[] splitted = new Experiments.LastWordInLine(false, true).splitDocument(INPUT);
+		Text[] splitted = new Experiment.LastWordInLine(false, true).splitDocument(INPUT);
 		testCount(splitted[0], new String[] { "Soldy", "dan", "sy", "Sodary", "kos", "Sody", "Podales", "Key", });
 		testCount(splitted[1],
 				new String[] { "faCys", "ykal", "ar", "ataJn", "Sol", "Sory", "Tres", "y", "kor", "Kar", "or", "y",
@@ -219,7 +220,7 @@ public final class ExperimentsTest {
 	@Test
 	@DisplayName("Experiments.LastWordInLine(TRUE, FALSE).splitDocument()")
 	public void LastWordInLineTF() throws Exception {
-		Text[] splitted = new Experiments.LastWordInLine(true, false).splitDocument(INPUT);
+		Text[] splitted = new Experiment.LastWordInLine(true, false).splitDocument(INPUT);
 		testCount(splitted[0], new String[] { "dan", "sy", "kos", "Sody", "d?o?ta", "Key" });
 		testCount(splitted[1],
 				new String[] { "?ory", "Kar", "or", "y", "kair", "CtaJn", "Sar", "are", "Tar", "Tar", "syaJr", "Seky",
@@ -231,7 +232,7 @@ public final class ExperimentsTest {
 	@Test
 	@DisplayName("Experiments.WordInPositionInLine(3, FALSE, FALSE, FALSE)")
 	public void WordInPositionInLine3FFF() throws Exception {
-		Text[] splitted = new Experiments.WordInPositionInLine(3, false, false, false).splitDocument(INPUT);
+		Text[] splitted = new Experiment.WordInPositionInLine(3, false, false, false).splitDocument(INPUT);
 		testCount(splitted[0],
 				new String[] { "ataJn", "y", "yka??Jn", "Sol", "otCol", "Sody", "ol", "Cey", "dain", "Col" });
 		testCount(splitted[1], new String[] { "faCys", "ykal", "ar", "Sol", "Sory", "Tres", "y", "kor", "Soldy", "?ory",
@@ -245,7 +246,7 @@ public final class ExperimentsTest {
 	@Test
 	@DisplayName("Experiments.WordInPositionInLine(3, FALSE, FALSE, TRUE)")
 	public void WordInPositionInLine3FFT() throws Exception {
-		Text[] splitted = new Experiments.WordInPositionInLine(3, false, false, true).splitDocument(INPUT);
+		Text[] splitted = new Experiment.WordInPositionInLine(3, false, false, true).splitDocument(INPUT);
 		testCount(splitted[0], new String[] { "ataJn", "y", "Sol", "otCol", "Sody", "ol", "Cey", "dain", "Col" });
 		testCount(splitted[1],
 				new String[] { "faCys", "ykal", "ar", "Sol", "Sory", "Tres", "y", "kor", "Soldy", "Kar", "or", "kair",
@@ -259,7 +260,7 @@ public final class ExperimentsTest {
 	@Test
 	@DisplayName("Experiments.WordInPositionInLine(6, FALSE, FALSE, FALSE)")
 	public void WordInPositionInLine6FFF() throws Exception {
-		Text[] splitted = new Experiments.WordInPositionInLine(6, false, false, false).splitDocument(INPUT);
+		Text[] splitted = new Experiment.WordInPositionInLine(6, false, false, false).splitDocument(INPUT);
 		testCount(splitted[0], new String[] { "Tres", "Sar", "Tes", "S", "dain", "ytain", "Tols", "pydEy" });
 		testCount(splitted[1],
 				new String[] { "faCys", "ykal", "ar", "ataJn", "Sol", "Sory", "y", "kor", "Soldy", "?ory", "Kar", "or",
@@ -274,7 +275,7 @@ public final class ExperimentsTest {
 	@Test
 	@DisplayName("Experiments.WordInPositionInLine(6, FALSE, FALSE, FALSE)")
 	public void WordInPositionInLine6TTF() throws Exception {
-		Text[] splitted = new Experiments.WordInPositionInLine(6, true, true, false).splitDocument(INPUT);
+		Text[] splitted = new Experiment.WordInPositionInLine(6, true, true, false).splitDocument(INPUT);
 		testCount(splitted[0], new String[] { "Sar", "Tes", "dain", "Tols", });
 		testCount(splitted[1], new String[] { "Kar", "or", "y", "kair", "CtaJn", "are", "Tar", "Tar", "dan", "Seky",
 				"or", "yka??Jn", "Sod", "Toary", "daraJn", "sy", "Sody", "okCoy", "otCol", "CoTy", "osCy", "Cor", "kos",
@@ -284,7 +285,7 @@ public final class ExperimentsTest {
 	@Test
 	@DisplayName("Experiments.WithStandardPopulation(TRUE): First Word in line ")
 	public void WithStandardPopulationT() throws Exception {
-		Text[] splitted = new Experiments.WithStandardPopulation(new Experiments.FirstWordInLine(false, true), true)
+		Text[] splitted = new Experiment.WithStandardPopulation(new Experiment.FirstWordInLine(false, true), true)
 				.splitDocument(INPUT);
 		testCount(splitted[0], new String[] { "faCys", "syaJr", "ySey", "daJn", "dCar", "Sok", "Po" });
 		testCount(splitted[1],
@@ -296,7 +297,7 @@ public final class ExperimentsTest {
 	@Test
 	@DisplayName("Experiments.WithStandardPopulation(FALSE): First Word in line ")
 	public void WithStandardPopulationF() throws Exception {
-		Text[] splitted = new Experiments.WithStandardPopulation(new Experiments.FirstWordInLine(false, false), false)
+		Text[] splitted = new Experiment.WithStandardPopulation(new Experiment.FirstWordInLine(false, false), false)
 				.splitDocument(INPUT);
 		testCount(splitted[0],
 				new String[] { "faCys", "?ory", "syaJr", "?", "ySey", "daJn", "?", "dCar", "Sok", "Po" });
@@ -309,7 +310,7 @@ public final class ExperimentsTest {
 	@Test
 	@DisplayName("Experiments.Initials(TRUE): FirstWordInLine(false, false)")
 	public void InitialsT() throws Exception {
-		Text[] splitted = new Experiments.Initials(new Experiments.FirstWordInLine(false, false), true)
+		Text[] splitted = new Experiment.Initials(new Experiment.FirstWordInLine(false, false), true)
 				.splitDocument(INPUT);
 		test(splitted[0], new String[] { "fsyddSP" });
 		test(splitted[1],
@@ -319,7 +320,7 @@ public final class ExperimentsTest {
 	@Test
 	@DisplayName("Experiments.Initials(FALSE): FirstWordInLine(false, false)")
 	public void InitialsF() throws Exception {
-		Text[] splitted = new Experiments.Initials(new Experiments.FirstWordInLine(false, false), false)
+		Text[] splitted = new Experiment.Initials(new Experiment.FirstWordInLine(false, false), false)
 				.splitDocument(INPUT);
 		test(splitted[0], new String[] { "f?s?yd?dSP" });
 		test(splitted[1],
@@ -329,7 +330,7 @@ public final class ExperimentsTest {
 	@Test
 	@DisplayName("Experiments.Finals(TRUE): LastWordInLine(false, false)")
 	public void FinalsT() throws Exception {
-		Text[] splitted = new Experiments.Finals(new Experiments.LastWordInLine(false, false), true)
+		Text[] splitted = new Experiment.Finals(new Experiment.LastWordInLine(false, false), true)
 				.splitDocument(INPUT);
 		test(splitted[0], new String[] { "ynyysysay" });
 		test(splitted[1], new String[] { "slrnlysyryrryrnrerrryrndysnrylyrSsnyyylyynrnslnnlsynyrnryylskrynonylyyyyo" });
@@ -338,7 +339,7 @@ public final class ExperimentsTest {
 	@Test
 	@DisplayName("Experiments.Finals(FALSE): LastWordInLine(false, false)")
 	public void FinalsF() throws Exception {
-		Text[] splitted = new Experiments.Finals(new Experiments.LastWordInLine(false, false), false)
+		Text[] splitted = new Experiment.Finals(new Experiment.LastWordInLine(false, false), false)
 				.splitDocument(INPUT);
 		test(splitted[0], new String[] { "ynyysysay?" });
 		test(splitted[1],
@@ -381,6 +382,7 @@ public final class ExperimentsTest {
 	/**
 	 * Debug if something goes wrong.
 	 */
+	@SuppressWarnings("unused")
 	private void compareCount(Text text, String[] strings) {
 		Counter<String> test = new Counter<>(strings);
 		Counter<String> words = text.getWords(false);

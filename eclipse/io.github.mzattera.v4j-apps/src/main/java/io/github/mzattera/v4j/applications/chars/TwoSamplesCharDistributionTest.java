@@ -6,7 +6,9 @@ package io.github.mzattera.v4j.applications.chars;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.mzattera.v4j.applications.chars.ChiSquared.CharDistribution;
+import io.github.mzattera.v4j.experiment.ChiSquared;
+import io.github.mzattera.v4j.experiment.Experiment;
+import io.github.mzattera.v4j.experiment.ChiSquared.CharDistribution;
 import io.github.mzattera.v4j.text.Text;
 import io.github.mzattera.v4j.text.alphabet.Alphabet;
 import io.github.mzattera.v4j.text.ivtff.IvtffText;
@@ -18,14 +20,11 @@ import io.github.mzattera.v4j.text.ivtff.VoynichFactory.TranscriptionType;
 import io.github.mzattera.v4j.text.txt.TextString;
 
 /**
- * This is a super class for a set of experiments that use Chi-Square test to
- * validate assumptions about character distributions.
- * 
- * Each experiment divides a text in two parts, accordingly some rules, then it
- * checks whether the distribution of characters is significantly different
- * across the two parts using Chi-Square test. Each subclass implements a
- * different way of splitting the text (see Note 010
- * (https://mzattera.github.io/v4j/010/)).
+ * This class performs several experiments. Each experiment divides a text in
+ * two parts, accordingly some rules, then it checks whether the distribution of
+ * characters is significantly different across the two parts using Chi-Square
+ * test. Each subclass implements a different way of splitting the text (see
+ * Note 010 (https://mzattera.github.io/v4j/010/)).
  * 
  * This class <code>main()</code> method executes a set of tests defined in the
  * <code>Experiments</code> class and generates a table highlighting
@@ -83,15 +82,15 @@ public abstract class TwoSamplesCharDistributionTest {
 			IvtffText voynich = VoynichFactory.getDocument(TRANSCRIPTION, TRANSCRIPTION_TYPE, ALPHABET);
 
 			System.out.print("[ First line in page      ];\n");
-			new Experiments.FirstLineInPage().process(voynich);
+			process(voynich, new Experiment.FirstLineInPage());
 			System.out.print("\n\n[ First line in paragraph ];\n");
-			new Experiments.FirstLineInParagraph(false).process(voynich);
+			process(voynich, new Experiment.FirstLineInParagraph(false));
 			System.out.print("\n\n[ Last line in paragraph  ];\n");
-			new Experiments.LastLineInParagraph().process(voynich);
+			process(voynich, new Experiment.LastLineInParagraph());
 			System.out.print("\n\n[ First letter in a line  ];\n");
-			new Experiments.Initials(new Experiments.FirstWordInLine(false, false), true).process(voynich);
+			process(voynich, new Experiment.Initials(new Experiment.FirstWordInLine(false, false), true));
 			System.out.print("\n\n[ Last letter in a line   ];\n");
-			new Experiments.Finals(new Experiments.LastWordInLine(false, false), true).process(voynich);
+			process(voynich, new Experiment.Finals(new Experiment.LastWordInLine(false, false), true));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -104,7 +103,7 @@ public abstract class TwoSamplesCharDistributionTest {
 	 * Execute this experiment using given text. The experiment runs separately for
 	 * each cluster.
 	 */
-	public void process(IvtffText doc) {
+	private static void process(IvtffText doc, Experiment experiment) {
 
 		char[] chars;
 		if (doc.getAlphabet().getCodeString().equals(Alphabet.SLOT.getCodeString())) {
@@ -126,7 +125,7 @@ public abstract class TwoSamplesCharDistributionTest {
 
 // TEST			IvtffText clusterText = doc.filterPages(new PageFilter.Builder().cluster(cluster).build()).shuffledText();
 			IvtffText clusterText = doc.filterPages(new PageFilter.Builder().cluster(cluster).build());
-			processCluster(cluster, clusterText, COMPACT);
+			processCluster(cluster, clusterText, COMPACT, experiment);
 
 			System.out.println();
 		} // For each cluster
@@ -139,10 +138,12 @@ public abstract class TwoSamplesCharDistributionTest {
 	 * @param clusterText Text to process.
 	 * @param compact     If true, print a compact version of the distribution
 	 *                    table.
+	 * @param experiment
 	 * @return Two lists, with characters appearing more and less than they should,
 	 *         based on chi-squared text and ALPHA.
 	 */
-	public List<Character>[] processCluster(String cluster, IvtffText clusterText, boolean compact) {
+	public static List<Character>[] processCluster(String cluster, IvtffText clusterText, boolean compact,
+			Experiment experiment) {
 
 		@SuppressWarnings("unchecked")
 		List<Character>[] result = new ArrayList[2];
@@ -163,7 +164,7 @@ public abstract class TwoSamplesCharDistributionTest {
 		// Creates an "adjusted" distribution for the whole text, where each bin is big
 		// enough for chi-square
 		// (merges smaller bins together)
-		Text[] parts = splitDocument(clusterText);
+		Text[] parts = experiment.splitDocument(clusterText);
 		// We look into char distribution of the two parts together, since
 		// splitDocument()
 		// might not return the whole clusterText. This is the only way to ensure
@@ -254,10 +255,4 @@ public abstract class TwoSamplesCharDistributionTest {
 
 		return result;
 	}
-
-	/**
-	 * Split a document in two parts; these are the parts compared accordingly to
-	 * the rules for the experiment.
-	 */
-	public abstract Text[] splitDocument(Text doc);
 }

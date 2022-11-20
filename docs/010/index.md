@@ -25,24 +25,20 @@ This note looks into it, using for the first time the
 [Slot transcription](https://github.com/mzattera/v4j/blob/master/eclipse/io.github.mzattera.v4j/src/main/resources/Transcriptions/Interlinear_slot_ivtff_1.5.txt).
 
 **Unless differently indicated, the rest of this note uses the [Slot alphabet](../alphabet) when quoting Voynich text.** 
-Please notice that lowercase letters represent same characters both in EVA and Slot alphabets; uppercase letters used in the Slot alphabet represent groups of
-characters in EVA (e.g., 'qoCey' in Slot corresponds to 'qochey' in EVA).
 
 # Methodology
 
 In this note I will show the result of several experiments. In each experiment, the text of the Voynich is split into two parts,
-for example first lines of every paragraph will form the first part of text, whilst the other lines are in the second part;
+for example initial lines of every paragraph will form the first part of text, whilst the other lines will be in the second part;
 the character distribution of the two parts is compared using a chi-squared test, where each "bin " is a character.
 If the test shows a statistically significant variation, then each character is tested individually (again, using a chi-squared test),
 to highlight which characters behave differently in the two parts of the text.
 
 In all experiments, a [concordance version](https://github.com/mzattera/v4j/blob/master/eclipse/io.github.mzattera.v4j/src/main/resources/Transcriptions/Interlinear_slot_ivtff_1.5.txt)
 of the Voynich in the Slot alphabet is used; only text appearing in paragraphs is considered (IVTFF locus type = P0 or P1).
-The experiments are done separately for each [cluster](../003);.
+The experiments are done separately for each [cluster](../003).
 
 The set of experiments is as follows:
-
-*** Ricontrolla che le definizioni qui sotto siano giuste ***
 
   * First line in page - first lines of pages are compared with the rest of the text.
   * First line in paragraph - first lines of paragraphs are compared with the rest of the text.
@@ -50,12 +46,10 @@ The set of experiments is as follows:
   * First letter in a line - initial character of first word in a line is compared with initial characters of all other words.
   * Last letter in a line - final character of last word in a line is compared with last characters of all other words.
 
+*** FAI UN TEST DEI METODI STATICI IN EXPERIMENTS (I TEST PER LE SINGOLE CLASSI ESISTONO tranne che per WordInPositionInLine) ***
 *** FAI UN TEST DEL BINNING USATO PER I TEST ***
-*** FAI UN TEST DEI METODI STATICI IN EXPERIMENTS (I TEST PER LE SINGOLE CLASSI ESISTONO) ***
 
 The results are shown in the below table[{1}](#Note1)[{2}](#Note2):
-
-** PRENDI L ULTIMA VERSIONE PE RLO SCREENSHOT **
 
 ![Summary table of anomalies in char distribution](images/SummaryTable.PNG)
 
@@ -74,14 +68,14 @@ and the anomalies in distribution disappeared.
   One example (of char statistics) is found in D'Imperio (1978) (see note 4), Fig. 28 on p.106, from several sources but none covering the entire MS text.
 
 
-## Lenght & Interesting
+## Lenght & Interesting -> METTI IN UNA NUOVA NOTA
 
-Here or in another note study lenght and number of intersting words.
+Study lenght and number of intersting words.
 For interesting words, add also "last line of paragraph" to the study, similar to what we did with last word....count from the end.
 
 
 
-## Removing Characters from beginning of Words
+## Removing Characters from beginning of Words -> METTI IN UNA NUOVA NOTA, la stessa di cui sopra
 
 In previous works about character distribution, one theory or another has been pitched by claiming something like:
 "character X appears in this place, but if we remove it, we obtain another word that appears somewhere else in the Voynich".
@@ -102,10 +96,12 @@ This criteria, though if it might make some sense, should thus taken with a grai
 and that the occurrence of certain symbols is governed by the position of a ‘word’ in a line":
 
   1. "The frequency counts of the beginnings and endings of lines are markedly different from the counts of the same characters internally".
+  -> See below
 
   2. "The ends of the lines contain what seem to be, in many cases, meaningless symbols:
 	little groups of letters which don’t occur anywhere else, and just look as if they were
 	added to fill out the line to the margin".
+  -> See below
 	
   3. "In \[the herbal material and of the biological material\] ... there is not one single case of a repeat going over the end of a line to
 	the beginning of the next".
@@ -143,7 +139,7 @@ Words starting with pedestalled gallows are more rare and distributed more or le
 
 75-95% of first words in paragraphs start with a (pedestalled) gallows.
 
-p, f, P, F appear almost exclusively in first line of a paragraph; p and f, when appearing in the first word; are almost always initials.
+p, f, P, F appear almost exclusively in first line of a paragraph; p and f, when appearing in the first word, are almost always initials.
 
 Other (pedestalled) gallows tend to not appear as word initials.
 
@@ -250,6 +246,9 @@ appear elsewhere too, but the predominance in top lines of paragraphs is very st
 [TILTMAN (1967)](../biblio.md) 'y' occurs quite frequently as the initial symbol of a line followed immediately by a combination of symbols which seem
 to be happy without it in any part of a line away from the beginning (d).
   
+[CURRIER (1976)](../biblio.md) "functional entity":
+  1. "The frequency counts of the beginnings and endings of lines are markedly different from the counts of the same characters internally".
+  
 [CURRIER (1976)](../biblio.md)
   * The 'ligatures' [ cKh cTh cFh cPh ] can never occur as paragraph initial, and almost never line initial.
   
@@ -276,8 +275,9 @@ aiin aiin, ol ol, and or or are replaced with saiin saiin, sol sol, and sor sor.
 
 [TILTMAN (1967)](../biblio.md) 'm' appears most commonly at the end of a line, rarely elsewhere (b).
 
-[CURRIER (1976)](../biblio.md) advocated the idea of the line, when the text is running linearly, being a "functional entity",
-based on the below considerations:
+[CURRIER (1976)](../biblio.md) "functional entity",
+  
+  1. "The frequency counts of the beginnings and endings of lines are markedly different from the counts of the same characters internally".
 
   2. There is, for instance, one symbol that, while it does occur elsewhere, occurs at the
 	end of the last ‘words’ of lines 85% of the time".

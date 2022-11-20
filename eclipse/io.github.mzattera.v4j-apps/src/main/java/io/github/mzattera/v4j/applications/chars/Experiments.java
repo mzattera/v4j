@@ -341,7 +341,8 @@ public final class Experiments {
 	 * interested in must be provided. Finally, a flag is used to indicate whether
 	 * "unreadable" words should be considered or not.
 	 * 
-	 * Notice only the text in running paragraphs is considered.
+	 * Notice only the text in running paragraphs is considered. In addition, 
+	 * the position of words in line do not change if you decide to ignore the first word of each line.
 	 * 
 	 * @author Massimiliano "Maxi" Zattera
 	 *
@@ -358,9 +359,10 @@ public final class Experiments {
 
 		/**
 		 * 
-		 * @param skipFirstLine If true, skip first line of paragraphs.
-		 * @param readableOnly  if true, consider only the words that do not contain any
-		 *                      unreadable characters.
+		 * @param skipFirstLine       If true, skip first line of paragraphs.
+		 * @param skipFirstWordInLine If true, skip first word in each line.
+		 * @param readableOnly        if true, consider only the words that do not
+		 *                            contain any unreadable characters.
 		 */
 		public WordInPositionInLine(int position, boolean skipFirstLine, boolean skipFirstWordInLine,
 				boolean readableOnly) {
@@ -380,18 +382,22 @@ public final class Experiments {
 			if (skipFirstLine)
 				paragraphs = Experiments.filterLines(paragraphs, true, false);
 
-			List<Counter<String>> words = getWordsByPosition((IvtffText) txt, readableOnly, 0, Integer.MAX_VALUE,
-					skipFirstWordInLine, false);
-
-			List<String> result = new ArrayList<>(words.get(position).itemSet());
+			List<String> result = new ArrayList<>();
 			List<String> others = new ArrayList<>();
 
-			for (int i = 0; i < words.size() - 1; ++i) {
-				if (i == position)
-					continue; // we already have this
-				for (Counter<String> c : words)
-					for (String w : c.itemSet())
-						others.add(w);
+			for (IvtffPage p : paragraphs.getElements()) {
+				for (IvtffLine l : p.getElements()) {
+					String[] w = l.splitWords();
+					for (int i = (skipFirstWordInLine ? 1 : 0); i < w.length; ++i) {
+						if (!readableOnly || !a.isUnreadable(w[i])) {
+							if (i == position)
+								result.add(w[i]);
+							else
+								others.add(w[i]);
+						}
+					}
+
+				}
 			}
 
 			char space = a.getSpace();

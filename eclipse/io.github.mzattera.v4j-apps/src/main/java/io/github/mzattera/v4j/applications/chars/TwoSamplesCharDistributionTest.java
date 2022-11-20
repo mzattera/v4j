@@ -62,7 +62,7 @@ public abstract class TwoSamplesCharDistributionTest {
 	private static final double ALPHA2 = 0.05d;
 
 	/** Compact output */
-	private static final boolean COMPACT = true;
+	private static final boolean COMPACT = false;
 
 	protected TwoSamplesCharDistributionTest() {
 	}
@@ -90,11 +90,8 @@ public abstract class TwoSamplesCharDistributionTest {
 			new Experiments.LastLineInParagraph().process(voynich);
 			System.out.print("\n\n[ First letter in a line  ];\n");
 			new Experiments.Initials(new Experiments.FirstWordInLine(false, false), true).process(voynich);
-
-//			IvtffText voynich = new IvtffText(new File("D:\\Voynich_normalized.txt"));
-//			new Experiments.Initials(
-//					new Experiments.WithStandardPopulation(new Experiments.FirstWordInLine(true, true), true), true)
-//					.process(voynich);
+			System.out.print("\n\n[ Last letter in a line   ];\n");
+			new Experiments.Finals(new Experiments.LastWordInLine(false, false), true).process(voynich);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -142,7 +139,7 @@ public abstract class TwoSamplesCharDistributionTest {
 	 * @param clusterText Text to process.
 	 * @param compact     If true, print a compact version of the distribution
 	 *                    table.
-	 * @return Two list, with characters appearing more and less than they should,
+	 * @return Two lists, with characters appearing more and less than they should,
 	 *         based on chi-squared text and ALPHA.
 	 */
 	public List<Character>[] processCluster(String cluster, IvtffText clusterText, boolean compact) {

@@ -232,99 +232,53 @@ public final class ExperimentsTest {
 	@DisplayName("Experiments.WordInPositionInLine(3, FALSE, FALSE, FALSE)")
 	public void WordInPositionInLine3FFF() throws Exception {
 		Text[] splitted = new Experiments.WordInPositionInLine(3, false, false, false).splitDocument(INPUT);
-		testCount(splitted[0], new String[] { "ataJn", "y", "yka??Jn",
-
-				"Sol", "otCol", "Sody",
-
-				"ol", "Cey", "dain",
-
-				"Col" });
-
-		testCount(splitted[1],
-				new String[] { "faCys", "ykal", "ar", "Sol", "Sory", "Tres", "y", "kor", "Soldy", "?ory", "Kar", "or",
-						"kair", "CtaJn", "Sar", "are", "Tar", "Tar", "dan", "syaJr", "Seky", "or", "Sod", "Toary",
-						"Tes", "daraJn", "sy",
-
-						"?", "odar", "sy", "Poy", "oydar", "S", "s", "FoaJn", "Sodary", "ySey", "Sody", "okCoy", "CoTy",
-						"osCy", "dain", "Cor", "kos", "daJn", "Sos", "Fol",
-
-						"?", "ydain", "PesaJn", "s", "Pey", "ytain", "SoSy", "Podales", "dCar", "STaJn", "okaJr", "?Cy",
-						"potol", "Tols", "d?o?ta", "Sok", "Cor", "Cey", "Key",
-
-						"Po", "SaJn", "SokCEy", "tSodEsy", "Sey", "pydEy", "Cy", "ro", "d?" });
+		testCount(splitted[0],
+				new String[] { "ataJn", "y", "yka??Jn", "Sol", "otCol", "Sody", "ol", "Cey", "dain", "Col" });
+		testCount(splitted[1], new String[] { "faCys", "ykal", "ar", "Sol", "Sory", "Tres", "y", "kor", "Soldy", "?ory",
+				"Kar", "or", "kair", "CtaJn", "Sar", "are", "Tar", "Tar", "dan", "syaJr", "Seky", "or", "Sod", "Toary",
+				"Tes", "daraJn", "sy", "?", "odar", "sy", "Poy", "oydar", "S", "s", "FoaJn", "Sodary", "ySey", "Sody",
+				"okCoy", "CoTy", "osCy", "dain", "Cor", "kos", "daJn", "Sos", "Fol", "?", "ydain", "PesaJn", "s", "Pey",
+				"ytain", "SoSy", "Podales", "dCar", "STaJn", "okaJr", "?Cy", "potol", "Tols", "d?o?ta", "Sok", "Cor",
+				"Cey", "Key", "Po", "SaJn", "SokCEy", "tSodEsy", "Sey", "pydEy", "Cy", "ro", "d?" });
 	}
 
 	@Test
 	@DisplayName("Experiments.WordInPositionInLine(3, FALSE, FALSE, TRUE)")
 	public void WordInPositionInLine3FFT() throws Exception {
 		Text[] splitted = new Experiments.WordInPositionInLine(3, false, false, true).splitDocument(INPUT);
-		testCount(splitted[0], new String[] { "ataJn", "y",
-
-				"Sol", "otCol", "Sody",
-
-				"ol", "Cey", "dain",
-
-				"Col" });
-
+		testCount(splitted[0], new String[] { "ataJn", "y", "Sol", "otCol", "Sody", "ol", "Cey", "dain", "Col" });
 		testCount(splitted[1],
 				new String[] { "faCys", "ykal", "ar", "Sol", "Sory", "Tres", "y", "kor", "Soldy", "Kar", "or", "kair",
 						"CtaJn", "Sar", "are", "Tar", "Tar", "dan", "syaJr", "Seky", "or", "Sod", "Toary", "Tes",
-						"daraJn", "sy",
-
-						"odar", "sy", "Poy", "oydar", "S", "s", "FoaJn", "Sodary", "ySey", "Sody", "okCoy", "CoTy",
-						"osCy", "dain", "Cor", "kos", "daJn", "Sos", "Fol",
-
-						"ydain", "PesaJn", "s", "Pey", "ytain", "SoSy", "Podales", "dCar", "STaJn", "okaJr", "potol",
-						"Tols", "Sok", "Cor", "Cey", "Key",
-
-						"Po", "SaJn", "SokCEy", "tSodEsy", "Sey", "pydEy", "Cy", "ro" });
+						"daraJn", "sy", "odar", "sy", "Poy", "oydar", "S", "s", "FoaJn", "Sodary", "ySey", "Sody",
+						"okCoy", "CoTy", "osCy", "dain", "Cor", "kos", "daJn", "Sos", "Fol", "ydain", "PesaJn", "s",
+						"Pey", "ytain", "SoSy", "Podales", "dCar", "STaJn", "okaJr", "potol", "Tols", "Sok", "Cor",
+						"Cey", "Key", "Po", "SaJn", "SokCEy", "tSodEsy", "Sey", "pydEy", "Cy", "ro" });
 	}
 
 	@Test
 	@DisplayName("Experiments.WordInPositionInLine(6, FALSE, FALSE, FALSE)")
 	public void WordInPositionInLine6FFF() throws Exception {
 		Text[] splitted = new Experiments.WordInPositionInLine(6, false, false, false).splitDocument(INPUT);
-		testCount(splitted[0], new String[] { "Tres", "Sar", "Tes",
-
-				"S", "dain",
-
-				"ytain", "Tols",
-
-				"pydEy" });
-
+		testCount(splitted[0], new String[] { "Tres", "Sar", "Tes", "S", "dain", "ytain", "Tols", "pydEy" });
 		testCount(splitted[1],
 				new String[] { "faCys", "ykal", "ar", "ataJn", "Sol", "Sory", "y", "kor", "Soldy", "?ory", "Kar", "or",
 						"y", "kair", "CtaJn", "are", "Tar", "Tar", "dan", "syaJr", "Seky", "or", "yka??Jn", "Sod",
-						"Toary", "daraJn", "sy",
-
-						"?", "odar", "sy", "Sol", "Poy", "oydar", "s", "FoaJn", "Sodary", "ySey", "Sody", "okCoy",
-						"otCol", "CoTy", "osCy", "Cor", "kos", "daJn", "Sos", "Fol", "Sody",
-
+						"Toary", "daraJn", "sy", "?", "odar", "sy", "Sol", "Poy", "oydar", "s", "FoaJn", "Sodary",
+						"ySey", "Sody", "okCoy", "otCol", "CoTy", "osCy", "Cor", "kos", "daJn", "Sos", "Fol", "Sody",
 						"?", "ydain", "PesaJn", "ol", "s", "Pey", "SoSy", "Podales", "dCar", "STaJn", "okaJr", "Cey",
-						"?Cy", "potol", "d?o?ta", "Sok", "Cor", "Cey", "dain", "Key",
-
-						"Po", "SaJn", "SokCEy", "Col", "tSodEsy", "Sey", "Cy", "ro", "d?" });
+						"?Cy", "potol", "d?o?ta", "Sok", "Cor", "Cey", "dain", "Key", "Po", "SaJn", "SokCEy", "Col",
+						"tSodEsy", "Sey", "Cy", "ro", "d?" });
 	}
 
 	@Test
 	@DisplayName("Experiments.WordInPositionInLine(6, FALSE, FALSE, FALSE)")
 	public void WordInPositionInLine6TTF() throws Exception {
 		Text[] splitted = new Experiments.WordInPositionInLine(6, true, true, false).splitDocument(INPUT);
-		testCount(splitted[0], new String[] { "Sar", "Tes",
-
-				"dain",
-
-				"Tols", });
-
-		testCount(splitted[1],
-				new String[] { "Kar", "or", "y", "kair", "CtaJn", "are", "Tar", "Tar", "dan", "Seky", "or", "yka??Jn",
-						"Sod", "Toary", "daraJn", "sy",
-
-						"Sody", "okCoy", "otCol", "CoTy", "osCy", "Cor", "kos", "Sos", "Fol", "Sody",
-
-						"STaJn", "okaJr", "Cey", "?Cy", "potol", "d?o?ta", "Cor", "Cey", "dain", "Key",
-
-				});
+		testCount(splitted[0], new String[] { "Sar", "Tes", "dain", "Tols", });
+		testCount(splitted[1], new String[] { "Kar", "or", "y", "kair", "CtaJn", "are", "Tar", "Tar", "dan", "Seky",
+				"or", "yka??Jn", "Sod", "Toary", "daraJn", "sy", "Sody", "okCoy", "otCol", "CoTy", "osCy", "Cor", "kos",
+				"Sos", "Fol", "Sody", "STaJn", "okaJr", "Cey", "?Cy", "potol", "d?o?ta", "Cor", "Cey", "dain", "Key" });
 	}
 
 	@Test

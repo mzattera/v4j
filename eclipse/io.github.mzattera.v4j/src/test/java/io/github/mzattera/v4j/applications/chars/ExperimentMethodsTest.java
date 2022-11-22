@@ -103,7 +103,7 @@ public final class ExperimentMethodsTest {
 				
 				"Sey"
 				};
-		TestUtil.testWordCountVerbose(splitted.get(5), test);
+		TestUtil.testWordCount(splitted.get(5), test);
 	}
 
 	@Test
@@ -118,7 +118,7 @@ public final class ExperimentMethodsTest {
 	}
 
 	@Test
-	@DisplayName("getWordsByPosition(readableOnly=false, minLineLen=5, maxLineLen NA, skipFirst=false, skipLast=false)")
+	@DisplayName("getWordsByPosition(readableOnly=false, minLineLen=0, maxLineLen=4, skipFirst=false, skipLast=false)")
 	public void getWordsByPositionF__4_FF() throws Exception {
 		List<Counter<String>> splitted = Experiment
 				.getWordsByPosition(INPUT.filterLines(LineFilter.PARAGRAPH_TEXT_FILTER), false, 0, 4, false, false);
@@ -167,20 +167,6 @@ public final class ExperimentMethodsTest {
 				
 				};
 		TestUtil.testWordCount(splitted.get(0), test);
-
-//		"faCys", "ykal", "ar", "ataJn", "Sol", "Sory", "Tres", "y", "kor", "Soldy",
-//		"?ory", "Kar", "or", "y", "kair", "CtaJn", "Sar", "are", "Tar", "Tar", "dan",
-//		"syaJr", "Seky", "or", "yka??Jn", "Sod", "Toary", "Tes", "daraJn", "sy",
-//		
-//		"?", "odar", "sy", "Sol", "Poy", "oydar", "S", "s", "FoaJn", "Sodary",
-//		"ySey", "Sody", "okCoy", "otCol", "CoTy", "osCy", "dain", "Cor", "kos",
-//		"daJn", "Sos", "Fol", "Sody",
-//		
-//		"?", "ydain", "PesaJn", "ol", "s", "Pey", "ytain", "SoSy", "Podales",
-//		"dCar", "STaJn", "okaJr", "Cey", "?Cy", "potol", "Tols", "d?o?ta",
-//		"Sok", "Cor", "Cey", "dain", "Key",
-//		
-//		"Po", "SaJn", "SokCEy", "Col", "tSodEsy", "Sey", "pydEy", "Cy", "ro", "d?"
 		
 		test = new String[] { 
 				"kor",
@@ -218,42 +204,81 @@ public final class ExperimentMethodsTest {
 
 		
 	}
-/*
 	@Test
-	@DisplayName("getWordsByPosition(readableOnly=false, minLineLen=5, maxLineLen NA, skipFirst=false, skipLast=false)")
-	public void getWordsByPositionF_5__FF() throws Exception {
-		List<Counter<String>> splitted = Experiment.getWordsByPosition(
+	@DisplayName("getWordsByPositionReversed(readableOnly=false, minLineLen=5, maxLineLen NA, skipFirst=false, skipLast=false)")
+	public void getWordsByPositionReversedF_5__FF() throws Exception {
+		List<Counter<String>> splitted = Experiment.getWordsByPositionReversed(
 				INPUT.filterLines(LineFilter.PARAGRAPH_TEXT_FILTER), false, 5, Integer.MAX_VALUE, false, false);
 
-		String[] test = new String[] { "faCys", "?ory", "syaJr", "?", "ySey", "?", "dCar", "Sok", "Po", };
+		String[] test = new String[] { 
+				"Soldy",
+				"dan",
+				"sy",
+				
+				"Sodary",
+				"kos",
+				
+				"Podales",
+				"d?o?ta",
+				"Key",
+				
+				"d?"
+				};
 		TestUtil.testWordCount(splitted.get(0), test);
 
 	}
 
 	@Test
-	@DisplayName("getWordsByPosition(readableOnly=false, minLineLen=5, maxLineLen NA, skipFirst=false, skipLast=false)")
-	public void getWordsByPositionF__4_FF() throws Exception {
+	@DisplayName("getWordsByPositionReversed(readableOnly=false, minLineLen=0, maxLineLen=4, skipFirst=false, skipLast=false)")
+	public void getWordsByPositionReversedF__4_FF() throws Exception {
 		List<Counter<String>> splitted = Experiment
-				.getWordsByPosition(INPUT.filterLines(LineFilter.PARAGRAPH_TEXT_FILTER), false, 0, 4, false, false);
+				.getWordsByPositionReversed(INPUT.filterLines(LineFilter.PARAGRAPH_TEXT_FILTER), false, 0, 4, false, false);
 
-		String[] test = new String[] { "daJn", };
+		String[] test = new String[] { 
+				"Sody"
+				};
 		TestUtil.testWordCount(splitted.get(0), test);
 	}
 
 	@Test
-	@DisplayName("getWordsByPosition(readableOnly=true, minLineLen NA, maxLineLen NA, skipFirst=true, skipLast=true)")
-	public void getWordsByPositionT__TT() throws Exception {
-		List<Counter<String>> splitted = Experiment.getWordsByPosition(
+	@DisplayName("getWordsByPositionReversed(readableOnly=true, minLineLen NA, maxLineLen NA, skipFirst=true, skipLast=true)")
+	public void getWordsByPositionReversedT__TT() throws Exception {
+		List<Counter<String>> splitted = Experiment.getWordsByPositionReversed(
 				INPUT.filterLines(LineFilter.PARAGRAPH_TEXT_FILTER), true, 0, Integer.MAX_VALUE, true, true);
 
 		String[] test = new String[] {};
 		TestUtil.testWordCount(splitted.get(0), test);
 
-		test = new String[] { "ykal", "Kar", "Seky", "odar", "Sody", "Sos", "ydain", "STaJn", "Cor", "SaJn" };
+		test = new String[] { 
+				"kor",
+				"Tar",
+				"daraJn",
+				
+				"FoaJn",
+				"Cor",
+				"Fol",
+				
+				"SoSy",
+				"Tols",
+				"dain",
+				
+				"ro"
+				};
 		TestUtil.testWordCount(splitted.get(1), test);
 
-		test = new String[] { "ataJn", "y", "Sol", "otCol", "ol", "Cey", "dain", "Col" };
+		test = new String[] { 
+				"Tres",
+				"are",
+				"Toary",
+				
+				"S",
+				"osCy",
+				
+				"Pey",
+				"Cor",
+				
+				"pydEy"				
+				};
 		TestUtil.testWordCount(splitted.get(3), test);
 	}
-*/	
 }

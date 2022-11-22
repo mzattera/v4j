@@ -13,6 +13,8 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.compress.utils.Lists;
+
 import io.github.mzattera.v4j.text.alphabet.Alphabet;
 
 /**
@@ -56,9 +58,18 @@ public final class StringUtil {
 	 * 
 	 * @param txt a plain text in the given alphabet.
 	 * @return result of splitting txt around a.getSpace().
+	 * Notice empty "words" between spaces are removed.
 	 */
 	public static String[] splitWords(String txt, Alphabet a) {
-		return txt.split(Pattern.quote(a.getSpaceAsString()));
+	
+		// Make sure no empty words are returned
+		String[] t = txt.split(Pattern.quote(a.getSpaceAsString()));
+		List<String> l = new ArrayList<>(t.length);
+		for (int i=0; i<t.length; ++i) 
+			if (t[i].length() > 0)
+				l.add(t[i]);
+		
+		return l.toArray(new String[0]);
 	}
 
 	/**

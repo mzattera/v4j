@@ -34,6 +34,11 @@ import io.github.mzattera.v4j.util.Counter;
  * and dice Voynich text for analysis, and to collect data about text, useful in
  * analysis.
  * 
+ * Notice JUnit tests exist for this class (<code>ExperimentClassessTest</code>,
+ * <code>ExperimentMethodsTest</code>); keep them updated if you change this
+ * class.
+ * 
+ * 
  * @author Massimiliano "Maxi" Zattera
  *
  */
@@ -72,23 +77,24 @@ public abstract class Experiment {
 	 * Notice only the text in running paragraphs is considered.
 	 * 
 	 * A flag can be passed to the constructor to decide whether to skip first word
-	 * in the paragraph.
+	 * in the paragraph (notice this will work only for the first line of each
+	 * paragraph).
 	 * 
 	 * @author Massimiliano "Maxi" Zattera
 	 *
 	 */
 	public static class FirstLineInParagraph extends Experiment {
 
-		private final boolean skipFirst;
+		private final boolean skipFirstInFirstLine;
 
 		/**
 		 * 
-		 * @param skipFirst    If true, skip first word in line.
-		 * @param readableOnly if true, consider only the words that do not contain any
-		 *                     unreadable characters.
+		 * @param skipFirstInFirstLine If true, skip first word in first line: notice
+		 *                             other lines will contain all words.
 		 */
-		public FirstLineInParagraph(boolean skipFirst) {
-			this.skipFirst = skipFirst;
+
+		public FirstLineInParagraph(boolean skipFirstInFirstLine) {
+			this.skipFirstInFirstLine = skipFirstInFirstLine;
 		}
 
 		@Override
@@ -104,17 +110,16 @@ public abstract class Experiment {
 				boolean parEnd = true; // Was last line a paragraph end?
 				for (IvtffLine l : p.getElements()) {
 					if (parEnd) { // first line of paragraph
-						if (skipFirst) { // remove first word, if required
-							String[] w = l.splitWords();
-							if (w.length == 0) {
-								first.add(l);
-								continue;
-							}
 
+						if (skipFirstInFirstLine) { // remove first word from line, if required
 							IvtffLine n = new IvtffLine(l);
-							try {
-								n.setText(StringUtils.join(w, a.getSpace(), 1, w.length) + (l.isLast() ? "<$>" : ""));
-							} catch (ParseException e) { // shall never happen
+							String[] w = l.splitWords();
+							if (w.length > 0) {
+								try {
+									n.setText(
+											StringUtils.join(w, a.getSpace(), 1, w.length) + (l.isLast() ? "<$>" : ""));
+								} catch (ParseException e) { // shall never happen
+								}
 							}
 							first.add(n);
 
@@ -435,8 +440,6 @@ public abstract class Experiment {
 			StringBuilder initials = new StringBuilder();
 
 			for (String w : doc.splitWords()) {
-				if (w.length() == 0)
-					continue;
 				char c = w.charAt(0);
 				if (!readableOnly || !a.isUreadableChar(c))
 					initials.append(c);
@@ -485,8 +488,6 @@ public abstract class Experiment {
 			StringBuilder finals = new StringBuilder();
 
 			for (String w : doc.splitWords()) {
-				if (w.length() == 0)
-					continue;
 				char c = w.charAt(w.length() - 1);
 				if (!readableOnly || !a.isUreadableChar(c))
 					finals.append(c);
@@ -574,7 +575,8 @@ public abstract class Experiment {
 	}
 
 	/**
-	 * Notice this considers the entirety of given text, not only the text in paragraphs.
+	 * Notice this considers the entirety of given text, not only the text in
+	 * paragraphs.
 	 * 
 	 * @param readableOnly if true, consider only the words that do not contain any
 	 *                     unreadable characters.
@@ -605,8 +607,6 @@ public abstract class Experiment {
 					if (result.size() <= i)
 						result.add(new Counter<>());
 					if (!readableOnly || !a.isUnreadable(w[i])) {
-						if (w[i].equals("Sody"))
-							System.out.println("~~~~ " + l);
 						result.get(i).count(w[i]);
 					}
 				}

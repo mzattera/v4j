@@ -5,6 +5,7 @@ package io.github.mzattera.v4j.experiment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.commons.math3.exception.DimensionMismatchException;
@@ -324,6 +325,48 @@ public final class ChiSquared {
 			return tmp;
 		} else
 			return result;
+	}
+
+	/**
+	 * 
+	 * @param counter     Word distribution to observe.
+	 * @param bins        The words to consider as "bins" for chi-squared test. Each
+	 *                    word is mapped into an index of the returned array.
+	 * @param addGericBin If true, crate an additional element at end of result,
+	 *                    counting all words not in <code>bins</code>; otherwise
+	 *                    they are ignored.
+	 * @return An array with count of words in each bin.
+	 */
+	public static long[] observe(Counter<String> counter, Map<String, Integer> bins, boolean addGenericBin) {
+		return ChiSquared.observe(counter, bins, addGenericBin, null);
+	}
+
+	/**
+	 * 
+	 * @param counter     Word distribution to observe.
+	 * @param bins        The words to consider as "bins" for chi-squared test. Each
+	 *                    word is mapped into an index of the returned array.
+	 * @param addGericBin If true, crate an additional element at end of result,
+	 *                    counting all words not in <code>bins</code>; otherwise
+	 *                    they are ignored.
+	 * @param current     If not null, counts will be added to this array; it is
+	 *                    expected this not null and having the right length.
+	 * @return An array with count of words in each bin.
+	 */
+	public static long[] observe(Counter<String> counter, Map<String, Integer> bins, boolean addGenericBin,
+			long[] current) {
+		if (current == null)
+			current = new long[addGenericBin ? bins.size() + 1 : bins.size() + 1];
+	
+		for (Entry<String, Integer> e : counter.entrySet()) {
+			if (bins.containsKey(e.getKey())) { // the word is a feature; record its observed count
+				current[bins.get(e.getKey())] += e.getValue();
+			} else { // add this to "all other stuff bin"
+				if (addGenericBin)
+					current[bins.size()] += e.getValue();
+			}
+		}
+		return current;
 	}
 
 	/**

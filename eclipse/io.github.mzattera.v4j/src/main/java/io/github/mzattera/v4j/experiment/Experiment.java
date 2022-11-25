@@ -809,50 +809,8 @@ public abstract class Experiment {
 	}
 
 	/**
-	 * 
-	 * @param counter     Word distribution to observe.
-	 * @param bins        The words to consider as "bins" for chi-squared test. Each
-	 *                    word is mapped into an index of the returned array.
-	 * @param addGericBin If true, crate an additional element at end of result,
-	 *                    counting all words not in <code>bins</code>; otherwise
-	 *                    they are ignored.
-	 * @return An array with count of words in each bin.
-	 */
-	public static long[] observe(Counter<String> counter, Map<String, Integer> bins, boolean addGenericBin) {
-		return observe(counter, bins, addGenericBin, null);
-	}
-
-	/**
-	 * 
-	 * @param counter     Word distribution to observe.
-	 * @param bins        The words to consider as "bins" for chi-squared test. Each
-	 *                    word is mapped into an index of the returned array.
-	 * @param addGericBin If true, crate an additional element at end of result,
-	 *                    counting all words not in <code>bins</code>; otherwise
-	 *                    they are ignored.
-	 * @param current     If not null, counts will be added to this array; it is
-	 *                    expected this not null and having the right length.
-	 * @return An array with count of words in each bin.
-	 */
-	public static long[] observe(Counter<String> counter, Map<String, Integer> bins, boolean addGenericBin,
-			long[] current) {
-		if (current == null)
-			current = new long[addGenericBin ? bins.size() + 1 : bins.size() + 1];
-
-		for (Entry<String, Integer> e : counter.entrySet()) {
-			if (bins.containsKey(e.getKey())) { // the word is a feature; record its observed count
-				current[bins.get(e.getKey())] += e.getValue();
-			} else { // add this to "all other stuff bin"
-				if (addGenericBin)
-					current[bins.size()] += e.getValue();
-			}
-		}
-		return current;
-	}
-
-	/**
 	 * @return A Map from each cluster (as defined in Note 003) into corresponding
-	 *         text. Pages not belonging to any cluster (cluster+"?") are not
+	 *         text. Pages not belonging to any cluster (cluster="?") are not
 	 *         returned.
 	 */
 	public static Map<String, IvtffText> splitClusters(IvtffText txt) {

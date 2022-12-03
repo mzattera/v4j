@@ -538,6 +538,13 @@ public abstract class Experiment {
 	}
 
 	/**
+	 * Split a document in two parts, accordingly to the rules for the Experiment.
+	 * These two parts could, for example, be compared to look for interesting
+	 * differences.
+	 */
+	public abstract Text[] splitDocument(Text doc);
+
+	/**
 	 * @param readableOnly if true, consider only the words that do not contain any
 	 *                     unreadable characters.
 	 * @return A list of Counter, where Counter[0] counts words appearing in doc at
@@ -808,49 +815,6 @@ public abstract class Experiment {
 		return population;
 	}
 
-	/**
-	 * @return A Map from each cluster (as defined in Note 003) into corresponding
-	 *         text. Pages not belonging to any cluster (cluster="?") are not
-	 *         returned.
-	 */
-	public static Map<String, IvtffText> splitClusters(IvtffText txt) {
-		Map<String, IvtffText> clusterParagraphs = txt.splitPages(new ElementSplitter<IvtffPage>() {
-
-			@Override
-			public String getCategory(IvtffPage element) {
-				return element.getDescriptor().getCluster();
-			}
-		});
-		clusterParagraphs.remove("?");
-		return clusterParagraphs;
-	}
-
-	/**
-	 * @param A Map containing a set of Voynich texts.
-	 * 
-	 * @return The input map, where each Voynich text is randomly scrambled. The
-	 *         number of pages, lines, and words in the lines is kept, but words are
-	 *         randomly scrambled around.
-	 */
-	public static Map<String, IvtffText> shuffleClusters(Map<String, IvtffText> txts) {
-		return shuffleClusters(txts, new Random(System.currentTimeMillis()));
-	}
-
-	/**
-	 * @param A Map containing a set of Voynich texts.
-	 * 
-	 * @return The input map, where each Voynich text is randomly scrambled. The
-	 *         number of pages, lines, and words in the lines is kept, but words are
-	 *         randomly scrambled around.
-	 */
-	public static Map<String, IvtffText> shuffleClusters(Map<String, IvtffText> txts, Random rnd) {
-		Map<String, IvtffText> result = new HashMap<>();
-		for (Entry<String, IvtffText> e : txts.entrySet()) {
-			result.put(e.getKey(), e.getValue().shuffledText(rnd));
-		}
-		return result;
-	}
-
 	private static final BinomialTest BINOMIAL = new BinomialTest();
 
 	/**
@@ -906,8 +870,8 @@ public abstract class Experiment {
 	 * @param sample
 	 * @param population
 	 * @param alpha
-	 * @return True if given word appear more frequently in sample (given alpha)
-	 *         than in the population.
+	 * @return True if given word appear more frequently in sample (alpha=1%) than
+	 *         in the population.
 	 */
 	public static boolean isInterstingWord(String w, Counter<String> sample, Counter<String> population) {
 		return isInterstingWord(w, sample, population, 0.01);
@@ -938,7 +902,7 @@ public abstract class Experiment {
 	 *                        line).
 	 * @return A double[] of same size than wordsByPosition with % of "interesting"
 	 *         words in each Counter. "Interesting" words are those appearing in one
-	 *         Counter with a higher frequency than in other Counters (alpha=1%).
+	 *         Counter with a higher frequency than in the sum of other Counters (alpha=1%).
 	 */
 	public static double[] getInterestingWordsPercent(List<Counter<String>> wordsByPosition) {
 		double[] result = new double[wordsByPosition.size()];
@@ -954,15 +918,52 @@ public abstract class Experiment {
 			}
 
 			Counter<String> interesting = getInterstingWords(sample, population);
-			result[i] = (double) interesting.getTotalCounted() / wordsByPosition.get(i).getTotalCounted();
+			result[i] = (double) interesting.getTotalCounted() / sample.getTotalCounted();
 		}
 
 		return result;
 	}
 
 	/**
-	 * Split a document in two parts; these are the parts compared accordingly to
-	 * the rules for the experiment.
+	 * @return A Map from each cluster (as defined in Note 003) into corresponding
+	 *         text. Pages not belonging to any cluster (cluster="?") are not
+	 *         returned.
 	 */
-	public abstract Text[] splitDocument(Text doc);
+	public static Map<String, IvtffText> splitClusters(IvtffText txt) {
+		Map<String, IvtffText> clusterParagraphs = txt.splitPages(new ElementSplitter<IvtffPage>() {
+
+			@Override
+			public String getCategory(IvtffPage element) {
+				return element.getDescriptor().getCluster();
+			}
+		});
+		clusterParagraphs.remove("?");
+		return clusterParagraphs;
+	}
+
+	/**
+	 * @param A Map containing a set of Voynich texts.
+	 * 
+	 * @return The input map, where each Voynich text is randomly scrambled. The
+	 *         number of pages, lines, and words in the lines is kept, but words are
+	 *         randomly scrambled around.
+	 */
+	public static Map<String, IvtffText> shuffleClusters(Map<String, IvtffText> txts) {
+		return shuffleClusters(txts, new Random(System.currentTimeMillis()));
+	}
+
+	/**
+	 * @param A Map containing a set of Voynich texts.
+	 * 
+	 * @return The input map, where each Voynich text is randomly scrambled. The
+	 *         number of pages, lines, and words in the lines is kept, but words are
+	 *         randomly scrambled around.
+	 */
+	public static Map<String, IvtffText> shuffleClusters(Map<String, IvtffText> txts, Random rnd) {
+		Map<String, IvtffText> result = new HashMap<>();
+		for (Entry<String, IvtffText> e : txts.entrySet()) {
+			result.put(e.getKey(), e.getValue().shuffledText(rnd));
+		}
+		return result;
+	}
 }

@@ -1,4 +1,4 @@
-package io.github.mzattera.v4j.applications.chars;
+package io.github.mzattera.v4j.experiment;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,9 +7,9 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import io.github.mzattera.v4j.experiment.Experiment;
 import io.github.mzattera.v4j.text.ivtff.IvtffText;
 import io.github.mzattera.v4j.text.ivtff.LineFilter;
+import io.github.mzattera.v4j.text.txt.TextString;
 import io.github.mzattera.v4j.util.Counter;
 import io.github.mzattera.v4j.util.TestUtil;
 
@@ -80,8 +80,8 @@ public final class ExperimentMethodsTest {
 	@Test
 	@DisplayName("getWordsByPosition(readableOnly=false, minLineLen NA, maxLineLen NA, skipFirst=false, skipLast=false)")
 	public void getWordsByPositionF__FF() throws Exception {
-		List<Counter<String>> splitted = Experiment.getWordsByPosition(
-				INPUT.filterLines(LineFilter.PARAGRAPH_TEXT_FILTER), false);
+		List<Counter<String>> splitted = Experiment
+				.getWordsByPosition(INPUT.filterLines(LineFilter.PARAGRAPH_TEXT_FILTER), false);
 
 		String[] test = new String[] { "faCys", "?ory", "syaJr", "?", "ySey", "daJn", "?", "dCar", "Sok", "Po", };
 		TestUtil.testWordCount(splitted.get(0), test);
@@ -105,8 +105,8 @@ public final class ExperimentMethodsTest {
 	@Test
 	@DisplayName("getWordsByPosition(readableOnly=false, minLineLen=5, maxLineLen NA, skipFirst=false, skipLast=false)")
 	public void getWordsByPositionF_5__FF() throws Exception {
-		List<Counter<String>> splitted = Experiment.getWordsByPosition(
-				INPUT.filterLines(LineFilter.PARAGRAPH_TEXT_FILTER), false, 5);
+		List<Counter<String>> splitted = Experiment
+				.getWordsByPosition(INPUT.filterLines(LineFilter.PARAGRAPH_TEXT_FILTER), false, 5);
 
 		String[] test = new String[] { "faCys", "?ory", "syaJr", "?", "ySey", "?", "dCar", "Sok", "Po", };
 		TestUtil.testWordCount(splitted.get(0), test);
@@ -142,8 +142,8 @@ public final class ExperimentMethodsTest {
 	@Test
 	@DisplayName("getWordsByPositionReversed(readableOnly=false, minLineLen NA, maxLineLen NA, skipFirst=false, skipLast=false)")
 	public void getWordsByPositionReversedF__FF() throws Exception {
-		List<Counter<String>> splitted = Experiment.getWordsByPositionReversed(
-				INPUT.filterLines(LineFilter.PARAGRAPH_TEXT_FILTER), false);
+		List<Counter<String>> splitted = Experiment
+				.getWordsByPositionReversed(INPUT.filterLines(LineFilter.PARAGRAPH_TEXT_FILTER), false);
 
 		String[] test = new String[] { "Soldy", "dan", "sy", "Sodary", "kos", "Sody", "Podales", "d?o?ta", "Key",
 				"d?" };
@@ -160,8 +160,8 @@ public final class ExperimentMethodsTest {
 	@Test
 	@DisplayName("getWordsByPositionReversed(readableOnly=false, minLineLen=5, maxLineLen NA, skipFirst=false, skipLast=false)")
 	public void getWordsByPositionReversedF_5__FF() throws Exception {
-		List<Counter<String>> splitted = Experiment.getWordsByPositionReversed(
-				INPUT.filterLines(LineFilter.PARAGRAPH_TEXT_FILTER), false, 5);
+		List<Counter<String>> splitted = Experiment
+				.getWordsByPositionReversed(INPUT.filterLines(LineFilter.PARAGRAPH_TEXT_FILTER), false, 5);
 
 		String[] test = new String[] { "Soldy", "dan", "sy", "Sodary", "kos", "Podales", "d?o?ta", "Key", "d?" };
 		TestUtil.testWordCount(splitted.get(0), test);
@@ -171,8 +171,8 @@ public final class ExperimentMethodsTest {
 	@Test
 	@DisplayName("getWordsByPositionReversed(readableOnly=false, minLineLen=0, maxLineLen=4, skipFirst=false, skipLast=false)")
 	public void getWordsByPositionReversedF__4_FF() throws Exception {
-		List<Counter<String>> splitted = Experiment.getWordsByPositionReversed(
-				INPUT.filterLines(LineFilter.PARAGRAPH_TEXT_FILTER), false, 0, 4);
+		List<Counter<String>> splitted = Experiment
+				.getWordsByPositionReversed(INPUT.filterLines(LineFilter.PARAGRAPH_TEXT_FILTER), false, 0, 4);
 
 		String[] test = new String[] { "Sody" };
 		TestUtil.testWordCount(splitted.get(0), test);
@@ -295,5 +295,111 @@ public final class ExperimentMethodsTest {
 				"Sod", "Toary", "Tes", "daraJn", "Sody", "okCoy", "otCol", "CoTy", "osCy", "dain", "Cor", "Sos", "Fol",
 				"STaJn", "okaJr", "Cey", "potol", "Tols", "Cor", "Cey", "dain" };
 		TestUtil.testWordCount(splitted, test);
+	}
+
+	@Test
+	@DisplayName("getInterestingWords(Text,Text)")
+	public void getInterestingWords_Text() throws Exception {
+		// 'B' has 10% probability to appear in population
+		TextString population = new TextString("A A A A A A A A A B");
+
+		// 0.1% chances of this happening
+		TextString sample = new TextString("B B B");
+
+		// 'B' is interesting
+		String[] test = new String[] { "B", "B", "B" };
+		TestUtil.testWordCount(Experiment.getInterstingWords(sample, population), test);
+
+		// but not SO interesting
+		test = new String[] {};
+		TestUtil.testWordCount(Experiment.getInterstingWords(sample, population, 0.0005), test);
+
+		// 0.4% chances of this happening
+		sample = new TextString("B B B A");
+
+		// 'B' is interesting, 'A' is not
+		test = new String[] { "B", "B", "B" };
+		TestUtil.testWordCount(Experiment.getInterstingWords(sample, population), test);
+
+		// 2.7% chances of this happening
+		sample = new TextString("B A B");
+
+		// none is interesting
+		test = new String[] {};
+		TestUtil.testWordCount(Experiment.getInterstingWords(sample, population), test);
+
+		// ...unless we lower alpha
+		test = new String[] { "B", "B" };
+		TestUtil.testWordCount(Experiment.getInterstingWords(sample, population, 0.03), test);
+
+		// 2.7% chances of this happening, if ? is ignored
+		sample = new TextString("B A B ? ? ?");
+
+		// none is interesting
+		test = new String[] {};
+		TestUtil.testWordCount(Experiment.getInterstingWords(sample, population), test);
+	}
+
+	@Test
+	@DisplayName("getInterestingWords(Counter,Counter)")
+	public void getInterestingWords_Counter() throws Exception {
+		// 'B' has 10% probability to appear in population
+		TextString population = new TextString("A A A A A A A A A B");
+
+		// 0.1% chances of this happening
+		TextString sample = new TextString("B B B");
+
+		// 'B' is interesting
+		String[] test = new String[] { "B", "B", "B" };
+		TestUtil.testWordCount(Experiment.getInterstingWords(sample.getWords(true), population.getWords(true)), test);
+
+		// but not SO interesting
+		test = new String[] {};
+		TestUtil.testWordCount(Experiment.getInterstingWords(sample.getWords(true), population.getWords(true), 0.0005),
+				test);
+
+		// 0.4% chances of this happening
+		sample = new TextString("B B B A");
+
+		// 'B' is interesting, 'A' is not
+		test = new String[] { "B", "B", "B" };
+		TestUtil.testWordCount(Experiment.getInterstingWords(sample.getWords(true), population.getWords(true)), test);
+
+		// 2.7% chances of this happening
+		sample = new TextString("B A B");
+
+		// none is interesting
+		test = new String[] {};
+		TestUtil.testWordCount(Experiment.getInterstingWords(sample.getWords(true), population.getWords(true)), test);
+
+		// ...unless we lower alpha
+		test = new String[] { "B", "B" };
+		TestUtil.testWordCount(Experiment.getInterstingWords(sample.getWords(true), population.getWords(true), 0.03),
+				test);
+
+		// 2.7% chances of this happening, if ? is ignored
+		sample = new TextString("B A B ? ? ?");
+
+		// none is interesting
+		test = new String[] {};
+		TestUtil.testWordCount(Experiment.getInterstingWords(sample.getWords(true), population.getWords(true)), test);
+	}
+
+	@Test
+	@DisplayName("getInterestingWordsPercent()")
+	public void getInterestingWordsPercent() throws Exception {
+
+		IvtffText population = new IvtffText("#=IVTFF Slot 1.5\n" //
+				+ "<f1r>          <! $I=T $Q=A $P=A $L=A $H=1 $X=V>\n" //
+				+ "<f1r.1,@P0;m>	B.a.a.a.a.?i\n" //
+				+ "<f1r.2,@P0;m>	B.a.a.?a\n" //
+				+ "<f1r.3,@P0;m>	B.?e.a.B.a.a\n" //
+		);
+		List<Counter<String>> cnt = Experiment.getWordsByPosition(population, true);
+		assertEquals(cnt.size(),6);
+		double[] p = Experiment.getInterestingWordsPercent(cnt);
+		assertEquals(p[0],1.0);
+		for (int i=1;i<p.length;++i)
+			assertEquals(p[i],0.0);
 	}
 }

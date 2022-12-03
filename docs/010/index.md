@@ -304,6 +304,8 @@ It is particularly interesting that lower frequency characters occur more at lin
 and higher-frequency ones at the beginnings of lines.
     -> DAVVERO!?!?!? INTERESSANTE DA TESTARE vedi io.github.mzattera.v4j.applications.chars.CharByPositionTest
 
+Patrick Feaster CONFERENZA
+Rightward and Downward Grapheme Distributions in the Voynich Manuscript.
 
 # Conclusions
 

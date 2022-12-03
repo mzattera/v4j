@@ -148,7 +148,7 @@ public abstract class Text implements Identifiable {
 
 	/**
 	 * Return all words in the text; the plain text is split in words using the
-	 * default space char.
+	 * default space char. Notice this use the plain text.
 	 * 
 	 * @return all the words in this text, with their count.
 	 * 

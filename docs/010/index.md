@@ -53,8 +53,7 @@ The results are shown in the below table[{1}](#Note1)[{2}](#Note2):
 
 ![Summary table of anomalies in char distribution](images/SummaryTable.PNG)
 
-As a test, experiments have been repeated with a shuffled version of the Voynich where the layouts has not been changed but words were shuffled around randomly
-and the anomalies in distribution disappeared.
+As a test, experiments have been repeated with a shuffled version of the Voynich where the layout (number of words in each line) has been preserved but words were shuffled around randomly, and the anomalies in distribution disappeared.
 	 
 # Considerations and Previous Works
 
@@ -68,7 +67,7 @@ and the anomalies in distribution disappeared.
   One example (of char statistics) is found in D'Imperio (1978) (see note 4), Fig. 28 on p.106, from several sources but none covering the entire MS text.
 
 
-## Lenght & Interesting -> METTI IN UNA NUOVA NOTA
+## Length & Interesting -> METTI IN UNA NUOVA NOTA
 
 Study lenght and number of intersting words.
 For interesting words, add also "last line of paragraph" to the study, similar to what we did with last word....count from the end.

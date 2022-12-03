@@ -6,6 +6,7 @@ package io.github.mzattera.v4j.util;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -22,6 +23,24 @@ import io.github.mzattera.v4j.text.ivtff.IvtffText;
 public final class TestUtil {
 
 	private TestUtil() {
+	}
+
+	/**
+	 * Checks two arrays have some length and same elements (in the same order).
+	 */
+	public static void testMatch(long[] a1, long[] a2) {
+		assertEquals(a1.length, a2.length);
+		for (int i = 0; i < a1.length; ++i)
+			assertEquals(a1[i], a2[i]);
+	}
+
+	/**
+	 * Checks two collections have some size and contain elements.
+	 */
+	public static void testContentMatch(Collection<? extends Object> c1, Collection<? extends Object> c2) {
+		assertEquals(c1.size(), c2.size());
+		for (Object o : c1)
+			assertTrue(c2.contains(o));
 	}
 
 	/**

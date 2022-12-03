@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.github.mzattera.v4j.experiment.ChiSquared;
+import io.github.mzattera.v4j.experiment.ChiSquared.CharBin;
 import io.github.mzattera.v4j.experiment.Experiment;
-import io.github.mzattera.v4j.experiment.ChiSquared.CharDistribution;
 import io.github.mzattera.v4j.text.Text;
 import io.github.mzattera.v4j.text.alphabet.Alphabet;
 import io.github.mzattera.v4j.text.ivtff.IvtffText;
@@ -125,7 +125,7 @@ public abstract class CharDistributionAnalysis {
 
 // TEST			IvtffText clusterText = doc.filterPages(new PageFilter.Builder().cluster(cluster).build()).shuffledText();
 			IvtffText clusterText = doc.filterPages(new PageFilter.Builder().cluster(cluster).build());
-			processCluster(cluster, clusterText, COMPACT, experiment);
+			process(cluster, clusterText, COMPACT, experiment);
 
 			System.out.println();
 		} // For each cluster
@@ -134,16 +134,14 @@ public abstract class CharDistributionAnalysis {
 	/**
 	 * Processes a single text (typically representing a cluster).
 	 * 
-	 * @param cluster     Cluster name (optional)
-	 * @param clusterText Text to process.
-	 * @param compact     If true, print a compact version of the distribution
-	 *                    table.
+	 * @param cluster    Cluster name (optional)
+	 * @param txt        Text to process.
+	 * @param compact    If true, print a compact version of the distribution table.
 	 * @param experiment
 	 * @return Two lists, with characters appearing more and less than they should,
 	 *         based on chi-squared text and ALPHA.
 	 */
-	public static List<Character>[] processCluster(String cluster, IvtffText clusterText, boolean compact,
-			Experiment experiment) {
+	public static List<Character>[] process(String cluster, IvtffText txt, boolean compact, Experiment experiment) {
 
 		@SuppressWarnings("unchecked")
 		List<Character>[] result = new ArrayList[2];
@@ -151,7 +149,7 @@ public abstract class CharDistributionAnalysis {
 		result[1] = new ArrayList<Character>();
 
 		cluster = (cluster == null) ? "" : cluster;
-		Alphabet a = clusterText.getAlphabet();
+		Alphabet a = txt.getAlphabet();
 		char[] chars;
 		if (a.getCodeString().equals(Alphabet.SLOT.getCodeString())) {
 			// Nicer display for Slot alphabet ;)
@@ -161,18 +159,19 @@ public abstract class CharDistributionAnalysis {
 			chars = a.getRegularChars();
 		}
 
-		// Creates an "adjusted" distribution for the whole text, where each bin is big
-		// enough for chi-square
-		// (merges smaller bins together)
-		Text[] parts = experiment.splitDocument(clusterText);
-		// We look into char distribution of the two parts together, since
-		// splitDocument()
-		// might not return the whole clusterText. This is the only way to ensure
-		// charDistribution
-		// reflects the part of text we are looking into.
+		/**
+		 * Creates an "adjusted" distribution for the whole text, where each bin is big
+		 * enough for chi-square (merges smaller bins together)
+		 **/
+		Text[] parts = experiment.splitDocument(txt);
+		/**
+		 * We look into char distribution of the two parts together, since
+		 * splitDocument() might not return the whole text. This is the only way
+		 * to ensure charDistribution reflects the part of text we are looking into.
+		 **/
 		Text allText = new TextString(parts[0].getPlainText() + a.getSpace() + parts[1].getPlainText(), a);
-		List<CharDistribution> charDistribution = ChiSquared.getCharDistribution(allText, false);
-		List<CharDistribution> adjustedDistribution = ChiSquared.adjustDistribution(charDistribution,
+		List<CharBin> charDistribution = ChiSquared.getCharDistribution(allText, false);
+		List<CharBin> adjustedDistribution = ChiSquared.adjustDistribution(charDistribution,
 				Math.min(parts[0].getChars().getTotalCounted(), parts[1].getChars().getTotalCounted()));
 
 		// Compare the two parts, considering the whole alphabet at once, to see if
@@ -188,8 +187,8 @@ public abstract class CharDistributionAnalysis {
 		for (int i = 0; i < chars.length; ++i) {
 
 			// Find distribution for current char (note we do not use the adjusted one)
-			CharDistribution cd = null;
-			for (CharDistribution d : charDistribution) {
+			CharBin cd = null;
+			for (CharBin d : charDistribution) {
 				if (d.getChars().get(0) == chars[i]) {
 					cd = d;
 					break;

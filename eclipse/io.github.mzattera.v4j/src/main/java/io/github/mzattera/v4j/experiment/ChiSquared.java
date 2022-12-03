@@ -29,13 +29,13 @@ import io.github.mzattera.v4j.util.Counter;
 public final class ChiSquared {
 
 	/**
-	 * Describes distribution of a category (or "bin") of chars in a text.
-	 * A bin is made by a set of chars, with their count and frequency.
+	 * Describes distribution of a category (or "bin") of chars in a text. A bin is
+	 * made by a set of chars, with their total count and frequency.
 	 * 
 	 * @author Massimiliano "Maxi" Zattera
 	 *
 	 */
-	public static class CharDistribution {
+	public static class CharBin {
 
 		private List<Character> chars = new ArrayList<>();
 
@@ -68,17 +68,26 @@ public final class ChiSquared {
 			return frequency;
 		}
 
-		public CharDistribution() {
+		/**
+		 * Creates an empty bin.
+		 */
+		public CharBin() {
 			chars = new ArrayList<>();
 			this.count = 0;
 			this.frequency = 0.0d;
 		}
 
-		public CharDistribution(char c) {
+		/**
+		 * Creates an bin with only one char.
+		 */
+		public CharBin(char c) {
 			this(c, 0, 0.0d);
 		}
 
-		public CharDistribution(char c, long count, double frequency) {
+		/**
+		 * Creates a bin containing a single character with given count and frequency.
+		 */
+		public CharBin(char c, long count, double frequency) {
 			chars = new ArrayList<>();
 			chars.add(c);
 			this.count = count;
@@ -92,7 +101,7 @@ public final class ChiSquared {
 		 * @param other
 		 * @return
 		 */
-		public CharDistribution merge(CharDistribution other) {
+		public CharBin merge(CharBin other) {
 			for (char c : other.chars) {
 				if (this.chars.contains(c))
 					throw new IllegalArgumentException("Can only merge disjointed distributions.");
@@ -104,10 +113,33 @@ public final class ChiSquared {
 
 			return this;
 		}
+
+		// Needed for tests
+		@Override
+		public boolean equals(Object other) {
+			if (!(other instanceof CharBin))
+				return false;
+			CharBin o = (CharBin) other;
+
+			if (this.chars.size() != o.chars.size())
+				return false;
+			for (char c : this.chars)
+				if (!o.chars.contains(c))
+					return false;
+
+			if (this.count != o.count)
+				return false;
+			if (this.frequency != o.frequency)
+				return false;
+
+			return true;
+		}
 	}
 
 	private ChiSquared() {
 	}
+
+	private final static ChiSquareTest CHI_SQUARED = new ChiSquareTest();
 
 	/**
 	 * Check whether observed distribution of character in a document matches the
@@ -122,14 +154,14 @@ public final class ChiSquared {
 	 *         probability of rejecting the null hypothesis ('The two samples come
 	 *         from a common distribution') when it is true.
 	 */
-	public static double chiSquareTest(Text txt, List<CharDistribution> expected, boolean toUpper) {
-		
+	public static double chiSquareTest(Text txt, List<CharBin> expected, boolean toUpper) {
+
 		long[] observed = ChiSquared.observe(txt, expected, toUpper, false);
 
 		if (observed.length > expected.size()) {
 			// We found additional characters not in the distribution; add a category
 			expected = new ArrayList<>(expected);
-			expected.add(new CharDistribution());
+			expected.add(new CharBin());
 		}
 		return ChiSquared.chiSquareTest(expected, observed);
 	}
@@ -145,7 +177,7 @@ public final class ChiSquared {
 	 *         probability of rejecting the null hypothesis ('The two samples come
 	 *         from a common distribution') when it is true.
 	 */
-	public static double chiSquareTest(List<CharDistribution> expected, long[] observed) {
+	public static double chiSquareTest(List<CharBin> expected, long[] observed) {
 		double[] e = new double[Math.max(expected.size(), observed.length)];
 
 		// Deal with cases where we observed some missing category
@@ -155,22 +187,7 @@ public final class ChiSquared {
 		for (; i < observed.length; ++i)
 			e[i] = 0.0d;
 
-		return ChiSquared.chiSquareTest(e, observed);
-	}
-
-	/**
-	 * Check whether observed distribution matches the theoretical expected
-	 * distribution.
-	 *
-	 * @param expected array of expected frequencies.
-	 * @param observed array of observed counts.
-	 * 
-	 * @return The significance level, also denoted as alpha or α, is the
-	 *         probability of rejecting the null hypothesis ('The two samples come
-	 *         from a common distribution') when it is true.
-	 */
-	public static double chiSquareTest(final double[] expected, final long[] observed) {
-		return new ChiSquareTest().chiSquareTest(expected, observed);
+		return CHI_SQUARED.chiSquareTest(e, observed);
 	}
 
 	/**
@@ -187,8 +204,8 @@ public final class ChiSquared {
 	 */
 	public static double chiSquareTestDataSetsComparison(Text part1, Text part2, char c, boolean toUpper) {
 
-		List<CharDistribution> categories = new ArrayList<>();
-		categories.add(new CharDistribution(c, 0, 0));
+		List<CharBin> categories = new ArrayList<>();
+		categories.add(new CharBin(c, 0, 0));
 
 		return ChiSquared.chiSquareTestDataSetsComparison(part1, part2, categories, toUpper);
 	}
@@ -206,7 +223,7 @@ public final class ChiSquared {
 	 *         probability of rejecting the null hypothesis ('The two samples come
 	 *         from a common distribution') when it is true.
 	 */
-	public static double chiSquareTestDataSetsComparison(Text txt1, Text txt2, List<CharDistribution> categories,
+	public static double chiSquareTestDataSetsComparison(Text txt1, Text txt2, List<CharBin> categories,
 			boolean toUpper) {
 
 		long[] obs1 = observe(txt1, categories, toUpper, true);
@@ -259,7 +276,7 @@ public final class ChiSquared {
 			obs2 = t2;
 		}
 
-		return new ChiSquareTest().chiSquareTestDataSetsComparison(obs1, obs2);
+		return CHI_SQUARED.chiSquareTestDataSetsComparison(obs1, obs2);
 	}
 
 	/**
@@ -273,13 +290,13 @@ public final class ChiSquared {
 	 * 
 	 * @return An array of size two with the first entry counting the occurrences of
 	 *         given character and the other counting all remaining characters (if
-	 *         any). . Notice only regular characters are considered.
+	 *         any). Notice only regular characters are considered.
 	 */
 
 	public static long[] observe(Text doc, char c, boolean toUpper) {
 
-		List<CharDistribution> categories = new ArrayList<>();
-		categories.add(new CharDistribution(c, 0, 0));
+		List<CharBin> categories = new ArrayList<>();
+		categories.add(new CharBin(c));
 		return observe(doc, categories, toUpper, true);
 	}
 
@@ -288,13 +305,13 @@ public final class ChiSquared {
 	 * categories.
 	 * 
 	 * @param doc        The text to analyze.
-	 * @param categories A list of Character distributions, each distribution lists
-	 *                   the characters for each category.
+	 * @param categories Bins to use for observation..
 	 * @param toUpper    If true, text will be converted to upper case before
 	 *                   performing the observation (if supported by the alphabet of
 	 *                   the text).
 	 * @param extend     If true and a character is not found in given categories,
-	 *                   then extend <code>observed>/code>.
+	 *                   then extend
+	 *                   <code>observed>/code> by adding one category that catches all characters that do not belong to any bin. 
 	 * 
 	 * @return Number of characters in each category, aligned with
 	 *         <code>categories</code>; if there are unmatched characters and
@@ -303,8 +320,7 @@ public final class ChiSquared {
 	 *                   <code>categories</code>. Notice only regular characters are
 	 *                   considered.
 	 */
-
-	public static long[] observe(Text doc, List<CharDistribution> categories, boolean toUpper, boolean extend) {
+	public static long[] observe(Text doc, List<CharBin> categories, boolean toUpper, boolean extend) {
 		long[] result = new long[categories.size()];
 		Counter<Character> n = doc.getChars(toUpper);
 
@@ -329,7 +345,7 @@ public final class ChiSquared {
 
 	/**
 	 * 
-	 * @param counter     Word distribution to observe.
+	 * @param counter     Word distribution to use to perform the observation.
 	 * @param bins        The words to consider as "bins" for chi-squared test. Each
 	 *                    word is mapped into an index of the returned array.
 	 * @param addGericBin If true, crate an additional element at end of result,
@@ -356,8 +372,8 @@ public final class ChiSquared {
 	public static long[] observe(Counter<String> counter, Map<String, Integer> bins, boolean addGenericBin,
 			long[] current) {
 		if (current == null)
-			current = new long[addGenericBin ? bins.size() + 1 : bins.size() + 1];
-	
+			current = new long[addGenericBin ? bins.size() + 1 : bins.size()];
+
 		for (Entry<String, Integer> e : counter.entrySet()) {
 			if (bins.containsKey(e.getKey())) { // the word is a feature; record its observed count
 				current[bins.get(e.getKey())] += e.getValue();
@@ -374,17 +390,18 @@ public final class ChiSquared {
 	 *                building the distribution.
 	 * 
 	 * @return Distribution of characters in given text; only regular characters in
-	 *         plain text are considered. A CharDistribution is created for each character in the text.
+	 *         the text are considered. A CharBin is created for each character in
+	 *         the text.
 	 */
-	public static List<CharDistribution> getCharDistribution(Text doc, boolean toUpper) {
+	public static List<CharBin> getCharDistribution(Text doc, boolean toUpper) {
 
 		// Count characters
 		Counter<Character> c = doc.getChars(toUpper);
 
 		// Build corresponding distribution
-		List<CharDistribution> result = new ArrayList<>(c.size());
+		List<CharBin> result = new ArrayList<>(c.size());
 		for (Entry<Character, Integer> e : c.entrySet())
-			result.add(new CharDistribution(e.getKey(), e.getValue(), ((double) e.getValue() / c.getTotalCounted())));
+			result.add(new CharBin(e.getKey(), e.getValue(), ((double) e.getValue() / c.getTotalCounted())));
 
 		return result;
 	}
@@ -395,7 +412,8 @@ public final class ChiSquared {
 	 * 
 	 * @param distribution The original, not adjusted, distribution with all
 	 *                     categories (typically returned by
-	 *                     {@link #getCharDistribution}).
+	 *                     {@link #getCharDistribution}). Note this must contain
+	 *                     correct expected frequencies for each category.
 	 * @param sampleSize   Size of the sample.
 	 * @return An adjusted distribution, such that the expected number of occurrence
 	 *         for each category is >5. This is obtained by merging together
@@ -403,13 +421,13 @@ public final class ChiSquared {
 	 * @throws IllegalArgumentException if the resulting distribution will have too
 	 *                                  few categories.
 	 */
-	public static List<CharDistribution> adjustDistribution(List<CharDistribution> distribution, long sampleSize) {
+	public static List<CharBin> adjustDistribution(List<CharBin> distribution, long sampleSize) {
 
-		List<CharDistribution> result = new ArrayList<>(distribution.size());
-		CharDistribution merged = new CharDistribution(); // will collect all bins that are too small.
-		CharDistribution smallest = null; // smallest but "big enough" bin.
+		List<CharBin> result = new ArrayList<>(distribution.size());
+		CharBin merged = new CharBin(); // will collect all bins that are too small.
+		CharBin smallest = null; // smallest but "big enough" bin.
 
-		for (CharDistribution d : distribution) {
+		for (CharBin d : distribution) {
 			if ((d.frequency * sampleSize) < 5) {
 				// Expected number of occurrence is too small for this char; we merge it with
 				// other small ones
@@ -432,7 +450,7 @@ public final class ChiSquared {
 			result.add(merged);
 		}
 
-		if (distribution.size() < 2)
+		if (result.size() < 2)
 			throw new IllegalArgumentException("Not enough degrees of feeedom.");
 
 		return result;

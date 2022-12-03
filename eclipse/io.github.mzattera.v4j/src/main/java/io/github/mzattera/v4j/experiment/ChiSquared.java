@@ -146,6 +146,8 @@ public final class ChiSquared {
 	 * theoretical expected distribution.
 	 *
 	 * @param expected List with expected distribution of observed categories.
+	 *                 Please notice that the list must contain all categories (that
+	 *                 is cover the entire character set in this case).
 	 * @param toUpper  If true, text will be converted to upper case before
 	 *                 performing the observation (if supported by the alphabet of
 	 *                 the text).
@@ -156,13 +158,17 @@ public final class ChiSquared {
 	 */
 	public static double chiSquareTest(Text txt, List<CharBin> expected, boolean toUpper) {
 
-		long[] observed = ChiSquared.observe(txt, expected, toUpper, false);
+		long[] observed = observe(txt, expected, toUpper, true);
 
-		if (observed.length > expected.size()) {
-			// We found additional characters not in the distribution; add a category
-			expected = new ArrayList<>(expected);
-			expected.add(new CharBin());
+		if (observed.length != expected.size()) {
+			/*
+			 * We found additional characters not in the distribution so we throw an
+			 * exception since not all categories are covered. I tried to add a category
+			 * with zero frequency, but this causes a math error in libraries.
+			 */
+			throw new IllegalArgumentException("Provided list of categores does not cover all observed characters.");
 		}
+
 		return ChiSquared.chiSquareTest(expected, observed);
 	}
 
@@ -171,21 +177,20 @@ public final class ChiSquared {
 	 * distribution.
 	 *
 	 * @param expected List with expected distribution of observed categories.
-	 * @param observed array of observed counts.
+	 * @param observed array of observed counts, these must match the provided
+	 *                 categories.
 	 * 
 	 * @return The significance level, also denoted as alpha or α, is the
 	 *         probability of rejecting the null hypothesis ('The two samples come
 	 *         from a common distribution') when it is true.
 	 */
 	public static double chiSquareTest(List<CharBin> expected, long[] observed) {
-		double[] e = new double[Math.max(expected.size(), observed.length)];
+		if (observed.length != expected.size())
+			throw new IllegalArgumentException("Provided list of categores does not cover all observed characters.");
+		double[] e = new double[observed.length];
 
-		// Deal with cases where we observed some missing category
-		int i = 0;
-		for (; i < expected.size(); ++i)
+		for (int i = 0; i < expected.size(); ++i)
 			e[i] = expected.get(i).frequency;
-		for (; i < observed.length; ++i)
-			e[i] = 0.0d;
 
 		return CHI_SQUARED.chiSquareTest(e, observed);
 	}
@@ -204,6 +209,8 @@ public final class ChiSquared {
 	 */
 	public static double chiSquareTestDataSetsComparison(Text part1, Text part2, char c, boolean toUpper) {
 
+		// TODO REMOVE THIS AND USE BINOMIAL TEST INSTEAD
+		
 		List<CharBin> categories = new ArrayList<>();
 		categories.add(new CharBin(c, 0, 0));
 
@@ -214,7 +221,9 @@ public final class ChiSquared {
 	 * Check weather given categories are distributed differently in the two text
 	 * samples.
 	 * 
-	 * @param categories Categories used for observation.
+	 * @param expected List with expected distribution of observed categories.
+	 *                 Please notice that the list must contain all categories (that
+	 *                 is cover the entire character set in this case).
 	 * @param toUpper    If true, text will be converted to upper case before
 	 *                   performing the observation (if supported by the alphabet of
 	 *                   the text).
@@ -228,6 +237,9 @@ public final class ChiSquared {
 
 		long[] obs1 = observe(txt1, categories, toUpper, true);
 		long[] obs2 = observe(txt2, categories, toUpper, true);
+
+		if ((obs1.length != categories.size())||(obs2.length != categories.size()))
+			throw new IllegalArgumentException("Provided list of categores does not cover all observed characters.");
 
 		return chiSquareTestDataSetsComparison(obs1, obs2);
 	}

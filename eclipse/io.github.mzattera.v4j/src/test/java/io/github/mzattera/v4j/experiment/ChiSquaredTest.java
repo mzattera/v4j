@@ -99,6 +99,25 @@ public final class ChiSquaredTest {
 
 	
 	@Test
+	@DisplayName("chiSquareTest(txt, expected, toUpper)")
+	public void chiSquareTest() throws Exception {
+		TextString pop = new TextString("aa bb cc dd");
+		final List<CharBin> expected = ChiSquared.getCharDistribution(pop, false);
+		
+		final TextString txt = new TextString("a b c d");
+		assertTrue(ChiSquared.chiSquareTest(txt, expected, false) > 0.99);
+	
+		 assertThrows(IllegalArgumentException.class, () -> {
+			 ChiSquared.chiSquareTest(txt, expected, true);
+	  });
+		
+		final TextString txt2 = new TextString("a b c d f");
+		 assertThrows(IllegalArgumentException.class, () -> {
+			 ChiSquared.chiSquareTest(txt2, expected, false);
+	  });
+	}
+
+	@Test
 	@DisplayName("observe(doc, c, toUpper)")
 	public void observe1() throws Exception {
 		TextString txt = new TextString("abacadaeaf");

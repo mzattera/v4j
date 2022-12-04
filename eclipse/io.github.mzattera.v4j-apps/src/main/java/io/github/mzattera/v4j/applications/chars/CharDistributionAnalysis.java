@@ -61,7 +61,7 @@ public abstract class CharDistributionAnalysis {
 	private static final double ALPHA2 = 0.05d;
 
 	/** Compact output */
-	private static final boolean COMPACT = false;
+	private static final boolean COMPACT = true;
 
 	protected CharDistributionAnalysis() {
 	}
@@ -240,7 +240,7 @@ public abstract class CharDistributionAnalysis {
 					}
 				} catch (Exception e) {
 					// Numbers are too small for chi-square
-					System.out.print("?");
+					System.out.print("*");
 				}
 			} // expected count high enough to use chi-squared
 

@@ -262,6 +262,8 @@ public final class ChiSquared {
 	 * @throws MaxCountExceededException  if an error occurs during computation.
 	 */
 	public static double chiSquareTestDataSetsComparison(long[] obs1, long[] obs2) {
+		if (obs1.length != obs2.length)
+			throw new IllegalArgumentException("Provided list of categores does not cover all observed characters.");
 
 		// Check entries which are both 0, these cannot be used
 		int z = 0;

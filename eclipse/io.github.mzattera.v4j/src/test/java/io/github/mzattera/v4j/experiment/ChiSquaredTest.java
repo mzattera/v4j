@@ -14,6 +14,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import io.github.mzattera.v4j.experiment.ChiSquared.CharBin;
+import io.github.mzattera.v4j.text.Text;
 import io.github.mzattera.v4j.text.txt.TextString;
 import io.github.mzattera.v4j.util.Counter;
 import io.github.mzattera.v4j.util.TestUtil;
@@ -116,7 +117,42 @@ public final class ChiSquaredTest {
 			 ChiSquared.chiSquareTest(txt2, expected, false);
 	  });
 	}
+	
+	@Test
+	@DisplayName("chiSquareTestDataSetsComparison(txt1, txt2, categories, toUpper)")
+	public void chiSquareTestDataSetsComparison1() throws Exception {
+		TextString txt1 = new TextString("aa bb cc dd");
+		TextString txt2 = new TextString("aa bb cc dd");
+		final List<CharBin> categories = ChiSquared.getCharDistribution(txt1, false);
+		
+		assertTrue(ChiSquared.chiSquareTestDataSetsComparison(txt1, txt2, categories, false) > 0.99);
+		
+		txt2 = new TextString("a b c d");
+		assertTrue(ChiSquared.chiSquareTestDataSetsComparison(txt1, txt2, categories, false) > 0.99);
+		
+		txt2 = new TextString("a");
+		assertTrue(ChiSquared.chiSquareTestDataSetsComparison(txt1, txt2, categories, false) < 0.6);
 
+		final TextString txt3 = new TextString("aa bb cc dd fff");
+		 assertThrows(IllegalArgumentException.class, () -> {
+			 ChiSquared.chiSquareTestDataSetsComparison(txt1, txt3, categories, false);
+	  });
+	}
+	
+	@Test
+	@DisplayName("chiSquareTestDataSetsComparison(obs1, obs2)")
+	public void chiSquareTestDataSetsComparison2() throws Exception {
+		final long[] obs1 = {1,0,2,0,4,5};
+		final long[] obs2 = {1,0,2,3,0,5};
+	
+		final long[] obs3 = {1};
+		 assertThrows(IllegalArgumentException.class, () -> {
+			 ChiSquared.chiSquareTestDataSetsComparison(obs1,obs3);
+	  });
+
+		assertTrue(ChiSquared.chiSquareTestDataSetsComparison(obs1,obs2) < 0.14);
+	}
+	
 	@Test
 	@DisplayName("observe(doc, c, toUpper)")
 	public void observe1() throws Exception {

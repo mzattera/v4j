@@ -6,6 +6,9 @@ package io.github.mzattera.v4j.applications.chars;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.math3.stat.inference.AlternativeHypothesis;
+import org.apache.commons.math3.stat.inference.BinomialTest;
+
 import io.github.mzattera.v4j.experiment.ChiSquared;
 import io.github.mzattera.v4j.experiment.ChiSquared.CharBin;
 import io.github.mzattera.v4j.experiment.Experiment;
@@ -61,7 +64,7 @@ public abstract class CharDistributionAnalysis {
 	private static final double ALPHA2 = 0.05d;
 
 	/** Compact output */
-	private static final boolean COMPACT = true;
+	private static final boolean COMPACT = false;
 
 	protected CharDistributionAnalysis() {
 	}
@@ -131,6 +134,8 @@ public abstract class CharDistributionAnalysis {
 		} // For each cluster
 	}
 
+	private static final BinomialTest BINOMIAL = new BinomialTest();
+
 	/**
 	 * Processes a single text (typically representing a cluster).
 	 * 
@@ -166,8 +171,8 @@ public abstract class CharDistributionAnalysis {
 		Text[] parts = experiment.splitDocument(txt);
 		/**
 		 * We look into char distribution of the two parts together, since
-		 * splitDocument() might not return the whole text. This is the only way
-		 * to ensure charDistribution reflects the part of text we are looking into.
+		 * splitDocument() might not return the whole text. This is the only way to
+		 * ensure charDistribution reflects the part of text we are looking into.
 		 **/
 		Text allText = new TextString(parts[0].getPlainText() + a.getSpace() + parts[1].getPlainText(), a);
 		List<CharBin> charDistribution = ChiSquared.getCharDistribution(allText, false);
@@ -186,7 +191,8 @@ public abstract class CharDistributionAnalysis {
 		// Do analysis for each char individually
 		for (int i = 0; i < chars.length; ++i) {
 
-			// Find distribution for current char (note we do not use the adjusted one)
+			// Find distribution for current char (note we do not use the adjusted one, to
+			// have all chars, not those found). Notice each CharBin contains only one char.
 			CharBin cd = null;
 			for (CharBin d : charDistribution) {
 				if (d.getChars().get(0) == chars[i]) {
@@ -210,43 +216,45 @@ public abstract class CharDistributionAnalysis {
 			long[] obs1 = ChiSquared.observe(parts[0], chars[i], false);
 			long[] obs2 = ChiSquared.observe(parts[1], chars[i], false);
 			// Does the character appear more or less than expected?
-			double p1 = ((double) obs1[0] / (obs1[0] + obs1[1]));
-			double p2 = ((double) obs2[0] / (obs2[0] + obs2[1]));
-			boolean more = p1 > p2;
+			double freq1 = ((double) obs1[0] / (obs1[0] + obs1[1]));
+			double freq2 = ((double) obs2[0] / (obs2[0] + obs2[1]));
+			boolean more = freq1 > freq2;
 
-			if (expectedCount < 5.0d) {// expected count for char is too low to use Chi Squared
-				System.out.print("?");
-			} else {
-				try {
-					confidence = ChiSquared.chiSquareTestDataSetsComparison(obs1, obs2);
-					if (confidence <= ALPHA) { // Difference is significant
-						if (more) {
-							result[0].add(chars[i]);
-							System.out.print("++");
-						} else {
-							result[1].add(chars[i]);
-							System.out.print("--");
-						}
-					} else if (confidence < ALPHA2) { // We still display it if confidence is better than alha2
-						if (more)
-							System.out.print("+");
-						else
-							System.out.print("-");
-					} else { // Not significative, still print tendency
-						if (more)
-							System.out.print("^");
-						else
-							System.out.print("v");
-					}
-				} catch (Exception e) {
-					// Numbers are too small for chi-square
-					System.out.print("*");
+//			if (expectedCount < 5.0d) {// expected count for char is too low to use Chi Squared
+//				System.out.print("?");
+//			} else {
+//				try {
+//			confidence = ChiSquared.chiSquareTestDataSetsComparison(obs1, obs2);
+			confidence = BINOMIAL.binomialTest((int) (obs1[0] + obs1[1]), (int) (obs1[0]), freq2,
+					(more ? AlternativeHypothesis.GREATER_THAN : AlternativeHypothesis.LESS_THAN));
+
+			if (confidence <= ALPHA) { // Difference is significant
+				if (more) {
+					result[0].add(chars[i]);
+					System.out.print("++");
+				} else {
+					result[1].add(chars[i]);
+					System.out.print("--");
 				}
-			} // expected count high enough to use chi-squared
+			} else if (confidence < ALPHA2) { // We still display it if confidence is better than alha2
+				if (more)
+					System.out.print("+");
+				else
+					System.out.print("-");
+			} else { // Not significative, still print tendency
+				if (more)
+					System.out.print("^");
+				else
+					System.out.print("v");
+			}
+//				} catch (Exception e) {
+//					// Numbers are too small for chi-square
+//				}
+//			} // expected count high enough to use chi-squared
 
 			if (!compact) {
 				System.out.print(" (" + obs1[0] + " / " + obs1[1] + ") ");
-				System.out.printf("(%.2f%% / %.2f%%)", (p1 * 100.0), (p2 * 100.0));
+				System.out.printf("(%.2f%% / %.2f%%)", (freq1 * 100.0), (freq2 * 100.0));
 			}
 			System.out.print(";");
 

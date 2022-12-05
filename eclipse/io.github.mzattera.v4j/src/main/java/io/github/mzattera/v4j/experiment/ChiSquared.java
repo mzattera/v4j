@@ -210,7 +210,7 @@ public final class ChiSquared {
 	public static double chiSquareTestDataSetsComparison(Text part1, Text part2, char c, boolean toUpper) {
 
 		// TODO REMOVE THIS AND USE BINOMIAL TEST INSTEAD
-		
+
 		List<CharBin> categories = new ArrayList<>();
 		categories.add(new CharBin(c, 0, 0));
 
@@ -224,9 +224,9 @@ public final class ChiSquared {
 	 * @param expected List with expected distribution of observed categories.
 	 *                 Please notice that the list must contain all categories (that
 	 *                 is cover the entire character set in this case).
-	 * @param toUpper    If true, text will be converted to upper case before
-	 *                   performing the observation (if supported by the alphabet of
-	 *                   the text).
+	 * @param toUpper  If true, text will be converted to upper case before
+	 *                 performing the observation (if supported by the alphabet of
+	 *                 the text).
 	 * 
 	 * @return The significance level, also denoted as alpha or α, is the
 	 *         probability of rejecting the null hypothesis ('The two samples come
@@ -238,7 +238,7 @@ public final class ChiSquared {
 		long[] obs1 = observe(txt1, categories, toUpper, true);
 		long[] obs2 = observe(txt2, categories, toUpper, true);
 
-		if ((obs1.length != categories.size())||(obs2.length != categories.size()))
+		if ((obs1.length != categories.size()) || (obs2.length != categories.size()))
 			throw new IllegalArgumentException("Provided list of categores does not cover all observed characters.");
 
 		return chiSquareTestDataSetsComparison(obs1, obs2);
@@ -319,7 +319,8 @@ public final class ChiSquared {
 	 * categories.
 	 * 
 	 * @param doc        The text to analyze.
-	 * @param categories Bins to use for observation..
+	 * @param categories Bins to use for observation. Notice count and frequency are
+	 *                   not needed, only the list of characters is relevant.
 	 * @param toUpper    If true, text will be converted to upper case before
 	 *                   performing the observation (if supported by the alphabet of
 	 *                   the text).

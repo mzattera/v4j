@@ -31,7 +31,7 @@ This note looks into it, using for the first time the
 In this note I will show the result of several experiments. In each experiment, the text of the Voynich is split into two parts,
 for example initial lines of every paragraph will form the first part of text, whilst the other lines will be in the second part;
 the character distribution of the two parts is compared using a chi-squared test, where each "bin " is a character.
-If the test shows a statistically significant variation, then each character is tested individually (again, using a chi-squared test),
+If the test shows a statistically significant variation, then each character is tested individually (using a binomial test),
 to highlight which characters behave differently in the two parts of the text.
 
 In all experiments, a [concordance version](https://github.com/mzattera/v4j/blob/master/eclipse/io.github.mzattera.v4j/src/main/resources/Transcriptions/Interlinear_slot_ivtff_1.5.txt)
@@ -46,10 +46,9 @@ The set of experiments is as follows:
   * First letter in a line - initial character of first word in a line is compared with initial characters of all other words.
   * Last letter in a line - final character of last word in a line is compared with last characters of all other words.
 
-*** FAI UN TEST DEI METODI STATICI IN EXPERIMENTS (I TEST PER LE SINGOLE CLASSI ESISTONO, getWordsByPosition() ha i test -> ExperimentMethodsTest) ***
-*** FAI UN TEST DEL BINNING USATO PER I TEST ***
-
 The results are shown in the below table[{1}](#Note1)[{2}](#Note2):
+
+*** AGGIORNA QUESTA TABELLA ADESSO CHE USIAMO LA BINOMIALE ***
 
 ![Summary table of anomalies in char distribution](images/SummaryTable.PNG)
 

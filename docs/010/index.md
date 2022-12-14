@@ -132,6 +132,9 @@ being the sample much smaller for beginning of pages, the trends are just less m
 
 ## First Line in a Paragraph
 
+** See separate class doen for gallows
+** S appears more frequently; nobody noticed so far, probably because of using EVA; do the test using EVA and see if c s h have some anomalies....
+
 Words starting with non-pedestalled gallows are almost always found as first word in a paragraph.
 Words starting with pedestalled gallows are more rare and distributed more or less evenly, but tend not to appear at the beginning of a line other than first line of paragraphs.
 

@@ -54,6 +54,16 @@ public class Counter<T> {
 	}
 
 	/**
+	 * Creates a counter counting all terms in a Collection.
+	 * 
+	 * @param objs
+	 */
+	public Counter(Counter<? extends T> objs) {
+		this();
+		countAll(objs);
+	}
+
+	/**
 	 * 
 	 * @return Total number of items counted.
 	 */
@@ -71,13 +81,27 @@ public class Counter<T> {
 	}
 
 	/**
-	 * Counts given item n times.
+	 * Counts given item n times (notice negative numbers are allowed, as long as
+	 * the total count is not negative).
 	 * 
 	 * @return number of times obj was counted (including this).
 	 */
 	public int count(T obj, int n) {
-		int c = counts.getOrDefault(obj, 0) + n;
-		counts.put(obj, c);
+		int c = getCount(obj) + n;
+
+		// TODO Notice this is only for semantic, because if an object is counted N and
+		// then -N (that is counted 0) it should be counted more than an object counted
+		// -M, hence getHighestCounyted() should return the first object, but it does
+		// not because it has been removed. Hence we allow only positive total counts
+		// (or 0) and we assume if total count is 0 the item has never been counted.
+		if (c < 0)
+			throw new IllegalArgumentException("Negative total count for " + obj);
+
+		if (c == 0) {
+			counts.remove(obj);
+		} else {
+			counts.put(obj, c);
+		}
 		tot += n;
 		return c;
 	}
@@ -104,11 +128,20 @@ public class Counter<T> {
 	 * 
 	 * @return This Counter.
 	 */
-	public Counter<T> countAll(Counter<T> c) {
-		for (Entry<T, Integer> e : c.entrySet())
+	public Counter<T> countAll(Counter<? extends T> c) {
+		for (Entry<? extends T, Integer> e : c.entrySet())
 			count(e.getKey(), e.getValue());
 
 		return this;
+	}
+
+	/**
+	 * Set count for given item to 0.
+	 * 
+	 * @param obj
+	 */
+	public void remove(T obj) {
+		count(obj, -getCount(obj));
 	}
 
 	/**
@@ -137,7 +170,7 @@ public class Counter<T> {
 	 *         counted.
 	 */
 	public double getFrequency(T obj) {
-		return (double) getCount(obj) / tot;
+		return ((double) getCount(obj)) / tot;
 	}
 
 	/**

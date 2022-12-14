@@ -808,7 +808,7 @@ public abstract class Experiment {
 		List<Counter<String>> other = Experiment.getWordsByPosition(Experiment.filterLines(txt, true, false),
 				readableOnly, 0, Integer.MAX_VALUE, true, true);
 		Counter<String> population = new Counter<>();
-		for (int i = 0; i < other.size(); ++i) {
+		for (int i = 1; i < other.size(); ++i) {
 			population.countAll(other.get(i));
 		}
 

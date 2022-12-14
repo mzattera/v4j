@@ -17,6 +17,17 @@ public final class MathUtil {
 	private MathUtil() {
 	}
 
+	private final static double LN_2 = Math.log(2.0);
+
+	/**
+	 * 
+	 * @param prob
+	 * @return Entropy from a frequency/probability.
+	 */
+	public static double entropy(double prob) {
+		return -prob * Math.log(prob) / LN_2;
+	}
+
 	/**
 	 * Calculate entropy for a set of symbols.
 	 * 
@@ -28,20 +39,17 @@ public final class MathUtil {
 		double tot = c.getTotalCounted();
 
 		for (Entry<?, Integer> e : c.entrySet()) {
-			double p = e.getValue() / tot;
-			result += p * log2(p);
+			result += entropy(e.getValue() / tot);
 		}
 
 		return -result;
 	}
 
-	private final static double logOf2 = Math.log(2.0);
-
 	/**
 	 * @return Base 2 log() of n.
 	 */
 	public static double log2(double n) {
-		return Math.log(n) / logOf2;
+		return Math.log(n) / LN_2;
 	}
 
 	/**

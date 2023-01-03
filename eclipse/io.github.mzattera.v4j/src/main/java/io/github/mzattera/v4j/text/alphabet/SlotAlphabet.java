@@ -532,7 +532,7 @@ public class SlotAlphabet extends IvtffAlphabet {
 			if (Alphabet.SLOT.isUreadableChar(c))
 				throw new IllegalArgumentException("Decomposition of unreadable texts not yet supported.");
 			if (!Alphabet.SLOT.isRegularOrSeparator(c))
-				throw new IllegalArgumentException("Term is not a plain SLOT text.");
+				throw new IllegalArgumentException(term + " is not a plain SLOT text.");
 		}
 
 		TermDecomposition result = new TermDecomposition(term);

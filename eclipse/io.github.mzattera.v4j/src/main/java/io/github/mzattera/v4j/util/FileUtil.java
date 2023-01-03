@@ -37,7 +37,12 @@ public final class FileUtil {
 	 * @return the URL for a file in the resource folder.
 	 */
 	public static URL getResourceURL(String resourceName) {
-		return ClassLoaderUtil.getResource(resourceName, FileUtil.class);
+		// This works normally well within Eclipse
+		URL result =  ClassLoaderUtil.getResource(resourceName, FileUtil.class);
+		if (result == null) 
+			// This works after exporting in a JAR
+			result =  ClassLoaderUtil.getResource("resources/" + resourceName, FileUtil.class);
+		return result;
 	}
 
 	/**
@@ -62,7 +67,12 @@ public final class FileUtil {
 	 * @param resourceName Name for the resource, including path.
 	 */
 	public static InputStream getResourceStream(String resourceName) {
-		return ClassLoaderUtil.getResourceAsStream(resourceName, FileUtil.class);
+		// This works normally well within Eclipse
+		InputStream result = ClassLoaderUtil.getResourceAsStream(resourceName, FileUtil.class);
+		if (result == null)
+			// This works after exporting in a JAR
+			result = ClassLoaderUtil.getResourceAsStream("resources/" + resourceName, FileUtil.class);
+		return result;
 	}
 
 	/**

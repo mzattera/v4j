@@ -30,6 +30,9 @@ public final class FileUtil {
 	private FileUtil() {
 	}
 
+	
+	// TODO use ResourceUtil from predictive-powers for the resource-getting methods. The dependency from xwork-core can then be removed from pom file
+	
 	/**
 	 * Gets the URL for a file in the resource folder.
 	 * 

@@ -2,6 +2,8 @@
 
 _Last updated Apr. 2nd, 2022._
 
+**_This note is part of my article I presented at the International Conference on the Voynich Manuscript 2022 [ZATTERA (2022)](../biblio)._**
+
 _This note refers to [release v.10.0.0](https://github.com/mzattera/v4j/tree/v.10.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
 In addition, some of this note content might have become obsolete in more recent versions of the library._

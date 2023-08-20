@@ -29,6 +29,8 @@ A small annotated (?) bibliography about the Voynich.
 
 * ZANDBERGEN, René (2021): [The Cardan grille approach to the Voynich MS taken to the next level](https://arxiv.org/abs/2104.12548).
 
+* ZATTERA, Massimiliano (2022): [A New Transliteration Alphabet Brings New Evidence of Word Structure and Multiple "Languages" in the Voynich Manuscript](https://ceur-ws.org/Vol-3313/paper10.pdf).
+
 
 # Other Voynich Bibliographies
 

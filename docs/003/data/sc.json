@@ -6,8 +6,8 @@
         1000,
         50
       ],
-      "tensorPath": "https://github.com/mzattera/file-exchange/SyntheticCustomer/SCVectors.tsv",
-      "metadataPath": "https://github.com/mzattera/file-exchange/SyntheticCustomer/SCMeta.tsv"
+      "tensorPath": "https://github.com/mzattera/v4j/docs/003/data/SCVectors.tsv",
+      "metadataPath": "https://github.com/mzattera/v4j/docs/003/data/SCMeta.tsv"
     }
   ]
 }

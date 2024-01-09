@@ -1,12 +1,13 @@
 {
   "embeddings": [
     {
-      "tensorName": "Voynich Pages",
+      "tensorName": "Customer Vectors (Infosys Consulting Demo)",
       "tensorShape": [
         1000,
         50
       ],
-      "tensorPath": "https://mzattera.github.io/v4j/003/data/SCVectors.tsv"
+      "tensorPath": "https://github.com/mzattera/file-exchange/SyntheticCustomer/SCVectors.tsv",
+      "metadataPath": "https://github.com/mzattera/file-exchange/SyntheticCustomer/SCMeta.tsv"
     }
   ]
 }

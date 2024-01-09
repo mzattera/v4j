@@ -1,0 +1,13 @@
+{
+  "embeddings": [
+    {
+      "tensorName": "Voynich Pages",
+      "tensorShape": [
+        1000,
+        50
+      ],
+      "tensorPath": "https://mzattera.github.io/v4j/003/data/vectors.tsv",
+      "metadataPath": "https://mzattera.github.io/v4j/003/data/metadata.tsv"
+    }
+  ]
+}

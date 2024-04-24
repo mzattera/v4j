@@ -12,12 +12,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.opensymphony.xwork2.util.ClassLoaderUtil;
 
 /**
  * Various file utilities.
@@ -28,54 +24,6 @@ import com.opensymphony.xwork2.util.ClassLoaderUtil;
 public final class FileUtil {
 
 	private FileUtil() {
-	}
-
-	
-	// TODO use ResourceUtil from predictive-powers for the resource-getting methods. The dependency from xwork-core can then be removed from pom file
-	
-	/**
-	 * Gets the URL for a file in the resource folder.
-	 * 
-	 * @param resourceName Name for the resource, including path.
-	 * @return the URL for a file in the resource folder.
-	 */
-	public static URL getResourceURL(String resourceName) {
-		// This works normally well within Eclipse
-		URL result =  ClassLoaderUtil.getResource(resourceName, FileUtil.class);
-		if (result == null) 
-			// This works after exporting in a JAR
-			result =  ClassLoaderUtil.getResource("resources/" + resourceName, FileUtil.class);
-		return result;
-	}
-
-	/**
-	 * Gets the URL for a File in the resource folder.
-	 * 
-	 * @param resourceName Name for the resource, including path.
-	 * @return the URL for a File in the resource folder.
-	 * @throws URISyntaxException
-	 */
-	public static File getResourceFile(String resourceName) {
-		URL url = ClassLoaderUtil.getResource(resourceName, FileUtil.class);
-		try {
-			return (url == null) ? null : new File(url.toURI());
-		} catch (URISyntaxException e) {
-			return null;
-		}
-	}
-
-	/**
-	 * Gets a stream to read a file in the resource folder.
-	 * 
-	 * @param resourceName Name for the resource, including path.
-	 */
-	public static InputStream getResourceStream(String resourceName) {
-		// This works normally well within Eclipse
-		InputStream result = ClassLoaderUtil.getResourceAsStream(resourceName, FileUtil.class);
-		if (result == null)
-			// This works after exporting in a JAR
-			result = ClassLoaderUtil.getResourceAsStream("resources/" + resourceName, FileUtil.class);
-		return result;
 	}
 
 	/**

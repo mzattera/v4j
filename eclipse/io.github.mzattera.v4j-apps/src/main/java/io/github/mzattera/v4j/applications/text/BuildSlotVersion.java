@@ -16,6 +16,7 @@ import io.github.mzattera.v4j.text.ivtff.IvtffText;
 import io.github.mzattera.v4j.text.ivtff.ParseException;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory;
 import io.github.mzattera.v4j.util.FileUtil;
+import io.github.mzattera.v4j.util.ResourceUtil;
 
 /**
  * Processes an interlinear transcription to create concordance and majority
@@ -30,7 +31,7 @@ public final class BuildSlotVersion {
 	/// ONLY
 	private final static File OUTPUT_FILE = new File("D:\\", VoynichFactory.AUGMENTED_SLOT_TRANSCRIPTION_FILE_NAME);
 
-	public final static File INPUT_FILE = FileUtil
+	public final static File INPUT_FILE = ResourceUtil
 			.getResourceFile(VoynichFactory.TRANSCRIPTION_FOLDER + VoynichFactory.AUGMENTED_TRANSCRIPTION_FILE_NAME);
 
 	/**

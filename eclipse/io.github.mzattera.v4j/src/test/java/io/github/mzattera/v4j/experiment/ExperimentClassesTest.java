@@ -3,7 +3,6 @@ package io.github.mzattera.v4j.experiment;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import io.github.mzattera.v4j.experiment.Experiment;
 import io.github.mzattera.v4j.text.Text;
 import io.github.mzattera.v4j.text.ivtff.IvtffText;
 import io.github.mzattera.v4j.util.TestUtil;
@@ -34,7 +33,7 @@ public final class ExperimentClassesTest {
 					+ "<f1r.10,+P0;m>	dCar.STaJn.okaJr.Cey.?Cy.potol.Tols.d?o?ta\n" //
 					+ "<f1r.11,+P0;m>	Sok.Cor.Cey.dain.Key<$>\n" + "#\n" //
 					+ "<f1r.12,=Ca;m>	otol.daUn<$>\n" + "#  \n" //
-					+ "<f1r.13,*P0;m>	Po.SaJn.SokCEy.Col.tSodEsy.Sey.pydEy.Cy.ro.d?<$>\n" + "#  \n" //  
+					+ "<f1r.13,*P0;m>	Po.SaJn.SokCEy.Col.tSodEsy.Sey.pydEy.Cy.ro.d?<$>\n" + "#  \n" //
 					+ "<f1r.14,*P0;m>	\n" + "#  \n" //
 					+ "<f1r.15,*P0;m>	<$>\n" + "#  \n" //
 					+ "<f1r.16,*P0;m>	..\n" + "#  \n" //
@@ -87,7 +86,8 @@ public final class ExperimentClassesTest {
 						{ "?", "ydain", "PesaJn", "ol", "s", "Pey", "ytain", "SoSy", "Podales" },
 						{ "dCar", "STaJn", "okaJr", "Cey", "?Cy", "potol", "Tols", "d?o?ta" },
 						{ "Sok", "Cor", "Cey", "dain", "Key" },
-						{ "Po", "SaJn", "SokCEy", "Col", "tSodEsy", "Sey", "pydEy", "Cy", "ro", "d?" }, {}, {}, {}, {} });		
+						{ "Po", "SaJn", "SokCEy", "Col", "tSodEsy", "Sey", "pydEy", "Cy", "ro", "d?" }, {}, {}, {},
+						{} });
 	}
 
 	@Test

@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 import io.github.mzattera.v4j.text.alphabet.Alphabet;
-import io.github.mzattera.v4j.util.FileUtil;
+import io.github.mzattera.v4j.util.ResourceUtil;
 
 /**
  * Factory class to read different language versions of the Bible. The documents
@@ -37,10 +37,10 @@ public class BibleFactory {
 	 * @throws URISyntaxException
 	 */
 	public static TextFile getDocument(String language) throws IOException, URISyntaxException {
-		return new TextFile(FileUtil.getResourceFile(TRANSCRIPTION_FOLDER + language + ".txt"), Alphabet.UTF_16,
+		return new TextFile(ResourceUtil.getResourceFile(TRANSCRIPTION_FOLDER + language + ".txt"), Alphabet.UTF_16,
 				"UTF-8");
 	}
-	
+
 	public static void main(String[] argv) {
 		try {
 			System.out.print(getDocument("italian"));

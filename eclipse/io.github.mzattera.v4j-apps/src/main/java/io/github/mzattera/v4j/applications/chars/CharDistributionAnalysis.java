@@ -209,8 +209,9 @@ public abstract class CharDistributionAnalysis {
 
 			// How many times do we expect the character to appear in any of the two parts,
 			// as a minimum?
-			double expectedCount = cd.getFrequency()
-					* Math.min(parts[0].getChars().getTotalCounted(), parts[1].getChars().getTotalCounted());
+//			double expectedCount = cd.getFrequency()
+//					* Math.min(parts[0].getChars().getTotalCounted(), parts[1].getChars().getTotalCounted());
+			
 			// Observe actual frequencies of the char (2 categories: the char and all
 			// others)
 			long[] obs1 = ChiSquared.observe(parts[0], chars[i], false);

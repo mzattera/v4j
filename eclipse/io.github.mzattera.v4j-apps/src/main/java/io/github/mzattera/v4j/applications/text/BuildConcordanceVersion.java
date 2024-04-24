@@ -21,7 +21,7 @@ import io.github.mzattera.v4j.text.ivtff.IvtffText;
 import io.github.mzattera.v4j.text.ivtff.ParseException;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory.TranscriptionType;
-import io.github.mzattera.v4j.util.FileUtil;
+import io.github.mzattera.v4j.util.ResourceUtil;
 
 /**
  * Processes an interlinear transcription to create concordance and majority
@@ -36,8 +36,8 @@ public final class BuildConcordanceVersion {
 	/// MAKE SURE THIS IS CORRECT BUT DO NOT USE RESOURCE FOLDER AS IT IS READ
 	/// ONLY
 	private final static String OUTPUT_FOLDER = "D:\\";
-	 
-	public final static File INPUT_FILE = FileUtil.getResourceFile("Transcriptions/LSI_ivtff_0d_fixed.txt");
+
+	public final static File INPUT_FILE = ResourceUtil.getResourceFile("Transcriptions/LSI_ivtff_0d_fixed.txt");
 
 	/**
 	 * @param args the command line arguments
@@ -104,18 +104,19 @@ public final class BuildConcordanceVersion {
 			if (a == null)
 				throw new ParseException("Unsupported alphabeth: " + m.group(1));
 			if (!m.group(2).equals("1.5"))
-				throw new ParseException("Unsupported IVTFF format version: " + m.group(2));				
+				throw new ParseException("Unsupported IVTFF format version: " + m.group(2));
 
 			// Write header
 			out.write(fLine);
 			out.newLine();
-			
+
 			DateFormat f = new SimpleDateFormat("yyyyMMdd.HHmm");
-			out.write("# Created automatically by " + BuildConcordanceVersion.class.getName() + " on: " + f.format(new Date()));
+			out.write("# Created automatically by " + BuildConcordanceVersion.class.getName() + " on: "
+					+ f.format(new Date()));
 			out.newLine();
 			out.write("#");
-			out.newLine();			
-			
+			out.newLine();
+
 			while ((fLine = in.readLine()) != null) {
 				++lnum;
 				line = null;
@@ -160,8 +161,7 @@ public final class BuildConcordanceVersion {
 	 *         different transcribers.
 	 */
 	public static String getGroupId(IvtffLine line) {
-		return line
-				.getDescriptor().getPageId() + "." + line.getDescriptor().getNumber() + ","
+		return line.getDescriptor().getPageId() + "." + line.getDescriptor().getNumber() + ","
 				+ line.getDescriptor().getLocus();
 	}
 

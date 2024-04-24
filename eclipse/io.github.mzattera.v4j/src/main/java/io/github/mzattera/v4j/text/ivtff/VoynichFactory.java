@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 import io.github.mzattera.v4j.text.alphabet.Alphabet;
-import io.github.mzattera.v4j.util.FileUtil;
+import io.github.mzattera.v4j.util.ResourceUtil;
 
 /**
  * Factory class to read different versions of the Voynich manuscript. The
@@ -139,17 +139,17 @@ public final class VoynichFactory {
 			if ((a != null) && (a != Alphabet.EVA))
 				throw new IllegalArgumentException("Unsupported alphabet " + a + " for transcription " + t);
 
-			return new IvtffText(FileUtil.getResourceFile(TRANSCRIPTION_FOLDER + LSI_TRANSCRIPTION_FILE_NAME));
+			return new IvtffText(ResourceUtil.getResourceFile(TRANSCRIPTION_FOLDER + LSI_TRANSCRIPTION_FILE_NAME));
 
 		case AUGMENTED:
 			IvtffText result;
 
 			if ((a == null) || (a == Alphabet.EVA))
 				result = new IvtffText(
-						FileUtil.getResourceFile(TRANSCRIPTION_FOLDER + AUGMENTED_TRANSCRIPTION_FILE_NAME));
+						ResourceUtil.getResourceFile(TRANSCRIPTION_FOLDER + AUGMENTED_TRANSCRIPTION_FILE_NAME));
 			else if (a == Alphabet.SLOT)
 				result = new IvtffText(
-						FileUtil.getResourceFile(TRANSCRIPTION_FOLDER + AUGMENTED_SLOT_TRANSCRIPTION_FILE_NAME));
+						ResourceUtil.getResourceFile(TRANSCRIPTION_FOLDER + AUGMENTED_SLOT_TRANSCRIPTION_FILE_NAME));
 			else
 				throw new IllegalArgumentException("Unsupported alphabet " + a + " for transcription " + t);
 

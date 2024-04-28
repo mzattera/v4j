@@ -22,7 +22,9 @@ import io.github.mzattera.v4j.text.alphabet.Alphabet;
  *
  */
 public final class StringUtil {
-
+	
+	private final static Random RND = new Random();
+	
 	private StringUtil() {
 	}
 
@@ -77,7 +79,7 @@ public final class StringUtil {
 	 * @return The text with words randomly shuffled.
 	 */
 	public static String shuffledWords(String txt, Alphabet a) {
-		return shuffledWords(txt, a, new Random(System.currentTimeMillis()));
+		return shuffledWords(txt, a, RND);
 	}
 
 	/**
@@ -104,7 +106,7 @@ public final class StringUtil {
 	 * @throws IllegalArgumentException if len is too big.
 	 */
 	public static String randomSubstring(String txt, int len) {
-		return randomSubstring(txt, len, new Random(System.currentTimeMillis()));
+		return randomSubstring(txt, len, RND);
 	}
 
 	/**

@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.mzattera</groupId>
 	<artifactId>io.github.mzattera.v4j-apps</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.13.0</version>
 	<name>v4j-apps</name>
 	<description>"Applications" using v4j Java to play with the Voynich manuscript.</description>
 	<properties>
@@ -12,4 +12,11 @@
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
 	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>io.github.mzattera</groupId>
+			<artifactId>io.github.mzattera.v4j</artifactId>
+			<version>0.13.0</version>
+		</dependency>
+	</dependencies>
 </project>

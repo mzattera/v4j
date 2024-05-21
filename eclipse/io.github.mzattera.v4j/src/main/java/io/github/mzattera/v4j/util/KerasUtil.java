@@ -21,6 +21,8 @@ import org.nd4j.linalg.api.ndarray.INDArray;
  */
 public final class KerasUtil {
 
+	private final static Random rnd = new Random();
+
 	private KerasUtil() {
 	}
 
@@ -32,7 +34,11 @@ public final class KerasUtil {
 	 *         index of the element with highest probability accordingly to softmax
 	 *         - greedy sampling).
 	 */
-	public static long greedy(INDArray a) {
+	public static int greedy(INDArray a) {
+		if (a == null || a.rank() != 2 || a.shape()[1] == 0) {
+			throw new IllegalArgumentException("Input must be a non-null one-dimensional INDArray.");
+		}
+
 		long idx = 0;
 		double max = 0.0;
 		for (long i = 0; i < a.shape()[1]; ++i) {
@@ -42,10 +48,8 @@ public final class KerasUtil {
 			}
 		}
 
-		return idx;
+		return (int) idx;
 	}
-
-	private final static Random rnd = new Random(42);
 
 	/**
 	 * @param a an array of shape [0,N], reflecting the output of a Keras softmax
@@ -53,7 +57,7 @@ public final class KerasUtil {
 	 * 
 	 * @return A random index, distributed accordingly to a.
 	 */
-	public static long random(INDArray a) {
+	public static int random(INDArray a) {
 		return random(a, rnd);
 	}
 
@@ -64,25 +68,13 @@ public final class KerasUtil {
 	 * 
 	 * @return A random index, distributed accordingly to a.
 	 */
-	public static long random(INDArray a, Random r) {
+	public static int random(INDArray a, Random r) {
 
-		// TODO should be using long indexes, not int
-		double[] p = new double[(int) a.shape()[1]];
-		if (p.length < 1)
-			throw new IllegalArgumentException();
-
-		// Cumulative probabilities
-		p[0] = a.getDouble(0, 0);
-		for (int i = 1; i < p.length; ++i) {
-			p[i] = p[i - 1] + a.getDouble(0, i);
+		if (a == null || a.rank() != 2 || a.shape()[1] == 0) {
+			throw new IllegalArgumentException("Input must be a non-null one-dimensional INDArray.");
 		}
 
-		double e = r.nextDouble();
-		for (int i = 0; i < p.length; ++i)
-			if (p[i] >= e)
-				return i;
-
-		return p.length - 1; // safeguard for rounding
+		return random(a.toDoubleVector(), r);
 	}
 
 	/**
@@ -90,7 +82,7 @@ public final class KerasUtil {
 	 * 
 	 * @return A random index, distributed accordingly to a.
 	 */
-	public static long random(double[] a) {
+	public static int random(double[] a) {
 		return random(a, rnd);
 	}
 
@@ -101,20 +93,16 @@ public final class KerasUtil {
 	 * 
 	 * @return A random index, distributed accordingly to a.
 	 */
-	public static long random(double[] a, Random r) {
-
-		// TODO should be using long indexes, not int
-		double[] p = new double[a.length];
-		if (p.length < 1)
-			throw new IllegalArgumentException();
+	public static int random(double[] a, Random r) {
 
 		// Cumulative probabilities
+		double[] p = new double[a.length];
 		p[0] = a[0];
 		for (int i = 1; i < p.length; ++i) {
 			p[i] = p[i - 1] + a[i];
 		}
 
-		double e = r.nextDouble();
+		double e = rnd.nextDouble();
 		for (int i = 0; i < p.length; ++i)
 			if (p[i] >= e)
 				return i;
@@ -156,6 +144,10 @@ public final class KerasUtil {
 	 */
 	public static long topK(INDArray a, int k, Random r) {
 
+		if (a == null || a.rank() != 2 || a.shape()[1] == 0) {
+			throw new IllegalArgumentException("Input must be a non-null one-dimensional INDArray.");
+		}
+
 		// put a in a sorted list
 		Map<Long, Double> d = new HashMap<>();
 		for (long i = 0; i < a.shape()[1]; ++i) {
@@ -174,7 +166,7 @@ public final class KerasUtil {
 
 		// normalise and random sample
 		// TODO this should workj with long
-		int idx = (int) random(normalize(a2));
+		int idx = random(normalize(a2));
 
 		// re-translate into an index on the original array
 		return list.get(idx).getKey();
@@ -200,6 +192,10 @@ public final class KerasUtil {
 	 */
 	public static long nucleus(INDArray a, double p, Random r) {
 
+		if (a == null || a.rank() != 2 || a.shape()[1] == 0) {
+			throw new IllegalArgumentException("Input must be a non-null one-dimensional INDArray.");
+		}
+
 		// put a in a sorted list
 		Map<Long, Double> d = new HashMap<>();
 		for (long i = 0; i < a.shape()[1]; ++i) {
@@ -217,24 +213,51 @@ public final class KerasUtil {
 			if (s >= p)
 				break;
 		}
-		double[] a2 = new double[aSize+1];
+		double[] a2 = new double[aSize + 1];
 		for (int i = 0; i <= aSize; ++i) {
 			a2[i] = list.get(i).getValue();
 		}
 
 		// normalise and random sample
 		// TODO this should workj with long
-		int idx = (int) random(normalize(a2));
+		int idx = random(normalize(a2));
 
 		// re-translate into an index on the original array
 		return list.get(idx).getKey();
 	}
 
 	/**
-	 * @param args
+	 * 
+	 * @param a an array of shape [0,N], reflecting the output of a Keras softmax
+	 *          layer.
+	 * 
+	 * @return An index in a using random sampling with givne temperature t.
 	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public static long temperature(INDArray a, double t) {
 
+		return temperature(a, t, rnd);
+	}
+
+	/**
+	 * 
+	 * @param a an array of shape [0,N], reflecting the output of a Keras softmax
+	 *          layer.
+	 * 
+	 * @return An index in a using random sampling with givne temperature t.
+	 */
+	public static long temperature(INDArray a, double t, Random r) {
+
+		if (a == null || a.rank() != 2 || a.shape()[1] == 0) {
+			throw new IllegalArgumentException("Input must be a non-null one-dimensional INDArray.");
+		}
+
+		// scale probabilities using temperature
+		double[] d = new double[(int) a.shape()[1]];
+		for (int i = 0; i < d.length; ++i) {
+			d[i] = Math.exp(a.getDouble(0, i) / t);
+		}
+
+		// normalise and random sample
+		return random(normalize(d));
 	}
 }

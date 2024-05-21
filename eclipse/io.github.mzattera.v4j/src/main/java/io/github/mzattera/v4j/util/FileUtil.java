@@ -30,17 +30,31 @@ public final class FileUtil {
 	 * Write a string into an ASCII file.
 	 */
 	public static void write(String txt, String fileName) throws IOException {
-		write(txt, fileName, "ASCII");
+		write(txt, new File(fileName), "ASCII");
+	}
+
+	/**
+	 * Write a string into an ASCII file.
+	 */
+	public static void write(String txt, File file) throws IOException {
+		write(txt, file, "ASCII");
 	}
 
 	/**
 	 * Write a string into a file with given encoding.
 	 */
 	public static void write(String txt, String fileName, String encoding) throws IOException {
+		write(txt, new File(fileName), encoding);
+	}
+
+	/**
+	 * Write a string into a file with given encoding.
+	 */
+	public static void write(String txt, File file, String encoding) throws IOException {
 
 		BufferedWriter out = null;
 		try {
-			out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), encoding));
+			out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), encoding));
 			out.write(txt);
 			out.flush();
 		} finally {
@@ -56,17 +70,31 @@ public final class FileUtil {
 	 * Write a list of strings into a file. Uses UTF-8 encoding.
 	 */
 	public static void write(List<String> txt, String fileName) throws IOException {
-		write(txt, fileName, "UTF-8");
+		write(txt, new File(fileName), "UTF-8");
+	}
+
+	/**
+	 * Write a list of strings into a file. Uses UTF-8 encoding.
+	 */
+	public static void write(List<String> txt, File file) throws IOException {
+		write(txt, file, "UTF-8");
 	}
 
 	/**
 	 * Write a list of strings into a file with given encoding.
 	 */
 	public static void write(List<String> txt, String fileName, String encoding) throws IOException {
+		write(txt, new File(fileName), encoding);
+	}
+
+	/**
+	 * Write a list of strings into a file with given encoding.
+	 */
+	public static void write(List<String> txt, File file, String encoding) throws IOException {
 
 		BufferedWriter out = null;
 		try {
-			out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), encoding));
+			out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), encoding));
 			for (String s : txt) {
 				out.write(s);
 				out.newLine();

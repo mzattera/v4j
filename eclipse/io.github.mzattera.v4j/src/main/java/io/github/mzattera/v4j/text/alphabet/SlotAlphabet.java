@@ -179,15 +179,6 @@ public class SlotAlphabet extends IvtffAlphabet {
 		p = new ArrayList<String>();
 		p.add("s");
 		p.add("d");
-//		p.add("K");
-//		p.add("k");
-//		p.add("T");
-//		p.add("t");
-//		p.add("P");
-//		p.add("p");
-//		p.add("F");
-//		p.add("f");
-		// p.add("x");
 		SLOTS.add(p);
 
 		//// 8 //////
@@ -198,15 +189,9 @@ public class SlotAlphabet extends IvtffAlphabet {
 
 		//// 9 //////
 		p = new ArrayList<String>();
-
 		p.add("i");
 		p.add("J");
 		p.add("U");
-
-		// p.add("V");
-		// p.add("W");
-		// p.add("Z");
-
 		SLOTS.add(p);
 
 		//// 10 //////
@@ -221,7 +206,6 @@ public class SlotAlphabet extends IvtffAlphabet {
 		//// 11 //////
 		p = new ArrayList<String>();
 		p.add("y");
-		// p.add("g");
 		SLOTS.add(p);
 	}
 
@@ -577,15 +561,6 @@ public class SlotAlphabet extends IvtffAlphabet {
 
 		pushRight(result.slots1, "d", 0, 7);
 		pushRight(result.slots1, "s", 0, 7);
-
-//		pushRight(result.slots1, "t", 3, 7);
-//		pushRight(result.slots1, "k", 3, 7);
-//		pushRight(result.slots1, "p", 3, 7);
-//		pushRight(result.slots1, "f", 3, 7);
-//		pushRight(result.slots1, "T", 5, 7);
-//		pushRight(result.slots1, "K", 5, 7);
-//		pushRight(result.slots1, "P", 5, 7);
-//		pushRight(result.slots1, "F", 5, 7);
 
 		result.part2 = s;
 		if (s == null) {

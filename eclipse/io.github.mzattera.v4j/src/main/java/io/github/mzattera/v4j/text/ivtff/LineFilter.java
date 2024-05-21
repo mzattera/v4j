@@ -22,7 +22,7 @@ public class LineFilter implements ElementFilter<IvtffLine> {
 	private final String transcriber;
 
 	/**
-	 * Pre-made filter to return "paragraph" text; that is terxt contained in "P0"
+	 * Pre-made filter to return "paragraph" text; that is text contained in "P0"
 	 * or "P1" loci.
 	 */
 	public static final ElementFilter<IvtffLine> PARAGRAPH_TEXT_FILTER = new ElementFilter<IvtffLine>() {

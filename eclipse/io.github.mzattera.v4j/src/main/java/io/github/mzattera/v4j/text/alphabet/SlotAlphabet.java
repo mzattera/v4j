@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2024 Massimiliano "Maxi" Zattera */
+
 package io.github.mzattera.v4j.text.alphabet;
 
 import java.util.ArrayList;

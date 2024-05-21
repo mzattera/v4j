@@ -1,3 +1,5 @@
+/* Copyright (c) 2022 Massimiliano "Maxi" Zattera */
+
 package io.github.mzattera.v4j.cmc.count.parser.antlr.internal;
 
 import org.eclipse.xtext.*;

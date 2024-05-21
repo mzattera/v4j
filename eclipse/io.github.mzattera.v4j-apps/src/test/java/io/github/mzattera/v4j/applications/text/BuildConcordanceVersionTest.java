@@ -1,3 +1,5 @@
+/* Copyright (c) 2021 Massimiliano "Maxi" Zattera */
+
 package io.github.mzattera.v4j.applications.text;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,3 +1,5 @@
+/* Copyright (c) 2019-2024 Massimiliano "Maxi" Zattera */
+
 /**
  * 
  */

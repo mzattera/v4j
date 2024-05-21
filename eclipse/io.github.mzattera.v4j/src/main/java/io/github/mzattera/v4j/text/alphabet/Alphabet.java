@@ -1,3 +1,5 @@
+/* Copyright (c) 2018-2022 Massimiliano "Maxi" Zattera */
+
 /*
  * Gliph.java
  *

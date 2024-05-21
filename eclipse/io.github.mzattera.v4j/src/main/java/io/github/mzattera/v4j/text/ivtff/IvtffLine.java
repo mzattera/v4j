@@ -1,3 +1,5 @@
+/* Copyright (c) 2018-2022 Massimiliano "Maxi" Zattera */
+
 package io.github.mzattera.v4j.text.ivtff;
 
 import java.util.ArrayList;

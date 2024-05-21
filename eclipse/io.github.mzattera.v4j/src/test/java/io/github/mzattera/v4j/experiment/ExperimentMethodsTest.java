@@ -1,3 +1,5 @@
+/* Copyright (c) 2022 Massimiliano "Maxi" Zattera */
+
 package io.github.mzattera.v4j.experiment;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

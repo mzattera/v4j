@@ -1,3 +1,5 @@
+/* Copyright (c) 2022-2024 Massimiliano "Maxi" Zattera */
+
 package io.github.mzattera.v4j.experiment;
 
 import org.junit.jupiter.api.DisplayName;

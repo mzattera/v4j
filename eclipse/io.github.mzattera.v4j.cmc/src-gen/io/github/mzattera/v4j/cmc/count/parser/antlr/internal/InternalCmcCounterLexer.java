@@ -1,3 +1,5 @@
+/* Copyright (c) 2022 Massimiliano "Maxi" Zattera */
+
 package io.github.mzattera.v4j.cmc.count.parser.antlr.internal;
 
 // Hack: Use our own Lexer superclass by means of import. 

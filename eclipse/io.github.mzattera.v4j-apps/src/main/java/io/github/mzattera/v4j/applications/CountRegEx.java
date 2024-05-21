@@ -1,3 +1,5 @@
+/* Copyright (c) 2020-2022 Massimiliano "Maxi" Zattera */
+
 package io.github.mzattera.v4j.applications;
 
 import java.util.Map.Entry;

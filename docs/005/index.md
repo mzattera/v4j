@@ -177,7 +177,7 @@ However,
   - The combination of gallows in slot 3 followed by a pedestal in slot 4 is quite common in the text. 2'185 tokens, or 419 regular word types, that is 16% of regular word types,
 and written explicitly as two glyphs.
  
-  - In 332 tokens, we have a pedestal followed by a pedestalled gallows. This would correspond to a double pedestal is in a word (or a separable word), which contrasts with the 
+  - In 332 tokens, we have a pedestal followed by a pedestalled gallows. This would correspond to a double pedestal in a word (or a separable word), which contrasts with the 
 structure suggested by slots. 
 
   - Gallows and pedestalled gallows are preceded by different characters (see [Note 007](../007)).

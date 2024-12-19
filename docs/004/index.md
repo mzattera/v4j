@@ -1,6 +1,6 @@
 ## Note 004 - On Word types
 
-_Last updated Sep. 18th, 2021._
+_Last updated Dec. 19th, 2024._
 
 _This note refers to [release v.4.0.0](https://github.com/mzattera/v4j/tree/v.4.0.0) of v4j;
 **links to classes and files refer to this release** and files might have been changed, deleted or moved in the current master branch.
@@ -36,8 +36,6 @@ It might be interesting to note that:
 - Most common word types in Herbal A pages (HA cluster) start with 'ch-' or 'sh-'; the latter prefix appearing only here,
 
 - Pharmaceutical (PA cluster) common word types end in '-ol', which is rare for other clusters. In addition, they seem to prefer the 'ok-' or 'qok-' prefix.
-
-- Herbal B pages (HB cluster) prefer word types starting with 'qo-' and 'qok-'.
 
 - Zodiac (ZZ) common word types mostly start with 'ot-', this is uncommon for clusters above. Moreover, these pages feature single characters as common word types.
 

@@ -10,6 +10,7 @@ import io.github.mzattera.v4j.text.alphabet.Alphabet;
 import io.github.mzattera.v4j.text.ivtff.IvtffLine;
 import io.github.mzattera.v4j.text.ivtff.IvtffPage;
 import io.github.mzattera.v4j.text.ivtff.IvtffText;
+import io.github.mzattera.v4j.text.ivtff.LineFilter;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory.Transcription;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory.TranscriptionType;
@@ -59,6 +60,7 @@ public final class CurrierRepeatTest {
 			System.out.println();
 
 			IvtffText doc = VoynichFactory.getDocument(TRANSCRIPTION, TRANSCRIPTION_TYPE, ALPHABET);
+			doc = doc.filterLines(LineFilter.PARAGRAPH_TEXT_FILTER);
 			if (FILTER != null)
 				doc = doc.filterPages(FILTER);
 
@@ -68,8 +70,8 @@ public final class CurrierRepeatTest {
 				if (w.length == 0)
 					continue; // paranoid guard
 				if ((lastWord != null) && (w[0].equals(lastWord)))
-					System.out.println(l);
-				lastWord = w[w.length-1];
+					System.out.println(l.getPage().getDescriptor().getCluster()+ " -> " + l);
+				lastWord = w[w.length - 1];
 
 			} // for each line
 

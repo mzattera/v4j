@@ -66,7 +66,7 @@ public abstract class CharDistributionAnalysis {
 	private static final double ALPHA2 = 0.05d;
 
 	/** Compact output */
-	private static final boolean COMPACT = false;
+	private static final boolean COMPACT = true;
 
 	protected CharDistributionAnalysis() {
 	}
@@ -120,7 +120,9 @@ public abstract class CharDistributionAnalysis {
 		}
 
 		// Header with chars
-		System.out.print("Cluster;Significance [alpha];");
+		System.out.print("Cluster;");
+		if (!COMPACT)
+			System.out.print("Significance [alpha];");
 		for (int i = 0; i < chars.length; ++i)
 			System.out.print(chars[i] + ";");
 		System.out.println();
@@ -128,7 +130,10 @@ public abstract class CharDistributionAnalysis {
 		// Do analysis for each cluster
 		for (String cluster : PageHeader.CLUSTERS) {
 
-// TEST			IvtffText clusterText = doc.filterPages(new PageFilter.Builder().cluster(cluster).build()).shuffledText();
+			// TEST with random text
+			// IvtffText clusterText = doc.filterPages(new
+			// PageFilter.Builder().cluster(cluster).build()).shuffledText();
+
 			IvtffText clusterText = doc.filterPages(new PageFilter.Builder().cluster(cluster).build());
 			process(cluster, clusterText, COMPACT, experiment);
 
@@ -185,7 +190,8 @@ public abstract class CharDistributionAnalysis {
 		// there is a significative difference
 		System.out.print(cluster + ";");
 		double confidence = ChiSquared.chiSquareTestDataSetsComparison(parts[0], parts[1], adjustedDistribution, false);
-		System.out.printf("%.2f%%;", confidence * 100);
+		if (!COMPACT)
+			System.out.printf("%.2f%%;", confidence * 100);
 		if (confidence > ALPHA) { // Not a difference in the two part that is statistically significant; exit
 			return result;
 		}
@@ -213,7 +219,7 @@ public abstract class CharDistributionAnalysis {
 			// as a minimum?
 //			double expectedCount = cd.getFrequency()
 //					* Math.min(parts[0].getChars().getTotalCounted(), parts[1].getChars().getTotalCounted());
-			
+
 			// Observe actual frequencies of the char (2 categories: the char and all
 			// others)
 			long[] obs1 = ChiSquared.observe(parts[0], chars[i], false);

@@ -164,7 +164,7 @@ they are ignored by most authors in any analysis of the text.
 
 Some glyphs (EVA 't', 'k', 'p' and 'f') appear taller than other characters and are traditionally referred to as "gallows".
 The combination 'ch' is instead called "pedestal". Some glyphs (EVA 'cth', 'ckh', 'cph' and 'cfh') appear visually as a 
-overlap of the pedestal with one of the gallows and are therefore called "pedestalled gallows".
+overlap of the pedestal with one of the gallows and are therefore called "pedestalled gallows" (or "split gallows").
 These glyphs appear in slots 3, 4, and 5 and are shown in the below table.
 
 ![Gallows and Pedestal](images/Gallows.PNG)

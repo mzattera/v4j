@@ -211,7 +211,7 @@ Last but not least, worth mentioning as a few characters behave differently in d
 <a id="Note2">**{2}**</a> The  file `Character Distribution.xlsx` in [this folder](https://github.com/mzattera/v4j/blob/master/resources/analysis/char%20distribution) contains 
 detailed results of the analysis.
 
-<a id="Note3">**{3}**</a> Class [`CharDistributionAnalysis`](https://github.com/mzattera/v4j/blob/v.13.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/chars/CountGallows.java) was used for this purpose.
+<a id="Note3">**{3}**</a> Class [`CountGallows`](https://github.com/mzattera/v4j/blob/v.13.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/chars/CountGallows.java) was used for this purpose.
 
 <a id="Note4">**{4}**</a> The  file `CountGallows.xlsx` in [this folder](https://github.com/mzattera/v4j/blob/master/resources/analysis/char%20distribution) contains 
 all of the tables.

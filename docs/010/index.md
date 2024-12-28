@@ -193,7 +193,7 @@ Many of these anomalies have been detected by several authors in the past, but s
    2. 'f', 't' and especially 'q' and 'p' tend to avoid last line of paragraphs.
    3. 'S' prefers to appear in first line of paragraphs.
    4. 'e' seems to appear more frequently without repetitions in first line (see low frequencies of ‘E’ and ‘B’).
-   5. 'n avoids the first line of paragraphs.
+   5. 'n' avoids the first line of paragraphs.
    6. With the exception of the Pharmaceutical section, 'J' avoids the first line of paragraphs.
    7. For the Biological and Stars sections only, 'r' and 'o' seems over-represented in first line, the opposite is true for 's'.
 

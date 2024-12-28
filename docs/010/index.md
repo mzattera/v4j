@@ -1,4 +1,4 @@
-# Note 010 - Character distribution through the page
+# Note 010 - Character Distribution Through Clusters
 
 _Last updated Dec. 28th, 2024._
 
@@ -35,7 +35,7 @@ the character distribution of the two parts is compared using a chi-squared test
 If the test shows a statistically significant variation, then each character is tested individually (using a binomial test),
 to highlight which characters behave significantly differently in the two parts of the text.
 
-In all experiments, the [concordance version](https://github.com/mzattera/v4j/blob/master/eclipse/io.github.mzattera.v4j/src/main/resources/Transcriptions/Interlinear_slot_ivtff_1.5.txt)
+In all experiments, the [concordance version](https://github.com/mzattera/v4j#ivtff)
 of the Voynich in the Slot alphabet is used; only text appearing in paragraphs is considered (IVTFF locus type = P0 or P1).
 The experiments are done separately for each [cluster](../003).
 
@@ -61,8 +61,8 @@ and the anomalies in distribution disappeared.
 
 Before analyzing the above results, I want to discuss the distribution of "gallows" characters ('p', 't', 'k', 'f', 'P', 'T', 'K', 'F').
 For the purpose, I have prepared the following set of tables[{3}](#Note3)[{4}](#Note4);
-all tables have been prepared using the majority transliteration of the Voynich, using the Slot alphabet ([see v4j README](https://github.com/mzattera/v4j#ivtff)).
-The analysis has been done by splitting the text in [clusters](../003) and then considering different parts the text:
+all tables have been prepared using the [majority transliteration](https://github.com/mzattera/v4j#ivtff) of the Voynich, using the Slot alphabet.
+The analysis has been done by splitting the text in clusters and then considering different parts the text:
 
   * First Word of a Paragraph
   * Remaining Words in First Line of each paragraph
@@ -135,13 +135,13 @@ being the sample much smaller for beginning of pages, the trends are just less m
 
 To my knowledge, with the exception of point 1., these are new findings which are due to:
 
-  a. Using the Slot alphabet for the analysis rather than EVA.
+  - Using the Slot alphabet for the analysis rather than EVA.
   
      For example, Slot 'S' is a single character represented in EVA as two characters ('sh'), this makes difficult, if not impossible,
 	 for analysis based on EVA to spot the abundance of 'sh' in first line, as the statistics will be skewed by single occurrences of EVA 's'
 	 or EVA sequences like 'ch' 'cth', etc.
 	 
-  b. Performing a separate analysis for each cluster (for point 6).
+  - Performing a separate analysis for each cluster (for point 6).
 
 
 ## Last Line in a Paragraph
@@ -191,8 +191,15 @@ Many of these anomalies have been detected by several authors in the past, but s
 
    1. 'k' and 'K' behaving differently then other gallows.
    2. 'f', 't' and especially 'q' and 'p' tend to avoid last line of paragraphs.
+   3. 'S' prefers to appear in first line of paragraphs.
+   4. 'e' seems to appear more frequently without repetitions in first line (see low frequencies of ‘E’ and ‘B’).
+   5. 'n avoids the first line of paragraphs.
+   6. With the exception of the Pharmaceutical section, 'J' avoids the first line of paragraphs.
+   7. For the Biological and Stars sections only, 'r' and 'o' seems over-represented in first line, the opposite is true for 's'.
 
-In addition, worth mentioning as some characters behave differently in different clusters.
+Again, these possibly new insights were only possible becasue the slot alphabet was used for analysis and the analysis has been conducted for each cluster separately.
+
+Last but not least, worth mentioning as a few characters behave differently in different clusters.
 
 	
 ---
@@ -217,18 +224,15 @@ the top lines of paragraphs where there is some extra space." (p. 7).
 
 "The 'ligatures' [ "pedestalled gallows" nda ] can never occur as paragraph initial, and almost never line initial." (p. 9) this is only partially true.
 
-<a id="Note7">**{7}**</a>"(14) On most herbal folios the first line of the first paragraph begins with a very small set of symbols,
+<a id="Note7">**{7}**</a> "(14) On most herbal folios the first line of the first paragraph begins with a very small set of symbols,
     primarily 't', 'k', 'p', 'f'" (p. 28).
 		
-<a id="Note8">**{8}**</a>John Grove seems to be the first person to notice that "First Gallows on a page can normally be detached from the first word to form a relatively normal VMS word",
+<a id="Note8">**{8}**</a> John Grove seems to be the first person to notice that "First Gallows on a page can normally be detached from the first word to form a relatively normal VMS word",
 suggesting these characters might be additions to the token (see also [this message](http://voynich.net/Arch/2004/09/msg00442.html) from Stolfi, which picks up on this).
 
 On this point, please see [Note 005](../005) where I show, given the slot structure of Voynich words, that removing the initial character from a word results in another valid word in a minimum of 60% of cases.
 Still, I think there is good evidence that the initial gallows in paragraphs might be an addition to the actual token. If this is done for aesthetic reasons or is part of the encoding scheme 
 (as Grove suggests) I cannot tell.
-
-<a id="Note8">**{9}**</a>John Grove seems to be the first person to notice that "First Gallows on a page can normally be detached from the first word to form a relatively normal VMS word",
-suggesting these characters might be additions to the token (see also [this message](http://voynich.net/Arch/2004/09/msg00442.html) from Stolfi, which picks up on this).
 
 
 ---

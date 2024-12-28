@@ -99,7 +99,7 @@ In other words, a token is an instance of a word type. For example; the below li
    
 - [Note 010 - Character Distribution Through Clusters](./010)
 
-  I used the Slot alphabet to explore character distribution across clusters in different part of pages.
+  I used the Slot alphabet to explore character distribution across clusters in different parts of the page.
    
 
 # Bibliography and Reviews

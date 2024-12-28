@@ -165,27 +165,24 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	}
 
 	/**
-	 * Copy constructor (kinda). Creates a new instance of a document from a list of
-	 * lines contained in another document. Notice that lines are copied into the
-	 * new document; they are not shared.
+	 * Creates a new instance of a document from a list of lines. Document metadata
+	 * (e.g. ID, alphabet, version, etc.) are copied from the passed document.
 	 *
-	 * @param doc   original document where the lines come from.
-	 * @param lines list of lines that must go into the new document, they must
-	 *              belong to doc.
+	 * @param doc   document from which metadata is taken.
+	 * @param lines list of lines that must go into the new document.
+	 * @param ID    ID for newly created document (overwrites existing one).
 	 */
 	public IvtffText(IvtffText doc, Collection<IvtffLine> lines) {
 		this(doc, lines, doc.getId());
 	}
 
 	/**
-	 * Copy constructor (kinda). Creates a new instance of a document from a list of
-	 * lines contained in another document. Notice that lines are copied into the
-	 * new document; they are not shared.
+	 * Creates a new instance of a document from a list of lines. Document metadata
+	 * (e.g. ID, alphabet, version, etc.) are copied from the passed document.
 	 *
-	 * @param doc   original document where the lines come from.
-	 * @param lines list of lines that must go into the new document, they must
-	 *              belong to doc.
-	 * @param ID    ID for newly created document.
+	 * @param doc   document from which metadata is taken.
+	 * @param lines list of lines that must go into the new document.
+	 * @param ID    ID for newly created document (overwrites existing one).
 	 */
 	public IvtffText(IvtffText doc, Collection<IvtffLine> lines, String ID) {
 
@@ -207,31 +204,23 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	}
 
 	/**
-	 * Copy constructor (kinda). Creates a new instance of a document from a list of
-	 * pages contained in another document. Notice that lines in pages are copied
-	 * into the new document; they are not shared.
-	 * 
-	 * Must be provided as factory method because of signature overlap.
+	 * Creates a new instance of a document from a list of pages. Document metadata
+	 * (e.g. ID, alphabet, version, etc.) are copied from the passed document.
 	 *
-	 * @param doc   original document where the pages come from.
-	 * @param pages list of lines that must go into the new document, they must
-	 *              belong to doc.
+	 * @param doc   document from which metadata is taken.
+	 * @param pages list of lines that must go into the new document.
 	 */
 	public static IvtffText fromPages(IvtffText doc, Collection<IvtffPage> pages) {
 		return fromPages(doc, pages, doc.getId());
 	}
 
 	/**
-	 * Copy constructor (kinda). Creates a new instance of a document from a list of
-	 * pages contained in another document. Notice that lines in pages are copied
-	 * into the new document; they are not shared.
-	 * 
-	 * Must be provided as factory method because of signature overlap.
+	 * Creates a new instance of a document from a list of pages. Document metadata
+	 * (e.g. ID, alphabet, version, etc.) are copied from the passed document.
 	 *
-	 * @param doc   original document where the pages come from.
-	 * @param pages list of lines that must go into the new document, they must
-	 *              belong to doc.
-	 * @param ID    ID for the newly crated document.
+	 * @param doc   document from which metadata is taken.
+	 * @param pages list of lines that must go into the new document.
+	 * @param ID    ID for newly created document (overwrites existing one).
 	 */
 	public static IvtffText fromPages(IvtffText doc, Collection<IvtffPage> pages, String ID) {
 		List<IvtffLine> lines = new ArrayList<>();
@@ -257,9 +246,9 @@ public class IvtffText extends CompositeText<IvtffPage> {
 				throw new ParseException("The input file is empty.");
 
 			Matcher m = FILE_HEADER_PATTERN.matcher(row);
-			if (!m.matches()) 
+			if (!m.matches())
 				throw new ParseException("Invalid file header: ", row);
-			
+
 			this.alphabet = Alphabet.getAlphabet(m.group(1));
 			if (this.alphabet == null)
 				throw new ParseException("Unsupported alphabeth: " + m.group(1));

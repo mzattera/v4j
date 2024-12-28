@@ -72,7 +72,7 @@ In other words, a token is an instance of a word type. For example; the below li
   
   This should be considered when applying statistical analysis methods to the manuscript.
 
-- [Note 004 - On Word types](./004)
+- [Note 004 - On Word Types](./004)
 
   List of most common Voynichese word types and how they are split across different clusters.
 
@@ -96,6 +96,10 @@ In other words, a token is an instance of a word type. For example; the below li
 
   I used insights provided by the above grammar to show structural differences in words appearing in different sections of the Voynich.
   This suggests: 1) that Currier's languages can be more than 2 and 2) clustering might not be showing a difference in topics.
+   
+- [Note 010 - Character Distribution Through Clusters](./010)
+
+  I used the Slot alphabet to explore character distribution across clusters in different part of pages.
    
 
 # Bibliography and Reviews

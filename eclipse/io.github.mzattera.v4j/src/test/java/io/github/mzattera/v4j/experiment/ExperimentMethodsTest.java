@@ -282,9 +282,9 @@ public final class ExperimentMethodsTest {
 	public void getStandardWordsPopulation_F() throws Exception {
 		Counter<String> splitted = Experiment.getStandardWordsPopulation(INPUT, false);
 
-		String[] test = new String[] { "Kar", "or", "y", "kair", "CtaJn", "Sar", "are", "Tar", "Tar", "Seky", "or",
-				"yka??Jn", "Sod", "Toary", "Tes", "daraJn", "Sody", "okCoy", "otCol", "CoTy", "osCy", "dain", "Cor",
-				"Sos", "Fol", "STaJn", "okaJr", "Cey", "?Cy", "potol", "Tols", "Cor", "Cey", "dain" };
+		String[] test = new String[] { "Kar", "or", "y", "kair", "CtaJn", "Sar", "are", "Tar", "Tar", "Sody", "okCoy",
+				"otCol", "CoTy", "osCy", "dain", "Cor", "STaJn", "okaJr", "Cey", "?Cy", "potol", "Tols" };
+
 		TestUtil.testWordCount(splitted, test);
 	}
 
@@ -293,9 +293,8 @@ public final class ExperimentMethodsTest {
 	public void getStandardWordsPopulation_T() throws Exception {
 		Counter<String> splitted = Experiment.getStandardWordsPopulation(INPUT, true);
 
-		String[] test = new String[] { "Kar", "or", "y", "kair", "CtaJn", "Sar", "are", "Tar", "Tar", "Seky", "or",
-				"Sod", "Toary", "Tes", "daraJn", "Sody", "okCoy", "otCol", "CoTy", "osCy", "dain", "Cor", "Sos", "Fol",
-				"STaJn", "okaJr", "Cey", "potol", "Tols", "Cor", "Cey", "dain" };
+		String[] test = new String[] { "Kar", "or", "y", "kair", "CtaJn", "Sar", "are", "Tar", "Tar", "Sody", "okCoy",
+				"otCol", "CoTy", "osCy", "dain", "Cor", "STaJn", "okaJr", "Cey", "potol", "Tols" };
 		TestUtil.testWordCount(splitted, test);
 	}
 
@@ -310,36 +309,36 @@ public final class ExperimentMethodsTest {
 
 		// 'B' is interesting
 		String[] test = new String[] { "B", "B", "B" };
-		TestUtil.testWordCount(Experiment.getInterstingWords(sample, population), test);
+		TestUtil.testWordCount(Experiment.getInterestingWords(sample, population), test);
 
 		// but not SO interesting
 		test = new String[] {};
-		TestUtil.testWordCount(Experiment.getInterstingWords(sample, population, 0.0005), test);
+		TestUtil.testWordCount(Experiment.getInterestingWords(sample, population, 0.0005), test);
 
 		// 0.4% chances of this happening
 		sample = new TextString("B B B A");
 
 		// 'B' is interesting, 'A' is not
 		test = new String[] { "B", "B", "B" };
-		TestUtil.testWordCount(Experiment.getInterstingWords(sample, population), test);
+		TestUtil.testWordCount(Experiment.getInterestingWords(sample, population), test);
 
 		// 2.7% chances of this happening
 		sample = new TextString("B A B");
 
 		// none is interesting
 		test = new String[] {};
-		TestUtil.testWordCount(Experiment.getInterstingWords(sample, population), test);
+		TestUtil.testWordCount(Experiment.getInterestingWords(sample, population), test);
 
 		// ...unless we lower alpha
 		test = new String[] { "B", "B" };
-		TestUtil.testWordCount(Experiment.getInterstingWords(sample, population, 0.03), test);
+		TestUtil.testWordCount(Experiment.getInterestingWords(sample, population, 0.03), test);
 
 		// 2.7% chances of this happening, if ? is ignored
 		sample = new TextString("B A B ? ? ?");
 
 		// none is interesting
 		test = new String[] {};
-		TestUtil.testWordCount(Experiment.getInterstingWords(sample, population), test);
+		TestUtil.testWordCount(Experiment.getInterestingWords(sample, population), test);
 	}
 
 	@Test
@@ -353,11 +352,11 @@ public final class ExperimentMethodsTest {
 
 		// 'B' is interesting
 		String[] test = new String[] { "B", "B", "B" };
-		TestUtil.testWordCount(Experiment.getInterstingWords(sample.getWords(true), population.getWords(true)), test);
+		TestUtil.testWordCount(Experiment.getInterestingWords(sample.getWords(true), population.getWords(true)), test);
 
 		// but not SO interesting
 		test = new String[] {};
-		TestUtil.testWordCount(Experiment.getInterstingWords(sample.getWords(true), population.getWords(true), 0.0005),
+		TestUtil.testWordCount(Experiment.getInterestingWords(sample.getWords(true), population.getWords(true), 0.0005),
 				test);
 
 		// 0.4% chances of this happening
@@ -365,18 +364,18 @@ public final class ExperimentMethodsTest {
 
 		// 'B' is interesting, 'A' is not
 		test = new String[] { "B", "B", "B" };
-		TestUtil.testWordCount(Experiment.getInterstingWords(sample.getWords(true), population.getWords(true)), test);
+		TestUtil.testWordCount(Experiment.getInterestingWords(sample.getWords(true), population.getWords(true)), test);
 
 		// 2.7% chances of this happening
 		sample = new TextString("B A B");
 
 		// none is interesting
 		test = new String[] {};
-		TestUtil.testWordCount(Experiment.getInterstingWords(sample.getWords(true), population.getWords(true)), test);
+		TestUtil.testWordCount(Experiment.getInterestingWords(sample.getWords(true), population.getWords(true)), test);
 
 		// ...unless we lower alpha
 		test = new String[] { "B", "B" };
-		TestUtil.testWordCount(Experiment.getInterstingWords(sample.getWords(true), population.getWords(true), 0.03),
+		TestUtil.testWordCount(Experiment.getInterestingWords(sample.getWords(true), population.getWords(true), 0.03),
 				test);
 
 		// 2.7% chances of this happening, if ? is ignored
@@ -384,7 +383,7 @@ public final class ExperimentMethodsTest {
 
 		// none is interesting
 		test = new String[] {};
-		TestUtil.testWordCount(Experiment.getInterstingWords(sample.getWords(true), population.getWords(true)), test);
+		TestUtil.testWordCount(Experiment.getInterestingWords(sample.getWords(true), population.getWords(true)), test);
 	}
 
 	@Test
@@ -398,10 +397,10 @@ public final class ExperimentMethodsTest {
 				+ "<f1r.3,@P0;m>	B.?e.a.B.a.a\n" //
 		);
 		List<Counter<String>> cnt = Experiment.getWordsByPosition(population, true);
-		assertEquals(cnt.size(),6);
+		assertEquals(cnt.size(), 6);
 		double[] p = Experiment.getInterestingWordsPercent(cnt);
-		assertEquals(p[0],1.0);
-		for (int i=1;i<p.length;++i)
-			assertEquals(p[i],0.0);
+		assertEquals(p[0], 1.0);
+		for (int i = 1; i < p.length; ++i)
+			assertEquals(p[i], 0.0);
 	}
 }

@@ -44,7 +44,7 @@ public final class MathUtil {
 			result += entropy(e.getValue() / tot);
 		}
 
-		return -result;
+		return result;
 	}
 
 	/**

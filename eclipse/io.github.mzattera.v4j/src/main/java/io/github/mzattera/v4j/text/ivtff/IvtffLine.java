@@ -76,8 +76,6 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 	 * Creates a new instance parsing given input string.
 	 * 
 	 * Same as calling IvtffLine(txt, -1, Alphabet.EVA)
-	 * 
-	 * Notice that the parsing proces
 	 */
 	public IvtffLine(String txt) throws ParseException {
 		this(txt, -1, Alphabet.EVA);

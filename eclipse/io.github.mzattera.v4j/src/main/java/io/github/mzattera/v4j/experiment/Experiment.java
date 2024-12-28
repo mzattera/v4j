@@ -79,7 +79,7 @@ public abstract class Experiment {
 	 * Notice only the text in running paragraphs is considered.
 	 * 
 	 * A flag can be passed to the constructor to decide whether to skip first word
-	 * in the paragraph (notice this will work only for the first line of each
+	 * in the paragraph (notice this applies only for the first line of each
 	 * paragraph).
 	 * 
 	 * @author Massimiliano "Maxi" Zattera
@@ -502,7 +502,7 @@ public abstract class Experiment {
 	/**
 	 * This experiment first split the text using Experiment passed in constructor;
 	 * it then replace the second part (the "population") with "standard" population
-	 * (see GetStandardWordsPopulation()).
+	 * (see {@link #getStandardWordsPopulation(IvtffText, boolean)}).
 	 * 
 	 * In addition, in the constructor, a flag is used to indicate whether
 	 * "unreadable" words should be considered part of the standard population or
@@ -807,7 +807,7 @@ public abstract class Experiment {
 	 */
 	public static Counter<String> getStandardWordsPopulation(IvtffText txt, boolean readableOnly) {
 
-		List<Counter<String>> other = Experiment.getWordsByPosition(Experiment.filterLines(txt, true, false),
+		List<Counter<String>> other = Experiment.getWordsByPosition(Experiment.filterLines(txt, true, true),
 				readableOnly, 0, Integer.MAX_VALUE, true, true);
 		Counter<String> population = new Counter<>();
 		for (int i = 1; i < other.size(); ++i) {
@@ -825,18 +825,18 @@ public abstract class Experiment {
 	 * @return A list of words that appear more frequently in sample (alpha=1%) than
 	 *         in the population. Only readable words are counted.
 	 */
-	public static Counter<String> getInterstingWords(Text sample, Text population) {
-		return getInterstingWords(sample.getWords(true), population.getWords(true), 0.01);
+	public static Counter<String> getInterestingWords(Text sample, Text population) {
+		return getInterestingWords(sample.getWords(true), population.getWords(true), 0.01);
 	}
 
 	/**
 	 * @param sample
 	 * @param population
-	 * @return A list of words that appear more frequently in sample (alpha=1%) than
-	 *         in the population. Only readable words are counted.
+	 * @return A list of words that appear more frequently in sample than in the
+	 *         population. Only readable words are counted.
 	 */
-	public static Counter<String> getInterstingWords(Text sample, Text population, double alpha) {
-		return getInterstingWords(sample.getWords(true), population.getWords(true), alpha);
+	public static Counter<String> getInterestingWords(Text sample, Text population, double alpha) {
+		return getInterestingWords(sample.getWords(true), population.getWords(true), alpha);
 	}
 
 	/**
@@ -845,8 +845,8 @@ public abstract class Experiment {
 	 * @return A list of words that appear more frequently in sample (alpha=1%) than
 	 *         in the population.
 	 */
-	public static Counter<String> getInterstingWords(Counter<String> sample, Counter<String> population) {
-		return getInterstingWords(sample, population, 0.01);
+	public static Counter<String> getInterestingWords(Counter<String> sample, Counter<String> population) {
+		return getInterestingWords(sample, population, 0.01);
 	}
 
 	/**
@@ -856,11 +856,12 @@ public abstract class Experiment {
 	 * @return A list of words that appear more frequently in sample (given alpha)
 	 *         than in the population.
 	 */
-	public static Counter<String> getInterstingWords(Counter<String> sample, Counter<String> population, double alpha) {
+	public static Counter<String> getInterestingWords(Counter<String> sample, Counter<String> population,
+			double alpha) {
 		Counter<String> result = new Counter<>();
 
 		for (String w : sample.itemSet()) {
-			if (isInterstingWord(w, sample, population, alpha))
+			if (isInterestingWord(w, sample, population, alpha))
 				result.count(w, sample.getCount(w));
 		}
 
@@ -875,8 +876,8 @@ public abstract class Experiment {
 	 * @return True if given word appear more frequently in sample (alpha=1%) than
 	 *         in the population.
 	 */
-	public static boolean isInterstingWord(String w, Counter<String> sample, Counter<String> population) {
-		return isInterstingWord(w, sample, population, 0.01);
+	public static boolean isInterestingWord(String w, Counter<String> sample, Counter<String> population) {
+		return isInterestingWord(w, sample, population, 0.01);
 	}
 
 	/**
@@ -887,7 +888,8 @@ public abstract class Experiment {
 	 * @return True if given words appears more frequently in sample (given alpha)
 	 *         than in the population.
 	 */
-	public static boolean isInterstingWord(String w, Counter<String> sample, Counter<String> population, double alpha) {
+	public static boolean isInterestingWord(String w, Counter<String> sample, Counter<String> population,
+			double alpha) {
 		double observed = (double) sample.getCount(w) / sample.getTotalCounted();
 		double expected = (double) population.getCount(w) / population.getTotalCounted();
 
@@ -904,7 +906,8 @@ public abstract class Experiment {
 	 *                        line).
 	 * @return A double[] of same size than wordsByPosition with % of "interesting"
 	 *         words in each Counter. "Interesting" words are those appearing in one
-	 *         Counter with a higher frequency than in the sum of other Counters (alpha=1%).
+	 *         Counter with a higher frequency than in the sum of other Counters
+	 *         (alpha=1%).
 	 */
 	public static double[] getInterestingWordsPercent(List<Counter<String>> wordsByPosition) {
 		double[] result = new double[wordsByPosition.size()];
@@ -919,7 +922,7 @@ public abstract class Experiment {
 				population.countAll(wordsByPosition.get(j));
 			}
 
-			Counter<String> interesting = getInterstingWords(sample, population);
+			Counter<String> interesting = getInterestingWords(sample, population);
 			result[i] = (double) interesting.getTotalCounted() / sample.getTotalCounted();
 		}
 

@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
  */
 public final class MathUtilTest {
 
-	private static final String txt = "in the beginning god created the heavens and the earth and the earth was waste and empty";
+	private static final String txt = "0 1 2 3 4 5 6 7";
 
 	@Test
 	@DisplayName("MathUtil.entropy() works")
@@ -29,7 +29,7 @@ public final class MathUtilTest {
 		for (String s : w)
 			c.count(s);
 
-		assertEquals(MathUtil.entropy(c), 3.219528282299548);
+		assertEquals(3.0, MathUtil.entropy(c));
 	}
 
 	@Test

@@ -1,6 +1,6 @@
 # Note 010 - Character distribution through the page
 
-_Last updated Dec. 19th, 2024._
+_Last updated Dec. 28th, 2024._
 
 _This note refers to [release v.13.0.0](https://github.com/mzattera/v4j/tree/v.13.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
@@ -18,7 +18,7 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 
 # Abstract
 
-It is known since the very beginning of Voynich studies, that the distribution of character within the page presents some statistical anomalies.
+It is known since the very beginning of Voynich studies, that the distribution of character within the pages presents some statistical anomalies.
 This note looks into it, using for the first time the
 [Slot transcription](https://github.com/mzattera/v4j/blob/master/eclipse/io.github.mzattera.v4j/src/main/resources/Transcriptions/Interlinear_slot_ivtff_1.5.txt).
 
@@ -45,21 +45,23 @@ The set of experiments is as follows:
   * First line in paragraph - first lines of paragraphs are compared with the rest of the text.
   * Last line in paragraph - last lines of paragraphs are compared with the rest of the text.
   * First letter in a line - initial character of first token in a line is compared with initial characters of all other tokens.
+    For reasons that will be clearer later, the first line of each paragraph (thus the first token) is ignored.
   * Last letter in a line - final character of last token in a line is compared with last characters of all other tokens.
 
 The results are shown in the below table[{1}](#Note1)[{2}](#Note2):
 
 ![Summary table of anomalies in char distribution](images/SummaryTable.PNG)
 
-As a test, experiments have been repeated with a shuffled version of the Voynich where the layout (number of tokens in each line) has been preserved but tokens were shuffled around randomly, and the anomalies in distribution disappeared.
+As a test, experiments have been repeated with a shuffled version of the Voynich where the layout (number of tokens in each line) has been preserved but tokens were shuffled around randomly,
+and the anomalies in distribution disappeared.
 	 
 # Considerations and Previous Works
 
 ## (Pedestalled) Gallows
 
-Before analyzing the above result, I want to discuss the distribution of "gallows" characters ('p', 't', 'k', 'f', 'P', 'T', 'K', 'F').
+Before analyzing the above results, I want to discuss the distribution of "gallows" characters ('p', 't', 'k', 'f', 'P', 'T', 'K', 'F').
 For the purpose, I have prepared the following set of tables[{3}](#Note3)[{4}](#Note4);
-all tables have been prepared using the majority transliteration of the Voynich, using the Slot alphabet [see v4j README](https://github.com/mzattera/v4j#ivtff).
+all tables have been prepared using the majority transliteration of the Voynich, using the Slot alphabet ([see v4j README](https://github.com/mzattera/v4j#ivtff)).
 The analysis has been done by splitting the text in [clusters](../003) and then considering different parts the text:
 
   * First Word of a Paragraph
@@ -98,7 +100,8 @@ Comparing these three tables and considering the one with characters distributio
   	  
   6. The "pedestalled gallows" seem to follow the same behavior of their "non-pedestalled" counterparts; thus 'T' behaves like 't' (its
      distribution seems more uniform across lines though), 'P' like 'p', 'F' like 'f', and 'K' like 'k',
-	 with the exception that they tend to avoid being token initials (especially 'K').
+	 with the exception that they tend to avoid being token initials (especially 'K');
+	 notice how 'K', 'P', and 'T' appear significantly less as first character in a line.
 	 However, this last part is difficult to confirm, given the small number of these glyphs.
 	 
   7. From 75% (for Pharmaceutical) to 95% (for Herbal B) of paragraphs begins with "gallows".
@@ -112,8 +115,6 @@ see, among others,[TILTMAN (1967)](../biblio.md)[{5}](#Note5), [CURRIER (1976)](
 It is interesting that, even with variations and very few exceptions, the above rules apply to all of the different clusters,
 this is somewhat surprising, given that we know that "languages" for each cluster are structurally different (see [Note 009](../009)).
 	 
-	 
-  
 
 ## First Line in a Page
 
@@ -122,124 +123,76 @@ For the time being, I will assume that the differences between first line of a p
 being the sample much smaller for beginning of pages, the trends are just less marked.
 
 
-
 ## First Line in a Paragraph
 
-** See separate class doen for gallows
-** S appears more frequently; nobody noticed so far, probably because of using EVA; do the test using EVA and see if c s h have some anomalies....
+  1. As already discussed above, 'f', 'F', 'p', 'P' tend to appear more frequently in first line of paragraphs, same holds true for 't', except for
+     the Herbal pages, 'k' and 'K' have the opposite behavior, tending to appear more frequently outside the first line, finally, not much can be said about 'T'.
+  2. There is also a preference for 'S' to appear in first line of paragraphs.
+  3. 'e' seems to appear more frequently without repetitions in first line (see low frequencies of 'E' and 'B').
+  4. 'n' avoids the first line of paragraphs.
+  5. With the exception of the Pharmaceutical section, 'J' avoids the first line of paragraphs.
+  6. For the Biological and Stars sections only, 'r' and 'o' seems over-represented in first line, the opposite is true for 's'.
 
-tokens starting with non-pedestalled gallows are almost always found as first token in a paragraph.
-tokens starting with pedestalled gallows are more rare and distributed more or less evenly, but tend not to appear at the beginning of a line other than first line of paragraphs.
+To my knowledge, with the exception of point 1., these are new findings which are due to:
 
-75-95% of first tokens in paragraphs start with a (pedestalled) gallows.
-
-p, f, P, F appear almost exclusively in first line of a paragraph; p and f, when appearing in the first token, are almost always initials.
-
-Other (pedestalled) gallows tend to not appear as token initials.
-
-
-
-
-
+  a. Using the Slot alphabet for the analysis rather than EVA.
+  
+     For example, Slot 'S' is a single character represented in EVA as two characters ('sh'), this makes difficult, if not impossible,
+	 for analysis based on EVA to spot the abundance of 'sh' in first line, as the statistics will be skewed by single occurrences of EVA 's'
+	 or EVA sequences like 'ch' 'cth', etc.
+	 
+  b. Performing a separate analysis for each cluster (for point 6).
 
 
 ## Last Line in a Paragraph
 
-
+   1. 'f', 't' and especially 'q' and 'p' tend to avoid last line of paragraphs.
+   
+I found no mention of this before.
 
 
 ## First Letter in a Line
 
-[TILTMAN (1967)](../biblio.md) 'y' occurs quite frequently as the initial symbol of a line followed immediately by a combination of symbols which seem
-to be happy without it in any part of a line away from the beginning (d).
-  
-[CURRIER (1976)](../biblio.md) "functional entity":
-  1. "The frequency counts of the beginnings and endings of lines are markedly different from the counts of the same characters internally".
-  
-[CURRIER (1976)](../biblio.md)
-  * The 'ligatures' [ cKh cTh cFh cPh ] can never occur as paragraph initial, and almost never line initial.
-  
-[CURRIER (1976)](../biblio.md)
- * Skewed frequencies at beginnings of lines may be illustrated by the two letters ch and Sh.
-  If its occurrence as an initial were random, we would expect it to occur one seventh of the time in each token position of a line.
-  Actually, it is a very infrequent token initial at the beginning of a line, except when there is an intercalated o. This applies only to 'Language' A.
-  Other ‘tokens’ occur in this position far more frequently than expected, particularly ‘tokens’ with initial ‘dC,’ ‘qC’ etc.,
-  which have the appearance of ‘C’-initial ‘tokens’ suitably modified for line-initial use
-    ->  Nobody noticed, maybe because in EVA this is treated as two characters ('sh'), which skews the statistics.
-  except for Currier who transcripes this as S Z.
-  ->Guarda comunque anche le differenze nelle percentuali
+To perform this analysis, the first token of each paragraph has been ignored, as we already know from the analysis above that
+that token will most likely start with gallows (thus skewing our analysis).
+
+  1. 't' and less markedly 'p', are over-represented at line start; the opposite is true for 'k', confirming our analysis of gallows above.
+  2. 's', 'y', and 'd' (with exception for Herbal A) are also over-represented at line start.
+  3. 'C' and, less markedly, 'S' are under-represented at line start.
+  4. 'a', 'o' (with exception of Herbal A where it shows opposite behavior), and, less markedly, 'r' are under-represented at beginning of a line. 
+
+Again, much of this is not new: [CURRIER (1976)](../biblio.md) states that 
+"The frequency counts of the beginnings and endings of lines are markedly different from the counts of the same characters internally" and he noticed how 
+'C' and 'S' are under-represented (unless followed by 'o').
+ 
+[TILTMAN (1967)](../biblio.md) noticed that "'y' occurs quite frequently as the initial symbol of a line followed immediately by a combination of symbols which seem
+to be happy without it in any part of a line away from the beginning".
     
-[BOWERN (2020)](../biblio.md)
-There is a similar but less robust pattern associated with the beginning of each line. The
+[BOWERN (2020)](../biblio.md) mentions that "The
 first token is somewhat more likely to begin with s- s. This may be another orthographic
 variant, but it appears to only occur with tokens that otherwise begin with o- o or a- a. Thus
-aiin aiin, ol ol, and or or are replaced with saiin saiin, sol sol, and sor sor.
-
-
+aiin aiin, ol ol, and or or are replaced with saiin saiin, sol sol, and sor sor." this is consistent with
+points 2. and 4. above.
 
 
 ## Last Letter in a Line
 
-[TILTMAN (1967)](../biblio.md) 'm' appears most commonly at the end of a line, rarely elsewhere (b).
-
-[CURRIER (1976)](../biblio.md) "functional entity",
-  
-  1. "The frequency counts of the beginnings and endings of lines are markedly different from the counts of the same characters internally".
-
-  2. There is, for instance, one symbol that, while it does occur elsewhere, occurs at the
-	end of the last ‘tokens’ of lines 85% of the time".
-	
-[BOWERN (2020)](../biblio.md)
-There are also characters which usually appear at the end of the last token of the line,
-particularly m. It is plausible that m m and g g are variant forms of the token-final glyphs -iin iin and -y y
-However, if this is an orthographic convention, it is not applied in a consistent manner: the forms -iin iin and -y
-y are also found line-finally, albeit somewhat less frequently.
-
-[ZANDBERGEN (2021)](../biblio.md)
-The third feature is similar to the second, but it is less pronounced, and could be easier to explain. This is
-the character m that is a token-final character that predominantly (but again not always) appears at the
-ends of lines. In this case, the letter could conceivably be a line final variant form of either r or l , but
-there are some issues with that hypothesis. 
-
-
-
-## Other Patterns
-		
-[KNIGHT]
-Confirms uneven char distribution but does it for the entire text
-It is particularly interesting that lower frequency characters occur more at line-ends,
-and higher-frequency ones at the beginnings of lines.
-    -> DAVVERO!?!?!? INTERESSANTE DA TESTARE vedi io.github.mzattera.v4j.applications.chars.CharByPositionTest
-
-Patrick Feaster CONFERENZA
-Rightward and Downward Grapheme Distributions in the Voynich Manuscript.
+  1. 'm' is over represented at the end of lines.
+  2. Conversely, 'l' and 'r' are under-represented.
+  3. For some clusters, 'd', 'o', 'n', and 'y' shows a significant deviation in their distribution.
+ 
+ Point 1. is a well known fact in [TILTMAN (1967)](../biblio.md), [CURRIER (1976)](../biblio.md), [BOWERN (2020)](../biblio.md),
+ and [ZANDBERGEN (2021)](../biblio.md). 
 
 # Conclusions
 
 The distribution of characters across the page presents some anomalies which are statistically significant and are summarized in the table above.
-May of these anomalies have been detected by several authors in the past.
+Many of these anomalies have been detected by several authors in the past, but some are possibly new:
 
-However, this is possibly the first time when it is shown that the list of characters presenting anomalies in their distribution, the extent and the direction of these anomalies
-differ across different sections of the Voynich. By looking at each cluster separately, I also identified some anomalies which, as far as I know, are new.
+   1. 'k' and 'K' behaving differently then other gallows.
+   2. 'f', 't' and especially 'q' and 'p' tend to avoid last line of paragraphs.
 
-We summarize below the main trends, but we invite to refer to the above table for a detailed analysis, case by case.
-  -> Cluster piu' aprticolare HA
-
-**Little progress has been made since Tillman and currier on char distribution until now**
-
-** Casi piu evidenti q d l o n che si comportano in modo marcatamente opposto in cluster diversi**
-
-**Highlight char anomalies which nobody discovered before (e.g., 'a' or 'y' as first char in a line)**
- 
-If we look to behaviors that appear consistently across clusters, we can see that:
-
-  * 'k' does not appear in first line of pages and in first line of paragraphs (with a slightly less significance for BB cluster).
-  * 'S' and 'p' appear with high frequency in first line of paragraphs.
-  * 'y', 't', and 'd' tend to appear as first letter in a line; with the exception of cluster HA where 'd' has the opposite behavior.
-    'C', 'S', 'o', and 'a' hardly do; with the exception of cluster HA again where 'o' appears with high frequency.
-  * 'l' and 'r' tend not to appear as terminal letter of last token in a line.
-
-Is Currier's lien as a functional entity valid?
+In addition, worth mentioning as some characters behave differently in different clusters.
 
 	
 ---
@@ -273,6 +226,10 @@ suggesting these characters might be additions to the token (see also [this mess
 On this point, please see [Note 005](../005) where I show, given the slot structure of Voynich words, that removing the initial character from a word results in another valid word in a minimum of 60% of cases.
 Still, I think there is good evidence that the initial gallows in paragraphs might be an addition to the actual token. If this is done for aesthetic reasons or is part of the encoding scheme 
 (as Grove suggests) I cannot tell.
+
+<a id="Note8">**{9}**</a>John Grove seems to be the first person to notice that "First Gallows on a page can normally be detached from the first word to form a relatively normal VMS word",
+suggesting these characters might be additions to the token (see also [this message](http://voynich.net/Arch/2004/09/msg00442.html) from Stolfi, which picks up on this).
+
 
 ---
 

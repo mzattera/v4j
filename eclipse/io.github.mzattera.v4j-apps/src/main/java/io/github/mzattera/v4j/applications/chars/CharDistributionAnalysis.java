@@ -93,7 +93,7 @@ public abstract class CharDistributionAnalysis {
 			System.out.print("\n\n[ Last line in paragraph  ];\n");
 			process(voynich, new Experiment.LastLineInParagraph());
 			System.out.print("\n\n[ First letter in a line  ];\n");
-			process(voynich, new Experiment.Initials(new Experiment.FirstWordInLine(false, false), true));
+			process(voynich, new Experiment.Initials(new Experiment.FirstWordInLine(true, false), true));
 			System.out.print("\n\n[ Last letter in a line   ];\n");
 			process(voynich, new Experiment.Finals(new Experiment.LastWordInLine(false, false), true));
 

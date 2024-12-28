@@ -177,6 +177,15 @@ public class Counter<T> {
 
 	/**
 	 * 
+	 * @return Entropy associated to given object. This is calculated based on the
+	 *         object frequency.
+	 */
+	public double getEntropy(T obj) {
+		return MathUtil.entropy(getFrequency(obj));
+	}
+
+	/**
+	 * 
 	 * @return item that was recurring most often. Notice more than one such items
 	 *         might exist.
 	 */

@@ -104,26 +104,12 @@ public final class KerasUtil {
 			p[i] = p[i - 1] + a[i];
 		}
 
-		double e = rnd.nextDouble();
+		double e = r.nextDouble();
 		for (int i = 0; i < p.length; ++i)
 			if (p[i] >= e)
 				return i;
 
 		return p.length - 1; // safeguard for rounding
-	}
-
-	/**
-	 * Normalizes given vector.
-	 * 
-	 * @return a "normalized' so the sum of all values in a is 1.0.
-	 */
-	public static double[] normalize(double[] a) {
-		double sum = 0.0;
-		for (double d : a)
-			sum += d;
-		for (int i = 0; i < a.length; ++i)
-			a[i] = a[i] / sum;
-		return a;
 	}
 
 	/**
@@ -167,8 +153,8 @@ public final class KerasUtil {
 		}
 
 		// normalise and random sample
-		// TODO this should workj with long
-		int idx = random(normalize(a2));
+		// TODO this should work with long
+		int idx = random(normalize(a2), r);
 
 		// re-translate into an index on the original array
 		return list.get(idx).getKey();
@@ -222,7 +208,7 @@ public final class KerasUtil {
 
 		// normalise and random sample
 		// TODO this should workj with long
-		int idx = random(normalize(a2));
+		int idx = random(normalize(a2),r);
 
 		// re-translate into an index on the original array
 		return list.get(idx).getKey();
@@ -260,6 +246,20 @@ public final class KerasUtil {
 		}
 
 		// normalise and random sample
-		return random(normalize(d));
+		return random(normalize(d),r);
+	}
+
+	/**
+	 * Normalizes given vector.
+	 * 
+	 * @return a "normalized' so the sum of all values in a is 1.0.
+	 */
+	public static double[] normalize(double[] a) {
+		double sum = 0.0;
+		for (double d : a)
+			sum += d;
+		for (int i = 0; i < a.length; ++i)
+			a[i] = a[i] / sum;
+		return a;
 	}
 }

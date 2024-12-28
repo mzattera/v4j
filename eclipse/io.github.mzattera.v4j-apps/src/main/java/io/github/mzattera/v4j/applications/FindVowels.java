@@ -29,43 +29,11 @@ import io.github.mzattera.v4j.util.StringUtil;
 public class FindVowels {
 
 	/**
-	 * Which transcription to use.
-	 */
-	public static final Transcription TRANSCRIPTION = Transcription.AUGMENTED;
-
-	/**
-	 * Which transcription type to use.
-	 */
-	public static final TranscriptionType TRANSCRIPTION_TYPE = TranscriptionType.MAJORITY;
-
-	/**
-	 * Which Alphabet type to use.
-	 */
-	public static final Alphabet ALPHABET = Alphabet.SLOT;
-
-	/** Filter to use on pages before analysis */
-	public static final ElementFilter<IvtffPage> FILTER = new PageFilter.Builder().cluster("BB").build();
-
-	/**
 	 * @param args the command line arguments
 	 */
 	public static void main(String[] args) {
 		try {
-
-			// Get the document to process
-			// Prints configuration parameters
-			System.out.println("Transcription     : " + TRANSCRIPTION);
-			System.out.println("Transcription Type: " + TRANSCRIPTION_TYPE);
-			System.out.println("Alphabet          : " + ALPHABET);
-			System.out.println("Filter            : " + (FILTER == null ? "<no-filter>" : FILTER));
-			System.out.println();
-
-			IvtffText doc = VoynichFactory.getDocument(TRANSCRIPTION, TRANSCRIPTION_TYPE, ALPHABET);
-			if (FILTER != null)
-				doc = doc.filterPages(FILTER);
-
-			process(BibleFactory.getDocument("latin"));
-
+			process(BibleFactory.getDocument("latin"),true);
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
 			System.exit(-1);
@@ -75,10 +43,10 @@ public class FindVowels {
 	/**
 	 * Searches given regular expression
 	 */
-	public static void process(Text doc) {
+	public static void process(Text doc, boolean toUpperCase) {
 
 		Alphabet a = doc.getAlphabet();
-		String txt = a.toUpperCase(doc.getPlainText());
+		String txt = toUpperCase ? a.toUpperCase(doc.getPlainText()) : doc.getPlainText();
 		Counter<Character> charCount = StringUtil.countChars(txt);
 
 		// Maps a char to an index 1..N and vice versa
@@ -99,7 +67,7 @@ public class FindVowels {
 		char prev = txt.charAt(0);
 		for (int i = 1; i < txt.length(); ++i) {
 			char curr = txt.charAt(i);
-			if (a.isRegular(prev) && a.isRegular(curr)) {
+			if (a.isRegular(prev) && a.isRegular(curr) && !a.isWordSeparator(prev) && !a.isWordSeparator(curr)) {
 				preceeds[index.get(prev)][index.get(curr)]++;
 				prev = curr;
 			}

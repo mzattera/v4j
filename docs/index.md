@@ -101,6 +101,10 @@ In other words, a token is an instance of a word type. For example; the below li
 
   I used the Slot alphabet to explore character distribution across clusters in different parts of the page.
    
+- [Note 011 - On Length of Tokens](./011)
+
+  Reproducing Vogt's findings on token length across lines, and a minor addition.
+   
 
 # Bibliography and Reviews
 

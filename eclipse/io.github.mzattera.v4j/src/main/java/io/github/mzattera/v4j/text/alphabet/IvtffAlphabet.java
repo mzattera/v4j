@@ -71,50 +71,6 @@ public abstract class IvtffAlphabet extends Alphabet {
 		return allChars;
 	}
 	
-	/**
-	 * Split a word into prefix, infix and suffix.
-	 * 
-	 * It is recognized that there are patterns that tend to appear at the beginning or at the
-	 * end of Voynich words. This method splits a word accordingly below rules.
-	 * 
-	 * <ul>
-	 * <li> The prefix is a pattern found at the beginning of a word that matches the regular expression
-	 * (Slot alphabet): [qsd]?[oy]?[lr]?
-	 * <li> The suffix is a pattern found at the end of a word, once the prefix has been removed,
-	 * that matches the regular expression (Slot alphabet): [oa]?[iJU]?[dlrmn]?[y]?
-	 * <li> The infix is what remains after prefix and suffix has been removed from the word.
-	 * </ul>
-	 * 
-	 * @param words A word written in this alphabet, to be split into its pre-, in- and suffix.
-	 * 
-	 * @return Three strings corresponding to the prefix, infix and suffix for given word.
-	 */
-	public abstract String[] getPreInSuffix(String word);
-	
-	/**
-	 * @return Prefix for given word.
-	 * @see #getPreInSuffix(String)
-	 */
-	public String getPrefix(String word) {
-		return getPreInSuffix(word)[0];
-	}
-	
-	/**
-	 * @return Infix for given word.
-	 * @see #getPreInSuffix(String)
-	 */
-	public String getInfix(String word) {
-		return getPreInSuffix(word)[1];
-	}
-	
-	/**
-	 * @return Suffix for given word.
-	 * @see #getPreInSuffix(String)
-	 */
-	public String getSuffix(String word) {
-		return getPreInSuffix(word)[2];
-	}
-	
 	protected IvtffAlphabet() {
 	}
 }

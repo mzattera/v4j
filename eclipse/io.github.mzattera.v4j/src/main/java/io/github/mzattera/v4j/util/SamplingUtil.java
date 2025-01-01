@@ -16,20 +16,75 @@ import java.util.Random;
 import org.nd4j.linalg.api.ndarray.INDArray;
 
 /**
- * Utility class to deal with Keras model.
+ * Utility class to deal with sampling across distributions. This is used e.g.
+ * to sample a value from a softmax distribution, as output of a neural network.
  * 
  * @author Massimiliano "Maxi" Zattera
  *
  */
-public final class KerasUtil {
+public final class SamplingUtil {
 
-	private final static Random rnd = new Random();
+	private final static Random RND = new Random();
 
-	private KerasUtil() {
+	/**
+	 * A sample provides a {@link #sample(INDArray)} method to sample a character in
+	 * a distribution, based on a specific strategy.
+	 */
+	public abstract static class Sampler {
+
+		public static Sampler getGreedySampler () {
+			return new Sampler() {
+				@Override
+				public int sample(INDArray a) {
+					return SamplingUtil.greedy(a);
+				}				
+			};
+		}
+
+		public static Sampler getRandomSampler () {
+			return new Sampler() {
+				@Override
+				public int sample(INDArray a) {
+					return SamplingUtil.random(a);
+				}				
+			};
+		}
+
+		public static Sampler getTopKSampler (int k) {
+			return new Sampler() {
+				@Override
+				public int sample(INDArray a) {
+					return SamplingUtil.topK(a, k);
+				}				
+			};
+		}
+
+		public static Sampler getNucleusSampler (double p) {
+			return new Sampler() {
+				@Override
+				public int sample(INDArray a) {
+					return SamplingUtil.nucleus(a, p);
+				}				
+			};
+		}
+
+		public static Sampler getTemperatureSampler (double t) {
+			return new Sampler() {
+				@Override
+				public int sample(INDArray a) {
+					return SamplingUtil.temperature(a, t);
+				}				
+			};
+		}
+		
+		public abstract int  sample (INDArray a);		
+	}
+
+	private SamplingUtil() {
 	}
 
 	/**
-	 * @param a an array of shape [0,N], reflecting the output of a Keras softmax
+	 * @param a an array of shape [N], reflecting the output of a Keras softmax
 	 *          layer.
 	 * 
 	 * @return The index of the element of the array with the highest value (the
@@ -37,15 +92,15 @@ public final class KerasUtil {
 	 *         - greedy sampling).
 	 */
 	public static int greedy(INDArray a) {
-		if (a == null || a.rank() != 2 || a.shape()[1] == 0) {
+		if (a == null || a.rank() != 1 || a.shape()[0] == 0) {
 			throw new IllegalArgumentException("Input must be a non-null one-dimensional INDArray.");
 		}
 
 		long idx = 0;
 		double max = 0.0;
-		for (long i = 0; i < a.shape()[1]; ++i) {
-			if (a.getDouble(0, i) > max) {
-				max = a.getDouble(0, i);
+		for (long i = 0; i < a.shape()[0]; ++i) {
+			if (a.getDouble(i) > max) {
+				max = a.getDouble(i);
 				idx = i;
 			}
 		}
@@ -54,17 +109,17 @@ public final class KerasUtil {
 	}
 
 	/**
-	 * @param a an array of shape [0,N], reflecting the output of a Keras softmax
+	 * @param a an array of shape [N], reflecting the output of a Keras softmax
 	 *          layer.
 	 * 
 	 * @return A random index, distributed accordingly to a.
 	 */
 	public static int random(INDArray a) {
-		return random(a, rnd);
+		return random(a, RND);
 	}
 
 	/**
-	 * @param a an array of shape [0,N], reflecting the output of a Keras softmax
+	 * @param a an array of shape [N], reflecting the output of a Keras softmax
 	 *          layer.
 	 * @param r Random number generator to use.
 	 * 
@@ -72,7 +127,7 @@ public final class KerasUtil {
 	 */
 	public static int random(INDArray a, Random r) {
 
-		if (a == null || a.rank() != 2 || a.shape()[1] == 0) {
+		if (a == null || a.rank() != 1 || a.shape()[0] == 0) {
 			throw new IllegalArgumentException("Input must be a non-null one-dimensional INDArray.");
 		}
 
@@ -85,11 +140,11 @@ public final class KerasUtil {
 	 * @return A random index, distributed accordingly to a.
 	 */
 	public static int random(double[] a) {
-		return random(a, rnd);
+		return random(a, RND);
 	}
 
 	/**
-	 * @param a an array of shape [0,N], reflecting the output of a Keras softmax
+	 * @param a an array of shape [N], reflecting the output of a Keras softmax
 	 *          layer.
 	 * @param r Random number generator to use.
 	 * 
@@ -114,39 +169,39 @@ public final class KerasUtil {
 
 	/**
 	 * 
-	 * @param a an array of shape [0,N], reflecting the output of a Keras softmax
+	 * @param a an array of shape [N], reflecting the output of a Keras softmax
 	 *          layer.
 	 * 
 	 * @return An index in a using top-K sampling.
 	 */
-	public static long topK(INDArray a, int k) {
-		return topK(a, k, rnd);
+	public static int topK(INDArray a, int k) {
+		return topK(a, k, RND);
 	}
 
 	/**
 	 * 
-	 * @param a an array of shape [0,N], reflecting the output of a Keras softmax
+	 * @param a an array of shape [N], reflecting the output of a Keras softmax
 	 *          layer.
 	 * 
 	 * @return An index in a using top-K sampling.
 	 */
-	public static long topK(INDArray a, int k, Random r) {
+	public static int topK(INDArray a, int k, Random r) {
 
-		if (a == null || a.rank() != 2 || a.shape()[1] == 0) {
+		if (a == null || a.rank() != 1 || a.shape()[0] == 0) {
 			throw new IllegalArgumentException("Input must be a non-null one-dimensional INDArray.");
 		}
 
 		// put a in a sorted list
-		Map<Long, Double> d = new HashMap<>();
-		for (long i = 0; i < a.shape()[1]; ++i) {
-			d.put(i, a.getDouble(0, i));
+		Map<Integer, Double> d = new HashMap<>();
+		for (int i = 0; i < (int) a.shape()[0]; ++i) {
+			d.put(i, a.getDouble(i));
 		}
-		List<Entry<Long, Double>> list = new ArrayList<>(d.entrySet());
+		List<Entry<Integer, Double>> list = new ArrayList<>(d.entrySet());
 		list.sort(Entry.comparingByValue());
 		Collections.reverse(list);
 
 		// Put top probabilities in an array
-		int aSize = (int) Math.min(a.shape()[1], k);
+		int aSize = (int) Math.min(a.shape()[0], k);
 		double[] a2 = new double[aSize];
 		for (int i = 0; i < aSize; ++i) {
 			a2[i] = list.get(i).getValue();
@@ -167,29 +222,29 @@ public final class KerasUtil {
 	 * 
 	 * @return An index in a using top-P (nucleus) sampling.
 	 */
-	public static long nucleus(INDArray a, double p) {
-		return nucleus(a, p, rnd);
+	public static int nucleus(INDArray a, double p) {
+		return nucleus(a, p, RND);
 	}
 
 	/**
 	 * 
-	 * @param a an array of shape [0,N], reflecting the output of a Keras softmax
+	 * @param a an array of shape [N], reflecting the output of a Keras softmax
 	 *          layer.
 	 * 
 	 * @return An index in a using top-P (nucleus) sampling.
 	 */
-	public static long nucleus(INDArray a, double p, Random r) {
+	public static int nucleus(INDArray a, double p, Random r) {
 
-		if (a == null || a.rank() != 2 || a.shape()[1] == 0) {
+		if (a == null || a.rank() != 1 || a.shape()[0] == 0) {
 			throw new IllegalArgumentException("Input must be a non-null one-dimensional INDArray.");
 		}
 
 		// put a in a sorted list
-		Map<Long, Double> d = new HashMap<>();
-		for (long i = 0; i < a.shape()[1]; ++i) {
-			d.put(i, a.getDouble(0, i));
+		Map<Integer, Double> d = new HashMap<>();
+		for (int i = 0; i < (int)a.shape()[0]; ++i) {
+			d.put(i, a.getDouble(i));
 		}
-		List<Entry<Long, Double>> list = new ArrayList<>(d.entrySet());
+		List<Entry<Integer, Double>> list = new ArrayList<>(d.entrySet());
 		list.sort(Entry.comparingByValue());
 		Collections.reverse(list);
 
@@ -208,7 +263,7 @@ public final class KerasUtil {
 
 		// normalise and random sample
 		// TODO this should workj with long
-		int idx = random(normalize(a2),r);
+		int idx = random(normalize(a2), r);
 
 		// re-translate into an index on the original array
 		return list.get(idx).getKey();
@@ -219,11 +274,11 @@ public final class KerasUtil {
 	 * @param a an array of shape [0,N], reflecting the output of a Keras softmax
 	 *          layer.
 	 * 
-	 * @return An index in a using random sampling with givne temperature t.
+	 * @return An index in a using random sampling with given temperature t.
 	 */
-	public static long temperature(INDArray a, double t) {
+	public static int temperature(INDArray a, double t) {
 
-		return temperature(a, t, rnd);
+		return temperature(a, t, RND);
 	}
 
 	/**
@@ -233,20 +288,20 @@ public final class KerasUtil {
 	 * 
 	 * @return An index in a using random sampling with givne temperature t.
 	 */
-	public static long temperature(INDArray a, double t, Random r) {
+	public static int temperature(INDArray a, double t, Random r) {
 
-		if (a == null || a.rank() != 2 || a.shape()[1] == 0) {
+		if (a == null || a.rank() != 1 || a.shape()[0] == 0) {
 			throw new IllegalArgumentException("Input must be a non-null one-dimensional INDArray.");
 		}
 
 		// scale probabilities using temperature
-		double[] d = new double[(int) a.shape()[1]];
+		double[] d = new double[(int) a.shape()[0]];
 		for (int i = 0; i < d.length; ++i) {
-			d[i] = Math.exp(a.getDouble(0, i) / t);
+			d[i] = Math.exp(a.getDouble(i) / t);
 		}
 
 		// normalise and random sample
-		return random(normalize(d),r);
+		return random(normalize(d), r);
 	}
 
 	/**

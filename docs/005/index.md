@@ -99,10 +99,10 @@ To exemplify this concept, I show how some common word types can be decomposed i
 
 We can then see [{2}](#Note2) that tokens can be classified as follows:
 
-- 27'114 tokens (86.6% of total), corresponding to 2'617 different word types (51.3% of total), can be decomposed in slots accordingly to the above rules. I will call these tokens "**regular**".
+- 27'114 tokens (86.6% of total), corresponding to 2'617 different word types (51.3% of total), can be decomposed in slots accordingly to the above rules. I will call these tokens "<a id="regular">**regular**</a>".
 
 - 3'249 tokens (10.4% of total), corresponding to 1'892 different word types (37.1% of total), can be divided in two parts, each composed by at least two Voynich glyphs, 
-where each of these parts is a regular word type. I will call these tokens "**separable**".
+where each of these parts is a regular word type. I will call these tokens "<a id="separable">**separable**</a>".
 
   Moreover, we can see that for 2'219 separable word types (75.2% of total separable word types) their constituent parts appear as tokens in the text at least as often as the whole
   separable word type. For example, the word type 'chockhy' appears 18 times in the text; it is a separable word type that can be divided in two parts, each one being a regular word type, as

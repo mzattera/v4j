@@ -113,6 +113,8 @@ When appropriate, I will write a small "review" of some of these materials.
 
 - [Review 001 - TILTMAN, John H. (1967): THE VOYNICH MANUSCRIPT "The Most Mysterious Manuscript in the World"](./R001)
  
+- [Review 002 - CURRIER, Prescott H. (1976): Some Important New Statistical Findings](./R002)
+ 
 
 
 ---

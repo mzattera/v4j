@@ -106,7 +106,7 @@ where each of these parts is a regular word type. I will call these tokens "**se
 
   Moreover, we can see that for 2'219 separable word types (75.2% of total separable word types) their constituent parts appear as tokens in the text at least as often as the whole
   separable word type. For example, the word type 'chockhy' appears 18 times in the text; it is a separable word type that can be divided in two parts, each one being a regular word type, as
-  'cho' - 'ckhy' which appears in the text 79 and 39 times respectively. I think this is an indication that many separable word types are possibly just two regular words that were written together
+  'cho' - 'ckhy' which appear in the text 79 and 39 times respectively. I think this is an indication that many separable word types are possibly just two regular words that were written together
   (or the space between them was not transcribed correctly).
   When I need to distinguish these word types from other separable word types, I will call them "**verified separable**" or simply "**verified**".
 

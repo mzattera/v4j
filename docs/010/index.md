@@ -108,7 +108,7 @@ Comparing these three tables and considering the one with characters distributio
  
 
 With the exception of point 4. and last half of point 3.,  which might constitute new findings, other behaviors are long known;
-see, among others,[TILTMAN (1967)](../biblio.md)[{5}](#Note5), [CURRIER (1976)](../biblio.md)[{6}](#Note6),
+see, among others, [TILTMAN (1967)](../biblio.md)[{5}](#Note5), [CURRIER (1976)](../biblio.md)[{6}](#Note6),
 [D'IMPERIO (1978b)](../biblio.md)[{7}](#Note7), [Grove](http://voynich.net/Arch/2004/09/msg00478.html)[{8}](#Note8),
 [BOWERN (2020)](../biblio.md) (mentioning Grove), and [ZANDBERGEN (2021)](../biblio.md).
 
@@ -189,7 +189,7 @@ points 2. and 4. above.
 The distribution of characters across the page presents some anomalies which are statistically significant and are summarized in the table above.
 Many of these anomalies have been detected by several authors in the past, but some are possibly new:
 
-   1. 'k' and 'K' behaving differently then other gallows.
+   1. 'k' and 'K' behaving differently than other gallows.
    2. 'f', 't' and especially 'q' and 'p' tend to avoid last line of paragraphs.
    3. 'S' prefers to appear in first line of paragraphs.
    4. 'e' seems to appear more frequently without repetitions in first line (see low frequencies of ‘E’ and ‘B’).

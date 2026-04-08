@@ -5,6 +5,7 @@
  */
 package io.github.mzattera.v4j.text.ivtff;
 
+import io.github.mzattera.v4j.text.ElementFilter;
 import io.github.mzattera.v4j.text.ElementSplitter;
 
 /**
@@ -76,6 +77,21 @@ public class LineSplitter implements ElementSplitter<IvtffLine> {
 		}
 	}
 
+	/**
+	 * Pre-made splitter to divide text by paragraph.
+	 */
+	public static final ElementSplitter<IvtffLine> PARAGRAPH_TEXT_SPLITTER = new ElementSplitter<IvtffLine>() {
+
+		@Override
+		public String toString() {
+			return "LineFilter [Returns text in P0 and P1 loci (paragraphs of running text)]";
+		}
+
+		@Override
+		public String getCategory(IvtffLine element) {
+			return null;
+		}
+	};	
 	public LineSplitter(boolean byPage, boolean byNumber, boolean byLocus, boolean byLocator, boolean byLocusType, boolean byGenericLocusType, boolean byTranscriber) {
 		this.byPage = byPage;
 		this.byNumber = byNumber;

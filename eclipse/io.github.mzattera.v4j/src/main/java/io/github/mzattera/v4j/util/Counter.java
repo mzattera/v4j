@@ -331,11 +331,11 @@ public class Counter<T> {
 	public void print(boolean reversed) {
 		if (reversed) {
 			for (Entry<T, Integer> e : reversed()) {
-				System.out.println(e.getKey() + ":\t" + e.getValue());
+				System.out.println(e.getKey() + "\t" + e.getValue());
 			}
 		} else {
 			for (Entry<T, Integer> e : sorted()) {
-				System.out.println(e.getKey() + ":\t" + e.getValue());
+				System.out.println(e.getKey() + "\t" + e.getValue());
 			}
 		}
 	}

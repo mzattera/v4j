@@ -176,14 +176,27 @@ public abstract class Text implements Identifiable {
 	}
 
 	/**
-	 * @return A shuffled version of the text, with words in plain text in random order.
+	 * 
+	 * @return True if any word in this text is unreadable.
+	 */
+	public boolean isUnreadable() {
+		for (String w : splitWords())
+			if (getAlphabet().isUnreadable(w))
+				return true;
+		return false;
+	}
+
+	/**
+	 * @return A shuffled version of the text, with words in plain text in random
+	 *         order.
 	 */
 	public Text shuffledText() {
 		return shuffledText(new Random(System.currentTimeMillis()));
 	}
 
 	/**
-	 * @return A shuffled version of the text, with words in plain text in random order.
+	 * @return A shuffled version of the text, with words in plain text in random
+	 *         order.
 	 */
 	public Text shuffledText(Random rnd) {
 		List<String> words = Arrays.asList(splitWords());

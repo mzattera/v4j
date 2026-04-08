@@ -5,6 +5,7 @@
  */
 package io.github.mzattera.v4j.text.txt;
 
+import java.util.List;
 import java.util.Map.Entry;
 
 import io.github.mzattera.v4j.text.Text;
@@ -28,6 +29,13 @@ public class TextString extends Text {
 	 */
 	public TextString(String text) {
 		this(text, "<UNK>", Alphabet.UTF_16);
+	}
+
+	/**
+	 * Creates a Text from a list of String, assumed to be lines, using UTF_16 alphabet.
+	 */
+	public TextString(List<String> text) {
+		this(String.join("\n", text), "<UNK>", Alphabet.UTF_16);
 	}
 
 	/**

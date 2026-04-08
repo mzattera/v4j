@@ -36,12 +36,11 @@ public final class MathUtil {
 	 * @param c Symbols with their occurrence.
 	 * @return
 	 */
-	public static double entropy(Counter<?> c) {
+	public static <T> double entropy(Counter<T> c) {
 		double result = 0.0;
-		double tot = c.getTotalCounted();
 
-		for (Entry<?, Integer> e : c.entrySet()) {
-			result += entropy(e.getValue() / tot);
+		for (T e : c.itemSet()) {
+			result += entropy(c.getFrequency(e));
 		}
 
 		return result;

@@ -510,7 +510,7 @@ public abstract class Experiment {
 	 * 
 	 * Pay attention to the order in which this is applied. Character-level
 	 * experiment (e.g., Initials or Finals) return only letter as part of the
-	 * referencve population, those needs to be applied after this one, or the
+	 * reference population, those needs to be applied after this one, or the
 	 * characters will be replaced by the words in the standard population.
 	 * 
 	 * @author Massimiliano "Maxi" Zattera
@@ -519,22 +519,34 @@ public abstract class Experiment {
 	public static class WithStandardPopulation extends Experiment {
 
 		private final Experiment experiment;
-
 		private final boolean readableOnly;
+		private final boolean skipSecondWord;
 
 		/**
 		 * @param readableOnly if true, consider only the words that do not contain any
 		 *                     unreadable characters.
 		 */
 		public WithStandardPopulation(Experiment experiment, boolean readableOnly) {
+			this(experiment, readableOnly, false);
+		}
+
+		/**
+		 * @param readableOnly   if true, consider only the words that do not contain
+		 *                       any unreadable characters.
+		 * @param skipSecondWord if true, does not add second word in lines to the
+		 *                       population.
+		 */
+		public WithStandardPopulation(Experiment experiment, boolean readableOnly, boolean skipSecondWord) {
 			this.experiment = experiment;
 			this.readableOnly = readableOnly;
+			this.skipSecondWord = skipSecondWord;
 		}
 
 		@Override
 		public Text[] splitDocument(Text txt) {
-			return new Text[] { experiment.splitDocument(txt)[0], new TextString(
-					Experiment.getStandardWordsPopulation((IvtffText) txt, readableOnly), txt.getAlphabet()) };
+			return new Text[] { experiment.splitDocument(txt)[0],
+					new TextString(Experiment.getStandardWordsPopulation((IvtffText) txt, readableOnly, skipSecondWord),
+							txt.getAlphabet()) };
 		}
 
 	}
@@ -796,10 +808,10 @@ public abstract class Experiment {
 
 	/**
 	 * Returns "standard" population of words in a text. We know from analysis that
-	 * words in first line of paragraphs and those at the beginning or end of a line
-	 * have particular statistical behaviors (e.g., in length, char distribution,
-	 * etc.). This method returns all other words in the text. Notice only the text
-	 * in running paragraphs is considered.
+	 * words in first and last lines of paragraphs and those at the beginning or end
+	 * of a line have particular statistical behaviors (e.g., in length, char
+	 * distribution, etc.). This method returns all other words in the text. Notice
+	 * only the text in running paragraphs is considered.
 	 * 
 	 * @param readableOnly if true, consider only the words that do not contain any
 	 *                     unreadable characters.
@@ -807,10 +819,29 @@ public abstract class Experiment {
 	 */
 	public static Counter<String> getStandardWordsPopulation(IvtffText txt, boolean readableOnly) {
 
+		return getStandardWordsPopulation(txt, readableOnly, false);
+	}
+
+	/**
+	 * Returns "standard" population of words in a text. We know from analysis that
+	 * words in first and last lines of paragraphs and those at the beginning or end
+	 * of a line have particular statistical behaviors (e.g., in length, char
+	 * distribution, etc.). This method returns all other words in the text. Notice
+	 * only the text in running paragraphs is considered.
+	 * 
+	 * @param readableOnly   if true, consider only the words that do not contain
+	 *                       any unreadable characters.
+	 * @param skipSecondWord If true, it also skips the second word in each line; we
+	 *                       have indications that this might be a problem too.
+	 * @return "Standard" word population for given text.
+	 */
+	public static Counter<String> getStandardWordsPopulation(IvtffText txt, boolean readableOnly,
+			boolean skipSecondWord) {
+
 		List<Counter<String>> other = Experiment.getWordsByPosition(Experiment.filterLines(txt, true, true),
 				readableOnly, 0, Integer.MAX_VALUE, true, true);
 		Counter<String> population = new Counter<>();
-		for (int i = 1; i < other.size(); ++i) {
+		for (int i = (skipSecondWord ? 2 : 1); i < other.size(); ++i) {
 			population.countAll(other.get(i));
 		}
 

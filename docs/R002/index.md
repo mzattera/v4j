@@ -23,9 +23,7 @@ summarized below:
 	little groups of letters which don’t occur anywhere else, and just look as if they were
 	added to fill out the line to the margin".
   
-    I am not aware of anybody picking up on this. To me it seems the length of tokens at the end of the line
-	is not different than in other parts of the line (see [Note 011](../011)). Maybe Currier meant some random symbols are
-	added at the end of words; this is to be checked.
+	 I am not aware of anybody picking up on this. To me it seems the length of tokens at the end of the line is not different than in other parts of the line (see [Note 011](../011)). Maybe Currier meant some random symbols are added at the end of words; this is to be checked.
 	
   3. "In \[the herbal material and of the biological material\] ... there is not one single case of a repeat going over the end of a line to beginning of the next".
 

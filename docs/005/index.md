@@ -110,7 +110,7 @@ where each of these parts is a regular word type. I will call these tokens "<a i
   (or the space between them was not transcribed correctly).
   When I need to distinguish these word types from other separable word types, I will call them "**verified separable**" or simply "**verified**".
 
-- Remaining 954 tokens (3.0% of total), corresponding to 596 different word types (11.7% of total), are marked as "**unstructured**".
+- Remaining 954 tokens (3.0% of total), corresponding to 596 different word types (11.7% of total), are marked as <a id="unstructured">"**unstructured**"</a>.
 
   Notice that 489 out of these 596 word types, or 82%, appear only once in the text; this percentage is 59.8% for regular and separable word types considered together.
   This might suggest that unstructured words are either typos or special words that are encoded differently than other words.
@@ -205,7 +205,7 @@ Based on the above, I assume each sequence of 'e' and 'i' is probably a characte
 (or anyway a single "logical unit", like in Italian where, even if "q" and "u" are distinct letters, "q" appears only in "qu-").
 
 
-## The Slot Alphabet 
+## <a id="slot">The Slot Alphabet</a> 
 
 Finally, drawing from the above considerations, I propose a new transliteration alphabet, which I will call the **Slot alphabet** for obvious reasons.
 

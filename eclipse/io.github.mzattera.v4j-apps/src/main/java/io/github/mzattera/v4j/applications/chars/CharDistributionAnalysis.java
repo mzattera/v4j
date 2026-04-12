@@ -154,6 +154,20 @@ public abstract class CharDistributionAnalysis {
 	 *         based on chi-squared text and ALPHA.
 	 */
 	public static List<Character>[] process(String cluster, IvtffText txt, boolean compact, Experiment experiment) {
+		return process(cluster, experiment.splitDocument(txt), compact, txt.getAlphabet());
+	}
+
+	/**
+	 * Processes a single text (typically representing a cluster).
+	 * 
+	 * @param cluster Cluster name (optional)
+	 * @param parts   Sample and population to analyze.
+	 * @param compact If true, print a compact version of the distribution table.
+	 * @param a       Original alphabet of the text.
+	 * @return Two lists, with characters appearing more and less than they should,
+	 *         based on chi-squared text and ALPHA.
+	 */
+	public static List<Character>[] process(String cluster, Text[] parts, boolean compact, Alphabet a) {
 
 		@SuppressWarnings("unchecked")
 		List<Character>[] result = new ArrayList[2];
@@ -161,7 +175,6 @@ public abstract class CharDistributionAnalysis {
 		result[1] = new ArrayList<Character>();
 
 		cluster = (cluster == null) ? "" : cluster;
-		Alphabet a = txt.getAlphabet();
 		char[] chars;
 		if (a.getCodeString().equals(Alphabet.SLOT.getCodeString())) {
 			// Nicer display for Slot alphabet ;)
@@ -173,10 +186,8 @@ public abstract class CharDistributionAnalysis {
 
 		/**
 		 * Creates an "adjusted" distribution for the whole text, where each bin is big
-		 * enough for chi-square (merges smaller bins together)
-		 **/
-		Text[] parts = experiment.splitDocument(txt);
-		/**
+		 * enough for chi-square (merges smaller bins together).
+		 * 
 		 * We look into char distribution of the two parts together, since
 		 * splitDocument() might not return the whole text. This is the only way to
 		 * ensure charDistribution reflects the part of text we are looking into.
@@ -217,8 +228,9 @@ public abstract class CharDistributionAnalysis {
 
 			// How many times do we expect the character to appear in any of the two parts,
 			// as a minimum?
-//			double expectedCount = cd.getFrequency()
-//					* Math.min(parts[0].getChars().getTotalCounted(), parts[1].getChars().getTotalCounted());
+			// double expectedCount = cd.getFrequency()
+			// * Math.min(parts[0].getChars().getTotalCounted(),
+			// parts[1].getChars().getTotalCounted());
 
 			// Observe actual frequencies of the char (2 categories: the char and all
 			// others)
@@ -229,11 +241,12 @@ public abstract class CharDistributionAnalysis {
 			double freq2 = ((double) obs2[0] / (obs2[0] + obs2[1]));
 			boolean more = freq1 > freq2;
 
-//			if (expectedCount < 5.0d) {// expected count for char is too low to use Chi Squared
-//				System.out.print("?");
-//			} else {
-//				try {
-//			confidence = ChiSquared.chiSquareTestDataSetsComparison(obs1, obs2);
+			// if (expectedCount < 5.0d) {// expected count for char is too low to use Chi
+			// Squared
+			// System.out.print("?");
+			// } else {
+			// try {
+			// confidence = ChiSquared.chiSquareTestDataSetsComparison(obs1, obs2);
 			confidence = BINOMIAL.binomialTest((int) (obs1[0] + obs1[1]), (int) (obs1[0]), freq2,
 					(more ? AlternativeHypothesis.GREATER_THAN : AlternativeHypothesis.LESS_THAN));
 
@@ -256,10 +269,10 @@ public abstract class CharDistributionAnalysis {
 				else
 					System.out.print("v");
 			}
-//				} catch (Exception e) {
-//					// Numbers are too small for chi-square
-//				}
-//			} // expected count high enough to use chi-squared
+			// } catch (Exception e) {
+			// // Numbers are too small for chi-square
+			// }
+			// } // expected count high enough to use chi-squared
 
 			if (!compact) {
 				System.out.print(" (" + obs1[0] + " / " + obs1[1] + ") ");

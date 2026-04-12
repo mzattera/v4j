@@ -129,9 +129,11 @@ public final class VoynichFactory {
 	 * 
 	 * @return given transcription and type of the Voynich, using the given
 	 *         alp0habet.
+	 * @throws ParseException 
+	 * @throws IOException 
 	 */
-	public static IvtffText getDocument(Transcription t, TranscriptionType type, Alphabet a)
-			throws IOException, ParseException, URISyntaxException {
+	public static IvtffText getDocument(Transcription t, TranscriptionType type, Alphabet a) throws IOException, ParseException
+			 {
 
 		switch (t) {
 		case LSI:

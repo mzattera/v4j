@@ -400,7 +400,7 @@ public class ClavisVoynich {
 			+ "</html>";
 
 	// "About" text
-	private static final String ABOUT = "<p>Welcome to the <span class=\"highlight\">Clavis Voynich</span> (last updated Apr. 13th, 2026).</p>\n" //
+	private static final String ABOUT = "<p>Welcome to the <span class=\"highlight\">Clavis Voynich</span> (last updated Apr. 13, 2026).</p>\n" //
 			+ "\n" //
 			+ "<p>This is part of my <a href=\"../index.html\" target=\"_blank\">Repeatable Voynich</a> site, please have a look at its main page to understand some of the conventions and the lexicon I normally use.</p>\n" //
 			+ "\n" //
@@ -441,7 +441,7 @@ public class ClavisVoynich {
 			+ "Massimiliano Zattera, the publisher of this site, holds no rights on these images.</p>";
 
 	/**
-	 * * @return HTML version of the entire Voynich.
+	 * @return HTML version of the entire Voynich.
 	 * 
 	 * @throws URISyntaxException
 	 * @throws ParseException
@@ -569,8 +569,7 @@ public class ClavisVoynich {
 
 			// Line ID
 			if (!toEva)
-				html.append("&lt;").append(line.getDescriptor().getId().toString().replace(";m", ""))
-						.append("&gt;&nbsp;&nbsp;");
+				html.append("&lt;").append(line.getDescriptor().getId().toString()).append("&gt;&nbsp;&nbsp;");
 
 			String[] words = line.splitWords();
 			for (int idx = 0; idx < words.length; ++idx) {

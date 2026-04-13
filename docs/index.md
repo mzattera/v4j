@@ -12,7 +12,7 @@ in order to provide some (hopefully) more solid basis for discussions and deciph
 
 Below some links to browse the Voynich online.
 
-* [Clavis Voynich](./clavis) my own "Voynich browser", featuring a special transliteration aiming to highlight all patterns and concepts I explored in my working notes below.
+* [Clavis Voynich](./clavis) is my own "Voynich browser", featuring a special transliteration designed to highlight all the patterns and concepts discussed in my working notes below.
 
 * [Voynich Manuscript Voyager](https://www.jasondavies.com/voynich/#outside_front_cover/0.422/0.371/2.30) by Jason Davies.
 

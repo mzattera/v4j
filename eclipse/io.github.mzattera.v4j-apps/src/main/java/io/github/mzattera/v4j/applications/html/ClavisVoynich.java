@@ -427,6 +427,8 @@ public class ClavisVoynich {
 			+ "\n" //
 			+ "</ul>\n" //
 			+ "\n" //
+			+ "<p>This page has been generated automatically using <a href=\"https://github.com/mzattera/v4j/blob/master/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/html/ClavisVoynich.java\" target=\"_blank\">ClavisVoynic.java</a>.</p>\n" //
+			+ "\n" //
 			+ "<hr/>\n" //
 			+ "\n" //
 			+ "<p>Copyright Massimiliano Zattera.</p>\n" //

@@ -6,11 +6,10 @@
 	<name>v4j</name>
 	<description>Voynich for Java (v4j) library.</description>
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>11</maven.compiler.source>
-		<maven.compiler.target>11</maven.compiler.target>
+    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    	<maven.compiler.release>11</maven.compiler.release>
 
-		<dl4j-master.version>1.0.0-M1.1</dl4j-master.version>
+    	<dl4j-master.version>1.0.0-M1.1</dl4j-master.version>
 	</properties>
 	<repositories>
 		<repository>
@@ -18,10 +17,25 @@
 			<url>https://jitpack.io</url>
 		</repository>
 	</repositories>
+	<build>
+    	<plugins>
+       	 <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.2.5</version>
+        </plugin>
+   	 </plugins>
+	</build>
 	<dependencies>
 
 		<!-- Apache Commons -->
 		<!-- Pair<L,R> -->
+		<dependency>
+   			 <groupId>org.junit.jupiter</groupId>
+   			 <artifactId>junit-jupiter</artifactId>
+   			 <version>5.10.0</version>
+   			 <scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
@@ -54,9 +68,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.nd4j</groupId>
-			<artifactId>nd4j-native</artifactId>
-			<version>${dl4j-master.version}</version>
+    		<groupId>org.nd4j</groupId>
+   			 <artifactId>nd4j-native-platform</artifactId>
+   			 <version>1.0.0-M2.1</version>
 		</dependency>
 
 		<!-- Watchmaker Framework - Genetic Algorithms <dependency> <groupId>org.uncommons.watchmaker</groupId> 

@@ -900,6 +900,54 @@ public abstract class Experiment {
 	}
 
 	/**
+	 * @param buckets A List of Counters, counting words appearing in different
+	 *                "buckets" (e.g. a bucket for each position in a line).
+	 * 
+	 * @return A new List of Counters, containing only "interesting" words in each
+	 *         bucket. "Interesting" words are those appearing in one bucket with a
+	 *         higher frequency than in the sum of other Counters (alpha=1%).
+	 */
+	public static List<Counter<String>> getInterestingWords(List<Counter<String>> buckets) {
+
+		List<Counter<String>> result = new ArrayList<>();
+
+		for (int i = 0; i < buckets.size(); ++i) {
+
+			// Words in position i vs. all other words
+			Counter<String> sample = buckets.get(i);
+			Counter<String> population = new Counter<>();
+			for (int j = 0; j < buckets.size(); ++j) {
+				if (i == j)
+					continue;
+				population.countAll(buckets.get(j));
+			}
+
+			result.add(getInterestingWords(sample, population));
+		}
+
+		return result;
+	}
+
+	/**
+	 * @param buckets A List of Counters, counting words appearing in different
+	 *                "buckets" (e.g. a bucket for each position in a line).
+	 * 
+	 * @return A double[], one per bucket, with % of "interesting" words in each
+	 *         Counter. "Interesting" words are those appearing in one Counter with
+	 *         a higher frequency than in the sum of other Counters (alpha=1%).
+	 */
+	public static double[] getInterestingWordsPercent(List<Counter<String>> buckets) {
+		double[] result = new double[buckets.size()];
+		List<Counter<String>> interesting = getInterestingWords(buckets);
+
+		for (int i = 0; i < buckets.size(); ++i) {
+			result[i] = (double) interesting.get(i).getTotalCounted() / buckets.get(i).getTotalCounted();
+		}
+
+		return result;
+	}
+
+	/**
 	 * @param w          Word to test.
 	 * @param sample
 	 * @param population
@@ -929,35 +977,6 @@ public abstract class Experiment {
 		double sig = BINOMIAL.binomialTest(sample.getTotalCounted(), sample.getCount(w), expected,
 				AlternativeHypothesis.GREATER_THAN);
 		return (sig < alpha);
-	}
-
-	/**
-	 * @param wordsByPosition A List of Counters, counting words appearing in
-	 *                        specific position (e.g. at a given position in a
-	 *                        line).
-	 * @return A double[] of same size than wordsByPosition with % of "interesting"
-	 *         words in each Counter. "Interesting" words are those appearing in one
-	 *         Counter with a higher frequency than in the sum of other Counters
-	 *         (alpha=1%).
-	 */
-	public static double[] getInterestingWordsPercent(List<Counter<String>> wordsByPosition) {
-		double[] result = new double[wordsByPosition.size()];
-		for (int i = 0; i < wordsByPosition.size(); ++i) {
-
-			// Words in position i vs. all other words
-			Counter<String> sample = wordsByPosition.get(i);
-			Counter<String> population = new Counter<>();
-			for (int j = 0; j < wordsByPosition.size(); ++j) {
-				if (i == j)
-					continue;
-				population.countAll(wordsByPosition.get(j));
-			}
-
-			Counter<String> interesting = getInterestingWords(sample, population);
-			result[i] = (double) interesting.getTotalCounted() / sample.getTotalCounted();
-		}
-
-		return result;
 	}
 
 	/**

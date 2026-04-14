@@ -95,7 +95,7 @@ Comparing these three tables and considering the one with characters distributio
 	 
 	 This behavior is dubious for other lines of the paragraph, where 'p' and 'f' are basically absent, but still marked for 't'.
 
-  4. 'k' has an specular behavior; it tends to avoid the first line of paragraphs, preferring to appear in other lines. It also avoids appearing
+  4. 'k' has an opposite behavior; it tends to avoid the first line of paragraphs, preferring to appear in other lines. It also avoids appearing
      as initial of tokens; this last behavior is less marked when it appears in the first token of a paragraph.
   	  
   6. The "pedestalled gallows" seem to follow the same behavior of their "non-pedestalled" counterparts; thus 'T' behaves like 't' (its

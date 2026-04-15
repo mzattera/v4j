@@ -19,7 +19,7 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 
 # Abstract
 
-In previous [note 10](../010) and [11](../011); we saw how words behave differently at different position of the text; below a quick summary, please refer to original notes for details.
+In previous [note 10](../010) and [11](../011), we saw how words behave differently at different position of the text; below a quick summary, please refer to original notes for details.
 
 First line of paragraphs:
 
@@ -43,17 +43,17 @@ Last token in a line:
   1. 'm' is over represented, conversely, 'l' and 'r' are under-represented.
   3. For some clusters, 'd', 'o', 'n', and 'y' shows a significant deviation in their distribution. 
 
- In this note I want to explore the hypothesis that there must be some word types that appear only in those positions of the text, which are responsible for the above patterns.
+ In this note, I want to explore the hypothesis that there must be some word types that appear only in those positions of the text, which are responsible for the above patterns.
  
 # Methodology
 
 For this note, the [majority version](https://github.com/mzattera/v4j#ivtff) of the Voynich was used; only the text in running paragraphs (IVTFF locus type = P0 or P1) is considered
 and tokens containing unreadable characters were ignored.
 
-In the first test, I divide tokens in buckets, one per position in the line, so all tokens appearing at the beginning of a line are in the first bucket, those appearing in second position
-in a line go into the second bucket and so on.
+In the first test, I divided tokens in buckets, one per position in the line, so all tokens appearing at the beginning of a line are in the first bucket, those appearing in second position
+in a line go into the second bucket, and so on.
 
-I then calculate, for each bucket, the percentage of word types that appear significantly more often in a bucket, compared to totality of other buckets.
+I then calculate, for each bucket, the percentage of word types that appear significantly more often in a bucket, compared to the totality of other buckets.
 
 The experiment has been conducted separately for each [cluster](../003) in both directions (from beginning and end of line)[{1}](#Note1), results are shown below[{2}](#Note2).
 For comparison, the experiment was also executed on a scrambled version of the text where tokens where shuffled at random.
@@ -63,7 +63,7 @@ For comparison, the experiment was also executed on a scrambled version of the t
 Clearly there are word types that prefer to appear only at first position (and maybe second position too) or at end of line.
 
 A similar experiment has been conducted by bucketing tokens based on which line in a paragraph they appear; below the results.
-The spike at the end in PA is probably due to the fact this cluster contains paragraphs with few lines, so less words are in lines after the fifth.
+The spike at the end in PA is probably due to the fact this cluster contains paragraphs with few lines, so less words are in lines after the fifth, introducing volatility.
 
 ![Percentage of words appearing more often at a given line in a paragraph](images/ByLineInParagraph.PNG)
 
@@ -82,9 +82,9 @@ and contrast it with the "**standard population**", defined as the set of words 
 
 **Notes**
 
-<a id="Note1">**{1}**</a> Class [`InterestingWords`](https://github.com/mzattera/v4j/blob/v.14.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/words/WordLength.java) was used for this purpose.
+<a id="Note1">**{1}**</a> Class [`InterestingWords`](https://github.com/mzattera/v4j/blob/v.15.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/words/InterestingWords.java) was used for this purpose.
 
-<a id="Note2">**{2}**</a> The  file `Intersting Words.xlsx` in [this folder](https://github.com/mzattera/v4j/blob/master/resources/analysis/words) contains 
+<a id="Note2">**{2}**</a> The  file `Interesting Words.xlsx` in [this folder](https://github.com/mzattera/v4j/blob/master/resources/analysis/words) contains 
 detailed results of the analysis, including diagrams.
 
 

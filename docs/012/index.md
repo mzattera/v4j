@@ -1,6 +1,6 @@
 # Note 012 - Mind your Words
 
-_Last updated Apr. 13th, 2025._
+_Last updated Apr. 14th, 2025._
 
 _This note refers to [release v.15.0.0](https://github.com/mzattera/v4j/tree/v.15.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
@@ -60,7 +60,8 @@ For comparison, the experiment was also executed on a scrambled version of the t
  
 ![Percentage of words appearing more often at a given position in line](images/ByPositionInLine.PNG)
   
-Clearly there are word types that prefer to appear only at first position (and maybe second position too) or at end of line.
+Clearly there are word types that prefer to appear only at first position or at end of line. Whether an unusual percentage of word types tend to appear more frequently in second position of a line is more dubious,
+but it also seems to be the case.
 
 A similar experiment has been conducted by bucketing tokens based on which line in a paragraph they appear; below the results.
 The spike at the end in PA is probably due to the fact this cluster contains paragraphs with few lines, so less words are in lines after the fifth, introducing volatility.
@@ -72,11 +73,22 @@ This also confirms that some words prefer to appear at beginning of line.
 
 # Conclusions
 
-Our hypothesis seems confirmed: there are some word types that prefer to appear in first line of a paragraph, in first (and second?) or last position in a line.\
+Our hypothesis seems to be confirmed: there are some word types that prefer to appear in first line of a paragraph, in first (and second?) or last position in a line.\
 These special words might be responsible for the behaviors we see in the text that are summarized at the beginning of this note.
 
-We can define a population of "**interesting words**" as those appearing preferably in a given position in the text (e.g. in first line of paragraphs), 
-and contrast it with the "**standard population**", defined as the set of words that appears in a position that is not the first line of a paragraph, or the first, second or last position in a line.
+We can define a population of "**interesting words**" as those appearing preferably in a given position in the text:
+
+1. First line of paragraphs (in blue in the below illustration)
+
+1. First token in a line (in green in the below illustration)
+
+1. Second token in a line (in purple in the below illustration)
+
+1. Last token in a line (in red in the below illustration)
+
+and contrast this population with the "**standard population**", defined as the set of words that do not appear in any of the above positions (circled in yellow in the below illustration).
+
+![Example paragraph showing different area of the text](images/Regions.PNG)
 
 ---
 

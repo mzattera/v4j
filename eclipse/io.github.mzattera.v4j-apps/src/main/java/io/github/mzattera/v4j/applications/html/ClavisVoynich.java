@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import io.github.mzattera.v4j.experiment.Experiment;
 import io.github.mzattera.v4j.text.alphabet.Alphabet;
 import io.github.mzattera.v4j.text.alphabet.SlotAlphabet;
 import io.github.mzattera.v4j.text.alphabet.SlotAlphabet.TermDecomposition;
@@ -19,11 +20,11 @@ import io.github.mzattera.v4j.text.ivtff.IvtffPage;
 import io.github.mzattera.v4j.text.ivtff.IvtffText;
 import io.github.mzattera.v4j.text.ivtff.LineFilter;
 import io.github.mzattera.v4j.text.ivtff.PageFilter;
-import io.github.mzattera.v4j.text.ivtff.PageSplitter;
 import io.github.mzattera.v4j.text.ivtff.ParseException;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory.Transcription;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory.TranscriptionType;
+import io.github.mzattera.v4j.util.Counter;
 
 /**
  * Generates the Clavis Voynich (https://mzattera.github.io/v4j/clavis/), an
@@ -400,7 +401,7 @@ public class ClavisVoynich {
 			+ "</html>";
 
 	// "About" text
-	private static final String ABOUT = "<p>Welcome to the <span class=\"highlight\">Clavis Voynich</span> (last updated Apr. 13, 2026).</p>\n" //
+	private static final String ABOUT = "<p>Welcome to the <span class=\"highlight\">Clavis Voynich</span> (last updated Apr. 15th, 2026).</p>\n" //
 			+ "\n" //
 			+ "<p>This is part of my <a href=\"../index.html\" target=\"_blank\">Repeatable Voynich</a> site, please have a look at its main page to understand some of the conventions and the lexicon I normally use.</p>\n" //
 			+ "\n" //
@@ -424,6 +425,8 @@ public class ClavisVoynich {
 			+ "For example, 'chockhy' can be seen as the combination of two <a href=\"../005/index.html#regular\" target=\"_blank\">regular</a> words, 'cho' and 'ckhy'.\n" //
 			+ "Therefore, 'chockhy' shows as 'cho=ckhy' in the transliteration.\n" //
 			+ "</li>\n" //
+			+ "\n" //
+			+ "<li><a href=\"../012/index.html#interesting\" target=\"_blank\">Interesting</a> words are <span style=\"text-decoration: underline;text-decoration-color: yellow\">underlined</span>.</li>\n" //
 			+ "\n" //
 			+ "</ul>\n" //
 			+ "\n" //
@@ -469,6 +472,9 @@ public class ClavisVoynich {
 	// Style for unstructured words
 	private static final String UNSTRUCTURED_STYLE = "color:red";
 
+	// Style for interesting words
+	private static final String INTERESTING_STYLE = "text-decoration: underline;text-decoration-color: yellow";
+
 	private final static List<String> CLUSTERS = List.of("HA", "HB", "BB", "PA", "SB");
 	private final static Map<String, String> CLUSTER_DESCRIPTION = new HashMap<>();
 	static {
@@ -487,22 +493,20 @@ public class ClavisVoynich {
 		// Consider only paragraph text
 		document = document.filterLines(LineFilter.PARAGRAPH_TEXT_FILTER);
 
-		// Group pages by cluster when printing
-		Map<String, List<IvtffPage>> clusters = document.splitElements(new PageSplitter.Builder().byCluster().build());
-
 		StringBuilder html = new StringBuilder();
 		StringBuilder navHtml = new StringBuilder();
-		for (String cluster : CLUSTERS) {
+		for (String clusterId : CLUSTERS) { // Group pages by cluster when printing
 
-			List<IvtffPage> pages = clusters.get("Cluster=" + cluster);
+			IvtffText cluster = document.filterPages(new PageFilter.Builder().cluster(clusterId).build());
+			List<IvtffPage> pages = cluster.getElements();
 
 			// Cluster ID / title
-			html.append("<h1 id=\"section-").append(cluster).append("\">Cluster ").append(cluster).append(" ")
-					.append(CLUSTER_DESCRIPTION.get(cluster)).append("</h1>\n\n");
+			html.append("<h1 id=\"section-").append(clusterId).append("\">Cluster ").append(clusterId).append(" ")
+					.append(CLUSTER_DESCRIPTION.get(clusterId)).append("</h1>\n\n");
 
 			// Sidebar Nav Group
 			navHtml.append("<details class=\"nav-group\" open>\n");
-			navHtml.append("    <summary><a href=\"#section-").append(cluster).append("\"><span>").append(cluster)
+			navHtml.append("    <summary><a href=\"#section-").append(clusterId).append("\"><span>").append(clusterId)
 					.append("</span></a></summary>\n");
 
 			for (IvtffPage page : pages) {
@@ -527,11 +531,11 @@ public class ClavisVoynich {
 
 				// EVA text
 				html.append("<div class=\"text-container\">\n\n");
-				html.append(getHtml(page, true));
+				html.append(getHtml(cluster, page, true));
 				html.append("\n<hr/>\n");
 
 				// Slot text
-				html.append(getHtml(page, false));
+				html.append(getHtml(cluster, page, false));
 
 				html.append("</div>\n");
 				html.append("</div>\n");
@@ -545,16 +549,41 @@ public class ClavisVoynich {
 				.replace("{{navbar}}", navHtml.toString());
 	}
 
+	// If true, consider only readable words
+	private final static boolean READABLE_ONLY = true;
+
+	// If true, skip second word in line when getting standard population
+	private final static boolean SKIP_SECOND_WORD = true;
+
 	/**
-	 * @param page
-	 * @param toEva If true, means we want to print the result using EVA font.
-	 *              * @return HTML for a single page.
+	 * @param cluster The entire cluster, to determine interesting words.
+	 *                Inefficient, I know, but easier to write the code this way :)
+	 * @param page    The page to render in HTML.
+	 * @param toEva   If true, means we want to print the result using EVA font.
+	 * 
+	 * @return HTML for the given page.
 	 */
-	private static String getHtml(IvtffPage page, boolean toEva) {
+	private static String getHtml(IvtffText cluster, IvtffPage page, boolean toEva) {
 		StringBuilder html = new StringBuilder();
 
 		// Split words in regular & separable
 		Map<String, TermDecomposition> decomposition = SlotAlphabet.decompose(page.getWords(true).itemSet());
+
+		// Get words at different positions in the cluster
+		Counter<String> population = Experiment.getStandardWordsPopulation(cluster, READABLE_ONLY, SKIP_SECOND_WORD);
+		Counter<String> firstLine = new Experiment.FirstLineInParagraph(false).splitDocument(cluster)[0]
+				.getWords(READABLE_ONLY);
+		List<Counter<String>> byPosition = Experiment.getWordsByPosition(cluster, READABLE_ONLY);
+		Counter<String> firstToken = byPosition.get(0);
+		Counter<String> secondToken = byPosition.get(1);
+		Counter<String> lastToken = new Experiment.LastWordInLine(true, READABLE_ONLY).splitDocument(cluster)[0]
+				.getWords(READABLE_ONLY);
+
+		// Get interesting words
+		Counter<String> firstLineInteresting = Experiment.getInterestingWords(firstLine, population);
+		Counter<String> firstTokenInteresting = Experiment.getInterestingWords(firstToken, population);
+		Counter<String> secondTokenInteresting = Experiment.getInterestingWords(secondToken, population);
+		Counter<String> lastTokenInteresting = Experiment.getInterestingWords(lastToken, population);
 
 		boolean isFirstLine = true; // First line in paragraph?
 		for (IvtffLine line : page.getElements()) {
@@ -599,6 +628,14 @@ public class ClavisVoynich {
 						break;
 					}
 				}
+
+				// Interesting word?
+				boolean isInteresting = (isFirstLine && firstLineInteresting.itemSet().contains(w))
+						|| (!isFirstLine && (idx == 0) && firstTokenInteresting.itemSet().contains(w))
+						|| (!isFirstLine && (idx == 1) && secondTokenInteresting.itemSet().contains(w))
+						|| (!isFirstLine && (idx == words.length - 1) && lastTokenInteresting.itemSet().contains(w));
+				if (isInteresting)
+					styles.add(INTERESTING_STYLE);
 
 				w = toEva ? toEva(w) : w;
 				if (styles.size() > 0) { // This word was marked with some special styles

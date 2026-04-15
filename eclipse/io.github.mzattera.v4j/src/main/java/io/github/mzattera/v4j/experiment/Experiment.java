@@ -808,10 +808,12 @@ public abstract class Experiment {
 
 	/**
 	 * Returns "standard" population of words in a text. We know from analysis that
-	 * words in first and last lines of paragraphs and those at the beginning or end
+	 * words in first line of paragraphs and those at the beginning or end
 	 * of a line have particular statistical behaviors (e.g., in length, char
 	 * distribution, etc.). This method returns all other words in the text. Notice
 	 * only the text in running paragraphs is considered.
+	 * 
+	 * Notice that before Release 16, this was also filtering out words in last line of paragraphs.
 	 * 
 	 * @param readableOnly if true, consider only the words that do not contain any
 	 *                     unreadable characters.
@@ -824,10 +826,12 @@ public abstract class Experiment {
 
 	/**
 	 * Returns "standard" population of words in a text. We know from analysis that
-	 * words in first and last lines of paragraphs and those at the beginning or end
+	 * words in first line of paragraphs and those at the beginning or end
 	 * of a line have particular statistical behaviors (e.g., in length, char
 	 * distribution, etc.). This method returns all other words in the text. Notice
 	 * only the text in running paragraphs is considered.
+	 * 
+	 * Notice that before Release 16, this was also filtering out words in last line of paragraphs.
 	 * 
 	 * @param readableOnly   if true, consider only the words that do not contain
 	 *                       any unreadable characters.
@@ -838,7 +842,7 @@ public abstract class Experiment {
 	public static Counter<String> getStandardWordsPopulation(IvtffText txt, boolean readableOnly,
 			boolean skipSecondWord) {
 
-		List<Counter<String>> other = Experiment.getWordsByPosition(Experiment.filterLines(txt, true, true),
+		List<Counter<String>> other = Experiment.getWordsByPosition(Experiment.filterLines(txt, true, false),
 				readableOnly, 0, Integer.MAX_VALUE, true, true);
 		Counter<String> population = new Counter<>();
 		for (int i = (skipSecondWord ? 2 : 1); i < other.size(); ++i) {

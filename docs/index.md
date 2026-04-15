@@ -107,7 +107,7 @@ In other words, a token is an instance of a word type. For example; the below li
 
   Reproducing Vogt's findings on token length across lines, and a minor addition.
    
-- [Note 012 - Mind your Words](./011)
+- [Note 012 - Mind your Words](./012)
 
   Where I show how some word types prefer some positions in the text over others.
    

@@ -422,8 +422,9 @@ public class ClavisVoynich {
 			+ "<li><a href=\"../005/index.html#unstructured\" target=\"_blank\">Unstructured</a> words are shown in <span style=\"color:red\">red</span>.</li>\n" //
 			+ "\n" //
 			+ "<li><a href=\"../005/index.html#separable\" target=\"_blank\">Separable</a> words are split into their two components, separated by an equal ('=') sign.\n" //
-			+ "For example, 'chockhy' can be seen as the combination of two <a href=\"../005/index.html#regular\" target=\"_blank\">regular</a> words, 'cho' and 'ckhy'.\n" //
-			+ "Therefore, 'chockhy' shows as 'cho=ckhy' in the transliteration.\n" //
+			+ "For example, 'CoKy' can be seen as the combination of two <a href=\"../005/index.html#regular\" target=\"_blank\">regular</a> words, 'Co' and 'Ky'.\n" //
+			+ "Therefore, 'CoKy' shows as 'Co=Ky' in the transliteration.\n" //
+			+ "</li>" //
 			+ "</li>\n" //
 			+ "\n" //
 			+ "<li><a href=\"../012/index.html#interesting\" target=\"_blank\">Interesting</a> words are <span style=\"text-decoration: underline;text-decoration-color: yellow\">underlined</span>.</li>\n" //

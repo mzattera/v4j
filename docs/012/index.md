@@ -1,6 +1,6 @@
 # Note 012 - Mind your Words
 
-_Last updated Apr. 14th, 2025._
+_Last updated Apr. 14th, 2026._
 
 _This note refers to [release v.15.0.0](https://github.com/mzattera/v4j/tree/v.15.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
@@ -76,7 +76,7 @@ This also confirms that some words prefer to appear at beginning of line.
 Our hypothesis seems to be confirmed: there are some word types that prefer to appear in first line of a paragraph, in first (and second?) or last position in a line.\
 These special words might be responsible for the behaviors we see in the text that are summarized at the beginning of this note.
 
-We can define a population of "**interesting words**" as those appearing preferably in a given position in the text:
+We can define a population of "<a id="interesting">**interesting words**</a>" as those appearing preferably in a given position in the text:
 
 1. First line of paragraphs (in blue in the below illustration)
 

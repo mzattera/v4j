@@ -283,9 +283,12 @@ public final class ExperimentMethodsTest {
 		Counter<String> splitted = Experiment.getStandardWordsPopulation(INPUT, false);
 
 		String[] test = new String[] { "Kar", "or", "y", "kair", "CtaJn", "Sar", "are", "Tar", "Tar", "Sody", "okCoy",
-				"otCol", "CoTy", "osCy", "dain", "Cor", "STaJn", "okaJr", "Cey", "?Cy", "potol", "Tols" };
+				"otCol", "CoTy", "osCy", "dain", "Cor", "STaJn", "okaJr", "Cey", "?Cy", "potol", "Tols",
+				"Seky", "or", "yka??Jn", "Sod", "Toary", "Tes", "daraJn",
+				"Sos", "Fol", 
+				"Cor", "Cey", "dain" };
 
-		TestUtil.testWordCount(splitted, test);
+		TestUtil.testWordCountVerbose(splitted, test);
 	}
 
 	@Test
@@ -294,8 +297,11 @@ public final class ExperimentMethodsTest {
 		Counter<String> splitted = Experiment.getStandardWordsPopulation(INPUT, true);
 
 		String[] test = new String[] { "Kar", "or", "y", "kair", "CtaJn", "Sar", "are", "Tar", "Tar", "Sody", "okCoy",
-				"otCol", "CoTy", "osCy", "dain", "Cor", "STaJn", "okaJr", "Cey", "potol", "Tols" };
-		TestUtil.testWordCount(splitted, test);
+				"otCol", "CoTy", "osCy", "dain", "Cor", "STaJn", "okaJr", "Cey", "potol", "Tols",
+				"Seky", "or", "Sod", "Toary", "Tes", "daraJn",
+				"Sos", "Fol", 
+				"Cor", "Cey", "dain"};
+		TestUtil.testWordCountVerbose(splitted, test);
 	}
 
 	@Test

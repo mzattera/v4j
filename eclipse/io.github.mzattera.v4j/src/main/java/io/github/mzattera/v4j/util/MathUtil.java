@@ -5,8 +5,6 @@
  */
 package io.github.mzattera.v4j.util;
 
-import java.util.Map.Entry;
-
 /**
  * 
  * Static class of math util methods / functions.

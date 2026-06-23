@@ -101,6 +101,14 @@ public final class VoynichFactory {
 
 	/**
 	 * 
+	 * @return Most used transcription in our works :)
+	 */
+	public static IvtffText getDocument() throws IOException, ParseException, URISyntaxException {
+		return getDocument(Transcription.AUGMENTED, TranscriptionType.MAJORITY, Alphabet.SLOT);
+	}
+
+	/**
+	 * 
 	 * @return given transcription of the Voynich.
 	 */
 	public static IvtffText getDocument(Transcription t) throws IOException, ParseException, URISyntaxException {
@@ -129,11 +137,11 @@ public final class VoynichFactory {
 	 * 
 	 * @return given transcription and type of the Voynich, using the given
 	 *         alp0habet.
-	 * @throws ParseException 
-	 * @throws IOException 
+	 * @throws ParseException
+	 * @throws IOException
 	 */
-	public static IvtffText getDocument(Transcription t, TranscriptionType type, Alphabet a) throws IOException, ParseException
-			 {
+	public static IvtffText getDocument(Transcription t, TranscriptionType type, Alphabet a)
+			throws IOException, ParseException {
 
 		switch (t) {
 		case LSI:

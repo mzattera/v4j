@@ -11,10 +11,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import org.apache.commons.math3.ml.clustering.Clusterable;
 
 import io.github.mzattera.v4j.text.Text;
+import io.github.mzattera.v4j.text.txt.TextString;
 import io.github.mzattera.v4j.util.Counter;
 
 /**
@@ -167,7 +169,7 @@ public class BagOfWords implements Clusterable {
 	 *                   ignored.
 	 * @param dimensions words to use as dimensions for the bag of words.
 	 * @param mode       Mode to use to build the bag of words.
-	 * @return a list of bag of words from the give documents.
+	 * @return a list of bag of words from the given documents.
 	 */
 	public static List<BagOfWords> toBoW(Collection<? extends Text> docs, Map<String, Integer> dimensions,
 			BagOfWordsMode mode) {
@@ -205,6 +207,20 @@ public class BagOfWords implements Clusterable {
 	}
 
 	/**
+	 * 
+	 * @param txt        for each of this strings, a BagOfWords will be returned.
+	 *                   Notice that strings with no words in dimensions are
+	 *                   ignored.
+	 * @param dimensions words to use as dimensions for the bag of words.
+	 * @param mode       Mode to use to build the bag of words.
+	 * @return a list of bag of words from the given strings.
+	 */
+	public static List<BagOfWords> toBoW(List<String> txt, Map<String, Integer> dimensions, BagOfWordsMode mode) {
+		List<TextString> docs = txt.stream().map(s -> new TextString(s)).collect(Collectors.toList());
+		return toBoW(docs, dimensions, mode);
+	}
+
+	/**
 	 * Since to build BoW we need "dimensions" (e.g. the words to use in the BoW) we
 	 * provide here a utility method to get dimensions out of a list of words.
 	 * 
@@ -237,8 +253,9 @@ public class BagOfWords implements Clusterable {
 	 * Since to build BoW we need "dimensions" (e.g. the words to use in the BoW) we
 	 * provide here a utility method to get dimensions out of a Text.
 	 * 
-	 * @param texts List of documents to use; all "readable" words appearing in at least two documents
-	 *                   will be used as possible dimensions in the BoW.
+	 * @param texts List of documents to use; all "readable" words appearing in at
+	 *              least two documents will be used as possible dimensions in the
+	 *              BoW.
 	 * @return a Map representing the BoW dimensions.
 	 */
 	public static Map<String, Integer> buildCommonDimensions(Collection<? extends Text> texts) {

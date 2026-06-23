@@ -8,6 +8,8 @@ package io.github.mzattera.v4j.applications.chars;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import org.apache.commons.math3.stat.inference.AlternativeHypothesis;
 import org.apache.commons.math3.stat.inference.BinomialTest;
 
@@ -135,7 +137,7 @@ public abstract class CharDistributionAnalysis {
 			// PageFilter.Builder().cluster(cluster).build()).shuffledText();
 
 			IvtffText clusterText = doc.filterPages(new PageFilter.Builder().cluster(cluster).build());
-			process(cluster, clusterText, COMPACT, experiment);
+			process(cluster, clusterText, (COMPACT ? PrintMode.COMPACT : PrintMode.FULL), experiment);
 
 			System.out.println();
 		} // For each cluster
@@ -143,18 +145,63 @@ public abstract class CharDistributionAnalysis {
 
 	private static final BinomialTest BINOMIAL = new BinomialTest();
 
+	// If NONE prints nothing, if COMPACT prints a compact version of char frequency
+	// table, otherwise print the extended table
+	public enum PrintMode {
+		NONE, COMPACT, FULL
+	};
+
 	/**
 	 * Processes a single text (typically representing a cluster).
 	 * 
 	 * @param cluster    Cluster name (optional)
 	 * @param txt        Text to process.
-	 * @param compact    If true, print a compact version of the distribution table.
 	 * @param experiment
 	 * @return Two lists, with characters appearing more and less than they should,
 	 *         based on chi-squared text and ALPHA.
 	 */
-	public static List<Character>[] process(String cluster, IvtffText txt, boolean compact, Experiment experiment) {
-		return process(cluster, experiment.splitDocument(txt), compact, txt.getAlphabet());
+	public static List<Character>[] process(@Nullable String cluster, IvtffText txt, Experiment experiment) {
+		return process(cluster, experiment.splitDocument(txt), PrintMode.NONE, txt.getAlphabet());
+	}
+
+	/**
+	 * Processes a single text (typically representing a cluster).
+	 * 
+	 * @param cluster    Cluster name (optional)
+	 * @param txt        Text to process.
+	 * @param experiment
+	 * @return Two lists, with characters appearing more and less than they should,
+	 *         based on chi-squared text and ALPHA.
+	 */
+	public static List<Character>[] process(@Nullable String cluster, IvtffText txt, PrintMode mode,
+			Experiment experiment) {
+		return process(cluster, experiment.splitDocument(txt), mode, txt.getAlphabet());
+	}
+
+	/**
+	 * Processes a single text (typically representing a cluster).
+	 * 
+	 * @param cluster Cluster name (optional)
+	 * @param parts   Sample and population to analyze.
+	 * @param a       Original alphabet of the text.
+	 * @return Two lists, with characters appearing more and less than they should,
+	 *         based on chi-squared text and ALPHA.
+	 */
+	public static List<Character>[] process(Text sample, Text population) {
+		return process(new Text[] { sample, population });
+	}
+
+	/**
+	 * Processes a single text (typically representing a cluster).
+	 * 
+	 * @param cluster Cluster name (optional)
+	 * @param parts   Sample and population to analyze.
+	 * @param a       Original alphabet of the text.
+	 * @return Two lists, with characters appearing more and less than they should,
+	 *         based on chi-squared text and ALPHA.
+	 */
+	public static List<Character>[] process(Text[] parts) {
+		return process(null, parts, PrintMode.NONE, parts[0].getAlphabet());
 	}
 
 	/**
@@ -167,7 +214,7 @@ public abstract class CharDistributionAnalysis {
 	 * @return Two lists, with characters appearing more and less than they should,
 	 *         based on chi-squared text and ALPHA.
 	 */
-	public static List<Character>[] process(String cluster, Text[] parts, boolean compact, Alphabet a) {
+	public static List<Character>[] process(@Nullable String cluster, Text[] parts, PrintMode mode, Alphabet a) {
 
 		@SuppressWarnings("unchecked")
 		List<Character>[] result = new ArrayList[2];
@@ -199,9 +246,10 @@ public abstract class CharDistributionAnalysis {
 
 		// Compare the two parts, considering the whole alphabet at once, to see if
 		// there is a significative difference
-		System.out.print(cluster + ";");
+		if (mode != PrintMode.NONE)
+			System.out.print(cluster + ";");
 		double confidence = ChiSquared.chiSquareTestDataSetsComparison(parts[0], parts[1], adjustedDistribution, false);
-		if (!COMPACT)
+		if (mode == PrintMode.FULL)
 			System.out.printf("%.2f%%;", confidence * 100);
 		if (confidence > ALPHA) { // Not a difference in the two part that is statistically significant; exit
 			return result;
@@ -222,7 +270,8 @@ public abstract class CharDistributionAnalysis {
 
 			if (cd == null) {
 				// getCharDistribution() did not find this character.
-				System.out.print("?;");
+				if (mode != PrintMode.NONE)
+					System.out.print("?;");
 				continue;
 			}
 
@@ -241,44 +290,39 @@ public abstract class CharDistributionAnalysis {
 			double freq2 = ((double) obs2[0] / (obs2[0] + obs2[1]));
 			boolean more = freq1 > freq2;
 
-			// if (expectedCount < 5.0d) {// expected count for char is too low to use Chi
-			// Squared
-			// System.out.print("?");
-			// } else {
-			// try {
-			// confidence = ChiSquared.chiSquareTestDataSetsComparison(obs1, obs2);
 			confidence = BINOMIAL.binomialTest((int) (obs1[0] + obs1[1]), (int) (obs1[0]), freq2,
 					(more ? AlternativeHypothesis.GREATER_THAN : AlternativeHypothesis.LESS_THAN));
 
 			if (confidence <= ALPHA) { // Difference is significant
 				if (more) {
 					result[0].add(chars[i]);
-					System.out.print("++");
+					if (mode != PrintMode.NONE)
+						System.out.print("++");
 				} else {
 					result[1].add(chars[i]);
-					System.out.print("--");
+					if (mode != PrintMode.NONE)
+						System.out.print("--");
 				}
 			} else if (confidence < ALPHA2) { // We still display it if confidence is better than alha2
 				if (more)
-					System.out.print("+");
-				else
-					System.out.print("-");
+					if (mode != PrintMode.NONE)
+						System.out.print("+");
+					else if (mode != PrintMode.NONE)
+						System.out.print("-");
 			} else { // Not significative, still print tendency
 				if (more)
-					System.out.print("^");
-				else
-					System.out.print("v");
+					if (mode != PrintMode.NONE)
+						System.out.print("^");
+					else if (mode != PrintMode.NONE)
+						System.out.print("v");
 			}
-			// } catch (Exception e) {
-			// // Numbers are too small for chi-square
-			// }
-			// } // expected count high enough to use chi-squared
 
-			if (!compact) {
+			if (mode == PrintMode.FULL) {
 				System.out.print(" (" + obs1[0] + " / " + obs1[1] + ") ");
 				System.out.printf("(%.2f%% / %.2f%%)", (freq1 * 100.0), (freq2 * 100.0));
 			}
-			System.out.print(";");
+			if (mode != PrintMode.NONE)
+				System.out.print(";");
 
 		} // For each char
 

@@ -5,7 +5,6 @@
  */
 package io.github.mzattera.v4j.text.ivtff;
 
-import io.github.mzattera.v4j.text.ElementFilter;
 import io.github.mzattera.v4j.text.ElementSplitter;
 
 /**
@@ -73,7 +72,8 @@ public class LineSplitter implements ElementSplitter<IvtffLine> {
 		};
 
 		public LineSplitter build() {
-			return new LineSplitter(byPage, byNumber, byLocus, byLocator, byLocusType, byGenericLocusType, byTranscriber);
+			return new LineSplitter(byPage, byNumber, byLocus, byLocator, byLocusType, byGenericLocusType,
+					byTranscriber);
 		}
 	}
 
@@ -91,8 +91,10 @@ public class LineSplitter implements ElementSplitter<IvtffLine> {
 		public String getCategory(IvtffLine element) {
 			return null;
 		}
-	};	
-	public LineSplitter(boolean byPage, boolean byNumber, boolean byLocus, boolean byLocator, boolean byLocusType, boolean byGenericLocusType, boolean byTranscriber) {
+	};
+
+	public LineSplitter(boolean byPage, boolean byNumber, boolean byLocus, boolean byLocator, boolean byLocusType,
+			boolean byGenericLocusType, boolean byTranscriber) {
 		this.byPage = byPage;
 		this.byNumber = byNumber;
 		this.byLocus = byLocus;
@@ -107,7 +109,8 @@ public class LineSplitter implements ElementSplitter<IvtffLine> {
 		LocusIdentifier h = element.getDescriptor();
 		StringBuilder result = new StringBuilder();
 
-		// TODO probably use same approach used by PgeSplitter, which makes easier to get back a specific group
+		// TODO probably use same approach used by PageSplitter, which makes easier to
+		// get back a specific group
 		if (byPage)
 			result.append(h.getPageId());
 		if (byNumber)
@@ -131,5 +134,5 @@ public class LineSplitter implements ElementSplitter<IvtffLine> {
 		return "LineSplitter [byPage=" + byPage + ", byNumber=" + byNumber + ", byLocus=" + byLocus + ", byLocator="
 				+ byLocator + ", byLocusType=" + byLocusType + ", byGenericLocusType=" + byGenericLocusType
 				+ ", byTranscriber=" + byTranscriber + "]";
-	}	
+	}
 }

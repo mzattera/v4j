@@ -147,6 +147,16 @@ public class Counter<T> {
 	}
 
 	/**
+	 * Set count for all items in collection to 0.
+	 * 
+	 * @param obj
+	 */
+	public void removeAll(Collection<T> c) {
+		for (T obj : c)
+			remove(obj);
+	}
+
+	/**
 	 * Resets the counter.
 	 * 
 	 * @return Total number of items counted so far.
@@ -265,10 +275,18 @@ public class Counter<T> {
 	 * @return Number of distinct items that have been counted (notice that items
 	 *         with a total count of 0 are not returned). If more then
 	 *         {@link Integer#MAX_VALUE} items are counted, then it returns
-	 *         {@link Integer#MAX_VALUE},
+	 *         {@link Integer#MAX_VALUE}.
 	 */
 	public int itemCount() {
 		return counts.size();
+	}
+
+	/**
+	 * 
+	 * @return true if this counter has no counted items.
+	 */
+	public boolean isEmpty() {
+		return itemCount() == 0;
 	}
 
 	/**
@@ -336,6 +354,26 @@ public class Counter<T> {
 		} else {
 			for (Entry<T, Integer> e : sorted()) {
 				System.out.println(e.getKey() + "\t" + e.getValue());
+			}
+		}
+	}
+
+	/**
+	 * Prints first n contents of the Counter; each item is printed with its count.
+	 * 
+	 * @param reversed If true, print items in descending count value. Otherwise
+	 *                 they are printed in ascending order.
+	 */
+	public void print(boolean reversed, int count) {
+		if (reversed) {
+			for (Entry<T, Integer> e : reversed()) {				
+				System.out.println(e.getKey() + "\t" + e.getValue());
+				if (count-- == 0) break;
+			}
+		} else {
+			for (Entry<T, Integer> e : sorted()) {
+				System.out.println(e.getKey() + "\t" + e.getValue());
+				if (count-- == 0) break;
 			}
 		}
 	}

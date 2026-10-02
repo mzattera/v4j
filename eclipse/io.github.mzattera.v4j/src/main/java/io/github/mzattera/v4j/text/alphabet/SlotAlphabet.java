@@ -454,7 +454,7 @@ public class SlotAlphabet extends IvtffAlphabet {
 	 * decomposes the first part of the term, it does not try to decompose the
 	 * reminder to assess if the term is a doublet.
 	 * 
-	 * @param term Term to decompose; currently does not support words with
+	 * @param term Term to decompose; currently does not support tokens with
 	 *             unreadable characters.
 	 */
 	private static TermDecomposition internalDecompose(String term) {
@@ -568,11 +568,59 @@ public class SlotAlphabet extends IvtffAlphabet {
 	}
 
 	/**
-	 * Splits a REGULAR term at a given slot position.
+	 * Same as {@link #split(String, int)} splitting at slot 5.
+	 */
+	public static List<String> split(String token) {
+		return split(token, 5);
+	}
+
+	/**
+	 * Splits a term into a sequence of prefixes/suffixes, assuming they are defined
+	 * by splitting tokens at given slot.
+	 * 
+	 * SEPARABLE words are split in their two components first. An empty list is
+	 * returned for UNSTRUCTURED words.
+	 * 
+	 * @param token The token to split; it does not supports tokens with unreadable
+	 *              characters.
+	 * @return A list, possibly empty, containing pre-/suf-fixes for given token.
+	 */
+	public static List<String> split(String token, int slot) {
+		List<String> result = new ArrayList<>();
+
+		TermDecomposition d = SlotAlphabet.decompose(token);
+		switch (d.classification) {
+		case REGULAR:
+			add(result, splitAtSlot(token, slot));
+			break;
+		case SEPARABLE:
+			add(result, splitAtSlot(d.part1, slot));
+			add(result, splitAtSlot(d.part2, slot));
+			break;
+		case UNSTRUCTURED:
+			break;
+		default:
+			throw new IllegalArgumentException();
+		}
+
+		return result;
+	}
+
+	private static void add(List<String> l, String[] a) {
+		for (String s : a)
+			if ((s != null) && !s.isBlank())
+				l.add(s.trim());
+	}
+
+	/**
+	 * Splits a {@link TermClassification#REGULAR} term at a given slot position.
 	 * 
 	 * @param term
 	 * @param slot The slot where first part of the split ends.
-	 * @return Two Strings with the split term, any can be an empty string.
+	 * @return Two Strings, possibly empty, with the split term.
+	 * 
+	 * @throws IllegalArgumentException if the token is not a REGULAR term or the
+	 *                                  slot is outside range.
 	 */
 	public static String[] splitAtSlot(String term, int slot) {
 		TermDecomposition d = SlotAlphabet.decompose(term);
@@ -586,6 +634,7 @@ public class SlotAlphabet extends IvtffAlphabet {
 		for (int i = 0; i <= slot; ++i)
 			sb.append(d.slots1[i]);
 		result[0] = sb.toString();
+
 		sb.setLength(0);
 		for (int i = slot + 1; i < SLOTS.size(); ++i)
 			sb.append(d.slots1[i]);

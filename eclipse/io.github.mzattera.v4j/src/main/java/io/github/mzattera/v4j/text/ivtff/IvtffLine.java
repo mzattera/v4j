@@ -602,7 +602,7 @@ public class IvtffLine extends IvtffElement<LocusIdentifier, Text> {
 				}
 			} // for each line
 
-			// The below is a bit clunky; maybe there is a better way tp cpde this behavior.
+			// The below is a bit clunky; maybe there is a better way to code this behavior.
 			Character found = null;
 			if (conflict) {
 				// Ok not all chars are the same, we handle special cases here

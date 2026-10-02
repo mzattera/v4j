@@ -20,12 +20,12 @@ import java.util.Set;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
-import org.apache.commons.lang.xwork.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import io.github.mzattera.v4j.text.alphabet.SlotAlphabet;
 import io.github.mzattera.v4j.text.ivtff.ParseException;
 import io.github.mzattera.v4j.util.Counter;
+import io.github.mzattera.v4j.util.StringUtil;
 
 /**
  * A directed state machine that outputs text.
@@ -598,7 +598,7 @@ public class StateMachine {
 			String[] tokens = s.getTokens();
 			r.append("m.addState(\"");
 			r.append(s.getName()).append("\", ");
-			r.append("new String[] {\"").append(StringUtils.join(tokens, "\",\"")).append("\"}, ");
+			r.append("new String[] {\"").append(StringUtil.legacyJoin(tokens, "\",\"")).append("\"}, ");
 			r.append(s.isEndState()).append(");\n");
 		}
 
@@ -617,7 +617,7 @@ public class StateMachine {
 			}
 			r.append("m.addNext(\"");
 			r.append(s.getName()).append("\", ");
-			r.append("new String[] {\"").append(StringUtils.join(names, "\",\"")).append("\"});\n");
+			r.append("new String[] {\"").append(StringUtil.legacyJoin(names, "\",\"")).append("\"});\n");
 		}
 
 		// Creates weights
@@ -635,7 +635,8 @@ public class StateMachine {
 
 	/**
 	 * Saves this state machine as a "formal" grammar (see Note 008).
-	 * @throws ParseException 
+	 * 
+	 * @throws ParseException
 	 */
 	public String toGrammar() throws ParseException {
 		StringBuilder r = new StringBuilder();
@@ -647,18 +648,18 @@ public class StateMachine {
 			sNames[c++] = s.getName();
 		}
 		Arrays.sort(sNames);
-		
-		for (int i=0; i<sNames.length; ++i) {
-			
+
+		for (int i = 0; i < sNames.length; ++i) {
+
 			State s = states.get(sNames[i]);
 			r.append(s.getName()).append(":\n\t");
-						
+
 			String[] tokens = s.getTokens();
-			for (int j=0; j<tokens.length; ++j) {
+			for (int j = 0; j < tokens.length; ++j) {
 				tokens[j] = SlotAlphabet.toEva(tokens[j]);
 			}
 			Arrays.sort(tokens);
-			r.append(StringUtils.join(tokens, ", "));
+			r.append(StringUtil.legacyJoin(tokens, ", "));
 
 			Set<State> next = s.getNextStates();
 			if (next.size() > 0) {
@@ -670,7 +671,7 @@ public class StateMachine {
 				}
 				Arrays.sort(names);
 
-				r.append(" -> ").append(StringUtils.join(names, ", "));
+				r.append(" -> ").append(StringUtil.legacyJoin(names, ", "));
 			}
 
 			r.append("\n");

@@ -172,7 +172,7 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	 * @param lines list of lines that must go into the new document.
 	 * @param ID    ID for newly created document (overwrites existing one).
 	 */
-	public IvtffText(IvtffText doc, Collection<IvtffLine> lines) {
+	public IvtffText(IvtffText doc, Collection<? extends IvtffLine> lines) {
 		this(doc, lines, doc.getId());
 	}
 
@@ -184,7 +184,7 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	 * @param lines list of lines that must go into the new document.
 	 * @param ID    ID for newly created document (overwrites existing one).
 	 */
-	public IvtffText(IvtffText doc, Collection<IvtffLine> lines, String ID) {
+	public IvtffText(IvtffText doc, Collection<? extends IvtffLine> lines, String ID) {
 
 		super(doc.getAlphabet());
 		this.id = ID;
@@ -210,7 +210,7 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	 * @param doc   document from which metadata is taken.
 	 * @param pages list of lines that must go into the new document.
 	 */
-	public static IvtffText fromPages(IvtffText doc, Collection<IvtffPage> pages) {
+	public static IvtffText fromPages(IvtffText doc, Collection<? extends IvtffPage> pages) {
 		return fromPages(doc, pages, doc.getId());
 	}
 
@@ -222,7 +222,7 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	 * @param pages list of lines that must go into the new document.
 	 * @param ID    ID for newly created document (overwrites existing one).
 	 */
-	public static IvtffText fromPages(IvtffText doc, Collection<IvtffPage> pages, String ID) {
+	public static IvtffText fromPages(IvtffText doc, Collection<? extends IvtffPage> pages, String ID) {
 		List<IvtffLine> lines = new ArrayList<>();
 		for (IvtffPage p : pages)
 			lines.addAll(p.getElements());
@@ -307,6 +307,10 @@ public class IvtffText extends CompositeText<IvtffPage> {
 				} catch (Exception e) {
 				}
 		}
+	}
+
+	public IvtffText(IvtffText voy, List<? extends IvtffPage> value) {
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -528,23 +532,36 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	 * @return A List of paragraphs from given document.
 	 */
 	public static List<IvtffText> toParagraphs(IvtffText doc) {
-		doc = doc.filterLines(LineFilter.PARAGRAPH_TEXT_FILTER);
 		List<IvtffText> paragraphs = new ArrayList<>();
 		for (IvtffPage p : doc.getElements()) {
-			List<IvtffLine> parLines = new ArrayList<>();
-			for (IvtffLine l : p.getElements()) {
-				parLines.add(l);
-				boolean isParEnd = (l.isLast());
-				if (isParEnd) {
-					String id = doc.getId() + "_" + l.getId();
-					paragraphs.add(new IvtffText(doc, parLines, id));
-					parLines.clear();
-				}
-			}
-			if (parLines.size() > 0) { // collect last paragraph
-				paragraphs.add(new IvtffText(doc, parLines, doc.getId() + "_" + parLines.get(0).getId()));
+			paragraphs.addAll(toParagraphs(p));
+		}
+		return paragraphs;
+	}
+
+	/**
+	 * Splits the running text (P0 and P1 loci) of given page into paragraphs.
+	 * Notice other parts of the document are ignored.
+	 */
+	public static List<IvtffText> toParagraphs(IvtffPage page) {
+		IvtffText doc = (IvtffText) page.getParent();
+		page.filterElements(LineFilter.PARAGRAPH_TEXT_FILTER);
+		List<IvtffText> paragraphs = new ArrayList<>();
+
+		List<IvtffLine> parLines = new ArrayList<>();
+		for (IvtffLine l : page.getElements()) {
+			parLines.add(l);
+			boolean isParEnd = (l.isLast());
+			if (isParEnd) {
+				String id = doc.getId() + "_" + l.getId();
+				paragraphs.add(new IvtffText(doc, parLines, id));
+				parLines.clear();
 			}
 		}
+		if (parLines.size() > 0) { // collect last paragraph
+			paragraphs.add(new IvtffText(doc, parLines, doc.getId() + "_" + parLines.get(0).getId()));
+		}
+
 		return paragraphs;
 	}
 

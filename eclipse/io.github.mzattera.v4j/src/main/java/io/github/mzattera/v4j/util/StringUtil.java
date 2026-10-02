@@ -11,9 +11,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import io.github.mzattera.v4j.text.alphabet.Alphabet;
 
@@ -238,5 +240,20 @@ public final class StringUtil {
 		}
 
 		return distance[s1.length()][s2.length()];
+	}
+
+	/**
+	 * This methods provide safe backward compatibility with
+	 * org.apache.commons.lang.xwork.StringUtils.join(String[], String) method used
+	 * in past versions of the library.
+	 * 
+	 * @param array
+	 * @param separator
+	 * @return All elements in array concatenated using separator.
+	 */
+	@Deprecated
+	public static String legacyJoin(String[] array, String separator) {
+		return (array == null) ? null //
+				: Arrays.stream(array).filter(Objects::nonNull).collect(Collectors.joining(separator));
 	}
 }

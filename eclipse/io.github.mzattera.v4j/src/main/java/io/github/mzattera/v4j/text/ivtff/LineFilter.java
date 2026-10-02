@@ -24,8 +24,8 @@ public class LineFilter implements ElementFilter<IvtffLine> {
 	private final String transcriber;
 
 	/**
-	 * Pre-made filter to return "paragraph" text; that is text contained in "P0"
-	 * or "P1" loci.
+	 * Pre-made filter to return "paragraph" text; that is text contained in 'P0' or
+	 * 'P1' loci.
 	 */
 	public static final ElementFilter<IvtffLine> PARAGRAPH_TEXT_FILTER = new ElementFilter<IvtffLine>() {
 
@@ -38,6 +38,22 @@ public class LineFilter implements ElementFilter<IvtffLine> {
 		@Override
 		public String toString() {
 			return "LineFilter [Returns text in P0 and P1 loci (paragraphs of running text)]";
+		}
+	};
+
+	/**
+	 * Pre-made filter to return "labels"; that is text with generic locus 'L'.
+	 */
+	public static final ElementFilter<IvtffLine> LABEL_FILTER = new ElementFilter<IvtffLine>() {
+
+		@Override
+		public boolean keep(IvtffLine line) {
+			return line.getDescriptor().getGenericLocusType().equals("L");
+		}
+
+		@Override
+		public String toString() {
+			return "LineFilter [Returns labels (L- loci)]";
 		}
 	};
 

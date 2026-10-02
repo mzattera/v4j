@@ -8,8 +8,6 @@ package io.github.mzattera.v4j.applications.chars;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Nullable;
-
 import org.apache.commons.math3.stat.inference.AlternativeHypothesis;
 import org.apache.commons.math3.stat.inference.BinomialTest;
 
@@ -160,7 +158,7 @@ public abstract class CharDistributionAnalysis {
 	 * @return Two lists, with characters appearing more and less than they should,
 	 *         based on chi-squared text and ALPHA.
 	 */
-	public static List<Character>[] process(@Nullable String cluster, IvtffText txt, Experiment experiment) {
+	public static List<Character>[] process(String cluster, IvtffText txt, Experiment experiment) {
 		return process(cluster, experiment.splitDocument(txt), PrintMode.NONE, txt.getAlphabet());
 	}
 
@@ -173,8 +171,7 @@ public abstract class CharDistributionAnalysis {
 	 * @return Two lists, with characters appearing more and less than they should,
 	 *         based on chi-squared text and ALPHA.
 	 */
-	public static List<Character>[] process(@Nullable String cluster, IvtffText txt, PrintMode mode,
-			Experiment experiment) {
+	public static List<Character>[] process(String cluster, IvtffText txt, PrintMode mode, Experiment experiment) {
 		return process(cluster, experiment.splitDocument(txt), mode, txt.getAlphabet());
 	}
 
@@ -214,7 +211,7 @@ public abstract class CharDistributionAnalysis {
 	 * @return Two lists, with characters appearing more and less than they should,
 	 *         based on chi-squared text and ALPHA.
 	 */
-	public static List<Character>[] process(@Nullable String cluster, Text[] parts, PrintMode mode, Alphabet a) {
+	public static List<Character>[] process(String cluster, Text[] parts, PrintMode mode, Alphabet a) {
 
 		@SuppressWarnings("unchecked")
 		List<Character>[] result = new ArrayList[2];

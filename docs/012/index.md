@@ -1,6 +1,6 @@
 # Note 012 - Mind your Words
 
-_Last updated Apr. 14th, 2026._
+_Last updated Oct. 11th, 2026._
 
 _This note refers to [release v.15.0.0](https://github.com/mzattera/v4j/tree/v.15.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
@@ -19,36 +19,41 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 
 # Abstract
 
-In previous [note 10](../010) and [11](../011), we saw how words behave differently at different position of the text; below a quick summary, please refer to original notes for details.
+In previous notes, we saw how words behave differently at different position of the text; below a quick summary:
 
-First line of paragraphs:
-
-  1. Tokens in first line of each paragraph tend to be longer than other tokens, on average.
-  1. Gallows (except for 'k' and 'K') tend to appear more frequently in first line of paragraphs, preferably in the first token of the line.
-  1. There is also a preference for 'S' to appear in first line of paragraphs.
-  1. Some "endings" (e.g. 'E', 'B', and 'n') avoids the first line of paragraphs.
-
-First token in a line:
-
-  1. The first token of a line is longer than average.
-  1. Some characters, like 't', 'p', 's', 'y', and 'd' are over-represented at line start. 
-  1. Others characters, like 'k', 'C', 'S', 'a', and 'r' are under-represented.
+1. [Models](../006/) such as the Core/Mantle/Crust paradigm or the [Slot Alphabet](../005/), which suggest rigid constraints on character ordering within word types.
   
-Second token in a line:
- 
-   1. The second token of a line is shorter than average.
+1. The [anomalous frequency of characters](../010/) in distinct textual loci
+  
+    First line of paragraphs:
+
+    1. Gallows (except for 'k' and 'K') tend to appear more frequently in first line of paragraphs, preferably in the first token of the line.
+    1. There is also a preference for 'S' to appear in first line of paragraphs.
+    1. Some "endings" (e.g. 'E', 'B', and 'n') avoids the first line of paragraphs.
+
+    First token in a line:
+
+    1. Some characters, like 't', 'p', 's', 'y', and 'd' are over-represented at line start. 
+    1. Others characters, like 'k', 'C', 'S', 'a', and 'r' are under-represented.
    
-Last token in a line:
+    Last token in a line:
 
-  1. 'm' is over represented, conversely, 'l' and 'r' are under-represented.
-  3. For some clusters, 'd', 'o', 'n', and 'y' shows a significant deviation in their distribution. 
+    1. 'm' is over represented, conversely, 'l' and 'r' are under-represented.
+    1. For some clusters, 'd', 'o', 'n', and 'y' shows a significant deviation in their distribution. 
+  
+  1. The presence of suffixes added to tokens that appear at beginning of lines. 
+  
+  1. Changes in average [token length](../011/) relative to line position, where tokens tend to be longer at the beginning of a line or in first line of a paragraph and markedly shorter in the second position.
 
- In this note, I want to explore the hypothesis that there must be some word types that appear only in those positions of the text, which are responsible for the above patterns.
+
+ In this note, I want to explore the hypothesis that there must be some word types that appear only at some position of the text, which are responsible for the above patterns.
  
 # Methodology
 
-For this note, the [majority version](https://github.com/mzattera/v4j#ivtff) of the Voynich was used; only the text in running paragraphs (IVTFF locus type = P0 or P1) is considered
-and tokens containing unreadable characters were ignored.
+For this note, the [majority version](https://github.com/mzattera/v4j#ivtff) of the Voynich was used;
+only the [cluster](../003/) text in running paragraphs (IVTFF locus type = P0 or P1) is considered,
+tokens containing unreadable characters were ignored.
+
 
 In the first test, I divided tokens in buckets, one per position in the line, so all tokens appearing at the beginning of a line are in the first bucket, those appearing in second position
 in a line go into the second bucket, and so on.
@@ -73,7 +78,7 @@ This also confirms that some words prefer to appear at beginning of line.
 
 # Conclusions
 
-Our hypothesis seems to be confirmed: there are some word types that prefer to appear in first line of a paragraph, in first (and second?) or last position in a line.\
+Our hypothesis seems to be confirmed: there are some word types that prefer to appear in first line of a paragraph, in first (and second?) or last position in a line.
 These special words might be responsible for the behaviors we see in the text that are summarized at the beginning of this note.
 
 We can define a population of "<a id="interesting">**interesting words**</a>" as those appearing preferably in a given position in the text:
@@ -89,6 +94,10 @@ We can define a population of "<a id="interesting">**interesting words**</a>" as
 and contrast this population with the "**standard population**", defined as the set of words that do not appear in any of the above positions (circled in yellow in the below illustration).
 
 ![Example paragraph showing different area of the text](images/Regions.PNG)
+
+For example, in Herbal-A section (HA cluster) there are 3,302 tokens and 1,006 word types appearing outside specific loci (“standard population”). Considering the first line of paragraphs as special locus for the experiment, the “**sample**” will contain 1,293 tokens and 768 word types. The word “Sol” appears 46 times in the standard population (frequency=1.4%), assuming it will have same frequency all over the text, it is expected to appear in the sample 18 times. However, it is found in sample 29 times (frequency=2.2%); this deviation is enough to pass the binomial test (p=0.01) and mark “Sol” as an interesting word.
+
+[Here](../clavis/) you can see the Voynich text with interesting words highlighted.
 
 ---
 

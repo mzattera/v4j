@@ -19,7 +19,7 @@ _Please refer to the [home page](..) for a set of definitions that might be rele
 
 # Abstract
 
-In previous notes, we saw how words behave differently at different position of the text; below a quick summary:
+Over the decades, numerous researchers have identified highly unusual, structured orthographic patterns within the text of the Voynich:
 
 1. [Models](../006/) such as the Core/Mantle/Crust paradigm or the [Slot Alphabet](../005/), which suggest rigid constraints on character ordering within word types.
   
@@ -60,12 +60,12 @@ in a line go into the second bucket, and so on.
 
 I then calculate, for each bucket, the percentage of word types that appear significantly more often in a bucket, compared to the totality of other buckets.
 
-The experiment has been conducted separately for each [cluster](../003) in both directions (from beginning and end of line)[{1}](#Note1), results are shown below[{2}](#Note2).
+The experiment has been conducted separately for each cluster in both directions (from beginning and end of line)[{1}](#Note1), results are shown below[{2}](#Note2).
 For comparison, the experiment was also executed on a scrambled version of the text where tokens where shuffled at random.
  
 ![Percentage of words appearing more often at a given position in line](images/ByPositionInLine.PNG)
   
-Clearly there are word types that prefer to appear only at first position or at end of line. Whether an unusual percentage of word types tend to appear more frequently in second position of a line is more dubious,
+Clearly there are word types that prefer to appear only at first or last position in a line. Whether an unusual percentage of word types tend to appear more frequently in second position of a line is more dubious,
 but it also seems to be the case.
 
 A similar experiment has been conducted by bucketing tokens based on which line in a paragraph they appear; below the results.

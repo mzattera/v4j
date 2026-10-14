@@ -13,6 +13,7 @@ import io.github.mzattera.v4j.text.alphabet.SlotAlphabet;
 import io.github.mzattera.v4j.text.alphabet.SlotAlphabet.TermClassification;
 import io.github.mzattera.v4j.text.alphabet.SlotAlphabet.TermDecomposition;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory;
+import io.github.mzattera.v4j.transformations.RemoveAtSlotTransformation;
 import io.github.mzattera.v4j.util.Counter;
 
 /**

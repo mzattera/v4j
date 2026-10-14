@@ -1,4 +1,4 @@
-package io.github.mzattera.v4j.applications.transformations;
+package io.github.mzattera.v4j.transformations;
 
 /**
  * Represents a transformation stating that given initials are pre-fixed to

@@ -10,6 +10,7 @@ import java.util.Set;
 import io.github.mzattera.v4j.experiment.Experiment;
 import io.github.mzattera.v4j.text.Text;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory;
+import io.github.mzattera.v4j.transformations.PrefixTransformation;
 import io.github.mzattera.v4j.util.Counter;
 
 /**

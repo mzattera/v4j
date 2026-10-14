@@ -27,6 +27,7 @@ import io.github.mzattera.v4j.text.ivtff.IvtffText;
 import io.github.mzattera.v4j.text.ivtff.PageFilter;
 import io.github.mzattera.v4j.text.ivtff.PageHeader;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory;
+import io.github.mzattera.v4j.transformations.Transformations;
 import io.github.mzattera.v4j.util.Counter;
 
 /**

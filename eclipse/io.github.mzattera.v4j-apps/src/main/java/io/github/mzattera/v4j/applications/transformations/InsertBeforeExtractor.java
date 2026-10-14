@@ -12,6 +12,7 @@ import io.github.mzattera.v4j.applications.chars.CharDistributionAnalysis;
 import io.github.mzattera.v4j.experiment.Experiment;
 import io.github.mzattera.v4j.text.Text;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory;
+import io.github.mzattera.v4j.transformations.InsertBeforeTransformation;
 import io.github.mzattera.v4j.util.Counter;
 
 /**

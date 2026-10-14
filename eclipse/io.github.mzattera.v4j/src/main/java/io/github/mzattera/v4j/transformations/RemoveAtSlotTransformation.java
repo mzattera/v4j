@@ -1,4 +1,4 @@
-package io.github.mzattera.v4j.applications.transformations;
+package io.github.mzattera.v4j.transformations;
 
 import io.github.mzattera.v4j.text.alphabet.SlotAlphabet;
 import io.github.mzattera.v4j.text.alphabet.SlotAlphabet.TermClassification;
@@ -6,32 +6,26 @@ import io.github.mzattera.v4j.text.alphabet.SlotAlphabet.TermDecomposition;
 
 /**
  * Represents a transformation stating that a char at a given slot position has
- * been substituted with another.
+ * been removed.
  * 
  * @author Massimiliano "Maxi" Zattera
  *
  */
-public final class SubstitutionTransformation implements Transformations.Transformation {
+public final class RemoveAtSlotTransformation implements Transformations.Transformation {
 	private final int slot; // 0-21, covering separable words
-	private final String newChar;
-	private final String oldChar;
+	private final String removedChar;
 
-	public SubstitutionTransformation(int slot, String newChar, String oldChar) {
+	public RemoveAtSlotTransformation(int slot, String removedChar) {
 		this.slot = slot;
-		this.newChar = newChar;
-		this.oldChar = oldChar;
+		this.removedChar = removedChar;
 	}
 
 	public int slot() {
 		return slot;
 	}
 
-	public String newChar() {
-		return newChar;
-	}
-
-	public String oldChar() {
-		return oldChar;
+	public String removedChar() {
+		return removedChar;
 	}
 
 	@Override
@@ -43,24 +37,24 @@ public final class SubstitutionTransformation implements Transformations.Transfo
 
 		int slotCount = SlotAlphabet.SLOTS.size();
 		int part, slot;
-		String newChar;
+		String emptyChar;
 		if (this.slot < slotCount) {
 			part = 0;
 			slot = this.slot;
-			newChar = d.slots1[slot];
+			emptyChar = d.slots1[slot];
 		} else {
 			part = 1;
 			slot = this.slot - slotCount;
-			newChar = d.slots2[slot];
+			emptyChar = d.slots2[slot];
 		}
 
-		if (!newChar.equals(this.newChar))
+		if (!emptyChar.isEmpty())
 			return null;
 
 		String[] newWord = new String[slotCount * 2];
 		System.arraycopy(d.slots1, 0, newWord, 0, d.slots1.length);
 		System.arraycopy(d.slots2, 0, newWord, d.slots1.length, d.slots2.length);
-		newWord[part * slotCount + slot] = this.oldChar;
+		newWord[part * slotCount + slot] = this.removedChar;
 
 		return String.join("", newWord);
 	}
@@ -71,23 +65,22 @@ public final class SubstitutionTransformation implements Transformations.Transfo
 			return true;
 		if (o == null || getClass() != o.getClass())
 			return false;
-		SubstitutionTransformation o2 = (SubstitutionTransformation) o;
-		return (this.slot == o2.slot) && (this.newChar == o2.newChar() && (this.oldChar == o2.oldChar()));
+		RemoveAtSlotTransformation o2 = (RemoveAtSlotTransformation) o;
+		return (this.slot == o2.slot) && (this.removedChar == o2.removedChar());
 	}
 
 	@Override
 	public int hashCode() {
-		return java.util.Objects.hash(slot, newChar, oldChar);
+		return java.util.Objects.hash(slot, removedChar);
 	}
 
 	@Override
 	public String toString() {
-		return "Substitute char '" + oldChar + "' at slot " + slot + " with '" + newChar + "'";
+		return "Remove char '" + removedChar + " from slot " + slot;
 	}
 
 	@Override
 	public String toListElement() {
-		return "l.add(new SubstitutionAnalysis.Transformation(" + slot + ", '" + newChar + "', '" + oldChar
-				+ "'));";
+		return "l.add(new RemoveAtSlotAnalysis.Transformation(" + slot + ", '" + removedChar + "'));";
 	}
 }

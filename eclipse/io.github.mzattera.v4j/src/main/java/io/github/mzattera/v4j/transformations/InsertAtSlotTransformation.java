@@ -1,4 +1,4 @@
-package io.github.mzattera.v4j.applications.transformations;
+package io.github.mzattera.v4j.transformations;
 
 import io.github.mzattera.v4j.text.alphabet.SlotAlphabet;
 import io.github.mzattera.v4j.text.alphabet.SlotAlphabet.TermClassification;

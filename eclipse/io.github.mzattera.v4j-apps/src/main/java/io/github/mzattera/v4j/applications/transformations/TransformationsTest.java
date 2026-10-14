@@ -9,11 +9,12 @@ import java.util.List;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
-import io.github.mzattera.v4j.applications.transformations.Transformations.Locus;
 import io.github.mzattera.v4j.experiment.Experiment;
 import io.github.mzattera.v4j.text.Text;
 import io.github.mzattera.v4j.text.ivtff.IvtffText;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory;
+import io.github.mzattera.v4j.transformations.Transformations;
+import io.github.mzattera.v4j.transformations.Transformations.Locus;
 import io.github.mzattera.v4j.util.Counter;
 
 /**

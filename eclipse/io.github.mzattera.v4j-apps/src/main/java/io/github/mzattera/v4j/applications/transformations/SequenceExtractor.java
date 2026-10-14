@@ -10,6 +10,7 @@ import java.util.List;
 import io.github.mzattera.v4j.experiment.Experiment;
 import io.github.mzattera.v4j.text.Text;
 import io.github.mzattera.v4j.text.txt.TextString;
+import io.github.mzattera.v4j.transformations.Transformations;
 import io.github.mzattera.v4j.util.Counter;
 
 /**

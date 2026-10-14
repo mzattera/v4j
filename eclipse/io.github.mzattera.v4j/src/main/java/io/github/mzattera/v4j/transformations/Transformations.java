@@ -1,4 +1,4 @@
-package io.github.mzattera.v4j.applications.transformations;
+package io.github.mzattera.v4j.transformations;
 
 import java.util.ArrayList;
 import java.util.HashMap;

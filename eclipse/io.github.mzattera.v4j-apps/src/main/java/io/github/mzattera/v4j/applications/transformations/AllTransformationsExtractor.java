@@ -10,6 +10,7 @@ import java.util.Set;
 import io.github.mzattera.v4j.experiment.Experiment;
 import io.github.mzattera.v4j.text.Text;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory;
+import io.github.mzattera.v4j.transformations.Transformations;
 
 /**
  * Try to extract all possible transformations at once, by calling other

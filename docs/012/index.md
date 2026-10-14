@@ -27,19 +27,19 @@ Over the decades, numerous researchers have identified highly unusual, structure
   
     First line of paragraphs:
 
-    1. Gallows (except for 'k' and 'K') tend to appear more frequently in first line of paragraphs, preferably in the first token of the line.
-    1. There is also a preference for 'S' to appear in first line of paragraphs.
-    1. Some "endings" (e.g. 'E', 'B', and 'n') avoids the first line of paragraphs.
+    a. Gallows (except for 'k' and 'K') tend to appear more frequently in first line of paragraphs, preferably in the first token of the line.
+    a. There is also a preference for 'S' to appear in first line of paragraphs.
+    a. Some "endings" (e.g. 'E', 'B', and 'n') avoids the first line of paragraphs.
 
     First token in a line:
 
-    1. Some characters, like 't', 'p', 's', 'y', and 'd' are over-represented at line start. 
-    1. Others characters, like 'k', 'C', 'S', 'a', and 'r' are under-represented.
+    a. Some characters, like 't', 'p', 's', 'y', and 'd' are over-represented at line start. 
+    a. Others characters, like 'k', 'C', 'S', 'a', and 'r' are under-represented.
    
     Last token in a line:
 
-    1. 'm' is over represented, conversely, 'l' and 'r' are under-represented.
-    1. For some clusters, 'd', 'o', 'n', and 'y' shows a significant deviation in their distribution. 
+    a. 'm' is over represented, conversely, 'l' and 'r' are under-represented.
+    a. For some clusters, 'd', 'o', 'n', and 'y' shows a significant deviation in their distribution. 
   
   1. The presence of suffixes added to tokens that appear at beginning of lines. 
   

@@ -2,5 +2,8 @@
 .settings
 .classpath
 .project
-/eclipse/io.github.mzattera.v4j.cmc/.launch
-/eclipse/io.github.mzattera.v4j.cmc/.antlr-generator-3.2.0-patch.jar
+.launch
+.antlr-generator-3.2.0-patch.jar
+.metadata
+bin/
+target/

@@ -11,7 +11,7 @@ import io.github.mzattera.v4j.text.alphabet.SlotAlphabet.TermDecomposition;
  * @author Massimiliano "Maxi" Zattera
  *
  */
-public final class InsertAtSlotTransformation implements Transformations.Transformation {
+public final class InsertAtSlotTransformation implements Transformation {
 	private final int slot; // 0-21, covering separable words
 	private final String insertedChar;
 

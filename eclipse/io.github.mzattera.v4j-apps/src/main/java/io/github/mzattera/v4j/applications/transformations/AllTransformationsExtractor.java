@@ -10,7 +10,7 @@ import java.util.Set;
 import io.github.mzattera.v4j.experiment.Experiment;
 import io.github.mzattera.v4j.text.Text;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory;
-import io.github.mzattera.v4j.transformations.Transformations;
+import io.github.mzattera.v4j.transformations.Transformation;
 
 /**
  * Try to extract all possible transformations at once, by calling other
@@ -51,10 +51,10 @@ public final class AllTransformationsExtractor extends TransformationExtractor {
 	}
 
 	@Override
-	protected Collection<? extends Transformations.Transformation> extractTransformations(Text sampleText,
+	protected Collection<? extends Transformation> extractTransformations(Text sampleText,
 			Text populationText, int minPopulationCount) {
 
-		Set<Transformations.Transformation> result = new HashSet<>();
+		Set<Transformation> result = new HashSet<>();
 		result.addAll(insSlot.extractTransformations(sampleText, populationText, minPopulationCount));
 		result.addAll(insBefore.extractTransformations(sampleText, populationText, minPopulationCount));
 		result.addAll(pref.extractTransformations(sampleText, populationText, minPopulationCount));

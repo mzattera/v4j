@@ -7,7 +7,7 @@ package io.github.mzattera.v4j.transformations;
  * @author Massimiliano "Maxi" Zattera
  *
  */
-public final class PrefixTransformation implements Transformations.Transformation {
+public final class PrefixTransformation implements Transformation {
 	private final String initials;
 	private final char stemInitial;
 

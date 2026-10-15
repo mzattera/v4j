@@ -27,6 +27,7 @@ import io.github.mzattera.v4j.text.ivtff.IvtffText;
 import io.github.mzattera.v4j.text.ivtff.PageFilter;
 import io.github.mzattera.v4j.text.ivtff.PageHeader;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory;
+import io.github.mzattera.v4j.transformations.Transformation;
 import io.github.mzattera.v4j.transformations.Transformations;
 import io.github.mzattera.v4j.util.Counter;
 
@@ -130,7 +131,7 @@ public abstract class TransformationExtractor {
 			if (interesting.getCount(w.getKey()) == 0)
 				uninteresting.count(w.getKey(), w.getValue());
 
-		List<? extends Transformations.Transformation> transformations = extractValidatedTransformations(split[0],
+		List<? extends Transformation> transformations = extractValidatedTransformations(split[0],
 				split[1]);
 //		List<? extends Transformation> transformations = extractValidatedTransformations(new TextString(interesting), split[1]);
 
@@ -184,14 +185,14 @@ public abstract class TransformationExtractor {
 	 * @return Transformations extracted from given text, already provided as sample
 	 *         and population parts, after they went through standard validation.
 	 */
-	protected List<Transformations.Transformation> extractValidatedTransformations(Text sampleText,
+	protected List<Transformation> extractValidatedTransformations(Text sampleText,
 			Text populationText) {
 
 		Counter<String> sample = sampleText.getWords(READABLE_ONLY);
 		Counter<String> population = populationText.getWords(READABLE_ONLY);
 		Counter<String> interesting = Experiment.getInterestingWords(sample, population);
 
-		List<Transformations.Transformation> transformations = getValidatedTransformations(
+		List<Transformation> transformations = getValidatedTransformations(
 				extractTransformations(sampleText, populationText, MIN_POPULATION_COUNT), sample,
 				population, Math.max(MIN_TOKEN_COUNT, interesting.getTotalCounted() / 50 + 1));
 
@@ -206,7 +207,7 @@ public abstract class TransformationExtractor {
 	 *                           population for the decomposition to be considered
 	 *                           valid.
 	 */
-	protected abstract Collection<? extends Transformations.Transformation> extractTransformations(Text sampleText,
+	protected abstract Collection<? extends Transformation> extractTransformations(Text sampleText,
 			Text populationText, int minPopulationCount);
 
 	/**
@@ -221,19 +222,19 @@ public abstract class TransformationExtractor {
 	 *         transformation might apply to multiple types, the order in which you
 	 *         apply results is significant.
 	 */
-	protected List<Transformations.Transformation> getValidatedTransformations(
-			Collection<? extends Transformations.Transformation> transformations, Counter<String> sample,
+	protected List<Transformation> getValidatedTransformations(
+			Collection<? extends Transformation> transformations, Counter<String> sample,
 			Counter<String> population, int minTokenCount) {
 
-		List<Transformations.Transformation> myTransformations = new ArrayList<>(transformations);
+		List<Transformation> myTransformations = new ArrayList<>(transformations);
 		Counter<String> mySample = new Counter<>(sample);
 		Counter<String> myPopulation = new Counter<>(population);
 
-		List<Transformations.Transformation> sorted = new ArrayList<>();
+		List<Transformation> sorted = new ArrayList<>();
 		while (!myTransformations.isEmpty()) {
 
 			// Notice this changes the three lists
-			Transformations.Transformation best = getBestTransformation(mySample, myPopulation, myTransformations,
+			Transformation best = getBestTransformation(mySample, myPopulation, myTransformations,
 					minTokenCount);
 			if (best == null)
 				break;
@@ -250,13 +251,13 @@ public abstract class TransformationExtractor {
 	 *         a higher percentage of word types in sample compared to population
 	 *         (as ratio between %s)
 	 */
-	private Transformations.Transformation getBestTransformation(Counter<String> sample, Counter<String> population,
-			Collection<? extends Transformations.Transformation> transformations, int minTokenCount) {
+	private Transformation getBestTransformation(Counter<String> sample, Counter<String> population,
+			Collection<? extends Transformation> transformations, int minTokenCount) {
 
 		double bestWeight = 0.0;
-		Transformations.Transformation best = null;
+		Transformation best = null;
 
-		for (Transformations.Transformation transformation : transformations) {
+		for (Transformation transformation : transformations) {
 			Counter<String> sc = Transformations.getTransformedWords(sample, transformation);
 			Counter<String> pc = Transformations.getTransformedWords(population, transformation);
 
@@ -304,7 +305,7 @@ public abstract class TransformationExtractor {
 	 * Prints reverse transformation statistics.
 	 */
 	public void printReverseTransformStats(Counter<String> words,
-			List<? extends Transformations.Transformation> transformations) {
+			List<? extends Transformation> transformations) {
 
 		Counter<String> cnt = Transformations.getTransformedWords(words, transformations);
 		int tokens = cnt.getTotalCounted();
@@ -323,7 +324,7 @@ public abstract class TransformationExtractor {
 	 *                        are provided.
 	 */
 	public void printTransformationStats(Counter<String> words,
-			List<? extends Transformations.Transformation> transformations) {
+			List<? extends Transformation> transformations) {
 		printTransformationStats(words, null, transformations, 0);
 	}
 
@@ -340,11 +341,11 @@ public abstract class TransformationExtractor {
 	 *                                this many times,
 	 */
 	public void printTransformationStats(Counter<String> words, Counter<String> population,
-			List<? extends Transformations.Transformation> transformations, int minReversedInPopulation) {
+			List<? extends Transformation> transformations, int minReversedInPopulation) {
 
-		Map<Transformations.Transformation, Counter<String>> map = Transformations.getTransformationMap(words, population,
+		Map<Transformation, Counter<String>> map = Transformations.getTransformationMap(words, population,
 				transformations, minReversedInPopulation);
-		for (Transformations.Transformation t : transformations) {
+		for (Transformation t : transformations) {
 			Counter<String> c = map.get(t);
 			if (c == null)
 				continue;
@@ -357,7 +358,7 @@ public abstract class TransformationExtractor {
 	 */
 	@SuppressWarnings("unused")
 	private void printStats(Counter<String> population, Counter<String> interesting, Counter<String> uninteresting,
-			List<? extends Transformations.Transformation> transformations) {
+			List<? extends Transformation> transformations) {
 
 		Counter<String> popStats = merge(Transformations.getTransformationMap(population, transformations));
 		Counter<String> intStats = merge(Transformations.getTransformationMap(interesting, transformations));
@@ -403,7 +404,7 @@ public abstract class TransformationExtractor {
 	 */
 	@SuppressWarnings("unused")
 	private void printReminderStats(Counter<String> sample, Counter<String> population,
-			List<? extends Transformations.Transformation> transformations) {
+			List<? extends Transformation> transformations) {
 		Counter<String> transformed = merge(Transformations.getTransformationMap(sample, transformations));
 		Counter<String> remainder = new Counter<>();
 
@@ -429,7 +430,7 @@ public abstract class TransformationExtractor {
 			System.out.println(e.getKey() + "\t" + (100.d * e.getValue() / tc.getTotalCounted()));
 	}
 
-	private Counter<String> merge(Map<Transformations.Transformation, Counter<String>> transformationMap) {
+	private Counter<String> merge(Map<Transformation, Counter<String>> transformationMap) {
 		Counter<String> result = new Counter<>();
 		for (Counter<String> c : transformationMap.values())
 			result.countAll(c);

@@ -10,6 +10,7 @@ import java.util.List;
 import io.github.mzattera.v4j.experiment.Experiment;
 import io.github.mzattera.v4j.text.Text;
 import io.github.mzattera.v4j.text.txt.TextString;
+import io.github.mzattera.v4j.transformations.Transformation;
 import io.github.mzattera.v4j.transformations.Transformations;
 import io.github.mzattera.v4j.util.Counter;
 
@@ -29,9 +30,9 @@ public final class SequenceExtractor extends TransformationExtractor {
 	}
 
 	@Override
-	protected List<Transformations.Transformation> extractValidatedTransformations(Text sampleText, Text populationText) {
+	protected List<Transformation> extractValidatedTransformations(Text sampleText, Text populationText) {
 
-		List<Transformations.Transformation> result = new ArrayList<>();
+		List<Transformation> result = new ArrayList<>();
 		Counter<String> mySample = sampleText.getWords(TransformationExtractor.READABLE_ONLY);
 		Counter<String> myPopulation = populationText.getWords(TransformationExtractor.READABLE_ONLY);
 		Counter<String> interesting = Experiment.getInterestingWords(mySample, myPopulation);
@@ -40,7 +41,7 @@ public final class SequenceExtractor extends TransformationExtractor {
 		for (TransformationExtractor tex : extractors) {
 
 			// Get transformations from one extractor
-			List<Transformations.Transformation> validated = tex.getValidatedTransformations(
+			List<Transformation> validated = tex.getValidatedTransformations(
 					tex.extractTransformations(new TextString(mySample), new TextString(myPopulation),
 							TransformationExtractor.MIN_POPULATION_COUNT),
 					mySample, myPopulation, minTokens);
@@ -62,7 +63,7 @@ public final class SequenceExtractor extends TransformationExtractor {
 	}
 
 	@Override
-	protected Collection<? extends Transformations.Transformation> extractTransformations(Text sampleText, Text populationText,
+	protected Collection<? extends Transformation> extractTransformations(Text sampleText, Text populationText,
 			int minPopulationCount) {
 
 		// We directly implemented the caller, avoiding re-riltering and re-ordering of
@@ -71,7 +72,7 @@ public final class SequenceExtractor extends TransformationExtractor {
 	}
 
 	@Override
-	protected List<Transformations.Transformation> getValidatedTransformations(Collection<? extends Transformations.Transformation> transformations,
+	protected List<Transformation> getValidatedTransformations(Collection<? extends Transformation> transformations,
 			Counter<String> sample, Counter<String> population, int minTokenCount) {
 
 		// We directly implemented the caller, avoiding re-riltering and re-ordering of

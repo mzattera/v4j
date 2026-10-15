@@ -21,32 +21,6 @@ import io.github.mzattera.v4j.util.Counter;
 public final class Transformations {
 
 	/**
-	 * Represents a generic transformation.
-	 * 
-	 * @author Massimiliano "Maxi" Zattera
-	 *
-	 */
-	public static interface Transformation {
-
-		/**
-		 * Reverse this transformation, returning a word as it was before this
-		 * transformation was applied to it.
-		 * 
-		 * @return Given word, after reverting this transformation to it, or null if the
-		 *         transformation could not be applied.
-		 */
-		String revert(String w);
-
-		/**
-		 * This is a convenience method to create a set of transformations to be used in
-		 * further analysis.
-		 * 
-		 * @return A string representing this transformation as a element in a List.
-		 */
-		String toListElement();
-	}
-
-	/**
 	 * Different loci in the manuscript where interesting words might be.
 	 */
 	public enum Locus {
@@ -60,9 +34,9 @@ public final class Transformations {
 	 * This maps each combination of a manuscript locus and cluster, with
 	 * transformations defining interesting words at that locus for that cluster.
 	 */
-	public final static Map<Pair<Locus, String>, List<Transformations.Transformation>> TRANSFORMATIONS = new HashMap<>();
+	public final static Map<Pair<Locus, String>, List<Transformation>> TRANSFORMATIONS = new HashMap<>();
 	static {
-		List<Transformations.Transformation> l;
+		List<Transformation> l;
 
 		///////////// FIRST_LINE_IN_PARAGRAPH
 

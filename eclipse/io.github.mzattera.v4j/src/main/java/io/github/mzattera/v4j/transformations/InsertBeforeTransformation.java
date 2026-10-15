@@ -7,7 +7,7 @@ package io.github.mzattera.v4j.transformations;
  * @author Massimiliano "Maxi" Zattera
  *
  */
-public final class InsertBeforeTransformation implements Transformations.Transformation {
+public final class InsertBeforeTransformation implements Transformation {
 	private final char insertedChar;
 	private final char beforeChar;
 	private final boolean atBeginAndEnd; 

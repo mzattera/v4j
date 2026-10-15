@@ -7,7 +7,7 @@ package io.github.mzattera.v4j.transformations;
  * @author Massimiliano "Maxi" Zattera
  *
  */
-public final class SuffixTransformation implements Transformations.Transformation {
+public final class SuffixTransformation implements Transformation {
 	private final String ending;
 	private final char stemEnding;
 

@@ -13,6 +13,7 @@ import io.github.mzattera.v4j.experiment.Experiment;
 import io.github.mzattera.v4j.text.Text;
 import io.github.mzattera.v4j.text.ivtff.IvtffText;
 import io.github.mzattera.v4j.text.ivtff.VoynichFactory;
+import io.github.mzattera.v4j.transformations.Transformation;
 import io.github.mzattera.v4j.transformations.Transformations;
 import io.github.mzattera.v4j.transformations.Transformations.Locus;
 import io.github.mzattera.v4j.util.Counter;
@@ -65,7 +66,7 @@ public final class TransformationsTest extends TransformationExtractor {
 	}
 
 	@Override
-	protected List<Transformations.Transformation> extractValidatedTransformations(Text sampleText,
+	protected List<Transformation> extractValidatedTransformations(Text sampleText,
 			Text populationText) {
 
 		// OK, this is dirty, but bear with me :)
@@ -73,7 +74,7 @@ public final class TransformationsTest extends TransformationExtractor {
 	}
 
 	@Override
-	protected Collection<? extends Transformations.Transformation> extractTransformations(Text sampleText,
+	protected Collection<? extends Transformation> extractTransformations(Text sampleText,
 			Text populationText, int minPopulationCount) {
 
 		// We directly implemented the caller, avoiding re-iterating and re-ordering of
@@ -82,8 +83,8 @@ public final class TransformationsTest extends TransformationExtractor {
 	}
 
 	@Override
-	protected List<Transformations.Transformation> getValidatedTransformations(
-			Collection<? extends Transformations.Transformation> transformations, Counter<String> sample,
+	protected List<Transformation> getValidatedTransformations(
+			Collection<? extends Transformation> transformations, Counter<String> sample,
 			Counter<String> population, int minTokenCount) {
 
 		// We directly implemented the caller, avoiding re-riltering and re-ordering of

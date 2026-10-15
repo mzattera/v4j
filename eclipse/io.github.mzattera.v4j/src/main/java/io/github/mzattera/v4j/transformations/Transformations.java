@@ -15,6 +15,8 @@ import io.github.mzattera.v4j.util.Counter;
  * "Static" class defining which transformations describe interesting words in
  * different places of the Voynich. It also contains method to apply these transformations.
  * 
+ * See https://mzattera.github.io/v4j/013/
+ * 
  * @author Massimiliano "Maxi" Zattera
  *
  */

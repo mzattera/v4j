@@ -589,6 +589,7 @@ public class StateMachine {
 	/**
 	 * Saves this state machine as a piece of Java code.
 	 */
+	@SuppressWarnings("deprecation")
 	public String toJava() {
 		StringBuilder r = new StringBuilder();
 		r.append("StateMachine m = new StateMachine();\n");
@@ -638,6 +639,7 @@ public class StateMachine {
 	 * 
 	 * @throws ParseException
 	 */
+	@SuppressWarnings("deprecation")
 	public String toGrammar() throws ParseException {
 		StringBuilder r = new StringBuilder();
 

@@ -1,6 +1,6 @@
 # Note 013 - Transformations
 
-_Last updated Oct. 11th, 2026._
+_Last updated Oct. 24th, 2026._
 
 **_This note is part of my article I presented at the International Conference on the Voynich Manuscript 2026._**
 
@@ -89,22 +89,92 @@ highlight a distinct pattern unique to interesting words, which in turn accounts
 deviation from the baseline population (e.g. this specific transformation will account for longer
 tokens and a higher frequency of ‘p’).
 
+
+
 ### First line of paragraphs
 
-![ Transformations describing interesting words appearing in first line of paragraphs](images/FirstLineOfParagraphs.PNG)
+![Transformations describing interesting words appearing in first line of paragraphs](images/FirstLineOfParagraphs.PNG)
 
 Most of the interesting words appear to have ‘p’, ‘P’, or ‘f’ inserted into the appropriate slot
 within a word. Notice that ‘t’ and ‘k’ are instead inserted as prefix of words beginning with a very
 restricted set of characters (e.g. ‘t’ prefixes words starting with ‘S’ in the Herbal-A section); this
-confirms and add details to existing knowledge.
+confirms and add details to [existing knowledge](../10/).
+
 The observation that all transformations involve prefixes or insertions explains why tokens in
 the first line of each paragraph tend to be longer than other tokens on average.
-No justification is provided for other known anomalies listed in the introduction (e.g. unusual
-frequencies of ‘n’).
 
- 
+No justification is provided for other known anomalies (e.g. unusual frequencies of ‘n’).
 
-********* METTI IL LINK AL CLAVIS VOYNIC QUI *****************************
+
+
+## First token in a line
+
+![Transformations describing interesting words appearing in first position in a line](images/FirstTokenInLine.PNG)
+
+Our analysis confirms that interesting words appearing at the beginning of a line have prefixes
+such as ‘y’, ‘o’, ‘t’, ‘d’, ‘s’, and ‘l’ and further clarifies in front of what characters those prefixes
+appear.
+
+The fact that ‘S’ is a prefix for words starting with ‘o-’ in the Stars/Recipes section
+appears as an original finding that probably surfaced only because the analysis has been conducted
+for each section separately using the Slot alphabet; the same is true for the fact that interesting
+words in Herbal-A section might contain ‘E’.
+
+Again, since all transformation mentioned are prefixes or insertions, it is expected that tokens in
+first line of each paragraph are longer on average.
+
+No explanation is provided why ‘k’, ‘C’, ‘S’, ‘a’, and ‘r’ are under-represented.
+
+
+
+## Second token in a line
+
+Tokens in second position of a line tend to be shorter than average, but our analysis has found
+no transformation that explains why (e.g. removal of characters from specific slots).
+
+
+
+## Last token in a line
+
+![Transformations describing interesting words appearing in last position in a line](images/LastTokenInLine.PNG)
+
+Beside confirming that the ‘-m’ ending is a characteristic of interesting words at the end of line,
+probably an insertion and not a transformation of another character, the analysis also shows how
+‘-y’ is frequently appended as suffix to words ending in ‘-l’ or ‘-r’; this could explain why ‘y’
+frequency is higher in this position.
+
+More notably, some interesting words in this position can have ‘l’ or ‘t’ inserted before specific
+characters; this constitutes a previously undocumented pattern. Notice this goes in the opposite
+direction of [other findings](../10/) that show how ‘l’ is less frequent in this position than others.
+
+
+
+# Conclusions
+
+In this note I introduce a systematic framework for analyzing localized structural regularities in
+the Voynich manuscript. Rather than relying on manuscript-wide statistics, I
+isolate "interesting words" that exhibit significantly higher frequency in specific textual positions
+and formally characterizes their morphology through a discrete set of generative transformations.
+
+These transformations account for a substantially higher
+proportion of tokens among interesting words than in the standard population, confirming that
+these rules capture localized structural phenomena rather than generic morphological traits.
+
+While transformations overlap significantly across the manuscript, the specific rule sets vary by
+section. This variation provides statistical support for the existence of different “sectional dialect”
+in the manuscript.
+
+However, the proposed transformations account only for approximately 40% of interesting
+words. While this confirms and refines previously reported anecdotal patterns, it indicates that
+additional unidentified constraints govern the remaining population of interesting words, offering
+clear avenues for future computational inquiry.
+
+The specificity of these transformations strongly suggests a deterministic or mechanical process
+for generating the text. These transformations serve as a formal descriptive model of the text
+structural properties rather than a direct reconstruction of the scribe's operational method;
+nonetheless, the results indicate that the text—whether meaningful or a hoax—was produced
+through systematic procedural steps.
+
 
 	
 ---
@@ -117,7 +187,6 @@ and its subclasses implement this process to identify transformations.
 
 <a id="Note2">**{2}**</a> Package
 [`io.github.mzattera.v4j.transformations`](https://github.com/mzattera/v4j/blob/v.16.0.0/eclipse/io.github.mzattera.v4j/src/main/java/io/github/mzattera/v4j/transformations)
-package contains class definitions for each of the transformations.
 
 <a id="Note3">**{3}**</a> Class
 [`Transformations`](https://github.com/mzattera/v4j/blob/v.16.0.0/eclipse/io.github.mzattera.v4j/src/main/java/io/github/mzattera/v4j/transformations/Transformations.java)

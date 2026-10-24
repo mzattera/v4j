@@ -463,12 +463,10 @@ public abstract class TransformationExtractor {
 			new SubstitutionExtractor(), new SuffixExtractor());
 
 	/**
-	 * This class applies all possible transformations to each of a set of
+	 * This code applies all possible transformations to each of a set of
 	 * experiment, then it sequences them by their ability to cover interesting
 	 * words without touching the standard population, finally it creates an
 	 * extractor that extract all transformations in the right sequence.
-	 * 
-	 * @author Massimiliano "Maxi" Zattera
 	 */
 	public static void main(String[] args) {
 		try {

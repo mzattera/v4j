@@ -6,7 +6,6 @@ package io.github.mzattera.v4j.applications.transformations;
 import java.util.Collection;
 import java.util.List;
 
-import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import io.github.mzattera.v4j.experiment.Experiment;
@@ -66,16 +65,15 @@ public final class TransformationsTest extends TransformationExtractor {
 	}
 
 	@Override
-	protected List<Transformation> extractValidatedTransformations(Text sampleText,
-			Text populationText) {
+	protected List<Transformation> extractValidatedTransformations(Text sampleText, Text populationText) {
 
 		// OK, this is dirty, but bear with me :)
-		return Transformations.TRANSFORMATIONS.get(new ImmutablePair<>(loc, cluster));
+		return Transformations.getTransformations(cluster, loc);
 	}
 
 	@Override
-	protected Collection<? extends Transformation> extractTransformations(Text sampleText,
-			Text populationText, int minPopulationCount) {
+	protected Collection<? extends Transformation> extractTransformations(Text sampleText, Text populationText,
+			int minPopulationCount) {
 
 		// We directly implemented the caller, avoiding re-iterating and re-ordering of
 		// transformations
@@ -83,9 +81,8 @@ public final class TransformationsTest extends TransformationExtractor {
 	}
 
 	@Override
-	protected List<Transformation> getValidatedTransformations(
-			Collection<? extends Transformation> transformations, Counter<String> sample,
-			Counter<String> population, int minTokenCount) {
+	protected List<Transformation> getValidatedTransformations(Collection<? extends Transformation> transformations,
+			Counter<String> sample, Counter<String> population, int minTokenCount) {
 
 		// We directly implemented the caller, avoiding re-riltering and re-ordering of
 		// transformations

@@ -13,7 +13,8 @@ import io.github.mzattera.v4j.util.Counter;
 
 /**
  * "Static" class defining which transformations describe interesting words in
- * different places of the Voynich. It also contains method to apply these transformations.
+ * different places of the Voynich. It also contains method to apply these
+ * transformations.
  * 
  * See https://mzattera.github.io/v4j/013/
  * 
@@ -36,7 +37,7 @@ public final class Transformations {
 	 * This maps each combination of a manuscript locus and cluster, with
 	 * transformations defining interesting words at that locus for that cluster.
 	 */
-	public final static Map<Pair<Locus, String>, List<Transformation>> TRANSFORMATIONS = new HashMap<>();
+	private final static Map<Pair<Locus, String>, List<Transformation>> TRANSFORMATIONS = new HashMap<>();
 	static {
 		List<Transformation> l;
 
@@ -176,6 +177,21 @@ public final class Transformations {
 		l.add(new InsertBeforeTransformation('l', 'y', true));
 		l.add(new InsertBeforeTransformation('t', 'y', true));
 		TRANSFORMATIONS.put(new ImmutablePair<>(Locus.LAST_WORD_IN_LINE, "SB"), l);
+	}
+
+	/**
+	 * @return All transformations as a map mapping each cluster and locus pair into
+	 *         corresponding list of transformations.
+	 */
+	public static Map<Pair<Locus, String>, List<Transformation>> getTransformations() {
+		return Map.copyOf(TRANSFORMATIONS);
+	}
+
+	/**
+	 * @return Transformations for a given cluster and locus.
+	 */
+	public static List<Transformation> getTransformations(String cluster, Locus locus) {
+		return List.copyOf(TRANSFORMATIONS.get(new ImmutablePair<>(locus, cluster)));
 	}
 
 	/**

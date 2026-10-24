@@ -286,4 +286,35 @@ public final class Transformations {
 
 		return result;
 	}
+
+	/**
+	 * @param words           The candidates for transformations.
+	 * @param transformations Transformations to apply, in the specific order they
+	 *                        are provided.
+	 * 
+	 * @return A map from words that seem the result of any transformation to the
+	 *         transformation itself.
+	 */
+	public static Map<String, Transformation> getWordMap(Counter<String> words,
+			List<? extends Transformation> transformations) {
+		return getWordMap(getTransformationMap(words, transformations));
+	}
+
+	/**
+	 * @param transformationMap A map from each transformation into words that seem
+	 *                          the result of the transformation.
+	 * 
+	 * @return A map from words that seem the result of any transformation to the
+	 *         transformation itself.
+	 */
+	public static Map<String, Transformation> getWordMap(Map<Transformation, Counter<String>> transformationMap) {
+		Map<String, Transformation> result = new HashMap<>();
+
+		for (Entry<Transformation, Counter<String>> e : transformationMap.entrySet()) {
+			for (String w : e.getValue().itemSet()) {
+				result.put(w, e.getKey());
+			}
+		}
+		return result;
+	}
 }

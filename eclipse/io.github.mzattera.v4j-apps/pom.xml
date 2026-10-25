@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.mzattera</groupId>
 	<artifactId>v4j-apps</artifactId>
-	<version>16.0.0</version>
+	<version>17.0.0</version>
 	<name>v4j-apps</name>
 	<description>"Applications" using v4j Java to analyze the Voynich manuscript.</description>
 	
@@ -38,7 +38,7 @@
 		<dependency>
 			<groupId>io.github.mzattera</groupId>
 			<artifactId>v4j</artifactId>
-			<version>16.0.0</version>
+			<version>17.0.0</version>
 		</dependency>
 	</dependencies>
 </project>

@@ -1,6 +1,6 @@
 # Note 013 - Transformations
 
-_Last updated Oct. 24th, 2026._
+_Last updated Oct. 25th, 2026._
 
 **_This note is part of my article I presented at the International Conference on the Voynich Manuscript 2026._**
 
@@ -101,7 +101,7 @@ tokens and a higher frequency of ‘p’).
 Most of the interesting words appear to have ‘p’, ‘P’, or ‘f’ inserted into the appropriate slot
 within a word. Notice that ‘t’ and ‘k’ are instead inserted as prefix of words beginning with a very
 restricted set of characters (e.g. ‘t’ prefixes words starting with ‘S’ in the Herbal-A section); this
-confirms and add details to [existing knowledge](../10/).
+confirms and add details to [existing knowledge](../010/).
 
 The observation that all transformations involve prefixes or insertions explains why tokens in
 the first line of each paragraph tend to be longer than other tokens on average.
@@ -148,7 +148,7 @@ frequency is higher in this position.
 
 More notably, some interesting words in this position can have ‘l’ or ‘t’ inserted before specific
 characters; this constitutes a previously undocumented pattern. Notice this goes in the opposite
-direction of [other findings](../10/) that show how ‘l’ is less frequent in this position than others.
+direction of [other findings](../010/) that show how ‘l’ is less frequent in this position than others.
 
 
 

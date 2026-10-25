@@ -4,7 +4,7 @@ _Last updated Oct. 24th, 2026._
 
 **_This note is part of my article I presented at the International Conference on the Voynich Manuscript 2026._**
 
-_This note refers to [release v.16.0.0](https://github.com/mzattera/v4j/tree/v.16.0.0) of v4j;
+_This note refers to [release 16.0.0](https://github.com/mzattera/v4j/tree/16.0.0) of v4j;
 **links to classes and files refer to this release**; files might have been changed, deleted or moved in the current master branch.
 In addition, some of this note content might have become obsolete in more recent versions of the library._
 
@@ -90,7 +90,7 @@ highlight a distinct pattern unique to interesting words, which in turn accounts
 deviation from the baseline population (e.g. this specific transformation will account for longer
 tokens and a higher frequency of ‘p’).
 
-[Loci Samples Analysis.xlsx](https://github.com/mzattera/v4j/blob/v.16.0.0/resources/analysis/words/Loci%20Samples%20Analysis.xlsx)[{4}](#Note4) has a comprehensive list of words found at each text position, showing which one are marked as interesting words and what transfiguration can describe their morphology. 
+[Loci Samples Analysis.xlsx](https://github.com/mzattera/v4j/blob/16.0.0/resources/analysis/words/Loci%20Samples%20Analysis.xlsx)[{4}](#Note4) has a comprehensive list of words found at each text position, showing which one are marked as interesting words and what transfiguration can describe their morphology. 
 
 
 
@@ -185,18 +185,18 @@ through systematic procedural steps.
 **Notes**
 
 <a id="Note1">**{1}**</a> Class
-[`TransformationExtractor`](https://github.com/mzattera/v4j/blob/v.16.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/transformations/TransformationExtractor.java)
+[`TransformationExtractor`](https://github.com/mzattera/v4j/blob/16.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/transformations/TransformationExtractor.java)
 and its subclasses implement this process to identify transformations.
 
 <a id="Note2">**{2}**</a> Package
-[`io.github.mzattera.v4j.transformations`](https://github.com/mzattera/v4j/blob/v.16.0.0/eclipse/io.github.mzattera.v4j/src/main/java/io/github/mzattera/v4j/transformations)
+[`io.github.mzattera.v4j.transformations`](https://github.com/mzattera/v4j/blob/16.0.0/eclipse/io.github.mzattera.v4j/src/main/java/io/github/mzattera/v4j/transformations)
 
 <a id="Note3">**{3}**</a> Class
-[`Transformations`](https://github.com/mzattera/v4j/blob/v.16.0.0/eclipse/io.github.mzattera.v4j/src/main/java/io/github/mzattera/v4j/transformations/Transformations.java)
+[`Transformations`](https://github.com/mzattera/v4j/blob/16.0.0/eclipse/io.github.mzattera.v4j/src/main/java/io/github/mzattera/v4j/transformations/Transformations.java)
 contains all transformations we identified, divided by cluster and locus. It also contains method to apply these transformations.
 
 <a id="Note4">**{4}**</a> Class
-[`TransformationExport`](https://github.com/mzattera/v4j/blob/v.16.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/transformations/TransformationExport.java)
+[`TransformationExport`](https://github.com/mzattera/v4j/blob/16.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/transformations/TransformationExport.java)
 was used to create this Excel file.
 
 ---

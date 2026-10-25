@@ -1,5 +1,5 @@
-/**
- * */
+/* Copyright (c) 2026-present Massimiliano "Maxi" Zattera */
+
 package io.github.mzattera.v4j.applications.html;
 
 import java.io.IOException;

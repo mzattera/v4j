@@ -64,6 +64,7 @@ I considered  following six transformations[{2}](#Note2); which possibly cover a
   * Adding a one-character suffix to word ending with a given character.
   
 The results of this analysis for each text position are presented below by section[{3}](#Note3). Although substantial overlap exists, the set of transformations is never completely identical across all sections.
+
 An entry such as:  
 
 ```
@@ -88,6 +89,8 @@ transformations do not merely reflect general morphological features of the text
 highlight a distinct pattern unique to interesting words, which in turn accounts for their statistical
 deviation from the baseline population (e.g. this specific transformation will account for longer
 tokens and a higher frequency of ‘p’).
+
+[Loci Samples Analysis.xlsx](https://github.com/mzattera/v4j/blob/v.16.0.0/resources/analysis/words/Loci%20Samples%20Analysis.xlsx)[{4}](#Note4) has a comprehensive list of words found at each text position, showing which one are marked as interesting words and what transfiguration can describe their morphology. 
 
 
 
@@ -191,6 +194,10 @@ and its subclasses implement this process to identify transformations.
 <a id="Note3">**{3}**</a> Class
 [`Transformations`](https://github.com/mzattera/v4j/blob/v.16.0.0/eclipse/io.github.mzattera.v4j/src/main/java/io/github/mzattera/v4j/transformations/Transformations.java)
 contains all transformations we identified, divided by cluster and locus. It also contains method to apply these transformations.
+
+<a id="Note4">**{4}**</a> Class
+[`TransformationExport`](https://github.com/mzattera/v4j/blob/v.16.0.0/eclipse/io.github.mzattera.v4j-apps/src/main/java/io/github/mzattera/v4j/applications/transformations/TransformationExport.java)
+was used to create this Excel file.
 
 ---
 

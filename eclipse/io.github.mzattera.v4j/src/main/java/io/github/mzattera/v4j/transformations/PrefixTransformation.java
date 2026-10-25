@@ -1,3 +1,5 @@
+/* Copyright (c) 2026 Massimiliano "Maxi" Zattera */
+
 package io.github.mzattera.v4j.transformations;
 
 /**

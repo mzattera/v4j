@@ -1,4 +1,4 @@
-/* Copyright (c) 2021 Massimiliano "Maxi" Zattera */
+/* Copyright (c) 2021-2024 Massimiliano "Maxi" Zattera */
 
 package io.github.mzattera.v4j.applications.slot;
 

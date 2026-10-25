@@ -1,4 +1,4 @@
-/* Copyright (c) 2022 Massimiliano "Maxi" Zattera */
+/* Copyright (c) 2022-2024 Massimiliano "Maxi" Zattera */
 
 package io.github.mzattera.v4j.cmc.count.parser.antlr.internal;
 

@@ -1,4 +1,4 @@
-/* Copyright (c) 2018-2021 Massimiliano "Maxi" Zattera */
+/* Copyright (c) 2018-2024 Massimiliano "Maxi" Zattera */
 
 /**
  * 

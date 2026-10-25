@@ -1,6 +1,5 @@
-/**
- * 
- */
+/* Copyright (c) 2026 Massimiliano "Maxi" Zattera */
+
 package io.github.mzattera.v4j.applications.transformations;
 
 import java.io.BufferedWriter;
@@ -59,11 +58,11 @@ public abstract class TransformationExport {
 
 			// Create CSV file
 			String[] headers = { "Cluster", "Locus", "Word Type", "# in Sample", "% in Sample", "# in Population",
-					"% in Population", "Is Interesting", "Transformation", "From", "From # in Population",
-					"From % in Population" };
-			CSVFormat format = CSVFormat.DEFAULT.withHeader(headers);
+			        "% in Population", "Is Interesting", "Transformation", "From", "From # in Population",
+			        "From % in Population" };
+
 			try (BufferedWriter writer = Files.newBufferedWriter(OUTPUT_FILE, StandardCharsets.UTF_8);
-					CSVPrinter csvPrinter = new CSVPrinter(writer, format)) {
+			     CSVPrinter csvPrinter = CSVFormat.DEFAULT.builder().setHeader(headers).get().print(writer)) {
 
 				for (String cluster : PageHeader.CLUSTERS) {
 					for (Pair<Locus, Experiment> p : EXPERIMENTS) {

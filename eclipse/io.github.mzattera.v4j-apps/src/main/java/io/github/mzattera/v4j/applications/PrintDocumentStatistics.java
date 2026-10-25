@@ -1,10 +1,10 @@
-/* Copyright (c) 2021-2022 Massimiliano "Maxi" Zattera */
+/* Copyright (c) 2021-2024 Massimiliano "Maxi" Zattera */
 
 package io.github.mzattera.v4j.applications;
+
 /**
  * 
  */
-
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -52,9 +52,10 @@ public final class PrintDocumentStatistics {
 
 	public static void process(IvtffText doc, String fileName) throws IOException {
 		try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(fileName));
-				CSVPrinter csvPrinter = new CSVPrinter(writer,
-						CSVFormat.DEFAULT.withHeader("ID", "IllustrationType", "Language", "Cluster", "Hand", "Quire",
-								"PageInQuire", "Parchment", "Tokens", "Types", "ClearTokens", "ClearTypes"));) {
+				CSVPrinter csvPrinter = CSVFormat.DEFAULT
+						.builder().setHeader("ID", "IllustrationType", "Language", "Cluster", "Hand", "Quire",
+								"PageInQuire", "Parchment", "Tokens", "Types", "ClearTokens", "ClearTypes")
+						.get().print(writer);) {
 
 			for (IvtffPage p : doc.getElements()) {
 				PageHeader ph = p.getDescriptor();

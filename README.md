@@ -4,26 +4,23 @@ This is a Java library i created to experiment with the [Voynich manuscript](htt
 
 The outcomes of my experiments are tracked on the [project pages](https://mzattera.github.io/v4j/).
 
-- The folder `eclipse` contains all of the Java source code..
+* The folder `eclipse` contains all of the Java source code..
+  * The (Maven) project `io.github.mzattera.v4j` holds the actual code for the Java library. The library content is described below. The library can be imported by adding this dependency in your POM file.
+    
+    ```xml
+    <dependency>
+        <groupId>io.github.mzattera</groupId>
+        <artifactId>v4j</artifactId>
+        <version>16.0.0</version>
+    </dependency>
+    ```
 
-  - The (Maven) project `io.github.mzattera.v4j` holds the actual code for the Java library.
-The library content is described below. The library can be imported by adding this dependency in your POM file.
-
-```
-<dependency>
-	<groupId>io.github.mzattera</groupId>
-	<artifactId>v4j</artifactId>
-	<version>16.0.0</version>
-</dependency>
-```
-
-  - The (Maven) project `io.github.mzattera.v4j-apps` contains classes I created to experiment with the 
-Voynich manuscript; here you can find examples about how to use the library.
-
-  - The project `io.github.mzattera.v4j.cmc` is a [Xtext](https://www.eclipse.org/Xtext/) created when writing [Note 006](https://mzattera.github.io/v4j/006/). 
+  * The (Maven) project `io.github.mzattera.v4j-apps` contains classes I created to experiment with the Voynich manuscript; here you can find examples about how to use the library.
+  
+  * The project `io.github.mzattera.v4j.cmc` is a [Xtext](https://www.eclipse.org/Xtext/) created when writing [Note 006](https://mzattera.github.io/v4j/006/). 
 Please notice you will need to install Xtext inside Eclipse in order for this project to work.
 
-- The folder `KNIME` contains several sub-folders, each corresponding to a different [KNIME](https://www.knime.com/) projects.
+* The folder `KNIME` contains several sub-folders, each corresponding to a different [KNIME](https://www.knime.com/) projects.
 
 **_Note:_** Plase check the [project pages](https://mzattera.github.io/v4j/) for some terminology that is relevant here.
 

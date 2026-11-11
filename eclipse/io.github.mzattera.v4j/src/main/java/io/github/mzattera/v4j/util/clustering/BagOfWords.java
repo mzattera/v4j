@@ -221,6 +221,30 @@ public class BagOfWords implements Clusterable {
 	}
 
 	/**
+	 * 
+	 * @param txt        A {@link Counter} counting tokens in a text.
+	 * @param dimensions words to use as dimensions for the bag of words.
+	 * @param mode       Mode to use to build the bag of words.
+	 * @return a bag of words for the text represented by given
+	 *         <code>Counter</code>, or null if the BOW cannot be built (e.g. the
+	 *         text has no words in the given dimensions).
+	 */
+	public static BagOfWords toBoW(Counter<String> txt, Map<String, Integer> dimensions, BagOfWordsMode mode) {
+
+		// Build back a fictious text out of the Counter
+		StringBuilder sb = new StringBuilder();
+		for (Entry<String, Integer> e : txt.entrySet()) {
+			String s = e.getKey() + " ";
+			sb.append(s.repeat(e.getValue()));
+		}
+
+		List<BagOfWords> bows = toBoW(List.of(sb.toString().trim()), dimensions, mode);
+		if (bows.size() == 0)
+			return null;
+		return bows.get(0);
+	}
+
+	/**
 	 * Since to build BoW we need "dimensions" (e.g. the words to use in the BoW) we
 	 * provide here a utility method to get dimensions out of a list of words.
 	 * 

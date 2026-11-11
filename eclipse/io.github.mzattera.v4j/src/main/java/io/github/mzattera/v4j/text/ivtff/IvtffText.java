@@ -572,7 +572,7 @@ public class IvtffText extends CompositeText<IvtffPage> {
 	 *         and preserves paragraph separators (<$>).
 	 */
 	public IvtffText shuffledText() {
-		return shuffledText(new Random(System.currentTimeMillis()));
+		return shuffledText(new Random());
 	}
 
 	/**

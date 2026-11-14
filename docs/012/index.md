@@ -91,7 +91,7 @@ We can define a population of "<a id="interesting">**interesting words**</a>" as
 
 1. Last token in a line (in red in the below illustration)
 
-and contrast this population with the "**standard population**", defined as the set of words that do not appear in any of the above positions (circled in yellow in the below illustration).
+and contrast this population with the <a name="standard_pop">"**standard population**"</a>, defined as the set of words that do not appear in any of the above positions (circled in yellow in the below illustration).
 
 ![Example paragraph showing different area of the text](images/Regions.PNG)
 
